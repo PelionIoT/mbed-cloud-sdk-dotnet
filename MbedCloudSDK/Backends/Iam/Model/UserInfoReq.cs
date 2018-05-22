@@ -39,17 +39,17 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UserInfoReq" /> class.
         /// </summary>
+        /// <param name="Address">Address, not longer than 100 characters..</param>
+        /// <param name="CustomFields">User&#39;s account-specific custom properties as key-value pairs, with a maximum of 100 keys. The maximum length of a key is 100 characters. The values are handled as strings and the maximum length for a value is 4000 characters..</param>
+        /// <param name="Email">The email address, not longer than 254 characters. (required).</param>
+        /// <param name="FullName">The full name of the user, not longer than 100 characters..</param>
+        /// <param name="Groups">A list of IDs of the groups this user belongs to..</param>
+        /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted..</param>
+        /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted..</param>
+        /// <param name="Password">The password when creating a new user. It will be generated when not present in the request..</param>
         /// <param name="PhoneNumber">Phone number, not longer than 100 characters..</param>
         /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters. It must be at least 4 but not more than 30 character long..</param>
-        /// <param name="Groups">A list of IDs of the groups this user belongs to..</param>
-        /// <param name="UserProperties">User&#39;s account specific custom properties..</param>
-        /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted..</param>
-        /// <param name="FullName">The full name of the user, not longer than 100 characters..</param>
-        /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted..</param>
-        /// <param name="Address">Address, not longer than 100 characters..</param>
-        /// <param name="Password">The password when creating a new user. It will be generated when not present in the request..</param>
-        /// <param name="Email">The email address, not longer than 254 characters. (required).</param>
-        public UserInfoReq(string PhoneNumber = default(string), string Username = default(string), List<string> Groups = default(List<string>), Dictionary<string, Dictionary<string, string>> UserProperties = default(Dictionary<string, Dictionary<string, string>>), bool? IsGtcAccepted = default(bool?), string FullName = default(string), bool? IsMarketingAccepted = default(bool?), string Address = default(string), string Password = default(string), string Email = default(string))
+        public UserInfoReq(string Address = default(string), Dictionary<string, string> CustomFields = default(Dictionary<string, string>), string Email = default(string), string FullName = default(string), List<string> Groups = default(List<string>), bool? IsGtcAccepted = default(bool?), bool? IsMarketingAccepted = default(bool?), string Password = default(string), string PhoneNumber = default(string), string Username = default(string))
         {
             // to ensure "Email" is required (not null)
             if (Email == null)
@@ -60,17 +60,73 @@ namespace iam.Model
             {
                 this.Email = Email;
             }
+            this.Address = Address;
+            this.CustomFields = CustomFields;
+            this.FullName = FullName;
+            this.Groups = Groups;
+            this.IsGtcAccepted = IsGtcAccepted;
+            this.IsMarketingAccepted = IsMarketingAccepted;
+            this.Password = Password;
             this.PhoneNumber = PhoneNumber;
             this.Username = Username;
-            this.Groups = Groups;
-            this.UserProperties = UserProperties;
-            this.IsGtcAccepted = IsGtcAccepted;
-            this.FullName = FullName;
-            this.IsMarketingAccepted = IsMarketingAccepted;
-            this.Address = Address;
-            this.Password = Password;
         }
         
+        /// <summary>
+        /// Address, not longer than 100 characters.
+        /// </summary>
+        /// <value>Address, not longer than 100 characters.</value>
+        [DataMember(Name="address", EmitDefaultValue=false)]
+        public string Address { get; set; }
+
+        /// <summary>
+        /// User&#39;s account-specific custom properties as key-value pairs, with a maximum of 100 keys. The maximum length of a key is 100 characters. The values are handled as strings and the maximum length for a value is 4000 characters.
+        /// </summary>
+        /// <value>User&#39;s account-specific custom properties as key-value pairs, with a maximum of 100 keys. The maximum length of a key is 100 characters. The values are handled as strings and the maximum length for a value is 4000 characters.</value>
+        [DataMember(Name="custom_fields", EmitDefaultValue=false)]
+        public Dictionary<string, string> CustomFields { get; set; }
+
+        /// <summary>
+        /// The email address, not longer than 254 characters.
+        /// </summary>
+        /// <value>The email address, not longer than 254 characters.</value>
+        [DataMember(Name="email", EmitDefaultValue=false)]
+        public string Email { get; set; }
+
+        /// <summary>
+        /// The full name of the user, not longer than 100 characters.
+        /// </summary>
+        /// <value>The full name of the user, not longer than 100 characters.</value>
+        [DataMember(Name="full_name", EmitDefaultValue=false)]
+        public string FullName { get; set; }
+
+        /// <summary>
+        /// A list of IDs of the groups this user belongs to.
+        /// </summary>
+        /// <value>A list of IDs of the groups this user belongs to.</value>
+        [DataMember(Name="groups", EmitDefaultValue=false)]
+        public List<string> Groups { get; set; }
+
+        /// <summary>
+        /// A flag indicating that the General Terms and Conditions has been accepted.
+        /// </summary>
+        /// <value>A flag indicating that the General Terms and Conditions has been accepted.</value>
+        [DataMember(Name="is_gtc_accepted", EmitDefaultValue=false)]
+        public bool? IsGtcAccepted { get; set; }
+
+        /// <summary>
+        /// A flag indicating that receiving marketing information has been accepted.
+        /// </summary>
+        /// <value>A flag indicating that receiving marketing information has been accepted.</value>
+        [DataMember(Name="is_marketing_accepted", EmitDefaultValue=false)]
+        public bool? IsMarketingAccepted { get; set; }
+
+        /// <summary>
+        /// The password when creating a new user. It will be generated when not present in the request.
+        /// </summary>
+        /// <value>The password when creating a new user. It will be generated when not present in the request.</value>
+        [DataMember(Name="password", EmitDefaultValue=false)]
+        public string Password { get; set; }
+
         /// <summary>
         /// Phone number, not longer than 100 characters.
         /// </summary>
@@ -86,62 +142,6 @@ namespace iam.Model
         public string Username { get; set; }
 
         /// <summary>
-        /// A list of IDs of the groups this user belongs to.
-        /// </summary>
-        /// <value>A list of IDs of the groups this user belongs to.</value>
-        [DataMember(Name="groups", EmitDefaultValue=false)]
-        public List<string> Groups { get; set; }
-
-        /// <summary>
-        /// User&#39;s account specific custom properties.
-        /// </summary>
-        /// <value>User&#39;s account specific custom properties.</value>
-        [DataMember(Name="user_properties", EmitDefaultValue=false)]
-        public Dictionary<string, Dictionary<string, string>> UserProperties { get; set; }
-
-        /// <summary>
-        /// A flag indicating that the General Terms and Conditions has been accepted.
-        /// </summary>
-        /// <value>A flag indicating that the General Terms and Conditions has been accepted.</value>
-        [DataMember(Name="is_gtc_accepted", EmitDefaultValue=false)]
-        public bool? IsGtcAccepted { get; set; }
-
-        /// <summary>
-        /// The full name of the user, not longer than 100 characters.
-        /// </summary>
-        /// <value>The full name of the user, not longer than 100 characters.</value>
-        [DataMember(Name="full_name", EmitDefaultValue=false)]
-        public string FullName { get; set; }
-
-        /// <summary>
-        /// A flag indicating that receiving marketing information has been accepted.
-        /// </summary>
-        /// <value>A flag indicating that receiving marketing information has been accepted.</value>
-        [DataMember(Name="is_marketing_accepted", EmitDefaultValue=false)]
-        public bool? IsMarketingAccepted { get; set; }
-
-        /// <summary>
-        /// Address, not longer than 100 characters.
-        /// </summary>
-        /// <value>Address, not longer than 100 characters.</value>
-        [DataMember(Name="address", EmitDefaultValue=false)]
-        public string Address { get; set; }
-
-        /// <summary>
-        /// The password when creating a new user. It will be generated when not present in the request.
-        /// </summary>
-        /// <value>The password when creating a new user. It will be generated when not present in the request.</value>
-        [DataMember(Name="password", EmitDefaultValue=false)]
-        public string Password { get; set; }
-
-        /// <summary>
-        /// The email address, not longer than 254 characters.
-        /// </summary>
-        /// <value>The email address, not longer than 254 characters.</value>
-        [DataMember(Name="email", EmitDefaultValue=false)]
-        public string Email { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -149,16 +149,16 @@ namespace iam.Model
         {
             var sb = new StringBuilder();
             sb.Append("class UserInfoReq {\n");
+            sb.Append("  Address: ").Append(Address).Append("\n");
+            sb.Append("  CustomFields: ").Append(CustomFields).Append("\n");
+            sb.Append("  Email: ").Append(Email).Append("\n");
+            sb.Append("  FullName: ").Append(FullName).Append("\n");
+            sb.Append("  Groups: ").Append(Groups).Append("\n");
+            sb.Append("  IsGtcAccepted: ").Append(IsGtcAccepted).Append("\n");
+            sb.Append("  IsMarketingAccepted: ").Append(IsMarketingAccepted).Append("\n");
+            sb.Append("  Password: ").Append(Password).Append("\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  Username: ").Append(Username).Append("\n");
-            sb.Append("  Groups: ").Append(Groups).Append("\n");
-            sb.Append("  UserProperties: ").Append(UserProperties).Append("\n");
-            sb.Append("  IsGtcAccepted: ").Append(IsGtcAccepted).Append("\n");
-            sb.Append("  FullName: ").Append(FullName).Append("\n");
-            sb.Append("  IsMarketingAccepted: ").Append(IsMarketingAccepted).Append("\n");
-            sb.Append("  Address: ").Append(Address).Append("\n");
-            sb.Append("  Password: ").Append(Password).Append("\n");
-            sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -194,6 +194,46 @@ namespace iam.Model
 
             return 
                 (
+                    this.Address == input.Address ||
+                    (this.Address != null &&
+                    this.Address.Equals(input.Address))
+                ) && 
+                (
+                    this.CustomFields == input.CustomFields ||
+                    this.CustomFields != null &&
+                    this.CustomFields.SequenceEqual(input.CustomFields)
+                ) && 
+                (
+                    this.Email == input.Email ||
+                    (this.Email != null &&
+                    this.Email.Equals(input.Email))
+                ) && 
+                (
+                    this.FullName == input.FullName ||
+                    (this.FullName != null &&
+                    this.FullName.Equals(input.FullName))
+                ) && 
+                (
+                    this.Groups == input.Groups ||
+                    this.Groups != null &&
+                    this.Groups.SequenceEqual(input.Groups)
+                ) && 
+                (
+                    this.IsGtcAccepted == input.IsGtcAccepted ||
+                    (this.IsGtcAccepted != null &&
+                    this.IsGtcAccepted.Equals(input.IsGtcAccepted))
+                ) && 
+                (
+                    this.IsMarketingAccepted == input.IsMarketingAccepted ||
+                    (this.IsMarketingAccepted != null &&
+                    this.IsMarketingAccepted.Equals(input.IsMarketingAccepted))
+                ) && 
+                (
+                    this.Password == input.Password ||
+                    (this.Password != null &&
+                    this.Password.Equals(input.Password))
+                ) && 
+                (
                     this.PhoneNumber == input.PhoneNumber ||
                     (this.PhoneNumber != null &&
                     this.PhoneNumber.Equals(input.PhoneNumber))
@@ -202,46 +242,6 @@ namespace iam.Model
                     this.Username == input.Username ||
                     (this.Username != null &&
                     this.Username.Equals(input.Username))
-                ) && 
-                (
-                    this.Groups == input.Groups ||
-                    this.Groups != null &&
-                    this.Groups.SequenceEqual(input.Groups)
-                ) && 
-                (
-                    this.UserProperties == input.UserProperties ||
-                    this.UserProperties != null &&
-                    this.UserProperties.SequenceEqual(input.UserProperties)
-                ) && 
-                (
-                    this.IsGtcAccepted == input.IsGtcAccepted ||
-                    (this.IsGtcAccepted != null &&
-                    this.IsGtcAccepted.Equals(input.IsGtcAccepted))
-                ) && 
-                (
-                    this.FullName == input.FullName ||
-                    (this.FullName != null &&
-                    this.FullName.Equals(input.FullName))
-                ) && 
-                (
-                    this.IsMarketingAccepted == input.IsMarketingAccepted ||
-                    (this.IsMarketingAccepted != null &&
-                    this.IsMarketingAccepted.Equals(input.IsMarketingAccepted))
-                ) && 
-                (
-                    this.Address == input.Address ||
-                    (this.Address != null &&
-                    this.Address.Equals(input.Address))
-                ) && 
-                (
-                    this.Password == input.Password ||
-                    (this.Password != null &&
-                    this.Password.Equals(input.Password))
-                ) && 
-                (
-                    this.Email == input.Email ||
-                    (this.Email != null &&
-                    this.Email.Equals(input.Email))
                 );
         }
 
@@ -254,26 +254,26 @@ namespace iam.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Address != null)
+                    hashCode = hashCode * 59 + this.Address.GetHashCode();
+                if (this.CustomFields != null)
+                    hashCode = hashCode * 59 + this.CustomFields.GetHashCode();
+                if (this.Email != null)
+                    hashCode = hashCode * 59 + this.Email.GetHashCode();
+                if (this.FullName != null)
+                    hashCode = hashCode * 59 + this.FullName.GetHashCode();
+                if (this.Groups != null)
+                    hashCode = hashCode * 59 + this.Groups.GetHashCode();
+                if (this.IsGtcAccepted != null)
+                    hashCode = hashCode * 59 + this.IsGtcAccepted.GetHashCode();
+                if (this.IsMarketingAccepted != null)
+                    hashCode = hashCode * 59 + this.IsMarketingAccepted.GetHashCode();
+                if (this.Password != null)
+                    hashCode = hashCode * 59 + this.Password.GetHashCode();
                 if (this.PhoneNumber != null)
                     hashCode = hashCode * 59 + this.PhoneNumber.GetHashCode();
                 if (this.Username != null)
                     hashCode = hashCode * 59 + this.Username.GetHashCode();
-                if (this.Groups != null)
-                    hashCode = hashCode * 59 + this.Groups.GetHashCode();
-                if (this.UserProperties != null)
-                    hashCode = hashCode * 59 + this.UserProperties.GetHashCode();
-                if (this.IsGtcAccepted != null)
-                    hashCode = hashCode * 59 + this.IsGtcAccepted.GetHashCode();
-                if (this.FullName != null)
-                    hashCode = hashCode * 59 + this.FullName.GetHashCode();
-                if (this.IsMarketingAccepted != null)
-                    hashCode = hashCode * 59 + this.IsMarketingAccepted.GetHashCode();
-                if (this.Address != null)
-                    hashCode = hashCode * 59 + this.Address.GetHashCode();
-                if (this.Password != null)
-                    hashCode = hashCode * 59 + this.Password.GetHashCode();
-                if (this.Email != null)
-                    hashCode = hashCode * 59 + this.Email.GetHashCode();
                 return hashCode;
             }
         }

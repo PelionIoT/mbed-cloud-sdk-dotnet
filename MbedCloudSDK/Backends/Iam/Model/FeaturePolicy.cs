@@ -35,17 +35,17 @@ namespace iam.Model
         /// Initializes a new instance of the <see cref="FeaturePolicy" /> class.
         /// </summary>
         /// <param name="Action">Comma separated list of actions, empty string represents all actions..</param>
-        /// <param name="Resource">Resource that is protected by this policy..</param>
-        /// <param name="Feature">Feature name corresponding to this policy..</param>
         /// <param name="Allow">True or false controlling whether an action is allowed or not..</param>
+        /// <param name="Feature">Feature name corresponding to this policy..</param>
         /// <param name="Inherited">Flag indicating whether this feature is inherited or overwritten specifically..</param>
-        public FeaturePolicy(string Action = default(string), string Resource = default(string), string Feature = default(string), bool? Allow = default(bool?), bool? Inherited = default(bool?))
+        /// <param name="Resource">Resource that is protected by this policy..</param>
+        public FeaturePolicy(string Action = default(string), bool? Allow = default(bool?), string Feature = default(string), bool? Inherited = default(bool?), string Resource = default(string))
         {
             this.Action = Action;
-            this.Resource = Resource;
-            this.Feature = Feature;
             this.Allow = Allow;
+            this.Feature = Feature;
             this.Inherited = Inherited;
+            this.Resource = Resource;
         }
         
         /// <summary>
@@ -56,11 +56,11 @@ namespace iam.Model
         public string Action { get; set; }
 
         /// <summary>
-        /// Resource that is protected by this policy.
+        /// True or false controlling whether an action is allowed or not.
         /// </summary>
-        /// <value>Resource that is protected by this policy.</value>
-        [DataMember(Name="resource", EmitDefaultValue=false)]
-        public string Resource { get; set; }
+        /// <value>True or false controlling whether an action is allowed or not.</value>
+        [DataMember(Name="allow", EmitDefaultValue=false)]
+        public bool? Allow { get; set; }
 
         /// <summary>
         /// Feature name corresponding to this policy.
@@ -70,18 +70,18 @@ namespace iam.Model
         public string Feature { get; set; }
 
         /// <summary>
-        /// True or false controlling whether an action is allowed or not.
-        /// </summary>
-        /// <value>True or false controlling whether an action is allowed or not.</value>
-        [DataMember(Name="allow", EmitDefaultValue=false)]
-        public bool? Allow { get; set; }
-
-        /// <summary>
         /// Flag indicating whether this feature is inherited or overwritten specifically.
         /// </summary>
         /// <value>Flag indicating whether this feature is inherited or overwritten specifically.</value>
         [DataMember(Name="inherited", EmitDefaultValue=false)]
         public bool? Inherited { get; set; }
+
+        /// <summary>
+        /// Resource that is protected by this policy.
+        /// </summary>
+        /// <value>Resource that is protected by this policy.</value>
+        [DataMember(Name="resource", EmitDefaultValue=false)]
+        public string Resource { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -92,10 +92,10 @@ namespace iam.Model
             var sb = new StringBuilder();
             sb.Append("class FeaturePolicy {\n");
             sb.Append("  Action: ").Append(Action).Append("\n");
-            sb.Append("  Resource: ").Append(Resource).Append("\n");
-            sb.Append("  Feature: ").Append(Feature).Append("\n");
             sb.Append("  Allow: ").Append(Allow).Append("\n");
+            sb.Append("  Feature: ").Append(Feature).Append("\n");
             sb.Append("  Inherited: ").Append(Inherited).Append("\n");
+            sb.Append("  Resource: ").Append(Resource).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -136,9 +136,9 @@ namespace iam.Model
                     this.Action.Equals(input.Action))
                 ) && 
                 (
-                    this.Resource == input.Resource ||
-                    (this.Resource != null &&
-                    this.Resource.Equals(input.Resource))
+                    this.Allow == input.Allow ||
+                    (this.Allow != null &&
+                    this.Allow.Equals(input.Allow))
                 ) && 
                 (
                     this.Feature == input.Feature ||
@@ -146,14 +146,14 @@ namespace iam.Model
                     this.Feature.Equals(input.Feature))
                 ) && 
                 (
-                    this.Allow == input.Allow ||
-                    (this.Allow != null &&
-                    this.Allow.Equals(input.Allow))
-                ) && 
-                (
                     this.Inherited == input.Inherited ||
                     (this.Inherited != null &&
                     this.Inherited.Equals(input.Inherited))
+                ) && 
+                (
+                    this.Resource == input.Resource ||
+                    (this.Resource != null &&
+                    this.Resource.Equals(input.Resource))
                 );
         }
 
@@ -168,14 +168,14 @@ namespace iam.Model
                 int hashCode = 41;
                 if (this.Action != null)
                     hashCode = hashCode * 59 + this.Action.GetHashCode();
-                if (this.Resource != null)
-                    hashCode = hashCode * 59 + this.Resource.GetHashCode();
-                if (this.Feature != null)
-                    hashCode = hashCode * 59 + this.Feature.GetHashCode();
                 if (this.Allow != null)
                     hashCode = hashCode * 59 + this.Allow.GetHashCode();
+                if (this.Feature != null)
+                    hashCode = hashCode * 59 + this.Feature.GetHashCode();
                 if (this.Inherited != null)
                     hashCode = hashCode * 59 + this.Inherited.GetHashCode();
+                if (this.Resource != null)
+                    hashCode = hashCode * 59 + this.Resource.GetHashCode();
                 return hashCode;
             }
         }

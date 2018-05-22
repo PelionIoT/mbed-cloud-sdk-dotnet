@@ -8,6 +8,8 @@ using MbedCloudSDK.Connect.Api.Subscribe;
 using MbedCloudSDK.Connect.Api.Subscribe.Models;
 using MbedCloudSDK.Connect.Api.Subscribe.Observers;
 using System.Threading.Tasks;
+using MbedCloudSDK.Connect.Model.Subscription;
+using System.Linq;
 
 namespace ConsoleExamples.Examples.Subscribe
 {
@@ -18,6 +20,36 @@ namespace ConsoleExamples.Examples.Subscribe
         public SubscribeExamples(Config config)
         {
             connect = new ConnectApi(config);
+        }
+
+        public async Task ResourceValues()
+        {
+            // subscribe to everything
+            var blankSub = connect.Subscribe.ResourceValues();
+
+            // by default, ResourceValues() will create subscriptions for all matching resources. To turn this off set first value to "OnRegistration".
+            var blankSubImmediate = connect.Subscribe.ResourceValues(FirstValueEnum.OnRegistration);
+
+            // subscribe to one resource on a device
+            var deviceIdSub = connect.Subscribe.ResourceValues("1", "3/0/1");
+
+            // subscribe to multiple resources on a device
+            var deviceIdSub2 = connect.Subscribe.ResourceValues("1", new List<string> { "3/0/1, 3/0/2" });
+
+            // use wildcard for resource paths
+            var deviceIdSub3 = connect.Subscribe.ResourceValues("1", "3/0/*");
+
+            // can add further filters
+            deviceIdSub3.Where("1", "4/0/1");
+
+            // add a local filter on the data notified
+            var deviceIdSub4 = connect.Subscribe.ResourceValues("1").Where(f => int.Parse(f.Payload) > 5);
+
+            blankSub.OnNotify += (res) => Console.WriteLine(res);
+
+            var nextValue = await blankSub.Next();
+
+            Console.WriteLine(nextValue);
         }
 
         public async Task SubscribeToAll()

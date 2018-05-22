@@ -67,7 +67,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
 
             try
             {
-                var resp = api.DeviceQueryList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
+                var resp = Api.DeviceQueryList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
                 var respDevices = new ResponsePage<Query>(resp.After, resp.HasMore, (int?)resp.Limit, resp.Order, (int?)resp.TotalCount);
                 foreach (var deviceQuery in resp.Data)
                 {
@@ -105,7 +105,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         {
             try
             {
-                var response = api.DeviceQueryRetrieve(queryId);
+                var response = Api.DeviceQueryRetrieve(queryId);
                 return Query.Map(response);
             }
             catch (device_directory.Client.ApiException ex)
@@ -144,7 +144,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
 
             try
             {
-                var response = api.DeviceQueryCreate(deviceQueryPostPutRequest);
+                var response = Api.DeviceQueryCreate(deviceQueryPostPutRequest);
                 return Query.Map(response);
             }
             catch (device_directory.Client.ApiException ex)
@@ -186,7 +186,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
 
             try
             {
-                var response = api.DeviceQueryUpdate(queryId, deviceQueryPostPutRequest);
+                var response = Api.DeviceQueryUpdate(queryId, deviceQueryPostPutRequest);
                 return Query.Map(response);
             }
             catch (device_directory.Client.ApiException ex)
@@ -216,7 +216,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         {
             try
             {
-                api.DeviceQueryDestroy(queryId);
+                Api.DeviceQueryDestroy(queryId);
             }
             catch (device_directory.Client.ApiException ex)
             {

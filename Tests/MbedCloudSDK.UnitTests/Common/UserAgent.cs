@@ -57,63 +57,63 @@ namespace MbedCloudSDK.UnitTests.Common
         public void TestAccountManagementDeveloperApi()
         {
             var accountManagement = new AccountManagementApi(new Config(""));
-            TestUserAgent(accountManagement.developerApi.Configuration.UserAgent);
+            TestUserAgent(accountManagement.DeveloperApi.Configuration.UserAgent);
         }
 
         [Test]
         public void TestCertificatesDeveloperApi()
         {
             var certificates = new CertificatesApi(new Config(""), null, null, false);
-            TestUserAgent(certificates.developerApi.Configuration.UserAgent);
+            TestUserAgent(certificates.DeveloperApi.Configuration.UserAgent);
         }
 
         [Test]
         public void TestCertificatesDeveloperCertificatesApi()
         {
             var certificates = new CertificatesApi(new Config(""), null, null, false);
-            TestUserAgent(certificates.developerCertificateApi.Configuration.UserAgent);
+            TestUserAgent(certificates.DeveloperCertificateApi.Configuration.UserAgent);
         }
 
         [Test]
         public void TestConnectStatisticsApi()
         {
             var connect = new ConnectApi(new Config(""));
-            TestUserAgent(connect.statisticsApi.Configuration.UserAgent);
+            TestUserAgent(connect.StatisticsApi.Configuration.UserAgent);
         }
 
         [Test]
         public void TestConnectResourcesApi()
         {
             var connect = new ConnectApi(new Config(""));
-            TestUserAgent(connect.resourcesApi.Configuration.UserAgent);
+            TestUserAgent(connect.ResourcesApi.Configuration.UserAgent);
         }
 
         [Test]
         public void TestConnectDeviceDirectoryApi()
         {
             var connect = new ConnectApi(new Config(""));
-            TestUserAgent(connect.deviceDirectoryApi.Configuration.UserAgent);
+            TestUserAgent(connect.DeviceDirectoryApi.Configuration.UserAgent);
         }
 
         [Test]
         public void TestDeviceDirectoryApi()
         {
             var deviceDirectory = new DeviceDirectoryApi(new Config(""));
-            TestUserAgent(deviceDirectory.api.Configuration.UserAgent);
+            TestUserAgent(deviceDirectory.Api.Configuration.UserAgent);
         }
 
         [Test]
         public void TestEnrollmentApi()
         {
             var enrollment = new EnrollmentApi(new Config(""));
-            TestUserAgent(enrollment.api.Configuration.UserAgent);
+            TestUserAgent(enrollment.Api.Configuration.UserAgent);
         }
 
         [Test]
         public void TestUpdateApi()
         {
             var update = new UpdateApi(new Config(""));
-            TestUserAgent(update.api.Configuration.UserAgent);
+            TestUserAgent(update.Api.Configuration.UserAgent);
         }
 
         private void TestUserAgent(string agent)

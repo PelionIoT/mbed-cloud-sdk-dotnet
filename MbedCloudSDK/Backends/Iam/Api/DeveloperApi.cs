@@ -26,31 +26,10 @@ namespace iam.Api
     {
         #region Synchronous Operations
         /// <summary>
-        /// Add user to a list of groupS.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for adding user to groups.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">A list of IDs of the groups to be updated.</param>
-        /// <returns>UpdatedResponse</returns>
-        UpdatedResponse AddMeToGroups (List<string> body);
-
-        /// <summary>
-        /// Add user to a list of groupS.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for adding user to groups.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">A list of IDs of the groups to be updated.</param>
-        /// <returns>ApiResponse of UpdatedResponse</returns>
-        ApiResponse<UpdatedResponse> AddMeToGroupsWithHttpInfo (List<string> body);
-        /// <summary>
         /// Add API key to a list of groups.
         /// </summary>
         /// <remarks>
-        /// An endpoint for adding API key to groups.
+        /// An endpoint for adding API key to groups.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/api-keys/me/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A list of IDs of the groups to be updated.</param>
@@ -61,7 +40,7 @@ namespace iam.Api
         /// Add API key to a list of groups.
         /// </summary>
         /// <remarks>
-        /// An endpoint for adding API key to groups.
+        /// An endpoint for adding API key to groups.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/api-keys/me/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A list of IDs of the groups to be updated.</param>
@@ -113,7 +92,7 @@ namespace iam.Api
         /// Delete a trusted certificate by ID.
         /// </summary>
         /// <remarks>
-        /// An endpoint for deleting a trusted certificate.
+        /// An endpoint for deleting a trusted certificate.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID of the trusted certificate to be deleted.</param>
@@ -124,7 +103,7 @@ namespace iam.Api
         /// Delete a trusted certificate by ID.
         /// </summary>
         /// <remarks>
-        /// An endpoint for deleting a trusted certificate.
+        /// An endpoint for deleting a trusted certificate.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID of the trusted certificate to be deleted.</param>
@@ -165,7 +144,7 @@ namespace iam.Api
         /// Get all trusted certificates.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving trusted certificates in an array.
+        /// An endpoint for retrieving trusted certificates in an array.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -179,8 +158,8 @@ namespace iam.Api
         /// <param name="deviceExecutionModeNeq">Device execution mode not equals filter (optional)</param>
         /// <param name="ownerEq">Owner name filter (optional)</param>
         /// <param name="enrollmentModeEq">Enrollment mode filter (optional)</param>
-        /// <param name="issuerLike">Issuer filter (optional)</param>
-        /// <param name="subjectLike">Subject filter (optional)</param>
+        /// <param name="issuerLike">Issuer filter. Finds all matches where the filter value is a case insensitive substring of the result. Example: issuer__like&#x3D;cn&#x3D;iss matches CN&#x3D;issuer. (optional)</param>
+        /// <param name="subjectLike">Subject filter. Finds all matches where the filter value is a case insensitive substring of the result. Example: subject__like&#x3D;cn&#x3D;su matches CN&#x3D;subject. (optional)</param>
         /// <returns>TrustedCertificateRespList</returns>
         TrustedCertificateRespList GetAllCertificates (int? limit = null, string after = null, string order = null, string include = null, string nameEq = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, int? deviceExecutionModeNeq = null, string ownerEq = null, bool? enrollmentModeEq = null, string issuerLike = null, string subjectLike = null);
 
@@ -188,7 +167,7 @@ namespace iam.Api
         /// Get all trusted certificates.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving trusted certificates in an array.
+        /// An endpoint for retrieving trusted certificates in an array.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -202,15 +181,15 @@ namespace iam.Api
         /// <param name="deviceExecutionModeNeq">Device execution mode not equals filter (optional)</param>
         /// <param name="ownerEq">Owner name filter (optional)</param>
         /// <param name="enrollmentModeEq">Enrollment mode filter (optional)</param>
-        /// <param name="issuerLike">Issuer filter (optional)</param>
-        /// <param name="subjectLike">Subject filter (optional)</param>
+        /// <param name="issuerLike">Issuer filter. Finds all matches where the filter value is a case insensitive substring of the result. Example: issuer__like&#x3D;cn&#x3D;iss matches CN&#x3D;issuer. (optional)</param>
+        /// <param name="subjectLike">Subject filter. Finds all matches where the filter value is a case insensitive substring of the result. Example: subject__like&#x3D;cn&#x3D;su matches CN&#x3D;subject. (optional)</param>
         /// <returns>ApiResponse of TrustedCertificateRespList</returns>
         ApiResponse<TrustedCertificateRespList> GetAllCertificatesWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string nameEq = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, int? deviceExecutionModeNeq = null, string ownerEq = null, bool? enrollmentModeEq = null, string issuerLike = null, string subjectLike = null);
         /// <summary>
         /// Get all group information.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving all group information.
+        /// An endpoint for retrieving all group information.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -225,7 +204,7 @@ namespace iam.Api
         /// Get all group information.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving all group information.
+        /// An endpoint for retrieving all group information.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -239,7 +218,7 @@ namespace iam.Api
         /// Get API key details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving API key details.
+        /// An endpoint for retrieving API key details.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be retrieved.</param>
@@ -250,7 +229,7 @@ namespace iam.Api
         /// Get API key details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving API key details.
+        /// An endpoint for retrieving API key details.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be retrieved.</param>
@@ -260,7 +239,7 @@ namespace iam.Api
         /// Get the API keys of a group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for listing the API keys of the group with details.
+        /// An endpoint for listing the API keys of the group with details.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/api-keys -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose API keys are retrieved.</param>
@@ -275,7 +254,7 @@ namespace iam.Api
         /// Get the API keys of a group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for listing the API keys of the group with details.
+        /// An endpoint for listing the API keys of the group with details.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/api-keys -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose API keys are retrieved.</param>
@@ -310,7 +289,7 @@ namespace iam.Api
         /// Get group information.
         /// </summary>
         /// <remarks>
-        /// An endpoint for getting general information about the group.
+        /// An endpoint for getting general information about the group.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be retrieved.</param>
@@ -321,7 +300,7 @@ namespace iam.Api
         /// Get group information.
         /// </summary>
         /// <remarks>
-        /// An endpoint for getting general information about the group.
+        /// An endpoint for getting general information about the group.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be retrieved.</param>
@@ -331,7 +310,7 @@ namespace iam.Api
         /// Get groups of the API key.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving groups of the API key.
+        /// An endpoint for retrieving groups of the API key.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/api-keys/me/groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -345,7 +324,7 @@ namespace iam.Api
         /// Get groups of the API key.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving groups of the API key.
+        /// An endpoint for retrieving groups of the API key.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/api-keys/me/groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -397,62 +376,10 @@ namespace iam.Api
         /// <returns>ApiResponse of ApiKeyInfoResp</returns>
         ApiResponse<ApiKeyInfoResp> GetMyApiKeyWithHttpInfo ();
         /// <summary>
-        /// Get groups of the user.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for retrieving groups of the user.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>GroupSummaryList</returns>
-        GroupSummaryList GetMyGroups (int? limit = null, string after = null, string order = null, string include = null);
-
-        /// <summary>
-        /// Get groups of the user.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for retrieving groups of the user.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>ApiResponse of GroupSummaryList</returns>
-        ApiResponse<GroupSummaryList> GetMyGroupsWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null);
-        /// <summary>
-        /// Details of the current user.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for retrieving the details of the logged in user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
-        /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: active_sessions (optional)</param>
-        /// <returns>MyUserInfoResp</returns>
-        MyUserInfoResp GetMyUser (string scratchCodes = null, string properties = null, string include = null);
-
-        /// <summary>
-        /// Details of the current user.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for retrieving the details of the logged in user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
-        /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: active_sessions (optional)</param>
-        /// <returns>ApiResponse of MyUserInfoResp</returns>
-        ApiResponse<MyUserInfoResp> GetMyUserWithHttpInfo (string scratchCodes = null, string properties = null, string include = null);
-        /// <summary>
         /// Remove API keys from a group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for removing API keys from groups.
+        /// An endpoint for removing API keys from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/api-keys -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose API keys are removed.</param>
@@ -464,7 +391,7 @@ namespace iam.Api
         /// Remove API keys from a group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for removing API keys from groups.
+        /// An endpoint for removing API keys from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/api-keys -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose API keys are removed.</param>
@@ -472,31 +399,10 @@ namespace iam.Api
         /// <returns>ApiResponse of UpdatedResponse</returns>
         ApiResponse<UpdatedResponse> RemoveApiKeysFromGroupWithHttpInfo (string groupID, SubjectList body);
         /// <summary>
-        /// Remove user from a group.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for removing user from groups.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">A list of IDs of the groups to be updated.</param>
-        /// <returns>UpdatedResponse</returns>
-        UpdatedResponse RemoveMeFromGroups (List<string> body);
-
-        /// <summary>
-        /// Remove user from a group.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for removing user from groups.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">A list of IDs of the groups to be updated.</param>
-        /// <returns>ApiResponse of UpdatedResponse</returns>
-        ApiResponse<UpdatedResponse> RemoveMeFromGroupsWithHttpInfo (List<string> body);
-        /// <summary>
         /// Remove API key from groups.
         /// </summary>
         /// <remarks>
-        /// An endpoint for removing API key from groups.
+        /// An endpoint for removing API key from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/api-keys/me/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A list of IDs of the groups to be updated.</param>
@@ -507,7 +413,7 @@ namespace iam.Api
         /// Remove API key from groups.
         /// </summary>
         /// <remarks>
-        /// An endpoint for removing API key from groups.
+        /// An endpoint for removing API key from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/api-keys/me/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A list of IDs of the groups to be updated.</param>
@@ -517,7 +423,7 @@ namespace iam.Api
         /// Update API key details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating API key details.
+        /// An endpoint for updating API key details.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id} -d &#39;{\&quot;name\&quot;: \&quot;TestApiKey25\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be updated.</param>
@@ -529,7 +435,7 @@ namespace iam.Api
         /// Update API key details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating API key details.
+        /// An endpoint for updating API key details.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id} -d &#39;{\&quot;name\&quot;: \&quot;TestApiKey25\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be updated.</param>
@@ -580,55 +486,13 @@ namespace iam.Api
         /// <param name="body">New API key attributes to be stored.</param>
         /// <returns>ApiResponse of ApiKeyInfoResp</returns>
         ApiResponse<ApiKeyInfoResp> UpdateMyApiKeyWithHttpInfo (ApiKeyUpdateReq body);
-        /// <summary>
-        /// Update user details.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for updating the details of the logged in user.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">New attributes for the logged in user.</param>
-        /// <returns>UserUpdateResp</returns>
-        UserUpdateResp UpdateMyUser (UserUpdateReq body);
-
-        /// <summary>
-        /// Update user details.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for updating the details of the logged in user.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">New attributes for the logged in user.</param>
-        /// <returns>ApiResponse of UserUpdateResp</returns>
-        ApiResponse<UserUpdateResp> UpdateMyUserWithHttpInfo (UserUpdateReq body);
         #endregion Synchronous Operations
         #region Asynchronous Operations
-        /// <summary>
-        /// Add user to a list of groupS.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for adding user to groups.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">A list of IDs of the groups to be updated.</param>
-        /// <returns>Task of UpdatedResponse</returns>
-        System.Threading.Tasks.Task<UpdatedResponse> AddMeToGroupsAsync (List<string> body);
-
-        /// <summary>
-        /// Add user to a list of groupS.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for adding user to groups.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">A list of IDs of the groups to be updated.</param>
-        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> AddMeToGroupsAsyncWithHttpInfo (List<string> body);
         /// <summary>
         /// Add API key to a list of groups.
         /// </summary>
         /// <remarks>
-        /// An endpoint for adding API key to groups.
+        /// An endpoint for adding API key to groups.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/api-keys/me/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A list of IDs of the groups to be updated.</param>
@@ -639,7 +503,7 @@ namespace iam.Api
         /// Add API key to a list of groups.
         /// </summary>
         /// <remarks>
-        /// An endpoint for adding API key to groups.
+        /// An endpoint for adding API key to groups.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/api-keys/me/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A list of IDs of the groups to be updated.</param>
@@ -691,7 +555,7 @@ namespace iam.Api
         /// Delete a trusted certificate by ID.
         /// </summary>
         /// <remarks>
-        /// An endpoint for deleting a trusted certificate.
+        /// An endpoint for deleting a trusted certificate.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID of the trusted certificate to be deleted.</param>
@@ -702,7 +566,7 @@ namespace iam.Api
         /// Delete a trusted certificate by ID.
         /// </summary>
         /// <remarks>
-        /// An endpoint for deleting a trusted certificate.
+        /// An endpoint for deleting a trusted certificate.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID of the trusted certificate to be deleted.</param>
@@ -743,7 +607,7 @@ namespace iam.Api
         /// Get all trusted certificates.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving trusted certificates in an array.
+        /// An endpoint for retrieving trusted certificates in an array.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -757,8 +621,8 @@ namespace iam.Api
         /// <param name="deviceExecutionModeNeq">Device execution mode not equals filter (optional)</param>
         /// <param name="ownerEq">Owner name filter (optional)</param>
         /// <param name="enrollmentModeEq">Enrollment mode filter (optional)</param>
-        /// <param name="issuerLike">Issuer filter (optional)</param>
-        /// <param name="subjectLike">Subject filter (optional)</param>
+        /// <param name="issuerLike">Issuer filter. Finds all matches where the filter value is a case insensitive substring of the result. Example: issuer__like&#x3D;cn&#x3D;iss matches CN&#x3D;issuer. (optional)</param>
+        /// <param name="subjectLike">Subject filter. Finds all matches where the filter value is a case insensitive substring of the result. Example: subject__like&#x3D;cn&#x3D;su matches CN&#x3D;subject. (optional)</param>
         /// <returns>Task of TrustedCertificateRespList</returns>
         System.Threading.Tasks.Task<TrustedCertificateRespList> GetAllCertificatesAsync (int? limit = null, string after = null, string order = null, string include = null, string nameEq = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, int? deviceExecutionModeNeq = null, string ownerEq = null, bool? enrollmentModeEq = null, string issuerLike = null, string subjectLike = null);
 
@@ -766,7 +630,7 @@ namespace iam.Api
         /// Get all trusted certificates.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving trusted certificates in an array.
+        /// An endpoint for retrieving trusted certificates in an array.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -780,15 +644,15 @@ namespace iam.Api
         /// <param name="deviceExecutionModeNeq">Device execution mode not equals filter (optional)</param>
         /// <param name="ownerEq">Owner name filter (optional)</param>
         /// <param name="enrollmentModeEq">Enrollment mode filter (optional)</param>
-        /// <param name="issuerLike">Issuer filter (optional)</param>
-        /// <param name="subjectLike">Subject filter (optional)</param>
+        /// <param name="issuerLike">Issuer filter. Finds all matches where the filter value is a case insensitive substring of the result. Example: issuer__like&#x3D;cn&#x3D;iss matches CN&#x3D;issuer. (optional)</param>
+        /// <param name="subjectLike">Subject filter. Finds all matches where the filter value is a case insensitive substring of the result. Example: subject__like&#x3D;cn&#x3D;su matches CN&#x3D;subject. (optional)</param>
         /// <returns>Task of ApiResponse (TrustedCertificateRespList)</returns>
         System.Threading.Tasks.Task<ApiResponse<TrustedCertificateRespList>> GetAllCertificatesAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string nameEq = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, int? deviceExecutionModeNeq = null, string ownerEq = null, bool? enrollmentModeEq = null, string issuerLike = null, string subjectLike = null);
         /// <summary>
         /// Get all group information.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving all group information.
+        /// An endpoint for retrieving all group information.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -803,7 +667,7 @@ namespace iam.Api
         /// Get all group information.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving all group information.
+        /// An endpoint for retrieving all group information.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -817,7 +681,7 @@ namespace iam.Api
         /// Get API key details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving API key details.
+        /// An endpoint for retrieving API key details.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be retrieved.</param>
@@ -828,7 +692,7 @@ namespace iam.Api
         /// Get API key details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving API key details.
+        /// An endpoint for retrieving API key details.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be retrieved.</param>
@@ -838,7 +702,7 @@ namespace iam.Api
         /// Get the API keys of a group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for listing the API keys of the group with details.
+        /// An endpoint for listing the API keys of the group with details.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/api-keys -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose API keys are retrieved.</param>
@@ -853,7 +717,7 @@ namespace iam.Api
         /// Get the API keys of a group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for listing the API keys of the group with details.
+        /// An endpoint for listing the API keys of the group with details.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/api-keys -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose API keys are retrieved.</param>
@@ -888,7 +752,7 @@ namespace iam.Api
         /// Get group information.
         /// </summary>
         /// <remarks>
-        /// An endpoint for getting general information about the group.
+        /// An endpoint for getting general information about the group.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be retrieved.</param>
@@ -899,7 +763,7 @@ namespace iam.Api
         /// Get group information.
         /// </summary>
         /// <remarks>
-        /// An endpoint for getting general information about the group.
+        /// An endpoint for getting general information about the group.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be retrieved.</param>
@@ -909,7 +773,7 @@ namespace iam.Api
         /// Get groups of the API key.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving groups of the API key.
+        /// An endpoint for retrieving groups of the API key.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/api-keys/me/groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -923,7 +787,7 @@ namespace iam.Api
         /// Get groups of the API key.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving groups of the API key.
+        /// An endpoint for retrieving groups of the API key.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/api-keys/me/groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -975,62 +839,10 @@ namespace iam.Api
         /// <returns>Task of ApiResponse (ApiKeyInfoResp)</returns>
         System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoResp>> GetMyApiKeyAsyncWithHttpInfo ();
         /// <summary>
-        /// Get groups of the user.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for retrieving groups of the user.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of GroupSummaryList</returns>
-        System.Threading.Tasks.Task<GroupSummaryList> GetMyGroupsAsync (int? limit = null, string after = null, string order = null, string include = null);
-
-        /// <summary>
-        /// Get groups of the user.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for retrieving groups of the user.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of ApiResponse (GroupSummaryList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GroupSummaryList>> GetMyGroupsAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null);
-        /// <summary>
-        /// Details of the current user.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for retrieving the details of the logged in user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
-        /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: active_sessions (optional)</param>
-        /// <returns>Task of MyUserInfoResp</returns>
-        System.Threading.Tasks.Task<MyUserInfoResp> GetMyUserAsync (string scratchCodes = null, string properties = null, string include = null);
-
-        /// <summary>
-        /// Details of the current user.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for retrieving the details of the logged in user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
-        /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: active_sessions (optional)</param>
-        /// <returns>Task of ApiResponse (MyUserInfoResp)</returns>
-        System.Threading.Tasks.Task<ApiResponse<MyUserInfoResp>> GetMyUserAsyncWithHttpInfo (string scratchCodes = null, string properties = null, string include = null);
-        /// <summary>
         /// Remove API keys from a group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for removing API keys from groups.
+        /// An endpoint for removing API keys from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/api-keys -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose API keys are removed.</param>
@@ -1042,7 +854,7 @@ namespace iam.Api
         /// Remove API keys from a group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for removing API keys from groups.
+        /// An endpoint for removing API keys from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/api-keys -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose API keys are removed.</param>
@@ -1050,31 +862,10 @@ namespace iam.Api
         /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> RemoveApiKeysFromGroupAsyncWithHttpInfo (string groupID, SubjectList body);
         /// <summary>
-        /// Remove user from a group.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for removing user from groups.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">A list of IDs of the groups to be updated.</param>
-        /// <returns>Task of UpdatedResponse</returns>
-        System.Threading.Tasks.Task<UpdatedResponse> RemoveMeFromGroupsAsync (List<string> body);
-
-        /// <summary>
-        /// Remove user from a group.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for removing user from groups.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">A list of IDs of the groups to be updated.</param>
-        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> RemoveMeFromGroupsAsyncWithHttpInfo (List<string> body);
-        /// <summary>
         /// Remove API key from groups.
         /// </summary>
         /// <remarks>
-        /// An endpoint for removing API key from groups.
+        /// An endpoint for removing API key from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/api-keys/me/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A list of IDs of the groups to be updated.</param>
@@ -1085,7 +876,7 @@ namespace iam.Api
         /// Remove API key from groups.
         /// </summary>
         /// <remarks>
-        /// An endpoint for removing API key from groups.
+        /// An endpoint for removing API key from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/api-keys/me/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A list of IDs of the groups to be updated.</param>
@@ -1095,7 +886,7 @@ namespace iam.Api
         /// Update API key details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating API key details.
+        /// An endpoint for updating API key details.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id} -d &#39;{\&quot;name\&quot;: \&quot;TestApiKey25\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be updated.</param>
@@ -1107,7 +898,7 @@ namespace iam.Api
         /// Update API key details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating API key details.
+        /// An endpoint for updating API key details.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id} -d &#39;{\&quot;name\&quot;: \&quot;TestApiKey25\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be updated.</param>
@@ -1158,27 +949,6 @@ namespace iam.Api
         /// <param name="body">New API key attributes to be stored.</param>
         /// <returns>Task of ApiResponse (ApiKeyInfoResp)</returns>
         System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoResp>> UpdateMyApiKeyAsyncWithHttpInfo (ApiKeyUpdateReq body);
-        /// <summary>
-        /// Update user details.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for updating the details of the logged in user.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">New attributes for the logged in user.</param>
-        /// <returns>Task of UserUpdateResp</returns>
-        System.Threading.Tasks.Task<UserUpdateResp> UpdateMyUserAsync (UserUpdateReq body);
-
-        /// <summary>
-        /// Update user details.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for updating the details of the logged in user.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">New attributes for the logged in user.</param>
-        /// <returns>Task of ApiResponse (UserUpdateResp)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UserUpdateResp>> UpdateMyUserAsyncWithHttpInfo (UserUpdateReq body);
         #endregion Asynchronous Operations
     }
 
@@ -1280,166 +1050,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Add user to a list of groupS. An endpoint for adding user to groups.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">A list of IDs of the groups to be updated.</param>
-        /// <returns>UpdatedResponse</returns>
-        public UpdatedResponse AddMeToGroups (List<string> body)
-        {
-             ApiResponse<UpdatedResponse> localVarResponse = AddMeToGroupsWithHttpInfo(body);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Add user to a list of groupS. An endpoint for adding user to groups.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">A list of IDs of the groups to be updated.</param>
-        /// <returns>ApiResponse of UpdatedResponse</returns>
-        public ApiResponse< UpdatedResponse > AddMeToGroupsWithHttpInfo (List<string> body)
-        {
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->AddMeToGroups");
-
-            var localVarPath = "/v3/users/me/groups";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("AddMeToGroups", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
-        }
-
-        /// <summary>
-        /// Add user to a list of groupS. An endpoint for adding user to groups.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">A list of IDs of the groups to be updated.</param>
-        /// <returns>Task of UpdatedResponse</returns>
-        public async System.Threading.Tasks.Task<UpdatedResponse> AddMeToGroupsAsync (List<string> body)
-        {
-             ApiResponse<UpdatedResponse> localVarResponse = await AddMeToGroupsAsyncWithHttpInfo(body);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Add user to a list of groupS. An endpoint for adding user to groups.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">A list of IDs of the groups to be updated.</param>
-        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> AddMeToGroupsAsyncWithHttpInfo (List<string> body)
-        {
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->AddMeToGroups");
-
-            var localVarPath = "/v3/users/me/groups";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("AddMeToGroups", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
-        }
-
-        /// <summary>
-        /// Add API key to a list of groups. An endpoint for adding API key to groups.
+        /// Add API key to a list of groups. An endpoint for adding API key to groups.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/api-keys/me/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A list of IDs of the groups to be updated.</param>
@@ -1451,7 +1062,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Add API key to a list of groups. An endpoint for adding API key to groups.
+        /// Add API key to a list of groups. An endpoint for adding API key to groups.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/api-keys/me/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A list of IDs of the groups to be updated.</param>
@@ -1518,7 +1129,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Add API key to a list of groups. An endpoint for adding API key to groups.
+        /// Add API key to a list of groups. An endpoint for adding API key to groups.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/api-keys/me/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A list of IDs of the groups to be updated.</param>
@@ -1531,7 +1142,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Add API key to a list of groups. An endpoint for adding API key to groups.
+        /// Add API key to a list of groups. An endpoint for adding API key to groups.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/api-keys/me/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A list of IDs of the groups to be updated.</param>
@@ -1898,7 +1509,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Delete a trusted certificate by ID. An endpoint for deleting a trusted certificate.
+        /// Delete a trusted certificate by ID. An endpoint for deleting a trusted certificate.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID of the trusted certificate to be deleted.</param>
@@ -1909,7 +1520,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Delete a trusted certificate by ID. An endpoint for deleting a trusted certificate.
+        /// Delete a trusted certificate by ID. An endpoint for deleting a trusted certificate.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID of the trusted certificate to be deleted.</param>
@@ -1968,7 +1579,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Delete a trusted certificate by ID. An endpoint for deleting a trusted certificate.
+        /// Delete a trusted certificate by ID. An endpoint for deleting a trusted certificate.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID of the trusted certificate to be deleted.</param>
@@ -1980,7 +1591,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Delete a trusted certificate by ID. An endpoint for deleting a trusted certificate.
+        /// Delete a trusted certificate by ID. An endpoint for deleting a trusted certificate.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/trusted-certificates/{cert-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="certId">The ID of the trusted certificate to be deleted.</param>
@@ -2206,7 +1817,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get all trusted certificates. An endpoint for retrieving trusted certificates in an array.
+        /// Get all trusted certificates. An endpoint for retrieving trusted certificates in an array.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -2220,8 +1831,8 @@ namespace iam.Api
         /// <param name="deviceExecutionModeNeq">Device execution mode not equals filter (optional)</param>
         /// <param name="ownerEq">Owner name filter (optional)</param>
         /// <param name="enrollmentModeEq">Enrollment mode filter (optional)</param>
-        /// <param name="issuerLike">Issuer filter (optional)</param>
-        /// <param name="subjectLike">Subject filter (optional)</param>
+        /// <param name="issuerLike">Issuer filter. Finds all matches where the filter value is a case insensitive substring of the result. Example: issuer__like&#x3D;cn&#x3D;iss matches CN&#x3D;issuer. (optional)</param>
+        /// <param name="subjectLike">Subject filter. Finds all matches where the filter value is a case insensitive substring of the result. Example: subject__like&#x3D;cn&#x3D;su matches CN&#x3D;subject. (optional)</param>
         /// <returns>TrustedCertificateRespList</returns>
         public TrustedCertificateRespList GetAllCertificates (int? limit = null, string after = null, string order = null, string include = null, string nameEq = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, int? deviceExecutionModeNeq = null, string ownerEq = null, bool? enrollmentModeEq = null, string issuerLike = null, string subjectLike = null)
         {
@@ -2230,7 +1841,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get all trusted certificates. An endpoint for retrieving trusted certificates in an array.
+        /// Get all trusted certificates. An endpoint for retrieving trusted certificates in an array.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -2244,8 +1855,8 @@ namespace iam.Api
         /// <param name="deviceExecutionModeNeq">Device execution mode not equals filter (optional)</param>
         /// <param name="ownerEq">Owner name filter (optional)</param>
         /// <param name="enrollmentModeEq">Enrollment mode filter (optional)</param>
-        /// <param name="issuerLike">Issuer filter (optional)</param>
-        /// <param name="subjectLike">Subject filter (optional)</param>
+        /// <param name="issuerLike">Issuer filter. Finds all matches where the filter value is a case insensitive substring of the result. Example: issuer__like&#x3D;cn&#x3D;iss matches CN&#x3D;issuer. (optional)</param>
+        /// <param name="subjectLike">Subject filter. Finds all matches where the filter value is a case insensitive substring of the result. Example: subject__like&#x3D;cn&#x3D;su matches CN&#x3D;subject. (optional)</param>
         /// <returns>ApiResponse of TrustedCertificateRespList</returns>
         public ApiResponse< TrustedCertificateRespList > GetAllCertificatesWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string nameEq = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, int? deviceExecutionModeNeq = null, string ownerEq = null, bool? enrollmentModeEq = null, string issuerLike = null, string subjectLike = null)
         {
@@ -2310,7 +1921,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get all trusted certificates. An endpoint for retrieving trusted certificates in an array.
+        /// Get all trusted certificates. An endpoint for retrieving trusted certificates in an array.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -2324,8 +1935,8 @@ namespace iam.Api
         /// <param name="deviceExecutionModeNeq">Device execution mode not equals filter (optional)</param>
         /// <param name="ownerEq">Owner name filter (optional)</param>
         /// <param name="enrollmentModeEq">Enrollment mode filter (optional)</param>
-        /// <param name="issuerLike">Issuer filter (optional)</param>
-        /// <param name="subjectLike">Subject filter (optional)</param>
+        /// <param name="issuerLike">Issuer filter. Finds all matches where the filter value is a case insensitive substring of the result. Example: issuer__like&#x3D;cn&#x3D;iss matches CN&#x3D;issuer. (optional)</param>
+        /// <param name="subjectLike">Subject filter. Finds all matches where the filter value is a case insensitive substring of the result. Example: subject__like&#x3D;cn&#x3D;su matches CN&#x3D;subject. (optional)</param>
         /// <returns>Task of TrustedCertificateRespList</returns>
         public async System.Threading.Tasks.Task<TrustedCertificateRespList> GetAllCertificatesAsync (int? limit = null, string after = null, string order = null, string include = null, string nameEq = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, int? deviceExecutionModeNeq = null, string ownerEq = null, bool? enrollmentModeEq = null, string issuerLike = null, string subjectLike = null)
         {
@@ -2335,7 +1946,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get all trusted certificates. An endpoint for retrieving trusted certificates in an array.
+        /// Get all trusted certificates. An endpoint for retrieving trusted certificates in an array.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/trusted-certificates -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -2349,8 +1960,8 @@ namespace iam.Api
         /// <param name="deviceExecutionModeNeq">Device execution mode not equals filter (optional)</param>
         /// <param name="ownerEq">Owner name filter (optional)</param>
         /// <param name="enrollmentModeEq">Enrollment mode filter (optional)</param>
-        /// <param name="issuerLike">Issuer filter (optional)</param>
-        /// <param name="subjectLike">Subject filter (optional)</param>
+        /// <param name="issuerLike">Issuer filter. Finds all matches where the filter value is a case insensitive substring of the result. Example: issuer__like&#x3D;cn&#x3D;iss matches CN&#x3D;issuer. (optional)</param>
+        /// <param name="subjectLike">Subject filter. Finds all matches where the filter value is a case insensitive substring of the result. Example: subject__like&#x3D;cn&#x3D;su matches CN&#x3D;subject. (optional)</param>
         /// <returns>Task of ApiResponse (TrustedCertificateRespList)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<TrustedCertificateRespList>> GetAllCertificatesAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string nameEq = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, int? deviceExecutionModeNeq = null, string ownerEq = null, bool? enrollmentModeEq = null, string issuerLike = null, string subjectLike = null)
         {
@@ -2415,7 +2026,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get all group information. An endpoint for retrieving all group information.
+        /// Get all group information. An endpoint for retrieving all group information.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -2431,7 +2042,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get all group information. An endpoint for retrieving all group information.
+        /// Get all group information. An endpoint for retrieving all group information.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -2495,7 +2106,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get all group information. An endpoint for retrieving all group information.
+        /// Get all group information. An endpoint for retrieving all group information.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -2512,7 +2123,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get all group information. An endpoint for retrieving all group information.
+        /// Get all group information. An endpoint for retrieving all group information.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -2576,7 +2187,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get API key details. An endpoint for retrieving API key details.
+        /// Get API key details. An endpoint for retrieving API key details.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be retrieved.</param>
@@ -2588,7 +2199,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get API key details. An endpoint for retrieving API key details.
+        /// Get API key details. An endpoint for retrieving API key details.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be retrieved.</param>
@@ -2647,7 +2258,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get API key details. An endpoint for retrieving API key details.
+        /// Get API key details. An endpoint for retrieving API key details.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be retrieved.</param>
@@ -2660,7 +2271,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get API key details. An endpoint for retrieving API key details.
+        /// Get API key details. An endpoint for retrieving API key details.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be retrieved.</param>
@@ -2719,7 +2330,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get the API keys of a group. An endpoint for listing the API keys of the group with details.
+        /// Get the API keys of a group. An endpoint for listing the API keys of the group with details.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/api-keys -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose API keys are retrieved.</param>
@@ -2735,7 +2346,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get the API keys of a group. An endpoint for listing the API keys of the group with details.
+        /// Get the API keys of a group. An endpoint for listing the API keys of the group with details.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/api-keys -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose API keys are retrieved.</param>
@@ -2802,7 +2413,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get the API keys of a group. An endpoint for listing the API keys of the group with details.
+        /// Get the API keys of a group. An endpoint for listing the API keys of the group with details.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/api-keys -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose API keys are retrieved.</param>
@@ -2819,7 +2430,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get the API keys of a group. An endpoint for listing the API keys of the group with details.
+        /// Get the API keys of a group. An endpoint for listing the API keys of the group with details.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/api-keys -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose API keys are retrieved.</param>
@@ -3029,7 +2640,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get group information. An endpoint for getting general information about the group.
+        /// Get group information. An endpoint for getting general information about the group.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be retrieved.</param>
@@ -3041,7 +2652,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get group information. An endpoint for getting general information about the group.
+        /// Get group information. An endpoint for getting general information about the group.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be retrieved.</param>
@@ -3100,7 +2711,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get group information. An endpoint for getting general information about the group.
+        /// Get group information. An endpoint for getting general information about the group.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be retrieved.</param>
@@ -3113,7 +2724,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get group information. An endpoint for getting general information about the group.
+        /// Get group information. An endpoint for getting general information about the group.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be retrieved.</param>
@@ -3172,7 +2783,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get groups of the API key. An endpoint for retrieving groups of the API key.
+        /// Get groups of the API key. An endpoint for retrieving groups of the API key.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/api-keys/me/groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -3187,7 +2798,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get groups of the API key. An endpoint for retrieving groups of the API key.
+        /// Get groups of the API key. An endpoint for retrieving groups of the API key.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/api-keys/me/groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -3249,7 +2860,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get groups of the API key. An endpoint for retrieving groups of the API key.
+        /// Get groups of the API key. An endpoint for retrieving groups of the API key.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/api-keys/me/groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -3265,7 +2876,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get groups of the API key. An endpoint for retrieving groups of the API key.
+        /// Get groups of the API key. An endpoint for retrieving groups of the API key.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/api-keys/me/groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -3601,311 +3212,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get groups of the user. An endpoint for retrieving groups of the user.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>GroupSummaryList</returns>
-        public GroupSummaryList GetMyGroups (int? limit = null, string after = null, string order = null, string include = null)
-        {
-             ApiResponse<GroupSummaryList> localVarResponse = GetMyGroupsWithHttpInfo(limit, after, order, include);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Get groups of the user. An endpoint for retrieving groups of the user.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>ApiResponse of GroupSummaryList</returns>
-        public ApiResponse< GroupSummaryList > GetMyGroupsWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null)
-        {
-
-            var localVarPath = "/v3/users/me/groups";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (limit != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
-            if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
-            if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
-            if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetMyGroups", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<GroupSummaryList>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (GroupSummaryList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(GroupSummaryList)));
-        }
-
-        /// <summary>
-        /// Get groups of the user. An endpoint for retrieving groups of the user.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of GroupSummaryList</returns>
-        public async System.Threading.Tasks.Task<GroupSummaryList> GetMyGroupsAsync (int? limit = null, string after = null, string order = null, string include = null)
-        {
-             ApiResponse<GroupSummaryList> localVarResponse = await GetMyGroupsAsyncWithHttpInfo(limit, after, order, include);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Get groups of the user. An endpoint for retrieving groups of the user.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of ApiResponse (GroupSummaryList)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<GroupSummaryList>> GetMyGroupsAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null)
-        {
-
-            var localVarPath = "/v3/users/me/groups";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (limit != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
-            if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
-            if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
-            if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetMyGroups", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<GroupSummaryList>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (GroupSummaryList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(GroupSummaryList)));
-        }
-
-        /// <summary>
-        /// Details of the current user. An endpoint for retrieving the details of the logged in user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
-        /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: active_sessions (optional)</param>
-        /// <returns>MyUserInfoResp</returns>
-        public MyUserInfoResp GetMyUser (string scratchCodes = null, string properties = null, string include = null)
-        {
-             ApiResponse<MyUserInfoResp> localVarResponse = GetMyUserWithHttpInfo(scratchCodes, properties, include);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Details of the current user. An endpoint for retrieving the details of the logged in user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
-        /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: active_sessions (optional)</param>
-        /// <returns>ApiResponse of MyUserInfoResp</returns>
-        public ApiResponse< MyUserInfoResp > GetMyUserWithHttpInfo (string scratchCodes = null, string properties = null, string include = null)
-        {
-
-            var localVarPath = "/v3/users/me";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (scratchCodes != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "scratch_codes", scratchCodes)); // query parameter
-            if (properties != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "properties", properties)); // query parameter
-            if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetMyUser", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<MyUserInfoResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (MyUserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(MyUserInfoResp)));
-        }
-
-        /// <summary>
-        /// Details of the current user. An endpoint for retrieving the details of the logged in user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
-        /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: active_sessions (optional)</param>
-        /// <returns>Task of MyUserInfoResp</returns>
-        public async System.Threading.Tasks.Task<MyUserInfoResp> GetMyUserAsync (string scratchCodes = null, string properties = null, string include = null)
-        {
-             ApiResponse<MyUserInfoResp> localVarResponse = await GetMyUserAsyncWithHttpInfo(scratchCodes, properties, include);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Details of the current user. An endpoint for retrieving the details of the logged in user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/me -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
-        /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: active_sessions (optional)</param>
-        /// <returns>Task of ApiResponse (MyUserInfoResp)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<MyUserInfoResp>> GetMyUserAsyncWithHttpInfo (string scratchCodes = null, string properties = null, string include = null)
-        {
-
-            var localVarPath = "/v3/users/me";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (scratchCodes != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "scratch_codes", scratchCodes)); // query parameter
-            if (properties != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "properties", properties)); // query parameter
-            if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetMyUser", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<MyUserInfoResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (MyUserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(MyUserInfoResp)));
-        }
-
-        /// <summary>
-        /// Remove API keys from a group. An endpoint for removing API keys from groups.
+        /// Remove API keys from a group. An endpoint for removing API keys from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/api-keys -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose API keys are removed.</param>
@@ -3918,7 +3225,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Remove API keys from a group. An endpoint for removing API keys from groups.
+        /// Remove API keys from a group. An endpoint for removing API keys from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/api-keys -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose API keys are removed.</param>
@@ -3990,7 +3297,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Remove API keys from a group. An endpoint for removing API keys from groups.
+        /// Remove API keys from a group. An endpoint for removing API keys from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/api-keys -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose API keys are removed.</param>
@@ -4004,7 +3311,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Remove API keys from a group. An endpoint for removing API keys from groups.
+        /// Remove API keys from a group. An endpoint for removing API keys from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/api-keys -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose API keys are removed.</param>
@@ -4076,166 +3383,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Remove user from a group. An endpoint for removing user from groups.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">A list of IDs of the groups to be updated.</param>
-        /// <returns>UpdatedResponse</returns>
-        public UpdatedResponse RemoveMeFromGroups (List<string> body)
-        {
-             ApiResponse<UpdatedResponse> localVarResponse = RemoveMeFromGroupsWithHttpInfo(body);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Remove user from a group. An endpoint for removing user from groups.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">A list of IDs of the groups to be updated.</param>
-        /// <returns>ApiResponse of UpdatedResponse</returns>
-        public ApiResponse< UpdatedResponse > RemoveMeFromGroupsWithHttpInfo (List<string> body)
-        {
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->RemoveMeFromGroups");
-
-            var localVarPath = "/v3/users/me/groups";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("RemoveMeFromGroups", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
-        }
-
-        /// <summary>
-        /// Remove user from a group. An endpoint for removing user from groups.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">A list of IDs of the groups to be updated.</param>
-        /// <returns>Task of UpdatedResponse</returns>
-        public async System.Threading.Tasks.Task<UpdatedResponse> RemoveMeFromGroupsAsync (List<string> body)
-        {
-             ApiResponse<UpdatedResponse> localVarResponse = await RemoveMeFromGroupsAsyncWithHttpInfo(body);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Remove user from a group. An endpoint for removing user from groups.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">A list of IDs of the groups to be updated.</param>
-        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> RemoveMeFromGroupsAsyncWithHttpInfo (List<string> body)
-        {
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->RemoveMeFromGroups");
-
-            var localVarPath = "/v3/users/me/groups";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("RemoveMeFromGroups", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
-        }
-
-        /// <summary>
-        /// Remove API key from groups. An endpoint for removing API key from groups.
+        /// Remove API key from groups. An endpoint for removing API key from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/api-keys/me/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A list of IDs of the groups to be updated.</param>
@@ -4247,7 +3395,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Remove API key from groups. An endpoint for removing API key from groups.
+        /// Remove API key from groups. An endpoint for removing API key from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/api-keys/me/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A list of IDs of the groups to be updated.</param>
@@ -4314,7 +3462,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Remove API key from groups. An endpoint for removing API key from groups.
+        /// Remove API key from groups. An endpoint for removing API key from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/api-keys/me/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A list of IDs of the groups to be updated.</param>
@@ -4327,7 +3475,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Remove API key from groups. An endpoint for removing API key from groups.
+        /// Remove API key from groups. An endpoint for removing API key from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/api-keys/me/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A list of IDs of the groups to be updated.</param>
@@ -4394,7 +3542,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update API key details. An endpoint for updating API key details.
+        /// Update API key details. An endpoint for updating API key details.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id} -d &#39;{\&quot;name\&quot;: \&quot;TestApiKey25\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be updated.</param>
@@ -4407,7 +3555,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update API key details. An endpoint for updating API key details.
+        /// Update API key details. An endpoint for updating API key details.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id} -d &#39;{\&quot;name\&quot;: \&quot;TestApiKey25\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be updated.</param>
@@ -4478,7 +3626,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update API key details. An endpoint for updating API key details.
+        /// Update API key details. An endpoint for updating API key details.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id} -d &#39;{\&quot;name\&quot;: \&quot;TestApiKey25\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be updated.</param>
@@ -4492,7 +3640,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update API key details. An endpoint for updating API key details.
+        /// Update API key details. An endpoint for updating API key details.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id} -d &#39;{\&quot;name\&quot;: \&quot;TestApiKey25\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be updated.</param>
@@ -4888,165 +4036,6 @@ namespace iam.Api
             return new ApiResponse<ApiKeyInfoResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ApiKeyInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoResp)));
-        }
-
-        /// <summary>
-        /// Update user details. An endpoint for updating the details of the logged in user.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">New attributes for the logged in user.</param>
-        /// <returns>UserUpdateResp</returns>
-        public UserUpdateResp UpdateMyUser (UserUpdateReq body)
-        {
-             ApiResponse<UserUpdateResp> localVarResponse = UpdateMyUserWithHttpInfo(body);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Update user details. An endpoint for updating the details of the logged in user.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">New attributes for the logged in user.</param>
-        /// <returns>ApiResponse of UserUpdateResp</returns>
-        public ApiResponse< UserUpdateResp > UpdateMyUserWithHttpInfo (UserUpdateReq body)
-        {
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->UpdateMyUser");
-
-            var localVarPath = "/v3/users/me";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("UpdateMyUser", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UserUpdateResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UserUpdateResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserUpdateResp)));
-        }
-
-        /// <summary>
-        /// Update user details. An endpoint for updating the details of the logged in user.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">New attributes for the logged in user.</param>
-        /// <returns>Task of UserUpdateResp</returns>
-        public async System.Threading.Tasks.Task<UserUpdateResp> UpdateMyUserAsync (UserUpdateReq body)
-        {
-             ApiResponse<UserUpdateResp> localVarResponse = await UpdateMyUserAsyncWithHttpInfo(body);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Update user details. An endpoint for updating the details of the logged in user.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me -d &#39;{\&quot;address\&quot;: \&quot;1007 Mountain Drive\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="body">New attributes for the logged in user.</param>
-        /// <returns>Task of ApiResponse (UserUpdateResp)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UserUpdateResp>> UpdateMyUserAsyncWithHttpInfo (UserUpdateReq body)
-        {
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling DeveloperApi->UpdateMyUser");
-
-            var localVarPath = "/v3/users/me";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("UpdateMyUser", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UserUpdateResp>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UserUpdateResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserUpdateResp)));
         }
 
     }

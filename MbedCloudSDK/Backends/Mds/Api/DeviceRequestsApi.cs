@@ -36,7 +36,7 @@ namespace mds.Api
         /// <param name="asyncId">The client-generated ID for matching the correct response delivered via a notification.</param>
         /// <param name="body">Device request to send.</param>
         /// <returns></returns>
-        void V2DeviceRequestsDeviceIdPost (string deviceId, string asyncId, DeviceRequest body);
+        void CreateAsyncRequest (string deviceId, string asyncId, DeviceRequest body);
 
         /// <summary>
         /// Send an async request to device
@@ -49,7 +49,7 @@ namespace mds.Api
         /// <param name="asyncId">The client-generated ID for matching the correct response delivered via a notification.</param>
         /// <param name="body">Device request to send.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> V2DeviceRequestsDeviceIdPostWithHttpInfo (string deviceId, string asyncId, DeviceRequest body);
+        ApiResponse<Object> CreateAsyncRequestWithHttpInfo (string deviceId, string asyncId, DeviceRequest body);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -63,7 +63,7 @@ namespace mds.Api
         /// <param name="asyncId">The client-generated ID for matching the correct response delivered via a notification.</param>
         /// <param name="body">Device request to send.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task V2DeviceRequestsDeviceIdPostAsync (string deviceId, string asyncId, DeviceRequest body);
+        System.Threading.Tasks.Task CreateAsyncRequestAsync (string deviceId, string asyncId, DeviceRequest body);
 
         /// <summary>
         /// Send an async request to device
@@ -76,7 +76,7 @@ namespace mds.Api
         /// <param name="asyncId">The client-generated ID for matching the correct response delivered via a notification.</param>
         /// <param name="body">Device request to send.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> V2DeviceRequestsDeviceIdPostAsyncWithHttpInfo (string deviceId, string asyncId, DeviceRequest body);
+        System.Threading.Tasks.Task<ApiResponse<Object>> CreateAsyncRequestAsyncWithHttpInfo (string deviceId, string asyncId, DeviceRequest body);
         #endregion Asynchronous Operations
     }
 
@@ -185,9 +185,9 @@ namespace mds.Api
         /// <param name="asyncId">The client-generated ID for matching the correct response delivered via a notification.</param>
         /// <param name="body">Device request to send.</param>
         /// <returns></returns>
-        public void V2DeviceRequestsDeviceIdPost (string deviceId, string asyncId, DeviceRequest body)
+        public void CreateAsyncRequest (string deviceId, string asyncId, DeviceRequest body)
         {
-             V2DeviceRequestsDeviceIdPostWithHttpInfo(deviceId, asyncId, body);
+             CreateAsyncRequestWithHttpInfo(deviceId, asyncId, body);
         }
 
         /// <summary>
@@ -198,17 +198,17 @@ namespace mds.Api
         /// <param name="asyncId">The client-generated ID for matching the correct response delivered via a notification.</param>
         /// <param name="body">Device request to send.</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> V2DeviceRequestsDeviceIdPostWithHttpInfo (string deviceId, string asyncId, DeviceRequest body)
+        public ApiResponse<Object> CreateAsyncRequestWithHttpInfo (string deviceId, string asyncId, DeviceRequest body)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling DeviceRequestsApi->V2DeviceRequestsDeviceIdPost");
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling DeviceRequestsApi->CreateAsyncRequest");
             // verify the required parameter 'asyncId' is set
             if (asyncId == null)
-                throw new ApiException(400, "Missing required parameter 'asyncId' when calling DeviceRequestsApi->V2DeviceRequestsDeviceIdPost");
+                throw new ApiException(400, "Missing required parameter 'asyncId' when calling DeviceRequestsApi->CreateAsyncRequest");
             // verify the required parameter 'body' is set
             if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling DeviceRequestsApi->V2DeviceRequestsDeviceIdPost");
+                throw new ApiException(400, "Missing required parameter 'body' when calling DeviceRequestsApi->CreateAsyncRequest");
 
             var localVarPath = "/v2/device-requests/{device-id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -258,7 +258,7 @@ namespace mds.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V2DeviceRequestsDeviceIdPost", localVarResponse);
+                Exception exception = ExceptionFactory("CreateAsyncRequest", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -275,9 +275,9 @@ namespace mds.Api
         /// <param name="asyncId">The client-generated ID for matching the correct response delivered via a notification.</param>
         /// <param name="body">Device request to send.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task V2DeviceRequestsDeviceIdPostAsync (string deviceId, string asyncId, DeviceRequest body)
+        public async System.Threading.Tasks.Task CreateAsyncRequestAsync (string deviceId, string asyncId, DeviceRequest body)
         {
-             await V2DeviceRequestsDeviceIdPostAsyncWithHttpInfo(deviceId, asyncId, body);
+             await CreateAsyncRequestAsyncWithHttpInfo(deviceId, asyncId, body);
 
         }
 
@@ -289,17 +289,17 @@ namespace mds.Api
         /// <param name="asyncId">The client-generated ID for matching the correct response delivered via a notification.</param>
         /// <param name="body">Device request to send.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> V2DeviceRequestsDeviceIdPostAsyncWithHttpInfo (string deviceId, string asyncId, DeviceRequest body)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> CreateAsyncRequestAsyncWithHttpInfo (string deviceId, string asyncId, DeviceRequest body)
         {
             // verify the required parameter 'deviceId' is set
             if (deviceId == null)
-                throw new ApiException(400, "Missing required parameter 'deviceId' when calling DeviceRequestsApi->V2DeviceRequestsDeviceIdPost");
+                throw new ApiException(400, "Missing required parameter 'deviceId' when calling DeviceRequestsApi->CreateAsyncRequest");
             // verify the required parameter 'asyncId' is set
             if (asyncId == null)
-                throw new ApiException(400, "Missing required parameter 'asyncId' when calling DeviceRequestsApi->V2DeviceRequestsDeviceIdPost");
+                throw new ApiException(400, "Missing required parameter 'asyncId' when calling DeviceRequestsApi->CreateAsyncRequest");
             // verify the required parameter 'body' is set
             if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling DeviceRequestsApi->V2DeviceRequestsDeviceIdPost");
+                throw new ApiException(400, "Missing required parameter 'body' when calling DeviceRequestsApi->CreateAsyncRequest");
 
             var localVarPath = "/v2/device-requests/{device-id}";
             var localVarPathParams = new Dictionary<String, String>();
@@ -349,7 +349,7 @@ namespace mds.Api
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("V2DeviceRequestsDeviceIdPost", localVarResponse);
+                Exception exception = ExceptionFactory("CreateAsyncRequest", localVarResponse);
                 if (exception != null) throw exception;
             }
 

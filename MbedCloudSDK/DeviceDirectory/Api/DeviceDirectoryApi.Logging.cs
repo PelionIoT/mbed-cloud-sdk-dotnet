@@ -79,7 +79,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
 
             try
             {
-                var resp = api.DeviceLogList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
+                var resp = Api.DeviceLogList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
                 var respDeviceLogs = new ResponsePage<DeviceEvent>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
                 foreach (var deviceLog in resp.Data)
                 {
@@ -117,7 +117,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         {
             try
             {
-                return DeviceEvent.Map(api.DeviceLogRetrieve(deviceEventId));
+                return DeviceEvent.Map(Api.DeviceLogRetrieve(deviceEventId));
             }
             catch (device_directory.Client.ApiException e)
             {
@@ -148,7 +148,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         {
             try
             {
-                return DeviceEvent.Map(await api.DeviceLogRetrieveAsync(deviceLogId));
+                return DeviceEvent.Map(await Api.DeviceLogRetrieveAsync(deviceLogId));
             }
             catch (device_directory.Client.ApiException e)
             {

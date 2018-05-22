@@ -124,81 +124,6 @@ namespace iam.Api
         /// <returns>ApiResponse of UpdatedResponse</returns>
         ApiResponse<UpdatedResponse> AddSubjectsToAccountGroupWithHttpInfo (string accountID, string groupID, SubjectList body);
         /// <summary>
-        /// Attach a policy to API keys.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for attaching policy to API keys.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be attached to API keys.</param>
-        /// <param name="body">List of API key IDs.</param>
-        /// <returns>UpdatedResponse</returns>
-        UpdatedResponse AttachAccountPolicyToApikeys (string accountID, string policyId, List<string> body);
-
-        /// <summary>
-        /// Attach a policy to API keys.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for attaching policy to API keys.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be attached to API keys.</param>
-        /// <param name="body">List of API key IDs.</param>
-        /// <returns>ApiResponse of UpdatedResponse</returns>
-        ApiResponse<UpdatedResponse> AttachAccountPolicyToApikeysWithHttpInfo (string accountID, string policyId, List<string> body);
-        /// <summary>
-        /// Attach a policy to groups.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for attaching policy to groups.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be attached to groups.</param>
-        /// <param name="body">List of groups IDs.</param>
-        /// <returns>UpdatedResponse</returns>
-        UpdatedResponse AttachAccountPolicyToGroup (string accountID, string policyId, List<string> body);
-
-        /// <summary>
-        /// Attach a policy to groups.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for attaching policy to groups.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be attached to groups.</param>
-        /// <param name="body">List of groups IDs.</param>
-        /// <returns>ApiResponse of UpdatedResponse</returns>
-        ApiResponse<UpdatedResponse> AttachAccountPolicyToGroupWithHttpInfo (string accountID, string policyId, List<string> body);
-        /// <summary>
-        /// Attach a policy to users.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for attaching policy to users.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be attached to users.</param>
-        /// <param name="body">List of user IDs.</param>
-        /// <returns>UpdatedResponse</returns>
-        UpdatedResponse AttachAccountPolicyToUsers (string accountID, string policyId, List<string> body);
-
-        /// <summary>
-        /// Attach a policy to users.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for attaching policy to users.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be attached to users.</param>
-        /// <param name="body">List of user IDs.</param>
-        /// <returns>ApiResponse of UpdatedResponse</returns>
-        ApiResponse<UpdatedResponse> AttachAccountPolicyToUsersWithHttpInfo (string accountID, string policyId, List<string> body);
-        /// <summary>
         /// Check the API key.
         /// </summary>
         /// <remarks>
@@ -267,29 +192,6 @@ namespace iam.Api
         /// <param name="body">Details of the API key to be created.</param>
         /// <returns>ApiResponse of ApiKeyInfoResp</returns>
         ApiResponse<ApiKeyInfoResp> CreateAccountApiKeyWithHttpInfo (string accountID, ApiKeyInfoReq body);
-        /// <summary>
-        /// Create a policy.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for creating a new policy.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="body">The details of the policy to be created.</param>
-        /// <returns>PolicyInfo</returns>
-        PolicyInfo CreateAccountPolicy (string accountID, PolicyCreationReq body);
-
-        /// <summary>
-        /// Create a policy.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for creating a new policy.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="body">The details of the policy to be created.</param>
-        /// <returns>ApiResponse of PolicyInfo</returns>
-        ApiResponse<PolicyInfo> CreateAccountPolicyWithHttpInfo (string accountID, PolicyCreationReq body);
         /// <summary>
         /// Create a new user.
         /// </summary>
@@ -362,29 +264,6 @@ namespace iam.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> DeleteAccountCertificateWithHttpInfo (string accountID, string certId);
         /// <summary>
-        /// Delete policy.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for deleting a policy.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be deleted.</param>
-        /// <returns></returns>
-        void DeleteAccountPolicy (string accountID, string policyId);
-
-        /// <summary>
-        /// Delete policy.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for deleting a policy.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be deleted.</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DeleteAccountPolicyWithHttpInfo (string accountID, string policyId);
-        /// <summary>
         /// Delete a user.
         /// </summary>
         /// <remarks>
@@ -407,81 +286,6 @@ namespace iam.Api
         /// <param name="userId">The ID of the user to be deleted.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> DeleteAccountUserWithHttpInfo (string accountID, string userId);
-        /// <summary>
-        /// Detach a policy from API keys.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for detaching policy from API keys.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be detached from API keys.</param>
-        /// <param name="body">List of API key IDs.</param>
-        /// <returns>UpdatedResponse</returns>
-        UpdatedResponse DetachAccountPolicyFromApikeys (string accountID, string policyId, List<string> body);
-
-        /// <summary>
-        /// Detach a policy from API keys.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for detaching policy from API keys.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be detached from API keys.</param>
-        /// <param name="body">List of API key IDs.</param>
-        /// <returns>ApiResponse of UpdatedResponse</returns>
-        ApiResponse<UpdatedResponse> DetachAccountPolicyFromApikeysWithHttpInfo (string accountID, string policyId, List<string> body);
-        /// <summary>
-        /// Detach a policy from users.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for detaching policy from users.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be detached from users.</param>
-        /// <param name="body">List of user IDs.</param>
-        /// <returns>UpdatedResponse</returns>
-        UpdatedResponse DetachAccountPolicyFromUsers (string accountID, string policyId, List<string> body);
-
-        /// <summary>
-        /// Detach a policy from users.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for detaching policy from users.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be detached from users.</param>
-        /// <param name="body">List of user IDs.</param>
-        /// <returns>ApiResponse of UpdatedResponse</returns>
-        ApiResponse<UpdatedResponse> DetachAccountPolicyFromUsersWithHttpInfo (string accountID, string policyId, List<string> body);
-        /// <summary>
-        /// Detach a policy to groups.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for detaching policy to groups.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be detached from groups.</param>
-        /// <param name="body">List of groups IDs.</param>
-        /// <returns>UpdatedResponse</returns>
-        UpdatedResponse DetachAccountPolicyToGroup (string accountID, string policyId, List<string> body);
-
-        /// <summary>
-        /// Detach a policy to groups.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for detaching policy to groups.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be detached from groups.</param>
-        /// <param name="body">List of groups IDs.</param>
-        /// <returns>ApiResponse of UpdatedResponse</returns>
-        ApiResponse<UpdatedResponse> DetachAccountPolicyToGroupWithHttpInfo (string accountID, string policyId, List<string> body);
         /// <summary>
         /// Get API key details.
         /// </summary>
@@ -577,122 +381,6 @@ namespace iam.Api
         /// <returns>ApiResponse of AccountInfo</returns>
         ApiResponse<AccountInfo> GetAccountInfoWithHttpInfo (string accountID, string include = null, string properties = null);
         /// <summary>
-        /// Get policy by ID.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for retrieving a policy by ID.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy to be retrieved.</param>
-        /// <returns>PolicyInfo</returns>
-        PolicyInfo GetAccountPolicy (string accountID, string policyId);
-
-        /// <summary>
-        /// Get policy by ID.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for retrieving a policy by ID.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy to be retrieved.</param>
-        /// <returns>ApiResponse of PolicyInfo</returns>
-        ApiResponse<PolicyInfo> GetAccountPolicyWithHttpInfo (string accountID, string policyId);
-        /// <summary>
-        /// Fetch details of policy&#39;s API keys.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for fetching detailed information about API keys this policy is attached to.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy whose API keys to be retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>ApiKeyInfoRespList</returns>
-        ApiKeyInfoRespList GetAccountPolicyApikeys (string accountID, string policyId, int? limit = null, string after = null, string order = null, string include = null);
-
-        /// <summary>
-        /// Fetch details of policy&#39;s API keys.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for fetching detailed information about API keys this policy is attached to.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy whose API keys to be retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>ApiResponse of ApiKeyInfoRespList</returns>
-        ApiResponse<ApiKeyInfoRespList> GetAccountPolicyApikeysWithHttpInfo (string accountID, string policyId, int? limit = null, string after = null, string order = null, string include = null);
-        /// <summary>
-        /// Fetch details of policy&#39;s groups.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for fetching detailed information about groups this policy is attached to.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy whose API keys to be retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>GroupSummaryList</returns>
-        GroupSummaryList GetAccountPolicyGroups (string accountID, string policyId, int? limit = null, string after = null, string order = null, string include = null);
-
-        /// <summary>
-        /// Fetch details of policy&#39;s groups.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for fetching detailed information about groups this policy is attached to.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy whose API keys to be retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>ApiResponse of GroupSummaryList</returns>
-        ApiResponse<GroupSummaryList> GetAccountPolicyGroupsWithHttpInfo (string accountID, string policyId, int? limit = null, string after = null, string order = null, string include = null);
-        /// <summary>
-        /// Fetch details of policy&#39;s users.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for fetching detailed information about users this policy is attached to.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy whose users to be retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>UserInfoRespList</returns>
-        UserInfoRespList GetAccountPolicyUsers (string accountID, string policyId, int? limit = null, string after = null, string order = null, string include = null);
-
-        /// <summary>
-        /// Fetch details of policy&#39;s users.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for fetching detailed information about users this policy is attached to.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy whose users to be retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>ApiResponse of UserInfoRespList</returns>
-        ApiResponse<UserInfoRespList> GetAccountPolicyUsersWithHttpInfo (string accountID, string policyId, int? limit = null, string after = null, string order = null, string include = null);
-        /// <summary>
         /// Details of the user.
         /// </summary>
         /// <remarks>
@@ -701,10 +389,9 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountID">Account ID.</param>
         /// <param name="userId">The ID of the user to be retrieved.</param>
-        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
         /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
-        /// <returns>MyUserInfoResp</returns>
-        MyUserInfoResp GetAccountUser (string accountID, string userId, string scratchCodes = null, string properties = null);
+        /// <returns>UserInfoResp</returns>
+        UserInfoResp GetAccountUser (string accountID, string userId, string properties = null);
 
         /// <summary>
         /// Details of the user.
@@ -715,10 +402,9 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountID">Account ID.</param>
         /// <param name="userId">The ID of the user to be retrieved.</param>
-        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
         /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
-        /// <returns>ApiResponse of MyUserInfoResp</returns>
-        ApiResponse<MyUserInfoResp> GetAccountUserWithHttpInfo (string accountID, string userId, string scratchCodes = null, string properties = null);
+        /// <returns>ApiResponse of UserInfoResp</returns>
+        ApiResponse<UserInfoResp> GetAccountUserWithHttpInfo (string accountID, string userId, string properties = null);
         /// <summary>
         /// Get all API keys.
         /// </summary>
@@ -771,8 +457,8 @@ namespace iam.Api
         /// <param name="deviceExecutionModeNeq">Filter for not developer certificates (optional)</param>
         /// <param name="ownerEq">Owner name filter (optional)</param>
         /// <param name="enrollmentModeEq">Enrollment mode filter (optional)</param>
-        /// <param name="issuerLike">Filter for issuer (optional)</param>
-        /// <param name="subjectLike">Filter for subject (optional)</param>
+        /// <param name="issuerLike">Filter for issuer. Finds all matches where the filter value is a case insensitive substring of the result. Example: issuer__like&#x3D;cn&#x3D;iss matches CN&#x3D;issuer. (optional)</param>
+        /// <param name="subjectLike">Filter for subject. Finds all matches where the filter value is a case insensitive substring of the result. Example: subject__like&#x3D;cn&#x3D;su matches CN&#x3D;subject. (optional)</param>
         /// <returns>TrustedCertificateInternalRespList</returns>
         TrustedCertificateInternalRespList GetAllAccountCertificates (string accountID, int? limit = null, string after = null, string order = null, string include = null, string nameEq = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, int? deviceExecutionModeNeq = null, string ownerEq = null, bool? enrollmentModeEq = null, string issuerLike = null, string subjectLike = null);
 
@@ -795,8 +481,8 @@ namespace iam.Api
         /// <param name="deviceExecutionModeNeq">Filter for not developer certificates (optional)</param>
         /// <param name="ownerEq">Owner name filter (optional)</param>
         /// <param name="enrollmentModeEq">Enrollment mode filter (optional)</param>
-        /// <param name="issuerLike">Filter for issuer (optional)</param>
-        /// <param name="subjectLike">Filter for subject (optional)</param>
+        /// <param name="issuerLike">Filter for issuer. Finds all matches where the filter value is a case insensitive substring of the result. Example: issuer__like&#x3D;cn&#x3D;iss matches CN&#x3D;issuer. (optional)</param>
+        /// <param name="subjectLike">Filter for subject. Finds all matches where the filter value is a case insensitive substring of the result. Example: subject__like&#x3D;cn&#x3D;su matches CN&#x3D;subject. (optional)</param>
         /// <returns>ApiResponse of TrustedCertificateInternalRespList</returns>
         ApiResponse<TrustedCertificateInternalRespList> GetAllAccountCertificatesWithHttpInfo (string accountID, int? limit = null, string after = null, string order = null, string include = null, string nameEq = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, int? deviceExecutionModeNeq = null, string ownerEq = null, bool? enrollmentModeEq = null, string issuerLike = null, string subjectLike = null);
         /// <summary>
@@ -831,47 +517,6 @@ namespace iam.Api
         /// <returns>ApiResponse of List&lt;GroupSummary&gt;</returns>
         ApiResponse<List<GroupSummary>> GetAllAccountGroupsWithHttpInfo (string accountID, int? limit = null, string after = null, string order = null, string include = null, string nameEq = null);
         /// <summary>
-        /// Get all policies.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for retrieving all policies in the account.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="nameEq">Filter result by policy name. (optional)</param>
-        /// <param name="statusEq">Filter for status, ACTIVE or INACTIVE. (optional)</param>
-        /// <param name="tagEq">Filter results for tag. (optional)</param>
-        /// <param name="userIdEq">Retrieve policies attached to a certain user ID. (optional)</param>
-        /// <param name="apikeyIdEq">Retrieve policies attached to a certain API key ID. (optional)</param>
-        /// <param name="groupIdEq">Retrieve policies attached to a certain group ID. (optional)</param>
-        /// <param name="unbounded">Retrieve policies not attached to any subject in the account. (optional)</param>
-        /// <returns>PolicyInfoList</returns>
-        PolicyInfoList GetAllAccountPolicies (string accountID, int? limit = null, string after = null, string order = null, string nameEq = null, string statusEq = null, string tagEq = null, string userIdEq = null, string apikeyIdEq = null, string groupIdEq = null, string unbounded = null);
-
-        /// <summary>
-        /// Get all policies.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for retrieving all policies in the account.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="nameEq">Filter result by policy name. (optional)</param>
-        /// <param name="statusEq">Filter for status, ACTIVE or INACTIVE. (optional)</param>
-        /// <param name="tagEq">Filter results for tag. (optional)</param>
-        /// <param name="userIdEq">Retrieve policies attached to a certain user ID. (optional)</param>
-        /// <param name="apikeyIdEq">Retrieve policies attached to a certain API key ID. (optional)</param>
-        /// <param name="groupIdEq">Retrieve policies attached to a certain group ID. (optional)</param>
-        /// <param name="unbounded">Retrieve policies not attached to any subject in the account. (optional)</param>
-        /// <returns>ApiResponse of PolicyInfoList</returns>
-        ApiResponse<PolicyInfoList> GetAllAccountPoliciesWithHttpInfo (string accountID, int? limit = null, string after = null, string order = null, string nameEq = null, string statusEq = null, string tagEq = null, string userIdEq = null, string apikeyIdEq = null, string groupIdEq = null, string unbounded = null);
-        /// <summary>
         /// Get all user details.
         /// </summary>
         /// <remarks>
@@ -885,8 +530,10 @@ namespace iam.Api
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="emailEq">Filter for email address (optional)</param>
         /// <param name="statusEq">Filter for status (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>UserInfoRespList</returns>
-        UserInfoRespList GetAllAccountUsers (string accountID, int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null);
+        UserInfoRespList GetAllAccountUsers (string accountID, int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null, string statusIn = null, string statusNin = null);
 
         /// <summary>
         /// Get all user details.
@@ -902,8 +549,10 @@ namespace iam.Api
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="emailEq">Filter for email address (optional)</param>
         /// <param name="statusEq">Filter for status (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>ApiResponse of UserInfoRespList</returns>
-        ApiResponse<UserInfoRespList> GetAllAccountUsersWithHttpInfo (string accountID, int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null);
+        ApiResponse<UserInfoRespList> GetAllAccountUsersWithHttpInfo (string accountID, int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null, string statusIn = null, string statusNin = null);
         /// <summary>
         /// Get all accounts.
         /// </summary>
@@ -912,10 +561,12 @@ namespace iam.Api
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="statusEq">An optional filter for account status, ENROLLING, ACTIVE, RESTRICTED or SUSPENDED. (optional)</param>
+        /// <param name="statusIn">An optional filter for getting accounts with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding accounts with a specified set of statuses. (optional)</param>
         /// <param name="tierEq">An optional filter for tier level, must be 0, 1, 2, 98, 99 or omitted. (optional)</param>
         /// <param name="parentEq">An optional filter for parent account ID. (optional)</param>
         /// <param name="endMarketEq">An optional filter for account end market. (optional)</param>
-        /// <param name="countryLike">An optional filter for account country. (optional)</param>
+        /// <param name="countryLike">An optional filter for account country. Finds all matches where the filter value is a case insensitive substring of the result. Example: country__like&#x3D;LAND matches Ireland. (optional)</param>
         /// <param name="limit">The number of results to return (2-1000), default is 1000. (optional, default to 1000)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC. Default value is ASC (optional, default to ASC)</param>
@@ -923,7 +574,7 @@ namespace iam.Api
         /// <param name="format">Format information for the response to the query, supported: format&#x3D;breakdown. (optional)</param>
         /// <param name="properties">Property name to be returned from account specific properties. (optional)</param>
         /// <returns>AccountInfoList</returns>
-        AccountInfoList GetAllAccounts (string statusEq = null, string tierEq = null, string parentEq = null, string endMarketEq = null, string countryLike = null, int? limit = null, string after = null, string order = null, string include = null, string format = null, string properties = null);
+        AccountInfoList GetAllAccounts (string statusEq = null, string statusIn = null, string statusNin = null, string tierEq = null, string parentEq = null, string endMarketEq = null, string countryLike = null, int? limit = null, string after = null, string order = null, string include = null, string format = null, string properties = null);
 
         /// <summary>
         /// Get all accounts.
@@ -933,10 +584,12 @@ namespace iam.Api
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="statusEq">An optional filter for account status, ENROLLING, ACTIVE, RESTRICTED or SUSPENDED. (optional)</param>
+        /// <param name="statusIn">An optional filter for getting accounts with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding accounts with a specified set of statuses. (optional)</param>
         /// <param name="tierEq">An optional filter for tier level, must be 0, 1, 2, 98, 99 or omitted. (optional)</param>
         /// <param name="parentEq">An optional filter for parent account ID. (optional)</param>
         /// <param name="endMarketEq">An optional filter for account end market. (optional)</param>
-        /// <param name="countryLike">An optional filter for account country. (optional)</param>
+        /// <param name="countryLike">An optional filter for account country. Finds all matches where the filter value is a case insensitive substring of the result. Example: country__like&#x3D;LAND matches Ireland. (optional)</param>
         /// <param name="limit">The number of results to return (2-1000), default is 1000. (optional, default to 1000)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC. Default value is ASC (optional, default to ASC)</param>
@@ -944,7 +597,7 @@ namespace iam.Api
         /// <param name="format">Format information for the response to the query, supported: format&#x3D;breakdown. (optional)</param>
         /// <param name="properties">Property name to be returned from account specific properties. (optional)</param>
         /// <returns>ApiResponse of AccountInfoList</returns>
-        ApiResponse<AccountInfoList> GetAllAccountsWithHttpInfo (string statusEq = null, string tierEq = null, string parentEq = null, string endMarketEq = null, string countryLike = null, int? limit = null, string after = null, string order = null, string include = null, string format = null, string properties = null);
+        ApiResponse<AccountInfoList> GetAllAccountsWithHttpInfo (string statusEq = null, string statusIn = null, string statusNin = null, string tierEq = null, string parentEq = null, string endMarketEq = null, string countryLike = null, int? limit = null, string after = null, string order = null, string include = null, string format = null, string properties = null);
         /// <summary>
         /// Get API keys of a group.
         /// </summary>
@@ -1051,8 +704,11 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="statusEq">An optional filter for getting users by status. (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>UserInfoRespList</returns>
-        UserInfoRespList GetUsersOfAccountGroup (string accountID, string groupID, int? limit = null, string after = null, string order = null, string include = null);
+        UserInfoRespList GetUsersOfAccountGroup (string accountID, string groupID, int? limit = null, string after = null, string order = null, string include = null, string statusEq = null, string statusIn = null, string statusNin = null);
 
         /// <summary>
         /// Get users of a group.
@@ -1067,8 +723,11 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="statusEq">An optional filter for getting users by status. (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>ApiResponse of UserInfoRespList</returns>
-        ApiResponse<UserInfoRespList> GetUsersOfAccountGroupWithHttpInfo (string accountID, string groupID, int? limit = null, string after = null, string order = null, string include = null);
+        ApiResponse<UserInfoRespList> GetUsersOfAccountGroupWithHttpInfo (string accountID, string groupID, int? limit = null, string after = null, string order = null, string include = null, string statusEq = null, string statusIn = null, string statusNin = null);
         /// <summary>
         /// Remove API key from groups.
         /// </summary>
@@ -1266,31 +925,6 @@ namespace iam.Api
         /// <returns>ApiResponse of TrustedCertificateInternalResp</returns>
         ApiResponse<TrustedCertificateInternalResp> UpdateAccountCertificateWithHttpInfo (string accountID, string certId, TrustedCertificateUpdateReq body);
         /// <summary>
-        /// Update a policy.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for updating a policy.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy to be retrieved.</param>
-        /// <param name="body">The details of the policy to be updated.</param>
-        /// <returns>PolicyInfo</returns>
-        PolicyInfo UpdateAccountPolicy (string accountID, string policyId, PolicyUpdateReq body);
-
-        /// <summary>
-        /// Update a policy.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for updating a policy.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy to be retrieved.</param>
-        /// <param name="body">The details of the policy to be updated.</param>
-        /// <returns>ApiResponse of PolicyInfo</returns>
-        ApiResponse<PolicyInfo> UpdateAccountPolicyWithHttpInfo (string accountID, string policyId, PolicyUpdateReq body);
-        /// <summary>
         /// Update user details.
         /// </summary>
         /// <remarks>
@@ -1301,7 +935,7 @@ namespace iam.Api
         /// <param name="userId">The ID of the user to be updated.</param>
         /// <param name="body">A user object with attributes.</param>
         /// <returns>UserUpdateResp</returns>
-        UserUpdateResp UpdateAccountUser (string accountID, string userId, AdminUserUpdateReq body);
+        UserUpdateResp UpdateAccountUser (string accountID, string userId, UserUpdateReq body);
 
         /// <summary>
         /// Update user details.
@@ -1314,7 +948,7 @@ namespace iam.Api
         /// <param name="userId">The ID of the user to be updated.</param>
         /// <param name="body">A user object with attributes.</param>
         /// <returns>ApiResponse of UserUpdateResp</returns>
-        ApiResponse<UserUpdateResp> UpdateAccountUserWithHttpInfo (string accountID, string userId, AdminUserUpdateReq body);
+        ApiResponse<UserUpdateResp> UpdateAccountUserWithHttpInfo (string accountID, string userId, UserUpdateReq body);
         /// <summary>
         /// Validate the user email.
         /// </summary>
@@ -1439,81 +1073,6 @@ namespace iam.Api
         /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> AddSubjectsToAccountGroupAsyncWithHttpInfo (string accountID, string groupID, SubjectList body);
         /// <summary>
-        /// Attach a policy to API keys.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for attaching policy to API keys.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be attached to API keys.</param>
-        /// <param name="body">List of API key IDs.</param>
-        /// <returns>Task of UpdatedResponse</returns>
-        System.Threading.Tasks.Task<UpdatedResponse> AttachAccountPolicyToApikeysAsync (string accountID, string policyId, List<string> body);
-
-        /// <summary>
-        /// Attach a policy to API keys.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for attaching policy to API keys.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be attached to API keys.</param>
-        /// <param name="body">List of API key IDs.</param>
-        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> AttachAccountPolicyToApikeysAsyncWithHttpInfo (string accountID, string policyId, List<string> body);
-        /// <summary>
-        /// Attach a policy to groups.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for attaching policy to groups.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be attached to groups.</param>
-        /// <param name="body">List of groups IDs.</param>
-        /// <returns>Task of UpdatedResponse</returns>
-        System.Threading.Tasks.Task<UpdatedResponse> AttachAccountPolicyToGroupAsync (string accountID, string policyId, List<string> body);
-
-        /// <summary>
-        /// Attach a policy to groups.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for attaching policy to groups.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be attached to groups.</param>
-        /// <param name="body">List of groups IDs.</param>
-        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> AttachAccountPolicyToGroupAsyncWithHttpInfo (string accountID, string policyId, List<string> body);
-        /// <summary>
-        /// Attach a policy to users.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for attaching policy to users.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be attached to users.</param>
-        /// <param name="body">List of user IDs.</param>
-        /// <returns>Task of UpdatedResponse</returns>
-        System.Threading.Tasks.Task<UpdatedResponse> AttachAccountPolicyToUsersAsync (string accountID, string policyId, List<string> body);
-
-        /// <summary>
-        /// Attach a policy to users.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for attaching policy to users.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be attached to users.</param>
-        /// <param name="body">List of user IDs.</param>
-        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> AttachAccountPolicyToUsersAsyncWithHttpInfo (string accountID, string policyId, List<string> body);
-        /// <summary>
         /// Check the API key.
         /// </summary>
         /// <remarks>
@@ -1582,29 +1141,6 @@ namespace iam.Api
         /// <param name="body">Details of the API key to be created.</param>
         /// <returns>Task of ApiResponse (ApiKeyInfoResp)</returns>
         System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoResp>> CreateAccountApiKeyAsyncWithHttpInfo (string accountID, ApiKeyInfoReq body);
-        /// <summary>
-        /// Create a policy.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for creating a new policy.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="body">The details of the policy to be created.</param>
-        /// <returns>Task of PolicyInfo</returns>
-        System.Threading.Tasks.Task<PolicyInfo> CreateAccountPolicyAsync (string accountID, PolicyCreationReq body);
-
-        /// <summary>
-        /// Create a policy.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for creating a new policy.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="body">The details of the policy to be created.</param>
-        /// <returns>Task of ApiResponse (PolicyInfo)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PolicyInfo>> CreateAccountPolicyAsyncWithHttpInfo (string accountID, PolicyCreationReq body);
         /// <summary>
         /// Create a new user.
         /// </summary>
@@ -1677,29 +1213,6 @@ namespace iam.Api
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> DeleteAccountCertificateAsyncWithHttpInfo (string accountID, string certId);
         /// <summary>
-        /// Delete policy.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for deleting a policy.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be deleted.</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteAccountPolicyAsync (string accountID, string policyId);
-
-        /// <summary>
-        /// Delete policy.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for deleting a policy.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be deleted.</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteAccountPolicyAsyncWithHttpInfo (string accountID, string policyId);
-        /// <summary>
         /// Delete a user.
         /// </summary>
         /// <remarks>
@@ -1722,81 +1235,6 @@ namespace iam.Api
         /// <param name="userId">The ID of the user to be deleted.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> DeleteAccountUserAsyncWithHttpInfo (string accountID, string userId);
-        /// <summary>
-        /// Detach a policy from API keys.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for detaching policy from API keys.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be detached from API keys.</param>
-        /// <param name="body">List of API key IDs.</param>
-        /// <returns>Task of UpdatedResponse</returns>
-        System.Threading.Tasks.Task<UpdatedResponse> DetachAccountPolicyFromApikeysAsync (string accountID, string policyId, List<string> body);
-
-        /// <summary>
-        /// Detach a policy from API keys.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for detaching policy from API keys.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be detached from API keys.</param>
-        /// <param name="body">List of API key IDs.</param>
-        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> DetachAccountPolicyFromApikeysAsyncWithHttpInfo (string accountID, string policyId, List<string> body);
-        /// <summary>
-        /// Detach a policy from users.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for detaching policy from users.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be detached from users.</param>
-        /// <param name="body">List of user IDs.</param>
-        /// <returns>Task of UpdatedResponse</returns>
-        System.Threading.Tasks.Task<UpdatedResponse> DetachAccountPolicyFromUsersAsync (string accountID, string policyId, List<string> body);
-
-        /// <summary>
-        /// Detach a policy from users.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for detaching policy from users.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be detached from users.</param>
-        /// <param name="body">List of user IDs.</param>
-        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> DetachAccountPolicyFromUsersAsyncWithHttpInfo (string accountID, string policyId, List<string> body);
-        /// <summary>
-        /// Detach a policy to groups.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for detaching policy to groups.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be detached from groups.</param>
-        /// <param name="body">List of groups IDs.</param>
-        /// <returns>Task of UpdatedResponse</returns>
-        System.Threading.Tasks.Task<UpdatedResponse> DetachAccountPolicyToGroupAsync (string accountID, string policyId, List<string> body);
-
-        /// <summary>
-        /// Detach a policy to groups.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for detaching policy to groups.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be detached from groups.</param>
-        /// <param name="body">List of groups IDs.</param>
-        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> DetachAccountPolicyToGroupAsyncWithHttpInfo (string accountID, string policyId, List<string> body);
         /// <summary>
         /// Get API key details.
         /// </summary>
@@ -1892,122 +1330,6 @@ namespace iam.Api
         /// <returns>Task of ApiResponse (AccountInfo)</returns>
         System.Threading.Tasks.Task<ApiResponse<AccountInfo>> GetAccountInfoAsyncWithHttpInfo (string accountID, string include = null, string properties = null);
         /// <summary>
-        /// Get policy by ID.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for retrieving a policy by ID.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy to be retrieved.</param>
-        /// <returns>Task of PolicyInfo</returns>
-        System.Threading.Tasks.Task<PolicyInfo> GetAccountPolicyAsync (string accountID, string policyId);
-
-        /// <summary>
-        /// Get policy by ID.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for retrieving a policy by ID.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy to be retrieved.</param>
-        /// <returns>Task of ApiResponse (PolicyInfo)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PolicyInfo>> GetAccountPolicyAsyncWithHttpInfo (string accountID, string policyId);
-        /// <summary>
-        /// Fetch details of policy&#39;s API keys.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for fetching detailed information about API keys this policy is attached to.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy whose API keys to be retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of ApiKeyInfoRespList</returns>
-        System.Threading.Tasks.Task<ApiKeyInfoRespList> GetAccountPolicyApikeysAsync (string accountID, string policyId, int? limit = null, string after = null, string order = null, string include = null);
-
-        /// <summary>
-        /// Fetch details of policy&#39;s API keys.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for fetching detailed information about API keys this policy is attached to.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy whose API keys to be retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of ApiResponse (ApiKeyInfoRespList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoRespList>> GetAccountPolicyApikeysAsyncWithHttpInfo (string accountID, string policyId, int? limit = null, string after = null, string order = null, string include = null);
-        /// <summary>
-        /// Fetch details of policy&#39;s groups.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for fetching detailed information about groups this policy is attached to.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy whose API keys to be retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of GroupSummaryList</returns>
-        System.Threading.Tasks.Task<GroupSummaryList> GetAccountPolicyGroupsAsync (string accountID, string policyId, int? limit = null, string after = null, string order = null, string include = null);
-
-        /// <summary>
-        /// Fetch details of policy&#39;s groups.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for fetching detailed information about groups this policy is attached to.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy whose API keys to be retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of ApiResponse (GroupSummaryList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GroupSummaryList>> GetAccountPolicyGroupsAsyncWithHttpInfo (string accountID, string policyId, int? limit = null, string after = null, string order = null, string include = null);
-        /// <summary>
-        /// Fetch details of policy&#39;s users.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for fetching detailed information about users this policy is attached to.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy whose users to be retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of UserInfoRespList</returns>
-        System.Threading.Tasks.Task<UserInfoRespList> GetAccountPolicyUsersAsync (string accountID, string policyId, int? limit = null, string after = null, string order = null, string include = null);
-
-        /// <summary>
-        /// Fetch details of policy&#39;s users.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for fetching detailed information about users this policy is attached to.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy whose users to be retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of ApiResponse (UserInfoRespList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetAccountPolicyUsersAsyncWithHttpInfo (string accountID, string policyId, int? limit = null, string after = null, string order = null, string include = null);
-        /// <summary>
         /// Details of the user.
         /// </summary>
         /// <remarks>
@@ -2016,10 +1338,9 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountID">Account ID.</param>
         /// <param name="userId">The ID of the user to be retrieved.</param>
-        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
         /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
-        /// <returns>Task of MyUserInfoResp</returns>
-        System.Threading.Tasks.Task<MyUserInfoResp> GetAccountUserAsync (string accountID, string userId, string scratchCodes = null, string properties = null);
+        /// <returns>Task of UserInfoResp</returns>
+        System.Threading.Tasks.Task<UserInfoResp> GetAccountUserAsync (string accountID, string userId, string properties = null);
 
         /// <summary>
         /// Details of the user.
@@ -2030,10 +1351,9 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountID">Account ID.</param>
         /// <param name="userId">The ID of the user to be retrieved.</param>
-        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
         /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
-        /// <returns>Task of ApiResponse (MyUserInfoResp)</returns>
-        System.Threading.Tasks.Task<ApiResponse<MyUserInfoResp>> GetAccountUserAsyncWithHttpInfo (string accountID, string userId, string scratchCodes = null, string properties = null);
+        /// <returns>Task of ApiResponse (UserInfoResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> GetAccountUserAsyncWithHttpInfo (string accountID, string userId, string properties = null);
         /// <summary>
         /// Get all API keys.
         /// </summary>
@@ -2086,8 +1406,8 @@ namespace iam.Api
         /// <param name="deviceExecutionModeNeq">Filter for not developer certificates (optional)</param>
         /// <param name="ownerEq">Owner name filter (optional)</param>
         /// <param name="enrollmentModeEq">Enrollment mode filter (optional)</param>
-        /// <param name="issuerLike">Filter for issuer (optional)</param>
-        /// <param name="subjectLike">Filter for subject (optional)</param>
+        /// <param name="issuerLike">Filter for issuer. Finds all matches where the filter value is a case insensitive substring of the result. Example: issuer__like&#x3D;cn&#x3D;iss matches CN&#x3D;issuer. (optional)</param>
+        /// <param name="subjectLike">Filter for subject. Finds all matches where the filter value is a case insensitive substring of the result. Example: subject__like&#x3D;cn&#x3D;su matches CN&#x3D;subject. (optional)</param>
         /// <returns>Task of TrustedCertificateInternalRespList</returns>
         System.Threading.Tasks.Task<TrustedCertificateInternalRespList> GetAllAccountCertificatesAsync (string accountID, int? limit = null, string after = null, string order = null, string include = null, string nameEq = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, int? deviceExecutionModeNeq = null, string ownerEq = null, bool? enrollmentModeEq = null, string issuerLike = null, string subjectLike = null);
 
@@ -2110,8 +1430,8 @@ namespace iam.Api
         /// <param name="deviceExecutionModeNeq">Filter for not developer certificates (optional)</param>
         /// <param name="ownerEq">Owner name filter (optional)</param>
         /// <param name="enrollmentModeEq">Enrollment mode filter (optional)</param>
-        /// <param name="issuerLike">Filter for issuer (optional)</param>
-        /// <param name="subjectLike">Filter for subject (optional)</param>
+        /// <param name="issuerLike">Filter for issuer. Finds all matches where the filter value is a case insensitive substring of the result. Example: issuer__like&#x3D;cn&#x3D;iss matches CN&#x3D;issuer. (optional)</param>
+        /// <param name="subjectLike">Filter for subject. Finds all matches where the filter value is a case insensitive substring of the result. Example: subject__like&#x3D;cn&#x3D;su matches CN&#x3D;subject. (optional)</param>
         /// <returns>Task of ApiResponse (TrustedCertificateInternalRespList)</returns>
         System.Threading.Tasks.Task<ApiResponse<TrustedCertificateInternalRespList>> GetAllAccountCertificatesAsyncWithHttpInfo (string accountID, int? limit = null, string after = null, string order = null, string include = null, string nameEq = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, int? deviceExecutionModeNeq = null, string ownerEq = null, bool? enrollmentModeEq = null, string issuerLike = null, string subjectLike = null);
         /// <summary>
@@ -2146,47 +1466,6 @@ namespace iam.Api
         /// <returns>Task of ApiResponse (List&lt;GroupSummary&gt;)</returns>
         System.Threading.Tasks.Task<ApiResponse<List<GroupSummary>>> GetAllAccountGroupsAsyncWithHttpInfo (string accountID, int? limit = null, string after = null, string order = null, string include = null, string nameEq = null);
         /// <summary>
-        /// Get all policies.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for retrieving all policies in the account.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="nameEq">Filter result by policy name. (optional)</param>
-        /// <param name="statusEq">Filter for status, ACTIVE or INACTIVE. (optional)</param>
-        /// <param name="tagEq">Filter results for tag. (optional)</param>
-        /// <param name="userIdEq">Retrieve policies attached to a certain user ID. (optional)</param>
-        /// <param name="apikeyIdEq">Retrieve policies attached to a certain API key ID. (optional)</param>
-        /// <param name="groupIdEq">Retrieve policies attached to a certain group ID. (optional)</param>
-        /// <param name="unbounded">Retrieve policies not attached to any subject in the account. (optional)</param>
-        /// <returns>Task of PolicyInfoList</returns>
-        System.Threading.Tasks.Task<PolicyInfoList> GetAllAccountPoliciesAsync (string accountID, int? limit = null, string after = null, string order = null, string nameEq = null, string statusEq = null, string tagEq = null, string userIdEq = null, string apikeyIdEq = null, string groupIdEq = null, string unbounded = null);
-
-        /// <summary>
-        /// Get all policies.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for retrieving all policies in the account.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="nameEq">Filter result by policy name. (optional)</param>
-        /// <param name="statusEq">Filter for status, ACTIVE or INACTIVE. (optional)</param>
-        /// <param name="tagEq">Filter results for tag. (optional)</param>
-        /// <param name="userIdEq">Retrieve policies attached to a certain user ID. (optional)</param>
-        /// <param name="apikeyIdEq">Retrieve policies attached to a certain API key ID. (optional)</param>
-        /// <param name="groupIdEq">Retrieve policies attached to a certain group ID. (optional)</param>
-        /// <param name="unbounded">Retrieve policies not attached to any subject in the account. (optional)</param>
-        /// <returns>Task of ApiResponse (PolicyInfoList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PolicyInfoList>> GetAllAccountPoliciesAsyncWithHttpInfo (string accountID, int? limit = null, string after = null, string order = null, string nameEq = null, string statusEq = null, string tagEq = null, string userIdEq = null, string apikeyIdEq = null, string groupIdEq = null, string unbounded = null);
-        /// <summary>
         /// Get all user details.
         /// </summary>
         /// <remarks>
@@ -2200,8 +1479,10 @@ namespace iam.Api
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="emailEq">Filter for email address (optional)</param>
         /// <param name="statusEq">Filter for status (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>Task of UserInfoRespList</returns>
-        System.Threading.Tasks.Task<UserInfoRespList> GetAllAccountUsersAsync (string accountID, int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null);
+        System.Threading.Tasks.Task<UserInfoRespList> GetAllAccountUsersAsync (string accountID, int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null, string statusIn = null, string statusNin = null);
 
         /// <summary>
         /// Get all user details.
@@ -2217,8 +1498,10 @@ namespace iam.Api
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="emailEq">Filter for email address (optional)</param>
         /// <param name="statusEq">Filter for status (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>Task of ApiResponse (UserInfoRespList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetAllAccountUsersAsyncWithHttpInfo (string accountID, int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null);
+        System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetAllAccountUsersAsyncWithHttpInfo (string accountID, int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null, string statusIn = null, string statusNin = null);
         /// <summary>
         /// Get all accounts.
         /// </summary>
@@ -2227,10 +1510,12 @@ namespace iam.Api
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="statusEq">An optional filter for account status, ENROLLING, ACTIVE, RESTRICTED or SUSPENDED. (optional)</param>
+        /// <param name="statusIn">An optional filter for getting accounts with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding accounts with a specified set of statuses. (optional)</param>
         /// <param name="tierEq">An optional filter for tier level, must be 0, 1, 2, 98, 99 or omitted. (optional)</param>
         /// <param name="parentEq">An optional filter for parent account ID. (optional)</param>
         /// <param name="endMarketEq">An optional filter for account end market. (optional)</param>
-        /// <param name="countryLike">An optional filter for account country. (optional)</param>
+        /// <param name="countryLike">An optional filter for account country. Finds all matches where the filter value is a case insensitive substring of the result. Example: country__like&#x3D;LAND matches Ireland. (optional)</param>
         /// <param name="limit">The number of results to return (2-1000), default is 1000. (optional, default to 1000)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC. Default value is ASC (optional, default to ASC)</param>
@@ -2238,7 +1523,7 @@ namespace iam.Api
         /// <param name="format">Format information for the response to the query, supported: format&#x3D;breakdown. (optional)</param>
         /// <param name="properties">Property name to be returned from account specific properties. (optional)</param>
         /// <returns>Task of AccountInfoList</returns>
-        System.Threading.Tasks.Task<AccountInfoList> GetAllAccountsAsync (string statusEq = null, string tierEq = null, string parentEq = null, string endMarketEq = null, string countryLike = null, int? limit = null, string after = null, string order = null, string include = null, string format = null, string properties = null);
+        System.Threading.Tasks.Task<AccountInfoList> GetAllAccountsAsync (string statusEq = null, string statusIn = null, string statusNin = null, string tierEq = null, string parentEq = null, string endMarketEq = null, string countryLike = null, int? limit = null, string after = null, string order = null, string include = null, string format = null, string properties = null);
 
         /// <summary>
         /// Get all accounts.
@@ -2248,10 +1533,12 @@ namespace iam.Api
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="statusEq">An optional filter for account status, ENROLLING, ACTIVE, RESTRICTED or SUSPENDED. (optional)</param>
+        /// <param name="statusIn">An optional filter for getting accounts with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding accounts with a specified set of statuses. (optional)</param>
         /// <param name="tierEq">An optional filter for tier level, must be 0, 1, 2, 98, 99 or omitted. (optional)</param>
         /// <param name="parentEq">An optional filter for parent account ID. (optional)</param>
         /// <param name="endMarketEq">An optional filter for account end market. (optional)</param>
-        /// <param name="countryLike">An optional filter for account country. (optional)</param>
+        /// <param name="countryLike">An optional filter for account country. Finds all matches where the filter value is a case insensitive substring of the result. Example: country__like&#x3D;LAND matches Ireland. (optional)</param>
         /// <param name="limit">The number of results to return (2-1000), default is 1000. (optional, default to 1000)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC. Default value is ASC (optional, default to ASC)</param>
@@ -2259,7 +1546,7 @@ namespace iam.Api
         /// <param name="format">Format information for the response to the query, supported: format&#x3D;breakdown. (optional)</param>
         /// <param name="properties">Property name to be returned from account specific properties. (optional)</param>
         /// <returns>Task of ApiResponse (AccountInfoList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AccountInfoList>> GetAllAccountsAsyncWithHttpInfo (string statusEq = null, string tierEq = null, string parentEq = null, string endMarketEq = null, string countryLike = null, int? limit = null, string after = null, string order = null, string include = null, string format = null, string properties = null);
+        System.Threading.Tasks.Task<ApiResponse<AccountInfoList>> GetAllAccountsAsyncWithHttpInfo (string statusEq = null, string statusIn = null, string statusNin = null, string tierEq = null, string parentEq = null, string endMarketEq = null, string countryLike = null, int? limit = null, string after = null, string order = null, string include = null, string format = null, string properties = null);
         /// <summary>
         /// Get API keys of a group.
         /// </summary>
@@ -2366,8 +1653,11 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="statusEq">An optional filter for getting users by status. (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>Task of UserInfoRespList</returns>
-        System.Threading.Tasks.Task<UserInfoRespList> GetUsersOfAccountGroupAsync (string accountID, string groupID, int? limit = null, string after = null, string order = null, string include = null);
+        System.Threading.Tasks.Task<UserInfoRespList> GetUsersOfAccountGroupAsync (string accountID, string groupID, int? limit = null, string after = null, string order = null, string include = null, string statusEq = null, string statusIn = null, string statusNin = null);
 
         /// <summary>
         /// Get users of a group.
@@ -2382,8 +1672,11 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="statusEq">An optional filter for getting users by status. (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>Task of ApiResponse (UserInfoRespList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetUsersOfAccountGroupAsyncWithHttpInfo (string accountID, string groupID, int? limit = null, string after = null, string order = null, string include = null);
+        System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetUsersOfAccountGroupAsyncWithHttpInfo (string accountID, string groupID, int? limit = null, string after = null, string order = null, string include = null, string statusEq = null, string statusIn = null, string statusNin = null);
         /// <summary>
         /// Remove API key from groups.
         /// </summary>
@@ -2581,31 +1874,6 @@ namespace iam.Api
         /// <returns>Task of ApiResponse (TrustedCertificateInternalResp)</returns>
         System.Threading.Tasks.Task<ApiResponse<TrustedCertificateInternalResp>> UpdateAccountCertificateAsyncWithHttpInfo (string accountID, string certId, TrustedCertificateUpdateReq body);
         /// <summary>
-        /// Update a policy.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for updating a policy.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy to be retrieved.</param>
-        /// <param name="body">The details of the policy to be updated.</param>
-        /// <returns>Task of PolicyInfo</returns>
-        System.Threading.Tasks.Task<PolicyInfo> UpdateAccountPolicyAsync (string accountID, string policyId, PolicyUpdateReq body);
-
-        /// <summary>
-        /// Update a policy.
-        /// </summary>
-        /// <remarks>
-        /// An endpoint for updating a policy.
-        /// </remarks>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy to be retrieved.</param>
-        /// <param name="body">The details of the policy to be updated.</param>
-        /// <returns>Task of ApiResponse (PolicyInfo)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PolicyInfo>> UpdateAccountPolicyAsyncWithHttpInfo (string accountID, string policyId, PolicyUpdateReq body);
-        /// <summary>
         /// Update user details.
         /// </summary>
         /// <remarks>
@@ -2616,7 +1884,7 @@ namespace iam.Api
         /// <param name="userId">The ID of the user to be updated.</param>
         /// <param name="body">A user object with attributes.</param>
         /// <returns>Task of UserUpdateResp</returns>
-        System.Threading.Tasks.Task<UserUpdateResp> UpdateAccountUserAsync (string accountID, string userId, AdminUserUpdateReq body);
+        System.Threading.Tasks.Task<UserUpdateResp> UpdateAccountUserAsync (string accountID, string userId, UserUpdateReq body);
 
         /// <summary>
         /// Update user details.
@@ -2629,7 +1897,7 @@ namespace iam.Api
         /// <param name="userId">The ID of the user to be updated.</param>
         /// <param name="body">A user object with attributes.</param>
         /// <returns>Task of ApiResponse (UserUpdateResp)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UserUpdateResp>> UpdateAccountUserAsyncWithHttpInfo (string accountID, string userId, AdminUserUpdateReq body);
+        System.Threading.Tasks.Task<ApiResponse<UserUpdateResp>> UpdateAccountUserAsyncWithHttpInfo (string accountID, string userId, UserUpdateReq body);
         /// <summary>
         /// Validate the user email.
         /// </summary>
@@ -3474,555 +2742,6 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Attach a policy to API keys. An endpoint for attaching policy to API keys.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be attached to API keys.</param>
-        /// <param name="body">List of API key IDs.</param>
-        /// <returns>UpdatedResponse</returns>
-        public UpdatedResponse AttachAccountPolicyToApikeys (string accountID, string policyId, List<string> body)
-        {
-             ApiResponse<UpdatedResponse> localVarResponse = AttachAccountPolicyToApikeysWithHttpInfo(accountID, policyId, body);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Attach a policy to API keys. An endpoint for attaching policy to API keys.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be attached to API keys.</param>
-        /// <param name="body">List of API key IDs.</param>
-        /// <returns>ApiResponse of UpdatedResponse</returns>
-        public ApiResponse< UpdatedResponse > AttachAccountPolicyToApikeysWithHttpInfo (string accountID, string policyId, List<string> body)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->AttachAccountPolicyToApikeys");
-            // verify the required parameter 'policyId' is set
-            if (policyId == null)
-                throw new ApiException(400, "Missing required parameter 'policyId' when calling AggregatorAccountAdminApi->AttachAccountPolicyToApikeys");
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling AggregatorAccountAdminApi->AttachAccountPolicyToApikeys");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies/{policy-id}/api-keys";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (policyId != null) localVarPathParams.Add("policy-id", Configuration.ApiClient.ParameterToString(policyId)); // path parameter
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("AttachAccountPolicyToApikeys", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
-        }
-
-        /// <summary>
-        /// Attach a policy to API keys. An endpoint for attaching policy to API keys.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be attached to API keys.</param>
-        /// <param name="body">List of API key IDs.</param>
-        /// <returns>Task of UpdatedResponse</returns>
-        public async System.Threading.Tasks.Task<UpdatedResponse> AttachAccountPolicyToApikeysAsync (string accountID, string policyId, List<string> body)
-        {
-             ApiResponse<UpdatedResponse> localVarResponse = await AttachAccountPolicyToApikeysAsyncWithHttpInfo(accountID, policyId, body);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Attach a policy to API keys. An endpoint for attaching policy to API keys.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be attached to API keys.</param>
-        /// <param name="body">List of API key IDs.</param>
-        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> AttachAccountPolicyToApikeysAsyncWithHttpInfo (string accountID, string policyId, List<string> body)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->AttachAccountPolicyToApikeys");
-            // verify the required parameter 'policyId' is set
-            if (policyId == null)
-                throw new ApiException(400, "Missing required parameter 'policyId' when calling AggregatorAccountAdminApi->AttachAccountPolicyToApikeys");
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling AggregatorAccountAdminApi->AttachAccountPolicyToApikeys");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies/{policy-id}/api-keys";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (policyId != null) localVarPathParams.Add("policy-id", Configuration.ApiClient.ParameterToString(policyId)); // path parameter
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("AttachAccountPolicyToApikeys", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
-        }
-
-        /// <summary>
-        /// Attach a policy to groups. An endpoint for attaching policy to groups.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be attached to groups.</param>
-        /// <param name="body">List of groups IDs.</param>
-        /// <returns>UpdatedResponse</returns>
-        public UpdatedResponse AttachAccountPolicyToGroup (string accountID, string policyId, List<string> body)
-        {
-             ApiResponse<UpdatedResponse> localVarResponse = AttachAccountPolicyToGroupWithHttpInfo(accountID, policyId, body);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Attach a policy to groups. An endpoint for attaching policy to groups.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be attached to groups.</param>
-        /// <param name="body">List of groups IDs.</param>
-        /// <returns>ApiResponse of UpdatedResponse</returns>
-        public ApiResponse< UpdatedResponse > AttachAccountPolicyToGroupWithHttpInfo (string accountID, string policyId, List<string> body)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->AttachAccountPolicyToGroup");
-            // verify the required parameter 'policyId' is set
-            if (policyId == null)
-                throw new ApiException(400, "Missing required parameter 'policyId' when calling AggregatorAccountAdminApi->AttachAccountPolicyToGroup");
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling AggregatorAccountAdminApi->AttachAccountPolicyToGroup");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies/{policy-id}/groups";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (policyId != null) localVarPathParams.Add("policy-id", Configuration.ApiClient.ParameterToString(policyId)); // path parameter
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("AttachAccountPolicyToGroup", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
-        }
-
-        /// <summary>
-        /// Attach a policy to groups. An endpoint for attaching policy to groups.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be attached to groups.</param>
-        /// <param name="body">List of groups IDs.</param>
-        /// <returns>Task of UpdatedResponse</returns>
-        public async System.Threading.Tasks.Task<UpdatedResponse> AttachAccountPolicyToGroupAsync (string accountID, string policyId, List<string> body)
-        {
-             ApiResponse<UpdatedResponse> localVarResponse = await AttachAccountPolicyToGroupAsyncWithHttpInfo(accountID, policyId, body);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Attach a policy to groups. An endpoint for attaching policy to groups.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be attached to groups.</param>
-        /// <param name="body">List of groups IDs.</param>
-        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> AttachAccountPolicyToGroupAsyncWithHttpInfo (string accountID, string policyId, List<string> body)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->AttachAccountPolicyToGroup");
-            // verify the required parameter 'policyId' is set
-            if (policyId == null)
-                throw new ApiException(400, "Missing required parameter 'policyId' when calling AggregatorAccountAdminApi->AttachAccountPolicyToGroup");
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling AggregatorAccountAdminApi->AttachAccountPolicyToGroup");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies/{policy-id}/groups";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (policyId != null) localVarPathParams.Add("policy-id", Configuration.ApiClient.ParameterToString(policyId)); // path parameter
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("AttachAccountPolicyToGroup", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
-        }
-
-        /// <summary>
-        /// Attach a policy to users. An endpoint for attaching policy to users.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be attached to users.</param>
-        /// <param name="body">List of user IDs.</param>
-        /// <returns>UpdatedResponse</returns>
-        public UpdatedResponse AttachAccountPolicyToUsers (string accountID, string policyId, List<string> body)
-        {
-             ApiResponse<UpdatedResponse> localVarResponse = AttachAccountPolicyToUsersWithHttpInfo(accountID, policyId, body);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Attach a policy to users. An endpoint for attaching policy to users.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be attached to users.</param>
-        /// <param name="body">List of user IDs.</param>
-        /// <returns>ApiResponse of UpdatedResponse</returns>
-        public ApiResponse< UpdatedResponse > AttachAccountPolicyToUsersWithHttpInfo (string accountID, string policyId, List<string> body)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->AttachAccountPolicyToUsers");
-            // verify the required parameter 'policyId' is set
-            if (policyId == null)
-                throw new ApiException(400, "Missing required parameter 'policyId' when calling AggregatorAccountAdminApi->AttachAccountPolicyToUsers");
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling AggregatorAccountAdminApi->AttachAccountPolicyToUsers");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies/{policy-id}/users";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (policyId != null) localVarPathParams.Add("policy-id", Configuration.ApiClient.ParameterToString(policyId)); // path parameter
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("AttachAccountPolicyToUsers", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
-        }
-
-        /// <summary>
-        /// Attach a policy to users. An endpoint for attaching policy to users.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be attached to users.</param>
-        /// <param name="body">List of user IDs.</param>
-        /// <returns>Task of UpdatedResponse</returns>
-        public async System.Threading.Tasks.Task<UpdatedResponse> AttachAccountPolicyToUsersAsync (string accountID, string policyId, List<string> body)
-        {
-             ApiResponse<UpdatedResponse> localVarResponse = await AttachAccountPolicyToUsersAsyncWithHttpInfo(accountID, policyId, body);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Attach a policy to users. An endpoint for attaching policy to users.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be attached to users.</param>
-        /// <param name="body">List of user IDs.</param>
-        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> AttachAccountPolicyToUsersAsyncWithHttpInfo (string accountID, string policyId, List<string> body)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->AttachAccountPolicyToUsers");
-            // verify the required parameter 'policyId' is set
-            if (policyId == null)
-                throw new ApiException(400, "Missing required parameter 'policyId' when calling AggregatorAccountAdminApi->AttachAccountPolicyToUsers");
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling AggregatorAccountAdminApi->AttachAccountPolicyToUsers");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies/{policy-id}/users";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (policyId != null) localVarPathParams.Add("policy-id", Configuration.ApiClient.ParameterToString(policyId)); // path parameter
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("AttachAccountPolicyToUsers", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
-        }
-
-        /// <summary>
         /// Check the API key. An endpoint for checking API key.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
@@ -4512,177 +3231,6 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Create a policy. An endpoint for creating a new policy.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="body">The details of the policy to be created.</param>
-        /// <returns>PolicyInfo</returns>
-        public PolicyInfo CreateAccountPolicy (string accountID, PolicyCreationReq body)
-        {
-             ApiResponse<PolicyInfo> localVarResponse = CreateAccountPolicyWithHttpInfo(accountID, body);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Create a policy. An endpoint for creating a new policy.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="body">The details of the policy to be created.</param>
-        /// <returns>ApiResponse of PolicyInfo</returns>
-        public ApiResponse< PolicyInfo > CreateAccountPolicyWithHttpInfo (string accountID, PolicyCreationReq body)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->CreateAccountPolicy");
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling AggregatorAccountAdminApi->CreateAccountPolicy");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("CreateAccountPolicy", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<PolicyInfo>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (PolicyInfo) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PolicyInfo)));
-        }
-
-        /// <summary>
-        /// Create a policy. An endpoint for creating a new policy.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="body">The details of the policy to be created.</param>
-        /// <returns>Task of PolicyInfo</returns>
-        public async System.Threading.Tasks.Task<PolicyInfo> CreateAccountPolicyAsync (string accountID, PolicyCreationReq body)
-        {
-             ApiResponse<PolicyInfo> localVarResponse = await CreateAccountPolicyAsyncWithHttpInfo(accountID, body);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Create a policy. An endpoint for creating a new policy.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="body">The details of the policy to be created.</param>
-        /// <returns>Task of ApiResponse (PolicyInfo)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<PolicyInfo>> CreateAccountPolicyAsyncWithHttpInfo (string accountID, PolicyCreationReq body)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->CreateAccountPolicy");
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling AggregatorAccountAdminApi->CreateAccountPolicy");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("CreateAccountPolicy", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<PolicyInfo>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (PolicyInfo) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PolicyInfo)));
-        }
-
-        /// <summary>
         /// Create a new user. An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
@@ -5166,159 +3714,6 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Delete policy. An endpoint for deleting a policy.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be deleted.</param>
-        /// <returns></returns>
-        public void DeleteAccountPolicy (string accountID, string policyId)
-        {
-             DeleteAccountPolicyWithHttpInfo(accountID, policyId);
-        }
-
-        /// <summary>
-        /// Delete policy. An endpoint for deleting a policy.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be deleted.</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> DeleteAccountPolicyWithHttpInfo (string accountID, string policyId)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->DeleteAccountPolicy");
-            // verify the required parameter 'policyId' is set
-            if (policyId == null)
-                throw new ApiException(400, "Missing required parameter 'policyId' when calling AggregatorAccountAdminApi->DeleteAccountPolicy");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies/{policy-id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (policyId != null) localVarPathParams.Add("policy-id", Configuration.ApiClient.ParameterToString(policyId)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("DeleteAccountPolicy", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
-        /// Delete policy. An endpoint for deleting a policy.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be deleted.</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteAccountPolicyAsync (string accountID, string policyId)
-        {
-             await DeleteAccountPolicyAsyncWithHttpInfo(accountID, policyId);
-
-        }
-
-        /// <summary>
-        /// Delete policy. An endpoint for deleting a policy.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be deleted.</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteAccountPolicyAsyncWithHttpInfo (string accountID, string policyId)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->DeleteAccountPolicy");
-            // verify the required parameter 'policyId' is set
-            if (policyId == null)
-                throw new ApiException(400, "Missing required parameter 'policyId' when calling AggregatorAccountAdminApi->DeleteAccountPolicy");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies/{policy-id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (policyId != null) localVarPathParams.Add("policy-id", Configuration.ApiClient.ParameterToString(policyId)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("DeleteAccountPolicy", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
-        }
-
-        /// <summary>
         /// Delete a user. An endpoint for deleting a user.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
@@ -5469,555 +3864,6 @@ namespace iam.Api
             return new ApiResponse<Object>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
-        }
-
-        /// <summary>
-        /// Detach a policy from API keys. An endpoint for detaching policy from API keys.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be detached from API keys.</param>
-        /// <param name="body">List of API key IDs.</param>
-        /// <returns>UpdatedResponse</returns>
-        public UpdatedResponse DetachAccountPolicyFromApikeys (string accountID, string policyId, List<string> body)
-        {
-             ApiResponse<UpdatedResponse> localVarResponse = DetachAccountPolicyFromApikeysWithHttpInfo(accountID, policyId, body);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Detach a policy from API keys. An endpoint for detaching policy from API keys.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be detached from API keys.</param>
-        /// <param name="body">List of API key IDs.</param>
-        /// <returns>ApiResponse of UpdatedResponse</returns>
-        public ApiResponse< UpdatedResponse > DetachAccountPolicyFromApikeysWithHttpInfo (string accountID, string policyId, List<string> body)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->DetachAccountPolicyFromApikeys");
-            // verify the required parameter 'policyId' is set
-            if (policyId == null)
-                throw new ApiException(400, "Missing required parameter 'policyId' when calling AggregatorAccountAdminApi->DetachAccountPolicyFromApikeys");
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling AggregatorAccountAdminApi->DetachAccountPolicyFromApikeys");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies/{policy-id}/api-keys";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (policyId != null) localVarPathParams.Add("policy-id", Configuration.ApiClient.ParameterToString(policyId)); // path parameter
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("DetachAccountPolicyFromApikeys", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
-        }
-
-        /// <summary>
-        /// Detach a policy from API keys. An endpoint for detaching policy from API keys.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be detached from API keys.</param>
-        /// <param name="body">List of API key IDs.</param>
-        /// <returns>Task of UpdatedResponse</returns>
-        public async System.Threading.Tasks.Task<UpdatedResponse> DetachAccountPolicyFromApikeysAsync (string accountID, string policyId, List<string> body)
-        {
-             ApiResponse<UpdatedResponse> localVarResponse = await DetachAccountPolicyFromApikeysAsyncWithHttpInfo(accountID, policyId, body);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Detach a policy from API keys. An endpoint for detaching policy from API keys.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be detached from API keys.</param>
-        /// <param name="body">List of API key IDs.</param>
-        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> DetachAccountPolicyFromApikeysAsyncWithHttpInfo (string accountID, string policyId, List<string> body)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->DetachAccountPolicyFromApikeys");
-            // verify the required parameter 'policyId' is set
-            if (policyId == null)
-                throw new ApiException(400, "Missing required parameter 'policyId' when calling AggregatorAccountAdminApi->DetachAccountPolicyFromApikeys");
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling AggregatorAccountAdminApi->DetachAccountPolicyFromApikeys");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies/{policy-id}/api-keys";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (policyId != null) localVarPathParams.Add("policy-id", Configuration.ApiClient.ParameterToString(policyId)); // path parameter
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("DetachAccountPolicyFromApikeys", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
-        }
-
-        /// <summary>
-        /// Detach a policy from users. An endpoint for detaching policy from users.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be detached from users.</param>
-        /// <param name="body">List of user IDs.</param>
-        /// <returns>UpdatedResponse</returns>
-        public UpdatedResponse DetachAccountPolicyFromUsers (string accountID, string policyId, List<string> body)
-        {
-             ApiResponse<UpdatedResponse> localVarResponse = DetachAccountPolicyFromUsersWithHttpInfo(accountID, policyId, body);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Detach a policy from users. An endpoint for detaching policy from users.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be detached from users.</param>
-        /// <param name="body">List of user IDs.</param>
-        /// <returns>ApiResponse of UpdatedResponse</returns>
-        public ApiResponse< UpdatedResponse > DetachAccountPolicyFromUsersWithHttpInfo (string accountID, string policyId, List<string> body)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->DetachAccountPolicyFromUsers");
-            // verify the required parameter 'policyId' is set
-            if (policyId == null)
-                throw new ApiException(400, "Missing required parameter 'policyId' when calling AggregatorAccountAdminApi->DetachAccountPolicyFromUsers");
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling AggregatorAccountAdminApi->DetachAccountPolicyFromUsers");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies/{policy-id}/users";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (policyId != null) localVarPathParams.Add("policy-id", Configuration.ApiClient.ParameterToString(policyId)); // path parameter
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("DetachAccountPolicyFromUsers", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
-        }
-
-        /// <summary>
-        /// Detach a policy from users. An endpoint for detaching policy from users.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be detached from users.</param>
-        /// <param name="body">List of user IDs.</param>
-        /// <returns>Task of UpdatedResponse</returns>
-        public async System.Threading.Tasks.Task<UpdatedResponse> DetachAccountPolicyFromUsersAsync (string accountID, string policyId, List<string> body)
-        {
-             ApiResponse<UpdatedResponse> localVarResponse = await DetachAccountPolicyFromUsersAsyncWithHttpInfo(accountID, policyId, body);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Detach a policy from users. An endpoint for detaching policy from users.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be detached from users.</param>
-        /// <param name="body">List of user IDs.</param>
-        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> DetachAccountPolicyFromUsersAsyncWithHttpInfo (string accountID, string policyId, List<string> body)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->DetachAccountPolicyFromUsers");
-            // verify the required parameter 'policyId' is set
-            if (policyId == null)
-                throw new ApiException(400, "Missing required parameter 'policyId' when calling AggregatorAccountAdminApi->DetachAccountPolicyFromUsers");
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling AggregatorAccountAdminApi->DetachAccountPolicyFromUsers");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies/{policy-id}/users";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (policyId != null) localVarPathParams.Add("policy-id", Configuration.ApiClient.ParameterToString(policyId)); // path parameter
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("DetachAccountPolicyFromUsers", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
-        }
-
-        /// <summary>
-        /// Detach a policy to groups. An endpoint for detaching policy to groups.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be detached from groups.</param>
-        /// <param name="body">List of groups IDs.</param>
-        /// <returns>UpdatedResponse</returns>
-        public UpdatedResponse DetachAccountPolicyToGroup (string accountID, string policyId, List<string> body)
-        {
-             ApiResponse<UpdatedResponse> localVarResponse = DetachAccountPolicyToGroupWithHttpInfo(accountID, policyId, body);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Detach a policy to groups. An endpoint for detaching policy to groups.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be detached from groups.</param>
-        /// <param name="body">List of groups IDs.</param>
-        /// <returns>ApiResponse of UpdatedResponse</returns>
-        public ApiResponse< UpdatedResponse > DetachAccountPolicyToGroupWithHttpInfo (string accountID, string policyId, List<string> body)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->DetachAccountPolicyToGroup");
-            // verify the required parameter 'policyId' is set
-            if (policyId == null)
-                throw new ApiException(400, "Missing required parameter 'policyId' when calling AggregatorAccountAdminApi->DetachAccountPolicyToGroup");
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling AggregatorAccountAdminApi->DetachAccountPolicyToGroup");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies/{policy-id}/groups";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (policyId != null) localVarPathParams.Add("policy-id", Configuration.ApiClient.ParameterToString(policyId)); // path parameter
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("DetachAccountPolicyToGroup", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
-        }
-
-        /// <summary>
-        /// Detach a policy to groups. An endpoint for detaching policy to groups.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be detached from groups.</param>
-        /// <param name="body">List of groups IDs.</param>
-        /// <returns>Task of UpdatedResponse</returns>
-        public async System.Threading.Tasks.Task<UpdatedResponse> DetachAccountPolicyToGroupAsync (string accountID, string policyId, List<string> body)
-        {
-             ApiResponse<UpdatedResponse> localVarResponse = await DetachAccountPolicyToGroupAsyncWithHttpInfo(accountID, policyId, body);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Detach a policy to groups. An endpoint for detaching policy to groups.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID of the policy to be detached from groups.</param>
-        /// <param name="body">List of groups IDs.</param>
-        /// <returns>Task of ApiResponse (UpdatedResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdatedResponse>> DetachAccountPolicyToGroupAsyncWithHttpInfo (string accountID, string policyId, List<string> body)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->DetachAccountPolicyToGroup");
-            // verify the required parameter 'policyId' is set
-            if (policyId == null)
-                throw new ApiException(400, "Missing required parameter 'policyId' when calling AggregatorAccountAdminApi->DetachAccountPolicyToGroup");
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling AggregatorAccountAdminApi->DetachAccountPolicyToGroup");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies/{policy-id}/groups";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (policyId != null) localVarPathParams.Add("policy-id", Configuration.ApiClient.ParameterToString(policyId)); // path parameter
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("DetachAccountPolicyToGroup", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UpdatedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UpdatedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UpdatedResponse)));
         }
 
         /// <summary>
@@ -6641,709 +4487,16 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get policy by ID. An endpoint for retrieving a policy by ID.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy to be retrieved.</param>
-        /// <returns>PolicyInfo</returns>
-        public PolicyInfo GetAccountPolicy (string accountID, string policyId)
-        {
-             ApiResponse<PolicyInfo> localVarResponse = GetAccountPolicyWithHttpInfo(accountID, policyId);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Get policy by ID. An endpoint for retrieving a policy by ID.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy to be retrieved.</param>
-        /// <returns>ApiResponse of PolicyInfo</returns>
-        public ApiResponse< PolicyInfo > GetAccountPolicyWithHttpInfo (string accountID, string policyId)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->GetAccountPolicy");
-            // verify the required parameter 'policyId' is set
-            if (policyId == null)
-                throw new ApiException(400, "Missing required parameter 'policyId' when calling AggregatorAccountAdminApi->GetAccountPolicy");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies/{policy-id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (policyId != null) localVarPathParams.Add("policy-id", Configuration.ApiClient.ParameterToString(policyId)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetAccountPolicy", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<PolicyInfo>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (PolicyInfo) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PolicyInfo)));
-        }
-
-        /// <summary>
-        /// Get policy by ID. An endpoint for retrieving a policy by ID.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy to be retrieved.</param>
-        /// <returns>Task of PolicyInfo</returns>
-        public async System.Threading.Tasks.Task<PolicyInfo> GetAccountPolicyAsync (string accountID, string policyId)
-        {
-             ApiResponse<PolicyInfo> localVarResponse = await GetAccountPolicyAsyncWithHttpInfo(accountID, policyId);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Get policy by ID. An endpoint for retrieving a policy by ID.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy to be retrieved.</param>
-        /// <returns>Task of ApiResponse (PolicyInfo)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<PolicyInfo>> GetAccountPolicyAsyncWithHttpInfo (string accountID, string policyId)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->GetAccountPolicy");
-            // verify the required parameter 'policyId' is set
-            if (policyId == null)
-                throw new ApiException(400, "Missing required parameter 'policyId' when calling AggregatorAccountAdminApi->GetAccountPolicy");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies/{policy-id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (policyId != null) localVarPathParams.Add("policy-id", Configuration.ApiClient.ParameterToString(policyId)); // path parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetAccountPolicy", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<PolicyInfo>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (PolicyInfo) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PolicyInfo)));
-        }
-
-        /// <summary>
-        /// Fetch details of policy&#39;s API keys. An endpoint for fetching detailed information about API keys this policy is attached to.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy whose API keys to be retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>ApiKeyInfoRespList</returns>
-        public ApiKeyInfoRespList GetAccountPolicyApikeys (string accountID, string policyId, int? limit = null, string after = null, string order = null, string include = null)
-        {
-             ApiResponse<ApiKeyInfoRespList> localVarResponse = GetAccountPolicyApikeysWithHttpInfo(accountID, policyId, limit, after, order, include);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Fetch details of policy&#39;s API keys. An endpoint for fetching detailed information about API keys this policy is attached to.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy whose API keys to be retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>ApiResponse of ApiKeyInfoRespList</returns>
-        public ApiResponse< ApiKeyInfoRespList > GetAccountPolicyApikeysWithHttpInfo (string accountID, string policyId, int? limit = null, string after = null, string order = null, string include = null)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->GetAccountPolicyApikeys");
-            // verify the required parameter 'policyId' is set
-            if (policyId == null)
-                throw new ApiException(400, "Missing required parameter 'policyId' when calling AggregatorAccountAdminApi->GetAccountPolicyApikeys");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies/{policy-id}/api-keys";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (policyId != null) localVarPathParams.Add("policy-id", Configuration.ApiClient.ParameterToString(policyId)); // path parameter
-            if (limit != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
-            if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
-            if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
-            if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetAccountPolicyApikeys", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<ApiKeyInfoRespList>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ApiKeyInfoRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoRespList)));
-        }
-
-        /// <summary>
-        /// Fetch details of policy&#39;s API keys. An endpoint for fetching detailed information about API keys this policy is attached to.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy whose API keys to be retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of ApiKeyInfoRespList</returns>
-        public async System.Threading.Tasks.Task<ApiKeyInfoRespList> GetAccountPolicyApikeysAsync (string accountID, string policyId, int? limit = null, string after = null, string order = null, string include = null)
-        {
-             ApiResponse<ApiKeyInfoRespList> localVarResponse = await GetAccountPolicyApikeysAsyncWithHttpInfo(accountID, policyId, limit, after, order, include);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Fetch details of policy&#39;s API keys. An endpoint for fetching detailed information about API keys this policy is attached to.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy whose API keys to be retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of ApiResponse (ApiKeyInfoRespList)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiKeyInfoRespList>> GetAccountPolicyApikeysAsyncWithHttpInfo (string accountID, string policyId, int? limit = null, string after = null, string order = null, string include = null)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->GetAccountPolicyApikeys");
-            // verify the required parameter 'policyId' is set
-            if (policyId == null)
-                throw new ApiException(400, "Missing required parameter 'policyId' when calling AggregatorAccountAdminApi->GetAccountPolicyApikeys");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies/{policy-id}/api-keys";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (policyId != null) localVarPathParams.Add("policy-id", Configuration.ApiClient.ParameterToString(policyId)); // path parameter
-            if (limit != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
-            if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
-            if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
-            if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetAccountPolicyApikeys", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<ApiKeyInfoRespList>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (ApiKeyInfoRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ApiKeyInfoRespList)));
-        }
-
-        /// <summary>
-        /// Fetch details of policy&#39;s groups. An endpoint for fetching detailed information about groups this policy is attached to.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy whose API keys to be retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>GroupSummaryList</returns>
-        public GroupSummaryList GetAccountPolicyGroups (string accountID, string policyId, int? limit = null, string after = null, string order = null, string include = null)
-        {
-             ApiResponse<GroupSummaryList> localVarResponse = GetAccountPolicyGroupsWithHttpInfo(accountID, policyId, limit, after, order, include);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Fetch details of policy&#39;s groups. An endpoint for fetching detailed information about groups this policy is attached to.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy whose API keys to be retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>ApiResponse of GroupSummaryList</returns>
-        public ApiResponse< GroupSummaryList > GetAccountPolicyGroupsWithHttpInfo (string accountID, string policyId, int? limit = null, string after = null, string order = null, string include = null)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->GetAccountPolicyGroups");
-            // verify the required parameter 'policyId' is set
-            if (policyId == null)
-                throw new ApiException(400, "Missing required parameter 'policyId' when calling AggregatorAccountAdminApi->GetAccountPolicyGroups");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies/{policy-id}/groups";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (policyId != null) localVarPathParams.Add("policy-id", Configuration.ApiClient.ParameterToString(policyId)); // path parameter
-            if (limit != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
-            if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
-            if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
-            if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetAccountPolicyGroups", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<GroupSummaryList>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (GroupSummaryList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(GroupSummaryList)));
-        }
-
-        /// <summary>
-        /// Fetch details of policy&#39;s groups. An endpoint for fetching detailed information about groups this policy is attached to.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy whose API keys to be retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of GroupSummaryList</returns>
-        public async System.Threading.Tasks.Task<GroupSummaryList> GetAccountPolicyGroupsAsync (string accountID, string policyId, int? limit = null, string after = null, string order = null, string include = null)
-        {
-             ApiResponse<GroupSummaryList> localVarResponse = await GetAccountPolicyGroupsAsyncWithHttpInfo(accountID, policyId, limit, after, order, include);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Fetch details of policy&#39;s groups. An endpoint for fetching detailed information about groups this policy is attached to.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy whose API keys to be retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of ApiResponse (GroupSummaryList)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<GroupSummaryList>> GetAccountPolicyGroupsAsyncWithHttpInfo (string accountID, string policyId, int? limit = null, string after = null, string order = null, string include = null)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->GetAccountPolicyGroups");
-            // verify the required parameter 'policyId' is set
-            if (policyId == null)
-                throw new ApiException(400, "Missing required parameter 'policyId' when calling AggregatorAccountAdminApi->GetAccountPolicyGroups");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies/{policy-id}/groups";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (policyId != null) localVarPathParams.Add("policy-id", Configuration.ApiClient.ParameterToString(policyId)); // path parameter
-            if (limit != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
-            if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
-            if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
-            if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetAccountPolicyGroups", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<GroupSummaryList>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (GroupSummaryList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(GroupSummaryList)));
-        }
-
-        /// <summary>
-        /// Fetch details of policy&#39;s users. An endpoint for fetching detailed information about users this policy is attached to.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy whose users to be retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>UserInfoRespList</returns>
-        public UserInfoRespList GetAccountPolicyUsers (string accountID, string policyId, int? limit = null, string after = null, string order = null, string include = null)
-        {
-             ApiResponse<UserInfoRespList> localVarResponse = GetAccountPolicyUsersWithHttpInfo(accountID, policyId, limit, after, order, include);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Fetch details of policy&#39;s users. An endpoint for fetching detailed information about users this policy is attached to.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy whose users to be retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>ApiResponse of UserInfoRespList</returns>
-        public ApiResponse< UserInfoRespList > GetAccountPolicyUsersWithHttpInfo (string accountID, string policyId, int? limit = null, string after = null, string order = null, string include = null)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->GetAccountPolicyUsers");
-            // verify the required parameter 'policyId' is set
-            if (policyId == null)
-                throw new ApiException(400, "Missing required parameter 'policyId' when calling AggregatorAccountAdminApi->GetAccountPolicyUsers");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies/{policy-id}/users";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (policyId != null) localVarPathParams.Add("policy-id", Configuration.ApiClient.ParameterToString(policyId)); // path parameter
-            if (limit != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
-            if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
-            if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
-            if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetAccountPolicyUsers", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UserInfoRespList>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UserInfoRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInfoRespList)));
-        }
-
-        /// <summary>
-        /// Fetch details of policy&#39;s users. An endpoint for fetching detailed information about users this policy is attached to.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy whose users to be retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of UserInfoRespList</returns>
-        public async System.Threading.Tasks.Task<UserInfoRespList> GetAccountPolicyUsersAsync (string accountID, string policyId, int? limit = null, string after = null, string order = null, string include = null)
-        {
-             ApiResponse<UserInfoRespList> localVarResponse = await GetAccountPolicyUsersAsyncWithHttpInfo(accountID, policyId, limit, after, order, include);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Fetch details of policy&#39;s users. An endpoint for fetching detailed information about users this policy is attached to.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy whose users to be retrieved.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
-        /// <returns>Task of ApiResponse (UserInfoRespList)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetAccountPolicyUsersAsyncWithHttpInfo (string accountID, string policyId, int? limit = null, string after = null, string order = null, string include = null)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->GetAccountPolicyUsers");
-            // verify the required parameter 'policyId' is set
-            if (policyId == null)
-                throw new ApiException(400, "Missing required parameter 'policyId' when calling AggregatorAccountAdminApi->GetAccountPolicyUsers");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies/{policy-id}/users";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (policyId != null) localVarPathParams.Add("policy-id", Configuration.ApiClient.ParameterToString(policyId)); // path parameter
-            if (limit != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
-            if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
-            if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
-            if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetAccountPolicyUsers", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<UserInfoRespList>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (UserInfoRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInfoRespList)));
-        }
-
-        /// <summary>
         /// Details of the user. An endpoint for retrieving details of the user.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountID">Account ID.</param>
         /// <param name="userId">The ID of the user to be retrieved.</param>
-        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
         /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
-        /// <returns>MyUserInfoResp</returns>
-        public MyUserInfoResp GetAccountUser (string accountID, string userId, string scratchCodes = null, string properties = null)
+        /// <returns>UserInfoResp</returns>
+        public UserInfoResp GetAccountUser (string accountID, string userId, string properties = null)
         {
-             ApiResponse<MyUserInfoResp> localVarResponse = GetAccountUserWithHttpInfo(accountID, userId, scratchCodes, properties);
+             ApiResponse<UserInfoResp> localVarResponse = GetAccountUserWithHttpInfo(accountID, userId, properties);
              return localVarResponse.Data;
         }
 
@@ -7353,10 +4506,9 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountID">Account ID.</param>
         /// <param name="userId">The ID of the user to be retrieved.</param>
-        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
         /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
-        /// <returns>ApiResponse of MyUserInfoResp</returns>
-        public ApiResponse< MyUserInfoResp > GetAccountUserWithHttpInfo (string accountID, string userId, string scratchCodes = null, string properties = null)
+        /// <returns>ApiResponse of UserInfoResp</returns>
+        public ApiResponse< UserInfoResp > GetAccountUserWithHttpInfo (string accountID, string userId, string properties = null)
         {
             // verify the required parameter 'accountID' is set
             if (accountID == null)
@@ -7388,7 +4540,6 @@ namespace iam.Api
 
             if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
             if (userId != null) localVarPathParams.Add("user-id", Configuration.ApiClient.ParameterToString(userId)); // path parameter
-            if (scratchCodes != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "scratch_codes", scratchCodes)); // query parameter
             if (properties != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "properties", properties)); // query parameter
 
             // authentication (Bearer) required
@@ -7410,9 +4561,9 @@ namespace iam.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<MyUserInfoResp>(localVarStatusCode,
+            return new ApiResponse<UserInfoResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (MyUserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(MyUserInfoResp)));
+                (UserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInfoResp)));
         }
 
         /// <summary>
@@ -7421,12 +4572,11 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountID">Account ID.</param>
         /// <param name="userId">The ID of the user to be retrieved.</param>
-        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
         /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
-        /// <returns>Task of MyUserInfoResp</returns>
-        public async System.Threading.Tasks.Task<MyUserInfoResp> GetAccountUserAsync (string accountID, string userId, string scratchCodes = null, string properties = null)
+        /// <returns>Task of UserInfoResp</returns>
+        public async System.Threading.Tasks.Task<UserInfoResp> GetAccountUserAsync (string accountID, string userId, string properties = null)
         {
-             ApiResponse<MyUserInfoResp> localVarResponse = await GetAccountUserAsyncWithHttpInfo(accountID, userId, scratchCodes, properties);
+             ApiResponse<UserInfoResp> localVarResponse = await GetAccountUserAsyncWithHttpInfo(accountID, userId, properties);
              return localVarResponse.Data;
 
         }
@@ -7437,10 +4587,9 @@ namespace iam.Api
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountID">Account ID.</param>
         /// <param name="userId">The ID of the user to be retrieved.</param>
-        /// <param name="scratchCodes">Request to regenerate new emergency scratch codes. (optional)</param>
         /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
-        /// <returns>Task of ApiResponse (MyUserInfoResp)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<MyUserInfoResp>> GetAccountUserAsyncWithHttpInfo (string accountID, string userId, string scratchCodes = null, string properties = null)
+        /// <returns>Task of ApiResponse (UserInfoResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> GetAccountUserAsyncWithHttpInfo (string accountID, string userId, string properties = null)
         {
             // verify the required parameter 'accountID' is set
             if (accountID == null)
@@ -7472,7 +4621,6 @@ namespace iam.Api
 
             if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
             if (userId != null) localVarPathParams.Add("user-id", Configuration.ApiClient.ParameterToString(userId)); // path parameter
-            if (scratchCodes != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "scratch_codes", scratchCodes)); // query parameter
             if (properties != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "properties", properties)); // query parameter
 
             // authentication (Bearer) required
@@ -7494,9 +4642,9 @@ namespace iam.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<MyUserInfoResp>(localVarStatusCode,
+            return new ApiResponse<UserInfoResp>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (MyUserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(MyUserInfoResp)));
+                (UserInfoResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInfoResp)));
         }
 
         /// <summary>
@@ -7694,8 +4842,8 @@ namespace iam.Api
         /// <param name="deviceExecutionModeNeq">Filter for not developer certificates (optional)</param>
         /// <param name="ownerEq">Owner name filter (optional)</param>
         /// <param name="enrollmentModeEq">Enrollment mode filter (optional)</param>
-        /// <param name="issuerLike">Filter for issuer (optional)</param>
-        /// <param name="subjectLike">Filter for subject (optional)</param>
+        /// <param name="issuerLike">Filter for issuer. Finds all matches where the filter value is a case insensitive substring of the result. Example: issuer__like&#x3D;cn&#x3D;iss matches CN&#x3D;issuer. (optional)</param>
+        /// <param name="subjectLike">Filter for subject. Finds all matches where the filter value is a case insensitive substring of the result. Example: subject__like&#x3D;cn&#x3D;su matches CN&#x3D;subject. (optional)</param>
         /// <returns>TrustedCertificateInternalRespList</returns>
         public TrustedCertificateInternalRespList GetAllAccountCertificates (string accountID, int? limit = null, string after = null, string order = null, string include = null, string nameEq = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, int? deviceExecutionModeNeq = null, string ownerEq = null, bool? enrollmentModeEq = null, string issuerLike = null, string subjectLike = null)
         {
@@ -7719,8 +4867,8 @@ namespace iam.Api
         /// <param name="deviceExecutionModeNeq">Filter for not developer certificates (optional)</param>
         /// <param name="ownerEq">Owner name filter (optional)</param>
         /// <param name="enrollmentModeEq">Enrollment mode filter (optional)</param>
-        /// <param name="issuerLike">Filter for issuer (optional)</param>
-        /// <param name="subjectLike">Filter for subject (optional)</param>
+        /// <param name="issuerLike">Filter for issuer. Finds all matches where the filter value is a case insensitive substring of the result. Example: issuer__like&#x3D;cn&#x3D;iss matches CN&#x3D;issuer. (optional)</param>
+        /// <param name="subjectLike">Filter for subject. Finds all matches where the filter value is a case insensitive substring of the result. Example: subject__like&#x3D;cn&#x3D;su matches CN&#x3D;subject. (optional)</param>
         /// <returns>ApiResponse of TrustedCertificateInternalRespList</returns>
         public ApiResponse< TrustedCertificateInternalRespList > GetAllAccountCertificatesWithHttpInfo (string accountID, int? limit = null, string after = null, string order = null, string include = null, string nameEq = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, int? deviceExecutionModeNeq = null, string ownerEq = null, bool? enrollmentModeEq = null, string issuerLike = null, string subjectLike = null)
         {
@@ -7804,8 +4952,8 @@ namespace iam.Api
         /// <param name="deviceExecutionModeNeq">Filter for not developer certificates (optional)</param>
         /// <param name="ownerEq">Owner name filter (optional)</param>
         /// <param name="enrollmentModeEq">Enrollment mode filter (optional)</param>
-        /// <param name="issuerLike">Filter for issuer (optional)</param>
-        /// <param name="subjectLike">Filter for subject (optional)</param>
+        /// <param name="issuerLike">Filter for issuer. Finds all matches where the filter value is a case insensitive substring of the result. Example: issuer__like&#x3D;cn&#x3D;iss matches CN&#x3D;issuer. (optional)</param>
+        /// <param name="subjectLike">Filter for subject. Finds all matches where the filter value is a case insensitive substring of the result. Example: subject__like&#x3D;cn&#x3D;su matches CN&#x3D;subject. (optional)</param>
         /// <returns>Task of TrustedCertificateInternalRespList</returns>
         public async System.Threading.Tasks.Task<TrustedCertificateInternalRespList> GetAllAccountCertificatesAsync (string accountID, int? limit = null, string after = null, string order = null, string include = null, string nameEq = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, int? deviceExecutionModeNeq = null, string ownerEq = null, bool? enrollmentModeEq = null, string issuerLike = null, string subjectLike = null)
         {
@@ -7830,8 +4978,8 @@ namespace iam.Api
         /// <param name="deviceExecutionModeNeq">Filter for not developer certificates (optional)</param>
         /// <param name="ownerEq">Owner name filter (optional)</param>
         /// <param name="enrollmentModeEq">Enrollment mode filter (optional)</param>
-        /// <param name="issuerLike">Filter for issuer (optional)</param>
-        /// <param name="subjectLike">Filter for subject (optional)</param>
+        /// <param name="issuerLike">Filter for issuer. Finds all matches where the filter value is a case insensitive substring of the result. Example: issuer__like&#x3D;cn&#x3D;iss matches CN&#x3D;issuer. (optional)</param>
+        /// <param name="subjectLike">Filter for subject. Finds all matches where the filter value is a case insensitive substring of the result. Example: subject__like&#x3D;cn&#x3D;su matches CN&#x3D;subject. (optional)</param>
         /// <returns>Task of ApiResponse (TrustedCertificateInternalRespList)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<TrustedCertificateInternalRespList>> GetAllAccountCertificatesAsyncWithHttpInfo (string accountID, int? limit = null, string after = null, string order = null, string include = null, string nameEq = null, string serviceEq = null, int? expireEq = null, int? deviceExecutionModeEq = null, int? deviceExecutionModeNeq = null, string ownerEq = null, bool? enrollmentModeEq = null, string issuerLike = null, string subjectLike = null)
         {
@@ -8073,209 +5221,6 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get all policies. An endpoint for retrieving all policies in the account.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="nameEq">Filter result by policy name. (optional)</param>
-        /// <param name="statusEq">Filter for status, ACTIVE or INACTIVE. (optional)</param>
-        /// <param name="tagEq">Filter results for tag. (optional)</param>
-        /// <param name="userIdEq">Retrieve policies attached to a certain user ID. (optional)</param>
-        /// <param name="apikeyIdEq">Retrieve policies attached to a certain API key ID. (optional)</param>
-        /// <param name="groupIdEq">Retrieve policies attached to a certain group ID. (optional)</param>
-        /// <param name="unbounded">Retrieve policies not attached to any subject in the account. (optional)</param>
-        /// <returns>PolicyInfoList</returns>
-        public PolicyInfoList GetAllAccountPolicies (string accountID, int? limit = null, string after = null, string order = null, string nameEq = null, string statusEq = null, string tagEq = null, string userIdEq = null, string apikeyIdEq = null, string groupIdEq = null, string unbounded = null)
-        {
-             ApiResponse<PolicyInfoList> localVarResponse = GetAllAccountPoliciesWithHttpInfo(accountID, limit, after, order, nameEq, statusEq, tagEq, userIdEq, apikeyIdEq, groupIdEq, unbounded);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Get all policies. An endpoint for retrieving all policies in the account.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="nameEq">Filter result by policy name. (optional)</param>
-        /// <param name="statusEq">Filter for status, ACTIVE or INACTIVE. (optional)</param>
-        /// <param name="tagEq">Filter results for tag. (optional)</param>
-        /// <param name="userIdEq">Retrieve policies attached to a certain user ID. (optional)</param>
-        /// <param name="apikeyIdEq">Retrieve policies attached to a certain API key ID. (optional)</param>
-        /// <param name="groupIdEq">Retrieve policies attached to a certain group ID. (optional)</param>
-        /// <param name="unbounded">Retrieve policies not attached to any subject in the account. (optional)</param>
-        /// <returns>ApiResponse of PolicyInfoList</returns>
-        public ApiResponse< PolicyInfoList > GetAllAccountPoliciesWithHttpInfo (string accountID, int? limit = null, string after = null, string order = null, string nameEq = null, string statusEq = null, string tagEq = null, string userIdEq = null, string apikeyIdEq = null, string groupIdEq = null, string unbounded = null)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->GetAllAccountPolicies");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (limit != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
-            if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
-            if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
-            if (nameEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "name__eq", nameEq)); // query parameter
-            if (statusEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__eq", statusEq)); // query parameter
-            if (tagEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "tag__eq", tagEq)); // query parameter
-            if (userIdEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "user_id__eq", userIdEq)); // query parameter
-            if (apikeyIdEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "apikey_id__eq", apikeyIdEq)); // query parameter
-            if (groupIdEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "group_id__eq", groupIdEq)); // query parameter
-            if (unbounded != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "unbounded", unbounded)); // query parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetAllAccountPolicies", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<PolicyInfoList>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (PolicyInfoList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PolicyInfoList)));
-        }
-
-        /// <summary>
-        /// Get all policies. An endpoint for retrieving all policies in the account.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="nameEq">Filter result by policy name. (optional)</param>
-        /// <param name="statusEq">Filter for status, ACTIVE or INACTIVE. (optional)</param>
-        /// <param name="tagEq">Filter results for tag. (optional)</param>
-        /// <param name="userIdEq">Retrieve policies attached to a certain user ID. (optional)</param>
-        /// <param name="apikeyIdEq">Retrieve policies attached to a certain API key ID. (optional)</param>
-        /// <param name="groupIdEq">Retrieve policies attached to a certain group ID. (optional)</param>
-        /// <param name="unbounded">Retrieve policies not attached to any subject in the account. (optional)</param>
-        /// <returns>Task of PolicyInfoList</returns>
-        public async System.Threading.Tasks.Task<PolicyInfoList> GetAllAccountPoliciesAsync (string accountID, int? limit = null, string after = null, string order = null, string nameEq = null, string statusEq = null, string tagEq = null, string userIdEq = null, string apikeyIdEq = null, string groupIdEq = null, string unbounded = null)
-        {
-             ApiResponse<PolicyInfoList> localVarResponse = await GetAllAccountPoliciesAsyncWithHttpInfo(accountID, limit, after, order, nameEq, statusEq, tagEq, userIdEq, apikeyIdEq, groupIdEq, unbounded);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Get all policies. An endpoint for retrieving all policies in the account.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
-        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
-        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
-        /// <param name="nameEq">Filter result by policy name. (optional)</param>
-        /// <param name="statusEq">Filter for status, ACTIVE or INACTIVE. (optional)</param>
-        /// <param name="tagEq">Filter results for tag. (optional)</param>
-        /// <param name="userIdEq">Retrieve policies attached to a certain user ID. (optional)</param>
-        /// <param name="apikeyIdEq">Retrieve policies attached to a certain API key ID. (optional)</param>
-        /// <param name="groupIdEq">Retrieve policies attached to a certain group ID. (optional)</param>
-        /// <param name="unbounded">Retrieve policies not attached to any subject in the account. (optional)</param>
-        /// <returns>Task of ApiResponse (PolicyInfoList)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<PolicyInfoList>> GetAllAccountPoliciesAsyncWithHttpInfo (string accountID, int? limit = null, string after = null, string order = null, string nameEq = null, string statusEq = null, string tagEq = null, string userIdEq = null, string apikeyIdEq = null, string groupIdEq = null, string unbounded = null)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->GetAllAccountPolicies");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (limit != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
-            if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
-            if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
-            if (nameEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "name__eq", nameEq)); // query parameter
-            if (statusEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__eq", statusEq)); // query parameter
-            if (tagEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "tag__eq", tagEq)); // query parameter
-            if (userIdEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "user_id__eq", userIdEq)); // query parameter
-            if (apikeyIdEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "apikey_id__eq", apikeyIdEq)); // query parameter
-            if (groupIdEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "group_id__eq", groupIdEq)); // query parameter
-            if (unbounded != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "unbounded", unbounded)); // query parameter
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("GetAllAccountPolicies", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<PolicyInfoList>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (PolicyInfoList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PolicyInfoList)));
-        }
-
-        /// <summary>
         /// Get all user details. An endpoint for retrieving details of all users.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
@@ -8286,10 +5231,12 @@ namespace iam.Api
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="emailEq">Filter for email address (optional)</param>
         /// <param name="statusEq">Filter for status (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>UserInfoRespList</returns>
-        public UserInfoRespList GetAllAccountUsers (string accountID, int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null)
+        public UserInfoRespList GetAllAccountUsers (string accountID, int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null, string statusIn = null, string statusNin = null)
         {
-             ApiResponse<UserInfoRespList> localVarResponse = GetAllAccountUsersWithHttpInfo(accountID, limit, after, order, include, emailEq, statusEq);
+             ApiResponse<UserInfoRespList> localVarResponse = GetAllAccountUsersWithHttpInfo(accountID, limit, after, order, include, emailEq, statusEq, statusIn, statusNin);
              return localVarResponse.Data;
         }
 
@@ -8304,8 +5251,10 @@ namespace iam.Api
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="emailEq">Filter for email address (optional)</param>
         /// <param name="statusEq">Filter for status (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>ApiResponse of UserInfoRespList</returns>
-        public ApiResponse< UserInfoRespList > GetAllAccountUsersWithHttpInfo (string accountID, int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null)
+        public ApiResponse< UserInfoRespList > GetAllAccountUsersWithHttpInfo (string accountID, int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null, string statusIn = null, string statusNin = null)
         {
             // verify the required parameter 'accountID' is set
             if (accountID == null)
@@ -8339,6 +5288,8 @@ namespace iam.Api
             if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
             if (emailEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "email__eq", emailEq)); // query parameter
             if (statusEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__eq", statusEq)); // query parameter
+            if (statusIn != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__in", statusIn)); // query parameter
+            if (statusNin != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__nin", statusNin)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -8375,10 +5326,12 @@ namespace iam.Api
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="emailEq">Filter for email address (optional)</param>
         /// <param name="statusEq">Filter for status (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>Task of UserInfoRespList</returns>
-        public async System.Threading.Tasks.Task<UserInfoRespList> GetAllAccountUsersAsync (string accountID, int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null)
+        public async System.Threading.Tasks.Task<UserInfoRespList> GetAllAccountUsersAsync (string accountID, int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null, string statusIn = null, string statusNin = null)
         {
-             ApiResponse<UserInfoRespList> localVarResponse = await GetAllAccountUsersAsyncWithHttpInfo(accountID, limit, after, order, include, emailEq, statusEq);
+             ApiResponse<UserInfoRespList> localVarResponse = await GetAllAccountUsersAsyncWithHttpInfo(accountID, limit, after, order, include, emailEq, statusEq, statusIn, statusNin);
              return localVarResponse.Data;
 
         }
@@ -8394,8 +5347,10 @@ namespace iam.Api
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="emailEq">Filter for email address (optional)</param>
         /// <param name="statusEq">Filter for status (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>Task of ApiResponse (UserInfoRespList)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetAllAccountUsersAsyncWithHttpInfo (string accountID, int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null)
+        public async System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetAllAccountUsersAsyncWithHttpInfo (string accountID, int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null, string statusIn = null, string statusNin = null)
         {
             // verify the required parameter 'accountID' is set
             if (accountID == null)
@@ -8429,6 +5384,8 @@ namespace iam.Api
             if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
             if (emailEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "email__eq", emailEq)); // query parameter
             if (statusEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__eq", statusEq)); // query parameter
+            if (statusIn != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__in", statusIn)); // query parameter
+            if (statusNin != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__nin", statusNin)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -8459,10 +5416,12 @@ namespace iam.Api
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="statusEq">An optional filter for account status, ENROLLING, ACTIVE, RESTRICTED or SUSPENDED. (optional)</param>
+        /// <param name="statusIn">An optional filter for getting accounts with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding accounts with a specified set of statuses. (optional)</param>
         /// <param name="tierEq">An optional filter for tier level, must be 0, 1, 2, 98, 99 or omitted. (optional)</param>
         /// <param name="parentEq">An optional filter for parent account ID. (optional)</param>
         /// <param name="endMarketEq">An optional filter for account end market. (optional)</param>
-        /// <param name="countryLike">An optional filter for account country. (optional)</param>
+        /// <param name="countryLike">An optional filter for account country. Finds all matches where the filter value is a case insensitive substring of the result. Example: country__like&#x3D;LAND matches Ireland. (optional)</param>
         /// <param name="limit">The number of results to return (2-1000), default is 1000. (optional, default to 1000)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC. Default value is ASC (optional, default to ASC)</param>
@@ -8470,9 +5429,9 @@ namespace iam.Api
         /// <param name="format">Format information for the response to the query, supported: format&#x3D;breakdown. (optional)</param>
         /// <param name="properties">Property name to be returned from account specific properties. (optional)</param>
         /// <returns>AccountInfoList</returns>
-        public AccountInfoList GetAllAccounts (string statusEq = null, string tierEq = null, string parentEq = null, string endMarketEq = null, string countryLike = null, int? limit = null, string after = null, string order = null, string include = null, string format = null, string properties = null)
+        public AccountInfoList GetAllAccounts (string statusEq = null, string statusIn = null, string statusNin = null, string tierEq = null, string parentEq = null, string endMarketEq = null, string countryLike = null, int? limit = null, string after = null, string order = null, string include = null, string format = null, string properties = null)
         {
-             ApiResponse<AccountInfoList> localVarResponse = GetAllAccountsWithHttpInfo(statusEq, tierEq, parentEq, endMarketEq, countryLike, limit, after, order, include, format, properties);
+             ApiResponse<AccountInfoList> localVarResponse = GetAllAccountsWithHttpInfo(statusEq, statusIn, statusNin, tierEq, parentEq, endMarketEq, countryLike, limit, after, order, include, format, properties);
              return localVarResponse.Data;
         }
 
@@ -8481,10 +5440,12 @@ namespace iam.Api
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="statusEq">An optional filter for account status, ENROLLING, ACTIVE, RESTRICTED or SUSPENDED. (optional)</param>
+        /// <param name="statusIn">An optional filter for getting accounts with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding accounts with a specified set of statuses. (optional)</param>
         /// <param name="tierEq">An optional filter for tier level, must be 0, 1, 2, 98, 99 or omitted. (optional)</param>
         /// <param name="parentEq">An optional filter for parent account ID. (optional)</param>
         /// <param name="endMarketEq">An optional filter for account end market. (optional)</param>
-        /// <param name="countryLike">An optional filter for account country. (optional)</param>
+        /// <param name="countryLike">An optional filter for account country. Finds all matches where the filter value is a case insensitive substring of the result. Example: country__like&#x3D;LAND matches Ireland. (optional)</param>
         /// <param name="limit">The number of results to return (2-1000), default is 1000. (optional, default to 1000)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC. Default value is ASC (optional, default to ASC)</param>
@@ -8492,7 +5453,7 @@ namespace iam.Api
         /// <param name="format">Format information for the response to the query, supported: format&#x3D;breakdown. (optional)</param>
         /// <param name="properties">Property name to be returned from account specific properties. (optional)</param>
         /// <returns>ApiResponse of AccountInfoList</returns>
-        public ApiResponse< AccountInfoList > GetAllAccountsWithHttpInfo (string statusEq = null, string tierEq = null, string parentEq = null, string endMarketEq = null, string countryLike = null, int? limit = null, string after = null, string order = null, string include = null, string format = null, string properties = null)
+        public ApiResponse< AccountInfoList > GetAllAccountsWithHttpInfo (string statusEq = null, string statusIn = null, string statusNin = null, string tierEq = null, string parentEq = null, string endMarketEq = null, string countryLike = null, int? limit = null, string after = null, string order = null, string include = null, string format = null, string properties = null)
         {
 
             var localVarPath = "/v3/accounts";
@@ -8517,6 +5478,8 @@ namespace iam.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (statusEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__eq", statusEq)); // query parameter
+            if (statusIn != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__in", statusIn)); // query parameter
+            if (statusNin != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__nin", statusNin)); // query parameter
             if (tierEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "tier__eq", tierEq)); // query parameter
             if (parentEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "parent__eq", parentEq)); // query parameter
             if (endMarketEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "end_market__eq", endMarketEq)); // query parameter
@@ -8557,10 +5520,12 @@ namespace iam.Api
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="statusEq">An optional filter for account status, ENROLLING, ACTIVE, RESTRICTED or SUSPENDED. (optional)</param>
+        /// <param name="statusIn">An optional filter for getting accounts with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding accounts with a specified set of statuses. (optional)</param>
         /// <param name="tierEq">An optional filter for tier level, must be 0, 1, 2, 98, 99 or omitted. (optional)</param>
         /// <param name="parentEq">An optional filter for parent account ID. (optional)</param>
         /// <param name="endMarketEq">An optional filter for account end market. (optional)</param>
-        /// <param name="countryLike">An optional filter for account country. (optional)</param>
+        /// <param name="countryLike">An optional filter for account country. Finds all matches where the filter value is a case insensitive substring of the result. Example: country__like&#x3D;LAND matches Ireland. (optional)</param>
         /// <param name="limit">The number of results to return (2-1000), default is 1000. (optional, default to 1000)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC. Default value is ASC (optional, default to ASC)</param>
@@ -8568,9 +5533,9 @@ namespace iam.Api
         /// <param name="format">Format information for the response to the query, supported: format&#x3D;breakdown. (optional)</param>
         /// <param name="properties">Property name to be returned from account specific properties. (optional)</param>
         /// <returns>Task of AccountInfoList</returns>
-        public async System.Threading.Tasks.Task<AccountInfoList> GetAllAccountsAsync (string statusEq = null, string tierEq = null, string parentEq = null, string endMarketEq = null, string countryLike = null, int? limit = null, string after = null, string order = null, string include = null, string format = null, string properties = null)
+        public async System.Threading.Tasks.Task<AccountInfoList> GetAllAccountsAsync (string statusEq = null, string statusIn = null, string statusNin = null, string tierEq = null, string parentEq = null, string endMarketEq = null, string countryLike = null, int? limit = null, string after = null, string order = null, string include = null, string format = null, string properties = null)
         {
-             ApiResponse<AccountInfoList> localVarResponse = await GetAllAccountsAsyncWithHttpInfo(statusEq, tierEq, parentEq, endMarketEq, countryLike, limit, after, order, include, format, properties);
+             ApiResponse<AccountInfoList> localVarResponse = await GetAllAccountsAsyncWithHttpInfo(statusEq, statusIn, statusNin, tierEq, parentEq, endMarketEq, countryLike, limit, after, order, include, format, properties);
              return localVarResponse.Data;
 
         }
@@ -8580,10 +5545,12 @@ namespace iam.Api
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="statusEq">An optional filter for account status, ENROLLING, ACTIVE, RESTRICTED or SUSPENDED. (optional)</param>
+        /// <param name="statusIn">An optional filter for getting accounts with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding accounts with a specified set of statuses. (optional)</param>
         /// <param name="tierEq">An optional filter for tier level, must be 0, 1, 2, 98, 99 or omitted. (optional)</param>
         /// <param name="parentEq">An optional filter for parent account ID. (optional)</param>
         /// <param name="endMarketEq">An optional filter for account end market. (optional)</param>
-        /// <param name="countryLike">An optional filter for account country. (optional)</param>
+        /// <param name="countryLike">An optional filter for account country. Finds all matches where the filter value is a case insensitive substring of the result. Example: country__like&#x3D;LAND matches Ireland. (optional)</param>
         /// <param name="limit">The number of results to return (2-1000), default is 1000. (optional, default to 1000)</param>
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC. Default value is ASC (optional, default to ASC)</param>
@@ -8591,7 +5558,7 @@ namespace iam.Api
         /// <param name="format">Format information for the response to the query, supported: format&#x3D;breakdown. (optional)</param>
         /// <param name="properties">Property name to be returned from account specific properties. (optional)</param>
         /// <returns>Task of ApiResponse (AccountInfoList)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<AccountInfoList>> GetAllAccountsAsyncWithHttpInfo (string statusEq = null, string tierEq = null, string parentEq = null, string endMarketEq = null, string countryLike = null, int? limit = null, string after = null, string order = null, string include = null, string format = null, string properties = null)
+        public async System.Threading.Tasks.Task<ApiResponse<AccountInfoList>> GetAllAccountsAsyncWithHttpInfo (string statusEq = null, string statusIn = null, string statusNin = null, string tierEq = null, string parentEq = null, string endMarketEq = null, string countryLike = null, int? limit = null, string after = null, string order = null, string include = null, string format = null, string properties = null)
         {
 
             var localVarPath = "/v3/accounts";
@@ -8616,6 +5583,8 @@ namespace iam.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (statusEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__eq", statusEq)); // query parameter
+            if (statusIn != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__in", statusIn)); // query parameter
+            if (statusNin != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__nin", statusNin)); // query parameter
             if (tierEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "tier__eq", tierEq)); // query parameter
             if (parentEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "parent__eq", parentEq)); // query parameter
             if (endMarketEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "end_market__eq", endMarketEq)); // query parameter
@@ -9198,10 +6167,13 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="statusEq">An optional filter for getting users by status. (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>UserInfoRespList</returns>
-        public UserInfoRespList GetUsersOfAccountGroup (string accountID, string groupID, int? limit = null, string after = null, string order = null, string include = null)
+        public UserInfoRespList GetUsersOfAccountGroup (string accountID, string groupID, int? limit = null, string after = null, string order = null, string include = null, string statusEq = null, string statusIn = null, string statusNin = null)
         {
-             ApiResponse<UserInfoRespList> localVarResponse = GetUsersOfAccountGroupWithHttpInfo(accountID, groupID, limit, after, order, include);
+             ApiResponse<UserInfoRespList> localVarResponse = GetUsersOfAccountGroupWithHttpInfo(accountID, groupID, limit, after, order, include, statusEq, statusIn, statusNin);
              return localVarResponse.Data;
         }
 
@@ -9215,8 +6187,11 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="statusEq">An optional filter for getting users by status. (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>ApiResponse of UserInfoRespList</returns>
-        public ApiResponse< UserInfoRespList > GetUsersOfAccountGroupWithHttpInfo (string accountID, string groupID, int? limit = null, string after = null, string order = null, string include = null)
+        public ApiResponse< UserInfoRespList > GetUsersOfAccountGroupWithHttpInfo (string accountID, string groupID, int? limit = null, string after = null, string order = null, string include = null, string statusEq = null, string statusIn = null, string statusNin = null)
         {
             // verify the required parameter 'accountID' is set
             if (accountID == null)
@@ -9252,6 +6227,9 @@ namespace iam.Api
             if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
             if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
             if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
+            if (statusEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__eq", statusEq)); // query parameter
+            if (statusIn != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__in", statusIn)); // query parameter
+            if (statusNin != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__nin", statusNin)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -9287,10 +6265,13 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="statusEq">An optional filter for getting users by status. (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>Task of UserInfoRespList</returns>
-        public async System.Threading.Tasks.Task<UserInfoRespList> GetUsersOfAccountGroupAsync (string accountID, string groupID, int? limit = null, string after = null, string order = null, string include = null)
+        public async System.Threading.Tasks.Task<UserInfoRespList> GetUsersOfAccountGroupAsync (string accountID, string groupID, int? limit = null, string after = null, string order = null, string include = null, string statusEq = null, string statusIn = null, string statusNin = null)
         {
-             ApiResponse<UserInfoRespList> localVarResponse = await GetUsersOfAccountGroupAsyncWithHttpInfo(accountID, groupID, limit, after, order, include);
+             ApiResponse<UserInfoRespList> localVarResponse = await GetUsersOfAccountGroupAsyncWithHttpInfo(accountID, groupID, limit, after, order, include, statusEq, statusIn, statusNin);
              return localVarResponse.Data;
 
         }
@@ -9305,8 +6286,11 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="statusEq">An optional filter for getting users by status. (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>Task of ApiResponse (UserInfoRespList)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetUsersOfAccountGroupAsyncWithHttpInfo (string accountID, string groupID, int? limit = null, string after = null, string order = null, string include = null)
+        public async System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetUsersOfAccountGroupAsyncWithHttpInfo (string accountID, string groupID, int? limit = null, string after = null, string order = null, string include = null, string statusEq = null, string statusIn = null, string statusNin = null)
         {
             // verify the required parameter 'accountID' is set
             if (accountID == null)
@@ -9342,6 +6326,9 @@ namespace iam.Api
             if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
             if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
             if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
+            if (statusEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__eq", statusEq)); // query parameter
+            if (statusIn != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__in", statusIn)); // query parameter
+            if (statusNin != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__nin", statusNin)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -10778,189 +7765,6 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update a policy. An endpoint for updating a policy.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy to be retrieved.</param>
-        /// <param name="body">The details of the policy to be updated.</param>
-        /// <returns>PolicyInfo</returns>
-        public PolicyInfo UpdateAccountPolicy (string accountID, string policyId, PolicyUpdateReq body)
-        {
-             ApiResponse<PolicyInfo> localVarResponse = UpdateAccountPolicyWithHttpInfo(accountID, policyId, body);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Update a policy. An endpoint for updating a policy.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy to be retrieved.</param>
-        /// <param name="body">The details of the policy to be updated.</param>
-        /// <returns>ApiResponse of PolicyInfo</returns>
-        public ApiResponse< PolicyInfo > UpdateAccountPolicyWithHttpInfo (string accountID, string policyId, PolicyUpdateReq body)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->UpdateAccountPolicy");
-            // verify the required parameter 'policyId' is set
-            if (policyId == null)
-                throw new ApiException(400, "Missing required parameter 'policyId' when calling AggregatorAccountAdminApi->UpdateAccountPolicy");
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling AggregatorAccountAdminApi->UpdateAccountPolicy");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies/{policy-id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (policyId != null) localVarPathParams.Add("policy-id", Configuration.ApiClient.ParameterToString(policyId)); // path parameter
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("UpdateAccountPolicy", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<PolicyInfo>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (PolicyInfo) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PolicyInfo)));
-        }
-
-        /// <summary>
-        /// Update a policy. An endpoint for updating a policy.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy to be retrieved.</param>
-        /// <param name="body">The details of the policy to be updated.</param>
-        /// <returns>Task of PolicyInfo</returns>
-        public async System.Threading.Tasks.Task<PolicyInfo> UpdateAccountPolicyAsync (string accountID, string policyId, PolicyUpdateReq body)
-        {
-             ApiResponse<PolicyInfo> localVarResponse = await UpdateAccountPolicyAsyncWithHttpInfo(accountID, policyId, body);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Update a policy. An endpoint for updating a policy.
-        /// </summary>
-        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountID">Account ID.</param>
-        /// <param name="policyId">The ID the policy to be retrieved.</param>
-        /// <param name="body">The details of the policy to be updated.</param>
-        /// <returns>Task of ApiResponse (PolicyInfo)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<PolicyInfo>> UpdateAccountPolicyAsyncWithHttpInfo (string accountID, string policyId, PolicyUpdateReq body)
-        {
-            // verify the required parameter 'accountID' is set
-            if (accountID == null)
-                throw new ApiException(400, "Missing required parameter 'accountID' when calling AggregatorAccountAdminApi->UpdateAccountPolicy");
-            // verify the required parameter 'policyId' is set
-            if (policyId == null)
-                throw new ApiException(400, "Missing required parameter 'policyId' when calling AggregatorAccountAdminApi->UpdateAccountPolicy");
-            // verify the required parameter 'body' is set
-            if (body == null)
-                throw new ApiException(400, "Missing required parameter 'body' when calling AggregatorAccountAdminApi->UpdateAccountPolicy");
-
-            var localVarPath = "/v3/accounts/{accountID}/policies/{policy-id}";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (accountID != null) localVarPathParams.Add("accountID", Configuration.ApiClient.ParameterToString(accountID)); // path parameter
-            if (policyId != null) localVarPathParams.Add("policy-id", Configuration.ApiClient.ParameterToString(policyId)); // path parameter
-            if (body != null && body.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = body; // byte array
-            }
-
-            // authentication (Bearer) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
-            {
-                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("UpdateAccountPolicy", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<PolicyInfo>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                (PolicyInfo) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PolicyInfo)));
-        }
-
-        /// <summary>
         /// Update user details. An endpoint for updating user details.
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
@@ -10968,7 +7772,7 @@ namespace iam.Api
         /// <param name="userId">The ID of the user to be updated.</param>
         /// <param name="body">A user object with attributes.</param>
         /// <returns>UserUpdateResp</returns>
-        public UserUpdateResp UpdateAccountUser (string accountID, string userId, AdminUserUpdateReq body)
+        public UserUpdateResp UpdateAccountUser (string accountID, string userId, UserUpdateReq body)
         {
              ApiResponse<UserUpdateResp> localVarResponse = UpdateAccountUserWithHttpInfo(accountID, userId, body);
              return localVarResponse.Data;
@@ -10982,7 +7786,7 @@ namespace iam.Api
         /// <param name="userId">The ID of the user to be updated.</param>
         /// <param name="body">A user object with attributes.</param>
         /// <returns>ApiResponse of UserUpdateResp</returns>
-        public ApiResponse< UserUpdateResp > UpdateAccountUserWithHttpInfo (string accountID, string userId, AdminUserUpdateReq body)
+        public ApiResponse< UserUpdateResp > UpdateAccountUserWithHttpInfo (string accountID, string userId, UserUpdateReq body)
         {
             // verify the required parameter 'accountID' is set
             if (accountID == null)
@@ -11059,7 +7863,7 @@ namespace iam.Api
         /// <param name="userId">The ID of the user to be updated.</param>
         /// <param name="body">A user object with attributes.</param>
         /// <returns>Task of UserUpdateResp</returns>
-        public async System.Threading.Tasks.Task<UserUpdateResp> UpdateAccountUserAsync (string accountID, string userId, AdminUserUpdateReq body)
+        public async System.Threading.Tasks.Task<UserUpdateResp> UpdateAccountUserAsync (string accountID, string userId, UserUpdateReq body)
         {
              ApiResponse<UserUpdateResp> localVarResponse = await UpdateAccountUserAsyncWithHttpInfo(accountID, userId, body);
              return localVarResponse.Data;
@@ -11074,7 +7878,7 @@ namespace iam.Api
         /// <param name="userId">The ID of the user to be updated.</param>
         /// <param name="body">A user object with attributes.</param>
         /// <returns>Task of ApiResponse (UserUpdateResp)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UserUpdateResp>> UpdateAccountUserAsyncWithHttpInfo (string accountID, string userId, AdminUserUpdateReq body)
+        public async System.Threading.Tasks.Task<ApiResponse<UserUpdateResp>> UpdateAccountUserAsyncWithHttpInfo (string accountID, string userId, UserUpdateReq body)
         {
             // verify the required parameter 'accountID' is set
             if (accountID == null)

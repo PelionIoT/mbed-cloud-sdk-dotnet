@@ -1,23 +1,28 @@
-using System.Threading.Tasks;
-using connector_bootstrap.Api;
-using MbedCloudSDK.Bootstrap.Model;
-using MbedCloudSDK.Common;
-using static MbedCloudSDK.Common.Utils;
-using MbedCloudSDK.Exceptions;
+// <copyright file="BootstrapApi.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Bootstrap.Api
 {
+    using System.Threading.Tasks;
+    using connector_bootstrap.Api;
+    using MbedCloudSDK.Bootstrap.Model;
+    using MbedCloudSDK.Common;
+    using MbedCloudSDK.Exceptions;
+    using static MbedCloudSDK.Common.Utils;
+
     /// <summary>
     /// Bootstrap Api
     /// </summary>
     public class BootstrapApi : BaseApi
     {
-        private PreSharedKeysApi api;
+        private readonly PreSharedKeysApi api;
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="BootstrapApi"/> class.
         /// Bootstrap
         /// </summary>
-        /// <param name="config"></param>
+        /// <param name="config">config</param>
         public BootstrapApi(Config config)
             : base(config)
         {
@@ -56,28 +61,29 @@ namespace MbedCloudSDK.Bootstrap.Api
         /// Add a PSK
         /// </summary>
         /// <param name="key">A PreSharedKey</param>
+        /// <returns>PreSharedKey</returns>
         public PreSharedKey AddPsk(PreSharedKey key)
         {
             try
             {
                 return Task.Run(async () => await AddPskAsync(key)).Result;
             }
-            catch (CloudApiException e)
+            catch (CloudApiException)
             {
-                throw e;
+                throw;
             }
         }
 
         /// <summary>
         /// Get a PreSharedKey
         /// </summary>
-        /// <param name="EndpointName">The ID of PreSharedKey</param>
+        /// <param name="endpointName">The ID of PreSharedKey</param>
         /// <returns>A PreSharedKey without the SecretKey</returns>
-        public async Task<PreSharedKey> GetPskAsync(string EndpointName)
+        public async Task<PreSharedKey> GetPskAsync(string endpointName)
         {
             try
             {
-                var psk = await api.GetPreSharedKeyAsync(EndpointName);
+                var psk = await api.GetPreSharedKeyAsync(endpointName);
                 return PreSharedKey.Map(psk);
             }
             catch (connector_bootstrap.Client.ApiException e)
@@ -89,29 +95,30 @@ namespace MbedCloudSDK.Bootstrap.Api
         /// <summary>
         /// Get a PreSharedKey
         /// </summary>
-        /// <param name="EndpointName">The ID of PreSharedKey</param>
-        public PreSharedKey GetPsk(string EndpointName)
+        /// <param name="endpointName">The ID of PreSharedKey</param>
+        /// <returns>PreSharedKey</returns>
+        public PreSharedKey GetPsk(string endpointName)
         {
             try
             {
-                return Task.Run(async () => await GetPskAsync(EndpointName)).Result;
+                return Task.Run(async () => await GetPskAsync(endpointName)).Result;
             }
-            catch (CloudApiException e)
+            catch (CloudApiException)
             {
-                throw e;
+                throw;
             }
         }
 
         /// <summary>
         /// Delete a PreSharedKey
         /// </summary>
-        /// <param name="EndpointName">The Id of the PreSharedKey</param>
+        /// <param name="endpointName">The Id of the PreSharedKey</param>
         /// <returns>A Task</returns>
-        public async Task DeletePskAsync(string EndpointName)
+        public async Task DeletePskAsync(string endpointName)
         {
             try
             {
-                await api.DeletePreSharedKeyAsync(EndpointName);
+                await api.DeletePreSharedKeyAsync(endpointName);
             }
             catch (connector_bootstrap.Client.ApiException e)
             {
@@ -122,16 +129,16 @@ namespace MbedCloudSDK.Bootstrap.Api
         /// <summary>
         /// Delete a PreSharedKey
         /// </summary>
-        /// <param name="EndpointName">The Id of the PreSharedKey</param>
-        public void DeletePsk(string EndpointName)
+        /// <param name="endpointName">The Id of the PreSharedKey</param>
+        public void DeletePsk(string endpointName)
         {
             try
             {
-                Task.Run(async () => await DeletePskAsync(EndpointName)).Wait();
+                Task.Run(async () => await DeletePskAsync(endpointName)).Wait();
             }
-            catch (CloudApiException e)
+            catch (CloudApiException)
             {
-                throw e;
+                throw;
             }
         }
     }

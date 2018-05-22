@@ -7,10 +7,12 @@ namespace MbedCloudSDK.Enrollment.Api
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using enrollment.Api;
     using enrollment.Model;
     using Enrollment.Model;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Query;
+    using MbedCloudSDK.DeviceDirectory.Api;
     using MbedCloudSDK.Exceptions;
     using static MbedCloudSDK.Common.Utils;
 
@@ -28,7 +30,7 @@ namespace MbedCloudSDK.Enrollment.Api
     /// </example>
     public partial class EnrollmentApi : BaseApi
     {
-        internal enrollment.Api.PublicAPIApi api;
+        private PublicAPIApi api;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EnrollmentApi"/> class.
@@ -49,40 +51,23 @@ namespace MbedCloudSDK.Enrollment.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceDirectoryApi"/> class.
+        /// Initializes a new instance of the <see cref="EnrollmentApi"/> class.
         /// </summary>
-        /// <param name="config">Config.</param>
-        /// <example>
-        /// This API is intialized with a <see cref="Config"/> object.
-        /// <code>
-        /// using MbedCloudSDK.Common;
-        /// var config = new config(apiKey);
-        /// var enrollmentApi = new EnrollmentApi(config);
-        /// </code>
-        /// </example>
+        /// <param name="config">The configuration.</param>
+        /// <param name="enrollmentConfig">The enrollment configuration.</param>
         internal EnrollmentApi(Config config, enrollment.Client.Configuration enrollmentConfig = null)
             : base(config)
         {
             SetUpApi(config, enrollmentConfig);
         }
 
-        private void SetUpApi(Config config, enrollment.Client.Configuration enrollmentConfig = null)
-        {
-            if (enrollmentConfig == null)
-            {
-                enrollmentConfig = new enrollment.Client.Configuration
-                {
-                    BasePath = config.Host,
-                    DateTimeFormat = "yyyy-MM-dd",
-                    UserAgent = UserAgent,
-                };
-                enrollmentConfig.AddApiKey("Authorization", config.ApiKey);
-                enrollmentConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
-                enrollmentConfig.CreateApiClient();
-            }
-
-            api = new enrollment.Api.PublicAPIApi(enrollmentConfig);
-        }
+        /// <summary>
+        /// Gets or sets the API.
+        /// </summary>
+        /// <value>
+        /// The API.
+        /// </value>
+        internal PublicAPIApi Api { get => api; set => api = value; }
 
         /// <summary>
         /// Get meta data for the last Mbed Cloud API call
@@ -91,6 +76,107 @@ namespace MbedCloudSDK.Enrollment.Api
         public static ApiMetadata GetLastApiMetadata()
         {
             return ApiMetadata.Map(enrollment.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
+        }
+
+        /// <summary>
+        /// Add an enrollment claim
+        /// </summary>
+        /// <param name="claimId">The enrollment id</param>
+        /// <returns>The created enrollment</returns>
+        public Enrollment AddEnrollmentClaim(string claimId)
+        {
+            try
+            {
+                return AddEnrollmentClaimAsync(claimId).Result;
+            }
+            catch (CloudApiException)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Add an enrollment claim
+        /// </summary>
+        /// <param name="claimId">The enrollment id</param>
+        /// <returns>The created enrollment</returns>
+        public async Task<Enrollment> AddEnrollmentClaimAsync(string claimId)
+        {
+            try
+            {
+                return Enrollment.Map(await Api.CreateDeviceEnrollmentAsync(new enrollment.Model.EnrollmentId(claimId)));
+            }
+            catch (enrollment.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        /// <summary>
+        /// Delete an enrollment claim
+        /// </summary>
+        /// <param name="id">The id of the enrollment</param>
+        public void DeleteEnrollmentClaim(string id)
+        {
+            try
+            {
+                DeleteEnrollmentClaimAsync(id).Wait();
+            }
+            catch (CloudApiException)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Delete an enrollment claim
+        /// </summary>
+        /// <param name="id">The id of the enrollment</param>
+        /// <returns>Task</returns>
+        public async Task DeleteEnrollmentClaimAsync(string id)
+        {
+            try
+            {
+                await Api.DeleteDeviceEnrollmentAsync(id);
+            }
+            catch (enrollment.Client.ApiException e)
+            {
+                HandleNotFound<string, enrollment.Client.ApiException>(e);
+            }
+        }
+
+        /// <summary>
+        /// Get an enrollment clasim
+        /// </summary>
+        /// <param name="id">The id of the enrollment</param>
+        /// <returns>The enrollment</returns>
+        public Enrollment GetEnrollmentClaim(string id)
+        {
+            try
+            {
+                return GetEnrollmentClaimAsync(id).Result;
+            }
+            catch (CloudApiException)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get an enrollment clasim
+        /// </summary>
+        /// <param name="id">The id of the enrollment</param>
+        /// <returns>The enrollment</returns>
+        public async Task<Enrollment> GetEnrollmentClaimAsync(string id)
+        {
+            try
+            {
+                return Enrollment.Map(await Api.GetDeviceEnrollmentAsync(id));
+            }
+            catch (enrollment.Client.ApiException e)
+            {
+                return HandleNotFound<Enrollment, enrollment.Client.ApiException>(e);
+            }
         }
 
         /// <summary>
@@ -119,7 +205,7 @@ namespace MbedCloudSDK.Enrollment.Api
         {
             try
             {
-                var resp = api.GetDeviceEnrollments(limit: options.Limit, after: options.After, order: options.Order, include: options.Include);
+                var resp = Api.GetDeviceEnrollments(limit: options.Limit, after: options.After, order: options.Order, include: options.Include);
                 var respEnrollments = new ResponsePage<Enrollment>(resp.After, resp.HasMore, resp.Limit, Convert.ToString(resp.Order), resp.TotalCount);
                 resp.Data.ForEach(enrollment => respEnrollments.Data.Add(Enrollment.Map(enrollment)));
                 return respEnrollments;
@@ -130,105 +216,22 @@ namespace MbedCloudSDK.Enrollment.Api
             }
         }
 
-        /// <summary>
-        /// Add an enrollment claim
-        /// </summary>
-        /// <param name="claimId">The enrollment id</param>
-        /// <returns>The created enrollment</returns>
-        public async Task<Enrollment> AddEnrollmentClaimAsync(string claimId)
+        private void SetUpApi(Config config, enrollment.Client.Configuration enrollmentConfig = null)
         {
-            try
+            if (enrollmentConfig == null)
             {
-                return Enrollment.Map(await api.CreateDeviceEnrollmentAsync(new enrollment.Model.EnrollmentId(claimId)));
+                enrollmentConfig = new enrollment.Client.Configuration
+                {
+                    BasePath = config.Host,
+                    DateTimeFormat = "yyyy-MM-dd",
+                    UserAgent = UserAgent,
+                };
+                enrollmentConfig.AddApiKey("Authorization", config.ApiKey);
+                enrollmentConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
+                enrollmentConfig.CreateApiClient();
             }
-            catch (enrollment.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
 
-        /// <summary>
-        /// Add an enrollment claim
-        /// </summary>
-        /// <param name="claimId">The enrollment id</param>
-        /// <returns>The created enrollment</returns>
-        public Enrollment AddEnrollmentClaim(string claimId)
-        {
-            try
-            {
-                return AddEnrollmentClaimAsync(claimId).Result;
-            }
-            catch (CloudApiException)
-            {
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Get an enrollment clasim
-        /// </summary>
-        /// <param name="id">The id of the enrollment</param>
-        /// <returns>The enrollment</returns>
-        public async Task<Enrollment> GetEnrollmentClaimAsync(string id)
-        {
-            try
-            {
-                return Enrollment.Map(await api.GetDeviceEnrollmentAsync(id));
-            }
-            catch (enrollment.Client.ApiException e)
-            {
-                return HandleNotFound<Enrollment, enrollment.Client.ApiException>(e);
-            }
-        }
-
-        /// <summary>
-        /// Get an enrollment clasim
-        /// </summary>
-        /// <param name="id">The id of the enrollment</param>
-        /// <returns>The enrollment</returns>
-        public Enrollment GetEnrollmentClaim(string id)
-        {
-            try
-            {
-                return GetEnrollmentClaimAsync(id).Result;
-            }
-            catch (CloudApiException)
-            {
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Delete an enrollment claim
-        /// </summary>
-        /// <param name="id">The id of the enrollment</param>
-        /// <returns>Task</returns>
-        public async Task DeleteEnrollmentClaimAsync(string id)
-        {
-            try
-            {
-                await api.DeleteDeviceEnrollmentAsync(id);
-            }
-            catch (enrollment.Client.ApiException e)
-            {
-                HandleNotFound<string, enrollment.Client.ApiException>(e);
-            }
-        }
-
-        /// <summary>
-        /// Delete an enrollment claim
-        /// </summary>
-        /// <param name="id">The id of the enrollment</param>
-        public void DeleteEnrollmentClaim(string id)
-        {
-            try
-            {
-                DeleteEnrollmentClaimAsync(id).Wait();
-            }
-            catch (CloudApiException)
-            {
-                throw;
-            }
+            Api = new enrollment.Api.PublicAPIApi(enrollmentConfig);
         }
     }
 }

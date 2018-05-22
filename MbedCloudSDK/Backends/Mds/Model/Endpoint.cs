@@ -35,7 +35,7 @@ namespace mds.Model
         /// Initializes a new instance of the <see cref="Endpoint" /> class.
         /// </summary>
         /// <param name="Name">Unique Mbed Cloud Device ID representing the endpoint..</param>
-        /// <param name="Q">Determines whether the device is in queue mode.  &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Queue mode&lt;/b&gt;&lt;br/&gt; When an endpoint is in queue mode, messages sent to the endpoint do not wake up the physical device. The messages are queued  and delivered when the device wakes up and connects to Mbed Cloud Connect itself. You can also use the queue mode when  the device is behind a NAT and cannot be reached directly by Mbed Cloud Connect. .</param>
+        /// <param name="Q">Determines whether the device is in queue mode. &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Queue mode&lt;/b&gt;&lt;br/&gt; When an endpoint is in queue mode, messages sent to the endpoint do not wake up the physical device. The messages are queued and delivered when the device wakes up and connects to Mbed Cloud Connect itself. You can also use the queue mode when the device is behind a NAT and cannot be reached directly by Mbed Cloud Connect. .</param>
         /// <param name="Status">Deprecated and the value is always ACTIVE. Only used for API backwards compatibility reasons..</param>
         /// <param name="Type">Type of endpoint. (Free text).</param>
         public Endpoint(string Name = default(string), bool? Q = default(bool?), string Status = default(string), string Type = default(string))
@@ -54,9 +54,9 @@ namespace mds.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Determines whether the device is in queue mode.  &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Queue mode&lt;/b&gt;&lt;br/&gt; When an endpoint is in queue mode, messages sent to the endpoint do not wake up the physical device. The messages are queued  and delivered when the device wakes up and connects to Mbed Cloud Connect itself. You can also use the queue mode when  the device is behind a NAT and cannot be reached directly by Mbed Cloud Connect. 
+        /// Determines whether the device is in queue mode. &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Queue mode&lt;/b&gt;&lt;br/&gt; When an endpoint is in queue mode, messages sent to the endpoint do not wake up the physical device. The messages are queued and delivered when the device wakes up and connects to Mbed Cloud Connect itself. You can also use the queue mode when the device is behind a NAT and cannot be reached directly by Mbed Cloud Connect. 
         /// </summary>
-        /// <value>Determines whether the device is in queue mode.  &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Queue mode&lt;/b&gt;&lt;br/&gt; When an endpoint is in queue mode, messages sent to the endpoint do not wake up the physical device. The messages are queued  and delivered when the device wakes up and connects to Mbed Cloud Connect itself. You can also use the queue mode when  the device is behind a NAT and cannot be reached directly by Mbed Cloud Connect. </value>
+        /// <value>Determines whether the device is in queue mode. &lt;br/&gt;&lt;br/&gt;&lt;b&gt;Queue mode&lt;/b&gt;&lt;br/&gt; When an endpoint is in queue mode, messages sent to the endpoint do not wake up the physical device. The messages are queued and delivered when the device wakes up and connects to Mbed Cloud Connect itself. You can also use the queue mode when the device is behind a NAT and cannot be reached directly by Mbed Cloud Connect. </value>
         [DataMember(Name="q", EmitDefaultValue=false)]
         public bool? Q { get; set; }
 

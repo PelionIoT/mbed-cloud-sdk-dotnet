@@ -68,7 +68,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
 
             try
             {
-                var resp = api.DeviceList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
+                var resp = Api.DeviceList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
                 var respDevices = new ResponsePage<Device>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
                 foreach (var device in resp.Data)
                 {
@@ -106,7 +106,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         {
             try
             {
-                var response = api.DeviceRetrieve(deviceId);
+                var response = Api.DeviceRetrieve(deviceId);
                 return Device.Map(response);
             }
             catch (device_directory.Client.ApiException ex)
@@ -144,7 +144,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         {
             try
             {
-                var response = api.DeviceCreate(Device.CreatePostRequest(device));
+                var response = Api.DeviceCreate(Device.CreatePostRequest(device));
                 return GetDevice(response.Id);
             }
             catch (device_directory.Client.ApiException ex)
@@ -184,7 +184,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
             var device = Utils.MapToUpdate(originalDevice, deviceToUpdate) as Device;
             try
             {
-                var response = api.DeviceUpdate(deviceId, Device.CreatePutRequest(device));
+                var response = Api.DeviceUpdate(deviceId, Device.CreatePutRequest(device));
                 return GetDevice(deviceId);
             }
             catch (device_directory.Client.ApiException ex)
@@ -214,7 +214,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         {
             try
             {
-                api.DeviceDestroy(deviceId);
+                Api.DeviceDestroy(deviceId);
             }
             catch (device_directory.Client.ApiException ex)
             {

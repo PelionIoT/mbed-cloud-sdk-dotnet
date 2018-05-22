@@ -88,14 +88,23 @@ namespace iam.Model
         /// Initializes a new instance of the <see cref="ApiKeyInfoRespList" /> class.
         /// </summary>
         /// <param name="After">The entity ID to fetch after the given one..</param>
-        /// <param name="HasMore">Flag indicating whether there is more results. (required).</param>
-        /// <param name="TotalCount">The total number or records, if requested. It might be returned also for small lists. (required).</param>
-        /// <param name="_Object">Entity name: always &#39;list&#39; (required).</param>
-        /// <param name="Limit">The number of results to return, (range: 2-1000), or equals to &#x60;total_count&#x60; (required).</param>
         /// <param name="Data">A list of entities. (required).</param>
+        /// <param name="HasMore">Flag indicating whether there is more results. (required).</param>
+        /// <param name="Limit">The number of results to return, (range: 2-1000), or equals to &#x60;total_count&#x60; (required).</param>
+        /// <param name="_Object">Entity name: always &#39;list&#39; (required).</param>
         /// <param name="Order">The order of the records to return based on creation time. Available values: ASC, DESC; by default ASC..</param>
-        public ApiKeyInfoRespList(string After = default(string), bool? HasMore = default(bool?), int? TotalCount = default(int?), ObjectEnum? _Object = default(ObjectEnum?), int? Limit = default(int?), List<ApiKeyInfoResp> Data = default(List<ApiKeyInfoResp>), OrderEnum? Order = default(OrderEnum?))
+        /// <param name="TotalCount">The total number or records, if requested. It might be returned also for small lists. (required).</param>
+        public ApiKeyInfoRespList(string After = default(string), List<ApiKeyInfoResp> Data = default(List<ApiKeyInfoResp>), bool? HasMore = default(bool?), int? Limit = default(int?), ObjectEnum? _Object = default(ObjectEnum?), OrderEnum? Order = default(OrderEnum?), int? TotalCount = default(int?))
         {
+            // to ensure "Data" is required (not null)
+            if (Data == null)
+            {
+                throw new InvalidDataException("Data is a required property for ApiKeyInfoRespList and cannot be null");
+            }
+            else
+            {
+                this.Data = Data;
+            }
             // to ensure "HasMore" is required (not null)
             if (HasMore == null)
             {
@@ -104,24 +113,6 @@ namespace iam.Model
             else
             {
                 this.HasMore = HasMore;
-            }
-            // to ensure "TotalCount" is required (not null)
-            if (TotalCount == null)
-            {
-                throw new InvalidDataException("TotalCount is a required property for ApiKeyInfoRespList and cannot be null");
-            }
-            else
-            {
-                this.TotalCount = TotalCount;
-            }
-            // to ensure "_Object" is required (not null)
-            if (_Object == null)
-            {
-                throw new InvalidDataException("_Object is a required property for ApiKeyInfoRespList and cannot be null");
-            }
-            else
-            {
-                this._Object = _Object;
             }
             // to ensure "Limit" is required (not null)
             if (Limit == null)
@@ -132,14 +123,23 @@ namespace iam.Model
             {
                 this.Limit = Limit;
             }
-            // to ensure "Data" is required (not null)
-            if (Data == null)
+            // to ensure "_Object" is required (not null)
+            if (_Object == null)
             {
-                throw new InvalidDataException("Data is a required property for ApiKeyInfoRespList and cannot be null");
+                throw new InvalidDataException("_Object is a required property for ApiKeyInfoRespList and cannot be null");
             }
             else
             {
-                this.Data = Data;
+                this._Object = _Object;
+            }
+            // to ensure "TotalCount" is required (not null)
+            if (TotalCount == null)
+            {
+                throw new InvalidDataException("TotalCount is a required property for ApiKeyInfoRespList and cannot be null");
+            }
+            else
+            {
+                this.TotalCount = TotalCount;
             }
             this.After = After;
             this.Order = Order;
@@ -153,19 +153,18 @@ namespace iam.Model
         public string After { get; set; }
 
         /// <summary>
+        /// A list of entities.
+        /// </summary>
+        /// <value>A list of entities.</value>
+        [DataMember(Name="data", EmitDefaultValue=false)]
+        public List<ApiKeyInfoResp> Data { get; set; }
+
+        /// <summary>
         /// Flag indicating whether there is more results.
         /// </summary>
         /// <value>Flag indicating whether there is more results.</value>
         [DataMember(Name="has_more", EmitDefaultValue=false)]
         public bool? HasMore { get; set; }
-
-        /// <summary>
-        /// The total number or records, if requested. It might be returned also for small lists.
-        /// </summary>
-        /// <value>The total number or records, if requested. It might be returned also for small lists.</value>
-        [DataMember(Name="total_count", EmitDefaultValue=false)]
-        public int? TotalCount { get; set; }
-
 
         /// <summary>
         /// The number of results to return, (range: 2-1000), or equals to &#x60;total_count&#x60;
@@ -174,13 +173,14 @@ namespace iam.Model
         [DataMember(Name="limit", EmitDefaultValue=false)]
         public int? Limit { get; set; }
 
-        /// <summary>
-        /// A list of entities.
-        /// </summary>
-        /// <value>A list of entities.</value>
-        [DataMember(Name="data", EmitDefaultValue=false)]
-        public List<ApiKeyInfoResp> Data { get; set; }
 
+
+        /// <summary>
+        /// The total number or records, if requested. It might be returned also for small lists.
+        /// </summary>
+        /// <value>The total number or records, if requested. It might be returned also for small lists.</value>
+        [DataMember(Name="total_count", EmitDefaultValue=false)]
+        public int? TotalCount { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -191,12 +191,12 @@ namespace iam.Model
             var sb = new StringBuilder();
             sb.Append("class ApiKeyInfoRespList {\n");
             sb.Append("  After: ").Append(After).Append("\n");
-            sb.Append("  HasMore: ").Append(HasMore).Append("\n");
-            sb.Append("  TotalCount: ").Append(TotalCount).Append("\n");
-            sb.Append("  _Object: ").Append(_Object).Append("\n");
-            sb.Append("  Limit: ").Append(Limit).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
+            sb.Append("  HasMore: ").Append(HasMore).Append("\n");
+            sb.Append("  Limit: ").Append(Limit).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
             sb.Append("  Order: ").Append(Order).Append("\n");
+            sb.Append("  TotalCount: ").Append(TotalCount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -237,19 +237,14 @@ namespace iam.Model
                     this.After.Equals(input.After))
                 ) && 
                 (
+                    this.Data == input.Data ||
+                    this.Data != null &&
+                    this.Data.SequenceEqual(input.Data)
+                ) && 
+                (
                     this.HasMore == input.HasMore ||
                     (this.HasMore != null &&
                     this.HasMore.Equals(input.HasMore))
-                ) && 
-                (
-                    this.TotalCount == input.TotalCount ||
-                    (this.TotalCount != null &&
-                    this.TotalCount.Equals(input.TotalCount))
-                ) && 
-                (
-                    this._Object == input._Object ||
-                    (this._Object != null &&
-                    this._Object.Equals(input._Object))
                 ) && 
                 (
                     this.Limit == input.Limit ||
@@ -257,14 +252,19 @@ namespace iam.Model
                     this.Limit.Equals(input.Limit))
                 ) && 
                 (
-                    this.Data == input.Data ||
-                    this.Data != null &&
-                    this.Data.SequenceEqual(input.Data)
+                    this._Object == input._Object ||
+                    (this._Object != null &&
+                    this._Object.Equals(input._Object))
                 ) && 
                 (
                     this.Order == input.Order ||
                     (this.Order != null &&
                     this.Order.Equals(input.Order))
+                ) && 
+                (
+                    this.TotalCount == input.TotalCount ||
+                    (this.TotalCount != null &&
+                    this.TotalCount.Equals(input.TotalCount))
                 );
         }
 
@@ -279,18 +279,18 @@ namespace iam.Model
                 int hashCode = 41;
                 if (this.After != null)
                     hashCode = hashCode * 59 + this.After.GetHashCode();
-                if (this.HasMore != null)
-                    hashCode = hashCode * 59 + this.HasMore.GetHashCode();
-                if (this.TotalCount != null)
-                    hashCode = hashCode * 59 + this.TotalCount.GetHashCode();
-                if (this._Object != null)
-                    hashCode = hashCode * 59 + this._Object.GetHashCode();
-                if (this.Limit != null)
-                    hashCode = hashCode * 59 + this.Limit.GetHashCode();
                 if (this.Data != null)
                     hashCode = hashCode * 59 + this.Data.GetHashCode();
+                if (this.HasMore != null)
+                    hashCode = hashCode * 59 + this.HasMore.GetHashCode();
+                if (this.Limit != null)
+                    hashCode = hashCode * 59 + this.Limit.GetHashCode();
+                if (this._Object != null)
+                    hashCode = hashCode * 59 + this._Object.GetHashCode();
                 if (this.Order != null)
                     hashCode = hashCode * 59 + this.Order.GetHashCode();
+                if (this.TotalCount != null)
+                    hashCode = hashCode * 59 + this.TotalCount.GetHashCode();
                 return hashCode;
             }
         }

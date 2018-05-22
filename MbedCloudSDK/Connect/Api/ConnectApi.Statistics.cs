@@ -67,7 +67,7 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                var resp = statisticsApi.V3MetricsGet(
+                var resp = StatisticsApi.V3MetricsGet(
                     include: options.Include,
                         interval: options.Interval,
                         start: options.Start,

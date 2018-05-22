@@ -61,61 +61,54 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountUpdateReq" /> class.
         /// </summary>
-        /// <param name="AddressLine2">Postal address line 2, not longer than 100 characters..</param>
-        /// <param name="City">The city part of the postal address, not longer than 100 characters. Required for commercial accounts only..</param>
-        /// <param name="AddressLine1">Postal address line 1, not longer than 100 characters. Required for commercial accounts only..</param>
-        /// <param name="DisplayName">The display name for the account, not longer than 100 characters..</param>
-        /// <param name="MfaStatus">The enforcement status of setting up the multi-factor authentication. &#39;Enforced&#39; means that setting up the MFA is required after login. &#39;Optional&#39; means that the MFA is not required..</param>
-        /// <param name="Country">The country part of the postal address, not longer than 100 characters. Required for commercial accounts only..</param>
-        /// <param name="Company">The name of the company, not longer than 100 characters. Required for commercial accounts only..</param>
-        /// <param name="IdleTimeout">The reference token expiration time in minutes for this account. Between 1 and 120 minutes..</param>
-        /// <param name="NotificationEmails">A list of notification email addresses..</param>
-        /// <param name="State">The state part of the postal address, not longer than 100 characters..</param>
-        /// <param name="Contact">The name of the contact person for this account, not longer than 100 characters. Required for commercial accounts only..</param>
-        /// <param name="PostalCode">The postal code part of the postal address, not longer than 100 characters..</param>
         /// <param name="AccountProperties">Properties for this account..</param>
-        /// <param name="ExpirationWarningThreshold">Indicates how many days before account expiration a notification email should be sent. Valid values are: 1-180..</param>
-        /// <param name="PasswordPolicy">Password policy for this account..</param>
-        /// <param name="EndMarket">The end market for this account, not longer than 100 characters..</param>
-        /// <param name="PhoneNumber">The phone number of a representative of the company, not longer than 100 characters..</param>
-        /// <param name="Email">The company email address for this account, not longer than 254 characters. Required for commercial accounts only..</param>
+        /// <param name="AddressLine1">Postal address line 1, not longer than 100 characters. Required for commercial accounts only..</param>
+        /// <param name="AddressLine2">Postal address line 2, not longer than 100 characters..</param>
         /// <param name="Aliases">An array of aliases, not more than 10. An alias is not shorter than 8 and not longer than 100 characters..</param>
-        public AccountUpdateReq(string AddressLine2 = default(string), string City = default(string), string AddressLine1 = default(string), string DisplayName = default(string), MfaStatusEnum? MfaStatus = default(MfaStatusEnum?), string Country = default(string), string Company = default(string), string IdleTimeout = default(string), List<string> NotificationEmails = default(List<string>), string State = default(string), string Contact = default(string), string PostalCode = default(string), Dictionary<string, Dictionary<string, string>> AccountProperties = default(Dictionary<string, Dictionary<string, string>>), string ExpirationWarningThreshold = default(string), PasswordPolicy PasswordPolicy = default(PasswordPolicy), string EndMarket = default(string), string PhoneNumber = default(string), string Email = default(string), List<string> Aliases = default(List<string>))
+        /// <param name="City">The city part of the postal address, not longer than 100 characters. Required for commercial accounts only..</param>
+        /// <param name="Company">The name of the company, not longer than 100 characters. Required for commercial accounts only..</param>
+        /// <param name="Contact">The name of the contact person for this account, not longer than 100 characters. Required for commercial accounts only..</param>
+        /// <param name="Country">The country part of the postal address, not longer than 100 characters. Required for commercial accounts only..</param>
+        /// <param name="DisplayName">The display name for the account, not longer than 100 characters..</param>
+        /// <param name="Email">The company email address for this account, not longer than 254 characters. Required for commercial accounts only..</param>
+        /// <param name="EndMarket">The end market for this account, not longer than 100 characters..</param>
+        /// <param name="ExpirationWarningThreshold">Indicates how many days before account expiration a notification email should be sent. Valid values are: 1-180..</param>
+        /// <param name="IdleTimeout">The reference token expiration time in minutes for this account. Between 1 and 120 minutes..</param>
+        /// <param name="MfaStatus">The enforcement status of setting up the multi-factor authentication. &#39;Enforced&#39; means that setting up the MFA is required after login. &#39;Optional&#39; means that the MFA is not required..</param>
+        /// <param name="NotificationEmails">A list of notification email addresses..</param>
+        /// <param name="PasswordPolicy">Password policy for this account..</param>
+        /// <param name="PhoneNumber">The phone number of a representative of the company, not longer than 100 characters..</param>
+        /// <param name="PostalCode">The postal code part of the postal address, not longer than 100 characters..</param>
+        /// <param name="State">The state part of the postal address, not longer than 100 characters..</param>
+        public AccountUpdateReq(Dictionary<string, Dictionary<string, string>> AccountProperties = default(Dictionary<string, Dictionary<string, string>>), string AddressLine1 = default(string), string AddressLine2 = default(string), List<string> Aliases = default(List<string>), string City = default(string), string Company = default(string), string Contact = default(string), string Country = default(string), string DisplayName = default(string), string Email = default(string), string EndMarket = default(string), string ExpirationWarningThreshold = default(string), string IdleTimeout = default(string), MfaStatusEnum? MfaStatus = default(MfaStatusEnum?), List<string> NotificationEmails = default(List<string>), PasswordPolicy PasswordPolicy = default(PasswordPolicy), string PhoneNumber = default(string), string PostalCode = default(string), string State = default(string))
         {
-            this.AddressLine2 = AddressLine2;
-            this.City = City;
-            this.AddressLine1 = AddressLine1;
-            this.DisplayName = DisplayName;
-            this.MfaStatus = MfaStatus;
-            this.Country = Country;
-            this.Company = Company;
-            this.IdleTimeout = IdleTimeout;
-            this.NotificationEmails = NotificationEmails;
-            this.State = State;
-            this.Contact = Contact;
-            this.PostalCode = PostalCode;
             this.AccountProperties = AccountProperties;
-            this.ExpirationWarningThreshold = ExpirationWarningThreshold;
-            this.PasswordPolicy = PasswordPolicy;
-            this.EndMarket = EndMarket;
-            this.PhoneNumber = PhoneNumber;
-            this.Email = Email;
+            this.AddressLine1 = AddressLine1;
+            this.AddressLine2 = AddressLine2;
             this.Aliases = Aliases;
+            this.City = City;
+            this.Company = Company;
+            this.Contact = Contact;
+            this.Country = Country;
+            this.DisplayName = DisplayName;
+            this.Email = Email;
+            this.EndMarket = EndMarket;
+            this.ExpirationWarningThreshold = ExpirationWarningThreshold;
+            this.IdleTimeout = IdleTimeout;
+            this.MfaStatus = MfaStatus;
+            this.NotificationEmails = NotificationEmails;
+            this.PasswordPolicy = PasswordPolicy;
+            this.PhoneNumber = PhoneNumber;
+            this.PostalCode = PostalCode;
+            this.State = State;
         }
         
         /// <summary>
-        /// Postal address line 2, not longer than 100 characters.
+        /// Properties for this account.
         /// </summary>
-        /// <value>Postal address line 2, not longer than 100 characters.</value>
-        [DataMember(Name="address_line2", EmitDefaultValue=false)]
-        public string AddressLine2 { get; set; }
-
-        /// <summary>
-        /// The city part of the postal address, not longer than 100 characters. Required for commercial accounts only.
-        /// </summary>
-        /// <value>The city part of the postal address, not longer than 100 characters. Required for commercial accounts only.</value>
-        [DataMember(Name="city", EmitDefaultValue=false)]
-        public string City { get; set; }
+        /// <value>Properties for this account.</value>
+        [DataMember(Name="account_properties", EmitDefaultValue=false)]
+        public Dictionary<string, Dictionary<string, string>> AccountProperties { get; set; }
 
         /// <summary>
         /// Postal address line 1, not longer than 100 characters. Required for commercial accounts only.
@@ -125,103 +118,11 @@ namespace iam.Model
         public string AddressLine1 { get; set; }
 
         /// <summary>
-        /// The display name for the account, not longer than 100 characters.
+        /// Postal address line 2, not longer than 100 characters.
         /// </summary>
-        /// <value>The display name for the account, not longer than 100 characters.</value>
-        [DataMember(Name="display_name", EmitDefaultValue=false)]
-        public string DisplayName { get; set; }
-
-
-        /// <summary>
-        /// The country part of the postal address, not longer than 100 characters. Required for commercial accounts only.
-        /// </summary>
-        /// <value>The country part of the postal address, not longer than 100 characters. Required for commercial accounts only.</value>
-        [DataMember(Name="country", EmitDefaultValue=false)]
-        public string Country { get; set; }
-
-        /// <summary>
-        /// The name of the company, not longer than 100 characters. Required for commercial accounts only.
-        /// </summary>
-        /// <value>The name of the company, not longer than 100 characters. Required for commercial accounts only.</value>
-        [DataMember(Name="company", EmitDefaultValue=false)]
-        public string Company { get; set; }
-
-        /// <summary>
-        /// The reference token expiration time in minutes for this account. Between 1 and 120 minutes.
-        /// </summary>
-        /// <value>The reference token expiration time in minutes for this account. Between 1 and 120 minutes.</value>
-        [DataMember(Name="idle_timeout", EmitDefaultValue=false)]
-        public string IdleTimeout { get; set; }
-
-        /// <summary>
-        /// A list of notification email addresses.
-        /// </summary>
-        /// <value>A list of notification email addresses.</value>
-        [DataMember(Name="notification_emails", EmitDefaultValue=false)]
-        public List<string> NotificationEmails { get; set; }
-
-        /// <summary>
-        /// The state part of the postal address, not longer than 100 characters.
-        /// </summary>
-        /// <value>The state part of the postal address, not longer than 100 characters.</value>
-        [DataMember(Name="state", EmitDefaultValue=false)]
-        public string State { get; set; }
-
-        /// <summary>
-        /// The name of the contact person for this account, not longer than 100 characters. Required for commercial accounts only.
-        /// </summary>
-        /// <value>The name of the contact person for this account, not longer than 100 characters. Required for commercial accounts only.</value>
-        [DataMember(Name="contact", EmitDefaultValue=false)]
-        public string Contact { get; set; }
-
-        /// <summary>
-        /// The postal code part of the postal address, not longer than 100 characters.
-        /// </summary>
-        /// <value>The postal code part of the postal address, not longer than 100 characters.</value>
-        [DataMember(Name="postal_code", EmitDefaultValue=false)]
-        public string PostalCode { get; set; }
-
-        /// <summary>
-        /// Properties for this account.
-        /// </summary>
-        /// <value>Properties for this account.</value>
-        [DataMember(Name="account_properties", EmitDefaultValue=false)]
-        public Dictionary<string, Dictionary<string, string>> AccountProperties { get; set; }
-
-        /// <summary>
-        /// Indicates how many days before account expiration a notification email should be sent. Valid values are: 1-180.
-        /// </summary>
-        /// <value>Indicates how many days before account expiration a notification email should be sent. Valid values are: 1-180.</value>
-        [DataMember(Name="expiration_warning_threshold", EmitDefaultValue=false)]
-        public string ExpirationWarningThreshold { get; set; }
-
-        /// <summary>
-        /// Password policy for this account.
-        /// </summary>
-        /// <value>Password policy for this account.</value>
-        [DataMember(Name="password_policy", EmitDefaultValue=false)]
-        public PasswordPolicy PasswordPolicy { get; set; }
-
-        /// <summary>
-        /// The end market for this account, not longer than 100 characters.
-        /// </summary>
-        /// <value>The end market for this account, not longer than 100 characters.</value>
-        [DataMember(Name="end_market", EmitDefaultValue=false)]
-        public string EndMarket { get; set; }
-
-        /// <summary>
-        /// The phone number of a representative of the company, not longer than 100 characters.
-        /// </summary>
-        /// <value>The phone number of a representative of the company, not longer than 100 characters.</value>
-        [DataMember(Name="phone_number", EmitDefaultValue=false)]
-        public string PhoneNumber { get; set; }
-
-        /// <summary>
-        /// The company email address for this account, not longer than 254 characters. Required for commercial accounts only.
-        /// </summary>
-        /// <value>The company email address for this account, not longer than 254 characters. Required for commercial accounts only.</value>
-        [DataMember(Name="email", EmitDefaultValue=false)]
-        public string Email { get; set; }
+        /// <value>Postal address line 2, not longer than 100 characters.</value>
+        [DataMember(Name="address_line2", EmitDefaultValue=false)]
+        public string AddressLine2 { get; set; }
 
         /// <summary>
         /// An array of aliases, not more than 10. An alias is not shorter than 8 and not longer than 100 characters.
@@ -231,6 +132,105 @@ namespace iam.Model
         public List<string> Aliases { get; set; }
 
         /// <summary>
+        /// The city part of the postal address, not longer than 100 characters. Required for commercial accounts only.
+        /// </summary>
+        /// <value>The city part of the postal address, not longer than 100 characters. Required for commercial accounts only.</value>
+        [DataMember(Name="city", EmitDefaultValue=false)]
+        public string City { get; set; }
+
+        /// <summary>
+        /// The name of the company, not longer than 100 characters. Required for commercial accounts only.
+        /// </summary>
+        /// <value>The name of the company, not longer than 100 characters. Required for commercial accounts only.</value>
+        [DataMember(Name="company", EmitDefaultValue=false)]
+        public string Company { get; set; }
+
+        /// <summary>
+        /// The name of the contact person for this account, not longer than 100 characters. Required for commercial accounts only.
+        /// </summary>
+        /// <value>The name of the contact person for this account, not longer than 100 characters. Required for commercial accounts only.</value>
+        [DataMember(Name="contact", EmitDefaultValue=false)]
+        public string Contact { get; set; }
+
+        /// <summary>
+        /// The country part of the postal address, not longer than 100 characters. Required for commercial accounts only.
+        /// </summary>
+        /// <value>The country part of the postal address, not longer than 100 characters. Required for commercial accounts only.</value>
+        [DataMember(Name="country", EmitDefaultValue=false)]
+        public string Country { get; set; }
+
+        /// <summary>
+        /// The display name for the account, not longer than 100 characters.
+        /// </summary>
+        /// <value>The display name for the account, not longer than 100 characters.</value>
+        [DataMember(Name="display_name", EmitDefaultValue=false)]
+        public string DisplayName { get; set; }
+
+        /// <summary>
+        /// The company email address for this account, not longer than 254 characters. Required for commercial accounts only.
+        /// </summary>
+        /// <value>The company email address for this account, not longer than 254 characters. Required for commercial accounts only.</value>
+        [DataMember(Name="email", EmitDefaultValue=false)]
+        public string Email { get; set; }
+
+        /// <summary>
+        /// The end market for this account, not longer than 100 characters.
+        /// </summary>
+        /// <value>The end market for this account, not longer than 100 characters.</value>
+        [DataMember(Name="end_market", EmitDefaultValue=false)]
+        public string EndMarket { get; set; }
+
+        /// <summary>
+        /// Indicates how many days before account expiration a notification email should be sent. Valid values are: 1-180.
+        /// </summary>
+        /// <value>Indicates how many days before account expiration a notification email should be sent. Valid values are: 1-180.</value>
+        [DataMember(Name="expiration_warning_threshold", EmitDefaultValue=false)]
+        public string ExpirationWarningThreshold { get; set; }
+
+        /// <summary>
+        /// The reference token expiration time in minutes for this account. Between 1 and 120 minutes.
+        /// </summary>
+        /// <value>The reference token expiration time in minutes for this account. Between 1 and 120 minutes.</value>
+        [DataMember(Name="idle_timeout", EmitDefaultValue=false)]
+        public string IdleTimeout { get; set; }
+
+
+        /// <summary>
+        /// A list of notification email addresses.
+        /// </summary>
+        /// <value>A list of notification email addresses.</value>
+        [DataMember(Name="notification_emails", EmitDefaultValue=false)]
+        public List<string> NotificationEmails { get; set; }
+
+        /// <summary>
+        /// Password policy for this account.
+        /// </summary>
+        /// <value>Password policy for this account.</value>
+        [DataMember(Name="password_policy", EmitDefaultValue=false)]
+        public PasswordPolicy PasswordPolicy { get; set; }
+
+        /// <summary>
+        /// The phone number of a representative of the company, not longer than 100 characters.
+        /// </summary>
+        /// <value>The phone number of a representative of the company, not longer than 100 characters.</value>
+        [DataMember(Name="phone_number", EmitDefaultValue=false)]
+        public string PhoneNumber { get; set; }
+
+        /// <summary>
+        /// The postal code part of the postal address, not longer than 100 characters.
+        /// </summary>
+        /// <value>The postal code part of the postal address, not longer than 100 characters.</value>
+        [DataMember(Name="postal_code", EmitDefaultValue=false)]
+        public string PostalCode { get; set; }
+
+        /// <summary>
+        /// The state part of the postal address, not longer than 100 characters.
+        /// </summary>
+        /// <value>The state part of the postal address, not longer than 100 characters.</value>
+        [DataMember(Name="state", EmitDefaultValue=false)]
+        public string State { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -238,25 +238,25 @@ namespace iam.Model
         {
             var sb = new StringBuilder();
             sb.Append("class AccountUpdateReq {\n");
-            sb.Append("  AddressLine2: ").Append(AddressLine2).Append("\n");
-            sb.Append("  City: ").Append(City).Append("\n");
-            sb.Append("  AddressLine1: ").Append(AddressLine1).Append("\n");
-            sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
-            sb.Append("  MfaStatus: ").Append(MfaStatus).Append("\n");
-            sb.Append("  Country: ").Append(Country).Append("\n");
-            sb.Append("  Company: ").Append(Company).Append("\n");
-            sb.Append("  IdleTimeout: ").Append(IdleTimeout).Append("\n");
-            sb.Append("  NotificationEmails: ").Append(NotificationEmails).Append("\n");
-            sb.Append("  State: ").Append(State).Append("\n");
-            sb.Append("  Contact: ").Append(Contact).Append("\n");
-            sb.Append("  PostalCode: ").Append(PostalCode).Append("\n");
             sb.Append("  AccountProperties: ").Append(AccountProperties).Append("\n");
-            sb.Append("  ExpirationWarningThreshold: ").Append(ExpirationWarningThreshold).Append("\n");
-            sb.Append("  PasswordPolicy: ").Append(PasswordPolicy).Append("\n");
-            sb.Append("  EndMarket: ").Append(EndMarket).Append("\n");
-            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
-            sb.Append("  Email: ").Append(Email).Append("\n");
+            sb.Append("  AddressLine1: ").Append(AddressLine1).Append("\n");
+            sb.Append("  AddressLine2: ").Append(AddressLine2).Append("\n");
             sb.Append("  Aliases: ").Append(Aliases).Append("\n");
+            sb.Append("  City: ").Append(City).Append("\n");
+            sb.Append("  Company: ").Append(Company).Append("\n");
+            sb.Append("  Contact: ").Append(Contact).Append("\n");
+            sb.Append("  Country: ").Append(Country).Append("\n");
+            sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
+            sb.Append("  Email: ").Append(Email).Append("\n");
+            sb.Append("  EndMarket: ").Append(EndMarket).Append("\n");
+            sb.Append("  ExpirationWarningThreshold: ").Append(ExpirationWarningThreshold).Append("\n");
+            sb.Append("  IdleTimeout: ").Append(IdleTimeout).Append("\n");
+            sb.Append("  MfaStatus: ").Append(MfaStatus).Append("\n");
+            sb.Append("  NotificationEmails: ").Append(NotificationEmails).Append("\n");
+            sb.Append("  PasswordPolicy: ").Append(PasswordPolicy).Append("\n");
+            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
+            sb.Append("  PostalCode: ").Append(PostalCode).Append("\n");
+            sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -292,14 +292,9 @@ namespace iam.Model
 
             return 
                 (
-                    this.AddressLine2 == input.AddressLine2 ||
-                    (this.AddressLine2 != null &&
-                    this.AddressLine2.Equals(input.AddressLine2))
-                ) && 
-                (
-                    this.City == input.City ||
-                    (this.City != null &&
-                    this.City.Equals(input.City))
+                    this.AccountProperties == input.AccountProperties ||
+                    this.AccountProperties != null &&
+                    this.AccountProperties.SequenceEqual(input.AccountProperties)
                 ) && 
                 (
                     this.AddressLine1 == input.AddressLine1 ||
@@ -307,19 +302,19 @@ namespace iam.Model
                     this.AddressLine1.Equals(input.AddressLine1))
                 ) && 
                 (
-                    this.DisplayName == input.DisplayName ||
-                    (this.DisplayName != null &&
-                    this.DisplayName.Equals(input.DisplayName))
+                    this.AddressLine2 == input.AddressLine2 ||
+                    (this.AddressLine2 != null &&
+                    this.AddressLine2.Equals(input.AddressLine2))
                 ) && 
                 (
-                    this.MfaStatus == input.MfaStatus ||
-                    (this.MfaStatus != null &&
-                    this.MfaStatus.Equals(input.MfaStatus))
+                    this.Aliases == input.Aliases ||
+                    this.Aliases != null &&
+                    this.Aliases.SequenceEqual(input.Aliases)
                 ) && 
                 (
-                    this.Country == input.Country ||
-                    (this.Country != null &&
-                    this.Country.Equals(input.Country))
+                    this.City == input.City ||
+                    (this.City != null &&
+                    this.City.Equals(input.City))
                 ) && 
                 (
                     this.Company == input.Company ||
@@ -327,54 +322,19 @@ namespace iam.Model
                     this.Company.Equals(input.Company))
                 ) && 
                 (
-                    this.IdleTimeout == input.IdleTimeout ||
-                    (this.IdleTimeout != null &&
-                    this.IdleTimeout.Equals(input.IdleTimeout))
-                ) && 
-                (
-                    this.NotificationEmails == input.NotificationEmails ||
-                    this.NotificationEmails != null &&
-                    this.NotificationEmails.SequenceEqual(input.NotificationEmails)
-                ) && 
-                (
-                    this.State == input.State ||
-                    (this.State != null &&
-                    this.State.Equals(input.State))
-                ) && 
-                (
                     this.Contact == input.Contact ||
                     (this.Contact != null &&
                     this.Contact.Equals(input.Contact))
                 ) && 
                 (
-                    this.PostalCode == input.PostalCode ||
-                    (this.PostalCode != null &&
-                    this.PostalCode.Equals(input.PostalCode))
+                    this.Country == input.Country ||
+                    (this.Country != null &&
+                    this.Country.Equals(input.Country))
                 ) && 
                 (
-                    this.AccountProperties == input.AccountProperties ||
-                    this.AccountProperties != null &&
-                    this.AccountProperties.SequenceEqual(input.AccountProperties)
-                ) && 
-                (
-                    this.ExpirationWarningThreshold == input.ExpirationWarningThreshold ||
-                    (this.ExpirationWarningThreshold != null &&
-                    this.ExpirationWarningThreshold.Equals(input.ExpirationWarningThreshold))
-                ) && 
-                (
-                    this.PasswordPolicy == input.PasswordPolicy ||
-                    (this.PasswordPolicy != null &&
-                    this.PasswordPolicy.Equals(input.PasswordPolicy))
-                ) && 
-                (
-                    this.EndMarket == input.EndMarket ||
-                    (this.EndMarket != null &&
-                    this.EndMarket.Equals(input.EndMarket))
-                ) && 
-                (
-                    this.PhoneNumber == input.PhoneNumber ||
-                    (this.PhoneNumber != null &&
-                    this.PhoneNumber.Equals(input.PhoneNumber))
+                    this.DisplayName == input.DisplayName ||
+                    (this.DisplayName != null &&
+                    this.DisplayName.Equals(input.DisplayName))
                 ) && 
                 (
                     this.Email == input.Email ||
@@ -382,9 +342,49 @@ namespace iam.Model
                     this.Email.Equals(input.Email))
                 ) && 
                 (
-                    this.Aliases == input.Aliases ||
-                    this.Aliases != null &&
-                    this.Aliases.SequenceEqual(input.Aliases)
+                    this.EndMarket == input.EndMarket ||
+                    (this.EndMarket != null &&
+                    this.EndMarket.Equals(input.EndMarket))
+                ) && 
+                (
+                    this.ExpirationWarningThreshold == input.ExpirationWarningThreshold ||
+                    (this.ExpirationWarningThreshold != null &&
+                    this.ExpirationWarningThreshold.Equals(input.ExpirationWarningThreshold))
+                ) && 
+                (
+                    this.IdleTimeout == input.IdleTimeout ||
+                    (this.IdleTimeout != null &&
+                    this.IdleTimeout.Equals(input.IdleTimeout))
+                ) && 
+                (
+                    this.MfaStatus == input.MfaStatus ||
+                    (this.MfaStatus != null &&
+                    this.MfaStatus.Equals(input.MfaStatus))
+                ) && 
+                (
+                    this.NotificationEmails == input.NotificationEmails ||
+                    this.NotificationEmails != null &&
+                    this.NotificationEmails.SequenceEqual(input.NotificationEmails)
+                ) && 
+                (
+                    this.PasswordPolicy == input.PasswordPolicy ||
+                    (this.PasswordPolicy != null &&
+                    this.PasswordPolicy.Equals(input.PasswordPolicy))
+                ) && 
+                (
+                    this.PhoneNumber == input.PhoneNumber ||
+                    (this.PhoneNumber != null &&
+                    this.PhoneNumber.Equals(input.PhoneNumber))
+                ) && 
+                (
+                    this.PostalCode == input.PostalCode ||
+                    (this.PostalCode != null &&
+                    this.PostalCode.Equals(input.PostalCode))
+                ) && 
+                (
+                    this.State == input.State ||
+                    (this.State != null &&
+                    this.State.Equals(input.State))
                 );
         }
 
@@ -397,44 +397,44 @@ namespace iam.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AddressLine2 != null)
-                    hashCode = hashCode * 59 + this.AddressLine2.GetHashCode();
-                if (this.City != null)
-                    hashCode = hashCode * 59 + this.City.GetHashCode();
-                if (this.AddressLine1 != null)
-                    hashCode = hashCode * 59 + this.AddressLine1.GetHashCode();
-                if (this.DisplayName != null)
-                    hashCode = hashCode * 59 + this.DisplayName.GetHashCode();
-                if (this.MfaStatus != null)
-                    hashCode = hashCode * 59 + this.MfaStatus.GetHashCode();
-                if (this.Country != null)
-                    hashCode = hashCode * 59 + this.Country.GetHashCode();
-                if (this.Company != null)
-                    hashCode = hashCode * 59 + this.Company.GetHashCode();
-                if (this.IdleTimeout != null)
-                    hashCode = hashCode * 59 + this.IdleTimeout.GetHashCode();
-                if (this.NotificationEmails != null)
-                    hashCode = hashCode * 59 + this.NotificationEmails.GetHashCode();
-                if (this.State != null)
-                    hashCode = hashCode * 59 + this.State.GetHashCode();
-                if (this.Contact != null)
-                    hashCode = hashCode * 59 + this.Contact.GetHashCode();
-                if (this.PostalCode != null)
-                    hashCode = hashCode * 59 + this.PostalCode.GetHashCode();
                 if (this.AccountProperties != null)
                     hashCode = hashCode * 59 + this.AccountProperties.GetHashCode();
-                if (this.ExpirationWarningThreshold != null)
-                    hashCode = hashCode * 59 + this.ExpirationWarningThreshold.GetHashCode();
-                if (this.PasswordPolicy != null)
-                    hashCode = hashCode * 59 + this.PasswordPolicy.GetHashCode();
-                if (this.EndMarket != null)
-                    hashCode = hashCode * 59 + this.EndMarket.GetHashCode();
-                if (this.PhoneNumber != null)
-                    hashCode = hashCode * 59 + this.PhoneNumber.GetHashCode();
-                if (this.Email != null)
-                    hashCode = hashCode * 59 + this.Email.GetHashCode();
+                if (this.AddressLine1 != null)
+                    hashCode = hashCode * 59 + this.AddressLine1.GetHashCode();
+                if (this.AddressLine2 != null)
+                    hashCode = hashCode * 59 + this.AddressLine2.GetHashCode();
                 if (this.Aliases != null)
                     hashCode = hashCode * 59 + this.Aliases.GetHashCode();
+                if (this.City != null)
+                    hashCode = hashCode * 59 + this.City.GetHashCode();
+                if (this.Company != null)
+                    hashCode = hashCode * 59 + this.Company.GetHashCode();
+                if (this.Contact != null)
+                    hashCode = hashCode * 59 + this.Contact.GetHashCode();
+                if (this.Country != null)
+                    hashCode = hashCode * 59 + this.Country.GetHashCode();
+                if (this.DisplayName != null)
+                    hashCode = hashCode * 59 + this.DisplayName.GetHashCode();
+                if (this.Email != null)
+                    hashCode = hashCode * 59 + this.Email.GetHashCode();
+                if (this.EndMarket != null)
+                    hashCode = hashCode * 59 + this.EndMarket.GetHashCode();
+                if (this.ExpirationWarningThreshold != null)
+                    hashCode = hashCode * 59 + this.ExpirationWarningThreshold.GetHashCode();
+                if (this.IdleTimeout != null)
+                    hashCode = hashCode * 59 + this.IdleTimeout.GetHashCode();
+                if (this.MfaStatus != null)
+                    hashCode = hashCode * 59 + this.MfaStatus.GetHashCode();
+                if (this.NotificationEmails != null)
+                    hashCode = hashCode * 59 + this.NotificationEmails.GetHashCode();
+                if (this.PasswordPolicy != null)
+                    hashCode = hashCode * 59 + this.PasswordPolicy.GetHashCode();
+                if (this.PhoneNumber != null)
+                    hashCode = hashCode * 59 + this.PhoneNumber.GetHashCode();
+                if (this.PostalCode != null)
+                    hashCode = hashCode * 59 + this.PostalCode.GetHashCode();
+                if (this.State != null)
+                    hashCode = hashCode * 59 + this.State.GetHashCode();
                 return hashCode;
             }
         }

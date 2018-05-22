@@ -1,0 +1,1 @@
+Added resource values to subscribe module. See examples folder for usage.

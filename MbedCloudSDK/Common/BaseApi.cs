@@ -10,6 +10,12 @@ namespace MbedCloudSDK.Common
     public class BaseApi
     {
         /// <summary>
+        /// Gets UserAgent
+        /// </summary>
+        /// <returns>UserAgent</returns>
+        private static string userAgent = $"mbed-cloud-sdk-dotnet/{Version.VersionValue}";
+
+        /// <summary>
         /// Config used to initialize APIs. It stores host and API key information.
         /// </summary>
         private Config config;
@@ -24,14 +30,16 @@ namespace MbedCloudSDK.Common
         }
 
         /// <summary>
+        /// Gets or sets the user agent.
+        /// </summary>
+        /// <value>
+        /// The user agent.
+        /// </value>
+        public static string UserAgent { get => userAgent; set => userAgent = value; }
+
+        /// <summary>
         /// Gets or sets config
         /// </summary>
         protected Config Config { get => config; set => config = value; }
-
-        /// <summary>
-        /// Gets UserAgent
-        /// </summary>
-        /// <returns></returns>
-        public static string UserAgent = $"mbed-cloud-sdk-dotnet/{Version.version}";
     }
 }

@@ -140,7 +140,10 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
         public ApiKeyInfoReq CreatePostRequest()
         {
             ApiKeyInfoReq.StatusEnum? status = null;
-            if (Status.HasValue) status = Utils.ParseEnum<ApiKeyInfoReq.StatusEnum>(Status);
+            if (Status.HasValue)
+            {
+                status = Utils.ParseEnum<ApiKeyInfoReq.StatusEnum>(Status);
+            }
 
             var request = new ApiKeyInfoReq(Owner: OwnerId, Status: status, Name: Name, Groups: Groups);
             return request;

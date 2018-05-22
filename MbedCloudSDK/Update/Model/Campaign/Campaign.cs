@@ -161,7 +161,10 @@ namespace MbedCloudSDK.Update.Model.Campaign
             var deviceFilterString = DeviceFilter.FilterString;
 
             UpdateCampaignPostRequest.StateEnum? state = null;
-            if (State.HasValue) Utils.ParseEnum<UpdateCampaignPostRequest.StateEnum>(State);
+            if (State.HasValue)
+            {
+                Utils.ParseEnum<UpdateCampaignPostRequest.StateEnum>(State);
+            }
 
             var request = new UpdateCampaignPostRequest(DeviceFilter: deviceFilterString, Name: Name)
             {

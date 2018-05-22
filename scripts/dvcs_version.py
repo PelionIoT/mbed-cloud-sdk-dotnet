@@ -74,9 +74,9 @@ def main():
     commit_count = str(int(subprocess.check_output(shlex.split(cmd)).strip()))
     current_version = get_csproj_version()
     new_version = '%s.%s' % (current_version, commit_count)
-    write_out(**{
-        '        public const string version': new_version,
-        '        public const string commit': commit_hash,
+    write_out( ** {
+        '        public const string Commit': commit_hash,
+        '        public const string VersionValue': new_version,
     })
 
 

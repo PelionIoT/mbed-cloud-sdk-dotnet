@@ -7,6 +7,7 @@ namespace MbedCloudSDK.Update.Api
     using System;
     using System.Linq;
     using MbedCloudSDK.Common;
+    using update_service.Api;
     using update_service.Client;
 
     /// <summary>
@@ -14,7 +15,7 @@ namespace MbedCloudSDK.Update.Api
     /// </summary>
     public partial class UpdateApi : BaseApi
     {
-        internal update_service.Api.DefaultApi api;
+        private DefaultApi api;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateApi"/> class.
@@ -38,6 +39,7 @@ namespace MbedCloudSDK.Update.Api
         /// Initializes a new instance of the <see cref="UpdateApi"/> class.
         /// </summary>
         /// <param name="config"><see cref="Config"/></param>
+        /// <param name="updateConfig">The update config</param>
         /// <example>
         /// This API is intialized with a <see cref="Config"/> object.
         /// <code>
@@ -51,6 +53,14 @@ namespace MbedCloudSDK.Update.Api
         {
             SetUpApi(config, updateConfig);
         }
+
+        /// <summary>
+        /// Gets or sets the API.
+        /// </summary>
+        /// <value>
+        /// The API.
+        /// </value>
+        internal DefaultApi Api { get => api; set => api = value; }
 
         /// <summary>
         /// Get meta data for the last Mbed Cloud API call
@@ -76,7 +86,7 @@ namespace MbedCloudSDK.Update.Api
                 updateConfig.CreateApiClient();
             }
 
-            api = new update_service.Api.DefaultApi(updateConfig);
+            Api = new update_service.Api.DefaultApi(updateConfig);
         }
     }
 }
