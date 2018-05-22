@@ -152,7 +152,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         /// The custom properties.
         /// </value>
         [JsonProperty]
-        public Dictionary<string, Dictionary<string, string>> CustomProperties { get; private set; }
+        public Dictionary<string, string> CustomProperties { get; private set; }
 
         /// <summary>
         /// Map to User object.
@@ -182,7 +182,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
                 Id = userInfo.Id,
                 LastLoginTime = userInfo.LastLoginTime,
                 TwoFactorAuthentication = userInfo.IsTotpEnabled,
-                CustomProperties = userInfo?.CustomFields?.ToDictionary(k => k.Key, k => JsonConvert.DeserializeObject<Dictionary<string, string>>(k.Value)),
+                CustomProperties = userInfo?.CustomFields,
                 LoginHistory = userInfo?.LoginHistory?.Select(l => { return Model.User.LoginHistory.Map(l); })?.ToList() ?? Enumerable.Empty<LoginHistory>().ToList()
             };
             return user;
@@ -235,7 +235,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
                 IsGtcAccepted = TermsAccepted,
                 IsMarketingAccepted = MarketingAccepted,
                 Groups = Groups,
-                CustomFields = CustomProperties?.ToDictionary(k => k.Key, k => JsonConvert.SerializeObject(k.Value)),
+                CustomFields = CustomProperties,
             };
             return request;
         }
@@ -256,7 +256,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
                 Address = Address,
                 IsMarketingAccepted = MarketingAccepted,
                 Password = Password,
-                CustomFields = CustomProperties?.ToDictionary(k => k.Key, k => JsonConvert.SerializeObject(k.Value)),
+                CustomFields = CustomProperties,
                 IsTotpEnabled = TwoFactorAuthentication,
                 Status = Utils.GetEnumMemberValue(typeof(UserStatus), Convert.ToString(Status)),
                 Groups = Groups,

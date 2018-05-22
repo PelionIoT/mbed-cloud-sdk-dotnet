@@ -185,7 +185,6 @@ Class | Method | HTTP request | Description
  - [Model.AccountUpdateReq](docs/AccountUpdateReq.md)
  - [Model.AccountUpdateRootReq](docs/AccountUpdateRootReq.md)
  - [Model.ActiveSession](docs/ActiveSession.md)
- - [Model.AdminUserUpdateReq](docs/AdminUserUpdateReq.md)
  - [Model.ApiKeyInfoReq](docs/ApiKeyInfoReq.md)
  - [Model.ApiKeyInfoResp](docs/ApiKeyInfoResp.md)
  - [Model.ApiKeyInfoRespList](docs/ApiKeyInfoRespList.md)

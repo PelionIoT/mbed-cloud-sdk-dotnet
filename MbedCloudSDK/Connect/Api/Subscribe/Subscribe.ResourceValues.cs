@@ -58,7 +58,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         /// </summary>
         /// <param name="immediacy">The immediacy.</param>
         /// <returns>ResourceValueObserver</returns>
-        public ResourceValuesObserver ResourceValues(FirstValueEnum immediacy = FirstValueEnum.OnRegistration)
+        public ResourceValuesObserver ResourceValues(FirstValueEnum immediacy = FirstValueEnum.OnValueUpdate)
         {
             var observer = new ResourceValuesObserver();
             return ResourceValues(observer, immediacy);
@@ -70,7 +70,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         /// <param name="deviceId">The device identifier.</param>
         /// <param name="immediacy">The immediacy.</param>
         /// <returns>ResourceValueObserver</returns>
-        public ResourceValuesObserver ResourceValues(string deviceId, FirstValueEnum immediacy = FirstValueEnum.OnRegistration)
+        public ResourceValuesObserver ResourceValues(string deviceId, FirstValueEnum immediacy = FirstValueEnum.OnValueUpdate)
         {
             var observer = new ResourceValuesObserver(deviceId, Enumerable.Empty<string>());
             return ResourceValues(observer, immediacy);
@@ -82,7 +82,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         /// <param name="resourcePaths">The resource paths.</param>
         /// <param name="immediacy">The immediacy.</param>
         /// <returns>ResourceValueObserver</returns>
-        public ResourceValuesObserver ResourceValues(List<string> resourcePaths, FirstValueEnum immediacy = FirstValueEnum.OnRegistration)
+        public ResourceValuesObserver ResourceValues(List<string> resourcePaths, FirstValueEnum immediacy = FirstValueEnum.OnValueUpdate)
         {
             var observer = new ResourceValuesObserver("*", resourcePaths);
             return ResourceValues(observer, immediacy);
@@ -97,7 +97,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         /// <returns>
         /// A ResourceValueObserver
         /// </returns>
-        public ResourceValuesObserver ResourceValues(List<string> deviceIds, List<string> resourcePaths, FirstValueEnum immediacy = FirstValueEnum.OnRegistration)
+        public ResourceValuesObserver ResourceValues(List<string> deviceIds, List<string> resourcePaths, FirstValueEnum immediacy = FirstValueEnum.OnValueUpdate)
         {
             var observer = new ResourceValuesObserver(deviceIds, resourcePaths);
             return ResourceValues(observer, immediacy);
@@ -110,7 +110,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         /// <param name="resourcePaths">The resource paths.</param>
         /// <param name="immediacy">The immediacy.</param>
         /// <returns>ResourceValueObserver</returns>
-        public ResourceValuesObserver ResourceValues(string deviceId, List<string> resourcePaths, FirstValueEnum immediacy = FirstValueEnum.OnRegistration)
+        public ResourceValuesObserver ResourceValues(string deviceId, List<string> resourcePaths, FirstValueEnum immediacy = FirstValueEnum.OnValueUpdate)
         {
             var observer = new ResourceValuesObserver(deviceId, resourcePaths);
             return ResourceValues(observer, immediacy);
@@ -123,7 +123,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         /// <param name="resourcePath">The resource path.</param>
         /// <param name="immediacy">The immediacy.</param>
         /// <returns>ResourceValueObserver</returns>
-        public ResourceValuesObserver ResourceValues(List<string> deviceIds, string resourcePath, FirstValueEnum immediacy = FirstValueEnum.OnRegistration)
+        public ResourceValuesObserver ResourceValues(List<string> deviceIds, string resourcePath, FirstValueEnum immediacy = FirstValueEnum.OnValueUpdate)
         {
             var observer = new ResourceValuesObserver(deviceIds, resourcePath);
             return ResourceValues(observer, immediacy);
@@ -136,7 +136,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         /// <param name="resourcePath">The resource path.</param>
         /// <param name="immediacy">The immediacy.</param>
         /// <returns>ResourceValueObserver</returns>
-        public ResourceValuesObserver ResourceValues(string deviceId, string resourcePath, FirstValueEnum immediacy = FirstValueEnum.OnRegistration)
+        public ResourceValuesObserver ResourceValues(string deviceId, string resourcePath, FirstValueEnum immediacy = FirstValueEnum.OnValueUpdate)
         {
             var observer = new ResourceValuesObserver(deviceId, resourcePath);
             return ResourceValues(observer, immediacy);
