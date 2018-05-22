@@ -66,11 +66,11 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiKeyInfoReq" /> class.
         /// </summary>
+        /// <param name="Groups">A list of group IDs this API key belongs to..</param>
+        /// <param name="Name">The display name for the API key, not longer than 100 characters. (required).</param>
         /// <param name="Owner">The owner of this API key..</param>
         /// <param name="Status">The status of the API key..</param>
-        /// <param name="Name">The display name for the API key, not longer than 100 characters. (required).</param>
-        /// <param name="Groups">A list of group IDs this API key belongs to..</param>
-        public ApiKeyInfoReq(string Owner = default(string), StatusEnum? Status = default(StatusEnum?), string Name = default(string), List<string> Groups = default(List<string>))
+        public ApiKeyInfoReq(List<string> Groups = default(List<string>), string Name = default(string), string Owner = default(string), StatusEnum? Status = default(StatusEnum?))
         {
             // to ensure "Name" is required (not null)
             if (Name == null)
@@ -81,18 +81,17 @@ namespace iam.Model
             {
                 this.Name = Name;
             }
+            this.Groups = Groups;
             this.Owner = Owner;
             this.Status = Status;
-            this.Groups = Groups;
         }
         
         /// <summary>
-        /// The owner of this API key.
+        /// A list of group IDs this API key belongs to.
         /// </summary>
-        /// <value>The owner of this API key.</value>
-        [DataMember(Name="owner", EmitDefaultValue=false)]
-        public string Owner { get; set; }
-
+        /// <value>A list of group IDs this API key belongs to.</value>
+        [DataMember(Name="groups", EmitDefaultValue=false)]
+        public List<string> Groups { get; set; }
 
         /// <summary>
         /// The display name for the API key, not longer than 100 characters.
@@ -102,11 +101,12 @@ namespace iam.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// A list of group IDs this API key belongs to.
+        /// The owner of this API key.
         /// </summary>
-        /// <value>A list of group IDs this API key belongs to.</value>
-        [DataMember(Name="groups", EmitDefaultValue=false)]
-        public List<string> Groups { get; set; }
+        /// <value>The owner of this API key.</value>
+        [DataMember(Name="owner", EmitDefaultValue=false)]
+        public string Owner { get; set; }
+
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,10 +116,10 @@ namespace iam.Model
         {
             var sb = new StringBuilder();
             sb.Append("class ApiKeyInfoReq {\n");
+            sb.Append("  Groups: ").Append(Groups).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Owner: ").Append(Owner).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Groups: ").Append(Groups).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -155,6 +155,16 @@ namespace iam.Model
 
             return 
                 (
+                    this.Groups == input.Groups ||
+                    this.Groups != null &&
+                    this.Groups.SequenceEqual(input.Groups)
+                ) && 
+                (
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
+                ) && 
+                (
                     this.Owner == input.Owner ||
                     (this.Owner != null &&
                     this.Owner.Equals(input.Owner))
@@ -163,16 +173,6 @@ namespace iam.Model
                     this.Status == input.Status ||
                     (this.Status != null &&
                     this.Status.Equals(input.Status))
-                ) && 
-                (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
-                ) && 
-                (
-                    this.Groups == input.Groups ||
-                    this.Groups != null &&
-                    this.Groups.SequenceEqual(input.Groups)
                 );
         }
 
@@ -185,14 +185,14 @@ namespace iam.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Groups != null)
+                    hashCode = hashCode * 59 + this.Groups.GetHashCode();
+                if (this.Name != null)
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
                 if (this.Owner != null)
                     hashCode = hashCode * 59 + this.Owner.GetHashCode();
                 if (this.Status != null)
                     hashCode = hashCode * 59 + this.Status.GetHashCode();
-                if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
-                if (this.Groups != null)
-                    hashCode = hashCode * 59 + this.Groups.GetHashCode();
                 return hashCode;
             }
         }

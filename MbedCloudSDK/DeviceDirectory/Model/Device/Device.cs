@@ -18,7 +18,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
     /// </summary>
     public class Device
     {
-        private DeviceDirectoryApi api;
+        private readonly DeviceDirectoryApi api;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Device"/> class.
@@ -258,19 +258,31 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// <returns>a device data post request</returns>
         public static DeviceDataPostRequest CreatePostRequest(Device device)
         {
+            DeviceDataPostRequest.MechanismEnum? mechanism = null;
+            if (device.Mechanism.HasValue)
+            {
+                mechanism = Utils.ParseEnum<DeviceDataPostRequest.MechanismEnum>(device.Mechanism);
+            }
+
+            DeviceDataPostRequest.StateEnum? state = null;
+            if (device.State.HasValue)
+            {
+                Utils.ParseEnum<DeviceDataPostRequest.StateEnum>(device.State);
+            }
+
             var deviceDataPostRequest = new DeviceDataPostRequest(DeviceKey: device.CertificateFingerprint, CaId: device.CertificateIssuerId)
             {
                 BootstrapExpirationDate = device.BootstrapCertificateExpiration.ToNullableUniversalTime(),
                 BootstrappedTimestamp = device.BootstrappedTimestamp.ToNullableUniversalTime(),
                 ConnectorExpirationDate = device.ConnectorCertificateExpiration.ToNullableUniversalTime(),
-                Mechanism = Utils.ParseEnum<DeviceDataPostRequest.MechanismEnum>(device.Mechanism),
+                Mechanism = mechanism,
                 DeviceClass = device.DeviceClass,
                 EndpointName = device.Alias,
                 AutoUpdate = device.AutoUpdate,
                 HostGateway = device.HostGateway,
                 DeviceExecutionMode = device.DeviceExecutionMode,
                 CustomAttributes = device.CustomAttributes,
-                State = Utils.ParseEnum<DeviceDataPostRequest.StateEnum>(device.State),
+                State = state,
                 SerialNumber = device.SerialNumber,
                 FirmwareChecksum = device.FirmwareChecksum,
                 VendorId = device.VendorId,

@@ -9,12 +9,14 @@ namespace MbedCloudSDK.Connect.Api
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using device_directory.Api;
     using device_directory.Client;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
     using MbedCloudSDK.Connect.Model.Notifications;
     using MbedCloudSDK.Connect.Model.Resource;
     using mds.Api;
+    using statistics.Api;
 
     /// <summary>
     /// Connect Api
@@ -37,18 +39,18 @@ namespace MbedCloudSDK.Connect.Api
     /// </summary>
     public partial class ConnectApi : BaseApi, IDisposable
     {
-        private Task notificationTask;
-        private CancellationTokenSource cancellationToken;
-        internal device_directory.Api.DefaultApi deviceDirectoryApi;
-        internal statistics.Api.StatisticsApi statisticsApi;
-        internal EndpointsApi endpointsApi;
-        internal statistics.Api.AccountApi accountApi;
-        internal SubscriptionsApi subscriptionsApi;
-        internal ResourcesApi resourcesApi;
+        private statistics.Api.AccountApi accountApi;
         private string auth;
-        internal NotificationsApi notificationsApi;
-        internal DeviceRequestsApi deviceRequestsApi;
+        private CancellationTokenSource cancellationToken;
+        private device_directory.Api.DefaultApi deviceDirectoryApi;
+        private DeviceRequestsApi deviceRequestsApi;
         private bool disposed;
+        private EndpointsApi endpointsApi;
+        private NotificationsApi notificationsApi;
+        private Task notificationTask;
+        private ResourcesApi resourcesApi;
+        private statistics.Api.StatisticsApi statisticsApi;
+        private SubscriptionsApi subscriptionsApi;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectApi"/> class.
@@ -63,9 +65,12 @@ namespace MbedCloudSDK.Connect.Api
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ConnectApi"/> class.
+        /// Initializes a new instance of the <see cref="ConnectApi" /> class.
         /// </summary>
-        /// <param name="config"><see cref="Config"/></param>
+        /// <param name="config"><see cref="Config" /></param>
+        /// <param name="statsConfig">The stats configuration.</param>
+        /// <param name="mdsConfig">The MDS configuration.</param>
+        /// <param name="deviceConfig">The device configuration.</param>
         internal ConnectApi(Config config, statistics.Client.Configuration statsConfig = null, mds.Client.Configuration mdsConfig = null, device_directory.Client.Configuration deviceConfig = null)
             : base(config)
         {
@@ -79,19 +84,83 @@ namespace MbedCloudSDK.Connect.Api
         public Dictionary<string, AsyncProducerConsumerCollection<string>> AsyncResponses { get; } = new Dictionary<string, AsyncProducerConsumerCollection<string>>();
 
         /// <summary>
-        /// Gets resource Subscriptions
-        /// </summary>
-        public Dictionary<string, Resource> ResourceSubscribtions { get; } = new Dictionary<string, Resource>();
-
-        /// <summary>
         /// Gets NotificationQueue
         /// </summary>
         public Dictionary<string, AsyncProducerConsumerCollection<string>> NotificationQueue { get; } = new Dictionary<string, AsyncProducerConsumerCollection<string>>();
 
         /// <summary>
+        /// Gets resource Subscriptions
+        /// </summary>
+        public Dictionary<string, Resource> ResourceSubscribtions { get; } = new Dictionary<string, Resource>();
+
+        /// <summary>
         /// Gets or sets the SubscribeManager
         /// </summary>
         public MbedCloudSDK.Connect.Api.Subscribe.Subscribe Subscribe { get; set; }
+
+        /// <summary>
+        /// Gets or sets the account API.
+        /// </summary>
+        /// <value>
+        /// The account API.
+        /// </value>
+        internal AccountApi AccountApi { get => accountApi; set => accountApi = value; }
+
+        /// <summary>
+        /// Gets or sets the device directory API.
+        /// </summary>
+        /// <value>
+        /// The device directory API.
+        /// </value>
+        internal DefaultApi DeviceDirectoryApi { get => deviceDirectoryApi; set => deviceDirectoryApi = value; }
+
+        /// <summary>
+        /// Gets or sets the device requests API.
+        /// </summary>
+        /// <value>
+        /// The device requests API.
+        /// </value>
+        internal DeviceRequestsApi DeviceRequestsApi { get => deviceRequestsApi; set => deviceRequestsApi = value; }
+
+        /// <summary>
+        /// Gets or sets the endpoints API.
+        /// </summary>
+        /// <value>
+        /// The endpoints API.
+        /// </value>
+        internal EndpointsApi EndpointsApi { get => endpointsApi; set => endpointsApi = value; }
+
+        /// <summary>
+        /// Gets or sets the notifications API.
+        /// </summary>
+        /// <value>
+        /// The notifications API.
+        /// </value>
+        internal NotificationsApi NotificationsApi { get => notificationsApi; set => notificationsApi = value; }
+
+        /// <summary>
+        /// Gets or sets the resources API.
+        /// </summary>
+        /// <value>
+        /// The resources API.
+        /// </value>
+        internal ResourcesApi ResourcesApi { get => resourcesApi; set => resourcesApi = value; }
+
+        /// <summary>
+        /// Gets or sets the statistics API.
+        /// </summary>
+        /// <value>
+        /// The statistics API.
+        /// </value>
+        internal StatisticsApi StatisticsApi { get => statisticsApi; set => statisticsApi = value; }
+
+        /// <summary>
+        /// Gets or sets the subscriptions API.
+        /// </summary>
+        /// <value>
+        /// The subscriptions API.
+        /// </value>
+        internal SubscriptionsApi SubscriptionsApi { get => subscriptionsApi; set => subscriptionsApi = value; }
 
         /// <summary>
         /// Get meta data for the last Mbed Cloud API call
@@ -101,14 +170,7 @@ namespace MbedCloudSDK.Connect.Api
         {
             var lastMds = mds.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault()?.Headers?.Where(m => m.Name == "Date")?.Select(d => DateTime.Parse(d.Value.ToString()))?.FirstOrDefault();
             var lastStats = statistics.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault()?.Headers?.Where(m => m.Name == "Date")?.Select(d => DateTime.Parse(d.Value.ToString()))?.FirstOrDefault();
-            if (Nullable.Compare(lastMds, lastStats) > 0)
-            {
-                return ApiMetadata.Map(mds.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
-            }
-            else
-            {
-                return ApiMetadata.Map(statistics.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
-            }
+            return Nullable.Compare(lastMds, lastStats) > 0 ? ApiMetadata.Map(mds.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault()) : ApiMetadata.Map(statistics.Client.Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
         }
 
         /// <summary>
@@ -149,10 +211,30 @@ namespace MbedCloudSDK.Connect.Api
             }
         }
 
-        private void SetUpApi(Config config, statistics.Client.Configuration statsConfig = null, mds.Client.Configuration mdsConfig = null, device_directory.Client.Configuration deviceConfig = null)
+        private static string AddLeadingSlash(string path)
         {
-            var dateFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
-            auth = string.Format("{0} {1}", config.AuthorizationPrefix, config.ApiKey);
+            if (!path.StartsWith("/", StringComparison.OrdinalIgnoreCase))
+            {
+                path = $"/{path}";
+            }
+
+            return path;
+        }
+
+        private static string RemoveLeadingSlash(string path)
+        {
+            if (path.StartsWith("/", StringComparison.OrdinalIgnoreCase))
+            {
+                path = path.Substring(1);
+            }
+
+            return path;
+        }
+
+        private void SetUpApi(Config config, statistics.Client.Configuration statsConfig = null, mds.Client.Configuration mdsConfig = null, Configuration deviceConfig = null)
+        {
+            const string dateFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
+            auth = $"{config.AuthorizationPrefix} {config.ApiKey}";
 
             if (statsConfig == null)
             {
@@ -193,34 +275,14 @@ namespace MbedCloudSDK.Connect.Api
                 deviceConfig.CreateApiClient();
             }
 
-            deviceDirectoryApi = new device_directory.Api.DefaultApi(deviceConfig);
-            statisticsApi = new statistics.Api.StatisticsApi(statsConfig);
-            subscriptionsApi = new SubscriptionsApi(mdsConfig);
-            resourcesApi = new ResourcesApi(mdsConfig);
-            endpointsApi = new EndpointsApi(mdsConfig);
-            accountApi = new statistics.Api.AccountApi(statsConfig);
-            notificationsApi = new NotificationsApi(mdsConfig);
-            deviceRequestsApi = new DeviceRequestsApi(mdsConfig);
-        }
-
-        private static string RemoveLeadingSlash(string path)
-        {
-            if (path.StartsWith("/", StringComparison.OrdinalIgnoreCase))
-            {
-                path = path.Substring(1);
-            }
-
-            return path;
-        }
-
-        private static string AddLeadingSlash(string path)
-        {
-            if (!path.StartsWith("/", StringComparison.OrdinalIgnoreCase))
-            {
-                path = $"/{path}";
-            }
-
-            return path;
+            DeviceDirectoryApi = new device_directory.Api.DefaultApi(deviceConfig);
+            StatisticsApi = new statistics.Api.StatisticsApi(statsConfig);
+            SubscriptionsApi = new SubscriptionsApi(mdsConfig);
+            ResourcesApi = new ResourcesApi(mdsConfig);
+            EndpointsApi = new EndpointsApi(mdsConfig);
+            AccountApi = new statistics.Api.AccountApi(statsConfig);
+            NotificationsApi = new NotificationsApi(mdsConfig);
+            DeviceRequestsApi = new DeviceRequestsApi(mdsConfig);
         }
     }
 }

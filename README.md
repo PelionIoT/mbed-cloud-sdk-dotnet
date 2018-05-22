@@ -1,4 +1,4 @@
-# Mbed Cloud SDK for .Net
+# Mbed Cloud SDK for .NET
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://spdx.org/licenses/Apache-2.0.html)
 [![CircleCI](https://circleci.com/gh/ARMmbed/mbed-cloud-sdk-dotnet.svg?style=shield&circle-token=68538baa897f82e3dcc38a48315e9ba24977b183)](https://circleci.com/gh/ARMmbed/mbed-cloud-sdk-dotnet)
@@ -67,18 +67,18 @@ namespace demo
 }
 ```
 
-Further examples can be viewed in the Examples/ConsoleExamples folder of this repo.
+Further examples can be found in the [Examples](Examples) folder of this repository.
 
 ## Documentation
 
-See full [documentation and API reference here](https://cloud.mbed.com/docs/v1.2/mbed-cloud-sdk-dotnet/index.html).
+See full [documentation and API reference here](https://cloud.mbed.com/docs/latest/mbed-cloud-sdk-dotnet/index.html).
 
 ## Contributing
 
-Mbed Cloud SDK for .Net is open source and we would like your help; there is a
+Mbed Cloud SDK for .NET is open source and we would like your help; there is a
 brief guide on how to get started in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Licence
 
-Mbed Cloud SDK for .Net is free-to-use and licensed under the **Apache License
-2.0**. See [LICENSE](LICENSE) file for more information.
+Mbed Cloud SDK for .NET is free-to-use and licensed under the **Apache License 2.0**.
+Please see [LICENSE](LICENSE) file for more information.

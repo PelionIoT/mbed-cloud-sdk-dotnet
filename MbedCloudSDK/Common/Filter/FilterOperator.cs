@@ -33,6 +33,18 @@ namespace MbedCloudSDK.Common.Filter
         /// Greater or Equal.
         /// </summary>
         [EnumMember(Value = "gte")]
-        GreaterOrEqual
+        GreaterOrEqual,
+
+        /// <summary>
+        /// Greater or Equal.
+        /// </summary>
+        [EnumMember(Value = "in")]
+        In,
+
+        /// <summary>
+        /// Greater or Equal.
+        /// </summary>
+        [EnumMember(Value = "nin")]
+        NotIn,
     }
 }

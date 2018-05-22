@@ -8,6 +8,7 @@ namespace MbedCloudSDK.AccountManagement.Api
     using System.Threading.Tasks;
     using MbedCloudSDK.AccountManagement.Model.User;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Filter;
     using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Exceptions;
     using static MbedCloudSDK.Common.Utils;
@@ -71,7 +72,7 @@ namespace MbedCloudSDK.AccountManagement.Api
 
             try
             {
-                var resp = adminApi.GetAllUsers(limit: options.Limit, order: options.Order, after: options.After, include: options.Include, statusEq: options.Filter.GetFirstValueByKey("status"));
+                var resp = adminApi.GetAllUsers(limit: options.Limit, order: options.Order, after: options.After, include: options.Include, statusEq: options.Filter.GetFirstValueByKey("status", FilterOperator.Equals), statusIn: options.Filter.GetFirstValueByKey("status", FilterOperator.In), statusNin: options.Filter.GetFirstValueByKey("status", FilterOperator.NotIn));
                 var respUsers = new ResponsePage<User>(resp.After, resp.HasMore, resp.Limit, null, resp.TotalCount);
                 foreach (var user in resp.Data)
                 {
@@ -135,7 +136,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                var user = await adminApi.GetUserAsync(userId);
+                var user = await AdminApi.GetUserAsync(userId);
                 return User.Map(user);
             }
             catch (iam.Client.ApiException e)
@@ -206,7 +207,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             try
             {
                 var req = user.CreatePostRequest();
-                return User.Map(await adminApi.CreateUserAsync(req));
+                return User.Map(await AdminApi.CreateUserAsync(req));
             }
             catch (iam.Client.ApiException e)
             {
@@ -276,7 +277,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             try
             {
                 var req = user.CreatePutRequest();
-                var userData = await adminApi.UpdateUserAsync(userId, req);
+                var userData = await AdminApi.UpdateUserAsync(userId, req);
                 return User.Map(userData);
             }
             catch (iam.Client.ApiException e)
@@ -331,7 +332,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                await adminApi.DeleteUserAsync(userId);
+                await AdminApi.DeleteUserAsync(userId);
             }
             catch (iam.Client.ApiException e)
             {

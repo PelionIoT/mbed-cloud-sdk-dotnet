@@ -5,6 +5,7 @@ namespace MbedCloudSDK.Connect.Model.Notifications
 {
     using System.Collections.Generic;
     using System.Linq;
+    using MbedCloudSDK.Common;
     using MbedCloudSDK.Connect.Api.Subscribe.Models;
     using Newtonsoft.Json;
 
@@ -106,5 +107,12 @@ namespace MbedCloudSDK.Connect.Model.Notifications
 
             return notificationMessage;
         }
+
+        /// <summary>
+        /// Returns the string presentation of the object.
+        /// </summary>
+        /// <returns>String presentation of the object.</returns>
+        public override string ToString()
+            => this.DebugDump();
     }
 }

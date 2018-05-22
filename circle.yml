@@ -3,6 +3,8 @@ general:
     - ~/docs
     - ~/reports
 machine:
+  python:
+    version: 3.6.2
   environment:
     PROJECT_TOP: ${HOME}/${CIRCLE_PROJECT_REPONAME}
     SDK_NAME: ${CIRCLE_PROJECT_REPONAME}
@@ -13,13 +15,14 @@ machine:
     UNITTEST_REPORT: ${SDK_REPORTS}/unittests.html
     INTTEST_REPORT: ${SDK_REPORTS}/inttests.html
     RAW_REPORT: ${SDK_REPORTS}/raw.txt
-    NUGET_NAME: Mbed.Cloud.SDK.1.2.8.nupkg
+    NUGET_NAME: Mbed.Cloud.SDK.1.2.9.nupkg
     ARTIFACTORY_URL: http://localhost:5000/artifactory/
     TESTRUNNER_DOCKER_IMAGE : 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
   services:
     - docker
 checkout:
   post:
+    # - python scripts/assert_news.py news/
     - git config --global user.name monty-bot
     - git config --global user.email monty-bot@arm.com
     - aws s3 sync s3://artifactory-store ${PROJECT_TOP}
@@ -50,6 +53,8 @@ dependencies:
     - npm install -g ansi-html-stream
 compile:
   pre:
+    - python3 scripts/tpip.py
+    - cp tpip.csv ${SDK_REPORTS}
     - python scripts/dvcs_version.py
     - pip install -U git+https://github.com/davidhyman/towncrier.git@config-project-name
     - cd scripts && towncrier --yes --name="" --version=$(python dvcs_version.py version)
@@ -67,12 +72,13 @@ test:
     - cat ${INTTEST_REPORT} | grep 'seconds ====' >> ${RAW_REPORT}
     - echo "finished"
   post:
+    - echo "Generating documentation"
+    - ./scripts/generate-docs.sh
     - docker run -d -p 5000:80 artifactory; sleep 10
 deployment:
   master:
     branch: master
     commands:
-      - ./scripts/generate-docs.sh
       - echo "Uploading to latest"
       - aws s3 sync --delete --cache-control max-age=3600 ${SDK_DOCS} s3://mbed-cloud-sdk-dotnet-dist/latest/docs
       - aws s3 sync --delete --cache-control max-age=3600 ${SDK_REPORTS} s3://mbed-cloud-sdk-dotnet-dist/latest/reports

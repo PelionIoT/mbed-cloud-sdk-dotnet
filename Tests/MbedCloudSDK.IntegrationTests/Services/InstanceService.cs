@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MbedCloudSDK.AccountManagement.Api;
+using MbedCloudSDK.Bootstrap.Api;
 using MbedCloudSDK.Certificates.Api;
 using MbedCloudSDK.Connect.Api;
 using MbedCloudSDK.DeviceDirectory.Api;
@@ -104,6 +105,8 @@ namespace MbedCloudSDK.IntegrationTests.Services
                         return GetMethods(typeof(UpdateApi));
                     case ModuleEnum.EnrollmentApi:
                         return GetMethods(typeof(EnrollmentApi));
+                    case ModuleEnum.BootstrapApi:
+                        return GetMethods(typeof(BootstrapApi));
                     default:
                         return Enumerable.Empty<SdkApi>().ToList();
                 }

@@ -30,11 +30,11 @@ namespace MbedCloudSDK.Certificates.Api
     /// </example>
     public class CertificatesApi : BaseApi
     {
-        internal DeveloperCertificateApi developerCertificateApi;
-        internal ServerCredentialsApi serverCredentialsApi;
-        internal AccountAdminApi iamAccountApi;
-        internal DeveloperApi developerApi;
         private string auth;
+        private DeveloperApi developerApi;
+        private DeveloperCertificateApi developerCertificateApi;
+        private AccountAdminApi iamAccountApi;
+        private ServerCredentialsApi serverCredentialsApi;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CertificatesApi"/> class.
@@ -44,7 +44,7 @@ namespace MbedCloudSDK.Certificates.Api
         public CertificatesApi(Config config)
             : base(config)
         {
-            auth = string.Format("{0} {1}", config.AuthorizationPrefix, config.ApiKey);
+            auth = $"{config.AuthorizationPrefix} {config.ApiKey}";
 
             SetUpApi(config);
 
@@ -56,10 +56,13 @@ namespace MbedCloudSDK.Certificates.Api
         /// Initalize certificates api
         /// </summary>
         /// <param name="config"><see cref="Config"/></param>
-        internal CertificatesApi(Config config, connector_ca.Client.Configuration connectorConfig = null, iam.Client.Configuration iamConfig = null, bool setCerts = false)
+        /// <param name="connectorConfig">connectorConfig</param>
+        /// <param name="iamConfig">iamConfig</param>
+        /// <param name="setCerts">setCerts</param>
+        internal CertificatesApi(Config config, Configuration connectorConfig = null, iam.Client.Configuration iamConfig = null, bool setCerts = false)
             : base(config)
         {
-            auth = string.Format("{0} {1}", config.AuthorizationPrefix, config.ApiKey);
+            auth = $"{config.AuthorizationPrefix} {config.ApiKey}";
 
             SetUpApi(config, connectorConfig, iamConfig);
 
@@ -69,50 +72,12 @@ namespace MbedCloudSDK.Certificates.Api
             }
         }
 
-        private void SetCerverCredentials(string auth)
-        {
-            var serverCredentials = serverCredentialsApi.GetAllServerCredentials(auth);
-            BootstrapServerCredentials = serverCredentials.Bootstrap;
-            Lmw2mServerCredentials = serverCredentials.Lwm2m;
-        }
-
-        private void SetUpApi(Config config, connector_ca.Client.Configuration connectorConfig = null, iam.Client.Configuration iamConfig = null)
-        {
-            if (connectorConfig == null)
-            {
-                connectorConfig = new connector_ca.Client.Configuration
-                {
-                    BasePath = config.Host,
-                    DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ",
-                    UserAgent = UserAgent,
-                };
-                connectorConfig.AddApiKey("Authorization", config.ApiKey);
-                connectorConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
-                connectorConfig.CreateApiClient();
-            }
-
-            if (iamConfig == null)
-            {
-                iamConfig = new iam.Client.Configuration
-                {
-                    BasePath = config.Host,
-                    DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ",
-                    UserAgent = UserAgent,
-                };
-                iamConfig.AddApiKey("Authorization", config.ApiKey);
-                iamConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
-                iamConfig.CreateApiClient();
-            }
-
-            developerCertificateApi = new DeveloperCertificateApi(connectorConfig);
-            serverCredentialsApi = new ServerCredentialsApi(connectorConfig);
-            iamAccountApi = new AccountAdminApi(iamConfig);
-            developerApi = new DeveloperApi(iamConfig);
-        }
-
         /// <summary>
         /// Gets Bootstrap server uri
         /// </summary>
+        /// <value>
+        /// The bootstrap server credentials.
+        /// </value>
         public connector_ca.Model.CredentialsResponseData BootstrapServerCredentials { get; private set; }
 
         /// <summary>
@@ -121,12 +86,229 @@ namespace MbedCloudSDK.Certificates.Api
         public connector_ca.Model.CredentialsResponseData Lmw2mServerCredentials { get; private set; }
 
         /// <summary>
+        /// Gets or sets the developer API.
+        /// </summary>
+        /// <value>
+        /// The developer API.
+        /// </value>
+        internal DeveloperApi DeveloperApi { get => developerApi; set => developerApi = value; }
+
+        /// <summary>
+        /// Gets or sets the developer certificate API.
+        /// </summary>
+        /// <value>
+        /// The developer certificate API.
+        /// </value>
+        internal DeveloperCertificateApi DeveloperCertificateApi { get => developerCertificateApi; set => developerCertificateApi = value; }
+
+        /// <summary>
+        /// Gets or sets the iam account API.
+        /// </summary>
+        /// <value>
+        /// The iam account API.
+        /// </value>
+        internal AccountAdminApi IamAccountApi { get => iamAccountApi; set => iamAccountApi = value; }
+
+        /// <summary>
+        /// Gets or sets the server credentials API.
+        /// </summary>
+        /// <value>
+        /// The server credentials API.
+        /// </value>
+        internal ServerCredentialsApi ServerCredentialsApi { get => serverCredentialsApi; set => serverCredentialsApi = value; }
+
+        /// <summary>
         /// Get meta data for the last Mbed Cloud API call
         /// </summary>
         /// <returns><see cref="ApiMetadata"/></returns>
         public static ApiMetadata GetLastApiMetadata()
         {
             return ApiMetadata.Map(Configuration.Default.ApiClient.LastApiResponse.LastOrDefault());
+        }
+
+        /// <summary>
+        /// Create a new Certificate.
+        /// </summary>
+        /// <param name="certificate"><see cref="Certificate"/> to be created.</param>
+        /// <param name="certificateData">X509.v3 trusted certificate in PEM or base64 encoded DER format. Null for developer certificate.</param>
+        /// <param name="signature">Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256. Null for developer certificate.</param>
+        /// <returns><see cref="Certificate"/></returns>
+        /// <example>
+        /// This sample shows how to call the <see cref="CertificatesApi.AddCertificate(Certificate, string, string)"/> method.
+        /// <code>
+        /// try {
+        ///     var certificate = new Certificate(certificateType: CertificateType.Bootstrap)
+        ///     {
+        ///         Name = "certificate",
+        ///         Description = "This is my certificate",
+        ///     };
+        ///     var newCertificate = api.AddCertificate(certificate, "-----BEGIN CERTIFICATE-----\nMIICFzCCAbygAwIBAgIQX ... EPSDKEF\n-----END CERTIFICATE-----", "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        ///     return newCertificate;
+        /// }
+        /// catch (CloudApiException) {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
+        public Certificate AddCertificate(Certificate certificate, string certificateData = null, string signature = null)
+        {
+            if (!certificate.Type.HasValue || certificate.Type == CertificateType.Developer)
+            {
+                throw new CloudApiException(400, "Value of Certificate Type must be bootstrap or lwm2m");
+            }
+
+            if (certificateData == null)
+            {
+                throw new CloudApiException(400, "certificateData is required when creating non developer certificate.");
+            }
+
+            if (certificate.EnrollmentMode.HasValue)
+            {
+                if (!certificate.EnrollmentMode.Value && string.IsNullOrEmpty(certificate.Signature))
+                {
+                    throw new CloudApiException(400, "If enrollment mode is false, signature is required");
+                }
+            }
+
+            var serviceEnum = Certificate.GetServiceEnum(certificate.Type.Value);
+            try
+            {
+                TrustedCertificateReq.StatusEnum? status = null;
+                if (certificate.Status.HasValue)
+                {
+                    status = ParseEnum<TrustedCertificateReq.StatusEnum>(certificate.Status);
+                }
+
+                var resp = IamAccountApi.AddCertificate(new TrustedCertificateReq(
+                    Certificate: certificateData,
+                    Status: status,
+                    Name: certificate.Name,
+                    Service: serviceEnum,
+                    Signature: signature,
+                    Description: certificate.Description,
+                    EnrollmentMode: certificate.EnrollmentMode));
+                return Certificate.MapTrustedCert(resp, api: this);
+            }
+            catch (iam.Client.ApiException ex)
+            {
+                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
+            }
+        }
+
+        /// <summary>
+        /// Add Developer Certificate
+        /// </summary>
+        /// <example>
+        /// This sample shows how to call the <see cref="CertificatesApi.AddDeveloperCertificate(Certificate)"/> method.
+        /// <code>
+        /// try {
+        ///     var certificate = new Certificate
+        ///     {
+        ///         Name = "certificate",
+        ///         Description = "This is my certificate",
+        ///     };
+        ///     var newCertificate = api.AddDeveloperCertificate(certificate);
+        ///     return newCertificate;
+        /// }
+        /// catch (CloudApiException) {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <param name="certificate"><see cref="Certificate"/></param>
+        /// <returns><see cref="Certificate"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
+        public Certificate AddDeveloperCertificate(Certificate certificate)
+        {
+            var body = new connector_ca.Model.DeveloperCertificateRequestData(Name: certificate.Name, Description: certificate.Description);
+            try
+            {
+                var response = DeveloperCertificateApi.CreateDeveloperCertificate(auth, body);
+                return Certificate.MapDeveloperCert(response);
+            }
+            catch (connector_ca.Client.ApiException ex)
+            {
+                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
+            }
+        }
+
+        /// <summary>
+        /// Delete certificate.
+        /// </summary>
+        /// <param name="certificateId"><see cref="Certificate.Id"/></param>
+        /// <example>
+        /// This sample shows how to call the <see cref="CertificatesApi.DeleteCertificate(string)"/> method.
+        /// <code>
+        /// try
+        /// {
+        ///     certificatesApi.DeleteCertificate("015c64f76a7b02420a01230a0000000");
+        /// }
+        /// catch (CloudApiException) {
+        ///     Throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
+        public void DeleteCertificate(string certificateId)
+        {
+            try
+            {
+                DeveloperApi.DeleteCertificate(certificateId);
+            }
+            catch (iam.Client.ApiException ex)
+            {
+                HandleNotFound<string, iam.Client.ApiException>(ex);
+            }
+        }
+
+        /// <summary>
+        /// Get certificate by Id.
+        /// </summary>
+        /// <example>
+        /// This example shows how to use the <see cref="CertificatesApi.GetCertificate(string)"/> method.
+        /// <code>
+        /// try
+        /// {
+        ///     var certificate = certificatesApi.GetCertificate("015c64f76a7b02420a01230a0000000");
+        ///     return certificate;
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <param name="certificateId"><see cref="Certificate.Id"/></param>
+        /// <returns><see cref="Certificate"/></returns>
+        /// <exception cref="CloudApiException">CloudApiException</exception>
+        public Certificate GetCertificate(string certificateId)
+        {
+            Certificate trustedCert = null;
+            try
+            {
+                var response = DeveloperApi.GetCertificate(certificateId);
+                trustedCert = Certificate.MapTrustedCert(response, null, this);
+            }
+            catch (iam.Client.ApiException ex)
+            {
+                HandleNotFound<Certificate, iam.Client.ApiException>(ex);
+            }
+
+            if (trustedCert?.Type == CertificateType.Developer)
+            {
+                try
+                {
+                    var devResponse = DeveloperCertificateApi.GetDeveloperCertificate(trustedCert.Id, auth);
+                    trustedCert = Certificate.MapDeveloperCert(devResponse, trustedCert);
+                }
+                catch (connector_ca.Client.ApiException ex)
+                {
+                    HandleNotFound<Certificate, iam.Client.ApiException>(ex);
+                }
+            }
+
+            return trustedCert;
         }
 
         /// <summary>
@@ -192,213 +374,6 @@ namespace MbedCloudSDK.Certificates.Api
             }
         }
 
-        private ResponsePage<Certificate> ListCertificatesFunc(QueryOptions options = null)
-        {
-            if (options == null)
-            {
-                options = new QueryOptions();
-            }
-
-            try
-            {
-                var type = options.Filter.GetFirstValueByKey("type") ?? options.Filter.GetFirstValueByKey("event_type");
-                var serviceEq = (type == "developer") ? "bootstrap" : type;
-                var executionMode = (type == "developer") ? new int?(1) : null;
-                var expiredParsed = int.TryParse(options.Filter.GetFirstValueByKey("expires"), NumberStyles.None, null, out int expires);
-                var resp = developerApi.GetAllCertificates(limit: options.Limit, after: options.After, order: options.Order, include: options.Include, serviceEq: serviceEq, expireEq: expiredParsed ? new int?(expires) : null, deviceExecutionModeEq: executionMode, ownerEq: options.Filter.GetFirstValueByKey("owner_id"));
-                var respCertificates = new ResponsePage<Certificate>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
-                foreach (var certificate in resp.Data)
-                {
-                    respCertificates.Data.Add(Certificate.MapTrustedCert(certificate));
-                }
-
-                return respCertificates;
-            }
-            catch (iam.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        /// <summary>
-        /// Get certificate by Id.
-        /// </summary>
-        /// <example>
-        /// This example shows how to use the <see cref="CertificatesApi.GetCertificate(string)"/> method.
-        /// <code>
-        /// try
-        /// {
-        ///     var certificate = certificatesApi.GetCertificate("015c64f76a7b02420a01230a0000000");
-        ///     return certificate;
-        /// }
-        /// catch (CloudApiException)
-        /// {
-        ///     throw;
-        /// }
-        /// </code>
-        /// </example>
-        /// <param name="certificateId"><see cref="Certificate.Id"/></param>
-        /// <returns><see cref="Certificate"/></returns>
-        /// <exception cref="CloudApiException">CloudApiException</exception>
-        public Certificate GetCertificate(string certificateId)
-        {
-                Certificate trustedCert = null;
-                try
-                {
-                    var response = developerApi.GetCertificate(certificateId);
-                    trustedCert = Certificate.MapTrustedCert(response, null, this);
-                }
-                catch (iam.Client.ApiException ex)
-                {
-                    HandleNotFound<Certificate, iam.Client.ApiException>(ex);
-                }
-
-                if (trustedCert?.Type == CertificateType.Developer)
-                {
-                    try
-                    {
-                        var devResponse = developerCertificateApi.GetDeveloperCertificate(trustedCert.Id, auth);
-                        trustedCert = Certificate.MapDeveloperCert(devResponse, trustedCert);
-                    }
-                    catch (connector_ca.Client.ApiException ex)
-                    {
-                        HandleNotFound<Certificate, iam.Client.ApiException>(ex);
-                    }
-                }
-
-                return trustedCert;
-        }
-
-        /// <summary>
-        /// Create a new Certificate.
-        /// </summary>
-        /// <param name="certificate"><see cref="Certificate"/> to be created.</param>
-        /// <param name="certificateData">X509.v3 trusted certificate in PEM or base64 encoded DER format. Null for developer certificate.</param>
-        /// <param name="signature">Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256. Null for developer certificate.</param>
-        /// <returns><see cref="Certificate"/></returns>
-        /// <example>
-        /// This sample shows how to call the <see cref="CertificatesApi.AddCertificate(Certificate, string, string)"/> method.
-        /// <code>
-        /// try {
-        ///     var certificate = new Certificate(certificateType: CertificateType.Bootstrap)
-        ///     {
-        ///         Name = "certificate",
-        ///         Description = "This is my certificate",
-        ///     };
-        ///     var newCertificate = api.AddCertificate(certificate, "-----BEGIN CERTIFICATE-----\nMIICFzCCAbygAwIBAgIQX ... EPSDKEF\n-----END CERTIFICATE-----", "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-        ///     return newCertificate;
-        /// }
-        /// catch (CloudApiException) {
-        ///     throw;
-        /// }
-        /// </code>
-        /// </example>
-        /// <exception cref="CloudApiException">CloudApiException</exception>
-        public Certificate AddCertificate(Certificate certificate, string certificateData = null, string signature = null)
-        {
-            if (!certificate.Type.HasValue || certificate.Type == CertificateType.Developer)
-            {
-                throw new CloudApiException(400, "Value of Certificate Type must be bootstrap or lwm2m");
-            }
-
-            if (certificateData == null)
-            {
-                throw new CloudApiException(400, "certificateData is required when creating non developer certificate.");
-            }
-
-            if (certificate.EnrollmentMode.HasValue)
-            {
-                if (!certificate.EnrollmentMode.Value && string.IsNullOrEmpty(certificate.Signature))
-                {
-                    throw new CloudApiException(400, "If enrollment mode is false, signature is required");
-                }
-            }
-
-            var serviceEnum = Certificate.GetServiceEnum(certificate.Type.Value);
-            try
-            {
-                var resp = iamAccountApi.AddCertificate(new TrustedCertificateReq(
-                    Certificate: certificateData,
-                    Status: Utils.ParseEnum<TrustedCertificateReq.StatusEnum>(certificate.Status),
-                    Name: certificate.Name,
-                    Service: serviceEnum,
-                    Signature: signature,
-                    Description: certificate.Description,
-                    EnrollmentMode: certificate.EnrollmentMode));
-                return Certificate.MapTrustedCert(resp, api: this);
-            }
-            catch (iam.Client.ApiException ex)
-            {
-                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
-            }
-        }
-
-        /// <summary>
-        /// Add Developer Certificate
-        /// </summary>
-        /// <example>
-        /// This sample shows how to call the <see cref="CertificatesApi.AddDeveloperCertificate(Certificate)"/> method.
-        /// <code>
-        /// try {
-        ///     var certificate = new Certificate
-        ///     {
-        ///         Name = "certificate",
-        ///         Description = "This is my certificate",
-        ///     };
-        ///     var newCertificate = api.AddDeveloperCertificate(certificate);
-        ///     return newCertificate;
-        /// }
-        /// catch (CloudApiException) {
-        ///     throw;
-        /// }
-        /// </code>
-        /// </example>
-        /// <param name="certificate"><see cref="Certificate"/></param>
-        /// <returns><see cref="Certificate"/></returns>
-        /// <exception cref="CloudApiException">CloudApiException</exception>
-        public Certificate AddDeveloperCertificate(Certificate certificate)
-        {
-            var body = new connector_ca.Model.DeveloperCertificateRequestData(Name: certificate.Name, Description: certificate.Description);
-            try
-            {
-                var response = developerCertificateApi.CreateDeveloperCertificate(auth, body);
-                return Certificate.MapDeveloperCert(response);
-            }
-            catch (connector_ca.Client.ApiException ex)
-            {
-                throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
-            }
-        }
-
-        /// <summary>
-        /// Delete certificate.
-        /// </summary>
-        /// <param name="certificateId"><see cref="Certificate.Id"/></param>
-        /// <example>
-        /// This sample shows how to call the <see cref="CertificatesApi.DeleteCertificate(string)"/> method.
-        /// <code>
-        /// try
-        /// {
-        ///     certificatesApi.DeleteCertificate("015c64f76a7b02420a01230a0000000");
-        /// }
-        /// catch (CloudApiException) {
-        ///     Throw;
-        /// }
-        /// </code>
-        /// </example>
-        /// <exception cref="CloudApiException">CloudApiException</exception>
-        public void DeleteCertificate(string certificateId)
-        {
-            try
-            {
-                developerApi.DeleteCertificate(certificateId);
-            }
-            catch (iam.Client.ApiException ex)
-            {
-                HandleNotFound<string, iam.Client.ApiException>(ex);
-            }
-        }
-
         /// <summary>
         /// Update Certificate.
         /// </summary>
@@ -445,13 +420,82 @@ namespace MbedCloudSDK.Certificates.Api
 
             try
             {
-                var resp = developerApi.UpdateCertificate(certificateId, req);
+                var resp = DeveloperApi.UpdateCertificate(certificateId, req);
                 return GetCertificate(resp.Id);
             }
             catch (iam.Client.ApiException ex)
             {
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorCode);
             }
+        }
+
+        private ResponsePage<Certificate> ListCertificatesFunc(QueryOptions options = null)
+        {
+            if (options == null)
+            {
+                options = new QueryOptions();
+            }
+
+            try
+            {
+                var type = options.Filter.GetFirstValueByKey("type") ?? options.Filter.GetFirstValueByKey("event_type");
+                var serviceEq = (type == "developer") ? "bootstrap" : type;
+                var executionMode = (type == "developer") ? new int?(1) : null;
+                var expiredParsed = int.TryParse(options.Filter.GetFirstValueByKey("expires"), NumberStyles.None, null, out int expires);
+                var resp = DeveloperApi.GetAllCertificates(limit: options.Limit, after: options.After, order: options.Order, include: options.Include, serviceEq: serviceEq, expireEq: expiredParsed ? new int?(expires) : null, deviceExecutionModeEq: executionMode, ownerEq: options.Filter.GetFirstValueByKey("owner_id"));
+                var respCertificates = new ResponsePage<Certificate>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
+                foreach (var certificate in resp.Data)
+                {
+                    respCertificates.Data.Add(Certificate.MapTrustedCert(certificate));
+                }
+
+                return respCertificates;
+            }
+            catch (iam.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        private void SetCerverCredentials(string auth)
+        {
+            var serverCredentials = ServerCredentialsApi.GetAllServerCredentials(auth);
+            BootstrapServerCredentials = serverCredentials.Bootstrap;
+            Lmw2mServerCredentials = serverCredentials.Lwm2m;
+        }
+
+        private void SetUpApi(Config config, connector_ca.Client.Configuration connectorConfig = null, iam.Client.Configuration iamConfig = null)
+        {
+            if (connectorConfig == null)
+            {
+                connectorConfig = new connector_ca.Client.Configuration
+                {
+                    BasePath = config.Host,
+                    DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ",
+                    UserAgent = UserAgent,
+                };
+                connectorConfig.AddApiKey("Authorization", config.ApiKey);
+                connectorConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
+                connectorConfig.CreateApiClient();
+            }
+
+            if (iamConfig == null)
+            {
+                iamConfig = new iam.Client.Configuration
+                {
+                    BasePath = config.Host,
+                    DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ",
+                    UserAgent = UserAgent,
+                };
+                iamConfig.AddApiKey("Authorization", config.ApiKey);
+                iamConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
+                iamConfig.CreateApiClient();
+            }
+
+            DeveloperCertificateApi = new DeveloperCertificateApi(connectorConfig);
+            ServerCredentialsApi = new ServerCredentialsApi(connectorConfig);
+            IamAccountApi = new AccountAdminApi(iamConfig);
+            DeveloperApi = new DeveloperApi(iamConfig);
         }
     }
 }

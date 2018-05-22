@@ -76,6 +76,10 @@ namespace MbedCloudSDK.Common.Filter
                     return "__lte";
                 case FilterOperator.GreaterOrEqual:
                     return "__gte";
+                case FilterOperator.In:
+                    return "__in";
+                case FilterOperator.NotIn:
+                    return "__nin";
                 default:
                     return string.Empty;
             }

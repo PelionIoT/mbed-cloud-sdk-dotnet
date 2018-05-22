@@ -1,23 +1,18 @@
-// <copyright file="Subscribe.cs" company="Arm">
+// <copyright file="Subscribe.DeviceEvents.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
 namespace MbedCloudSDK.Connect.Api.Subscribe
 {
     using System.Collections.Generic;
-    using System.Linq;
-    using MbedCloudSDK.Common;
     using MbedCloudSDK.Connect.Api;
-    using MbedCloudSDK.Connect.Api.Subscribe.Models;
-    using MbedCloudSDK.Connect.Api.Subscribe.Observers;
     using MbedCloudSDK.Connect.Api.Subscribe.Observers.DeviceEvent;
     using MbedCloudSDK.Connect.Model.Notifications;
-    using MbedCloudSDK.Exceptions;
 
     /// <summary>
     /// Subscribe
     /// </summary>
-    public class Subscribe
+    public partial class Subscribe
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Subscribe"/> class.
@@ -34,7 +29,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         /// <value>
         /// The connect API.
         /// </value>
-        public ConnectApi ConnectApi { get; }
+        internal ConnectApi ConnectApi { get; }
 
         /// <summary>
         /// Gets or sets the device state observers.
@@ -42,7 +37,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         /// <value>
         /// The device state observers.
         /// </value>
-        public List<DeviceEventObserver> DeviceEventObservers { get; set; } = new List<DeviceEventObserver>();
+        internal List<DeviceEventObserver> DeviceEventObservers { get; set; } = new List<DeviceEventObserver>();
 
         /// <summary>
         /// Devices the state.
@@ -52,24 +47,10 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         {
             var observer = new DeviceEventObserver();
             DeviceEventObservers.Add(observer);
-            if (ConnectApi != null)
-            {
-                if (!ConnectApi.IsNotificationsStarted())
-                {
-                    ConnectApi.StartNotifications();
-                }
-            }
+            observer.OnUnsubscribed += (id) => UnsubscribeDeviceEvents(id);
+            StartNotifications();
 
             return observer;
-        }
-
-        /// <summary>
-        /// Lists all.
-        /// </summary>
-        /// <returns>List of observers</returns>
-        public List<DeviceEventObserver> ListAll()
-        {
-            return DeviceEventObservers;
         }
 
         /// <summary>
@@ -82,6 +63,22 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
             {
                 o.Notify(data);
             });
+        }
+
+        private void UnsubscribeDeviceEvents(string id)
+        {
+            DeviceEventObservers.RemoveAll(d => d.Id == id);
+        }
+
+        private void StartNotifications()
+        {
+            if (ConnectApi != null)
+            {
+                if (!ConnectApi.IsNotificationsStarted())
+                {
+                    ConnectApi.StartNotifications();
+                }
+            }
         }
     }
 }

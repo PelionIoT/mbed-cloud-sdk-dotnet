@@ -30,11 +30,29 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
         public long? DatafileSize { get; private set; }
 
         /// <summary>
+        /// Gets or sets the full path of the data file.
+        /// </summary>
+        /// <value>
+        /// The full path of the data file. Default value for this property is <see langword="null"/>
+        /// but it is not optional and a valid file path must be specified.
+        /// </value>
+        public string DataFile { get; set; }
+
+        /// <summary>
         /// Gets the URL of key table of pre-shared keys for devices.
         /// </summary>
         /// <value>The URL of key table of pre-shared keys for devices.</value>
         [JsonProperty]
-        public string KeyTable { get; private set; }
+        public string KeyTableFile { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the full path of the key table file.
+        /// </summary>
+        /// <value>
+        /// The full path of the key table file. Default value for this property is <see langword="null"/>,
+        /// if left unspecified then no key table is uploaded.
+        /// </value>
+        public string KeyTableUrl { get; set; }
 
         /// <summary>
         /// Gets or sets the description of the object.
@@ -93,7 +111,7 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
                 CreatedAt = data.CreatedAt.ToNullableUniversalTime(),
                 Url = data.Datafile,
                 DatafileSize = data.DatafileSize,
-                KeyTable = data.KeyTable,
+                KeyTableUrl = data.KeyTable,
                 Description = data.Description,
                 DeviceClass = data.DeviceClass,
                 Id = data.Id,

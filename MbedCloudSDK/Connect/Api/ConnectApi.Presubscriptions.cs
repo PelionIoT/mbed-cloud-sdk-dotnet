@@ -47,13 +47,13 @@ namespace MbedCloudSDK.Connect.Api
             var presubscriptionArray = new mds.Model.PresubscriptionArray();
             foreach (var presubscription in presubscriptions)
             {
-                var updatedPresubscription = new mds.Model.Presubscription(presubscription.DeviceId, presubscription.DeviceType, presubscription.ResourcePaths);
+                var updatedPresubscription = new mds.Model.Presubscription(presubscription.DeviceId, presubscription.DeviceType, presubscription.ResourcePaths.ToList());
                 presubscriptionArray.Add(updatedPresubscription);
             }
 
             try
             {
-                subscriptionsApi.V2SubscriptionsPut(presubscriptionArray);
+                SubscriptionsApi.UpdatePreSubscriptions(presubscriptionArray);
             }
             catch (mds.Client.ApiException ex)
             {
@@ -87,7 +87,7 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                return subscriptionsApi.V2SubscriptionsGet().Select(p => Presubscription.Map(p)).ToArray();
+                return SubscriptionsApi.GetPreSubscriptions()?.Select(p => Presubscription.Map(p))?.ToArray();
             }
             catch (mds.Client.ApiException ex)
             {
@@ -115,7 +115,7 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                subscriptionsApi.V2SubscriptionsPut(new mds.Model.PresubscriptionArray());
+                SubscriptionsApi.DeletePreSubscriptions();
             }
             catch (mds.Client.ApiException ex)
             {

@@ -39,11 +39,12 @@ namespace MbedCloudSDK.Connect.Api
         /// <exception cref="CloudApiException">CloudApiException</exception>
         public Resource AddResourceSubscription(string deviceId, string resourcePath)
         {
+            Console.WriteLine($"Adding subscription for {deviceId} at path {resourcePath}");
             try
             {
                 StartNotifications();
                 var fixedPath = RemoveLeadingSlash(resourcePath);
-                subscriptionsApi.V2SubscriptionsDeviceIdResourcePathPut(deviceId, fixedPath);
+                SubscriptionsApi.AddResourceSubscription(deviceId, fixedPath);
                 var subscribePath = deviceId + resourcePath;
                 var resource = new Resource(deviceId, null, this);
                 if (!ResourceSubscribtions.ContainsKey(subscribePath))
@@ -80,7 +81,7 @@ namespace MbedCloudSDK.Connect.Api
             try
             {
                 var fixedPath = RemoveLeadingSlash(resourcePath);
-                subscriptionsApi.V2SubscriptionsDeviceIdResourcePathGet(deviceId, fixedPath);
+                SubscriptionsApi.CheckResourceSubscription(deviceId, fixedPath);
                 return true;
             }
             catch (mds.Client.ApiException)
@@ -112,7 +113,7 @@ namespace MbedCloudSDK.Connect.Api
             try
             {
                 var fixedPath = RemoveLeadingSlash(resourcePath);
-                subscriptionsApi.V2SubscriptionsDeviceIdResourcePathDelete(deviceId, fixedPath);
+                SubscriptionsApi.DeleteResourceSubscription(deviceId, fixedPath);
                 var subscribePath = deviceId + resourcePath;
                 ResourceSubscribtions.Remove(subscribePath);
             }

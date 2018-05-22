@@ -15,6 +15,7 @@ namespace MbedCloudSDK.IntegrationTests.Models
         StubAPI,
         UpdateApi,
         EnrollmentApi,
+        BootstrapApi,
     }
 
     public class ModuleEnumHelpers
@@ -27,6 +28,7 @@ namespace MbedCloudSDK.IntegrationTests.Models
                 {"enrollment", ModuleEnum.EnrollmentApi},
                 {"test_stub", ModuleEnum.StubAPI},
                 {"update", ModuleEnum.UpdateApi},
+                {"bootstrap", ModuleEnum.BootstrapApi},
             };
         public static ModuleEnum Map(string value)
         {

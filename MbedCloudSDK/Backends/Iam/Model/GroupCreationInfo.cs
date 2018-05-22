@@ -39,9 +39,9 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="GroupCreationInfo" /> class.
         /// </summary>
-        /// <param name="Name">The group name, not longer than 100 characters. (required).</param>
         /// <param name="Members">The members of the group as arrays of user and API key UUIDs..</param>
-        public GroupCreationInfo(string Name = default(string), SubjectList Members = default(SubjectList))
+        /// <param name="Name">The group name, not longer than 100 characters. (required).</param>
+        public GroupCreationInfo(SubjectList Members = default(SubjectList), string Name = default(string))
         {
             // to ensure "Name" is required (not null)
             if (Name == null)
@@ -56,18 +56,18 @@ namespace iam.Model
         }
         
         /// <summary>
-        /// The group name, not longer than 100 characters.
-        /// </summary>
-        /// <value>The group name, not longer than 100 characters.</value>
-        [DataMember(Name="name", EmitDefaultValue=false)]
-        public string Name { get; set; }
-
-        /// <summary>
         /// The members of the group as arrays of user and API key UUIDs.
         /// </summary>
         /// <value>The members of the group as arrays of user and API key UUIDs.</value>
         [DataMember(Name="members", EmitDefaultValue=false)]
         public SubjectList Members { get; set; }
+
+        /// <summary>
+        /// The group name, not longer than 100 characters.
+        /// </summary>
+        /// <value>The group name, not longer than 100 characters.</value>
+        [DataMember(Name="name", EmitDefaultValue=false)]
+        public string Name { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -77,8 +77,8 @@ namespace iam.Model
         {
             var sb = new StringBuilder();
             sb.Append("class GroupCreationInfo {\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Members: ").Append(Members).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -114,14 +114,14 @@ namespace iam.Model
 
             return 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
-                ) && 
-                (
                     this.Members == input.Members ||
                     (this.Members != null &&
                     this.Members.Equals(input.Members))
+                ) && 
+                (
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
                 );
         }
 
@@ -134,10 +134,10 @@ namespace iam.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
                 if (this.Members != null)
                     hashCode = hashCode * 59 + this.Members.GetHashCode();
+                if (this.Name != null)
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
                 return hashCode;
             }
         }

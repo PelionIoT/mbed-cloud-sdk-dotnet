@@ -29,7 +29,7 @@ namespace iam.Api
         /// Add API key to a list of groups.
         /// </summary>
         /// <remarks>
-        /// An endpoint for adding API key to groups.
+        /// An endpoint for adding API key to groups.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be added to the group.</param>
@@ -41,7 +41,7 @@ namespace iam.Api
         /// Add API key to a list of groups.
         /// </summary>
         /// <remarks>
-        /// An endpoint for adding API key to groups.
+        /// An endpoint for adding API key to groups.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be added to the group.</param>
@@ -52,7 +52,7 @@ namespace iam.Api
         /// Upload a new trusted certificate.
         /// </summary>
         /// <remarks>
-        /// An endpoint for uploading new trusted certificates.
+        /// An endpoint for uploading new trusted certificates.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/trusted-certificates -d {\&quot;name\&quot;: \&quot;myCert1\&quot;, \&quot;description\&quot;: \&quot;very important cert\&quot;, \&quot;certificate\&quot;: \&quot;certificate_data\&quot;, \&quot;service\&quot;: \&quot;lwm2m\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A trusted certificate object with attributes.</param>
@@ -63,7 +63,7 @@ namespace iam.Api
         /// Upload a new trusted certificate.
         /// </summary>
         /// <remarks>
-        /// An endpoint for uploading new trusted certificates.
+        /// An endpoint for uploading new trusted certificates.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/trusted-certificates -d {\&quot;name\&quot;: \&quot;myCert1\&quot;, \&quot;description\&quot;: \&quot;very important cert\&quot;, \&quot;certificate\&quot;: \&quot;certificate_data\&quot;, \&quot;service\&quot;: \&quot;lwm2m\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A trusted certificate object with attributes.</param>
@@ -73,7 +73,7 @@ namespace iam.Api
         /// Add members to a group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for adding users and API keys to groups.
+        /// An endpoint for adding users and API keys to a group.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -d &#39;{\&quot;users\&quot;: [0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be updated.</param>
@@ -85,7 +85,7 @@ namespace iam.Api
         /// Add members to a group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for adding users and API keys to groups.
+        /// An endpoint for adding users and API keys to a group.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -d &#39;{\&quot;users\&quot;: [0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be updated.</param>
@@ -96,7 +96,7 @@ namespace iam.Api
         /// Add user to a list of groups.
         /// </summary>
         /// <remarks>
-        /// An endpoint for adding user to groups.
+        /// An endpoint for adding user to groups.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/users/{user-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be added to the group.</param>
@@ -108,7 +108,7 @@ namespace iam.Api
         /// Add user to a list of groups.
         /// </summary>
         /// <remarks>
-        /// An endpoint for adding user to groups.
+        /// An endpoint for adding user to groups.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/users/{user-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be added to the group.</param>
@@ -119,7 +119,7 @@ namespace iam.Api
         /// Create a new group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for creating a new group.
+        /// An endpoint for creating a new group.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/policy-groups -d &#39;{\&quot;name\&quot;: \&quot;MyGroup1\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Details of the group to be created.</param>
@@ -130,7 +130,7 @@ namespace iam.Api
         /// Create a new group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for creating a new group.
+        /// An endpoint for creating a new group.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/policy-groups -d &#39;{\&quot;name\&quot;: \&quot;MyGroup1\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Details of the group to be created.</param>
@@ -140,7 +140,7 @@ namespace iam.Api
         /// Create a new user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.
+        /// An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/users?action&#x3D;invite -d {\&quot;email\&quot;: \&quot;myemail@company.com\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A user object with attributes.</param>
@@ -152,7 +152,7 @@ namespace iam.Api
         /// Create a new user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.
+        /// An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/users?action&#x3D;invite -d {\&quot;email\&quot;: \&quot;myemail@company.com\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A user object with attributes.</param>
@@ -163,7 +163,7 @@ namespace iam.Api
         /// Delete a group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for deleting a group.
+        /// An endpoint for deleting a group.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be deleted.</param>
@@ -174,7 +174,7 @@ namespace iam.Api
         /// Delete a group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for deleting a group.
+        /// An endpoint for deleting a group.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be deleted.</param>
@@ -184,7 +184,7 @@ namespace iam.Api
         /// Delete a user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for deleting a user.
+        /// An endpoint for deleting a user.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
@@ -195,7 +195,7 @@ namespace iam.Api
         /// Delete a user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for deleting a user.
+        /// An endpoint for deleting a user.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
@@ -205,7 +205,7 @@ namespace iam.Api
         /// Get the details of all users.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving the details of all users.
+        /// An endpoint for retrieving the details of all users.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -214,14 +214,16 @@ namespace iam.Api
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="emailEq">Filter for email address (optional)</param>
         /// <param name="statusEq">Filter for status, for example active or reset (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>UserInfoRespList</returns>
-        UserInfoRespList GetAllUsers (int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null);
+        UserInfoRespList GetAllUsers (int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null, string statusIn = null, string statusNin = null);
 
         /// <summary>
         /// Get the details of all users.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving the details of all users.
+        /// An endpoint for retrieving the details of all users.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -230,13 +232,15 @@ namespace iam.Api
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="emailEq">Filter for email address (optional)</param>
         /// <param name="statusEq">Filter for status, for example active or reset (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>ApiResponse of UserInfoRespList</returns>
-        ApiResponse<UserInfoRespList> GetAllUsersWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null);
+        ApiResponse<UserInfoRespList> GetAllUsersWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null, string statusIn = null, string statusNin = null);
         /// <summary>
         /// Get groups of the API key.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving groups of the API key.
+        /// An endpoint for retrieving groups of the API key.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id}/groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key whose details are retrieved.</param>
@@ -251,7 +255,7 @@ namespace iam.Api
         /// Get groups of the API key.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving groups of the API key.
+        /// An endpoint for retrieving groups of the API key.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id}/groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key whose details are retrieved.</param>
@@ -265,7 +269,7 @@ namespace iam.Api
         /// Get groups of the user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving groups of the user.
+        /// An endpoint for retrieving groups of the user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/{user-id}/groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are retrieved.</param>
@@ -280,7 +284,7 @@ namespace iam.Api
         /// Get groups of the user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving groups of the user.
+        /// An endpoint for retrieving groups of the user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/{user-id}/groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are retrieved.</param>
@@ -294,7 +298,7 @@ namespace iam.Api
         /// Details of a user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving the details of a user.
+        /// An endpoint for retrieving the details of a user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are retrieved.</param>
@@ -306,7 +310,7 @@ namespace iam.Api
         /// Details of a user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving the details of a user.
+        /// An endpoint for retrieving the details of a user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are retrieved.</param>
@@ -317,7 +321,7 @@ namespace iam.Api
         /// Get users of a group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for listing the users of a group with details.
+        /// An endpoint for listing the users of a group with details.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/users -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose users are retrieved.</param>
@@ -325,14 +329,17 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="statusEq">An optional filter for getting users by status. (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>UserInfoRespList</returns>
-        UserInfoRespList GetUsersOfGroup (string groupID, int? limit = null, string after = null, string order = null, string include = null);
+        UserInfoRespList GetUsersOfGroup (string groupID, int? limit = null, string after = null, string order = null, string include = null, string statusEq = null, string statusIn = null, string statusNin = null);
 
         /// <summary>
         /// Get users of a group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for listing the users of a group with details.
+        /// An endpoint for listing the users of a group with details.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/users -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose users are retrieved.</param>
@@ -340,13 +347,16 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="statusEq">An optional filter for getting users by status. (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>ApiResponse of UserInfoRespList</returns>
-        ApiResponse<UserInfoRespList> GetUsersOfGroupWithHttpInfo (string groupID, int? limit = null, string after = null, string order = null, string include = null);
+        ApiResponse<UserInfoRespList> GetUsersOfGroupWithHttpInfo (string groupID, int? limit = null, string after = null, string order = null, string include = null, string statusEq = null, string statusIn = null, string statusNin = null);
         /// <summary>
         /// Remove API key from groups.
         /// </summary>
         /// <remarks>
-        /// An endpoint for removing API key from groups.
+        /// An endpoint for removing API key from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be removed from the group.</param>
@@ -358,7 +368,7 @@ namespace iam.Api
         /// Remove API key from groups.
         /// </summary>
         /// <remarks>
-        /// An endpoint for removing API key from groups.
+        /// An endpoint for removing API key from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be removed from the group.</param>
@@ -369,7 +379,7 @@ namespace iam.Api
         /// Remove user from groups.
         /// </summary>
         /// <remarks>
-        /// An endpoint for removing user from groups.
+        /// An endpoint for removing user from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/users/{user-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be removed from the group.</param>
@@ -381,7 +391,7 @@ namespace iam.Api
         /// Remove user from groups.
         /// </summary>
         /// <remarks>
-        /// An endpoint for removing user from groups.
+        /// An endpoint for removing user from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/users/{user-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be removed from the group.</param>
@@ -392,7 +402,7 @@ namespace iam.Api
         /// Remove users from a group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for removing users from groups.
+        /// An endpoint for removing users from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/users -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose users are removed.</param>
@@ -404,7 +414,7 @@ namespace iam.Api
         /// Remove users from a group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for removing users from groups.
+        /// An endpoint for removing users from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/users -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose users are removed.</param>
@@ -415,7 +425,7 @@ namespace iam.Api
         /// Update the group name.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating a group name.
+        /// An endpoint for updating a group name.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -d &#39;{\&quot;name\&quot;: \&quot;TestGroup2\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be updated.</param>
@@ -427,7 +437,7 @@ namespace iam.Api
         /// Update the group name.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating a group name.
+        /// An endpoint for updating a group name.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -d &#39;{\&quot;name\&quot;: \&quot;TestGroup2\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be updated.</param>
@@ -459,7 +469,7 @@ namespace iam.Api
         /// Update user details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating user details.
+        /// An endpoint for updating user details.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -d &#39;{\&quot;username\&quot;: \&quot;myusername\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are updated.</param>
@@ -471,7 +481,7 @@ namespace iam.Api
         /// Update user details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating user details.
+        /// An endpoint for updating user details.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -d &#39;{\&quot;username\&quot;: \&quot;myusername\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are updated.</param>
@@ -484,7 +494,7 @@ namespace iam.Api
         /// Add API key to a list of groups.
         /// </summary>
         /// <remarks>
-        /// An endpoint for adding API key to groups.
+        /// An endpoint for adding API key to groups.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be added to the group.</param>
@@ -496,7 +506,7 @@ namespace iam.Api
         /// Add API key to a list of groups.
         /// </summary>
         /// <remarks>
-        /// An endpoint for adding API key to groups.
+        /// An endpoint for adding API key to groups.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be added to the group.</param>
@@ -507,7 +517,7 @@ namespace iam.Api
         /// Upload a new trusted certificate.
         /// </summary>
         /// <remarks>
-        /// An endpoint for uploading new trusted certificates.
+        /// An endpoint for uploading new trusted certificates.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/trusted-certificates -d {\&quot;name\&quot;: \&quot;myCert1\&quot;, \&quot;description\&quot;: \&quot;very important cert\&quot;, \&quot;certificate\&quot;: \&quot;certificate_data\&quot;, \&quot;service\&quot;: \&quot;lwm2m\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A trusted certificate object with attributes.</param>
@@ -518,7 +528,7 @@ namespace iam.Api
         /// Upload a new trusted certificate.
         /// </summary>
         /// <remarks>
-        /// An endpoint for uploading new trusted certificates.
+        /// An endpoint for uploading new trusted certificates.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/trusted-certificates -d {\&quot;name\&quot;: \&quot;myCert1\&quot;, \&quot;description\&quot;: \&quot;very important cert\&quot;, \&quot;certificate\&quot;: \&quot;certificate_data\&quot;, \&quot;service\&quot;: \&quot;lwm2m\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A trusted certificate object with attributes.</param>
@@ -528,7 +538,7 @@ namespace iam.Api
         /// Add members to a group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for adding users and API keys to groups.
+        /// An endpoint for adding users and API keys to a group.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -d &#39;{\&quot;users\&quot;: [0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be updated.</param>
@@ -540,7 +550,7 @@ namespace iam.Api
         /// Add members to a group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for adding users and API keys to groups.
+        /// An endpoint for adding users and API keys to a group.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -d &#39;{\&quot;users\&quot;: [0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be updated.</param>
@@ -551,7 +561,7 @@ namespace iam.Api
         /// Add user to a list of groups.
         /// </summary>
         /// <remarks>
-        /// An endpoint for adding user to groups.
+        /// An endpoint for adding user to groups.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/users/{user-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be added to the group.</param>
@@ -563,7 +573,7 @@ namespace iam.Api
         /// Add user to a list of groups.
         /// </summary>
         /// <remarks>
-        /// An endpoint for adding user to groups.
+        /// An endpoint for adding user to groups.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/users/{user-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be added to the group.</param>
@@ -574,7 +584,7 @@ namespace iam.Api
         /// Create a new group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for creating a new group.
+        /// An endpoint for creating a new group.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/policy-groups -d &#39;{\&quot;name\&quot;: \&quot;MyGroup1\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Details of the group to be created.</param>
@@ -585,7 +595,7 @@ namespace iam.Api
         /// Create a new group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for creating a new group.
+        /// An endpoint for creating a new group.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/policy-groups -d &#39;{\&quot;name\&quot;: \&quot;MyGroup1\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Details of the group to be created.</param>
@@ -595,7 +605,7 @@ namespace iam.Api
         /// Create a new user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.
+        /// An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/users?action&#x3D;invite -d {\&quot;email\&quot;: \&quot;myemail@company.com\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A user object with attributes.</param>
@@ -607,7 +617,7 @@ namespace iam.Api
         /// Create a new user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.
+        /// An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/users?action&#x3D;invite -d {\&quot;email\&quot;: \&quot;myemail@company.com\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A user object with attributes.</param>
@@ -618,7 +628,7 @@ namespace iam.Api
         /// Delete a group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for deleting a group.
+        /// An endpoint for deleting a group.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be deleted.</param>
@@ -629,7 +639,7 @@ namespace iam.Api
         /// Delete a group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for deleting a group.
+        /// An endpoint for deleting a group.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be deleted.</param>
@@ -639,7 +649,7 @@ namespace iam.Api
         /// Delete a user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for deleting a user.
+        /// An endpoint for deleting a user.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
@@ -650,7 +660,7 @@ namespace iam.Api
         /// Delete a user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for deleting a user.
+        /// An endpoint for deleting a user.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
@@ -660,7 +670,7 @@ namespace iam.Api
         /// Get the details of all users.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving the details of all users.
+        /// An endpoint for retrieving the details of all users.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -669,14 +679,16 @@ namespace iam.Api
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="emailEq">Filter for email address (optional)</param>
         /// <param name="statusEq">Filter for status, for example active or reset (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>Task of UserInfoRespList</returns>
-        System.Threading.Tasks.Task<UserInfoRespList> GetAllUsersAsync (int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null);
+        System.Threading.Tasks.Task<UserInfoRespList> GetAllUsersAsync (int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null, string statusIn = null, string statusNin = null);
 
         /// <summary>
         /// Get the details of all users.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving the details of all users.
+        /// An endpoint for retrieving the details of all users.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -685,13 +697,15 @@ namespace iam.Api
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="emailEq">Filter for email address (optional)</param>
         /// <param name="statusEq">Filter for status, for example active or reset (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>Task of ApiResponse (UserInfoRespList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetAllUsersAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null);
+        System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetAllUsersAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null, string statusIn = null, string statusNin = null);
         /// <summary>
         /// Get groups of the API key.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving groups of the API key.
+        /// An endpoint for retrieving groups of the API key.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id}/groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key whose details are retrieved.</param>
@@ -706,7 +720,7 @@ namespace iam.Api
         /// Get groups of the API key.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving groups of the API key.
+        /// An endpoint for retrieving groups of the API key.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id}/groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key whose details are retrieved.</param>
@@ -720,7 +734,7 @@ namespace iam.Api
         /// Get groups of the user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving groups of the user.
+        /// An endpoint for retrieving groups of the user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/{user-id}/groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are retrieved.</param>
@@ -735,7 +749,7 @@ namespace iam.Api
         /// Get groups of the user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving groups of the user.
+        /// An endpoint for retrieving groups of the user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/{user-id}/groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are retrieved.</param>
@@ -749,7 +763,7 @@ namespace iam.Api
         /// Details of a user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving the details of a user.
+        /// An endpoint for retrieving the details of a user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are retrieved.</param>
@@ -761,7 +775,7 @@ namespace iam.Api
         /// Details of a user.
         /// </summary>
         /// <remarks>
-        /// An endpoint for retrieving the details of a user.
+        /// An endpoint for retrieving the details of a user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are retrieved.</param>
@@ -772,7 +786,7 @@ namespace iam.Api
         /// Get users of a group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for listing the users of a group with details.
+        /// An endpoint for listing the users of a group with details.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/users -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose users are retrieved.</param>
@@ -780,14 +794,17 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="statusEq">An optional filter for getting users by status. (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>Task of UserInfoRespList</returns>
-        System.Threading.Tasks.Task<UserInfoRespList> GetUsersOfGroupAsync (string groupID, int? limit = null, string after = null, string order = null, string include = null);
+        System.Threading.Tasks.Task<UserInfoRespList> GetUsersOfGroupAsync (string groupID, int? limit = null, string after = null, string order = null, string include = null, string statusEq = null, string statusIn = null, string statusNin = null);
 
         /// <summary>
         /// Get users of a group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for listing the users of a group with details.
+        /// An endpoint for listing the users of a group with details.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/users -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose users are retrieved.</param>
@@ -795,13 +812,16 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="statusEq">An optional filter for getting users by status. (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>Task of ApiResponse (UserInfoRespList)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetUsersOfGroupAsyncWithHttpInfo (string groupID, int? limit = null, string after = null, string order = null, string include = null);
+        System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetUsersOfGroupAsyncWithHttpInfo (string groupID, int? limit = null, string after = null, string order = null, string include = null, string statusEq = null, string statusIn = null, string statusNin = null);
         /// <summary>
         /// Remove API key from groups.
         /// </summary>
         /// <remarks>
-        /// An endpoint for removing API key from groups.
+        /// An endpoint for removing API key from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be removed from the group.</param>
@@ -813,7 +833,7 @@ namespace iam.Api
         /// Remove API key from groups.
         /// </summary>
         /// <remarks>
-        /// An endpoint for removing API key from groups.
+        /// An endpoint for removing API key from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be removed from the group.</param>
@@ -824,7 +844,7 @@ namespace iam.Api
         /// Remove user from groups.
         /// </summary>
         /// <remarks>
-        /// An endpoint for removing user from groups.
+        /// An endpoint for removing user from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/users/{user-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be removed from the group.</param>
@@ -836,7 +856,7 @@ namespace iam.Api
         /// Remove user from groups.
         /// </summary>
         /// <remarks>
-        /// An endpoint for removing user from groups.
+        /// An endpoint for removing user from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/users/{user-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be removed from the group.</param>
@@ -847,7 +867,7 @@ namespace iam.Api
         /// Remove users from a group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for removing users from groups.
+        /// An endpoint for removing users from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/users -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose users are removed.</param>
@@ -859,7 +879,7 @@ namespace iam.Api
         /// Remove users from a group.
         /// </summary>
         /// <remarks>
-        /// An endpoint for removing users from groups.
+        /// An endpoint for removing users from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/users -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose users are removed.</param>
@@ -870,7 +890,7 @@ namespace iam.Api
         /// Update the group name.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating a group name.
+        /// An endpoint for updating a group name.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -d &#39;{\&quot;name\&quot;: \&quot;TestGroup2\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be updated.</param>
@@ -882,7 +902,7 @@ namespace iam.Api
         /// Update the group name.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating a group name.
+        /// An endpoint for updating a group name.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -d &#39;{\&quot;name\&quot;: \&quot;TestGroup2\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be updated.</param>
@@ -914,7 +934,7 @@ namespace iam.Api
         /// Update user details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating user details.
+        /// An endpoint for updating user details.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -d &#39;{\&quot;username\&quot;: \&quot;myusername\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are updated.</param>
@@ -926,7 +946,7 @@ namespace iam.Api
         /// Update user details.
         /// </summary>
         /// <remarks>
-        /// An endpoint for updating user details.
+        /// An endpoint for updating user details.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -d &#39;{\&quot;username\&quot;: \&quot;myusername\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are updated.</param>
@@ -1034,7 +1054,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Add API key to a list of groups. An endpoint for adding API key to groups.
+        /// Add API key to a list of groups. An endpoint for adding API key to groups.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be added to the group.</param>
@@ -1047,7 +1067,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Add API key to a list of groups. An endpoint for adding API key to groups.
+        /// Add API key to a list of groups. An endpoint for adding API key to groups.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be added to the group.</param>
@@ -1119,7 +1139,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Add API key to a list of groups. An endpoint for adding API key to groups.
+        /// Add API key to a list of groups. An endpoint for adding API key to groups.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be added to the group.</param>
@@ -1133,7 +1153,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Add API key to a list of groups. An endpoint for adding API key to groups.
+        /// Add API key to a list of groups. An endpoint for adding API key to groups.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be added to the group.</param>
@@ -1205,7 +1225,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Upload a new trusted certificate. An endpoint for uploading new trusted certificates.
+        /// Upload a new trusted certificate. An endpoint for uploading new trusted certificates.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/trusted-certificates -d {\&quot;name\&quot;: \&quot;myCert1\&quot;, \&quot;description\&quot;: \&quot;very important cert\&quot;, \&quot;certificate\&quot;: \&quot;certificate_data\&quot;, \&quot;service\&quot;: \&quot;lwm2m\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A trusted certificate object with attributes.</param>
@@ -1217,7 +1237,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Upload a new trusted certificate. An endpoint for uploading new trusted certificates.
+        /// Upload a new trusted certificate. An endpoint for uploading new trusted certificates.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/trusted-certificates -d {\&quot;name\&quot;: \&quot;myCert1\&quot;, \&quot;description\&quot;: \&quot;very important cert\&quot;, \&quot;certificate\&quot;: \&quot;certificate_data\&quot;, \&quot;service\&quot;: \&quot;lwm2m\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A trusted certificate object with attributes.</param>
@@ -1284,7 +1304,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Upload a new trusted certificate. An endpoint for uploading new trusted certificates.
+        /// Upload a new trusted certificate. An endpoint for uploading new trusted certificates.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/trusted-certificates -d {\&quot;name\&quot;: \&quot;myCert1\&quot;, \&quot;description\&quot;: \&quot;very important cert\&quot;, \&quot;certificate\&quot;: \&quot;certificate_data\&quot;, \&quot;service\&quot;: \&quot;lwm2m\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A trusted certificate object with attributes.</param>
@@ -1297,7 +1317,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Upload a new trusted certificate. An endpoint for uploading new trusted certificates.
+        /// Upload a new trusted certificate. An endpoint for uploading new trusted certificates.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/trusted-certificates -d {\&quot;name\&quot;: \&quot;myCert1\&quot;, \&quot;description\&quot;: \&quot;very important cert\&quot;, \&quot;certificate\&quot;: \&quot;certificate_data\&quot;, \&quot;service\&quot;: \&quot;lwm2m\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A trusted certificate object with attributes.</param>
@@ -1364,7 +1384,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Add members to a group. An endpoint for adding users and API keys to groups.
+        /// Add members to a group. An endpoint for adding users and API keys to a group.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -d &#39;{\&quot;users\&quot;: [0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be updated.</param>
@@ -1377,7 +1397,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Add members to a group. An endpoint for adding users and API keys to groups.
+        /// Add members to a group. An endpoint for adding users and API keys to a group.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -d &#39;{\&quot;users\&quot;: [0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be updated.</param>
@@ -1449,7 +1469,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Add members to a group. An endpoint for adding users and API keys to groups.
+        /// Add members to a group. An endpoint for adding users and API keys to a group.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -d &#39;{\&quot;users\&quot;: [0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be updated.</param>
@@ -1463,7 +1483,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Add members to a group. An endpoint for adding users and API keys to groups.
+        /// Add members to a group. An endpoint for adding users and API keys to a group.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -d &#39;{\&quot;users\&quot;: [0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be updated.</param>
@@ -1535,7 +1555,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Add user to a list of groups. An endpoint for adding user to groups.
+        /// Add user to a list of groups. An endpoint for adding user to groups.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/users/{user-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be added to the group.</param>
@@ -1548,7 +1568,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Add user to a list of groups. An endpoint for adding user to groups.
+        /// Add user to a list of groups. An endpoint for adding user to groups.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/users/{user-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be added to the group.</param>
@@ -1620,7 +1640,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Add user to a list of groups. An endpoint for adding user to groups.
+        /// Add user to a list of groups. An endpoint for adding user to groups.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/users/{user-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be added to the group.</param>
@@ -1634,7 +1654,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Add user to a list of groups. An endpoint for adding user to groups.
+        /// Add user to a list of groups. An endpoint for adding user to groups.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/users/{user-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be added to the group.</param>
@@ -1706,7 +1726,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Create a new group. An endpoint for creating a new group.
+        /// Create a new group. An endpoint for creating a new group.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/policy-groups -d &#39;{\&quot;name\&quot;: \&quot;MyGroup1\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Details of the group to be created.</param>
@@ -1718,7 +1738,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Create a new group. An endpoint for creating a new group.
+        /// Create a new group. An endpoint for creating a new group.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/policy-groups -d &#39;{\&quot;name\&quot;: \&quot;MyGroup1\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Details of the group to be created.</param>
@@ -1785,7 +1805,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Create a new group. An endpoint for creating a new group.
+        /// Create a new group. An endpoint for creating a new group.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/policy-groups -d &#39;{\&quot;name\&quot;: \&quot;MyGroup1\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Details of the group to be created.</param>
@@ -1798,7 +1818,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Create a new group. An endpoint for creating a new group.
+        /// Create a new group. An endpoint for creating a new group.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/policy-groups -d &#39;{\&quot;name\&quot;: \&quot;MyGroup1\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Details of the group to be created.</param>
@@ -1865,7 +1885,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Create a new user. An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.
+        /// Create a new user. An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/users?action&#x3D;invite -d {\&quot;email\&quot;: \&quot;myemail@company.com\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A user object with attributes.</param>
@@ -1878,7 +1898,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Create a new user. An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.
+        /// Create a new user. An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/users?action&#x3D;invite -d {\&quot;email\&quot;: \&quot;myemail@company.com\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A user object with attributes.</param>
@@ -1947,7 +1967,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Create a new user. An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.
+        /// Create a new user. An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/users?action&#x3D;invite -d {\&quot;email\&quot;: \&quot;myemail@company.com\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A user object with attributes.</param>
@@ -1961,7 +1981,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Create a new user. An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.
+        /// Create a new user. An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/users?action&#x3D;invite -d {\&quot;email\&quot;: \&quot;myemail@company.com\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">A user object with attributes.</param>
@@ -2030,7 +2050,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Delete a group. An endpoint for deleting a group.
+        /// Delete a group. An endpoint for deleting a group.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be deleted.</param>
@@ -2041,7 +2061,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Delete a group. An endpoint for deleting a group.
+        /// Delete a group. An endpoint for deleting a group.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be deleted.</param>
@@ -2100,7 +2120,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Delete a group. An endpoint for deleting a group.
+        /// Delete a group. An endpoint for deleting a group.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be deleted.</param>
@@ -2112,7 +2132,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Delete a group. An endpoint for deleting a group.
+        /// Delete a group. An endpoint for deleting a group.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be deleted.</param>
@@ -2171,7 +2191,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Delete a user. An endpoint for deleting a user.
+        /// Delete a user. An endpoint for deleting a user.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
@@ -2182,7 +2202,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Delete a user. An endpoint for deleting a user.
+        /// Delete a user. An endpoint for deleting a user.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
@@ -2241,7 +2261,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Delete a user. An endpoint for deleting a user.
+        /// Delete a user. An endpoint for deleting a user.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
@@ -2253,7 +2273,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Delete a user. An endpoint for deleting a user.
+        /// Delete a user. An endpoint for deleting a user.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be deleted.</param>
@@ -2312,7 +2332,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get the details of all users. An endpoint for retrieving the details of all users.
+        /// Get the details of all users. An endpoint for retrieving the details of all users.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -2321,15 +2341,17 @@ namespace iam.Api
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="emailEq">Filter for email address (optional)</param>
         /// <param name="statusEq">Filter for status, for example active or reset (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>UserInfoRespList</returns>
-        public UserInfoRespList GetAllUsers (int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null)
+        public UserInfoRespList GetAllUsers (int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null, string statusIn = null, string statusNin = null)
         {
-             ApiResponse<UserInfoRespList> localVarResponse = GetAllUsersWithHttpInfo(limit, after, order, include, emailEq, statusEq);
+             ApiResponse<UserInfoRespList> localVarResponse = GetAllUsersWithHttpInfo(limit, after, order, include, emailEq, statusEq, statusIn, statusNin);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get the details of all users. An endpoint for retrieving the details of all users.
+        /// Get the details of all users. An endpoint for retrieving the details of all users.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -2338,8 +2360,10 @@ namespace iam.Api
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="emailEq">Filter for email address (optional)</param>
         /// <param name="statusEq">Filter for status, for example active or reset (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>ApiResponse of UserInfoRespList</returns>
-        public ApiResponse< UserInfoRespList > GetAllUsersWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null)
+        public ApiResponse< UserInfoRespList > GetAllUsersWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null, string statusIn = null, string statusNin = null)
         {
 
             var localVarPath = "/v3/users";
@@ -2369,6 +2393,8 @@ namespace iam.Api
             if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
             if (emailEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "email__eq", emailEq)); // query parameter
             if (statusEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__eq", statusEq)); // query parameter
+            if (statusIn != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__in", statusIn)); // query parameter
+            if (statusNin != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__nin", statusNin)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -2395,7 +2421,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get the details of all users. An endpoint for retrieving the details of all users.
+        /// Get the details of all users. An endpoint for retrieving the details of all users.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -2404,16 +2430,18 @@ namespace iam.Api
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="emailEq">Filter for email address (optional)</param>
         /// <param name="statusEq">Filter for status, for example active or reset (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>Task of UserInfoRespList</returns>
-        public async System.Threading.Tasks.Task<UserInfoRespList> GetAllUsersAsync (int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null)
+        public async System.Threading.Tasks.Task<UserInfoRespList> GetAllUsersAsync (int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null, string statusIn = null, string statusNin = null)
         {
-             ApiResponse<UserInfoRespList> localVarResponse = await GetAllUsersAsyncWithHttpInfo(limit, after, order, include, emailEq, statusEq);
+             ApiResponse<UserInfoRespList> localVarResponse = await GetAllUsersAsyncWithHttpInfo(limit, after, order, include, emailEq, statusEq, statusIn, statusNin);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Get the details of all users. An endpoint for retrieving the details of all users.
+        /// Get the details of all users. An endpoint for retrieving the details of all users.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
@@ -2422,8 +2450,10 @@ namespace iam.Api
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
         /// <param name="emailEq">Filter for email address (optional)</param>
         /// <param name="statusEq">Filter for status, for example active or reset (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>Task of ApiResponse (UserInfoRespList)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetAllUsersAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null)
+        public async System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetAllUsersAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null, string emailEq = null, string statusEq = null, string statusIn = null, string statusNin = null)
         {
 
             var localVarPath = "/v3/users";
@@ -2453,6 +2483,8 @@ namespace iam.Api
             if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
             if (emailEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "email__eq", emailEq)); // query parameter
             if (statusEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__eq", statusEq)); // query parameter
+            if (statusIn != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__in", statusIn)); // query parameter
+            if (statusNin != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__nin", statusNin)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -2479,7 +2511,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get groups of the API key. An endpoint for retrieving groups of the API key.
+        /// Get groups of the API key. An endpoint for retrieving groups of the API key.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id}/groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key whose details are retrieved.</param>
@@ -2495,7 +2527,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get groups of the API key. An endpoint for retrieving groups of the API key.
+        /// Get groups of the API key. An endpoint for retrieving groups of the API key.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id}/groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key whose details are retrieved.</param>
@@ -2562,7 +2594,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get groups of the API key. An endpoint for retrieving groups of the API key.
+        /// Get groups of the API key. An endpoint for retrieving groups of the API key.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id}/groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key whose details are retrieved.</param>
@@ -2579,7 +2611,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get groups of the API key. An endpoint for retrieving groups of the API key.
+        /// Get groups of the API key. An endpoint for retrieving groups of the API key.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id}/groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key whose details are retrieved.</param>
@@ -2646,7 +2678,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get groups of the user. An endpoint for retrieving groups of the user.
+        /// Get groups of the user. An endpoint for retrieving groups of the user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/{user-id}/groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are retrieved.</param>
@@ -2662,7 +2694,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get groups of the user. An endpoint for retrieving groups of the user.
+        /// Get groups of the user. An endpoint for retrieving groups of the user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/{user-id}/groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are retrieved.</param>
@@ -2729,7 +2761,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get groups of the user. An endpoint for retrieving groups of the user.
+        /// Get groups of the user. An endpoint for retrieving groups of the user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/{user-id}/groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are retrieved.</param>
@@ -2746,7 +2778,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get groups of the user. An endpoint for retrieving groups of the user.
+        /// Get groups of the user. An endpoint for retrieving groups of the user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/{user-id}/groups -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are retrieved.</param>
@@ -2813,7 +2845,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Details of a user. An endpoint for retrieving the details of a user.
+        /// Details of a user. An endpoint for retrieving the details of a user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are retrieved.</param>
@@ -2826,7 +2858,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Details of a user. An endpoint for retrieving the details of a user.
+        /// Details of a user. An endpoint for retrieving the details of a user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are retrieved.</param>
@@ -2887,7 +2919,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Details of a user. An endpoint for retrieving the details of a user.
+        /// Details of a user. An endpoint for retrieving the details of a user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are retrieved.</param>
@@ -2901,7 +2933,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Details of a user. An endpoint for retrieving the details of a user.
+        /// Details of a user. An endpoint for retrieving the details of a user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are retrieved.</param>
@@ -2962,7 +2994,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get users of a group. An endpoint for listing the users of a group with details.
+        /// Get users of a group. An endpoint for listing the users of a group with details.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/users -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose users are retrieved.</param>
@@ -2970,15 +3002,18 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="statusEq">An optional filter for getting users by status. (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>UserInfoRespList</returns>
-        public UserInfoRespList GetUsersOfGroup (string groupID, int? limit = null, string after = null, string order = null, string include = null)
+        public UserInfoRespList GetUsersOfGroup (string groupID, int? limit = null, string after = null, string order = null, string include = null, string statusEq = null, string statusIn = null, string statusNin = null)
         {
-             ApiResponse<UserInfoRespList> localVarResponse = GetUsersOfGroupWithHttpInfo(groupID, limit, after, order, include);
+             ApiResponse<UserInfoRespList> localVarResponse = GetUsersOfGroupWithHttpInfo(groupID, limit, after, order, include, statusEq, statusIn, statusNin);
              return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get users of a group. An endpoint for listing the users of a group with details.
+        /// Get users of a group. An endpoint for listing the users of a group with details.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/users -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose users are retrieved.</param>
@@ -2986,8 +3021,11 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="statusEq">An optional filter for getting users by status. (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>ApiResponse of UserInfoRespList</returns>
-        public ApiResponse< UserInfoRespList > GetUsersOfGroupWithHttpInfo (string groupID, int? limit = null, string after = null, string order = null, string include = null)
+        public ApiResponse< UserInfoRespList > GetUsersOfGroupWithHttpInfo (string groupID, int? limit = null, string after = null, string order = null, string include = null, string statusEq = null, string statusIn = null, string statusNin = null)
         {
             // verify the required parameter 'groupID' is set
             if (groupID == null)
@@ -3019,6 +3057,9 @@ namespace iam.Api
             if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
             if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
             if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
+            if (statusEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__eq", statusEq)); // query parameter
+            if (statusIn != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__in", statusIn)); // query parameter
+            if (statusNin != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__nin", statusNin)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -3045,7 +3086,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Get users of a group. An endpoint for listing the users of a group with details.
+        /// Get users of a group. An endpoint for listing the users of a group with details.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/users -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose users are retrieved.</param>
@@ -3053,16 +3094,19 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="statusEq">An optional filter for getting users by status. (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>Task of UserInfoRespList</returns>
-        public async System.Threading.Tasks.Task<UserInfoRespList> GetUsersOfGroupAsync (string groupID, int? limit = null, string after = null, string order = null, string include = null)
+        public async System.Threading.Tasks.Task<UserInfoRespList> GetUsersOfGroupAsync (string groupID, int? limit = null, string after = null, string order = null, string include = null, string statusEq = null, string statusIn = null, string statusNin = null)
         {
-             ApiResponse<UserInfoRespList> localVarResponse = await GetUsersOfGroupAsyncWithHttpInfo(groupID, limit, after, order, include);
+             ApiResponse<UserInfoRespList> localVarResponse = await GetUsersOfGroupAsyncWithHttpInfo(groupID, limit, after, order, include, statusEq, statusIn, statusNin);
              return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Get users of a group. An endpoint for listing the users of a group with details.
+        /// Get users of a group. An endpoint for listing the users of a group with details.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/users -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose users are retrieved.</param>
@@ -3070,8 +3114,11 @@ namespace iam.Api
         /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
         /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
         /// <param name="include">Comma separated additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="statusEq">An optional filter for getting users by status. (optional)</param>
+        /// <param name="statusIn">An optional filter for getting users with a specified set of statuses. (optional)</param>
+        /// <param name="statusNin">An optional filter for excluding users with a specified set of statuses. (optional)</param>
         /// <returns>Task of ApiResponse (UserInfoRespList)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetUsersOfGroupAsyncWithHttpInfo (string groupID, int? limit = null, string after = null, string order = null, string include = null)
+        public async System.Threading.Tasks.Task<ApiResponse<UserInfoRespList>> GetUsersOfGroupAsyncWithHttpInfo (string groupID, int? limit = null, string after = null, string order = null, string include = null, string statusEq = null, string statusIn = null, string statusNin = null)
         {
             // verify the required parameter 'groupID' is set
             if (groupID == null)
@@ -3103,6 +3150,9 @@ namespace iam.Api
             if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
             if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
             if (include != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "include", include)); // query parameter
+            if (statusEq != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__eq", statusEq)); // query parameter
+            if (statusIn != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__in", statusIn)); // query parameter
+            if (statusNin != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "status__nin", statusNin)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -3129,7 +3179,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Remove API key from groups. An endpoint for removing API key from groups.
+        /// Remove API key from groups. An endpoint for removing API key from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be removed from the group.</param>
@@ -3142,7 +3192,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Remove API key from groups. An endpoint for removing API key from groups.
+        /// Remove API key from groups. An endpoint for removing API key from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be removed from the group.</param>
@@ -3214,7 +3264,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Remove API key from groups. An endpoint for removing API key from groups.
+        /// Remove API key from groups. An endpoint for removing API key from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be removed from the group.</param>
@@ -3228,7 +3278,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Remove API key from groups. An endpoint for removing API key from groups.
+        /// Remove API key from groups. An endpoint for removing API key from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiKey">The ID of the API key to be removed from the group.</param>
@@ -3300,7 +3350,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Remove user from groups. An endpoint for removing user from groups.
+        /// Remove user from groups. An endpoint for removing user from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/users/{user-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be removed from the group.</param>
@@ -3313,7 +3363,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Remove user from groups. An endpoint for removing user from groups.
+        /// Remove user from groups. An endpoint for removing user from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/users/{user-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be removed from the group.</param>
@@ -3385,7 +3435,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Remove user from groups. An endpoint for removing user from groups.
+        /// Remove user from groups. An endpoint for removing user from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/users/{user-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be removed from the group.</param>
@@ -3399,7 +3449,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Remove user from groups. An endpoint for removing user from groups.
+        /// Remove user from groups. An endpoint for removing user from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/users/{user-id}/groups -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user to be removed from the group.</param>
@@ -3471,7 +3521,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Remove users from a group. An endpoint for removing users from groups.
+        /// Remove users from a group. An endpoint for removing users from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/users -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose users are removed.</param>
@@ -3484,7 +3534,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Remove users from a group. An endpoint for removing users from groups.
+        /// Remove users from a group. An endpoint for removing users from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/users -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose users are removed.</param>
@@ -3556,7 +3606,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Remove users from a group. An endpoint for removing users from groups.
+        /// Remove users from a group. An endpoint for removing users from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/users -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose users are removed.</param>
@@ -3570,7 +3620,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Remove users from a group. An endpoint for removing users from groups.
+        /// Remove users from a group. An endpoint for removing users from groups.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id}/users -d &#39;[0162056a9a1586f30242590700000000,0117056a9a1586f30242590700000000]&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group whose users are removed.</param>
@@ -3642,7 +3692,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update the group name. An endpoint for updating a group name.
+        /// Update the group name. An endpoint for updating a group name.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -d &#39;{\&quot;name\&quot;: \&quot;TestGroup2\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be updated.</param>
@@ -3655,7 +3705,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update the group name. An endpoint for updating a group name.
+        /// Update the group name. An endpoint for updating a group name.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -d &#39;{\&quot;name\&quot;: \&quot;TestGroup2\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be updated.</param>
@@ -3727,7 +3777,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update the group name. An endpoint for updating a group name.
+        /// Update the group name. An endpoint for updating a group name.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -d &#39;{\&quot;name\&quot;: \&quot;TestGroup2\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be updated.</param>
@@ -3741,7 +3791,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update the group name. An endpoint for updating a group name.
+        /// Update the group name. An endpoint for updating a group name.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/policy-groups/{group-id} -d &#39;{\&quot;name\&quot;: \&quot;TestGroup2\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="groupID">The ID of the group to be updated.</param>
@@ -3972,7 +4022,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update user details. An endpoint for updating user details.
+        /// Update user details. An endpoint for updating user details.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -d &#39;{\&quot;username\&quot;: \&quot;myusername\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are updated.</param>
@@ -3985,7 +4035,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update user details. An endpoint for updating user details.
+        /// Update user details. An endpoint for updating user details.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -d &#39;{\&quot;username\&quot;: \&quot;myusername\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are updated.</param>
@@ -4057,7 +4107,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update user details. An endpoint for updating user details.
+        /// Update user details. An endpoint for updating user details.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -d &#39;{\&quot;username\&quot;: \&quot;myusername\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are updated.</param>
@@ -4071,7 +4121,7 @@ namespace iam.Api
         }
 
         /// <summary>
-        /// Update user details. An endpoint for updating user details.
+        /// Update user details. An endpoint for updating user details.   **Example usage:** &#x60;curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -d &#39;{\&quot;username\&quot;: \&quot;myusername\&quot;}&#39; -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are updated.</param>
