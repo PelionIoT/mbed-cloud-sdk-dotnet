@@ -22,8 +22,8 @@ namespace MbedCloudSDK.Connect.Api
     /// </summary>
     public partial class ConnectApi
     {
-        private TlvDecoder tlvDecoder = new TlvDecoder();
-        private bool handleNotifications = false;
+        private readonly TlvDecoder tlvDecoder = new TlvDecoder();
+        private bool handleNotifications;
 
         /// <summary>
         /// Notify
@@ -119,7 +119,7 @@ namespace MbedCloudSDK.Connect.Api
             {
                 try
                 {
-                    var resp = notificationsApi.V2NotificationPullGet();
+                    var resp = NotificationsApi.LongPollNotifications();
                     if (resp == null)
                     {
                         continue;
@@ -130,6 +130,7 @@ namespace MbedCloudSDK.Connect.Api
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
+                    StopNotifications();
                 }
             }
         }
@@ -238,7 +239,7 @@ namespace MbedCloudSDK.Connect.Api
 
             try
             {
-                notificationsApi.V2NotificationPullDelete();
+                NotificationsApi.DeleteLongPollChannel();
             }
             catch (mds.Client.ApiException e)
             {

@@ -151,6 +151,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         /// <value>
         /// The custom properties.
         /// </value>
+        [JsonProperty]
         public Dictionary<string, Dictionary<string, string>> CustomProperties { get; private set; }
 
         /// <summary>
@@ -181,7 +182,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
                 Id = userInfo.Id,
                 LastLoginTime = userInfo.LastLoginTime,
                 TwoFactorAuthentication = userInfo.IsTotpEnabled,
-                CustomProperties = userInfo.UserProperties,
+                CustomProperties = userInfo?.CustomFields?.ToDictionary(k => k.Key, k => JsonConvert.DeserializeObject<Dictionary<string, string>>(k.Value)),
                 LoginHistory = userInfo?.LoginHistory?.Select(l => { return Model.User.LoginHistory.Map(l); })?.ToList() ?? Enumerable.Empty<LoginHistory>().ToList()
             };
             return user;
@@ -234,6 +235,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
                 IsGtcAccepted = TermsAccepted,
                 IsMarketingAccepted = MarketingAccepted,
                 Groups = Groups,
+                CustomFields = CustomProperties?.ToDictionary(k => k.Key, k => JsonConvert.SerializeObject(k.Value)),
             };
             return request;
         }
@@ -254,7 +256,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
                 Address = Address,
                 IsMarketingAccepted = MarketingAccepted,
                 Password = Password,
-                UserProperties = CustomProperties,
+                CustomFields = CustomProperties?.ToDictionary(k => k.Key, k => JsonConvert.SerializeObject(k.Value)),
                 IsTotpEnabled = TwoFactorAuthentication,
                 Status = Utils.GetEnumMemberValue(typeof(UserStatus), Convert.ToString(Status)),
                 Groups = Groups,

@@ -60,26 +60,17 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="GroupSummary" /> class.
         /// </summary>
-        /// <param name="UserCount">The number of users in this group. (required).</param>
         /// <param name="AccountId">The UUID of the account this group belongs to. (required).</param>
-        /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
-        /// <param name="_Object">Entity name: always &#39;group&#39; (required).</param>
-        /// <param name="UpdatedAt">Last update UTC time RFC3339..</param>
-        /// <param name="Etag">API resource entity version. (required).</param>
         /// <param name="ApikeyCount">The number of API keys in this group. (required).</param>
+        /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
+        /// <param name="Etag">API resource entity version. (required).</param>
         /// <param name="Id">The UUID of the group. (required).</param>
         /// <param name="Name">The name of the group. (required).</param>
-        public GroupSummary(int? UserCount = default(int?), string AccountId = default(string), DateTime? CreatedAt = default(DateTime?), ObjectEnum? _Object = default(ObjectEnum?), DateTime? UpdatedAt = default(DateTime?), string Etag = default(string), int? ApikeyCount = default(int?), string Id = default(string), string Name = default(string))
+        /// <param name="_Object">Entity name: always &#39;group&#39; (required).</param>
+        /// <param name="UpdatedAt">Last update UTC time RFC3339..</param>
+        /// <param name="UserCount">The number of users in this group. (required).</param>
+        public GroupSummary(string AccountId = default(string), int? ApikeyCount = default(int?), DateTime? CreatedAt = default(DateTime?), string Etag = default(string), string Id = default(string), string Name = default(string), ObjectEnum? _Object = default(ObjectEnum?), DateTime? UpdatedAt = default(DateTime?), int? UserCount = default(int?))
         {
-            // to ensure "UserCount" is required (not null)
-            if (UserCount == null)
-            {
-                throw new InvalidDataException("UserCount is a required property for GroupSummary and cannot be null");
-            }
-            else
-            {
-                this.UserCount = UserCount;
-            }
             // to ensure "AccountId" is required (not null)
             if (AccountId == null)
             {
@@ -89,14 +80,14 @@ namespace iam.Model
             {
                 this.AccountId = AccountId;
             }
-            // to ensure "_Object" is required (not null)
-            if (_Object == null)
+            // to ensure "ApikeyCount" is required (not null)
+            if (ApikeyCount == null)
             {
-                throw new InvalidDataException("_Object is a required property for GroupSummary and cannot be null");
+                throw new InvalidDataException("ApikeyCount is a required property for GroupSummary and cannot be null");
             }
             else
             {
-                this._Object = _Object;
+                this.ApikeyCount = ApikeyCount;
             }
             // to ensure "Etag" is required (not null)
             if (Etag == null)
@@ -106,15 +97,6 @@ namespace iam.Model
             else
             {
                 this.Etag = Etag;
-            }
-            // to ensure "ApikeyCount" is required (not null)
-            if (ApikeyCount == null)
-            {
-                throw new InvalidDataException("ApikeyCount is a required property for GroupSummary and cannot be null");
-            }
-            else
-            {
-                this.ApikeyCount = ApikeyCount;
             }
             // to ensure "Id" is required (not null)
             if (Id == null)
@@ -134,17 +116,28 @@ namespace iam.Model
             {
                 this.Name = Name;
             }
+            // to ensure "_Object" is required (not null)
+            if (_Object == null)
+            {
+                throw new InvalidDataException("_Object is a required property for GroupSummary and cannot be null");
+            }
+            else
+            {
+                this._Object = _Object;
+            }
+            // to ensure "UserCount" is required (not null)
+            if (UserCount == null)
+            {
+                throw new InvalidDataException("UserCount is a required property for GroupSummary and cannot be null");
+            }
+            else
+            {
+                this.UserCount = UserCount;
+            }
             this.CreatedAt = CreatedAt;
             this.UpdatedAt = UpdatedAt;
         }
         
-        /// <summary>
-        /// The number of users in this group.
-        /// </summary>
-        /// <value>The number of users in this group.</value>
-        [DataMember(Name="user_count", EmitDefaultValue=false)]
-        public int? UserCount { get; set; }
-
         /// <summary>
         /// The UUID of the account this group belongs to.
         /// </summary>
@@ -153,19 +146,18 @@ namespace iam.Model
         public string AccountId { get; set; }
 
         /// <summary>
+        /// The number of API keys in this group.
+        /// </summary>
+        /// <value>The number of API keys in this group.</value>
+        [DataMember(Name="apikey_count", EmitDefaultValue=false)]
+        public int? ApikeyCount { get; set; }
+
+        /// <summary>
         /// Creation UTC time RFC3339.
         /// </summary>
         /// <value>Creation UTC time RFC3339.</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
-
-
-        /// <summary>
-        /// Last update UTC time RFC3339.
-        /// </summary>
-        /// <value>Last update UTC time RFC3339.</value>
-        [DataMember(Name="updated_at", EmitDefaultValue=false)]
-        public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
         /// API resource entity version.
@@ -173,13 +165,6 @@ namespace iam.Model
         /// <value>API resource entity version.</value>
         [DataMember(Name="etag", EmitDefaultValue=false)]
         public string Etag { get; set; }
-
-        /// <summary>
-        /// The number of API keys in this group.
-        /// </summary>
-        /// <value>The number of API keys in this group.</value>
-        [DataMember(Name="apikey_count", EmitDefaultValue=false)]
-        public int? ApikeyCount { get; set; }
 
         /// <summary>
         /// The UUID of the group.
@@ -195,6 +180,21 @@ namespace iam.Model
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
 
+
+        /// <summary>
+        /// Last update UTC time RFC3339.
+        /// </summary>
+        /// <value>Last update UTC time RFC3339.</value>
+        [DataMember(Name="updated_at", EmitDefaultValue=false)]
+        public DateTime? UpdatedAt { get; set; }
+
+        /// <summary>
+        /// The number of users in this group.
+        /// </summary>
+        /// <value>The number of users in this group.</value>
+        [DataMember(Name="user_count", EmitDefaultValue=false)]
+        public int? UserCount { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -203,15 +203,15 @@ namespace iam.Model
         {
             var sb = new StringBuilder();
             sb.Append("class GroupSummary {\n");
-            sb.Append("  UserCount: ").Append(UserCount).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
-            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  _Object: ").Append(_Object).Append("\n");
-            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
-            sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  ApikeyCount: ").Append(ApikeyCount).Append("\n");
+            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
+            sb.Append("  Etag: ").Append(Etag).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
+            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
+            sb.Append("  UserCount: ").Append(UserCount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -247,19 +247,34 @@ namespace iam.Model
 
             return 
                 (
-                    this.UserCount == input.UserCount ||
-                    (this.UserCount != null &&
-                    this.UserCount.Equals(input.UserCount))
-                ) && 
-                (
                     this.AccountId == input.AccountId ||
                     (this.AccountId != null &&
                     this.AccountId.Equals(input.AccountId))
                 ) && 
                 (
+                    this.ApikeyCount == input.ApikeyCount ||
+                    (this.ApikeyCount != null &&
+                    this.ApikeyCount.Equals(input.ApikeyCount))
+                ) && 
+                (
                     this.CreatedAt == input.CreatedAt ||
                     (this.CreatedAt != null &&
                     this.CreatedAt.Equals(input.CreatedAt))
+                ) && 
+                (
+                    this.Etag == input.Etag ||
+                    (this.Etag != null &&
+                    this.Etag.Equals(input.Etag))
+                ) && 
+                (
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
+                ) && 
+                (
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
                 ) && 
                 (
                     this._Object == input._Object ||
@@ -272,24 +287,9 @@ namespace iam.Model
                     this.UpdatedAt.Equals(input.UpdatedAt))
                 ) && 
                 (
-                    this.Etag == input.Etag ||
-                    (this.Etag != null &&
-                    this.Etag.Equals(input.Etag))
-                ) && 
-                (
-                    this.ApikeyCount == input.ApikeyCount ||
-                    (this.ApikeyCount != null &&
-                    this.ApikeyCount.Equals(input.ApikeyCount))
-                ) && 
-                (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
-                ) && 
-                (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    this.UserCount == input.UserCount ||
+                    (this.UserCount != null &&
+                    this.UserCount.Equals(input.UserCount))
                 );
         }
 
@@ -302,24 +302,24 @@ namespace iam.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.UserCount != null)
-                    hashCode = hashCode * 59 + this.UserCount.GetHashCode();
                 if (this.AccountId != null)
                     hashCode = hashCode * 59 + this.AccountId.GetHashCode();
-                if (this.CreatedAt != null)
-                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
-                if (this._Object != null)
-                    hashCode = hashCode * 59 + this._Object.GetHashCode();
-                if (this.UpdatedAt != null)
-                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
-                if (this.Etag != null)
-                    hashCode = hashCode * 59 + this.Etag.GetHashCode();
                 if (this.ApikeyCount != null)
                     hashCode = hashCode * 59 + this.ApikeyCount.GetHashCode();
+                if (this.CreatedAt != null)
+                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
+                if (this.Etag != null)
+                    hashCode = hashCode * 59 + this.Etag.GetHashCode();
                 if (this.Id != null)
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
                 if (this.Name != null)
                     hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this._Object != null)
+                    hashCode = hashCode * 59 + this._Object.GetHashCode();
+                if (this.UpdatedAt != null)
+                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
+                if (this.UserCount != null)
+                    hashCode = hashCode * 59 + this.UserCount.GetHashCode();
                 return hashCode;
             }
         }

@@ -69,7 +69,7 @@ namespace MbedCloudSDK.Update.Api
 
             try
             {
-                var resp = api.FirmwareImageList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
+                var resp = Api.FirmwareImageList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
                 var respImages = new ResponsePage<FirmwareImage>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
                 foreach (var image in resp.Data)
                 {
@@ -107,7 +107,7 @@ namespace MbedCloudSDK.Update.Api
         {
             try
             {
-                return FirmwareImage.Map(api.FirmwareImageRetrieve(imageId));
+                return FirmwareImage.Map(Api.FirmwareImageRetrieve(imageId));
             }
             catch (update_service.Client.ApiException e)
             {
@@ -142,7 +142,7 @@ namespace MbedCloudSDK.Update.Api
             {
                 using (var fs = File.OpenRead(dataFile))
                 {
-                    var result = FirmwareImage.Map(api.FirmwareImageCreate(fs, name, description));
+                    var result = FirmwareImage.Map(Api.FirmwareImageCreate(fs, name, description));
                     return result;
                 }
             }
@@ -177,7 +177,7 @@ namespace MbedCloudSDK.Update.Api
         {
             try
             {
-                api.FirmwareImageDestroy(imageId);
+                Api.FirmwareImageDestroy(imageId);
             }
             catch (update_service.Client.ApiException e)
             {

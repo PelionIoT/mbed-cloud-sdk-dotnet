@@ -212,7 +212,6 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         /// <returns>Account</returns>
         public static Account Map(iam.Model.AccountInfo accountInfo)
         {
-            var accountStatus = Utils.ParseEnum<AccountStatus>(accountInfo.Status);
             var account = new Account
             {
                 PhoneNumber = accountInfo.PhoneNumber,
@@ -225,7 +224,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
                 DisplayName = accountInfo.DisplayName,
                 State = accountInfo.State,
                 Email = accountInfo.Email,
-                Status = accountStatus,
+                Status = Utils.ParseEnum<AccountStatus>(accountInfo.Status),
                 Company = accountInfo.Company,
                 UpgradedAt = accountInfo.UpgradedAt.ToNullableUniversalTime(),
                 Tier = accountInfo.Tier,
@@ -302,11 +301,16 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
                 Company = Company,
                 Country = Country,
                 Contact = Contact,
-                MfaStatus = Utils.ParseEnum<AccountUpdateReq.MfaStatusEnum>(MultifactorAuthenticationStatus),
                 NotificationEmails = NotificationEmails,
                 ExpirationWarningThreshold = ExpiryWarning,
                 AccountProperties = CustomProperties,
             };
+
+            if (MultifactorAuthenticationStatus.HasValue)
+            {
+                request.MfaStatus = Utils.ParseEnum<AccountUpdateReq.MfaStatusEnum>(MultifactorAuthenticationStatus);
+            }
+
             return request;
         }
     }

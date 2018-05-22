@@ -39,7 +39,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                var account = developerApi.GetMyAccountInfo("limits, policies");
+                var account = DeveloperApi.GetMyAccountInfo("limits, policies");
                 return Account.Map(account);
             }
             catch (ApiException e)
@@ -73,7 +73,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                var account = await developerApi.GetMyAccountInfoAsync();
+                var account = await DeveloperApi.GetMyAccountInfoAsync();
                 return Account.Map(account);
             }
             catch (ApiException e)
@@ -113,7 +113,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             var req = account.CreateUpdateRequest();
             try
             {
-                var accountInfo = adminApi.UpdateMyAccount(req);
+                var accountInfo = AdminApi.UpdateMyAccount(req);
                 return Account.Map(accountInfo);
             }
             catch (ApiException e)
@@ -153,7 +153,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             var req = account.CreateUpdateRequest();
             try
             {
-                var accountInfo = await adminApi.UpdateMyAccountAsync(req);
+                var accountInfo = await AdminApi.UpdateMyAccountAsync(req);
                 return Account.Map(accountInfo);
             }
             catch (ApiException e)

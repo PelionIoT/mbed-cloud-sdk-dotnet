@@ -32,6 +32,21 @@ namespace iam.Model
     public partial class UserInfoResp :  IEquatable<UserInfoResp>, IValidatableObject
     {
         /// <summary>
+        /// Entity name: always &#39;user&#39;
+        /// </summary>
+        /// <value>Entity name: always &#39;user&#39;</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ObjectEnum
+        {
+            
+            /// <summary>
+            /// Enum User for "user"
+            /// </summary>
+            [EnumMember(Value = "user")]
+            User
+        }
+
+        /// <summary>
         /// The status of the user. ENROLLING state indicates that the user is in the middle of the enrollment process. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately. INACTIVE users are locked out and not permitted to use the system.
         /// </summary>
         /// <value>The status of the user. ENROLLING state indicates that the user is in the middle of the enrollment process. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately. INACTIVE users are locked out and not permitted to use the system.</value>
@@ -74,29 +89,14 @@ namespace iam.Model
         /// Entity name: always &#39;user&#39;
         /// </summary>
         /// <value>Entity name: always &#39;user&#39;</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum ObjectEnum
-        {
-            
-            /// <summary>
-            /// Enum User for "user"
-            /// </summary>
-            [EnumMember(Value = "user")]
-            User
-        }
-
+        [DataMember(Name="object", EmitDefaultValue=false)]
+        public ObjectEnum? _Object { get; set; }
         /// <summary>
         /// The status of the user. ENROLLING state indicates that the user is in the middle of the enrollment process. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately. INACTIVE users are locked out and not permitted to use the system.
         /// </summary>
         /// <value>The status of the user. ENROLLING state indicates that the user is in the middle of the enrollment process. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately. INACTIVE users are locked out and not permitted to use the system.</value>
         [DataMember(Name="status", EmitDefaultValue=false)]
         public StatusEnum? Status { get; set; }
-        /// <summary>
-        /// Entity name: always &#39;user&#39;
-        /// </summary>
-        /// <value>Entity name: always &#39;user&#39;</value>
-        [DataMember(Name="object", EmitDefaultValue=false)]
-        public ObjectEnum? _Object { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="UserInfoResp" /> class.
         /// </summary>
@@ -105,48 +105,39 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UserInfoResp" /> class.
         /// </summary>
-        /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters..</param>
-        /// <param name="LoginHistory">Timestamps, succeedings, IP addresses and user agent information of the last five logins of the user, with timestamps in RFC3339 format..</param>
-        /// <param name="CreationTime">A timestamp of the user creation in the storage, in milliseconds..</param>
-        /// <param name="UpdatedAt">Last update UTC time RFC3339..</param>
-        /// <param name="FullName">The full name of the user..</param>
-        /// <param name="Id">The UUID of the user. (required).</param>
-        /// <param name="LastLoginTime">A timestamp of the latest login of the user, in milliseconds..</param>
-        /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted..</param>
-        /// <param name="Etag">API resource entity version. (required).</param>
-        /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted..</param>
-        /// <param name="PhoneNumber">Phone number..</param>
-        /// <param name="Email">The email address. (required).</param>
-        /// <param name="Status">The status of the user. ENROLLING state indicates that the user is in the middle of the enrollment process. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately. INACTIVE users are locked out and not permitted to use the system. (required).</param>
         /// <param name="AccountId">The UUID of the account. (required).</param>
-        /// <param name="_Object">Entity name: always &#39;user&#39; (required).</param>
-        /// <param name="Groups">A list of IDs of the groups this user belongs to..</param>
         /// <param name="Address">Address..</param>
-        /// <param name="Password">The password when creating a new user. It will be generated when not present in the request..</param>
-        /// <param name="EmailVerified">A flag indicating whether the user&#39;s email address has been verified or not..</param>
         /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
-        /// <param name="UserProperties">User&#39;s account specific custom properties..</param>
+        /// <param name="CreationTime">A timestamp of the user creation in the storage, in milliseconds..</param>
+        /// <param name="CustomFields">User&#39;s account specific custom properties. The value is a string..</param>
+        /// <param name="Email">The email address. (required).</param>
+        /// <param name="EmailVerified">A flag indicating whether the user&#39;s email address has been verified or not..</param>
+        /// <param name="Etag">API resource entity version. (required).</param>
+        /// <param name="FullName">The full name of the user..</param>
+        /// <param name="Groups">A list of IDs of the groups this user belongs to..</param>
+        /// <param name="Id">The UUID of the user. (required).</param>
+        /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted..</param>
+        /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted..</param>
         /// <param name="IsTotpEnabled">A flag indicating whether 2-factor authentication (TOTP) has been enabled..</param>
+        /// <param name="LastLoginTime">A timestamp of the latest login of the user, in milliseconds..</param>
+        /// <param name="LoginHistory">Timestamps, succeedings, IP addresses and user agent information of the last five logins of the user, with timestamps in RFC3339 format..</param>
+        /// <param name="_Object">Entity name: always &#39;user&#39; (required).</param>
+        /// <param name="Password">The password when creating a new user. It will be generated when not present in the request..</param>
         /// <param name="PasswordChangedTime">A timestamp of the latest change of the user password, in milliseconds..</param>
-        public UserInfoResp(string Username = default(string), List<LoginHistory> LoginHistory = default(List<LoginHistory>), long? CreationTime = default(long?), DateTime? UpdatedAt = default(DateTime?), string FullName = default(string), string Id = default(string), long? LastLoginTime = default(long?), bool? IsGtcAccepted = default(bool?), string Etag = default(string), bool? IsMarketingAccepted = default(bool?), string PhoneNumber = default(string), string Email = default(string), StatusEnum? Status = default(StatusEnum?), string AccountId = default(string), ObjectEnum? _Object = default(ObjectEnum?), List<string> Groups = default(List<string>), string Address = default(string), string Password = default(string), bool? EmailVerified = default(bool?), DateTime? CreatedAt = default(DateTime?), Dictionary<string, Dictionary<string, string>> UserProperties = default(Dictionary<string, Dictionary<string, string>>), bool? IsTotpEnabled = default(bool?), long? PasswordChangedTime = default(long?))
+        /// <param name="PhoneNumber">Phone number..</param>
+        /// <param name="Status">The status of the user. ENROLLING state indicates that the user is in the middle of the enrollment process. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately. INACTIVE users are locked out and not permitted to use the system. (required).</param>
+        /// <param name="UpdatedAt">Last update UTC time RFC3339..</param>
+        /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters..</param>
+        public UserInfoResp(string AccountId = default(string), string Address = default(string), DateTime? CreatedAt = default(DateTime?), long? CreationTime = default(long?), Dictionary<string, string> CustomFields = default(Dictionary<string, string>), string Email = default(string), bool? EmailVerified = default(bool?), string Etag = default(string), string FullName = default(string), List<string> Groups = default(List<string>), string Id = default(string), bool? IsGtcAccepted = default(bool?), bool? IsMarketingAccepted = default(bool?), bool? IsTotpEnabled = default(bool?), long? LastLoginTime = default(long?), List<LoginHistory> LoginHistory = default(List<LoginHistory>), ObjectEnum? _Object = default(ObjectEnum?), string Password = default(string), long? PasswordChangedTime = default(long?), string PhoneNumber = default(string), StatusEnum? Status = default(StatusEnum?), DateTime? UpdatedAt = default(DateTime?), string Username = default(string))
         {
-            // to ensure "Id" is required (not null)
-            if (Id == null)
+            // to ensure "AccountId" is required (not null)
+            if (AccountId == null)
             {
-                throw new InvalidDataException("Id is a required property for UserInfoResp and cannot be null");
+                throw new InvalidDataException("AccountId is a required property for UserInfoResp and cannot be null");
             }
             else
             {
-                this.Id = Id;
-            }
-            // to ensure "Etag" is required (not null)
-            if (Etag == null)
-            {
-                throw new InvalidDataException("Etag is a required property for UserInfoResp and cannot be null");
-            }
-            else
-            {
-                this.Etag = Etag;
+                this.AccountId = AccountId;
             }
             // to ensure "Email" is required (not null)
             if (Email == null)
@@ -157,23 +148,23 @@ namespace iam.Model
             {
                 this.Email = Email;
             }
-            // to ensure "Status" is required (not null)
-            if (Status == null)
+            // to ensure "Etag" is required (not null)
+            if (Etag == null)
             {
-                throw new InvalidDataException("Status is a required property for UserInfoResp and cannot be null");
+                throw new InvalidDataException("Etag is a required property for UserInfoResp and cannot be null");
             }
             else
             {
-                this.Status = Status;
+                this.Etag = Etag;
             }
-            // to ensure "AccountId" is required (not null)
-            if (AccountId == null)
+            // to ensure "Id" is required (not null)
+            if (Id == null)
             {
-                throw new InvalidDataException("AccountId is a required property for UserInfoResp and cannot be null");
+                throw new InvalidDataException("Id is a required property for UserInfoResp and cannot be null");
             }
             else
             {
-                this.AccountId = AccountId;
+                this.Id = Id;
             }
             // to ensure "_Object" is required (not null)
             if (_Object == null)
@@ -184,124 +175,40 @@ namespace iam.Model
             {
                 this._Object = _Object;
             }
-            this.Username = Username;
-            this.LoginHistory = LoginHistory;
+            // to ensure "Status" is required (not null)
+            if (Status == null)
+            {
+                throw new InvalidDataException("Status is a required property for UserInfoResp and cannot be null");
+            }
+            else
+            {
+                this.Status = Status;
+            }
+            this.Address = Address;
+            this.CreatedAt = CreatedAt;
             this.CreationTime = CreationTime;
-            this.UpdatedAt = UpdatedAt;
+            this.CustomFields = CustomFields;
+            this.EmailVerified = EmailVerified;
             this.FullName = FullName;
-            this.LastLoginTime = LastLoginTime;
+            this.Groups = Groups;
             this.IsGtcAccepted = IsGtcAccepted;
             this.IsMarketingAccepted = IsMarketingAccepted;
-            this.PhoneNumber = PhoneNumber;
-            this.Groups = Groups;
-            this.Address = Address;
-            this.Password = Password;
-            this.EmailVerified = EmailVerified;
-            this.CreatedAt = CreatedAt;
-            this.UserProperties = UserProperties;
             this.IsTotpEnabled = IsTotpEnabled;
+            this.LastLoginTime = LastLoginTime;
+            this.LoginHistory = LoginHistory;
+            this.Password = Password;
             this.PasswordChangedTime = PasswordChangedTime;
+            this.PhoneNumber = PhoneNumber;
+            this.UpdatedAt = UpdatedAt;
+            this.Username = Username;
         }
         
-        /// <summary>
-        /// A username containing alphanumerical letters and -,._@+&#x3D; characters.
-        /// </summary>
-        /// <value>A username containing alphanumerical letters and -,._@+&#x3D; characters.</value>
-        [DataMember(Name="username", EmitDefaultValue=false)]
-        public string Username { get; set; }
-
-        /// <summary>
-        /// Timestamps, succeedings, IP addresses and user agent information of the last five logins of the user, with timestamps in RFC3339 format.
-        /// </summary>
-        /// <value>Timestamps, succeedings, IP addresses and user agent information of the last five logins of the user, with timestamps in RFC3339 format.</value>
-        [DataMember(Name="login_history", EmitDefaultValue=false)]
-        public List<LoginHistory> LoginHistory { get; set; }
-
-        /// <summary>
-        /// A timestamp of the user creation in the storage, in milliseconds.
-        /// </summary>
-        /// <value>A timestamp of the user creation in the storage, in milliseconds.</value>
-        [DataMember(Name="creation_time", EmitDefaultValue=false)]
-        public long? CreationTime { get; set; }
-
-        /// <summary>
-        /// Last update UTC time RFC3339.
-        /// </summary>
-        /// <value>Last update UTC time RFC3339.</value>
-        [DataMember(Name="updated_at", EmitDefaultValue=false)]
-        public DateTime? UpdatedAt { get; set; }
-
-        /// <summary>
-        /// The full name of the user.
-        /// </summary>
-        /// <value>The full name of the user.</value>
-        [DataMember(Name="full_name", EmitDefaultValue=false)]
-        public string FullName { get; set; }
-
-        /// <summary>
-        /// The UUID of the user.
-        /// </summary>
-        /// <value>The UUID of the user.</value>
-        [DataMember(Name="id", EmitDefaultValue=false)]
-        public string Id { get; set; }
-
-        /// <summary>
-        /// A timestamp of the latest login of the user, in milliseconds.
-        /// </summary>
-        /// <value>A timestamp of the latest login of the user, in milliseconds.</value>
-        [DataMember(Name="last_login_time", EmitDefaultValue=false)]
-        public long? LastLoginTime { get; set; }
-
-        /// <summary>
-        /// A flag indicating that the General Terms and Conditions has been accepted.
-        /// </summary>
-        /// <value>A flag indicating that the General Terms and Conditions has been accepted.</value>
-        [DataMember(Name="is_gtc_accepted", EmitDefaultValue=false)]
-        public bool? IsGtcAccepted { get; set; }
-
-        /// <summary>
-        /// API resource entity version.
-        /// </summary>
-        /// <value>API resource entity version.</value>
-        [DataMember(Name="etag", EmitDefaultValue=false)]
-        public string Etag { get; set; }
-
-        /// <summary>
-        /// A flag indicating that receiving marketing information has been accepted.
-        /// </summary>
-        /// <value>A flag indicating that receiving marketing information has been accepted.</value>
-        [DataMember(Name="is_marketing_accepted", EmitDefaultValue=false)]
-        public bool? IsMarketingAccepted { get; set; }
-
-        /// <summary>
-        /// Phone number.
-        /// </summary>
-        /// <value>Phone number.</value>
-        [DataMember(Name="phone_number", EmitDefaultValue=false)]
-        public string PhoneNumber { get; set; }
-
-        /// <summary>
-        /// The email address.
-        /// </summary>
-        /// <value>The email address.</value>
-        [DataMember(Name="email", EmitDefaultValue=false)]
-        public string Email { get; set; }
-
-
         /// <summary>
         /// The UUID of the account.
         /// </summary>
         /// <value>The UUID of the account.</value>
         [DataMember(Name="account_id", EmitDefaultValue=false)]
         public string AccountId { get; set; }
-
-
-        /// <summary>
-        /// A list of IDs of the groups this user belongs to.
-        /// </summary>
-        /// <value>A list of IDs of the groups this user belongs to.</value>
-        [DataMember(Name="groups", EmitDefaultValue=false)]
-        public List<string> Groups { get; set; }
 
         /// <summary>
         /// Address.
@@ -311,11 +218,32 @@ namespace iam.Model
         public string Address { get; set; }
 
         /// <summary>
-        /// The password when creating a new user. It will be generated when not present in the request.
+        /// Creation UTC time RFC3339.
         /// </summary>
-        /// <value>The password when creating a new user. It will be generated when not present in the request.</value>
-        [DataMember(Name="password", EmitDefaultValue=false)]
-        public string Password { get; set; }
+        /// <value>Creation UTC time RFC3339.</value>
+        [DataMember(Name="created_at", EmitDefaultValue=false)]
+        public DateTime? CreatedAt { get; set; }
+
+        /// <summary>
+        /// A timestamp of the user creation in the storage, in milliseconds.
+        /// </summary>
+        /// <value>A timestamp of the user creation in the storage, in milliseconds.</value>
+        [DataMember(Name="creation_time", EmitDefaultValue=false)]
+        public long? CreationTime { get; set; }
+
+        /// <summary>
+        /// User&#39;s account specific custom properties. The value is a string.
+        /// </summary>
+        /// <value>User&#39;s account specific custom properties. The value is a string.</value>
+        [DataMember(Name="custom_fields", EmitDefaultValue=false)]
+        public Dictionary<string, string> CustomFields { get; set; }
+
+        /// <summary>
+        /// The email address.
+        /// </summary>
+        /// <value>The email address.</value>
+        [DataMember(Name="email", EmitDefaultValue=false)]
+        public string Email { get; set; }
 
         /// <summary>
         /// A flag indicating whether the user&#39;s email address has been verified or not.
@@ -325,18 +253,46 @@ namespace iam.Model
         public bool? EmailVerified { get; set; }
 
         /// <summary>
-        /// Creation UTC time RFC3339.
+        /// API resource entity version.
         /// </summary>
-        /// <value>Creation UTC time RFC3339.</value>
-        [DataMember(Name="created_at", EmitDefaultValue=false)]
-        public DateTime? CreatedAt { get; set; }
+        /// <value>API resource entity version.</value>
+        [DataMember(Name="etag", EmitDefaultValue=false)]
+        public string Etag { get; set; }
 
         /// <summary>
-        /// User&#39;s account specific custom properties.
+        /// The full name of the user.
         /// </summary>
-        /// <value>User&#39;s account specific custom properties.</value>
-        [DataMember(Name="user_properties", EmitDefaultValue=false)]
-        public Dictionary<string, Dictionary<string, string>> UserProperties { get; set; }
+        /// <value>The full name of the user.</value>
+        [DataMember(Name="full_name", EmitDefaultValue=false)]
+        public string FullName { get; set; }
+
+        /// <summary>
+        /// A list of IDs of the groups this user belongs to.
+        /// </summary>
+        /// <value>A list of IDs of the groups this user belongs to.</value>
+        [DataMember(Name="groups", EmitDefaultValue=false)]
+        public List<string> Groups { get; set; }
+
+        /// <summary>
+        /// The UUID of the user.
+        /// </summary>
+        /// <value>The UUID of the user.</value>
+        [DataMember(Name="id", EmitDefaultValue=false)]
+        public string Id { get; set; }
+
+        /// <summary>
+        /// A flag indicating that the General Terms and Conditions has been accepted.
+        /// </summary>
+        /// <value>A flag indicating that the General Terms and Conditions has been accepted.</value>
+        [DataMember(Name="is_gtc_accepted", EmitDefaultValue=false)]
+        public bool? IsGtcAccepted { get; set; }
+
+        /// <summary>
+        /// A flag indicating that receiving marketing information has been accepted.
+        /// </summary>
+        /// <value>A flag indicating that receiving marketing information has been accepted.</value>
+        [DataMember(Name="is_marketing_accepted", EmitDefaultValue=false)]
+        public bool? IsMarketingAccepted { get; set; }
 
         /// <summary>
         /// A flag indicating whether 2-factor authentication (TOTP) has been enabled.
@@ -346,11 +302,55 @@ namespace iam.Model
         public bool? IsTotpEnabled { get; set; }
 
         /// <summary>
+        /// A timestamp of the latest login of the user, in milliseconds.
+        /// </summary>
+        /// <value>A timestamp of the latest login of the user, in milliseconds.</value>
+        [DataMember(Name="last_login_time", EmitDefaultValue=false)]
+        public long? LastLoginTime { get; set; }
+
+        /// <summary>
+        /// Timestamps, succeedings, IP addresses and user agent information of the last five logins of the user, with timestamps in RFC3339 format.
+        /// </summary>
+        /// <value>Timestamps, succeedings, IP addresses and user agent information of the last five logins of the user, with timestamps in RFC3339 format.</value>
+        [DataMember(Name="login_history", EmitDefaultValue=false)]
+        public List<LoginHistory> LoginHistory { get; set; }
+
+
+        /// <summary>
+        /// The password when creating a new user. It will be generated when not present in the request.
+        /// </summary>
+        /// <value>The password when creating a new user. It will be generated when not present in the request.</value>
+        [DataMember(Name="password", EmitDefaultValue=false)]
+        public string Password { get; set; }
+
+        /// <summary>
         /// A timestamp of the latest change of the user password, in milliseconds.
         /// </summary>
         /// <value>A timestamp of the latest change of the user password, in milliseconds.</value>
         [DataMember(Name="password_changed_time", EmitDefaultValue=false)]
         public long? PasswordChangedTime { get; set; }
+
+        /// <summary>
+        /// Phone number.
+        /// </summary>
+        /// <value>Phone number.</value>
+        [DataMember(Name="phone_number", EmitDefaultValue=false)]
+        public string PhoneNumber { get; set; }
+
+
+        /// <summary>
+        /// Last update UTC time RFC3339.
+        /// </summary>
+        /// <value>Last update UTC time RFC3339.</value>
+        [DataMember(Name="updated_at", EmitDefaultValue=false)]
+        public DateTime? UpdatedAt { get; set; }
+
+        /// <summary>
+        /// A username containing alphanumerical letters and -,._@+&#x3D; characters.
+        /// </summary>
+        /// <value>A username containing alphanumerical letters and -,._@+&#x3D; characters.</value>
+        [DataMember(Name="username", EmitDefaultValue=false)]
+        public string Username { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -360,29 +360,29 @@ namespace iam.Model
         {
             var sb = new StringBuilder();
             sb.Append("class UserInfoResp {\n");
-            sb.Append("  Username: ").Append(Username).Append("\n");
-            sb.Append("  LoginHistory: ").Append(LoginHistory).Append("\n");
-            sb.Append("  CreationTime: ").Append(CreationTime).Append("\n");
-            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
-            sb.Append("  FullName: ").Append(FullName).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  LastLoginTime: ").Append(LastLoginTime).Append("\n");
-            sb.Append("  IsGtcAccepted: ").Append(IsGtcAccepted).Append("\n");
-            sb.Append("  Etag: ").Append(Etag).Append("\n");
-            sb.Append("  IsMarketingAccepted: ").Append(IsMarketingAccepted).Append("\n");
-            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
-            sb.Append("  Email: ").Append(Email).Append("\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
-            sb.Append("  _Object: ").Append(_Object).Append("\n");
-            sb.Append("  Groups: ").Append(Groups).Append("\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
-            sb.Append("  Password: ").Append(Password).Append("\n");
-            sb.Append("  EmailVerified: ").Append(EmailVerified).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  UserProperties: ").Append(UserProperties).Append("\n");
+            sb.Append("  CreationTime: ").Append(CreationTime).Append("\n");
+            sb.Append("  CustomFields: ").Append(CustomFields).Append("\n");
+            sb.Append("  Email: ").Append(Email).Append("\n");
+            sb.Append("  EmailVerified: ").Append(EmailVerified).Append("\n");
+            sb.Append("  Etag: ").Append(Etag).Append("\n");
+            sb.Append("  FullName: ").Append(FullName).Append("\n");
+            sb.Append("  Groups: ").Append(Groups).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  IsGtcAccepted: ").Append(IsGtcAccepted).Append("\n");
+            sb.Append("  IsMarketingAccepted: ").Append(IsMarketingAccepted).Append("\n");
             sb.Append("  IsTotpEnabled: ").Append(IsTotpEnabled).Append("\n");
+            sb.Append("  LastLoginTime: ").Append(LastLoginTime).Append("\n");
+            sb.Append("  LoginHistory: ").Append(LoginHistory).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
+            sb.Append("  Password: ").Append(Password).Append("\n");
             sb.Append("  PasswordChangedTime: ").Append(PasswordChangedTime).Append("\n");
+            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
+            sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
+            sb.Append("  Username: ").Append(Username).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -418,84 +418,9 @@ namespace iam.Model
 
             return 
                 (
-                    this.Username == input.Username ||
-                    (this.Username != null &&
-                    this.Username.Equals(input.Username))
-                ) && 
-                (
-                    this.LoginHistory == input.LoginHistory ||
-                    this.LoginHistory != null &&
-                    this.LoginHistory.SequenceEqual(input.LoginHistory)
-                ) && 
-                (
-                    this.CreationTime == input.CreationTime ||
-                    (this.CreationTime != null &&
-                    this.CreationTime.Equals(input.CreationTime))
-                ) && 
-                (
-                    this.UpdatedAt == input.UpdatedAt ||
-                    (this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(input.UpdatedAt))
-                ) && 
-                (
-                    this.FullName == input.FullName ||
-                    (this.FullName != null &&
-                    this.FullName.Equals(input.FullName))
-                ) && 
-                (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
-                ) && 
-                (
-                    this.LastLoginTime == input.LastLoginTime ||
-                    (this.LastLoginTime != null &&
-                    this.LastLoginTime.Equals(input.LastLoginTime))
-                ) && 
-                (
-                    this.IsGtcAccepted == input.IsGtcAccepted ||
-                    (this.IsGtcAccepted != null &&
-                    this.IsGtcAccepted.Equals(input.IsGtcAccepted))
-                ) && 
-                (
-                    this.Etag == input.Etag ||
-                    (this.Etag != null &&
-                    this.Etag.Equals(input.Etag))
-                ) && 
-                (
-                    this.IsMarketingAccepted == input.IsMarketingAccepted ||
-                    (this.IsMarketingAccepted != null &&
-                    this.IsMarketingAccepted.Equals(input.IsMarketingAccepted))
-                ) && 
-                (
-                    this.PhoneNumber == input.PhoneNumber ||
-                    (this.PhoneNumber != null &&
-                    this.PhoneNumber.Equals(input.PhoneNumber))
-                ) && 
-                (
-                    this.Email == input.Email ||
-                    (this.Email != null &&
-                    this.Email.Equals(input.Email))
-                ) && 
-                (
-                    this.Status == input.Status ||
-                    (this.Status != null &&
-                    this.Status.Equals(input.Status))
-                ) && 
-                (
                     this.AccountId == input.AccountId ||
                     (this.AccountId != null &&
                     this.AccountId.Equals(input.AccountId))
-                ) && 
-                (
-                    this._Object == input._Object ||
-                    (this._Object != null &&
-                    this._Object.Equals(input._Object))
-                ) && 
-                (
-                    this.Groups == input.Groups ||
-                    this.Groups != null &&
-                    this.Groups.SequenceEqual(input.Groups)
                 ) && 
                 (
                     this.Address == input.Address ||
@@ -503,9 +428,24 @@ namespace iam.Model
                     this.Address.Equals(input.Address))
                 ) && 
                 (
-                    this.Password == input.Password ||
-                    (this.Password != null &&
-                    this.Password.Equals(input.Password))
+                    this.CreatedAt == input.CreatedAt ||
+                    (this.CreatedAt != null &&
+                    this.CreatedAt.Equals(input.CreatedAt))
+                ) && 
+                (
+                    this.CreationTime == input.CreationTime ||
+                    (this.CreationTime != null &&
+                    this.CreationTime.Equals(input.CreationTime))
+                ) && 
+                (
+                    this.CustomFields == input.CustomFields ||
+                    this.CustomFields != null &&
+                    this.CustomFields.SequenceEqual(input.CustomFields)
+                ) && 
+                (
+                    this.Email == input.Email ||
+                    (this.Email != null &&
+                    this.Email.Equals(input.Email))
                 ) && 
                 (
                     this.EmailVerified == input.EmailVerified ||
@@ -513,14 +453,34 @@ namespace iam.Model
                     this.EmailVerified.Equals(input.EmailVerified))
                 ) && 
                 (
-                    this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
+                    this.Etag == input.Etag ||
+                    (this.Etag != null &&
+                    this.Etag.Equals(input.Etag))
                 ) && 
                 (
-                    this.UserProperties == input.UserProperties ||
-                    this.UserProperties != null &&
-                    this.UserProperties.SequenceEqual(input.UserProperties)
+                    this.FullName == input.FullName ||
+                    (this.FullName != null &&
+                    this.FullName.Equals(input.FullName))
+                ) && 
+                (
+                    this.Groups == input.Groups ||
+                    this.Groups != null &&
+                    this.Groups.SequenceEqual(input.Groups)
+                ) && 
+                (
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
+                ) && 
+                (
+                    this.IsGtcAccepted == input.IsGtcAccepted ||
+                    (this.IsGtcAccepted != null &&
+                    this.IsGtcAccepted.Equals(input.IsGtcAccepted))
+                ) && 
+                (
+                    this.IsMarketingAccepted == input.IsMarketingAccepted ||
+                    (this.IsMarketingAccepted != null &&
+                    this.IsMarketingAccepted.Equals(input.IsMarketingAccepted))
                 ) && 
                 (
                     this.IsTotpEnabled == input.IsTotpEnabled ||
@@ -528,9 +488,49 @@ namespace iam.Model
                     this.IsTotpEnabled.Equals(input.IsTotpEnabled))
                 ) && 
                 (
+                    this.LastLoginTime == input.LastLoginTime ||
+                    (this.LastLoginTime != null &&
+                    this.LastLoginTime.Equals(input.LastLoginTime))
+                ) && 
+                (
+                    this.LoginHistory == input.LoginHistory ||
+                    this.LoginHistory != null &&
+                    this.LoginHistory.SequenceEqual(input.LoginHistory)
+                ) && 
+                (
+                    this._Object == input._Object ||
+                    (this._Object != null &&
+                    this._Object.Equals(input._Object))
+                ) && 
+                (
+                    this.Password == input.Password ||
+                    (this.Password != null &&
+                    this.Password.Equals(input.Password))
+                ) && 
+                (
                     this.PasswordChangedTime == input.PasswordChangedTime ||
                     (this.PasswordChangedTime != null &&
                     this.PasswordChangedTime.Equals(input.PasswordChangedTime))
+                ) && 
+                (
+                    this.PhoneNumber == input.PhoneNumber ||
+                    (this.PhoneNumber != null &&
+                    this.PhoneNumber.Equals(input.PhoneNumber))
+                ) && 
+                (
+                    this.Status == input.Status ||
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
+                ) && 
+                (
+                    this.UpdatedAt == input.UpdatedAt ||
+                    (this.UpdatedAt != null &&
+                    this.UpdatedAt.Equals(input.UpdatedAt))
+                ) && 
+                (
+                    this.Username == input.Username ||
+                    (this.Username != null &&
+                    this.Username.Equals(input.Username))
                 );
         }
 
@@ -543,52 +543,52 @@ namespace iam.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Username != null)
-                    hashCode = hashCode * 59 + this.Username.GetHashCode();
-                if (this.LoginHistory != null)
-                    hashCode = hashCode * 59 + this.LoginHistory.GetHashCode();
-                if (this.CreationTime != null)
-                    hashCode = hashCode * 59 + this.CreationTime.GetHashCode();
-                if (this.UpdatedAt != null)
-                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
-                if (this.FullName != null)
-                    hashCode = hashCode * 59 + this.FullName.GetHashCode();
-                if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
-                if (this.LastLoginTime != null)
-                    hashCode = hashCode * 59 + this.LastLoginTime.GetHashCode();
-                if (this.IsGtcAccepted != null)
-                    hashCode = hashCode * 59 + this.IsGtcAccepted.GetHashCode();
-                if (this.Etag != null)
-                    hashCode = hashCode * 59 + this.Etag.GetHashCode();
-                if (this.IsMarketingAccepted != null)
-                    hashCode = hashCode * 59 + this.IsMarketingAccepted.GetHashCode();
-                if (this.PhoneNumber != null)
-                    hashCode = hashCode * 59 + this.PhoneNumber.GetHashCode();
-                if (this.Email != null)
-                    hashCode = hashCode * 59 + this.Email.GetHashCode();
-                if (this.Status != null)
-                    hashCode = hashCode * 59 + this.Status.GetHashCode();
                 if (this.AccountId != null)
                     hashCode = hashCode * 59 + this.AccountId.GetHashCode();
-                if (this._Object != null)
-                    hashCode = hashCode * 59 + this._Object.GetHashCode();
-                if (this.Groups != null)
-                    hashCode = hashCode * 59 + this.Groups.GetHashCode();
                 if (this.Address != null)
                     hashCode = hashCode * 59 + this.Address.GetHashCode();
-                if (this.Password != null)
-                    hashCode = hashCode * 59 + this.Password.GetHashCode();
-                if (this.EmailVerified != null)
-                    hashCode = hashCode * 59 + this.EmailVerified.GetHashCode();
                 if (this.CreatedAt != null)
                     hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
-                if (this.UserProperties != null)
-                    hashCode = hashCode * 59 + this.UserProperties.GetHashCode();
+                if (this.CreationTime != null)
+                    hashCode = hashCode * 59 + this.CreationTime.GetHashCode();
+                if (this.CustomFields != null)
+                    hashCode = hashCode * 59 + this.CustomFields.GetHashCode();
+                if (this.Email != null)
+                    hashCode = hashCode * 59 + this.Email.GetHashCode();
+                if (this.EmailVerified != null)
+                    hashCode = hashCode * 59 + this.EmailVerified.GetHashCode();
+                if (this.Etag != null)
+                    hashCode = hashCode * 59 + this.Etag.GetHashCode();
+                if (this.FullName != null)
+                    hashCode = hashCode * 59 + this.FullName.GetHashCode();
+                if (this.Groups != null)
+                    hashCode = hashCode * 59 + this.Groups.GetHashCode();
+                if (this.Id != null)
+                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                if (this.IsGtcAccepted != null)
+                    hashCode = hashCode * 59 + this.IsGtcAccepted.GetHashCode();
+                if (this.IsMarketingAccepted != null)
+                    hashCode = hashCode * 59 + this.IsMarketingAccepted.GetHashCode();
                 if (this.IsTotpEnabled != null)
                     hashCode = hashCode * 59 + this.IsTotpEnabled.GetHashCode();
+                if (this.LastLoginTime != null)
+                    hashCode = hashCode * 59 + this.LastLoginTime.GetHashCode();
+                if (this.LoginHistory != null)
+                    hashCode = hashCode * 59 + this.LoginHistory.GetHashCode();
+                if (this._Object != null)
+                    hashCode = hashCode * 59 + this._Object.GetHashCode();
+                if (this.Password != null)
+                    hashCode = hashCode * 59 + this.Password.GetHashCode();
                 if (this.PasswordChangedTime != null)
                     hashCode = hashCode * 59 + this.PasswordChangedTime.GetHashCode();
+                if (this.PhoneNumber != null)
+                    hashCode = hashCode * 59 + this.PhoneNumber.GetHashCode();
+                if (this.Status != null)
+                    hashCode = hashCode * 59 + this.Status.GetHashCode();
+                if (this.UpdatedAt != null)
+                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
+                if (this.Username != null)
+                    hashCode = hashCode * 59 + this.Username.GetHashCode();
                 return hashCode;
             }
         }

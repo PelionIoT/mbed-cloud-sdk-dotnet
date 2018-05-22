@@ -41,9 +41,9 @@ namespace iam.Model
         /// </summary>
         /// <param name="Date">UTC time RFC3339 for this login attempt. (required).</param>
         /// <param name="IpAddress">IP address of the client. (required).</param>
-        /// <param name="UserAgent">User Agent header from the login request. (required).</param>
         /// <param name="Success">Flag indicating whether login attempt was successful or not. (required).</param>
-        public LoginHistory(DateTime? Date = default(DateTime?), string IpAddress = default(string), string UserAgent = default(string), bool? Success = default(bool?))
+        /// <param name="UserAgent">User Agent header from the login request. (required).</param>
+        public LoginHistory(DateTime? Date = default(DateTime?), string IpAddress = default(string), bool? Success = default(bool?), string UserAgent = default(string))
         {
             // to ensure "Date" is required (not null)
             if (Date == null)
@@ -63,15 +63,6 @@ namespace iam.Model
             {
                 this.IpAddress = IpAddress;
             }
-            // to ensure "UserAgent" is required (not null)
-            if (UserAgent == null)
-            {
-                throw new InvalidDataException("UserAgent is a required property for LoginHistory and cannot be null");
-            }
-            else
-            {
-                this.UserAgent = UserAgent;
-            }
             // to ensure "Success" is required (not null)
             if (Success == null)
             {
@@ -80,6 +71,15 @@ namespace iam.Model
             else
             {
                 this.Success = Success;
+            }
+            // to ensure "UserAgent" is required (not null)
+            if (UserAgent == null)
+            {
+                throw new InvalidDataException("UserAgent is a required property for LoginHistory and cannot be null");
+            }
+            else
+            {
+                this.UserAgent = UserAgent;
             }
         }
         
@@ -98,18 +98,18 @@ namespace iam.Model
         public string IpAddress { get; set; }
 
         /// <summary>
-        /// User Agent header from the login request.
-        /// </summary>
-        /// <value>User Agent header from the login request.</value>
-        [DataMember(Name="user_agent", EmitDefaultValue=false)]
-        public string UserAgent { get; set; }
-
-        /// <summary>
         /// Flag indicating whether login attempt was successful or not.
         /// </summary>
         /// <value>Flag indicating whether login attempt was successful or not.</value>
         [DataMember(Name="success", EmitDefaultValue=false)]
         public bool? Success { get; set; }
+
+        /// <summary>
+        /// User Agent header from the login request.
+        /// </summary>
+        /// <value>User Agent header from the login request.</value>
+        [DataMember(Name="user_agent", EmitDefaultValue=false)]
+        public string UserAgent { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -121,8 +121,8 @@ namespace iam.Model
             sb.Append("class LoginHistory {\n");
             sb.Append("  Date: ").Append(Date).Append("\n");
             sb.Append("  IpAddress: ").Append(IpAddress).Append("\n");
-            sb.Append("  UserAgent: ").Append(UserAgent).Append("\n");
             sb.Append("  Success: ").Append(Success).Append("\n");
+            sb.Append("  UserAgent: ").Append(UserAgent).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -168,14 +168,14 @@ namespace iam.Model
                     this.IpAddress.Equals(input.IpAddress))
                 ) && 
                 (
-                    this.UserAgent == input.UserAgent ||
-                    (this.UserAgent != null &&
-                    this.UserAgent.Equals(input.UserAgent))
-                ) && 
-                (
                     this.Success == input.Success ||
                     (this.Success != null &&
                     this.Success.Equals(input.Success))
+                ) && 
+                (
+                    this.UserAgent == input.UserAgent ||
+                    (this.UserAgent != null &&
+                    this.UserAgent.Equals(input.UserAgent))
                 );
         }
 
@@ -192,10 +192,10 @@ namespace iam.Model
                     hashCode = hashCode * 59 + this.Date.GetHashCode();
                 if (this.IpAddress != null)
                     hashCode = hashCode * 59 + this.IpAddress.GetHashCode();
-                if (this.UserAgent != null)
-                    hashCode = hashCode * 59 + this.UserAgent.GetHashCode();
                 if (this.Success != null)
                     hashCode = hashCode * 59 + this.Success.GetHashCode();
+                if (this.UserAgent != null)
+                    hashCode = hashCode * 59 + this.UserAgent.GetHashCode();
                 return hashCode;
             }
         }

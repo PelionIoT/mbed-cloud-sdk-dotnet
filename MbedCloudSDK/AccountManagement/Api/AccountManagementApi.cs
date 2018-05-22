@@ -23,8 +23,15 @@ namespace MbedCloudSDK.AccountManagement.Api
     /// </example>
     public partial class AccountManagementApi : BaseApi
     {
-        internal DeveloperApi developerApi;
-        internal AccountAdminApi adminApi;
+        /// <summary>
+        /// The admin API
+        /// </summary>
+        private AccountAdminApi adminApi;
+
+        /// <summary>
+        /// The developer API
+        /// </summary>
+        private DeveloperApi developerApi;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountManagementApi"/> class.
@@ -44,11 +51,28 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// - IAM
         /// </summary>
         /// <param name="config"><see cref="Config"/></param>
+        /// <param name="iamConfig">iamConfig</param>
         internal AccountManagementApi(Config config, Configuration iamConfig = null)
          : base(config)
         {
             SetUpApi(config, iamConfig);
         }
+
+        /// <summary>
+        /// Gets or sets the admin API.
+        /// </summary>
+        /// <value>
+        /// The admin API.
+        /// </value>
+        internal AccountAdminApi AdminApi { get => adminApi; set => adminApi = value; }
+
+        /// <summary>
+        /// Gets or sets the developer API.
+        /// </summary>
+        /// <value>
+        /// The developer API.
+        /// </value>
+        internal DeveloperApi DeveloperApi { get => developerApi; set => developerApi = value; }
 
         /// <summary>
         /// Get metadata for the last api call.
@@ -80,8 +104,8 @@ namespace MbedCloudSDK.AccountManagement.Api
                 iamConfig.CreateApiClient();
             }
 
-            developerApi = new DeveloperApi(iamConfig);
-            adminApi = new AccountAdminApi(iamConfig);
+            DeveloperApi = new DeveloperApi(iamConfig);
+            AdminApi = new AccountAdminApi(iamConfig);
         }
     }
 }

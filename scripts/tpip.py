@@ -39,7 +39,7 @@ import csv
 
 
 # Report field names in CSV
-FIELDNAMES = ('name', 'version', 'repository', 'licence')
+FIELDNAMES = ('PkgName', 'PkgType', 'PkgOriginator', 'PkgVersion', 'PkgSummary', 'PkgHomePageURL', 'PkgLicense', 'PkgLicenseURL', 'PkgMgrURL')
 
 
 def write_csv_file(output_filename, tpip_pkgs):
@@ -78,7 +78,7 @@ def main():
                 entry = res['items'][0]['items'][-1]['catalogEntry']
 
                 tpip_pkg = dict(
-                    zip(FIELDNAMES, [[entry['id']], [package.attrib['Version']], [entry['projectUrl']], [entry['licenseUrl']]]))
+                    zip(FIELDNAMES, [[entry['id']], ["Nuget"], [entry['authors']], [package.attrib['Version']], [entry['title']], [entry['projectUrl']], [], [entry['licenseUrl']], ["https://www.nuget.org/packages/" + entry['id']]]))
 
                 flattened = dict((key, '; '.join(value)) for(key, value) in tpip_pkg.items())
                 pkgs.append(flattened)

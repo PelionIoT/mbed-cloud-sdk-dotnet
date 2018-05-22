@@ -69,7 +69,7 @@ namespace MbedCloudSDK.Update.Api
 
             try
             {
-                var resp = api.UpdateCampaignList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
+                var resp = Api.UpdateCampaignList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
                 var respDevices = new ResponsePage<Campaign>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
                 foreach (var device in resp.Data)
                 {
@@ -140,7 +140,7 @@ namespace MbedCloudSDK.Update.Api
 
             try
             {
-                var resp = api.UpdateCampaignMetadataList(campaignId: options.Id, limit: options.Limit, order: options.Order, after: options.After, include: options.Include);
+                var resp = Api.UpdateCampaignMetadataList(campaignId: options.Id, limit: options.Limit, order: options.Order, after: options.After, include: options.Include);
                 var respStates = new ResponsePage<CampaignDeviceState>(after: resp.After, hasMore: resp.HasMore, limit: resp.Limit, order: Convert.ToString(resp.Order), totalCount: resp.TotalCount);
                 foreach (var state in resp.Data)
                 {
@@ -178,7 +178,7 @@ namespace MbedCloudSDK.Update.Api
         {
             try
             {
-                var resp = api.UpdateCampaignRetrieve(campaignId);
+                var resp = Api.UpdateCampaignRetrieve(campaignId);
                 return Campaign.Map(resp);
             }
             catch (update_service.Client.ApiException e)
@@ -221,7 +221,7 @@ namespace MbedCloudSDK.Update.Api
         {
             try
             {
-                var resp = api.UpdateCampaignCreate(campaign.CreatePostRequest());
+                var resp = Api.UpdateCampaignCreate(campaign.CreatePostRequest());
                 return Campaign.Map(resp);
             }
             catch (update_service.Client.ApiException e)
@@ -256,7 +256,7 @@ namespace MbedCloudSDK.Update.Api
             try
             {
                 campaign.State = CampaignStateEnum.Scheduled;
-                var resp = api.UpdateCampaignUpdate(campaignId, campaign.CreatePutRequest());
+                var resp = Api.UpdateCampaignUpdate(campaignId, campaign.CreatePutRequest());
                 return Campaign.Map(resp);
             }
             catch (update_service.Client.ApiException e)
@@ -293,7 +293,7 @@ namespace MbedCloudSDK.Update.Api
             try
             {
                 campaign.State = CampaignStateEnum.Draft;
-                var resp = api.UpdateCampaignUpdate(campaignId, campaign.CreatePutRequest());
+                var resp = Api.UpdateCampaignUpdate(campaignId, campaign.CreatePutRequest());
                 return Campaign.Map(resp);
             }
             catch (update_service.Client.ApiException e)
@@ -331,7 +331,7 @@ namespace MbedCloudSDK.Update.Api
         {
             try
             {
-                var response = api.UpdateCampaignUpdate(campaignId, campaign.CreatePutRequest());
+                var response = Api.UpdateCampaignUpdate(campaignId, campaign.CreatePutRequest());
                 return Campaign.Map(response);
             }
             catch (update_service.Client.ApiException e)
@@ -361,7 +361,7 @@ namespace MbedCloudSDK.Update.Api
         {
             try
             {
-                api.UpdateCampaignDestroy(campaignId);
+                Api.UpdateCampaignDestroy(campaignId);
             }
             catch (update_service.Client.ApiException e)
             {

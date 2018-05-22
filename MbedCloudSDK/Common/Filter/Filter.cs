@@ -137,6 +137,10 @@ namespace MbedCloudSDK.Common.Filter
                     return FilterOperator.LessOrEqual;
                 case "$gte":
                     return FilterOperator.GreaterOrEqual;
+                case "$in":
+                    return FilterOperator.In;
+                case "$nin":
+                    return FilterOperator.NotIn;
                 default:
                     return FilterOperator.Equals;
             }
@@ -159,6 +163,10 @@ namespace MbedCloudSDK.Common.Filter
                     return "$lte";
                 case FilterOperator.GreaterOrEqual:
                     return "$gte";
+                case FilterOperator.In:
+                    return "$in";
+                case FilterOperator.NotIn:
+                    return "$nin";
                 default:
                     return "$eq";
             }
@@ -375,12 +383,12 @@ namespace MbedCloudSDK.Common.Filter
         /// </summary>
         /// <param name="key">They key of the filter</param>
         /// <returns>The first value in the filter</returns>
-        public string GetFirstValueByKey(string key)
+        public string GetFirstValueByKey(string key, FilterOperator filterOperator = FilterOperator.Equals)
         {
             if (FilterDictionary.ContainsKey(key))
             {
                 var attr = FilterDictionary[key];
-                return attr.FirstOrDefault().Value;
+                return attr.FirstOrDefault(a => a.FilterOperator == filterOperator)?.Value;
             }
 
             return null;
@@ -479,6 +487,18 @@ namespace MbedCloudSDK.Common.Filter
                     {
                         key = key.Replace("__gte", string.Empty);
                         oper = FilterOperator.GreaterOrEqual;
+                    }
+
+                    if (key.Contains("__in"))
+                    {
+                        key = key.Replace("__in", string.Empty);
+                        oper = FilterOperator.In;
+                    }
+
+                    if (key.Contains("__nin"))
+                    {
+                        key = key.Replace("__nin", string.Empty);
+                        oper = FilterOperator.NotIn;
                     }
 
                     var queryAttribute = new FilterAttribute(val, oper);

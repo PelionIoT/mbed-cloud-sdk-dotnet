@@ -159,11 +159,18 @@ namespace MbedCloudSDK.Update.Model.Campaign
         public UpdateCampaignPostRequest CreatePostRequest()
         {
             var deviceFilterString = DeviceFilter.FilterString;
+
+            UpdateCampaignPostRequest.StateEnum? state = null;
+            if (State.HasValue)
+            {
+                Utils.ParseEnum<UpdateCampaignPostRequest.StateEnum>(State);
+            }
+
             var request = new UpdateCampaignPostRequest(DeviceFilter: deviceFilterString, Name: Name)
             {
                 Description = Description,
                 RootManifestId = ManifestId,
-                State = Utils.ParseEnum<UpdateCampaignPostRequest.StateEnum>(State),
+                State = state,
                 When = ScheduledAt.ToNullableUniversalTime(),
             };
             return request;

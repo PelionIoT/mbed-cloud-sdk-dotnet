@@ -70,7 +70,7 @@ namespace MbedCloudSDK.AccountManagement.Api
 
             try
             {
-                var resp = developerApi.GetAllGroups(limit: options.Limit, after: options.After, order: options.Order, include: options.Include);
+                var resp = DeveloperApi.GetAllGroups(limit: options.Limit, after: options.After, order: options.Order, include: options.Include);
                 var respGroups = new ResponsePage<Group>(resp.After, resp.HasMore, resp.Limit, null, resp.TotalCount);
                 foreach (var group in resp.Data)
                 {
@@ -109,7 +109,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                var groupData = developerApi.GetGroupSummary(groupId);
+                var groupData = DeveloperApi.GetGroupSummary(groupId);
                 return Group.Map(groupData);
             }
             catch (iam.Client.ApiException e)
@@ -169,7 +169,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                var resp = adminApi.GetUsersOfGroup(groupID: options.Id, limit: options.Limit, after: options.After, order: options.Order, include: options.Include);
+                var resp = AdminApi.GetUsersOfGroup(groupID: options.Id, limit: options.Limit, after: options.After, order: options.Order, include: options.Include);
                 var respGroupUsers = new ResponsePage<User>(resp.After, resp.HasMore, resp.Limit, null, resp.TotalCount);
                 foreach (var user in resp.Data)
                 {
@@ -235,7 +235,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                var resp = developerApi.GetApiKeysOfGroup(groupID: options.Id, limit: options.Limit, after: options.After, order: options.Order, include: options.Include);
+                var resp = DeveloperApi.GetApiKeysOfGroup(groupID: options.Id, limit: options.Limit, after: options.After, order: options.Order, include: options.Include);
                 var respGroupKeys = new ResponsePage<ApiKey>(resp.After, resp.HasMore, resp.Limit, null, resp.TotalCount);
                 foreach (var apiKey in resp.Data)
                 {

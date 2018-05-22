@@ -28,7 +28,7 @@ namespace ConsoleExamples.Examples.Subscribe
             var blankSub = connect.Subscribe.ResourceValues();
 
             // gives resourcevalues as soon as they're values update, however this is expensive.
-            var blankSubImmediate = connect.Subscribe.ResourceValues(ImmediacyEnum.OnValueUpdate);
+            var blankSubImmediate = connect.Subscribe.ResourceValues(FirstValueEnum.OnValueUpdate);
 
             // subscribe to one resource on a device
             var deviceIdSub = connect.Subscribe.ResourceValues("1", "3/0/1");
