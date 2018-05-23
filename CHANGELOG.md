@@ -1,4 +1,26 @@
- (2018-04-13)
+ (2018-05-22)
+=============
+
+### Features
+
+- Add device bootstrap API. This provides the ability to set Pre-Shared Keys
+  for device bring-up. (#1075, #1099)
+
+- Added resource values to subscribe module. See examples folder for usage.
+  (#1101)
+
+- New API updates for IAM. (#1225)
+
+- New API updates for MDS. (#1235)
+
+- Manifest upload supports upload of keytable file (#522)
+
+### Improved Documentation
+
+- Add security recommendations to PSK documentation. (#742)
+
+
+(2018-04-13)
 =============
 
 ### Features
