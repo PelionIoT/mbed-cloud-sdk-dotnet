@@ -28,7 +28,7 @@ namespace WebhookExample.Services
                 applicationLifetime.StopApplication();
             }
 
-            var config = new Config(apiKey, host);
+            var config = string.IsNullOrEmpty(host) ? new Config(apiKey) : new Config(apiKey, host);
 
             connect = new ConnectApi(config);
         }

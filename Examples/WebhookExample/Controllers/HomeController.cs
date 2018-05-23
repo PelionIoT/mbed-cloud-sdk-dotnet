@@ -28,9 +28,16 @@ namespace WebhookExample.Controllers
         [HttpPost("/subscribe")]
         public IActionResult Subscribe([FromBody] SubscribeModel model)
         {
-            var observer = _connectService.connect.Subscribe.ResourceValues(model.DeviceId, model.ResourcePaths);
-            observer.OnNotify += (res) => Console.WriteLine(res);
-            return Ok();
+            try
+            {
+                var observer = _connectService.connect.Subscribe.ResourceValues(model.DeviceId, model.ResourcePaths);
+                observer.OnNotify += (res) => Console.WriteLine(res);
+                return Ok();
+            }
+            catch (CloudApiException)
+            {
+                return RedirectToAction("Error");
+            }
         }
 
         [HttpPost("/register")]

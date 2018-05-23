@@ -4,7 +4,7 @@ namespace WebhookExample.Models
 {
     public class SubscribeModel
     {
-        public string DeviceId { get; set; }
-        public List<string> ResourcePaths { get; set; }
+        public string DeviceId { get; set; } = "*";
+        public List<string> ResourcePaths { get; set; } = new List<string>();
     }
 }

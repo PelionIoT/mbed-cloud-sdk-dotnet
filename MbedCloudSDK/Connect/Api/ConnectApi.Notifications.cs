@@ -178,7 +178,6 @@ namespace MbedCloudSDK.Connect.Api
                     }
                     else
                     {
-
                         Console.WriteLine("Starting notifications");
                         if (cancellationToken != null)
                         {
