@@ -1,0 +1,11 @@
+{
+  "name": "webhook-example",
+  "version": "1.0.0",
+  "description": "This example ASP.NET Core server demonstrates how the Mbed Cloud SDK can be used to listen for notifications with a webhook, rather than a long polling channel.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

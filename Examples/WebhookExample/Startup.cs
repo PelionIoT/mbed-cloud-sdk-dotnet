@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Http;
+using WebhookExample.Hubs;
 using WebhookExample.Services;
 
 namespace WebhookExample
@@ -25,6 +27,16 @@ namespace WebhookExample
             services.AddMvc();
 
             services.AddSingleton<IConnectService, ConnectService>();
+
+            services.AddCors(options => options.AddPolicy("CorsPolicy",
+            builder =>
+            {
+                builder.AllowAnyMethod().AllowAnyHeader()
+                       .WithOrigins("http://localhost:5000")
+                       .AllowCredentials();
+            }));
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +52,14 @@ namespace WebhookExample
             }
 
             app.UseStaticFiles();
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
+            app.UseCors("CorsPolicy");
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<NotificationHub>("/notificationhub");
+            });
 
             app.UseMvc(routes =>
             {

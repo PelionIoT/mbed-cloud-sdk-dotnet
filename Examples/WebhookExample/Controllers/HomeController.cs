@@ -7,6 +7,8 @@ using MbedCloudSDK.Connect.Model.Notifications;
 using MbedCloudSDK.Connect.Model.Webhook;
 using MbedCloudSDK.Exceptions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using WebhookExample.Hubs;
 using WebhookExample.Models;
 using WebhookExample.Services;
 
@@ -15,10 +17,12 @@ namespace WebhookExample.Controllers
     public class HomeController : Controller
     {
         private IConnectService _connectService;
+        private IHubContext<NotificationHub> _notificationHub;
 
-        public HomeController(IConnectService connectService)
+        public HomeController(IConnectService connectService, IHubContext<NotificationHub> notificationHub)
         {
             _connectService = connectService;
+            _notificationHub = notificationHub;
         }
         public IActionResult Index()
         {
@@ -31,7 +35,12 @@ namespace WebhookExample.Controllers
             try
             {
                 var observer = _connectService.connect.Subscribe.ResourceValues(model.DeviceId, model.ResourcePaths);
-                observer.OnNotify += (res) => Console.WriteLine(res);
+                observer.OnNotify += (res) =>
+                {
+                    Console.WriteLine(res);
+                    _notificationHub.Clients.All.SendAsync("NotificationMessage", res);
+                };
+
                 return Ok();
             }
             catch (CloudApiException)
