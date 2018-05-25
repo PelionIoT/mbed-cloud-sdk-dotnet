@@ -9,6 +9,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
     using System.Linq;
     using MbedCloudSDK.Connect.Api.Subscribe.Models;
     using MbedCloudSDK.Connect.Model.Notifications;
+    using MbedCloudSDK.Connect.Model.Subscription;
 
     /// <summary>
     /// <see cref="ResourceValuesObserver"/>
@@ -66,13 +67,13 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
                 ResourceValueSubscriptions.Add(sub);
             });
 
-            OnSubAdded?.Invoke();
+            OnSubAdded?.Invoke(Id);
         }
 
         /// <summary>
         /// SubAddedRaiser
         /// </summary>
-        public delegate void SubAddedRaiser();
+        public delegate void SubAddedRaiser(string id);
 
         /// <summary>
         /// Occurs when [on sub added].
@@ -110,7 +111,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         public ResourceValuesObserver Where(ResourceValuesFilter subscription)
         {
             ResourceValueSubscriptions.Add(subscription);
-            OnSubAdded?.Invoke();
+            OnSubAdded?.Invoke(Id);
             return this;
         }
 
@@ -124,7 +125,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         {
             var sub = new ResourceValuesFilter { DeviceId = deviceId, ResourcePaths = resourcePaths.ToList() };
             ResourceValueSubscriptions.Add(sub);
-            OnSubAdded?.Invoke();
+            OnSubAdded?.Invoke(Id);
             return this;
         }
 

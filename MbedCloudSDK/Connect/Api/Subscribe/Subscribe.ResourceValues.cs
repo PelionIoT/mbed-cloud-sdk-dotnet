@@ -147,7 +147,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
             return local.Union(server, new PresubscriptionComparer()).ToArray();
         }
 
-        private void ConstructPresubArray()
+        private void ConstructPresubArray(string id)
         {
             // get the union of all the local subscriptions
             var presubs = new HashSet<ResourceValuesFilter>();
@@ -169,10 +169,11 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
 
                 if (Immediacy == FirstValueEnum.OnValueUpdate)
                 {
-                    AllLocalSubscriptions.ToList().ForEach(s =>
+                    var connectedDevices = ConnectApi.ListConnectedDevices().Data;
+                    ResourceValueObservers.Where(v => v.Id == id).ToList().ForEach(v => v.ResourceValueSubscriptions.ToList().ForEach(s =>
                     {
                         // add resource subscriptions for all matching resources on connected devices
-                        ConnectApi.ListConnectedDevices().Data
+                        connectedDevices
                             .Where(d => s.DeviceId.MatchWithWildcard(d.Id))
                                 .ToList()
                                 .ForEach(m =>
@@ -186,7 +187,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
                                             }
                                         });
                                 });
-                    });
+                    }));
                 }
             }
         }
@@ -194,10 +195,10 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         private ResourceValuesObserver ResourceValues(ResourceValuesObserver observer, FirstValueEnum immediacy)
         {
             Immediacy = immediacy;
-            observer.OnSubAdded += () => ConstructPresubArray();
+            observer.OnSubAdded += (id) => ConstructPresubArray(id);
             observer.OnUnsubscribed += (id) => UnsubscribeSubscriptions(id);
             ResourceValueObservers.Add(observer);
-            ConstructPresubArray();
+            ConstructPresubArray(observer.Id);
             StartNotifications();
             return observer;
         }
@@ -205,7 +206,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         private void UnsubscribeSubscriptions(string id)
         {
             ResourceValueObservers.RemoveAll(d => d.Id == id);
-            ConstructPresubArray();
+            ConstructPresubArray(id);
         }
     }
 }
