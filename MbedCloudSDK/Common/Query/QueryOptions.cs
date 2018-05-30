@@ -29,7 +29,7 @@ namespace MbedCloudSDK.Common.Query
         }
 
         /// <summary>
-        /// Gets or sets the limit of objects in response.
+        /// Gets or sets the limit of objects in response (Depreciated, please use PageSize).
         /// </summary>
         /// <value>The limit.</value>
         public int? Limit { get; set; }
@@ -62,8 +62,14 @@ namespace MbedCloudSDK.Common.Query
         /// <value>Comma separate additional data to return. Currently supported: total_count.</value>
         public string Include { get; set; }
 
+        /// <summary>
+        /// Gets or sets PageSize
+        /// </summary>
         public int? PageSize { get; set; }
 
+        /// <summary>
+        /// Gets or sets MaxResults
+        /// </summary>
         public int? MaxResults { get; set; }
     }
 }
