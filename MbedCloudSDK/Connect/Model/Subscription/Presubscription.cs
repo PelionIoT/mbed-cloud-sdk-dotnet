@@ -8,13 +8,14 @@ namespace MbedCloudSDK.Connect.Model.Subscription
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Connect.Model.Notifications;
 
     /// <summary>
     /// Presubscription
     /// </summary>
-    public class Presubscription : IEquatable<Presubscription>
+    public class Presubscription : BaseModel, IEquatable<Presubscription>
     {
         /// <summary>
         /// Gets or sets the Device ID
@@ -76,18 +77,10 @@ namespace MbedCloudSDK.Connect.Model.Subscription
         }
 
         /// <summary>
-        /// Returns the string presentation of the object
+        /// Returns the string presentation of the object.
         /// </summary>
-        /// <returns>String presentation of the object</returns>
+        /// <returns>String presentation of the object.</returns>
         public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class Presubscription {\n");
-            sb.Append("  DeviceId: ").Append(DeviceId).Append("\n");
-            sb.Append("  DeviceType: ").Append(DeviceType).Append("\n");
-            sb.Append("  ResourcePaths: ").Append(string.Join(", ", ResourcePaths?.Select(r => { return Convert.ToString(r); }))).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+            => this.DebugDump();
     }
 }

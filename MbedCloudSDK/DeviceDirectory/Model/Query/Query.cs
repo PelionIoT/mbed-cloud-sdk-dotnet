@@ -7,13 +7,14 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Query
     using System;
     using System.Text;
     using device_directory.Model;
+    using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Filter;
     using Newtonsoft.Json;
 
     /// <summary>
     /// Represents Query from device catalog API.
     /// </summary>
-    public class Query
+    public class Query : BaseModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Query"/> class.
@@ -42,12 +43,6 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Query
         public Filter Filter { get; set; }
 
         /// <summary>
-        /// Gets the ID of the query.
-        /// </summary>
-        [JsonProperty]
-        public string Id { get; private set; }
-
-        /// <summary>
         /// Gets or sets the name of the query.
         /// </summary>
         public string Name { get; set; }
@@ -71,20 +66,10 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Query
         }
 
         /// <summary>
-        /// Returns the string presentation of the object
+        /// Returns the string presentation of the object.
         /// </summary>
-        /// <returns>String presentation of the object</returns>
+        /// <returns>String presentation of the object.</returns>
         public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class DeviceQueryDetail {\n");
-            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
-            sb.Append("  Filter: ").Append(Filter).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+            => this.DebugDump();
     }
 }

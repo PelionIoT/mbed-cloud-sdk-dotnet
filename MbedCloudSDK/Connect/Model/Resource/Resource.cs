@@ -8,6 +8,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
     using System.Collections.Generic;
     using System.Collections.Specialized;
     using System.Text;
+    using MbedCloudSDK.Common;
     using MbedCloudSDK.Connect.Api;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
     using MbedCloudSDK.Connect.Model.Notifications;
@@ -16,7 +17,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
     /// <summary>
     /// Resource.
     /// </summary>
-    public class Resource
+    public class Resource : BaseModel
     {
         private Connect.Api.ConnectApi api;
 
@@ -280,19 +281,10 @@ namespace MbedCloudSDK.Connect.Model.Resource
         }
 
         /// <summary>
-        /// Returns the string presentation of the object
+        /// Returns the string presentation of the object.
         /// </summary>
-        /// <returns>String presentation of the object</returns>
+        /// <returns>String presentation of the object.</returns>
         public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class Resource {\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
-            sb.Append("  Content Type: ").Append(ContentType).Append("\n");
-            sb.Append("  Uri: ").Append(Path).Append("\n");
-            sb.Append("  Observable: ").Append(Observable).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+            => this.DebugDump();
     }
 }

@@ -6,6 +6,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Policy
 {
     using System.Collections.Generic;
     using System.Text;
+    using MbedCloudSDK.Common;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -13,26 +14,6 @@ namespace MbedCloudSDK.AccountManagement.Model.Policy
     /// </summary>
     public class Policy
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Policy"/> class.
-        /// Create new instance of API key class.
-        /// </summary>
-        /// <param name="options">Dictionary containing properties.</param>
-        public Policy(IDictionary<string, object> options = null)
-        {
-            if (options != null)
-            {
-                foreach (KeyValuePair<string, object> item in options)
-                {
-                    var property = GetType().GetProperty(item.Key);
-                    if (property != null)
-                    {
-                        property.SetValue(this, item.Value, null);
-                    }
-                }
-            }
-        }
-
         /// <summary>
         /// Gets comma separated list of actions, empty string represents all actions.
         /// </summary>
@@ -68,30 +49,21 @@ namespace MbedCloudSDK.AccountManagement.Model.Policy
         /// <returns>Policy object</returns>
         public static Policy Map(iam.Model.FeaturePolicy policy)
         {
-            var p = new Policy
+            var mappedPolicy = new Policy
             {
                 Action = policy.Action,
                 Resource = policy.Resource,
                 Feature = policy.Feature,
                 Allow = policy.Allow
             };
-            return p;
+            return mappedPolicy;
         }
 
         /// <summary>
-        /// Returns the string presentation of the object
+        /// Returns the string presentation of the object.
         /// </summary>
-        /// <returns>String presentation of the object</returns>
+        /// <returns>String presentation of the object.</returns>
         public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class FeaturePolicy {\n");
-            sb.Append("  Action: ").Append(Action).Append("\n");
-            sb.Append("  Resource: ").Append(Resource).Append("\n");
-            sb.Append("  Feature: ").Append(Feature).Append("\n");
-            sb.Append("  Allow: ").Append(Allow).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+            => this.DebugDump();
     }
 }

@@ -5,6 +5,7 @@
 namespace MbedCloudSDK.AccountManagement.Model.User
 {
     using System;
+    using MbedCloudSDK.Common;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -61,5 +62,12 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         {
             return new LoginHistory(data.Date, data.UserAgent, data.IpAddress, data.Success);
         }
+
+        /// <summary>
+        /// Returns the string presentation of the object.
+        /// </summary>
+        /// <returns>String presentation of the object.</returns>
+        public override string ToString()
+            => this.DebugDump();
     }
 }

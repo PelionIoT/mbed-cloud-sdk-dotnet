@@ -17,27 +17,8 @@ namespace MbedCloudSDK.Update.Model.Campaign
     /// <summary>
     /// Update campaign object from Update API.
     /// </summary>
-    public class Campaign
+    public class Campaign : BaseModel
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Campaign"/> class.
-        /// Create new update campaign object.
-        /// </summary>
-        /// <param name="options">Dictionary to initiate</param>
-        public Campaign(IDictionary<string, object> options = null)
-        {
-            if (options != null)
-            {
-                foreach (KeyValuePair<string, object> item in options)
-                {
-                    if (GetType().GetProperty(item.Key) != null)
-                    {
-                        GetType().GetProperty(item.Key).SetValue(this, item.Value, null);
-                    }
-                }
-            }
-        }
-
         /// <summary>
         /// Gets or sets state of the update campaign.
         /// </summary>
@@ -101,12 +82,6 @@ namespace MbedCloudSDK.Update.Model.Campaign
         /// </summary>
         [JsonProperty]
         public string ManifestUrl { get; private set; }
-
-        /// <summary>
-        /// Gets the ID of the campaign
-        /// </summary>
-        [JsonProperty]
-        public string Id { get; private set; }
 
         /// <summary>
         /// Gets or sets the filter for the devices the campaign will target
