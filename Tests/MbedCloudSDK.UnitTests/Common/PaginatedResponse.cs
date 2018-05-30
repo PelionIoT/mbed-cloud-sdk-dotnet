@@ -17,7 +17,7 @@ namespace MbedCloudSDK.Test.Common
             var pag = new PaginatedResponse<QueryOptions, MockData>(mockFuncWithData, options);
 
             Assert.AreEqual(10, pag.TotalCount);
-            Assert.AreEqual(10, pag.ToList().Count);
+            Assert.AreEqual(10, pag.All().Count);
         }
 
         [Test]
@@ -27,7 +27,7 @@ namespace MbedCloudSDK.Test.Common
             var pag = new PaginatedResponse<QueryOptions, MockData>(mockFuncWithData, options);
 
             Assert.AreEqual(0, pag.TotalCount);
-            Assert.AreEqual(0, pag.ToList().Count);
+            Assert.AreEqual(0, pag.All().Count);
         }
 
         private Func<QueryOptions, ResponsePage<MockData>> mockFuncWithData = (ops) =>

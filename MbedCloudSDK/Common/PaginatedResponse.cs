@@ -68,7 +68,7 @@ namespace MbedCloudSDK.Common
         /// Return the paginated response as a list containing all elements.
         /// </summary>
         /// <returns>List of T</returns>
-        public List<TData> ToList()
+        public List<TData> All()
         {
             var list = new List<TData>();
             var enumerator = GetEnumerator();
@@ -88,6 +88,15 @@ namespace MbedCloudSDK.Common
         {
             GetPage();
             return Data;
+        }
+
+        /// <summary>
+        /// First
+        /// </summary>
+        /// <returns>The first item</returns>
+        public TData First()
+        {
+            return Data.FirstOrDefault();
         }
 
         private void GetPage()
