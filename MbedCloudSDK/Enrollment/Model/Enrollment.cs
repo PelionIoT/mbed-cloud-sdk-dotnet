@@ -5,19 +5,14 @@
 namespace MbedCloudSDK.Enrollment.Model
 {
     using System;
+    using MbedCloudSDK.Common;
     using Newtonsoft.Json;
 
     /// <summary>
     /// Enrollment
     /// </summary>
-    public class Enrollment
+    public class Enrollment : BaseModel
     {
-        /// <summary>
-        /// Gets enrollment internal Id
-        /// </summary>
-        [JsonProperty]
-        public string Id { get; private set; }
-
         /// <summary>
         /// Gets the id of the device in the device directory once it has been registered
         /// </summary>
@@ -71,5 +66,12 @@ namespace MbedCloudSDK.Enrollment.Model
                 ExpiresAt = from.ExpiresAt,
             };
         }
+
+        /// <summary>
+        /// Returns the string presentation of the object.
+        /// </summary>
+        /// <returns>String presentation of the object.</returns>
+        public override string ToString()
+            => this.DebugDump();
     }
 }

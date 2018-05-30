@@ -16,7 +16,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
     /// <summary>
     /// Device
     /// </summary>
-    public class Device
+    public class Device : BaseModel
     {
         private readonly DeviceDirectoryApi api;
 
@@ -31,22 +31,10 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// <summary>
         /// Initializes a new instance of the <see cref="Device" /> class.
         /// </summary>
-        /// <param name="options">Dictionary containing properties.</param>
         /// <param name="api">DeviceDirectory Api.</param>
-        public Device(IDictionary<string, object> options = null, DeviceDirectoryApi api = null)
+        public Device(DeviceDirectoryApi api)
         {
             this.api = api;
-            if (options != null)
-            {
-                foreach (KeyValuePair<string, object> item in options)
-                {
-                    var property = GetType().GetProperty(item.Key);
-                    if (property != null)
-                    {
-                        property.SetValue(this, item.Value, null);
-                    }
-                }
-            }
         }
 
         /// <summary>
@@ -87,12 +75,6 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// Gets or sets the device class
         /// </summary>
         public string DeviceClass { get; set; }
-
-        /// <summary>
-        /// Gets the ID of the device
-        /// </summary>
-        [JsonProperty]
-        public string Id { get; internal set; }
 
         /// <summary>
         /// Gets or sets the description of the object
@@ -215,7 +197,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         /// <returns>Device</returns>
         public static Device Map(DeviceData deviceData, DeviceDirectoryApi api = null)
         {
-            var device = new Device(null, api)
+            var device = new Device(api)
             {
                 BootstrappedTimestamp = deviceData.BootstrappedTimestamp.ToNullableUniversalTime(),
                 UpdatedAt = deviceData.UpdatedAt.ToNullableUniversalTime(),
@@ -321,45 +303,10 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
         }
 
         /// <summary>
-        /// Returns the string presentation of the object
+        /// Returns the string presentation of the object.
         /// </summary>
-        /// <returns>String presentation of the object</returns>
+        /// <returns>String presentation of the object.</returns>
         public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class DeviceDetail {\n");
-            sb.Append("  BootstrappedTimestamp: ").Append(BootstrappedTimestamp).Append("\n");
-            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
-            sb.Append("  CustomAttributes: ").Append(CustomAttributes).Append("\n");
-            sb.Append("  DeviceClass: ").Append(DeviceClass).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  AutoUpdate: ").Append(AutoUpdate).Append("\n");
-            sb.Append("  Mechanism: ").Append(Mechanism).Append("\n");
-            sb.Append("  State: ").Append(State).Append("\n");
-            sb.Append("  ProvisionKey: ").Append(ProvisionKey).Append("\n");
-            sb.Append("  SerialNumber: ").Append(SerialNumber).Append("\n");
-            sb.Append("  VendorId: ").Append(VendorId).Append("\n");
-            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
-            sb.Append("  DeployedState: ").Append(DeployedState).Append("\n");
-            sb.Append("  Deployment: ").Append(Deployment).Append("\n");
-            sb.Append("  MechanismUrl: ").Append(MechanismUrl).Append("\n");
-            sb.Append("  DeviceId: ").Append(Id).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  Manifest: ").Append(Manifest).Append("\n");
-            sb.Append("  ManifestTimeStamp: ").Append(ManifestTimestamp).Append("\n");
-            sb.Append("  Fingerprint: ").Append(CertificateFingerprint).Append("\n");
-            sb.Append("  IssuerId: ").Append(CertificateIssuerId).Append("\n");
-            sb.Append("  BootstrapCertificateExpiration: ").Append(BootstrapCertificateExpiration).Append("\n");
-            sb.Append("  ConnectorCertificateExpiration: ").Append(ConnectorCertificateExpiration).Append("\n");
-            sb.Append("  EndpointName: ").Append(Alias).Append("\n");
-            sb.Append("  HostGateway: ").Append(HostGateway).Append("\n");
-            sb.Append("  DeviceExecutionMode: ").Append(DeviceExecutionMode).Append("\n");
-            sb.Append("  FirmwareChecksum: ").Append(FirmwareChecksum).Append("\n");
-            sb.Append("  DeviceType: ").Append(DeviceType).Append("\n");
-            sb.Append("  EnrolmentListTimestamp: ").Append(ClaimedAt).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+            => this.DebugDump();
     }
 }

@@ -7,6 +7,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using MbedCloudSDK.Common;
     using MbedCloudSDK.Connect.Api.Subscribe.Models;
     using MbedCloudSDK.Connect.Model.Notifications;
     using MbedCloudSDK.Connect.Model.Subscription;
@@ -20,8 +21,8 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         /// Initializes a new instance of the <see cref="ResourceValuesObserver"/> class.
         /// </summary>
         public ResourceValuesObserver()
-         : this("*", Enumerable.Empty<string>())
         {
+            OnSubAdded?.Invoke(Id);
         }
 
         /// <summary>
@@ -63,6 +64,8 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         {
             deviceIds.ToList().ForEach(r =>
             {
+                deviceIds.Print();
+                resourcePaths.Print();
                 var sub = new ResourceValuesFilter { DeviceId = r, ResourcePaths = resourcePaths };
                 ResourceValueSubscriptions.Add(sub);
             });

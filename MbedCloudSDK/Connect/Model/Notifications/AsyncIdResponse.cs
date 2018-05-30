@@ -4,6 +4,7 @@
 
 namespace MbedCloudSDK.Connect.Model.Notifications
 {
+    using MbedCloudSDK.Common;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -72,5 +73,12 @@ namespace MbedCloudSDK.Connect.Model.Notifications
 
             return asyncIdResponse;
         }
+
+        /// <summary>
+        /// Returns the string presentation of the object.
+        /// </summary>
+        /// <returns>String presentation of the object.</returns>
+        public override string ToString()
+            => this.DebugDump();
     }
 }

@@ -61,5 +61,9 @@ namespace MbedCloudSDK.Common.Query
         /// </summary>
         /// <value>Comma separate additional data to return. Currently supported: total_count.</value>
         public string Include { get; set; }
+
+        public int? PageSize { get; set; }
+
+        public int? MaxResults { get; set; }
     }
 }

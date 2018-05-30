@@ -20,6 +20,7 @@ namespace MbedCloudSDK.Common
     [JsonObject]
     public class PaginatedResponse<TOptions, TData> : IEnumerable<TData>
         where TOptions : QueryOptions
+        where TData : BaseModel
     {
         private Func<TOptions, ResponsePage<TData>> getDataFunc;
 
@@ -29,20 +30,16 @@ namespace MbedCloudSDK.Common
         /// </summary>
         /// <param name="getDataFunc">function to call to get next page.</param>
         /// <param name="listParams">Page params</param>
-        /// <param name="initData">Data</param>
-        public PaginatedResponse(Func<TOptions, ResponsePage<TData>> getDataFunc, TOptions listParams, List<TData> initData = null)
+        public PaginatedResponse(Func<TOptions, ResponsePage<TData>> getDataFunc, TOptions listParams)
         {
             this.getDataFunc = getDataFunc;
-            Data = initData;
             ListParams = listParams;
-            if (initData != null)
+            if (ListParams.Limit.HasValue)
             {
-                TotalCount = initData.Count;
+                ListParams.PageSize = ListParams.Limit;
             }
-            else
-            {
-                GetPage();
-            }
+
+            GetPage();
         }
 
         /// <summary>
@@ -75,7 +72,7 @@ namespace MbedCloudSDK.Common
         {
             var list = new List<TData>();
             var enumerator = GetEnumerator();
-            while (enumerator.MoveNext())
+            while (enumerator.MoveNext() && list.Count < (ListParams.MaxResults ?? int.MaxValue))
             {
                 list.Add(enumerator.Current);
             }
@@ -101,13 +98,8 @@ namespace MbedCloudSDK.Common
             Data = resp.Data;
             if (resp.Data.Count > 0)
             {
-                object last = resp.Data.Last();
-                var propertyInfo = last.GetType().GetProperty("Id");
-                if (propertyInfo != null)
-                {
-                    var after = (string)propertyInfo.GetValue(last);
-                    ListParams.After = after;
-                }
+                var last = resp.Data.Last();
+                ListParams.After = last.Id;
             }
             else if (ListParams.After != null)
             {

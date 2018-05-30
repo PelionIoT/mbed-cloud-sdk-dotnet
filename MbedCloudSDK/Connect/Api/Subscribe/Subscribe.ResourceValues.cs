@@ -6,6 +6,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
 {
     using System.Collections.Generic;
     using System.Linq;
+    using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Connect.Api.Subscribe.Models;
     using MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues;
@@ -153,10 +154,12 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
             var presubs = new HashSet<ResourceValuesFilter>();
             ResourceValueObservers.ForEach(s =>
             {
-                presubs = presubs.Union(s.ResourceValueSubscriptions).ToHashSet(new ResourceValuesFilterComparer());
+                presubs = presubs.Union(s.ResourceValueSubscriptions).ToHashSet();
             });
 
             AllLocalSubscriptions = presubs;
+
+            // AllLocalSubscriptions.Print();
 
             if (ConnectApi != null)
             {

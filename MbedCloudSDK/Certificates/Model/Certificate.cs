@@ -14,54 +14,8 @@ namespace MbedCloudSDK.Certificates.Model
     /// <summary>
     /// Certificate
     /// </summary>
-    public class Certificate
+    public class Certificate : BaseModel
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Certificate" /> class.
-        /// </summary>
-        public Certificate()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Certificate" /> class.
-        /// </summary>
-        /// <param name="description">description</param>
-        /// <param name="subject">subject</param>
-        /// <param name="accountId">accountId</param>
-        /// <param name="signature">signature</param>
-        /// <param name="issuer">issuer</param>
-        /// <param name="certificateData">certificateData</param>
-        /// <param name="id">id</param>
-        /// <param name="name">name</param>
-        /// <param name="securityFileContent">securityFileContent</param>
-        /// <param name="developerCertificate">developerCertificate</param>
-        /// <param name="serverUri">serverUri</param>
-        /// <param name="developerPrivateKey">developerPrivateKey</param>
-        /// <param name="serverCertificate">serverCertificate</param>
-        /// <param name="ownerId">ownerId</param>
-        /// <param name="headerFile">headerFile</param>
-        /// <param name="certificateType">certificateType</param>
-        public Certificate(string description = null, string subject = null, string accountId = null, string signature = null, string issuer = null, string certificateData = null, string id = null, string name = null, string securityFileContent = null, string developerCertificate = null, string serverUri = null, string developerPrivateKey = null, string serverCertificate = null, string ownerId = null, string headerFile = null, CertificateType certificateType = default(CertificateType))
-        {
-            Description = description;
-            Subject = subject;
-            AccountId = accountId;
-            Signature = signature;
-            Issuer = issuer;
-            CertificateData = certificateData;
-            Id = id;
-            Name = name;
-            SecurityFileContent = securityFileContent;
-            DeveloperCertificate = developerCertificate;
-            ServerUri = serverUri;
-            DeveloperPrivateKey = developerPrivateKey;
-            ServerCertificate = serverCertificate;
-            OwnerId = ownerId;
-            HeaderFile = headerFile;
-            Type = certificateType;
-        }
-
         /// <summary>
         /// Gets type of Certificate
         /// </summary>
@@ -127,14 +81,6 @@ namespace MbedCloudSDK.Certificates.Model
         /// <value>X509.v3 trusted certificate in PEM or base64 encoded DER format.</value>
         [JsonProperty]
         public string CertificateData { get; private set; }
-
-        /// <summary>
-        /// Gets certificate Id.
-        /// </summary>
-        /// <value>certificate Id.</value>
-        [NameOverride(Name = "CertificateId")]
-        [JsonProperty]
-        public string Id { get; private set; }
 
         /// <summary>
         /// Gets or sets certificate name.
@@ -400,34 +346,10 @@ namespace MbedCloudSDK.Certificates.Model
         }
 
         /// <summary>
-        /// Returns the string presentation of the object
+        /// Returns the string presentation of the object.
         /// </summary>
-        /// <returns>String presentation of the object</returns>
+        /// <returns>String presentation of the object.</returns>
         public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class Certificate {\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  DeviceExecutionMode: ").Append(DeviceExecutionMode).Append("\n");
-            sb.Append("  Type: ").Append(Convert.ToString(Type)).Append("\n");
-            sb.Append("  Status: ").Append(Convert.ToString(Status)).Append("\n");
-            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  Subject: ").Append(Subject).Append("\n");
-            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
-            sb.Append("  Validity: ").Append(Validity).Append("\n");
-            sb.Append("  Issuer: ").Append(Issuer).Append("\n");
-            sb.Append("  CertData: ").Append(CertificateData).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  SecurityFileContent: ").Append(SecurityFileContent).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  DeveloperCertificate: ").Append(DeveloperCertificate).Append("\n");
-            sb.Append("  ServerUri: ").Append(ServerUri).Append("\n");
-            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
-            sb.Append("  DeveloperPrivateKey: ").Append(DeveloperPrivateKey).Append("\n");
-            sb.Append("  ServerCertificate: ").Append(ServerCertificate).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+            => this.DebugDump();
     }
 }

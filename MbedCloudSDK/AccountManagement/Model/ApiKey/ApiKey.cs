@@ -16,28 +16,8 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
     /// <summary>
     /// This object represents an API key in Mbed Cloud.
     /// </summary>
-    public class ApiKey
+    public class ApiKey : BaseModel
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiKey"/> class.
-        /// Create new instance of API key class.
-        /// </summary>
-        /// <param name="options">Dictionary containing properties.</param>
-        public ApiKey(IDictionary<string, object> options = null)
-        {
-            if (options != null)
-            {
-                foreach (KeyValuePair<string, object> item in options)
-                {
-                    var property = GetType().GetProperty(item.Key);
-                    if (property != null)
-                    {
-                        property.SetValue(this, item.Value, null);
-                    }
-                }
-            }
-        }
-
         /// <summary>
         /// Gets or sets the status of the API key.
         /// </summary>
@@ -80,11 +60,6 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
         public List<string> Groups { get; private set; }
 
         /// <summary>
-        /// Gets or sets the UUID of the API key.
-        /// </summary>
-        public string Id { get; set; }
-
-        /// <summary>
         /// Gets the timestamp of the latest API key usage, in milliseconds.
         /// </summary>
         [JsonProperty]
@@ -113,25 +88,11 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
         }
 
         /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:MbedCloudSDK.AccountManagement.Model.ApiKey.ApiKey"/>.
+        /// Returns the string presentation of the object.
         /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:MbedCloudSDK.AccountManagement.Model.ApiKey.ApiKey"/>.</returns>
+        /// <returns>String presentation of the object.</returns>
         public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class ApiKey {\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
-            sb.Append("  Apikey: ").Append(Key).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  CreationTime: ").Append(CreationTime).Append("\n");
-            sb.Append("  Groups: ").Append(Groups.Any() ? string.Join(", ", Groups) : string.Empty).Append("\n");
-            sb.Append("  Owner: ").Append(OwnerId).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  LastLoginTime: ").Append(LastLoginTime).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+            => this.DebugDump();
 
         /// <summary>
         /// create post request

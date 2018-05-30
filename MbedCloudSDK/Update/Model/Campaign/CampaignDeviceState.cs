@@ -12,7 +12,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
     /// <summary>
     /// Contains information about Device in Update Campaign.
     /// </summary>
-    public class CampaignDeviceState
+    public class CampaignDeviceState : BaseModel
     {
         /// <summary>
         /// Gets or sets state of the Device in Update Campaign.
@@ -69,12 +69,6 @@ namespace MbedCloudSDK.Update.Model.Campaign
         public string MechanismUrl { get; private set; }
 
         /// <summary>
-        /// Gets the ID of the metadata concerning this device/campaign
-        /// </summary>
-        [JsonProperty]
-        public string Id { get; private set; }
-
-        /// <summary>
         /// Gets the ID of the device to deploy
         /// </summary>
         [JsonProperty]
@@ -110,28 +104,10 @@ namespace MbedCloudSDK.Update.Model.Campaign
         }
 
         /// <summary>
-        /// Returns the string presentation of the object
+        /// Returns the string presentation of the object.
         /// </summary>
-        /// <returns>String presentation of the object</returns>
+        /// <returns>String presentation of the object.</returns>
         public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class CampaignDeviceState {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  DeviceId: ").Append(DeviceId).Append("\n");
-            sb.Append("  CampaignId: ").Append(CampaignId).Append("\n");
-            sb.Append("  State: ").Append(State).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  _Object: ").Append(Object).Append("\n");
-            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
-            sb.Append("  Mechanism: ").Append(Mechanism).Append("\n");
-            sb.Append("  MechanismUrl: ").Append(MechanismUrl).Append("\n");
-            sb.Append("  _Object: ").Append(Object).Append("\n");
-            sb.Append("  Etag: ").Append(Etag).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+            => this.DebugDump();
     }
 }

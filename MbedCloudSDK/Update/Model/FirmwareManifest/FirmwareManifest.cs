@@ -11,7 +11,7 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
     /// <summary>
     /// Firmware manifest from Update Campaign.
     /// </summary>
-    public class FirmwareManifest
+    public class FirmwareManifest : BaseModel
     {
         /// <summary>
         /// Gets the URL of the firmware manifest binary.
@@ -82,12 +82,6 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
         /// </summary>
         [JsonProperty]
         public string DeviceClass { get; private set; }
-
-        /// <summary>
-        /// Gets the ID of the firmware manifest.
-        /// </summary>
-        [JsonProperty]
-        public string Id { get; private set; }
 
         /// <summary>
         /// Gets or sets the name of the object.
