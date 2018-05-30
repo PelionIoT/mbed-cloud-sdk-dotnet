@@ -20,6 +20,16 @@ namespace MbedCloudSDK.Test.Common
             Assert.AreEqual(10, pag.ToList().Count);
         }
 
+        [Test]
+        public void PaginatedResponseShouldGetPageEmpty()
+        {
+            var options = new QueryOptions { PageSize = 0 };
+            var pag = new PaginatedResponse<QueryOptions, MockData>(mockFuncWithData, options);
+
+            Assert.AreEqual(0, pag.TotalCount);
+            Assert.AreEqual(0, pag.ToList().Count);
+        }
+
         private Func<QueryOptions, ResponsePage<MockData>> mockFuncWithData = (ops) =>
         {
             var data = new List<MockData>();

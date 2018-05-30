@@ -72,7 +72,7 @@ namespace MbedCloudSDK.Common
         {
             var list = new List<TData>();
             var enumerator = GetEnumerator();
-            while (enumerator.MoveNext() && list.Count < (ListParams.MaxResults ?? int.MaxValue))
+            while (enumerator.MoveNext())
             {
                 list.Add(enumerator.Current);
             }
@@ -113,10 +113,12 @@ namespace MbedCloudSDK.Common
         /// <returns>Enumerator</returns>
         public IEnumerator<TData> GetEnumerator()
         {
-            while (true)
+            var i = 0;
+            while (i < (ListParams.MaxResults ?? int.MaxValue))
             {
                 foreach (var obj in Data)
                 {
+                    i++;
                     yield return obj;
                 }
 
