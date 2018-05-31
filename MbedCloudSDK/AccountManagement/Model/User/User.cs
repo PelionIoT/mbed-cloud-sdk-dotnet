@@ -204,7 +204,6 @@ namespace MbedCloudSDK.AccountManagement.Model.User
                 FullName = FullName,
                 Address = Address,
                 IsMarketingAccepted = MarketingAccepted,
-                Password = Password,
                 CustomFields = CustomProperties,
                 IsTotpEnabled = TwoFactorAuthentication,
                 Status = Utils.GetEnumMemberValue(typeof(UserStatus), Convert.ToString(Status)),

@@ -88,12 +88,12 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TrustedCertificateUpdateReq" /> class.
         /// </summary>
-        /// <param name="Certificate">X509.v3 trusted certificate in PEM format..</param>
+        /// <param name="Certificate">A chain of X509.v3 trusted certificates in PEM format. The chain must contain all certificates from root to leaf. Otherwise, the signature parameter is required..</param>
         /// <param name="Description">Human readable description of this certificate, not longer than 500 characters..</param>
         /// <param name="EnrollmentMode">Certificate is used in enrollment mode. Default value is false..</param>
         /// <param name="Name">Certificate name, not longer than 100 characters..</param>
         /// <param name="Service">Service name where the certificate must be used..</param>
-        /// <param name="Signature">DEPRECATED: Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256. Optional if enrollment_mode is &#39;true&#39;..</param>
+        /// <param name="Signature">DEPRECATED: Base64 encoded signature of the account ID signed by the certificate to be uploaded. The signature must be hashed with SHA256. Needed when uploading an interim certificate without the full chain..</param>
         /// <param name="Status">Status of the certificate..</param>
         public TrustedCertificateUpdateReq(string Certificate = default(string), string Description = default(string), bool? EnrollmentMode = default(bool?), string Name = default(string), ServiceEnum? Service = default(ServiceEnum?), string Signature = default(string), StatusEnum? Status = default(StatusEnum?))
         {
@@ -107,9 +107,9 @@ namespace iam.Model
         }
         
         /// <summary>
-        /// X509.v3 trusted certificate in PEM format.
+        /// A chain of X509.v3 trusted certificates in PEM format. The chain must contain all certificates from root to leaf. Otherwise, the signature parameter is required.
         /// </summary>
-        /// <value>X509.v3 trusted certificate in PEM format.</value>
+        /// <value>A chain of X509.v3 trusted certificates in PEM format. The chain must contain all certificates from root to leaf. Otherwise, the signature parameter is required.</value>
         [DataMember(Name="certificate", EmitDefaultValue=false)]
         public string Certificate { get; set; }
 
@@ -136,9 +136,9 @@ namespace iam.Model
 
 
         /// <summary>
-        /// DEPRECATED: Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256. Optional if enrollment_mode is &#39;true&#39;.
+        /// DEPRECATED: Base64 encoded signature of the account ID signed by the certificate to be uploaded. The signature must be hashed with SHA256. Needed when uploading an interim certificate without the full chain.
         /// </summary>
-        /// <value>DEPRECATED: Base64 encoded signature of the account ID signed by the certificate to be uploaded. Signature must be hashed with SHA256. Optional if enrollment_mode is &#39;true&#39;.</value>
+        /// <value>DEPRECATED: Base64 encoded signature of the account ID signed by the certificate to be uploaded. The signature must be hashed with SHA256. Needed when uploading an interim certificate without the full chain.</value>
         [DataMember(Name="signature", EmitDefaultValue=false)]
         public string Signature { get; set; }
 
