@@ -84,7 +84,7 @@ namespace MbedCloudSDK.Common
         /// A textual representation of the object <paramref name="me"/>, useful for debugging. It's always
         /// <see cref="string.Empty"/> if <paramref name="me"/> is <see langword="null"/>.
         /// </returns>
-        public static string DebugDump(this object me, DumpFormat format = DumpFormat.Text)
+        public static string DebugDump(this object me, DumpFormat format = DumpFormat.Json)
         {
             if (me == null)
             {
@@ -107,6 +107,14 @@ namespace MbedCloudSDK.Common
             text.AppendLine("}");
 
             return text.ToString();
+        }
+
+        public static void Print<T>(this IEnumerable<T> collection)
+        {
+            foreach (T item in collection)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }

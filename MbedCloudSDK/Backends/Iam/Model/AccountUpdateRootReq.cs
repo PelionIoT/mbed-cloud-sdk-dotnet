@@ -61,7 +61,6 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountUpdateRootReq" /> class.
         /// </summary>
-        /// <param name="AccountProperties">Properties for this account..</param>
         /// <param name="AddressLine1">Postal address line 1, not longer than 100 characters. Required for commercial accounts only..</param>
         /// <param name="AddressLine2">Postal address line 2, not longer than 100 characters..</param>
         /// <param name="Aliases">An array of aliases, not more than 10. An alias is not shorter than 8 and not longer than 100 characters..</param>
@@ -70,6 +69,7 @@ namespace iam.Model
         /// <param name="Contact">The name of the contact person for this account, not longer than 100 characters. Required for commercial accounts only..</param>
         /// <param name="ContractNumber">Contract number of the customer..</param>
         /// <param name="Country">The country part of the postal address, not longer than 100 characters. Required for commercial accounts only..</param>
+        /// <param name="CustomFields">Account&#39;s custom properties as key-value pairs, with a maximum of 10 keys. The maximum length of a key is 100 characters. The values are handled as strings and the maximum length for a value is 1000 characters..</param>
         /// <param name="CustomerNumber">Customer number of the customer..</param>
         /// <param name="DisplayName">The display name for the account, not longer than 100 characters..</param>
         /// <param name="Email">The company email address for this account, not longer than 254 characters. Required for commercial accounts only..</param>
@@ -83,9 +83,8 @@ namespace iam.Model
         /// <param name="PostalCode">The postal code part of the postal address, not longer than 100 characters..</param>
         /// <param name="SalesContact">Email address of the sales contact..</param>
         /// <param name="State">The state part of the postal address, not longer than 100 characters..</param>
-        public AccountUpdateRootReq(Dictionary<string, Dictionary<string, string>> AccountProperties = default(Dictionary<string, Dictionary<string, string>>), string AddressLine1 = default(string), string AddressLine2 = default(string), List<string> Aliases = default(List<string>), string City = default(string), string Company = default(string), string Contact = default(string), string ContractNumber = default(string), string Country = default(string), string CustomerNumber = default(string), string DisplayName = default(string), string Email = default(string), string EndMarket = default(string), string ExpirationWarningThreshold = default(string), string IdleTimeout = default(string), MfaStatusEnum? MfaStatus = default(MfaStatusEnum?), List<string> NotificationEmails = default(List<string>), PasswordPolicy PasswordPolicy = default(PasswordPolicy), string PhoneNumber = default(string), string PostalCode = default(string), string SalesContact = default(string), string State = default(string))
+        public AccountUpdateRootReq(string AddressLine1 = default(string), string AddressLine2 = default(string), List<string> Aliases = default(List<string>), string City = default(string), string Company = default(string), string Contact = default(string), string ContractNumber = default(string), string Country = default(string), Dictionary<string, string> CustomFields = default(Dictionary<string, string>), string CustomerNumber = default(string), string DisplayName = default(string), string Email = default(string), string EndMarket = default(string), string ExpirationWarningThreshold = default(string), string IdleTimeout = default(string), MfaStatusEnum? MfaStatus = default(MfaStatusEnum?), List<string> NotificationEmails = default(List<string>), PasswordPolicy PasswordPolicy = default(PasswordPolicy), string PhoneNumber = default(string), string PostalCode = default(string), string SalesContact = default(string), string State = default(string))
         {
-            this.AccountProperties = AccountProperties;
             this.AddressLine1 = AddressLine1;
             this.AddressLine2 = AddressLine2;
             this.Aliases = Aliases;
@@ -94,6 +93,7 @@ namespace iam.Model
             this.Contact = Contact;
             this.ContractNumber = ContractNumber;
             this.Country = Country;
+            this.CustomFields = CustomFields;
             this.CustomerNumber = CustomerNumber;
             this.DisplayName = DisplayName;
             this.Email = Email;
@@ -109,13 +109,6 @@ namespace iam.Model
             this.State = State;
         }
         
-        /// <summary>
-        /// Properties for this account.
-        /// </summary>
-        /// <value>Properties for this account.</value>
-        [DataMember(Name="account_properties", EmitDefaultValue=false)]
-        public Dictionary<string, Dictionary<string, string>> AccountProperties { get; set; }
-
         /// <summary>
         /// Postal address line 1, not longer than 100 characters. Required for commercial accounts only.
         /// </summary>
@@ -171,6 +164,13 @@ namespace iam.Model
         /// <value>The country part of the postal address, not longer than 100 characters. Required for commercial accounts only.</value>
         [DataMember(Name="country", EmitDefaultValue=false)]
         public string Country { get; set; }
+
+        /// <summary>
+        /// Account&#39;s custom properties as key-value pairs, with a maximum of 10 keys. The maximum length of a key is 100 characters. The values are handled as strings and the maximum length for a value is 1000 characters.
+        /// </summary>
+        /// <value>Account&#39;s custom properties as key-value pairs, with a maximum of 10 keys. The maximum length of a key is 100 characters. The values are handled as strings and the maximum length for a value is 1000 characters.</value>
+        [DataMember(Name="custom_fields", EmitDefaultValue=false)]
+        public Dictionary<string, string> CustomFields { get; set; }
 
         /// <summary>
         /// Customer number of the customer.
@@ -265,7 +265,6 @@ namespace iam.Model
         {
             var sb = new StringBuilder();
             sb.Append("class AccountUpdateRootReq {\n");
-            sb.Append("  AccountProperties: ").Append(AccountProperties).Append("\n");
             sb.Append("  AddressLine1: ").Append(AddressLine1).Append("\n");
             sb.Append("  AddressLine2: ").Append(AddressLine2).Append("\n");
             sb.Append("  Aliases: ").Append(Aliases).Append("\n");
@@ -274,6 +273,7 @@ namespace iam.Model
             sb.Append("  Contact: ").Append(Contact).Append("\n");
             sb.Append("  ContractNumber: ").Append(ContractNumber).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
+            sb.Append("  CustomFields: ").Append(CustomFields).Append("\n");
             sb.Append("  CustomerNumber: ").Append(CustomerNumber).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
@@ -322,11 +322,6 @@ namespace iam.Model
 
             return 
                 (
-                    this.AccountProperties == input.AccountProperties ||
-                    this.AccountProperties != null &&
-                    this.AccountProperties.SequenceEqual(input.AccountProperties)
-                ) && 
-                (
                     this.AddressLine1 == input.AddressLine1 ||
                     (this.AddressLine1 != null &&
                     this.AddressLine1.Equals(input.AddressLine1))
@@ -365,6 +360,11 @@ namespace iam.Model
                     this.Country == input.Country ||
                     (this.Country != null &&
                     this.Country.Equals(input.Country))
+                ) && 
+                (
+                    this.CustomFields == input.CustomFields ||
+                    this.CustomFields != null &&
+                    this.CustomFields.SequenceEqual(input.CustomFields)
                 ) && 
                 (
                     this.CustomerNumber == input.CustomerNumber ||
@@ -442,8 +442,6 @@ namespace iam.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AccountProperties != null)
-                    hashCode = hashCode * 59 + this.AccountProperties.GetHashCode();
                 if (this.AddressLine1 != null)
                     hashCode = hashCode * 59 + this.AddressLine1.GetHashCode();
                 if (this.AddressLine2 != null)
@@ -460,6 +458,8 @@ namespace iam.Model
                     hashCode = hashCode * 59 + this.ContractNumber.GetHashCode();
                 if (this.Country != null)
                     hashCode = hashCode * 59 + this.Country.GetHashCode();
+                if (this.CustomFields != null)
+                    hashCode = hashCode * 59 + this.CustomFields.GetHashCode();
                 if (this.CustomerNumber != null)
                     hashCode = hashCode * 59 + this.CustomerNumber.GetHashCode();
                 if (this.DisplayName != null)

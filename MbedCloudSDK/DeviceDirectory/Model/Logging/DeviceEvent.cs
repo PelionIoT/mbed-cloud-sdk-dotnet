@@ -15,28 +15,8 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Logging
     /// <summary>
     /// Device Event object from Device Catalog API.
     /// </summary>
-    public class DeviceEvent
+    public class DeviceEvent : BaseModel
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceEvent"/> class.
-        /// Create new instance of DeviceLog class.
-        /// </summary>
-        /// <param name="options">options for query</param>
-        public DeviceEvent(IDictionary<string, object> options = null)
-        {
-            if (options != null)
-            {
-                foreach (KeyValuePair<string, object> item in options)
-                {
-                    var property = GetType().GetProperty(item.Key);
-                    if (property != null)
-                    {
-                        property.SetValue(this, item.Value, null);
-                    }
-                }
-            }
-        }
-
         /// <summary>
         /// Gets EventType
         /// </summary>
@@ -74,12 +54,6 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Logging
         public string TypeDescription { get; private set; }
 
         /// <summary>
-        /// Gets DeviceLogId
-        /// </summary>
-        [JsonProperty]
-        public string Id { get; private set; }
-
-        /// <summary>
         /// Gets Data
         /// </summary>
         [JsonProperty]
@@ -115,24 +89,10 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Logging
         }
 
         /// <summary>
-        /// Returns the string presentation of the object
+        /// Returns the string presentation of the object.
         /// </summary>
-        /// <returns>String presentation of the object</returns>
+        /// <returns>String presentation of the object.</returns>
         public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class DeviceLog {\n");
-            sb.Append("  DateTime: ").Append(EventDate).Append("\n");
-            sb.Append("  StateChange: ").Append(StateChanged).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  Changes: ").Append(Changes).Append("\n");
-            sb.Append("  EventTypeDescription: ").Append(TypeDescription).Append("\n");
-            sb.Append("  DeviceLogId: ").Append(Id).Append("\n");
-            sb.Append("  EventType: ").Append(Type).Append("\n");
-            sb.Append("  Data: ").Append(Data).Append("\n");
-            sb.Append("  DeviceId: ").Append(DeviceId).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+            => this.DebugDump();
     }
 }

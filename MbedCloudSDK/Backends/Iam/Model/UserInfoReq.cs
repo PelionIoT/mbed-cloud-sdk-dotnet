@@ -40,7 +40,7 @@ namespace iam.Model
         /// Initializes a new instance of the <see cref="UserInfoReq" /> class.
         /// </summary>
         /// <param name="Address">Address, not longer than 100 characters..</param>
-        /// <param name="CustomFields">User&#39;s account-specific custom properties as key-value pairs, with a maximum of 100 keys. The maximum length of a key is 100 characters. The values are handled as strings and the maximum length for a value is 4000 characters..</param>
+        /// <param name="CustomFields">User&#39;s account-specific custom properties as key-value pairs, with a maximum of 10 keys. The maximum length of a key is 100 characters. The values are handled as strings and the maximum length for a value is 1000 characters..</param>
         /// <param name="Email">The email address, not longer than 254 characters. (required).</param>
         /// <param name="FullName">The full name of the user, not longer than 100 characters..</param>
         /// <param name="Groups">A list of IDs of the groups this user belongs to..</param>
@@ -79,9 +79,9 @@ namespace iam.Model
         public string Address { get; set; }
 
         /// <summary>
-        /// User&#39;s account-specific custom properties as key-value pairs, with a maximum of 100 keys. The maximum length of a key is 100 characters. The values are handled as strings and the maximum length for a value is 4000 characters.
+        /// User&#39;s account-specific custom properties as key-value pairs, with a maximum of 10 keys. The maximum length of a key is 100 characters. The values are handled as strings and the maximum length for a value is 1000 characters.
         /// </summary>
-        /// <value>User&#39;s account-specific custom properties as key-value pairs, with a maximum of 100 keys. The maximum length of a key is 100 characters. The values are handled as strings and the maximum length for a value is 4000 characters.</value>
+        /// <value>User&#39;s account-specific custom properties as key-value pairs, with a maximum of 10 keys. The maximum length of a key is 100 characters. The values are handled as strings and the maximum length for a value is 1000 characters.</value>
         [DataMember(Name="custom_fields", EmitDefaultValue=false)]
         public Dictionary<string, string> CustomFields { get; set; }
 

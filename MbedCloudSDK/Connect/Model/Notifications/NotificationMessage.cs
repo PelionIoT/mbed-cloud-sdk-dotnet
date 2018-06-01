@@ -15,38 +15,6 @@ namespace MbedCloudSDK.Connect.Model.Notifications
     public class NotificationMessage
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="NotificationMessage"/> class.
-        /// </summary>
-        public NotificationMessage()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NotificationMessage"/> class.
-        /// </summary>
-        /// <param name="registrations">The registrations.</param>
-        /// <param name="asyncResponses">The asynchronous responses.</param>
-        /// <param name="deRegistrations">The de registrations.</param>
-        /// <param name="registrationUpdates">The registration updates.</param>
-        /// <param name="notifications">The notifications.</param>
-        /// <param name="registrationsExpired">The registrations expired.</param>
-        public NotificationMessage(
-            List<DeviceEventData> registrations = null,
-            List<AsyncIdResponse> asyncResponses = null,
-            List<DeviceEventData> deRegistrations = null,
-            List<DeviceEventData> registrationUpdates = null,
-            List<NotificationData> notifications = null,
-            List<DeviceEventData> registrationsExpired = null)
-        {
-            Registrations = registrations ?? new List<DeviceEventData>();
-            AsyncResponses = asyncResponses ?? new List<AsyncIdResponse>();
-            DeRegistrations = deRegistrations ?? new List<DeviceEventData>();
-            RegistrationUpdates = registrationUpdates ?? new List<DeviceEventData>();
-            Notifications = notifications ?? new List<NotificationData>();
-            RegistrationsExpired = registrationsExpired ?? new List<DeviceEventData>();
-        }
-
-        /// <summary>
         /// Gets the AsyncResponses
         /// </summary>
         /// <returns>AsyncResponses</returns>

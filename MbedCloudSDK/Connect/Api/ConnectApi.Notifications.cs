@@ -176,16 +176,19 @@ namespace MbedCloudSDK.Connect.Api
                     {
                         Console.WriteLine($"Webhook already exists at {webhook.Url}");
                     }
-
-                    Console.WriteLine("Starting notifications");
-                    if (cancellationToken != null)
+                    else
                     {
-                        cancellationToken.Dispose();
-                    }
+                        Console.WriteLine("Starting notifications");
+                        if (cancellationToken != null)
+                        {
+                            cancellationToken.Dispose();
+                        }
 
-                    cancellationToken = new CancellationTokenSource();
-                    notificationTask = new Task(new Action(Notifications), cancellationToken.Token, TaskCreationOptions.LongRunning);
-                    notificationTask.Start();
+                        cancellationToken = new CancellationTokenSource();
+                        notificationTask = new Task(new Action(Notifications), cancellationToken.Token, TaskCreationOptions.LongRunning);
+                        notificationTask.Start();
+                    }
+                    
                     handleNotifications = true;
                 }
                 else

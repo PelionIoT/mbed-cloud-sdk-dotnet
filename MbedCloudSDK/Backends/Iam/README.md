@@ -126,9 +126,11 @@ Class | Method | HTTP request | Description
 *AggregatorAccountAdminApi* | [**CheckAccountApiKey**](docs/AggregatorAccountAdminApi.md#checkaccountapikey) | **POST** /v3/accounts/{accountID}/api-keys/{apiKey} | Check the API key.
 *AggregatorAccountAdminApi* | [**CreateAccount**](docs/AggregatorAccountAdminApi.md#createaccount) | **POST** /v3/accounts | Create a new account.
 *AggregatorAccountAdminApi* | [**CreateAccountApiKey**](docs/AggregatorAccountAdminApi.md#createaccountapikey) | **POST** /v3/accounts/{accountID}/api-keys | Create a new API key.
+*AggregatorAccountAdminApi* | [**CreateAccountGroup**](docs/AggregatorAccountAdminApi.md#createaccountgroup) | **POST** /v3/accounts/{accountID}/policy-groups | Create a new group.
 *AggregatorAccountAdminApi* | [**CreateAccountUser**](docs/AggregatorAccountAdminApi.md#createaccountuser) | **POST** /v3/accounts/{accountID}/users | Create a new user.
 *AggregatorAccountAdminApi* | [**DeleteAccountApiKey**](docs/AggregatorAccountAdminApi.md#deleteaccountapikey) | **DELETE** /v3/accounts/{accountID}/api-keys/{apiKey} | Delete the API key.
 *AggregatorAccountAdminApi* | [**DeleteAccountCertificate**](docs/AggregatorAccountAdminApi.md#deleteaccountcertificate) | **DELETE** /v3/accounts/{accountID}/trusted-certificates/{cert-id} | Delete trusted certificate by ID.
+*AggregatorAccountAdminApi* | [**DeleteAccountGroup**](docs/AggregatorAccountAdminApi.md#deleteaccountgroup) | **DELETE** /v3/accounts/{accountID}/policy-groups/{groupID} | Delete a group.
 *AggregatorAccountAdminApi* | [**DeleteAccountUser**](docs/AggregatorAccountAdminApi.md#deleteaccountuser) | **DELETE** /v3/accounts/{accountID}/users/{user-id} | Delete a user.
 *AggregatorAccountAdminApi* | [**GetAccountApiKey**](docs/AggregatorAccountAdminApi.md#getaccountapikey) | **GET** /v3/accounts/{accountID}/api-keys/{apiKey} | Get API key details.
 *AggregatorAccountAdminApi* | [**GetAccountCertificate**](docs/AggregatorAccountAdminApi.md#getaccountcertificate) | **GET** /v3/accounts/{accountID}/trusted-certificates/{cert-id} | Get trusted certificate by ID.
@@ -152,6 +154,7 @@ Class | Method | HTTP request | Description
 *AggregatorAccountAdminApi* | [**UpdateAccount**](docs/AggregatorAccountAdminApi.md#updateaccount) | **PUT** /v3/accounts/{accountID} | Update attributes of an existing account.
 *AggregatorAccountAdminApi* | [**UpdateAccountApiKey**](docs/AggregatorAccountAdminApi.md#updateaccountapikey) | **PUT** /v3/accounts/{accountID}/api-keys/{apiKey} | Update API key details.
 *AggregatorAccountAdminApi* | [**UpdateAccountCertificate**](docs/AggregatorAccountAdminApi.md#updateaccountcertificate) | **PUT** /v3/accounts/{accountID}/trusted-certificates/{cert-id} | Update trusted certificate.
+*AggregatorAccountAdminApi* | [**UpdateAccountGroupName**](docs/AggregatorAccountAdminApi.md#updateaccountgroupname) | **PUT** /v3/accounts/{accountID}/policy-groups/{groupID} | Update the group name.
 *AggregatorAccountAdminApi* | [**UpdateAccountUser**](docs/AggregatorAccountAdminApi.md#updateaccountuser) | **PUT** /v3/accounts/{accountID}/users/{user-id} | Update user details.
 *AggregatorAccountAdminApi* | [**ValidateAccountUserEmail**](docs/AggregatorAccountAdminApi.md#validateaccountuseremail) | **POST** /v3/accounts/{accountID}/users/{user-id}/validate-email | Validate the user email.
 *DeveloperApi* | [**AddMyApiKeyToGroups**](docs/DeveloperApi.md#addmyapikeytogroups) | **POST** /v3/api-keys/me/groups | Add API key to a list of groups.

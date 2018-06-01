@@ -13,27 +13,8 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
     /// <summary>
     /// Represents group from IAM.
     /// </summary>
-    public class Group
+    public class Group : BaseModel
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Group" /> class.
-        /// </summary>
-        /// <param name="options">Dictionary containing properties.</param>
-        public Group(IDictionary<string, object> options = null)
-        {
-            if (options != null)
-            {
-                foreach (KeyValuePair<string, object> item in options)
-                {
-                    var property = GetType().GetProperty(item.Key);
-                    if (property != null)
-                    {
-                        property.SetValue(this, item.Value, null);
-                    }
-                }
-            }
-        }
-
         /// <summary>
         /// Gets the ID of the account.
         /// </summary>
@@ -57,12 +38,6 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
         /// </summary>
         [JsonProperty]
         public DateTime? CreatedAt { get; private set; }
-
-        /// <summary>
-        /// Gets the UUID of the group.
-        /// </summary>
-        [JsonProperty]
-        public string Id { get; private set; }
 
         /// <summary>
         /// Gets the number of users in this group.
@@ -97,20 +72,10 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
         }
 
         /// <summary>
-        /// Returns the string presentation of the object
+        /// Returns the string presentation of the object.
         /// </summary>
-        /// <returns>String presentation of the object</returns>
+        /// <returns>String presentation of the object.</returns>
         public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class Group {\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  ApiKeyCount: ").Append(ApiKeyCount).Append("\n");
-            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  UserCount: ").Append(UserCount).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+            => this.DebugDump();
     }
 }

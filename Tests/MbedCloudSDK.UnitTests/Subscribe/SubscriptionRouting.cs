@@ -60,7 +60,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
             Assert.IsEmpty(subscribe.AllLocalSubscriptions);
             var observer1 = subscribe.ResourceValues().Where(new ResourceValuesFilter { DeviceId = "1", ResourcePaths = new List<string>() { "3/0/0", "3/0/1"}});
             var observer2 = subscribe.ResourceValues().Where(new ResourceValuesFilter { DeviceId = "2", ResourcePaths = new List<string>() { "3/0/0", "3/0/1" } })
-                                                            .Where(new ResourceValuesFilter { DeviceId = "3", ResourcePaths = new List<string>() { "3/0/0", "3/0/1" } });
+                                                      .Where(new ResourceValuesFilter { DeviceId = "3", ResourcePaths = new List<string>() { "3/0/0", "3/0/1" } });
 
             Assert.AreEqual(3, subscribe.AllLocalSubscriptions.Count);
 

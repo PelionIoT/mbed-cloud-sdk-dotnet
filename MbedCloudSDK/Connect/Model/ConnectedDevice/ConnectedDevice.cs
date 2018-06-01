@@ -41,7 +41,7 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
 
         /// <summary>
         /// Map to Device object.
-        /// </summary>
+        /// </summary>\
         /// <param name="deviceData">Device response object.</param>
         /// <param name="api">optional DeviceDirectoryApi.</param>
         /// <returns>Connected device</returns>
@@ -61,5 +61,12 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
         {
             return api.ListResources(Id);
         }
+
+        /// <summary>
+        /// Returns the string presentation of the object.
+        /// </summary>
+        /// <returns>String presentation of the object.</returns>
+        public override string ToString()
+            => this.DebugDump();
     }
 }

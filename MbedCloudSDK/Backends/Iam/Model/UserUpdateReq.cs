@@ -35,18 +35,17 @@ namespace iam.Model
         /// Initializes a new instance of the <see cref="UserUpdateReq" /> class.
         /// </summary>
         /// <param name="Address">Address, not longer than 100 characters..</param>
-        /// <param name="CustomFields">User&#39;s account specific custom properties. The value is handled as a string..</param>
+        /// <param name="CustomFields">User&#39;s account specific custom properties, with a maximum of 10 keys. The maximum length of a key is 100 characters. The values are handled as strings and the maximum length for a value is 1000 characters..</param>
         /// <param name="Email">The email address, not longer than 254 characters..</param>
         /// <param name="FullName">The full name of the user, not longer than 100 characters..</param>
         /// <param name="Groups">A list of group IDs this user belongs to..</param>
         /// <param name="IsGtcAccepted">A flag indicating that the General Terms and Conditions has been accepted..</param>
         /// <param name="IsMarketingAccepted">A flag indicating that receiving marketing information has been accepted..</param>
         /// <param name="IsTotpEnabled">A flag indicating whether 2-factor authentication (TOTP) has to be enabled or disabled..</param>
-        /// <param name="Password">The password when creating a new user. It will be generated when not present in the request..</param>
         /// <param name="PhoneNumber">Phone number, not longer than 100 characters..</param>
         /// <param name="Status">The status of the user..</param>
         /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters. It must be at least 4 but not more than 30 character long..</param>
-        public UserUpdateReq(string Address = default(string), Dictionary<string, string> CustomFields = default(Dictionary<string, string>), string Email = default(string), string FullName = default(string), List<string> Groups = default(List<string>), bool? IsGtcAccepted = default(bool?), bool? IsMarketingAccepted = default(bool?), bool? IsTotpEnabled = default(bool?), string Password = default(string), string PhoneNumber = default(string), string Status = default(string), string Username = default(string))
+        public UserUpdateReq(string Address = default(string), Dictionary<string, string> CustomFields = default(Dictionary<string, string>), string Email = default(string), string FullName = default(string), List<string> Groups = default(List<string>), bool? IsGtcAccepted = default(bool?), bool? IsMarketingAccepted = default(bool?), bool? IsTotpEnabled = default(bool?), string PhoneNumber = default(string), string Status = default(string), string Username = default(string))
         {
             this.Address = Address;
             this.CustomFields = CustomFields;
@@ -56,7 +55,6 @@ namespace iam.Model
             this.IsGtcAccepted = IsGtcAccepted;
             this.IsMarketingAccepted = IsMarketingAccepted;
             this.IsTotpEnabled = IsTotpEnabled;
-            this.Password = Password;
             this.PhoneNumber = PhoneNumber;
             this.Status = Status;
             this.Username = Username;
@@ -70,9 +68,9 @@ namespace iam.Model
         public string Address { get; set; }
 
         /// <summary>
-        /// User&#39;s account specific custom properties. The value is handled as a string.
+        /// User&#39;s account specific custom properties, with a maximum of 10 keys. The maximum length of a key is 100 characters. The values are handled as strings and the maximum length for a value is 1000 characters.
         /// </summary>
-        /// <value>User&#39;s account specific custom properties. The value is handled as a string.</value>
+        /// <value>User&#39;s account specific custom properties, with a maximum of 10 keys. The maximum length of a key is 100 characters. The values are handled as strings and the maximum length for a value is 1000 characters.</value>
         [DataMember(Name="custom_fields", EmitDefaultValue=false)]
         public Dictionary<string, string> CustomFields { get; set; }
 
@@ -119,13 +117,6 @@ namespace iam.Model
         public bool? IsTotpEnabled { get; set; }
 
         /// <summary>
-        /// The password when creating a new user. It will be generated when not present in the request.
-        /// </summary>
-        /// <value>The password when creating a new user. It will be generated when not present in the request.</value>
-        [DataMember(Name="password", EmitDefaultValue=false)]
-        public string Password { get; set; }
-
-        /// <summary>
         /// Phone number, not longer than 100 characters.
         /// </summary>
         /// <value>Phone number, not longer than 100 characters.</value>
@@ -162,7 +153,6 @@ namespace iam.Model
             sb.Append("  IsGtcAccepted: ").Append(IsGtcAccepted).Append("\n");
             sb.Append("  IsMarketingAccepted: ").Append(IsMarketingAccepted).Append("\n");
             sb.Append("  IsTotpEnabled: ").Append(IsTotpEnabled).Append("\n");
-            sb.Append("  Password: ").Append(Password).Append("\n");
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Username: ").Append(Username).Append("\n");
@@ -241,11 +231,6 @@ namespace iam.Model
                     this.IsTotpEnabled.Equals(input.IsTotpEnabled))
                 ) && 
                 (
-                    this.Password == input.Password ||
-                    (this.Password != null &&
-                    this.Password.Equals(input.Password))
-                ) && 
-                (
                     this.PhoneNumber == input.PhoneNumber ||
                     (this.PhoneNumber != null &&
                     this.PhoneNumber.Equals(input.PhoneNumber))
@@ -287,8 +272,6 @@ namespace iam.Model
                     hashCode = hashCode * 59 + this.IsMarketingAccepted.GetHashCode();
                 if (this.IsTotpEnabled != null)
                     hashCode = hashCode * 59 + this.IsTotpEnabled.GetHashCode();
-                if (this.Password != null)
-                    hashCode = hashCode * 59 + this.Password.GetHashCode();
                 if (this.PhoneNumber != null)
                     hashCode = hashCode * 59 + this.PhoneNumber.GetHashCode();
                 if (this.Status != null)

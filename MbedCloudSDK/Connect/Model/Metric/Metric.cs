@@ -6,12 +6,13 @@ namespace MbedCloudSDK.Connect.Model.Metric
 {
     using System;
     using System.Text;
+    using MbedCloudSDK.Common;
     using Newtonsoft.Json;
 
     /// <summary>
     /// Metric
     /// </summary>
-    public class Metric
+    public class Metric : BaseModel
     {
         /// <summary>
         /// Gets number of failed bootstraps account has used.
@@ -19,12 +20,6 @@ namespace MbedCloudSDK.Connect.Model.Metric
         /// <value>Number of failed bootstraps account has used.</value>
         [JsonProperty]
         public long? FailedBootstraps { get; private set; }
-
-        /// <summary>
-        /// Gets the ID of the metric
-        /// </summary>
-        [JsonProperty]
-        public string Id { get; private set; }
 
         /// <summary>
         /// Gets UTC time in RFC3339 format
@@ -175,33 +170,10 @@ namespace MbedCloudSDK.Connect.Model.Metric
         }
 
         /// <summary>
-        /// Returns the string presentation of the object
+        /// Returns the string presentation of the object.
         /// </summary>
-        /// <returns>String presentation of the object</returns>
+        /// <returns>String presentation of the object.</returns>
         public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class Metric {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
-            sb.Append("  Handshakes: ").Append(Handshakes).Append("\n");
-            sb.Append("  Transactions: ").Append(Transactions).Append("\n");
-            sb.Append("  Observations: ").Append(Observations).Append("\n");
-            sb.Append("  SuccessfulApiCalls: ").Append(SuccessfulApiCalls).Append("\n");
-            sb.Append("  FailedApiCalls: ").Append(FailedApiCalls).Append("\n");
-            sb.Append("  SuccessfulProxyRequests: ").Append(SuccessfulProxyRequests).Append("\n");
-            sb.Append("  FailedProxyRequests: ").Append(FailedProxyRequests).Append("\n");
-            sb.Append("  SuccessfulSubscriptionRequests: ").Append(SuccessfulSubscriptionRequests).Append("\n");
-            sb.Append("  FailedSubscriptionRequests: ").Append(FailedSubscriptionRequests).Append("\n");
-            sb.Append("  SuccessfulBootstraps: ").Append(SuccessfulBootstraps).Append("\n");
-            sb.Append("  FailedBootstraps: ").Append(FailedBootstraps).Append("\n");
-            sb.Append("  PendingBootstraps: ").Append(PendingBootstraps).Append("\n");
-            sb.Append("  FullRegistrations: ").Append(FullRegistrations).Append("\n");
-            sb.Append("  UpdatedRegistrations: ").Append(UpdatedRegistrations).Append("\n");
-            sb.Append("  ExpiredRegistrations: ").Append(ExpiredRegistrations).Append("\n");
-            sb.Append("  DeletedRegistrations: ").Append(DeletedRegistrations).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+            => this.DebugDump();
     }
 }

@@ -15,28 +15,8 @@ namespace MbedCloudSDK.AccountManagement.Model.User
     /// <summary>
     /// This object represents a user in Mbed Cloud.
     /// </summary>
-    public class User
+    public class User : BaseModel
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="User"/> class.x
-        /// Initializes new instance of User class.
-        /// </summary>
-        /// <param name="options">Dictionary containing properties.</param>
-        public User(IDictionary<string, object> options = null)
-        {
-            if (options != null)
-            {
-                foreach (KeyValuePair<string, object> item in options)
-                {
-                    var property = GetType().GetProperty(item.Key);
-                    if (property != null)
-                    {
-                        property.SetValue(this, item.Value, null);
-                    }
-                }
-            }
-        }
-
         /// <summary>
         /// Gets the status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately.
         /// </summary>
@@ -121,13 +101,6 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         public string PhoneNumber { get; set; }
 
         /// <summary>
-        /// Gets the UUID of the user.
-        /// </summary>
-        [NameOverride(Name = "UserId")]
-        [JsonProperty]
-        public string Id { get; private set; }
-
-        /// <summary>
         /// Gets a timestamp of the latest login of the user, in milliseconds.
         /// </summary>
         [JsonProperty]
@@ -189,35 +162,11 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         }
 
         /// <summary>
-        /// Returns the string presentation of the object
+        /// Returns the string presentation of the object.
         /// </summary>
-        /// <returns>String presentation of the object</returns>
+        /// <returns>String presentation of the object.</returns>
         public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class User {\n");
-            sb.Append("  FullName: ").Append(FullName).Append("\n");
-            sb.Append("  Username: ").Append(Username).Append("\n");
-            sb.Append("  Password: ").Append(Password).Append("\n");
-            sb.Append("  Email: ").Append(Email).Append("\n");
-            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
-            sb.Append("  Address: ").Append(Address).Append("\n");
-            sb.Append("  TermsAccepted: ").Append(TermsAccepted).Append("\n");
-            sb.Append("  MarketingAccepted: ").Append(MarketingAccepted).Append("\n");
-            sb.Append("  Groups: ").Append(Groups.Any() ? string.Join(", ", Groups) : string.Empty).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
-            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
-            sb.Append("  EmailVerified: ").Append(EmailVerified).Append("\n");
-            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  CreationTime: ").Append(CreationTime).Append("\n");
-            sb.Append("  PasswordChangedTime: ").Append(PasswordChangedTime).Append("\n");
-            sb.Append("  TwoFactorAuthentication: ").Append(TwoFactorAuthentication).Append("\n");
-            sb.Append("  LastLoginTime: ").Append(LastLoginTime).Append("\n");
-            sb.Append("  loginHistory: ").Append(LoginHistory.Any() ? string.Join(", ", LoginHistory.Select(l => { return l.ToString(); })) : string.Empty).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+            => this.DebugDump();
 
         /// <summary>
         /// Create post request
@@ -255,7 +204,6 @@ namespace MbedCloudSDK.AccountManagement.Model.User
                 FullName = FullName,
                 Address = Address,
                 IsMarketingAccepted = MarketingAccepted,
-                Password = Password,
                 CustomFields = CustomProperties,
                 IsTotpEnabled = TwoFactorAuthentication,
                 Status = Utils.GetEnumMemberValue(typeof(UserStatus), Convert.ToString(Status)),
