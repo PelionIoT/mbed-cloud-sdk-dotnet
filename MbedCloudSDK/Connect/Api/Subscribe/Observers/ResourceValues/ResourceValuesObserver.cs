@@ -7,8 +7,10 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using MbedCloudSDK.Common;
     using MbedCloudSDK.Connect.Api.Subscribe.Models;
     using MbedCloudSDK.Connect.Model.Notifications;
+    using MbedCloudSDK.Connect.Model.Subscription;
 
     /// <summary>
     /// <see cref="ResourceValuesObserver"/>
@@ -19,8 +21,8 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         /// Initializes a new instance of the <see cref="ResourceValuesObserver"/> class.
         /// </summary>
         public ResourceValuesObserver()
-         : this("*", Enumerable.Empty<string>())
         {
+            OnSubAdded?.Invoke(Id);
         }
 
         /// <summary>
@@ -62,17 +64,19 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         {
             deviceIds.ToList().ForEach(r =>
             {
+                deviceIds.Print();
+                resourcePaths.Print();
                 var sub = new ResourceValuesFilter { DeviceId = r, ResourcePaths = resourcePaths };
                 ResourceValueSubscriptions.Add(sub);
             });
 
-            OnSubAdded?.Invoke();
+            OnSubAdded?.Invoke(Id);
         }
 
         /// <summary>
         /// SubAddedRaiser
         /// </summary>
-        public delegate void SubAddedRaiser();
+        public delegate void SubAddedRaiser(string id);
 
         /// <summary>
         /// Occurs when [on sub added].
@@ -110,7 +114,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         public ResourceValuesObserver Where(ResourceValuesFilter subscription)
         {
             ResourceValueSubscriptions.Add(subscription);
-            OnSubAdded?.Invoke();
+            OnSubAdded?.Invoke(Id);
             return this;
         }
 
@@ -124,7 +128,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         {
             var sub = new ResourceValuesFilter { DeviceId = deviceId, ResourcePaths = resourcePaths.ToList() };
             ResourceValueSubscriptions.Add(sub);
-            OnSubAdded?.Invoke();
+            OnSubAdded?.Invoke(Id);
             return this;
         }
 

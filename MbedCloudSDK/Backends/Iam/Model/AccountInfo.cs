@@ -126,7 +126,6 @@ namespace iam.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountInfo" /> class.
         /// </summary>
-        /// <param name="AccountProperties">Account specific custom properties..</param>
         /// <param name="AddressLine1">Postal address line 1..</param>
         /// <param name="AddressLine2">Postal address line 2..</param>
         /// <param name="Aliases">An array of aliases. (required).</param>
@@ -136,6 +135,7 @@ namespace iam.Model
         /// <param name="ContractNumber">Contract number of the customer..</param>
         /// <param name="Country">The country part of the postal address..</param>
         /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
+        /// <param name="CustomFields">Account&#39;s custom properties as key-value pairs..</param>
         /// <param name="CustomerNumber">Customer number of the customer..</param>
         /// <param name="DisplayName">The display name for the account..</param>
         /// <param name="Email">The company email address for this account..</param>
@@ -163,7 +163,7 @@ namespace iam.Model
         /// <param name="Tier">The tier level of the account; &#39;0&#39;: free tier, &#39;1&#39;: commercial account, &#39;2&#39;: partner tier. Other values are reserved for the future. (required).</param>
         /// <param name="UpdatedAt">Last update UTC time RFC3339..</param>
         /// <param name="UpgradedAt">Time when upgraded to commercial account in UTC format RFC3339..</param>
-        public AccountInfo(Dictionary<string, Dictionary<string, string>> AccountProperties = default(Dictionary<string, Dictionary<string, string>>), string AddressLine1 = default(string), string AddressLine2 = default(string), List<string> Aliases = default(List<string>), string City = default(string), string Company = default(string), string Contact = default(string), string ContractNumber = default(string), string Country = default(string), DateTime? CreatedAt = default(DateTime?), string CustomerNumber = default(string), string DisplayName = default(string), string Email = default(string), string EndMarket = default(string), string Etag = default(string), string ExpirationWarningThreshold = default(string), string Id = default(string), string IdleTimeout = default(string), Dictionary<string, string> Limits = default(Dictionary<string, string>), MfaStatusEnum? MfaStatus = default(MfaStatusEnum?), List<string> NotificationEmails = default(List<string>), ObjectEnum? _Object = default(ObjectEnum?), string ParentId = default(string), PasswordPolicy PasswordPolicy = default(PasswordPolicy), string PhoneNumber = default(string), List<FeaturePolicy> Policies = default(List<FeaturePolicy>), string PostalCode = default(string), string Reason = default(string), string ReferenceNote = default(string), string SalesContact = default(string), string State = default(string), StatusEnum? Status = default(StatusEnum?), List<AccountInfo> SubAccounts = default(List<AccountInfo>), string TemplateId = default(string), string Tier = default(string), DateTime? UpdatedAt = default(DateTime?), DateTime? UpgradedAt = default(DateTime?))
+        public AccountInfo(string AddressLine1 = default(string), string AddressLine2 = default(string), List<string> Aliases = default(List<string>), string City = default(string), string Company = default(string), string Contact = default(string), string ContractNumber = default(string), string Country = default(string), DateTime? CreatedAt = default(DateTime?), Dictionary<string, string> CustomFields = default(Dictionary<string, string>), string CustomerNumber = default(string), string DisplayName = default(string), string Email = default(string), string EndMarket = default(string), string Etag = default(string), string ExpirationWarningThreshold = default(string), string Id = default(string), string IdleTimeout = default(string), Dictionary<string, string> Limits = default(Dictionary<string, string>), MfaStatusEnum? MfaStatus = default(MfaStatusEnum?), List<string> NotificationEmails = default(List<string>), ObjectEnum? _Object = default(ObjectEnum?), string ParentId = default(string), PasswordPolicy PasswordPolicy = default(PasswordPolicy), string PhoneNumber = default(string), List<FeaturePolicy> Policies = default(List<FeaturePolicy>), string PostalCode = default(string), string Reason = default(string), string ReferenceNote = default(string), string SalesContact = default(string), string State = default(string), StatusEnum? Status = default(StatusEnum?), List<AccountInfo> SubAccounts = default(List<AccountInfo>), string TemplateId = default(string), string Tier = default(string), DateTime? UpdatedAt = default(DateTime?), DateTime? UpgradedAt = default(DateTime?))
         {
             // to ensure "Aliases" is required (not null)
             if (Aliases == null)
@@ -228,7 +228,6 @@ namespace iam.Model
             {
                 this.Tier = Tier;
             }
-            this.AccountProperties = AccountProperties;
             this.AddressLine1 = AddressLine1;
             this.AddressLine2 = AddressLine2;
             this.City = City;
@@ -237,6 +236,7 @@ namespace iam.Model
             this.ContractNumber = ContractNumber;
             this.Country = Country;
             this.CreatedAt = CreatedAt;
+            this.CustomFields = CustomFields;
             this.CustomerNumber = CustomerNumber;
             this.DisplayName = DisplayName;
             this.Email = Email;
@@ -260,13 +260,6 @@ namespace iam.Model
             this.UpgradedAt = UpgradedAt;
         }
         
-        /// <summary>
-        /// Account specific custom properties.
-        /// </summary>
-        /// <value>Account specific custom properties.</value>
-        [DataMember(Name="account_properties", EmitDefaultValue=false)]
-        public Dictionary<string, Dictionary<string, string>> AccountProperties { get; set; }
-
         /// <summary>
         /// Postal address line 1.
         /// </summary>
@@ -329,6 +322,13 @@ namespace iam.Model
         /// <value>Creation UTC time RFC3339.</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
+
+        /// <summary>
+        /// Account&#39;s custom properties as key-value pairs.
+        /// </summary>
+        /// <value>Account&#39;s custom properties as key-value pairs.</value>
+        [DataMember(Name="custom_fields", EmitDefaultValue=false)]
+        public Dictionary<string, string> CustomFields { get; set; }
 
         /// <summary>
         /// Customer number of the customer.
@@ -509,7 +509,6 @@ namespace iam.Model
         {
             var sb = new StringBuilder();
             sb.Append("class AccountInfo {\n");
-            sb.Append("  AccountProperties: ").Append(AccountProperties).Append("\n");
             sb.Append("  AddressLine1: ").Append(AddressLine1).Append("\n");
             sb.Append("  AddressLine2: ").Append(AddressLine2).Append("\n");
             sb.Append("  Aliases: ").Append(Aliases).Append("\n");
@@ -519,6 +518,7 @@ namespace iam.Model
             sb.Append("  ContractNumber: ").Append(ContractNumber).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
+            sb.Append("  CustomFields: ").Append(CustomFields).Append("\n");
             sb.Append("  CustomerNumber: ").Append(CustomerNumber).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
@@ -581,11 +581,6 @@ namespace iam.Model
 
             return 
                 (
-                    this.AccountProperties == input.AccountProperties ||
-                    this.AccountProperties != null &&
-                    this.AccountProperties.SequenceEqual(input.AccountProperties)
-                ) && 
-                (
                     this.AddressLine1 == input.AddressLine1 ||
                     (this.AddressLine1 != null &&
                     this.AddressLine1.Equals(input.AddressLine1))
@@ -629,6 +624,11 @@ namespace iam.Model
                     this.CreatedAt == input.CreatedAt ||
                     (this.CreatedAt != null &&
                     this.CreatedAt.Equals(input.CreatedAt))
+                ) && 
+                (
+                    this.CustomFields == input.CustomFields ||
+                    this.CustomFields != null &&
+                    this.CustomFields.SequenceEqual(input.CustomFields)
                 ) && 
                 (
                     this.CustomerNumber == input.CustomerNumber ||
@@ -776,8 +776,6 @@ namespace iam.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AccountProperties != null)
-                    hashCode = hashCode * 59 + this.AccountProperties.GetHashCode();
                 if (this.AddressLine1 != null)
                     hashCode = hashCode * 59 + this.AddressLine1.GetHashCode();
                 if (this.AddressLine2 != null)
@@ -796,6 +794,8 @@ namespace iam.Model
                     hashCode = hashCode * 59 + this.Country.GetHashCode();
                 if (this.CreatedAt != null)
                     hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
+                if (this.CustomFields != null)
+                    hashCode = hashCode * 59 + this.CustomFields.GetHashCode();
                 if (this.CustomerNumber != null)
                     hashCode = hashCode * 59 + this.CustomerNumber.GetHashCode();
                 if (this.DisplayName != null)

@@ -2,6 +2,8 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
+using MbedCloudSDK.Common;
+
 namespace MbedCloudSDK.Bootstrap.Model
 {
     /// <summary>
@@ -58,5 +60,12 @@ namespace MbedCloudSDK.Bootstrap.Model
                 EndpointName = key.EndpointName,
             };
         }
+
+        /// <summary>
+        /// Returns the string presentation of the object.
+        /// </summary>
+        /// <returns>String presentation of the object.</returns>
+        public override string ToString()
+            => this.DebugDump();
     }
 }

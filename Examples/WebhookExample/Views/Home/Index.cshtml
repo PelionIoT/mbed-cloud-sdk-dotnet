@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Webhook Example";
+}
+
+<h1 id="webhookexample">Webhook Example</h1>
+
+<p>This example ASP.NET Core server demonstrates how the Mbed Cloud SDK can be used to listen for notifications with a webhook, rather than a long polling channel.</p>
+
+<h2 id="build">Build</h2>
+
+<p>Clone the MbedCloudSDK repo and move to the Examples/WebhookExample directory</p>
+
+<pre><code class="bash language-bash">$ cd Examples/WebhookExample
+</code></pre>
+
+<p>Restore the dependencies</p>
+
+<pre><code class="bash language-bash">$ dotnet restore
+</code></pre>
+
+<p>Build the example</p>
+
+<pre><code class="bash language-bash">$ dotnet build
+</code></pre>
+
+<p>Before you run the project, make sure you have set <code>$MBED_CLOUD_API_KEY</code> envrionment variable to your api key.</p>
+
+<pre><code class="bash language-bash">$ dotnet run
+</code></pre>
+
+<p>The server will now be running at port 5000.</p>
+
+<h2 id="routes">routes</h2>
+
+<h3 id="postregister">POST /register</h3>
+
+<p>This sets the webhook url to a url that is visible on the public internet.</p>
+
+<p>An example request</p>
+
+<pre><code>curl -X POST \
+  http://localhost:5000/register \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "url": "http://1842069c.ngrok.io"
+}'
+</code></pre>
+
+<p>This will set the webhook to <code>http://1842069c.ngrok.io</code>.</p>
+
+<h3 id="postsubscribe">POST /subscribe</h3>
+
+<p>This creates a new subscription to resource value changes. You can set deviceId, resourcePaths or both.</p>
+
+<p>An example request</p>
+
+<pre><code>curl -X POST \
+  http://localhost:5000/subscribe \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "deviceId":"0161661f44460042069000010010004f",
+    "resourcePaths": ["/3200/0/5501"]
+}'
+</code></pre>
+
+<p>This will subscribe to the path <code>/3200/0/5501</code> on device with Id  <code>0161661f44460042069000010010004f</code>.</p>
+
+<p>Wildcards can be used in deviceID or ResourcePaths, for example</p>
+
+<pre><code>{
+    "deviceId":"0161661f444*",
+    "resourcePaths": ["/3200/*"]
+}
+</code></pre>
+
+<p>Or just subscribe to everything</p>
+
+<pre><code>{
+    "deviceId":"*"
+}
+</code></pre>
+
+<p>Warning - The broader your parameters, the longer the request will take as a broad filter will result in many API calls.</p>
+
+<h3 id="put">PUT /</h3>
+
+<p>This route captures all data sent down the notification channel. In your own application to feed these notifications into the SDK you must use the <code>Notify</code> method on the <code>ConnectApi</code>. For example, the <code>PUT /</code> in this example looks like</p>
+
+<pre><code class="C# language-C#">[HttpPut("/")]
+public IActionResult Put([FromBody] NotificationMessage data)
+{
+    _connectService.connect.Notify(data);
+    return Ok();
+}
+</code></pre>
+
+<h2 id="services">Services</h2>
+
+<h3 id="connectservice">ConnectService</h3>
+
+<p>As the ConnectApi can only have one channel per ApiKey, it is advisable to use the singleton pattern. The ConnectService creates a new instance of the ConnectApi on startup and is registered as a singleton. This can then be injected into the relevant controllers.</p>

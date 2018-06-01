@@ -5,12 +5,13 @@
 namespace MbedCloudSDK.Connect.Model.Webhook
 {
     using System.Collections.Generic;
+    using MbedCloudSDK.Common;
     using Newtonsoft.Json;
 
     /// <summary>
     /// Webhook
     /// </summary>
-    public class Webhook
+    public class Webhook : BaseModel
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Webhook"/> class.
@@ -72,5 +73,12 @@ namespace MbedCloudSDK.Connect.Model.Webhook
             };
             return webhook;
         }
+
+        /// <summary>
+        /// Returns the string presentation of the object.
+        /// </summary>
+        /// <returns>String presentation of the object.</returns>
+        public override string ToString()
+            => this.DebugDump();
     }
 }

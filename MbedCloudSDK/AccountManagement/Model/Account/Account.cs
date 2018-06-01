@@ -16,27 +16,8 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
     /// <summary>
     /// Account
     /// </summary>
-    public class Account
+    public class Account : BaseModel
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Account" /> class.
-        /// </summary>
-        /// <param name="options">options for query</param>
-        public Account(IDictionary<string, object> options = null)
-        {
-            if (options != null)
-            {
-                foreach (KeyValuePair<string, object> item in options)
-                {
-                    var property = GetType().GetProperty(item.Key);
-                    if (property != null)
-                    {
-                        property.SetValue(this, item.Value, null);
-                    }
-                }
-            }
-        }
-
         /// <summary>
         /// Gets the status of the account.
         /// </summary>
@@ -53,12 +34,6 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         /// Gets or sets the postal code part of the postal address.
         /// </summary>
         public string Postcode { get; set; }
-
-        /// <summary>
-        /// Gets account ID.
-        /// </summary>
-        [JsonProperty]
-        public string Id { get; private set; }
 
         /// <summary>
         /// Gets an array of aliases.
@@ -197,7 +172,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         /// <summary>
         /// Gets or sets the account custom properties
         /// </summary>
-        public Dictionary<string, Dictionary<string, string>> CustomProperties { get; set; }
+        public Dictionary<string, string> CustomProperties { get; set; }
 
         /// <summary>
         /// Gets the sales contact email
@@ -242,7 +217,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
                 NotificationEmails = accountInfo.NotificationEmails ?? Enumerable.Empty<string>().ToList(),
                 ReferenceNote = accountInfo.ReferenceNote,
                 UpdatedAt = accountInfo.UpdatedAt,
-                CustomProperties = accountInfo.AccountProperties,
+                CustomProperties = accountInfo.CustomFields,
                 SalesContactEmail = accountInfo.SalesContact,
             };
             return account;
@@ -251,35 +226,9 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         /// <summary>
         /// Returns the string presentation of the object.
         /// </summary>
-        /// <returns>String presentation of the object</returns>
+        /// <returns>String presentation of the object.</returns>
         public override string ToString()
-        {
-            var sb = new StringBuilder();
-            sb.Append("class Account {\n");
-            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
-            sb.Append("  Postcode: ").Append(Postcode).Append("\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Aliases: ").Append(Aliases.Any() ? string.Join(", ", Aliases) : string.Empty).Append("\n");
-            sb.Append("  AddressLine2: ").Append(AddressLine2).Append("\n");
-            sb.Append("  City: ").Append(City).Append("\n");
-            sb.Append("  AddressLine1: ").Append(AddressLine1).Append("\n");
-            sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
-            sb.Append("  State: ").Append(State).Append("\n");
-            sb.Append("  Email: ").Append(Email).Append("\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
-            sb.Append("  Company: ").Append(Company).Append("\n");
-            sb.Append("  UpgradedAt: ").Append(UpgradedAt).Append("\n");
-            sb.Append("  Tier: ").Append(Tier).Append("\n");
-            sb.Append("  Limits: ").Append(Limits.Any() ? string.Join(", ", Limits) : string.Empty).Append("\n");
-            sb.Append("  Country: ").Append(Country).Append("\n");
-            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  Contact: ").Append(Contact).Append("\n");
-            sb.Append("  TemplateId: ").Append(TemplateId).Append("\n");
-            sb.Append("  Policies: ").Append(Policies.Any() ? string.Join(", ", Policies.Select(p => { return Convert.ToString(p); })) : string.Empty).Append("\n");
-            sb.Append("  Reason: ").Append(Reason).Append("\n");
-            sb.Append("}\n");
-            return sb.ToString();
-        }
+            => this.DebugDump();
 
         /// <summary>
         /// Create an Update Request
@@ -303,7 +252,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
                 Contact = Contact,
                 NotificationEmails = NotificationEmails,
                 ExpirationWarningThreshold = ExpiryWarning,
-                AccountProperties = CustomProperties,
+                CustomFields = CustomProperties,
             };
 
             if (MultifactorAuthenticationStatus.HasValue)

@@ -1,3 +1,16 @@
+# Changelog
+
+The application is hosted on Nuget at https://www.nuget.org/packages/Mbed.Cloud.SDK and can be installed using the dotnet cli:
+
+```
+$ dotnet add package Mbed.Cloud.SDK
+```
+
+This news file contains a log of notable changes to the SDK. Please see [nuget history for mbed-cloud-sdk](https://www.nuget.org/packages/Mbed.Cloud.SDK/) for 
+a list of versions that have been released.
+
+[//]: # (begin_release_notes)
+
  (2018-05-22)
 =============
 
@@ -40,21 +53,7 @@
 - Add ability to subscribe to devicve events using the Subscribe interface. See
   Examples folder for usage. (#722)
 
-
-# Changelog
- 
-The application is hosted on Nuget at https://www.nuget.org/packages/Mbed.Cloud.SDK and can be installed using the dotnet cli:
-
-```
-$ dotnet add package Mbed.Cloud.SDK
-```
- 
-This news file contains a log of notable changes to the SDK. Please see [nuget history for mbed-cloud-sdk](https://www.nuget.org/packages/Mbed.Cloud.SDK/) for 
-a list of versions that have been released. 
- 
-[//]: # (begin_release_notes) 
- 
-# Older Releases: 
+# Older Releases:
 
 ## 1.2.6
 
