@@ -57,7 +57,8 @@ compile:
     - cp tpip.csv ${SDK_REPORTS}
     - python scripts/dvcs_version.py
     - pip install -U git+https://github.com/davidhyman/towncrier.git@config-project-name
-    - cd scripts && towncrier --yes --name="" --version=$(python dvcs_version.py version)
+    - export SDK_VERSION=$(python scripts/dvcs_version.py version)
+    - cd docs/news && towncrier --yes --name="" --version=${SDK_VERSION}
     - cp CHANGELOG.md ${CIRCLE_ARTIFACTS}/
   override:
     - dotnet build -c Release
