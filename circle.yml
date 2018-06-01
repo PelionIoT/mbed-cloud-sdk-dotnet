@@ -89,7 +89,7 @@ deployment:
       - echo Tagging $SDK_NAME in GitHub...
       - git tag ${SDK_TAG}
       - git push --tags
-      - git add CHANGELOG.md news/*
+      - git add CHANGELOG.md docs/news/*
       - git commit -m "Hear yea, hear yea. News O'Clock. [skip ci]"
       - git push --set-upstream origin 1.2
       - dotnet nuget push MbedCloudSDK/bin/Release/${NUGET_NAME} -k ${NUGET_KEY} -s https://api.nuget.org/v3/index.json
