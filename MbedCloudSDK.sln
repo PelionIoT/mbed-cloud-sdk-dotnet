@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MbedCloudSDK.ExampleTests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MbedCloudSDK.Templates.ConnectedDevices", "Templates\MbedCloudSDK.Templates.ConnectedDevices\content\MbedCloudSDK.Templates.ConnectedDevices.csproj", "{4802FA41-03F5-40D6-B01B-427E2FE53AF4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snippets", "Examples\Snippets\Snippets.csproj", "{8480627B-22AB-4424-B10D-CB7E6B886276}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{4802FA41-03F5-40D6-B01B-427E2FE53AF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4802FA41-03F5-40D6-B01B-427E2FE53AF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4802FA41-03F5-40D6-B01B-427E2FE53AF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8480627B-22AB-4424-B10D-CB7E6B886276}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8480627B-22AB-4424-B10D-CB7E6B886276}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8480627B-22AB-4424-B10D-CB7E6B886276}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8480627B-22AB-4424-B10D-CB7E6B886276}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +67,7 @@ Global
 		{C5AC23C6-1F58-4259-B290-BBA2B74CC87D} = {CD44A263-F1FC-48C0-A68A-A59C3453462A}
 		{90EA0303-F578-4058-9C3F-D881792508BF} = {CD44A263-F1FC-48C0-A68A-A59C3453462A}
 		{4802FA41-03F5-40D6-B01B-427E2FE53AF4} = {0E9711E6-FEC8-4DDB-B1C4-ECA8FA8CA719}
+		{8480627B-22AB-4424-B10D-CB7E6B886276} = {28E4D94D-24CB-4400-9363-9655C065BFE4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9F9FD089-BBBB-4F23-83F8-97E8B482DA37}
