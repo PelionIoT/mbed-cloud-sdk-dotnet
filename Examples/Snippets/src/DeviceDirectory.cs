@@ -10,7 +10,7 @@ namespace Snippets.src
     {
         public void ListDevices()
         {
-            // example: list devices in Mbed Cloud
+            // an example: list devices in Mbed Cloud
             var config = new Config("An MbedCloud Api  Key", "custom host url");
 
             var deviceDirectory = new DeviceDirectoryApi(config);
@@ -25,7 +25,7 @@ namespace Snippets.src
 
         public void ListDevicesWithFilters()
         {
-            // example: list deregistered devices in Mbed Cloud
+            // an example: list deregistered devices in Mbed Cloud
             var config = new Config("An MbedCloud Api  Key", "custom host url");
 
             var deviceDirectory = new DeviceDirectoryApi(config);

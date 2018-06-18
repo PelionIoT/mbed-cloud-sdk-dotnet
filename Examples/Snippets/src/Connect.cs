@@ -10,7 +10,7 @@ namespace Snippets.src
     {
         public void SubscribeToDeviceStateChanges()
         {
-            // example: subscribing to device state changes
+            // an example: subscribing to device state changes
             var config = new Config("An MbedCloud Api  Key", "custom host url");
 
             using (var connect = new ConnectApi(config))
@@ -25,7 +25,7 @@ namespace Snippets.src
 
         public void SubscribeToResourceVslueChanges()
         {
-            // example: subscribing to resource value changes
+            // an example: subscribing to resource value changes
             var config = new Config("An MbedCloud Api  Key", "custom host url");
 
             using (var connect = new ConnectApi(config))
