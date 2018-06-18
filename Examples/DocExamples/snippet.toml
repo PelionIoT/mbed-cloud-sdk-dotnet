@@ -1,0 +1,6 @@
+[snippet]
+input_glob=['examples/DocExamples/*.cs', 'examples/setup_example.md']
+log_level=10
+language_name = 'csharp'
+comment_prefix = '// '
+comment_suffix = ''
