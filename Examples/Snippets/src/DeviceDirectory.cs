@@ -15,7 +15,7 @@ namespace Snippets.src
 
             var deviceDirectory = new DeviceDirectoryApi(config);
 
-            var data = deviceDirectory.ListDevices(new QueryOptions { Order = "ASC" }).Data;
+            var data = deviceDirectory.ListDevices(new QueryOptions { Order = "ASC" });
 
             data.Select(device => $"{device.Id} [{device.State.ToString()}]")
                 .ToList()
@@ -33,7 +33,7 @@ namespace Snippets.src
             var options = new QueryOptions();
             options.Filter.Add("state", "deregistered");
 
-            var data = deviceDirectory.ListDevices(options).Data;
+            var data = deviceDirectory.ListDevices(options);
 
             data.Select(device => $"{device.Id} [{device.State.ToString()}]")
                 .ToList()
