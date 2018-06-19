@@ -15,7 +15,7 @@ machine:
     UNITTEST_REPORT: ${SDK_REPORTS}/unittests.html
     INTTEST_REPORT: ${SDK_REPORTS}/inttests.html
     RAW_REPORT: ${SDK_REPORTS}/raw.txt
-    NUGET_NAME: Mbed.Cloud.SDK.1.2.9.nupkg
+    NUGET_NAME: Mbed.Cloud.SDK.1.2.10.nupkg
     ARTIFACTORY_URL: http://localhost:5000/artifactory/
     TESTRUNNER_DOCKER_IMAGE : 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
   services:
@@ -89,7 +89,7 @@ deployment:
       - echo Tagging $SDK_NAME in GitHub...
       - git tag ${SDK_TAG}
       - git push --tags
-      - git add CHANGELOG.md news/*
+      - git add CHANGELOG.md docs/news/*
       - git commit -m "Hear yea, hear yea. News O'Clock. [skip ci]"
       - git push --set-upstream origin 1.2
       - dotnet nuget push MbedCloudSDK/bin/Release/${NUGET_NAME} -k ${NUGET_KEY} -s https://api.nuget.org/v3/index.json
