@@ -50,7 +50,7 @@ namespace demo
             var connect = new ConnectApi(config);
 
             // lists the first 50 connectedDevices
-            var connectedDevices = connect.ListConnectedDevices().Data;
+            var connectedDevices = connect.ListConnectedDevices();
 
             // get the first connected device
             var val = connectedDevices.FirstOrDefault()
