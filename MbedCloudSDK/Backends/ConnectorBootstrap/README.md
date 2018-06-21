@@ -100,12 +100,14 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *PreSharedKeysApi* | [**DeletePreSharedKey**](docs/PreSharedKeysApi.md#deletepresharedkey) | **DELETE** /v2/device-shared-keys/{endpoint_name} | Remove a pre-shared key.
 *PreSharedKeysApi* | [**GetPreSharedKey**](docs/PreSharedKeysApi.md#getpresharedkey) | **GET** /v2/device-shared-keys/{endpoint_name} | Get a pre-shared key.
+*PreSharedKeysApi* | [**ListPreSharedKeys**](docs/PreSharedKeysApi.md#listpresharedkeys) | **GET** /v2/device-shared-keys | List pre-shared keys.
 *PreSharedKeysApi* | [**UploadPreSharedKey**](docs/PreSharedKeysApi.md#uploadpresharedkey) | **POST** /v2/device-shared-keys | Upload a pre-shared key to Mbed Cloud.
 
 
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
+ - [Model.ListOfPreSharedKeysWithoutSecret](docs/ListOfPreSharedKeysWithoutSecret.md)
  - [Model.PreSharedKey](docs/PreSharedKey.md)
  - [Model.PreSharedKeyWithoutSecret](docs/PreSharedKeyWithoutSecret.md)
 

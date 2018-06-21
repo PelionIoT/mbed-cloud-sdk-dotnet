@@ -39,8 +39,9 @@ namespace connector_bootstrap.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="PreSharedKeyWithoutSecret" /> class.
         /// </summary>
+        /// <param name="CreatedAt">The date-time (RFC3339) when this pre-shared key was uploaded to Mbed Cloud..</param>
         /// <param name="EndpointName">The unique endpoint identifier that this pre-shared key applies to. 16-64 [printable](https://en.wikipedia.org/wiki/ASCII#Printable_characters) (non-control) ASCII characters. (required).</param>
-        public PreSharedKeyWithoutSecret(string EndpointName = default(string))
+        public PreSharedKeyWithoutSecret(DateTime? CreatedAt = default(DateTime?), string EndpointName = default(string))
         {
             // to ensure "EndpointName" is required (not null)
             if (EndpointName == null)
@@ -51,8 +52,16 @@ namespace connector_bootstrap.Model
             {
                 this.EndpointName = EndpointName;
             }
+            this.CreatedAt = CreatedAt;
         }
         
+        /// <summary>
+        /// The date-time (RFC3339) when this pre-shared key was uploaded to Mbed Cloud.
+        /// </summary>
+        /// <value>The date-time (RFC3339) when this pre-shared key was uploaded to Mbed Cloud.</value>
+        [DataMember(Name="created_at", EmitDefaultValue=false)]
+        public DateTime? CreatedAt { get; set; }
+
         /// <summary>
         /// The unique endpoint identifier that this pre-shared key applies to. 16-64 [printable](https://en.wikipedia.org/wiki/ASCII#Printable_characters) (non-control) ASCII characters.
         /// </summary>
@@ -68,6 +77,7 @@ namespace connector_bootstrap.Model
         {
             var sb = new StringBuilder();
             sb.Append("class PreSharedKeyWithoutSecret {\n");
+            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  EndpointName: ").Append(EndpointName).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -104,6 +114,11 @@ namespace connector_bootstrap.Model
 
             return 
                 (
+                    this.CreatedAt == input.CreatedAt ||
+                    (this.CreatedAt != null &&
+                    this.CreatedAt.Equals(input.CreatedAt))
+                ) && 
+                (
                     this.EndpointName == input.EndpointName ||
                     (this.EndpointName != null &&
                     this.EndpointName.Equals(input.EndpointName))
@@ -119,6 +134,8 @@ namespace connector_bootstrap.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.CreatedAt != null)
+                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
                 if (this.EndpointName != null)
                     hashCode = hashCode * 59 + this.EndpointName.GetHashCode();
                 return hashCode;

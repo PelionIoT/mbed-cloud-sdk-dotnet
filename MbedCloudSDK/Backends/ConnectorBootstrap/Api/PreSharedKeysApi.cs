@@ -29,7 +29,7 @@ namespace connector_bootstrap.Api
         /// Remove a pre-shared key.
         /// </summary>
         /// <remarks>
-        /// Remove a pre-shared key.
+        /// Remove a pre-shared key.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; -X DELETE https://api.us-east-1.mbedcloud.com/v2/device-shared-keys/my-endpoint-0001 &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="endpointName">The unique endpoint identifier that this pre-shared key applies to. [Reserved characters](https://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters) must be percent-encoded.</param>
@@ -40,7 +40,7 @@ namespace connector_bootstrap.Api
         /// Remove a pre-shared key.
         /// </summary>
         /// <remarks>
-        /// Remove a pre-shared key.
+        /// Remove a pre-shared key.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; -X DELETE https://api.us-east-1.mbedcloud.com/v2/device-shared-keys/my-endpoint-0001 &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="endpointName">The unique endpoint identifier that this pre-shared key applies to. [Reserved characters](https://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters) must be percent-encoded.</param>
@@ -50,7 +50,7 @@ namespace connector_bootstrap.Api
         /// Get a pre-shared key.
         /// </summary>
         /// <remarks>
-        /// Check if a pre-shared key for an endpoint exists or not. The response does not contain the secret itself. 
+        /// Check if a pre-shared key for an endpoint exists or not. The response does not contain the secret itself.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; https://api.us-east-1.mbedcloud.com/v2/device-shared-keys/my-endpoint-0001 &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="endpointName">The unique endpoint identifier that this pre-shared key applies to. [Reserved characters](https://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters) must be percent-encoded.</param>
@@ -61,17 +61,40 @@ namespace connector_bootstrap.Api
         /// Get a pre-shared key.
         /// </summary>
         /// <remarks>
-        /// Check if a pre-shared key for an endpoint exists or not. The response does not contain the secret itself. 
+        /// Check if a pre-shared key for an endpoint exists or not. The response does not contain the secret itself.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; https://api.us-east-1.mbedcloud.com/v2/device-shared-keys/my-endpoint-0001 &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="endpointName">The unique endpoint identifier that this pre-shared key applies to. [Reserved characters](https://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters) must be percent-encoded.</param>
         /// <returns>ApiResponse of PreSharedKeyWithoutSecret</returns>
         ApiResponse<PreSharedKeyWithoutSecret> GetPreSharedKeyWithHttpInfo (string endpointName);
         /// <summary>
+        /// List pre-shared keys.
+        /// </summary>
+        /// <remarks>
+        /// List pre-shared keys with pagination and default page size of 50 entries.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; https://api.us-east-1.mbedcloud.com/v2/device-shared-keys &#x60;&#x60;&#x60; 
+        /// </remarks>
+        /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of entries per page (optional)</param>
+        /// <param name="after">An offset token for fetching a specific page. Provided by the server. (optional)</param>
+        /// <returns>ListOfPreSharedKeysWithoutSecret</returns>
+        ListOfPreSharedKeysWithoutSecret ListPreSharedKeys (int? limit = null, string after = null);
+
+        /// <summary>
+        /// List pre-shared keys.
+        /// </summary>
+        /// <remarks>
+        /// List pre-shared keys with pagination and default page size of 50 entries.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; https://api.us-east-1.mbedcloud.com/v2/device-shared-keys &#x60;&#x60;&#x60; 
+        /// </remarks>
+        /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of entries per page (optional)</param>
+        /// <param name="after">An offset token for fetching a specific page. Provided by the server. (optional)</param>
+        /// <returns>ApiResponse of ListOfPreSharedKeysWithoutSecret</returns>
+        ApiResponse<ListOfPreSharedKeysWithoutSecret> ListPreSharedKeysWithHttpInfo (int? limit = null, string after = null);
+        /// <summary>
         /// Upload a pre-shared key to Mbed Cloud.
         /// </summary>
         /// <remarks>
-        /// Upload a pre-shared key (PSK) for an endpoint to allow it to bootstrap. The existing key will not be overwritten but needs to be deleted first in case of re-setting PSK for an endpoint.  **Note**: The PSK APIs are available only to accounts that have this feature enabled.  &#x60;&#x60;&#x60; Example payloads: {\&quot;endpoint_name\&quot;: \&quot;myEndpoint.host.com\&quot;, \&quot;secret_hex\&quot;: \&quot;4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a\&quot; } {\&quot;endpoint_name\&quot;: \&quot;myEndpoint.host.com\&quot;, \&quot;secret_hex\&quot;: \&quot;0x4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a\&quot; } &#x60;&#x60;&#x60; 
+        /// Upload a pre-shared key (PSK) for an endpoint to allow it to bootstrap. The existing key will not be overwritten but needs to be deleted first in case of re-setting PSK for an endpoint.  **Note**: The PSK APIs are available only to accounts that have this feature enabled.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; -H \&quot;content-type: application/json\&quot; -X POST https://api.us-east-1.mbedcloud.com/v2/device-shared-keys \\      -d &#39;{\&quot;endpoint_name\&quot;: \&quot;my-endpoint-0001\&quot;, \&quot;secret_hex\&quot;: \&quot;4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a\&quot; }&#39; &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Pre-shared key to be uploaded.</param>
@@ -82,7 +105,7 @@ namespace connector_bootstrap.Api
         /// Upload a pre-shared key to Mbed Cloud.
         /// </summary>
         /// <remarks>
-        /// Upload a pre-shared key (PSK) for an endpoint to allow it to bootstrap. The existing key will not be overwritten but needs to be deleted first in case of re-setting PSK for an endpoint.  **Note**: The PSK APIs are available only to accounts that have this feature enabled.  &#x60;&#x60;&#x60; Example payloads: {\&quot;endpoint_name\&quot;: \&quot;myEndpoint.host.com\&quot;, \&quot;secret_hex\&quot;: \&quot;4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a\&quot; } {\&quot;endpoint_name\&quot;: \&quot;myEndpoint.host.com\&quot;, \&quot;secret_hex\&quot;: \&quot;0x4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a\&quot; } &#x60;&#x60;&#x60; 
+        /// Upload a pre-shared key (PSK) for an endpoint to allow it to bootstrap. The existing key will not be overwritten but needs to be deleted first in case of re-setting PSK for an endpoint.  **Note**: The PSK APIs are available only to accounts that have this feature enabled.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; -H \&quot;content-type: application/json\&quot; -X POST https://api.us-east-1.mbedcloud.com/v2/device-shared-keys \\      -d &#39;{\&quot;endpoint_name\&quot;: \&quot;my-endpoint-0001\&quot;, \&quot;secret_hex\&quot;: \&quot;4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a\&quot; }&#39; &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Pre-shared key to be uploaded.</param>
@@ -94,7 +117,7 @@ namespace connector_bootstrap.Api
         /// Remove a pre-shared key.
         /// </summary>
         /// <remarks>
-        /// Remove a pre-shared key.
+        /// Remove a pre-shared key.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; -X DELETE https://api.us-east-1.mbedcloud.com/v2/device-shared-keys/my-endpoint-0001 &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="endpointName">The unique endpoint identifier that this pre-shared key applies to. [Reserved characters](https://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters) must be percent-encoded.</param>
@@ -105,7 +128,7 @@ namespace connector_bootstrap.Api
         /// Remove a pre-shared key.
         /// </summary>
         /// <remarks>
-        /// Remove a pre-shared key.
+        /// Remove a pre-shared key.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; -X DELETE https://api.us-east-1.mbedcloud.com/v2/device-shared-keys/my-endpoint-0001 &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="endpointName">The unique endpoint identifier that this pre-shared key applies to. [Reserved characters](https://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters) must be percent-encoded.</param>
@@ -115,7 +138,7 @@ namespace connector_bootstrap.Api
         /// Get a pre-shared key.
         /// </summary>
         /// <remarks>
-        /// Check if a pre-shared key for an endpoint exists or not. The response does not contain the secret itself. 
+        /// Check if a pre-shared key for an endpoint exists or not. The response does not contain the secret itself.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; https://api.us-east-1.mbedcloud.com/v2/device-shared-keys/my-endpoint-0001 &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="endpointName">The unique endpoint identifier that this pre-shared key applies to. [Reserved characters](https://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters) must be percent-encoded.</param>
@@ -126,17 +149,40 @@ namespace connector_bootstrap.Api
         /// Get a pre-shared key.
         /// </summary>
         /// <remarks>
-        /// Check if a pre-shared key for an endpoint exists or not. The response does not contain the secret itself. 
+        /// Check if a pre-shared key for an endpoint exists or not. The response does not contain the secret itself.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; https://api.us-east-1.mbedcloud.com/v2/device-shared-keys/my-endpoint-0001 &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="endpointName">The unique endpoint identifier that this pre-shared key applies to. [Reserved characters](https://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters) must be percent-encoded.</param>
         /// <returns>Task of ApiResponse (PreSharedKeyWithoutSecret)</returns>
         System.Threading.Tasks.Task<ApiResponse<PreSharedKeyWithoutSecret>> GetPreSharedKeyAsyncWithHttpInfo (string endpointName);
         /// <summary>
+        /// List pre-shared keys.
+        /// </summary>
+        /// <remarks>
+        /// List pre-shared keys with pagination and default page size of 50 entries.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; https://api.us-east-1.mbedcloud.com/v2/device-shared-keys &#x60;&#x60;&#x60; 
+        /// </remarks>
+        /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of entries per page (optional)</param>
+        /// <param name="after">An offset token for fetching a specific page. Provided by the server. (optional)</param>
+        /// <returns>Task of ListOfPreSharedKeysWithoutSecret</returns>
+        System.Threading.Tasks.Task<ListOfPreSharedKeysWithoutSecret> ListPreSharedKeysAsync (int? limit = null, string after = null);
+
+        /// <summary>
+        /// List pre-shared keys.
+        /// </summary>
+        /// <remarks>
+        /// List pre-shared keys with pagination and default page size of 50 entries.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; https://api.us-east-1.mbedcloud.com/v2/device-shared-keys &#x60;&#x60;&#x60; 
+        /// </remarks>
+        /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of entries per page (optional)</param>
+        /// <param name="after">An offset token for fetching a specific page. Provided by the server. (optional)</param>
+        /// <returns>Task of ApiResponse (ListOfPreSharedKeysWithoutSecret)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ListOfPreSharedKeysWithoutSecret>> ListPreSharedKeysAsyncWithHttpInfo (int? limit = null, string after = null);
+        /// <summary>
         /// Upload a pre-shared key to Mbed Cloud.
         /// </summary>
         /// <remarks>
-        /// Upload a pre-shared key (PSK) for an endpoint to allow it to bootstrap. The existing key will not be overwritten but needs to be deleted first in case of re-setting PSK for an endpoint.  **Note**: The PSK APIs are available only to accounts that have this feature enabled.  &#x60;&#x60;&#x60; Example payloads: {\&quot;endpoint_name\&quot;: \&quot;myEndpoint.host.com\&quot;, \&quot;secret_hex\&quot;: \&quot;4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a\&quot; } {\&quot;endpoint_name\&quot;: \&quot;myEndpoint.host.com\&quot;, \&quot;secret_hex\&quot;: \&quot;0x4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a\&quot; } &#x60;&#x60;&#x60; 
+        /// Upload a pre-shared key (PSK) for an endpoint to allow it to bootstrap. The existing key will not be overwritten but needs to be deleted first in case of re-setting PSK for an endpoint.  **Note**: The PSK APIs are available only to accounts that have this feature enabled.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; -H \&quot;content-type: application/json\&quot; -X POST https://api.us-east-1.mbedcloud.com/v2/device-shared-keys \\      -d &#39;{\&quot;endpoint_name\&quot;: \&quot;my-endpoint-0001\&quot;, \&quot;secret_hex\&quot;: \&quot;4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a\&quot; }&#39; &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Pre-shared key to be uploaded.</param>
@@ -147,7 +193,7 @@ namespace connector_bootstrap.Api
         /// Upload a pre-shared key to Mbed Cloud.
         /// </summary>
         /// <remarks>
-        /// Upload a pre-shared key (PSK) for an endpoint to allow it to bootstrap. The existing key will not be overwritten but needs to be deleted first in case of re-setting PSK for an endpoint.  **Note**: The PSK APIs are available only to accounts that have this feature enabled.  &#x60;&#x60;&#x60; Example payloads: {\&quot;endpoint_name\&quot;: \&quot;myEndpoint.host.com\&quot;, \&quot;secret_hex\&quot;: \&quot;4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a\&quot; } {\&quot;endpoint_name\&quot;: \&quot;myEndpoint.host.com\&quot;, \&quot;secret_hex\&quot;: \&quot;0x4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a\&quot; } &#x60;&#x60;&#x60; 
+        /// Upload a pre-shared key (PSK) for an endpoint to allow it to bootstrap. The existing key will not be overwritten but needs to be deleted first in case of re-setting PSK for an endpoint.  **Note**: The PSK APIs are available only to accounts that have this feature enabled.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; -H \&quot;content-type: application/json\&quot; -X POST https://api.us-east-1.mbedcloud.com/v2/device-shared-keys \\      -d &#39;{\&quot;endpoint_name\&quot;: \&quot;my-endpoint-0001\&quot;, \&quot;secret_hex\&quot;: \&quot;4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a\&quot; }&#39; &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Pre-shared key to be uploaded.</param>
@@ -254,7 +300,7 @@ namespace connector_bootstrap.Api
         }
 
         /// <summary>
-        /// Remove a pre-shared key. Remove a pre-shared key.
+        /// Remove a pre-shared key. Remove a pre-shared key.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; -X DELETE https://api.us-east-1.mbedcloud.com/v2/device-shared-keys/my-endpoint-0001 &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="endpointName">The unique endpoint identifier that this pre-shared key applies to. [Reserved characters](https://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters) must be percent-encoded.</param>
@@ -265,7 +311,7 @@ namespace connector_bootstrap.Api
         }
 
         /// <summary>
-        /// Remove a pre-shared key. Remove a pre-shared key.
+        /// Remove a pre-shared key. Remove a pre-shared key.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; -X DELETE https://api.us-east-1.mbedcloud.com/v2/device-shared-keys/my-endpoint-0001 &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="endpointName">The unique endpoint identifier that this pre-shared key applies to. [Reserved characters](https://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters) must be percent-encoded.</param>
@@ -323,7 +369,7 @@ namespace connector_bootstrap.Api
         }
 
         /// <summary>
-        /// Remove a pre-shared key. Remove a pre-shared key.
+        /// Remove a pre-shared key. Remove a pre-shared key.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; -X DELETE https://api.us-east-1.mbedcloud.com/v2/device-shared-keys/my-endpoint-0001 &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="endpointName">The unique endpoint identifier that this pre-shared key applies to. [Reserved characters](https://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters) must be percent-encoded.</param>
@@ -335,7 +381,7 @@ namespace connector_bootstrap.Api
         }
 
         /// <summary>
-        /// Remove a pre-shared key. Remove a pre-shared key.
+        /// Remove a pre-shared key. Remove a pre-shared key.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; -X DELETE https://api.us-east-1.mbedcloud.com/v2/device-shared-keys/my-endpoint-0001 &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="endpointName">The unique endpoint identifier that this pre-shared key applies to. [Reserved characters](https://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters) must be percent-encoded.</param>
@@ -393,7 +439,7 @@ namespace connector_bootstrap.Api
         }
 
         /// <summary>
-        /// Get a pre-shared key. Check if a pre-shared key for an endpoint exists or not. The response does not contain the secret itself. 
+        /// Get a pre-shared key. Check if a pre-shared key for an endpoint exists or not. The response does not contain the secret itself.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; https://api.us-east-1.mbedcloud.com/v2/device-shared-keys/my-endpoint-0001 &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="endpointName">The unique endpoint identifier that this pre-shared key applies to. [Reserved characters](https://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters) must be percent-encoded.</param>
@@ -405,7 +451,7 @@ namespace connector_bootstrap.Api
         }
 
         /// <summary>
-        /// Get a pre-shared key. Check if a pre-shared key for an endpoint exists or not. The response does not contain the secret itself. 
+        /// Get a pre-shared key. Check if a pre-shared key for an endpoint exists or not. The response does not contain the secret itself.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; https://api.us-east-1.mbedcloud.com/v2/device-shared-keys/my-endpoint-0001 &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="endpointName">The unique endpoint identifier that this pre-shared key applies to. [Reserved characters](https://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters) must be percent-encoded.</param>
@@ -463,7 +509,7 @@ namespace connector_bootstrap.Api
         }
 
         /// <summary>
-        /// Get a pre-shared key. Check if a pre-shared key for an endpoint exists or not. The response does not contain the secret itself. 
+        /// Get a pre-shared key. Check if a pre-shared key for an endpoint exists or not. The response does not contain the secret itself.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; https://api.us-east-1.mbedcloud.com/v2/device-shared-keys/my-endpoint-0001 &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="endpointName">The unique endpoint identifier that this pre-shared key applies to. [Reserved characters](https://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters) must be percent-encoded.</param>
@@ -476,7 +522,7 @@ namespace connector_bootstrap.Api
         }
 
         /// <summary>
-        /// Get a pre-shared key. Check if a pre-shared key for an endpoint exists or not. The response does not contain the secret itself. 
+        /// Get a pre-shared key. Check if a pre-shared key for an endpoint exists or not. The response does not contain the secret itself.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; https://api.us-east-1.mbedcloud.com/v2/device-shared-keys/my-endpoint-0001 &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="endpointName">The unique endpoint identifier that this pre-shared key applies to. [Reserved characters](https://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters) must be percent-encoded.</param>
@@ -534,7 +580,152 @@ namespace connector_bootstrap.Api
         }
 
         /// <summary>
-        /// Upload a pre-shared key to Mbed Cloud. Upload a pre-shared key (PSK) for an endpoint to allow it to bootstrap. The existing key will not be overwritten but needs to be deleted first in case of re-setting PSK for an endpoint.  **Note**: The PSK APIs are available only to accounts that have this feature enabled.  &#x60;&#x60;&#x60; Example payloads: {\&quot;endpoint_name\&quot;: \&quot;myEndpoint.host.com\&quot;, \&quot;secret_hex\&quot;: \&quot;4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a\&quot; } {\&quot;endpoint_name\&quot;: \&quot;myEndpoint.host.com\&quot;, \&quot;secret_hex\&quot;: \&quot;0x4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a\&quot; } &#x60;&#x60;&#x60; 
+        /// List pre-shared keys. List pre-shared keys with pagination and default page size of 50 entries.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; https://api.us-east-1.mbedcloud.com/v2/device-shared-keys &#x60;&#x60;&#x60; 
+        /// </summary>
+        /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of entries per page (optional)</param>
+        /// <param name="after">An offset token for fetching a specific page. Provided by the server. (optional)</param>
+        /// <returns>ListOfPreSharedKeysWithoutSecret</returns>
+        public ListOfPreSharedKeysWithoutSecret ListPreSharedKeys (int? limit = null, string after = null)
+        {
+             ApiResponse<ListOfPreSharedKeysWithoutSecret> localVarResponse = ListPreSharedKeysWithHttpInfo(limit, after);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List pre-shared keys. List pre-shared keys with pagination and default page size of 50 entries.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; https://api.us-east-1.mbedcloud.com/v2/device-shared-keys &#x60;&#x60;&#x60; 
+        /// </summary>
+        /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of entries per page (optional)</param>
+        /// <param name="after">An offset token for fetching a specific page. Provided by the server. (optional)</param>
+        /// <returns>ApiResponse of ListOfPreSharedKeysWithoutSecret</returns>
+        public ApiResponse< ListOfPreSharedKeysWithoutSecret > ListPreSharedKeysWithHttpInfo (int? limit = null, string after = null)
+        {
+
+            var localVarPath = "/v2/device-shared-keys";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (limit != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
+            if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ListPreSharedKeys", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ListOfPreSharedKeysWithoutSecret>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ListOfPreSharedKeysWithoutSecret) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ListOfPreSharedKeysWithoutSecret)));
+        }
+
+        /// <summary>
+        /// List pre-shared keys. List pre-shared keys with pagination and default page size of 50 entries.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; https://api.us-east-1.mbedcloud.com/v2/device-shared-keys &#x60;&#x60;&#x60; 
+        /// </summary>
+        /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of entries per page (optional)</param>
+        /// <param name="after">An offset token for fetching a specific page. Provided by the server. (optional)</param>
+        /// <returns>Task of ListOfPreSharedKeysWithoutSecret</returns>
+        public async System.Threading.Tasks.Task<ListOfPreSharedKeysWithoutSecret> ListPreSharedKeysAsync (int? limit = null, string after = null)
+        {
+             ApiResponse<ListOfPreSharedKeysWithoutSecret> localVarResponse = await ListPreSharedKeysAsyncWithHttpInfo(limit, after);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// List pre-shared keys. List pre-shared keys with pagination and default page size of 50 entries.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; https://api.us-east-1.mbedcloud.com/v2/device-shared-keys &#x60;&#x60;&#x60; 
+        /// </summary>
+        /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="limit">The number of entries per page (optional)</param>
+        /// <param name="after">An offset token for fetching a specific page. Provided by the server. (optional)</param>
+        /// <returns>Task of ApiResponse (ListOfPreSharedKeysWithoutSecret)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<ListOfPreSharedKeysWithoutSecret>> ListPreSharedKeysAsyncWithHttpInfo (int? limit = null, string after = null)
+        {
+
+            var localVarPath = "/v2/device-shared-keys";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (limit != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
+            if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ListPreSharedKeys", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<ListOfPreSharedKeysWithoutSecret>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (ListOfPreSharedKeysWithoutSecret) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ListOfPreSharedKeysWithoutSecret)));
+        }
+
+        /// <summary>
+        /// Upload a pre-shared key to Mbed Cloud. Upload a pre-shared key (PSK) for an endpoint to allow it to bootstrap. The existing key will not be overwritten but needs to be deleted first in case of re-setting PSK for an endpoint.  **Note**: The PSK APIs are available only to accounts that have this feature enabled.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; -H \&quot;content-type: application/json\&quot; -X POST https://api.us-east-1.mbedcloud.com/v2/device-shared-keys \\      -d &#39;{\&quot;endpoint_name\&quot;: \&quot;my-endpoint-0001\&quot;, \&quot;secret_hex\&quot;: \&quot;4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a\&quot; }&#39; &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Pre-shared key to be uploaded.</param>
@@ -545,7 +736,7 @@ namespace connector_bootstrap.Api
         }
 
         /// <summary>
-        /// Upload a pre-shared key to Mbed Cloud. Upload a pre-shared key (PSK) for an endpoint to allow it to bootstrap. The existing key will not be overwritten but needs to be deleted first in case of re-setting PSK for an endpoint.  **Note**: The PSK APIs are available only to accounts that have this feature enabled.  &#x60;&#x60;&#x60; Example payloads: {\&quot;endpoint_name\&quot;: \&quot;myEndpoint.host.com\&quot;, \&quot;secret_hex\&quot;: \&quot;4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a\&quot; } {\&quot;endpoint_name\&quot;: \&quot;myEndpoint.host.com\&quot;, \&quot;secret_hex\&quot;: \&quot;0x4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a\&quot; } &#x60;&#x60;&#x60; 
+        /// Upload a pre-shared key to Mbed Cloud. Upload a pre-shared key (PSK) for an endpoint to allow it to bootstrap. The existing key will not be overwritten but needs to be deleted first in case of re-setting PSK for an endpoint.  **Note**: The PSK APIs are available only to accounts that have this feature enabled.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; -H \&quot;content-type: application/json\&quot; -X POST https://api.us-east-1.mbedcloud.com/v2/device-shared-keys \\      -d &#39;{\&quot;endpoint_name\&quot;: \&quot;my-endpoint-0001\&quot;, \&quot;secret_hex\&quot;: \&quot;4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a\&quot; }&#39; &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Pre-shared key to be uploaded.</param>
@@ -612,7 +803,7 @@ namespace connector_bootstrap.Api
         }
 
         /// <summary>
-        /// Upload a pre-shared key to Mbed Cloud. Upload a pre-shared key (PSK) for an endpoint to allow it to bootstrap. The existing key will not be overwritten but needs to be deleted first in case of re-setting PSK for an endpoint.  **Note**: The PSK APIs are available only to accounts that have this feature enabled.  &#x60;&#x60;&#x60; Example payloads: {\&quot;endpoint_name\&quot;: \&quot;myEndpoint.host.com\&quot;, \&quot;secret_hex\&quot;: \&quot;4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a\&quot; } {\&quot;endpoint_name\&quot;: \&quot;myEndpoint.host.com\&quot;, \&quot;secret_hex\&quot;: \&quot;0x4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a\&quot; } &#x60;&#x60;&#x60; 
+        /// Upload a pre-shared key to Mbed Cloud. Upload a pre-shared key (PSK) for an endpoint to allow it to bootstrap. The existing key will not be overwritten but needs to be deleted first in case of re-setting PSK for an endpoint.  **Note**: The PSK APIs are available only to accounts that have this feature enabled.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; -H \&quot;content-type: application/json\&quot; -X POST https://api.us-east-1.mbedcloud.com/v2/device-shared-keys \\      -d &#39;{\&quot;endpoint_name\&quot;: \&quot;my-endpoint-0001\&quot;, \&quot;secret_hex\&quot;: \&quot;4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a\&quot; }&#39; &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Pre-shared key to be uploaded.</param>
@@ -624,7 +815,7 @@ namespace connector_bootstrap.Api
         }
 
         /// <summary>
-        /// Upload a pre-shared key to Mbed Cloud. Upload a pre-shared key (PSK) for an endpoint to allow it to bootstrap. The existing key will not be overwritten but needs to be deleted first in case of re-setting PSK for an endpoint.  **Note**: The PSK APIs are available only to accounts that have this feature enabled.  &#x60;&#x60;&#x60; Example payloads: {\&quot;endpoint_name\&quot;: \&quot;myEndpoint.host.com\&quot;, \&quot;secret_hex\&quot;: \&quot;4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a\&quot; } {\&quot;endpoint_name\&quot;: \&quot;myEndpoint.host.com\&quot;, \&quot;secret_hex\&quot;: \&quot;0x4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a\&quot; } &#x60;&#x60;&#x60; 
+        /// Upload a pre-shared key to Mbed Cloud. Upload a pre-shared key (PSK) for an endpoint to allow it to bootstrap. The existing key will not be overwritten but needs to be deleted first in case of re-setting PSK for an endpoint.  **Note**: The PSK APIs are available only to accounts that have this feature enabled.  **Example usage:**  &#x60;&#x60;&#x60; curl -H \&quot;authorization: Bearer ${API_TOKEN}\&quot; -H \&quot;content-type: application/json\&quot; -X POST https://api.us-east-1.mbedcloud.com/v2/device-shared-keys \\      -d &#39;{\&quot;endpoint_name\&quot;: \&quot;my-endpoint-0001\&quot;, \&quot;secret_hex\&quot;: \&quot;4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a\&quot; }&#39; &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="connector_bootstrap.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="body">Pre-shared key to be uploaded.</param>
