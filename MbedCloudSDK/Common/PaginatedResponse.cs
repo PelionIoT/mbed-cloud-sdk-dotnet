@@ -107,8 +107,7 @@ namespace MbedCloudSDK.Common
             Data = resp.Data;
             if (resp.Data.Count > 0)
             {
-                var last = resp.Data.Last();
-                ListParams.After = last.Id;
+                ListParams.After = resp.After ?? resp.Data.LastOrDefault()?.Id;
             }
             else if (ListParams.After != null)
             {

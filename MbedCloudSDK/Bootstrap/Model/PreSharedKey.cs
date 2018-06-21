@@ -2,17 +2,19 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using MbedCloudSDK.Common;
-
 namespace MbedCloudSDK.Bootstrap.Model
 {
+    using System;
+    using MbedCloudSDK.Common;
+    using Newtonsoft.Json;
+
     /// <summary>
     /// PreSharedKey
     /// </summary>
     /// <para>
     /// For more information about such keys, have a look at <a href="https://cloud.mbed.com/docs/latest/connecting/mbed-client-lite-security-considerations.html"/>
     /// </para>
-    public class PreSharedKey
+    public class PreSharedKey : BaseModel
     {
         /// <summary>
         /// Gets or sets the EndpointName
@@ -39,6 +41,12 @@ namespace MbedCloudSDK.Bootstrap.Model
         public string SecretHex { get; set; }
 
         /// <summary>
+        /// Created at
+        /// </summary>
+        [JsonProperty]
+        public DateTime? CreatedAt { get; private set; }
+
+        /// <summary>
         /// Create a CreateRequest
         /// </summary>
         /// <param name="key">The PreSharedKey</param>
@@ -58,6 +66,7 @@ namespace MbedCloudSDK.Bootstrap.Model
             return new PreSharedKey
             {
                 EndpointName = key.EndpointName,
+                CreatedAt = key.CreatedAt,
             };
         }
 
