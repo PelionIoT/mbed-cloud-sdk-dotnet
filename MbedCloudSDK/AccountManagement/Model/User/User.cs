@@ -119,15 +119,6 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         public List<LoginHistory> LoginHistory { get; private set; }
 
         /// <summary>
-        /// Gets the User's account specific custom properties.
-        /// </summary>
-        /// <value>
-        /// The custom properties.
-        /// </value>
-        [JsonProperty]
-        public Dictionary<string, string> CustomProperties { get; private set; }
-
-        /// <summary>
         /// Map to User object.
         /// </summary>
         /// <param name="userInfo">Iam user object</param>
@@ -155,7 +146,6 @@ namespace MbedCloudSDK.AccountManagement.Model.User
                 Id = userInfo.Id,
                 LastLoginTime = userInfo.LastLoginTime,
                 TwoFactorAuthentication = userInfo.IsTotpEnabled,
-                CustomProperties = userInfo?.CustomFields,
                 LoginHistory = userInfo?.LoginHistory?.Select(l => { return Model.User.LoginHistory.Map(l); })?.ToList() ?? Enumerable.Empty<LoginHistory>().ToList()
             };
             return user;
@@ -184,7 +174,6 @@ namespace MbedCloudSDK.AccountManagement.Model.User
                 IsGtcAccepted = TermsAccepted,
                 IsMarketingAccepted = MarketingAccepted,
                 Groups = Groups,
-                CustomFields = CustomProperties,
             };
             return request;
         }
@@ -204,7 +193,6 @@ namespace MbedCloudSDK.AccountManagement.Model.User
                 FullName = FullName,
                 Address = Address,
                 IsMarketingAccepted = MarketingAccepted,
-                CustomFields = CustomProperties,
                 IsTotpEnabled = TwoFactorAuthentication,
                 Status = Utils.GetEnumMemberValue(typeof(UserStatus), Convert.ToString(Status)),
                 Groups = Groups,
