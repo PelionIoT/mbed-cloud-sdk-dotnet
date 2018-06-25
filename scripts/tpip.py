@@ -36,10 +36,100 @@ from xml.etree import ElementTree
 import urllib.request
 import json
 import csv
+import re
 
 
 # Report field names in CSV
 FIELDNAMES = ('PkgName', 'PkgType', 'PkgOriginator', 'PkgVersion', 'PkgSummary', 'PkgHomePageURL', 'PkgLicense', 'PkgLicenseURL', 'PkgMgrURL')
+
+preRegex = '(?:^|\\s|"|\\()'
+postRegex ='(?:$|\\s|"|\\))'
+
+def regexp_builder(text):
+	return r'{}{}{}'.format(preRegex,text,postRegex)
+
+
+patterns = [
+    {
+		'name': 'BSD',
+		'regex': [
+			{ 's': regexp_builder('BSD') },
+		]
+	},
+	{
+		'name': 'GPL',
+		'regex': [
+			{ 's': regexp_builder('GPL'), 'flag': re.I, },
+			{ 's': regexp_builder('GPLv\\d') },
+		]
+	},
+	{
+		'name': 'Public Domain',
+		'regex': [
+			{ 's': regexp_builder('Public domain'), 'flag': re.I }
+		]
+	},
+	{
+		'name': 'LGPL',
+		'regex': [
+			{ 's': regexp_builder('LGPL') },
+		]
+	},
+	{
+		'name': 'MIT',
+		'regex' : [
+			{ 's': '(?:^|\s)MIT(?:$|\s)' },
+			{ 's': '(?:^|\s)\(MIT\)(?:$|\s)' },
+		]
+	},
+	{
+		'name': 'Apache-2.0',
+		'regex': [
+			{ 's': 'Apache\sLicen[cs]e', 'flag': re.I }
+		]
+	},
+	{
+		'name': 'MPL',
+		'regex': [
+			{ 's': regexp_builder('MPL') }
+		]
+	},
+	{
+		'name': 'WTFPL',
+		'regex': [
+			{ 's': regexp_builder('WTFPL') },
+			{ 's': regexp_builder(
+				'DO\\sWHAT\\sTHE\\sFUCK\\sYOU\\sWANT\\sTO\\sPUBLIC\\sLICEN[CS]E'
+            ), 'flag': re.I }
+		]
+	},
+	{
+		'name': 'ISC',
+		'regex': [
+			{ 's': regexp_builder('ISC')}
+		]
+	},
+	{
+		'name': 'Eclipse Public License',
+		'regex': [
+			{ 's': regexp_builder('Eclipse\\sPublic\\sLicen[cs]e'), 'flag': re.I },
+			{ 's': regexp_builder('EPL') },
+			{ 's': regexp_builder('EPL-1\\.0') }
+		]
+	}
+]
+
+
+def identify_license(text):
+    output = []
+    for item in patterns:
+        for regex in item['regex']:
+            if re.findall(regex['s'], text, regex.get('flag', 0)):
+                output.append(item['name'])
+                break
+
+    return output
+
 
 
 def write_csv_file(output_filename, tpip_pkgs):
@@ -77,8 +167,11 @@ def main():
                 res = json.loads(nugetInfo)
                 entry = res['items'][0]['items'][-1]['catalogEntry']
 
+                licence_text = urllib.request.urlopen(entry['licenseUrl']).read().decode('utf-8')
+                licence_type = identify_license(licence_text)
+
                 tpip_pkg = dict(
-                    zip(FIELDNAMES, [[entry['id']], ["Nuget"], [entry['authors']], [package.attrib['Version']], [entry['title']], [entry['projectUrl']], [], [entry['licenseUrl']], ["https://www.nuget.org/packages/" + entry['id']]]))
+                    zip(FIELDNAMES, [[entry['id']], ["Nuget"], [entry['authors']], [package.attrib['Version']], [entry['title']], [entry['projectUrl']], licence_type, [entry['licenseUrl']], ["https://www.nuget.org/packages/" + entry['id']]]))
 
                 flattened = dict((key, '; '.join(value)) for(key, value) in tpip_pkg.items())
                 pkgs.append(flattened)
