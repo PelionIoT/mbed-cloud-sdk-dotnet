@@ -18,14 +18,14 @@ namespace ConsoleExamples.Examples.DeviceDirectory
         /// List DeviceDirectory.
         /// </summary>
         /// <returns>List of devices</returns>
-        public List<Device> ListAllDevices()
+        public IEnumerable<Device> ListAllDevices()
         {
             var options = new QueryOptions
             {
                 Limit = 5,
                 Order = "DESC",
             };
-            var devices = api.ListDevices(options).Data;
+            var devices = api.ListDevices(options);
             Console.WriteLine("Listing devices ...");
             foreach (var device in devices)
             {
@@ -35,7 +35,7 @@ namespace ConsoleExamples.Examples.DeviceDirectory
             options.Filter.Add("state", "deregistered");
 
             // list the registered devices
-            var registeredDeviceList = api.ListDevices(options).Data;
+            var registeredDeviceList = api.ListDevices(options);
             Console.WriteLine("Listing registered devices ...");
             foreach (var device in registeredDeviceList)
             {

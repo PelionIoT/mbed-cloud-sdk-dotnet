@@ -48,17 +48,6 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         }
 
         [Test]
-        public void ListApiKeysAsync()
-        {
-            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
-            var config = new Config(key, host);
-            var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
-            var keys = accountApi.ListApiKeysAsync().Result;
-            Assert.IsNotEmpty(keys);
-        }
-
-        [Test]
         public void ListActiveUsers()
         {
             var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
