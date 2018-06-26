@@ -18,13 +18,13 @@ namespace ConsoleExamples.Examples.Update
         /// List the first 3 update campaigns
         /// </summary>
         /// <returns>List of campaigns</returns>
-        public List<Campaign> ListCampaigns()
+        public IEnumerable<Campaign> ListCampaigns()
         {
             var options = new QueryOptions
             {
                 Limit = 5,
             };
-            var updateCampaigns = api.ListCampaigns(options).Data;
+            var updateCampaigns = api.ListCampaigns(options);
             foreach (var item in updateCampaigns)
             {
                 Console.WriteLine(item);

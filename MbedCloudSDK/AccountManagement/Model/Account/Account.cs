@@ -170,11 +170,6 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         public DateTime? UpdatedAt { get; private set; }
 
         /// <summary>
-        /// Gets or sets the account custom properties
-        /// </summary>
-        public Dictionary<string, string> CustomProperties { get; set; }
-
-        /// <summary>
         /// Gets the sales contact email
         /// </summary>
         [JsonProperty]
@@ -217,7 +212,6 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
                 NotificationEmails = accountInfo.NotificationEmails ?? Enumerable.Empty<string>().ToList(),
                 ReferenceNote = accountInfo.ReferenceNote,
                 UpdatedAt = accountInfo.UpdatedAt,
-                CustomProperties = accountInfo.CustomFields,
                 SalesContactEmail = accountInfo.SalesContact,
             };
             return account;
@@ -252,7 +246,6 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
                 Contact = Contact,
                 NotificationEmails = NotificationEmails,
                 ExpirationWarningThreshold = ExpiryWarning,
-                CustomFields = CustomProperties,
             };
 
             if (MultifactorAuthenticationStatus.HasValue)

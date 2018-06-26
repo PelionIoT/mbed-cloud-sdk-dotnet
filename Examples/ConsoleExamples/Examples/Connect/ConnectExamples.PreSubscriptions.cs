@@ -20,7 +20,7 @@ namespace ConsoleExamples.Examples.Connect
         /// <returns>A presubscription</returns>
         public Presubscription CreatePreSubscription()
         {
-            var devices = api.ListConnectedDevices().Data;
+            var devices = api.ListConnectedDevices();
 
             Console.WriteLine("List presubscriptions for device...");
             foreach (var item in api.ListPresubscriptions())

@@ -18,14 +18,14 @@ namespace ConsoleExamples.Examples.Certificates
         /// List the first 5 certificates
         /// </summary>
         /// <returns>List of certificates</returns>
-        public List<Certificate> ListAllCertificates()
+        public IEnumerable<Certificate> ListAllCertificates()
         {
             var options = new QueryOptions
             {
                 Limit = 5,
                 Order = "DESC",
             };
-            var certificates = api.ListCertificates(options).Data;
+            var certificates = api.ListCertificates(options);
             foreach (var item in certificates)
             {
                 Console.WriteLine(item);

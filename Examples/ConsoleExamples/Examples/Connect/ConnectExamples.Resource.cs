@@ -20,7 +20,7 @@ namespace ConsoleExamples.Examples.Connect
         {
             // resource path to get value from
             const string resourcePath = "/3/0/0";
-            var connectedDevices = api.ListConnectedDevices().Data;
+            var connectedDevices = api.ListConnectedDevices();
             if (connectedDevices == null)
             {
                 throw new Exception("No endpoints registered. Aborting.");
@@ -38,7 +38,7 @@ namespace ConsoleExamples.Examples.Connect
         /// <returns>Resource value</returns>
         public string SetResourceValue()
         {
-            var connectedDevices = api.ListConnectedDevices().Data;
+            var connectedDevices = api.ListConnectedDevices();
 
             if (connectedDevices == null)
             {

@@ -18,13 +18,13 @@ namespace ConsoleExamples.Examples.Update
         /// List of first 2 firmware images
         /// </summary>
         /// <returns>List of firmware images</returns>
-        public List<FirmwareImage> ListImages()
+        public IEnumerable<FirmwareImage> ListImages()
         {
             var options = new QueryOptions
             {
                 Limit = 5,
             };
-            var images = api.ListFirmwareImages(options).Data;
+            var images = api.ListFirmwareImages(options);
             foreach (var item in images)
             {
                 Console.WriteLine(item);

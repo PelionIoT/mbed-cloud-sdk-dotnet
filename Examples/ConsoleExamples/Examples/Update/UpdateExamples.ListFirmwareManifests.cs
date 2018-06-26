@@ -18,13 +18,13 @@ namespace ConsoleExamples.Examples.Update
         /// List the first 5 firmware manifests
         /// </summary>
         /// <returns>list of firmware manifests</returns>
-        public List<FirmwareManifest> ListManifests()
+        public IEnumerable<FirmwareManifest> ListManifests()
         {
             var options = new QueryOptions
             {
                 Limit = 5,
             };
-            var manifests = api.ListFirmwareManifests(options).Data;
+            var manifests = api.ListFirmwareManifests(options);
             foreach (var item in manifests)
             {
                 Console.WriteLine(item);

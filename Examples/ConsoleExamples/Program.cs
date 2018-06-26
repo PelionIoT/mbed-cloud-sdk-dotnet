@@ -140,7 +140,7 @@ namespace ConsoleExamples
                     accountManagementExamples.ListApiKeys();
                     break;
                 case 6:
-                    await accountManagementExamples.ListApiKeysAsync();
+                    accountManagementExamples.ListApiKeys();
                     break;
                 case 7:
                     accountManagementExamples.GetApiKey();

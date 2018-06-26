@@ -47,13 +47,13 @@ namespace ConsoleExamples.Examples.DeviceDirectory
         /// List the first 5 device events
         /// </summary>
         /// <returns>List of device events</returns>
-        public List<DeviceEvent> ListDeviceEvents()
+        public IEnumerable<DeviceEvent> ListDeviceEvents()
         {
             var options = new QueryOptions
             {
                 Limit = 5,
             };
-            var events = api.ListDeviceEvents(options).Data;
+            var events = api.ListDeviceEvents(options);
             foreach (var item in events)
             {
                 Console.WriteLine(item);
