@@ -55,7 +55,8 @@ namespace MbedCloudSDK.AccountManagement.Api
 
             try
             {
-                return new PaginatedResponse<QueryOptions, ApiKey>(ListApiKeysFunc, options);
+                var pag = new PaginatedResponse<QueryOptions, ApiKey>(ListApiKeysFunc, options);
+                return pag;
             }
             catch (CloudApiException)
             {
@@ -80,58 +81,6 @@ namespace MbedCloudSDK.AccountManagement.Api
                 }
 
                 return respKeys;
-            }
-            catch (iam.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        /// <summary>
-        /// List API keys asynchronously.
-        /// </summary>
-        /// <example>
-        /// This example shows how to use the <see cref="AccountManagementApi.ListApiKeysAsync(QueryOptions)"/> method.
-        /// <code>
-        /// try
-        /// {
-        ///     var options = new QueryOptions
-        ///     {
-        ///         Limit = 5,
-        ///     };
-        ///     var keys = await accountApi.ListApiKeysAsync(options);
-        ///     foreach (var key in keys)
-        ///     {
-        ///         Console.WriteLine(key);
-        ///     }
-        ///     return keys;
-        /// }
-        /// catch (CloudApiException)
-        /// {
-        ///     throw;
-        /// }
-        /// </code>
-        /// </example>
-        /// <returns>A <see cref="Task"/> with List containing <see cref="ApiKey"/></returns>
-        /// <param name="options"><see cref="QueryOptions"/></param>
-        /// <exception cref="CloudApiException">CloudApiException</exception>
-        public async Task<List<ApiKey>> ListApiKeysAsync(QueryOptions options = null)
-        {
-            if (options == null)
-            {
-                options = new QueryOptions();
-            }
-
-            try
-            {
-                var apiKeysInfo = await DeveloperApi.GetAllApiKeysAsync(limit: options.Limit, after: options.After, order: options.Order, include: options.Include, ownerEq: options.Filter?.FilterString);
-                var apiKeys = new List<ApiKey>();
-                foreach (var key in apiKeysInfo.Data)
-                {
-                    apiKeys.Add(ApiKey.Map(key));
-                }
-
-                return apiKeys;
             }
             catch (iam.Client.ApiException e)
             {

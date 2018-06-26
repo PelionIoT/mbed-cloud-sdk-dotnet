@@ -18,14 +18,14 @@ namespace ConsoleExamples.Examples.AccountManagement
         /// List all groups in an account
         /// </summary>
         /// <returns>List of groups</returns>
-        public List<Group> ListAllGroups()
+        public IEnumerable<Group> ListAllGroups()
         {
             var options = new QueryOptions
             {
                 Limit = 5,
                 Order = "DESC",
             };
-            var groups = api.ListGroups(options).Data;
+            var groups = api.ListGroups(options);
             foreach (var item in groups)
             {
                 Console.WriteLine(item.Name);

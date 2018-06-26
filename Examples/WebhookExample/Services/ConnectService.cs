@@ -30,7 +30,9 @@ namespace WebhookExample.Services
 
             var config = string.IsNullOrEmpty(host) ? new Config(apiKey) : new Config(apiKey, host);
 
-            connect = new ConnectApi(config);
+            var observer = connect.Subscribe.ResourceValues(deviceId, resourcePaths);
+            observer.OnNotify += (res) => Console.WriteLine(res);
+            return observer;
         }
     }
 }
