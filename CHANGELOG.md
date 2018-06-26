@@ -20,7 +20,22 @@ a list of versions that have been released.
 
 [//]: # (begin_release_notes)
 
- (2018-05-22)
+1.2.11 (2018-06-26)
+===================
+
+### Features
+
+- PaginatedResponse objects used in API list endpoints now takes `MaxResults`
+  and `PageSize` to remove the ambiguity of the `limit` parameter. Data
+  property in PaginatedResponse has been removed. Please use the iterator
+  instead. (#1296)
+
+- Remove 'CustomProperties' from Account and User. (#1362)
+
+- Support List Pre Shared Keys endpoint (#631)
+
+
+(2018-05-22)
 =============
 
 ### Features

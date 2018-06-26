@@ -1,1 +1,0 @@
-Remove 'CustomProperties' from Account and User.
