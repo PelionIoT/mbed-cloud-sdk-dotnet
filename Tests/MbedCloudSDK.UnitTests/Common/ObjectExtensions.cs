@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using MbedCloudSDK.Certificates.Model;
 using MbedCloudSDK.Common;
+using MbedCloudSDK.Common.Extensions;
 using MbedCloudSDK.DeviceDirectory.Model.Query;
 using NUnit.Framework;
 
@@ -20,7 +21,7 @@ namespace MbedCloudSDK.Test.Common
             var updatedCertificate = new Certificate();
             updatedCertificate.Name = "Updated Certificate";
 
-            var certificate = Utils.MapToUpdate(originalCertificate, updatedCertificate) as Certificate;
+            var certificate = originalCertificate.MapToUpdate(updatedCertificate) as Certificate;
 
             Assert.AreEqual("Updated Certificate", certificate.Name);
         }
@@ -37,7 +38,7 @@ namespace MbedCloudSDK.Test.Common
             queryToUpdate.Filter = new MbedCloudSDK.Common.Filter.Filter();
             queryToUpdate.Filter.Add("new", "true");
 
-            var query = Utils.MapToUpdate(originalQuery, queryToUpdate) as Query;
+            var query = originalQuery.MapToUpdate(queryToUpdate) as Query;
             Assert.IsTrue(query.Filter.Contains("new"));
             Assert.IsFalse(query.Filter.Contains("orig"));
         }
@@ -54,7 +55,7 @@ namespace MbedCloudSDK.Test.Common
             queryToUpdate.Filter = new MbedCloudSDK.Common.Filter.Filter();
             queryToUpdate.Filter.IsBlank = true;
 
-            var query = Utils.MapToUpdate(originalQuery, queryToUpdate) as Query;
+            var query = originalQuery.MapToUpdate(queryToUpdate) as Query;
             Assert.IsTrue(query.Filter.Contains("orig"));
         }
 
@@ -62,7 +63,7 @@ namespace MbedCloudSDK.Test.Common
         public void IsValidJsonReturnsTrue()
         {
             var json = "{\"key\": {\"$eq\": \"value\"}, \"error\": {\"$ne\": \"found\"}, \"range\": {\"$lte\": \"10\", \"$gte\": \"2\"}}";
-            var isValidJson = Utils.IsValidJson(json);
+            var isValidJson = json.IsValidJson();
             Assert.IsTrue(isValidJson);
         }
 
@@ -70,7 +71,7 @@ namespace MbedCloudSDK.Test.Common
         public void IsValidJsonArrayReturnsTrue()
         {
             var json = "[{\"key\": {\"$eq\": \"value\"}}, {\"error\": {\"$ne\": \"found\"}}, {\"range\": {\"$lte\": \"10\", \"$gte\": \"2\"}}]";
-            var isValidJson = Utils.IsValidJson(json);
+            var isValidJson = json.IsValidJson();
             Assert.IsTrue(isValidJson);
         }
 
@@ -78,7 +79,7 @@ namespace MbedCloudSDK.Test.Common
         public void InvalidJsonReturnsFalse()
         {
             var json = "key=value&error__neq=found&range__lte=10&range__gte=2";
-            var isValidJson = Utils.IsValidJson(json);
+            var isValidJson = json.IsValidJson();
             Assert.IsFalse(isValidJson);
         }
 
@@ -86,7 +87,7 @@ namespace MbedCloudSDK.Test.Common
         public void InvalidJsonThrowsJsonReaderException()
         {
             var json = "{key=value&error__neq=found&range__lte=10&range__gte=2}";
-            var isValidJson = Utils.IsValidJson(json);
+            var isValidJson = json.IsValidJson();
             Assert.IsFalse(isValidJson);
         }
 
@@ -101,26 +102,26 @@ namespace MbedCloudSDK.Test.Common
         public void DebugDumptReturnsAnEmptyStringForNull()
         {
             object obj = null;
-            Assert.AreEqual(string.Empty, obj.DebugDump(MbedCloudSDK.Common.ObjectExtensions.DumpFormat.Text));
-            Assert.AreEqual(string.Empty, obj.DebugDump(MbedCloudSDK.Common.ObjectExtensions.DumpFormat.Json));
+            Assert.AreEqual(string.Empty, obj.DebugDump(MbedCloudSDK.Common.Extensions.ObjectExtensions.DumpFormat.Text));
+            Assert.AreEqual(string.Empty, obj.DebugDump(MbedCloudSDK.Common.Extensions.ObjectExtensions.DumpFormat.Json));
         }
 
         [Test]
         public void DebugDumpReturnsExpectedTextResult()
         {
             var obj = new ObjectWithKnownProperties();
-            Assert.AreEqual(obj.GetTestDebugDump(), obj.DebugDump(MbedCloudSDK.Common.ObjectExtensions.DumpFormat.Text));
+            Assert.AreEqual(obj.GetTestDebugDump(), obj.DebugDump(MbedCloudSDK.Common.Extensions.ObjectExtensions.DumpFormat.Text));
         }
 
         [Test]
         public void DebugDumpReturnsValidJsonResult()
         {
             var obj = new ObjectWithKnownProperties();
-            var json = obj.DebugDump(MbedCloudSDK.Common.ObjectExtensions.DumpFormat.Json);
+            var json = obj.DebugDump(MbedCloudSDK.Common.Extensions.ObjectExtensions.DumpFormat.Json);
 
             // We just need to check that DumpFormat.Json is used, no need to test if underlying JSON serializer
             // works as expected...
-            Assert.IsTrue(Utils.IsValidJson(json));
+            Assert.IsTrue(json.IsValidJson());
         }
 
         sealed class ObjectWithKnownProperties

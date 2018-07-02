@@ -6,6 +6,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
 {
     using device_directory.Model;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.DeviceDirectory.Model.Device;
     using MbedCloudSDK.Exceptions;
@@ -181,7 +182,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         public Device UpdateDevice(string deviceId, Device deviceToUpdate)
         {
             var originalDevice = GetDevice(deviceId);
-            var device = Utils.MapToUpdate(originalDevice, deviceToUpdate) as Device;
+            var device = originalDevice.MapToUpdate(deviceToUpdate) as Device;
             try
             {
                 var response = Api.DeviceUpdate(deviceId, Device.CreatePutRequest(device));

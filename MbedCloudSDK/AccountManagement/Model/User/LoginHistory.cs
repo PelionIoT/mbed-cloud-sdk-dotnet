@@ -6,6 +6,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
 {
     using System;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;
 
     /// <summary>

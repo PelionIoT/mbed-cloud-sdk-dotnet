@@ -9,6 +9,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
     using System.Text;
     using device_directory.Model;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.DeviceDirectory.Api;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -205,13 +206,13 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
                 DeviceClass = deviceData.DeviceClass,
                 Description = deviceData.Description,
                 AutoUpdate = deviceData.AutoUpdate,
-                Mechanism = Utils.ParseEnum<Mechanism>(deviceData.Mechanism),
-                State = Utils.ParseEnum<State>(deviceData.State),
+                Mechanism = deviceData.Mechanism.ParseEnum<Mechanism>(),
+                State = deviceData.State.ParseEnum<State>(),
                 ProvisionKey = deviceData.DeviceKey,
                 SerialNumber = deviceData.SerialNumber,
                 VendorId = deviceData.VendorId,
                 AccountId = deviceData.AccountId,
-                DeployedState = Utils.ParseEnum<DeployedState>(deviceData.DeployedState),
+                DeployedState = deviceData.DeployedState.ParseEnum<DeployedState>(),
                 Deployment = deviceData.Deployment,
                 MechanismUrl = deviceData.MechanismUrl,
                 Id = deviceData.Id,
@@ -243,13 +244,13 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
             DeviceDataPostRequest.MechanismEnum? mechanism = null;
             if (device.Mechanism.HasValue)
             {
-                mechanism = Utils.ParseEnum<DeviceDataPostRequest.MechanismEnum>(device.Mechanism);
+                mechanism = device.Mechanism.ParseEnum<DeviceDataPostRequest.MechanismEnum>();
             }
 
             DeviceDataPostRequest.StateEnum? state = null;
             if (device.State.HasValue)
             {
-                Utils.ParseEnum<DeviceDataPostRequest.StateEnum>(device.State);
+                device.State.ParseEnum<DeviceDataPostRequest.StateEnum>();
             }
 
             var deviceDataPostRequest = new DeviceDataPostRequest(DeviceKey: device.CertificateFingerprint, CaId: device.CertificateIssuerId)

@@ -5,6 +5,7 @@
 namespace MbedCloudSDK.DeviceDirectory.Api
 {
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.DeviceDirectory.Model.Query;
     using MbedCloudSDK.Exceptions;
@@ -181,7 +182,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         public Query UpdateQuery(string queryId, Query queryToUpdate)
         {
             var originalQuery = GetQuery(queryId);
-            var query = Utils.MapToUpdate(originalQuery, queryToUpdate) as Query;
+            var query = originalQuery.MapToUpdate(queryToUpdate) as Query;
             var deviceQueryPostPutRequest = new device_directory.Model.DeviceQueryPostPutRequest(query.Name, query.Filter.FilterString);
 
             try

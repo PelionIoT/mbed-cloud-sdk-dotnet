@@ -8,6 +8,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
     using System.Collections.Generic;
     using System.Linq;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Connect.Api.Subscribe.Models;
     using MbedCloudSDK.Connect.Model.Notifications;
     using MbedCloudSDK.Connect.Model.Subscription;

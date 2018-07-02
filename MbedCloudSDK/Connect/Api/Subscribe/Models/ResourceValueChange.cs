@@ -5,6 +5,7 @@
 namespace MbedCloudSDK.Connect.Api.Subscribe.Models
 {
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Connect.Model.Notifications;
 
     /// <summary>

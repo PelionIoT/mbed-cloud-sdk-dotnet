@@ -13,6 +13,7 @@ namespace MbedCloudSDK.Certificates.Api
     using iam.Model;
     using MbedCloudSDK.Certificates.Model;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Exceptions;
     using static MbedCloudSDK.Common.Utils;
@@ -177,7 +178,7 @@ namespace MbedCloudSDK.Certificates.Api
                 TrustedCertificateReq.StatusEnum? status = null;
                 if (certificate.Status.HasValue)
                 {
-                    status = ParseEnum<TrustedCertificateReq.StatusEnum>(certificate.Status);
+                    status = certificate.Status.ParseEnum<TrustedCertificateReq.StatusEnum>();
                 }
 
                 var resp = IamAccountApi.AddCertificate(new TrustedCertificateReq(
@@ -404,7 +405,7 @@ namespace MbedCloudSDK.Certificates.Api
         {
             var originalCertificate = GetCertificate(certificateId);
 
-            var certificate = Utils.MapToUpdate(originalCertificate, updatedCertificate) as Certificate;
+            var certificate =  originalCertificate.MapToUpdate(updatedCertificate) as Certificate;
 
             var serviceEnum = Certificate.GetUpdateServiceEnum(certificate);
             var statusEnum = Certificate.GetUpdateStatusEnum(certificate);

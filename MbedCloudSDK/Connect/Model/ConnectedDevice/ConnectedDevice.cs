@@ -8,6 +8,7 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
     using System.Collections.Generic;
     using System.Text;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.DeviceDirectory.Model.Device;
     using mds.Model;
 
