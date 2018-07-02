@@ -370,6 +370,23 @@ namespace mds.Client
                 throw new ApiException(500, e.Message);
             }
         }
+        
+        /// <summary>
+        /// Serialize an input (model) into JSON string
+        /// </summary>
+        /// <param name="obj">Object.</param>
+        /// <returns>JSON string.</returns>
+        public String Serialize(string obj)
+        {
+            try
+            {
+                return obj;
+            }
+            catch (Exception e)
+            {
+                throw new ApiException(500, e.Message);
+            }
+        }
 
         /// <summary>
         /// Select the Content-Type header's value from the given content-type array:
