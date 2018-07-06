@@ -83,7 +83,7 @@ deployment:
       - echo "Uploading to latest"
       - aws s3 sync --delete --cache-control max-age=3600 ${SDK_DOCS} s3://mbed-cloud-sdk-dotnet-dist/latest/docs
       - aws s3 sync --delete --cache-control max-age=3600 ${SDK_REPORTS} s3://mbed-cloud-sdk-dotnet-dist/latest/reports
-      - dotnet nuget push MbedCloudSDK/bin/Release/*.nupkg-k ${ARTIFACTORY_API_KEY} -s ${ARTIFACTORY_URL}/api/nuget/mbed-cloud-sdk-dotnet-snapshots
+      - dotnet nuget push MbedCloudSDK/bin/Release/*.nupkg -k ${ARTIFACTORY_API_KEY} -s ${ARTIFACTORY_URL}/api/nuget/mbed-cloud-sdk-dotnet-snapshots
   release:
     branch: /[0-9]+\.[0-9]+.*/
     commands:
@@ -93,4 +93,4 @@ deployment:
       - git add CHANGELOG.md docs/news/*
       - git commit -m "Hear yea, hear yea. News O'Clock. [skip ci]"
       - git push --set-upstream origin 1.2
-      - dotnet nuget push MbedCloudSDK/bin/Release/*.nupkg- -k ${NUGET_KEY} -s https://api.nuget.org/v3/index.json
+      - dotnet nuget push MbedCloudSDK/bin/Release/*.nupkg -k ${NUGET_KEY} -s https://api.nuget.org/v3/index.json
