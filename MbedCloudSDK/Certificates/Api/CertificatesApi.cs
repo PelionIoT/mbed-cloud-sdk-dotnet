@@ -237,7 +237,7 @@ namespace MbedCloudSDK.Certificates.Api
         /// <summary>
         /// Delete certificate.
         /// </summary>
-        /// <param name="certificateId"><see cref="Certificate.Id"/></param>
+        /// <param name="certificateId">Id</param>
         /// <example>
         /// This sample shows how to call the <see cref="CertificatesApi.DeleteCertificate(string)"/> method.
         /// <code>
@@ -280,7 +280,7 @@ namespace MbedCloudSDK.Certificates.Api
         /// }
         /// </code>
         /// </example>
-        /// <param name="certificateId"><see cref="Certificate.Id"/></param>
+        /// <param name="certificateId">Id</param>
         /// <returns><see cref="Certificate"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
         public Certificate GetCertificate(string certificateId)
@@ -397,7 +397,7 @@ namespace MbedCloudSDK.Certificates.Api
         /// }
         /// </code>
         /// </example>
-        /// <param name="certificateId"><see cref="Certificate.Id"/></param>
+        /// <param name="certificateId">Id</param>
         /// <param name="updatedCertificate"><see cref="Certificate"/></param>
         /// <returns><see cref="Certificate"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
@@ -405,7 +405,7 @@ namespace MbedCloudSDK.Certificates.Api
         {
             var originalCertificate = GetCertificate(certificateId);
 
-            var certificate =  originalCertificate.MapToUpdate(updatedCertificate) as Certificate;
+            var certificate = originalCertificate.MapToUpdate(updatedCertificate) as Certificate;
 
             var serviceEnum = Certificate.GetUpdateServiceEnum(certificate);
             var statusEnum = Certificate.GetUpdateStatusEnum(certificate);

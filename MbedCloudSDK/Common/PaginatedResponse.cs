@@ -1,12 +1,16 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using MbedCloudSDK.Common.Query;
-using Newtonsoft.Json;
+// <copyright file="PaginatedResponse.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Common
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using MbedCloudSDK.Common.Query;
+    using Newtonsoft.Json;
+
     /// <summary>
     /// Paginated Response
     /// </summary>
@@ -17,40 +21,46 @@ namespace MbedCloudSDK.Common
         where TData : BaseModel
         where TOptions : QueryOptions
     {
-        private ResponsePage<TData> _page;
-        private IEnumerator<TData> _iterator;
-        private long _pages;
-        private long _totalItems;
-        private readonly long _pageLimit;
-        private readonly TOptions _options;
-        private Func<TOptions, ResponsePage<TData>> _getDataFunc;
-        private List<TData> _cache;
+        private readonly List<TData> cache;
+        private readonly Func<TOptions, ResponsePage<TData>> getDataFunc;
+        private readonly TOptions options;
+        private readonly long pageLimit;
+        private long pages;
+        private long totalItems;
+        private IEnumerator<TData> iterator;
+        private ResponsePage<TData> page;
 
-        [JsonProperty]
-        private List<TData> Data { get => _page.Data; }
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PaginatedResponse{TOptions, TData}"/> class.
+        /// </summary>
+        /// <param name="getDataFunc">The get data function.</param>
+        /// <param name="options">The options.</param>
+        /// <param name="cache">if set to <c>true</c> [cache].</param>
         public PaginatedResponse(Func<TOptions, ResponsePage<TData>> getDataFunc, TOptions options, bool cache = true)
         {
-            _getDataFunc = getDataFunc;
-            _options = options;
-            _page = getPage();
-            _iterator = _page.Data.GetEnumerator();
-            _totalItems = 0;
-            _pages = 1;
-            _pageLimit = long.MaxValue;
+            this.getDataFunc = getDataFunc;
+            this.options = options;
+            page = GetPage();
+            iterator = page.Data.GetEnumerator();
+            totalItems = 0;
+            pages = 1;
+            pageLimit = long.MaxValue;
 
-            if (_options.MaxResults.HasValue)
+            if (this.options.MaxResults.HasValue)
             {
-                var pageSize = _options.PageSize ?? _options.Limit;
-                _pageLimit = (long)(Math.Ceiling((double)_options.MaxResults.Value / (pageSize.HasValue ? _options.PageSize.Value : 1)));
+                var pageSize = this.options.PageSize ?? this.options.Limit;
+                pageLimit = (long)Math.Ceiling((double)this.options.MaxResults.Value / (pageSize.HasValue ? this.options.PageSize.Value : 1));
             }
 
             if (cache)
             {
-                _cache = new List<TData>();
-                _cache.AddRange(_page.Data);
+                this.cache = new List<TData>();
+                this.cache.AddRange(page.Data);
             }
         }
+
+        [JsonProperty]
+        private List<TData> Data { get => page.Data; }
 
         /// <summary>
         /// Get all items
@@ -74,34 +84,35 @@ namespace MbedCloudSDK.Common
         /// <returns>If no caching, then first item from current page</returns>
         public TData First()
         {
-            if (_cache != null)
+            if (cache != null)
             {
-                return _cache.FirstOrDefault();
+                return cache.FirstOrDefault();
             }
 
-            return _page.Data.FirstOrDefault();
+            return page.Data.FirstOrDefault();
         }
 
         /// <summary>
         /// Get Enumerator
         /// </summary>
+        /// <returns>Data</returns>
         public IEnumerator<TData> GetEnumerator()
         {
-             while (_page != null)
-             {
-                _iterator.Reset();
-                while (_iterator.MoveNext())
+            while (page != null)
+            {
+                iterator.Reset();
+                while (iterator.MoveNext())
                 {
-                    if (_options.PageSize != null && _totalItems > _options.MaxResults)
+                    if (options.PageSize != null && totalItems > options.MaxResults)
                     {
                         yield break;
                     }
 
-                    _totalItems++;
-                    yield return _iterator.Current;
+                    totalItems++;
+                    yield return iterator.Current;
                 }
 
-                if (_page.HasMore)
+                if (page.HasMore)
                 {
                     FetchNextPage();
                 }
@@ -112,34 +123,39 @@ namespace MbedCloudSDK.Common
             }
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-
-        }
-
         private void FetchNextPage()
         {
-            if (!_page.HasMore || _pages >= _pageLimit)
+            if (!page.HasMore || pages >= pageLimit)
             {
-                _page = null;
-                _iterator = null;
+                page = null;
+                iterator = null;
                 return;
             }
 
-            _pages++;
-            _page = getPage();
-            _iterator = _page.Data.GetEnumerator();
-            if (_cache != null)
+            pages++;
+            page = GetPage();
+            iterator = page.Data.GetEnumerator();
+            if (cache != null)
             {
-                _cache.AddRange(_page.Data);
+                cache.AddRange(page.Data);
             }
         }
 
-        private ResponsePage<TData> getPage()
+        /// <summary>
+        /// Returns an enumerator that iterates through a collection.
+        /// </summary>
+        /// <returns>
+        /// An <see cref="T:System.Collections.IEnumerator"></see> object that can be used to iterate through the collection.
+        /// </returns>
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            var page = _getDataFunc.Invoke(_options);
-            _options.After = page.After ?? page.Data.LastOrDefault()?.Id;
+            return GetEnumerator();
+        }
+
+        private ResponsePage<TData> GetPage()
+        {
+            var page = getDataFunc.Invoke(options);
+            options.After = page.After ?? page.Data.LastOrDefault()?.Id;
             return page;
         }
     }

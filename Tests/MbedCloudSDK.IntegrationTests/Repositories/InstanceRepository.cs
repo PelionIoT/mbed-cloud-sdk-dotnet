@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MbedCloudSDK.AccountManagement.Api;
+using MbedCloudSDK.Billing.Api;
 using MbedCloudSDK.Bootstrap.Api;
 using MbedCloudSDK.Certificates.Api;
 using MbedCloudSDK.Common;
@@ -77,6 +78,10 @@ namespace MbedCloudSDK.IntegrationTests.Repositories
                 case ModuleEnum.BootstrapApi:
                     var bootstrapApi = new BootstrapApi(config);
                     Instances.Add(instance, bootstrapApi);
+                    break;
+                case ModuleEnum.BillingApi:
+                    var billingApi = new BillingApi(config);
+                    Instances.Add(instance, billingApi);
                     break;
             }
 

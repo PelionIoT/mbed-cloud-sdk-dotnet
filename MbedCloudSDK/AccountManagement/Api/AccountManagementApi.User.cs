@@ -104,7 +104,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// }
         /// </code>
         /// </example>
-        /// <param name="userId"><see cref="User.Id"/></param>
+        /// <param name="userId">Id</param>
         /// <returns><see cref="User"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
         public User GetUser(string userId)
@@ -129,7 +129,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// }
         /// </code>
         /// </example>
-        /// <param name="userId"><see cref="User.Id"/></param>
+        /// <param name="userId">Id</param>
         /// <returns><see cref="Task"/> with <see cref="User"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
         public async Task<User> GetUserAsync(string userId)
@@ -237,7 +237,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// }
         /// </code>
         /// </example>
-        /// <param name="userId"><see cref="User.Id"/></param>
+        /// <param name="userId">Id</param>
         /// <param name="user"><see cref="User"/></param>
         /// <returns><see cref="User"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
@@ -268,7 +268,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// }
         /// </code>
         /// </example>
-        /// <param name="userId"><see cref="User.Id"/></param>
+        /// <param name="userId">Id</param>
         /// <param name="user"><see cref="User"/></param>
         /// <returns><see cref="User"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
@@ -302,7 +302,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// }
         /// </code>
         /// </example>
-        /// <param name="userId"><see cref="User.Id"/></param>
+        /// <param name="userId">Id</param>
         /// <exception cref="CloudApiException">CloudApiException</exception>
         public void DeleteUser(string userId)
         {
@@ -325,7 +325,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// }
         /// </code>
         /// </example>
-        /// <param name="userId"><see cref="User.Id"/></param>
+        /// <param name="userId">Id</param>
         /// <returns><see cref="Task"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
         public async Task DeleteUserAsync(string userId)

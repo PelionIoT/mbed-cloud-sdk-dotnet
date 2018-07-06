@@ -87,7 +87,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Get device details from catalog.
         /// </summary>
-        /// <param name="deviceId"><see cref="Device.Id"/></param>
+        /// <param name="deviceId">Id</param>
         /// <returns><see cref="Device"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
@@ -157,7 +157,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Update existing device in catalog.
         /// </summary>
-        /// <param name="deviceId"><see cref="Device.Id"/></param>
+        /// <param name="deviceId">Id</param>
         /// <param name="deviceToUpdate"><see cref="Device"/> to update</param>
         /// <returns><see cref="Device"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
@@ -197,7 +197,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Deletes the device.
         /// </summary>
-        /// <param name="deviceId"><see cref="Device.Id"/></param>
+        /// <param name="deviceId">Id</param>
         /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>

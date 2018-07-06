@@ -1,3 +1,7 @@
+// <copyright file="ObjectExtensions.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
 namespace MbedCloudSDK.Common.Extensions
 {
     using System;
@@ -5,6 +9,9 @@ namespace MbedCloudSDK.Common.Extensions
     using System.Globalization;
     using System.Text;
 
+    /// <summary>
+    /// ObjectExtensions
+    /// </summary>
     public static class ObjectExtensions
     {
         /// <summary>
@@ -102,6 +109,11 @@ namespace MbedCloudSDK.Common.Extensions
             return text.ToString();
         }
 
+        /// <summary>
+        /// Prints the specified collection.
+        /// </summary>
+        /// <typeparam name="T">T</typeparam>
+        /// <param name="collection">The collection.</param>
         public static void Print<T>(this IEnumerable<T> collection)
         {
             foreach (T item in collection)

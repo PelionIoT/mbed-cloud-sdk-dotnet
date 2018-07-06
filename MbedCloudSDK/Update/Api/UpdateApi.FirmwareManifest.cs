@@ -88,7 +88,7 @@ namespace MbedCloudSDK.Update.Api
         /// <summary>
         /// Get manifest with provided manifest_id.
         /// </summary>
-        /// <param name="manifestId"><see cref="FirmwareManifest.Id"/></param>
+        /// <param name="manifestId">Id</param>
         /// <returns><see cref="FirmwareManifest"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
@@ -234,7 +234,7 @@ namespace MbedCloudSDK.Update.Api
         /// <summary>
         /// Delete firmware manifest.
         /// </summary>
-        /// <param name="manifestId"><see cref="FirmwareManifest.Id"/></param>
+        /// <param name="manifestId">Id</param>
         /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>

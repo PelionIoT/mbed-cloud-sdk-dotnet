@@ -33,7 +33,7 @@ namespace MbedCloudSDK.Common
         {
             if (e.ErrorCode == 404)
             {
-                return default(T);
+                return default;
             }
 
             throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);

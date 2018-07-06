@@ -77,6 +77,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         /// <summary>
         /// SubAddedRaiser
         /// </summary>
+        /// <param name="id">The identifier.</param>
         public delegate void SubAddedRaiser(string id);
 
         /// <summary>

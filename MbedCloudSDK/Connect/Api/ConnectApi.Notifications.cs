@@ -189,7 +189,7 @@ namespace MbedCloudSDK.Connect.Api
                         notificationTask = new Task(new Action(Notifications), cancellationToken.Token, TaskCreationOptions.LongRunning);
                         notificationTask.Start();
                     }
-                    
+
                     handleNotifications = true;
                 }
                 else

@@ -98,7 +98,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// Gets the device log.
         /// </summary>
         /// <returns>The device log.</returns>
-        /// <param name="deviceEventId"><see cref="DeviceEvent.Id"/></param>
+        /// <param name="deviceEventId">Id</param>
         /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>
@@ -129,7 +129,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// Gets the device log asynchronously.
         /// </summary>
         /// <returns>The device log.</returns>
-        /// <param name="deviceLogId"><see cref="DeviceEvent.Id"/></param>
+        /// <param name="deviceLogId">Id</param>
         /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>

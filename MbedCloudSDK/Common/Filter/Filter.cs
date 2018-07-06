@@ -42,21 +42,7 @@ namespace MbedCloudSDK.Common.Filter
         public Filter(string value, bool isBlank = false)
         {
             IsBlank = isBlank;
-            if (!string.IsNullOrEmpty(value))
-            {
-                if (value.IsValidJson())
-                {
-                    FilterDictionary = QueryJsonToDictionary(value);
-                }
-                else
-                {
-                    FilterDictionary = QueryStringToDictionary(value);
-                }
-            }
-            else
-            {
-                FilterDictionary = new Dictionary<string, FilterAttribute[]>();
-            }
+            FilterDictionary = !string.IsNullOrEmpty(value) ? value.IsValidJson() ? QueryJsonToDictionary(value) : QueryStringToDictionary(value) : new Dictionary<string, FilterAttribute[]>();
         }
 
         /// <summary>
@@ -112,7 +98,7 @@ namespace MbedCloudSDK.Common.Filter
                     return json;
                 }
 
-                return default(JObject);
+                return default;
             }
         }
 
@@ -383,7 +369,10 @@ namespace MbedCloudSDK.Common.Filter
         /// Get the first value from a filter by key.
         /// </summary>
         /// <param name="key">They key of the filter</param>
-        /// <returns>The first value in the filter</returns>
+        /// <param name="filterOperator">The filter operator.</param>
+        /// <returns>
+        /// The first value in the filter
+        /// </returns>
         public string GetFirstValueByKey(string key, FilterOperator filterOperator = FilterOperator.Equals)
         {
             if (FilterDictionary.ContainsKey(key))
@@ -566,7 +555,6 @@ namespace MbedCloudSDK.Common.Filter
 
         private static Dictionary<string, FilterAttribute[]> QueryJsonToDictionary(string queryJson)
         {
-            // var decodedString = HttpUtility.UrlDecode(queryJson).Replace("u'", "\"").Replace("'", "\"");
             var customAttributes = new Dictionary<string, FilterAttribute[]>();
             if (queryJson.IsValidJson())
             {

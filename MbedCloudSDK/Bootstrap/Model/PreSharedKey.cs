@@ -42,8 +42,11 @@ namespace MbedCloudSDK.Bootstrap.Model
         public string SecretHex { get; set; }
 
         /// <summary>
-        /// Created at
+        /// Gets created at
         /// </summary>
+        /// <value>
+        /// The created at.
+        /// </value>
         [JsonProperty]
         public DateTime? CreatedAt { get; private set; }
 

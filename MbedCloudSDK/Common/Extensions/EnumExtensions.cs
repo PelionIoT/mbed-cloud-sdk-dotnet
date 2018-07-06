@@ -1,17 +1,26 @@
+// <copyright file="EnumExtensions.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
 namespace MbedCloudSDK.Common.Extensions
 {
     using System;
     using System.Linq;
     using System.Runtime.Serialization;
 
+    /// <summary>
+    /// EnumExtensions
+    /// </summary>
     public static class EnumExtensions
     {
         /// <summary>
         /// Get enum from enum member string
         /// </summary>
-        /// <param name="type">Type of enum</param>
         /// <param name="value">Enum member string</param>
-        /// <returns>Enum</returns>
+        /// <param name="type">Type of enum</param>
+        /// <returns>
+        /// Enum
+        /// </returns>
         public static object GetEnumFromEnumMemberValue(this string value, Type type)
         {
             if (!string.IsNullOrWhiteSpace(value))
@@ -41,18 +50,20 @@ namespace MbedCloudSDK.Common.Extensions
             var value = Convert.ToString(enumValue);
             if (string.IsNullOrEmpty(value))
             {
-                return default(T);
+                return default;
             }
 
-            return Enum.TryParse<T>(value, true, out T result) ? result : default(T);
+            return Enum.TryParse(value, true, out T result) ? result : default;
         }
 
         /// <summary>
         /// Get string value of enum member value from enum.
         /// </summary>
-        /// <param name="type">Enum type</param>
         /// <param name="value">Enum member string</param>
-        /// <returns>Value of Enum member attribute</returns>
+        /// <param name="type">Enum type</param>
+        /// <returns>
+        /// Value of Enum member attribute
+        /// </returns>
         public static string GetEnumMemberValue(this string value, Type type)
         {
             if (!string.IsNullOrWhiteSpace(value))

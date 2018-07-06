@@ -86,7 +86,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Get query in device query service.
         /// </summary>
-        /// <param name="queryId"><see cref="Query.Id"/></param>
+        /// <param name="queryId">Id</param>
         /// <returns><see cref="Query"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
@@ -157,7 +157,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Update existing query in device query service.
         /// </summary>
-        /// <param name="queryId"><see cref="Query.Id"/></param>
+        /// <param name="queryId">Id</param>
         /// <param name="queryToUpdate"><see cref="Query"/> to update</param>
         /// <returns><see cref="Query"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
@@ -199,7 +199,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Deletes the query.
         /// </summary>
-        /// <param name="queryId"><see cref="Query.Id"/></param>
+        /// <param name="queryId">Id</param>
         /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>

@@ -1,10 +1,17 @@
+// <copyright file="ResponseExtensions.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
 namespace MbedCloudSDK.Common.Extensions
 {
     using System;
     using System.Text;
     using MbedCloudSDK.Common.Tlv;
     using MbedCloudSDK.Connect.Model.Notifications;
-    
+
+    /// <summary>
+    /// ResponseExtensions
+    /// </summary>
     public static class ResponseExtensions
     {
         /// <summary>

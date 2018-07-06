@@ -17,7 +17,7 @@ machine:
     RAW_REPORT: ${SDK_REPORTS}/raw.txt
     NUGET_NAME: Mbed.Cloud.SDK.1.2.11.nupkg
     ARTIFACTORY_URL: http://localhost:5000/artifactory/
-    TESTRUNNER_DOCKER_IMAGE : 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
+    TESTRUNNER_DOCKER_IMAGE : 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:features-1210-billing
   services:
     - docker
 checkout:
@@ -49,12 +49,14 @@ dependencies:
     - mkdir -p ${SDK_DOCS}
     - mkdir -p ${SDK_REPORTS}
     - mkdir -p ${SDK_COVERAGE_REPORTS}
+    - mkdir -p ${HOME}/rpc_fixtures
+    - chmod -R 777 ${HOME}/rpc_fixtures
   post:
     - npm install -g ansi-html-stream
 compile:
   pre:
-    - python3 scripts/tpip.py
-    - cp tpip.csv ${SDK_REPORTS}
+    # - python3 scripts/tpip.py
+    # - cp tpip.csv ${SDK_REPORTS}
     - python scripts/dvcs_version.py
     - pip install towncrier==18.5.0
     - cd docs/news && towncrier --yes --name="" --version=$(python ../../scripts/dvcs_version.py version)

@@ -159,8 +159,6 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
 
             AllLocalSubscriptions = presubs;
 
-            // AllLocalSubscriptions.Print();
-
             if (ConnectApi != null)
             {
                 // get the union of the local subscriptions and the online subscriptions

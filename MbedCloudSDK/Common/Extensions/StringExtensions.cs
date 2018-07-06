@@ -2,12 +2,12 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using System.Linq;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-
 namespace MbedCloudSDK.Common.Extensions
 {
+    using System.Linq;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+
     /// <summary>
     /// String extensions
     /// </summary>
