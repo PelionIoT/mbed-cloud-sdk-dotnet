@@ -87,7 +87,7 @@ namespace MbedCloudSDK.Update.Api
         /// <summary>
         /// Get a firmware image with provided image_id.
         /// </summary>
-        /// <param name="imageId"><see cref="FirmwareImage.Id"/></param>
+        /// <param name="imageId">Id</param>
         /// <returns><see cref="FirmwareImage"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
@@ -159,7 +159,7 @@ namespace MbedCloudSDK.Update.Api
         /// <summary>
         /// Delete firmware image.
         /// </summary>
-        /// <param name="imageId"><see cref="FirmwareImage.Id"/></param>
+        /// <param name="imageId">Id</param>
         /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>

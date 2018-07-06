@@ -9,6 +9,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
     using System.ComponentModel;
     using System.Text;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Common.Filter;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -100,7 +101,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
         /// <returns>Campaign</returns>
         public static Campaign Map(update_service.Model.UpdateCampaign data)
         {
-            var updateCampaignStatus = Utils.ParseEnum<CampaignStateEnum>(data.State);
+            var updateCampaignStatus = data.State.ParseEnum<CampaignStateEnum>();
             var campaign = new Campaign
             {
                 CreatedAt = data.CreatedAt.ToNullableUniversalTime(),
@@ -138,7 +139,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
             UpdateCampaignPostRequest.StateEnum? state = null;
             if (State.HasValue)
             {
-                Utils.ParseEnum<UpdateCampaignPostRequest.StateEnum>(State);
+                State.ParseEnum<UpdateCampaignPostRequest.StateEnum>();
             }
 
             var request = new UpdateCampaignPostRequest(DeviceFilter: deviceFilterString, Name: Name)
@@ -161,7 +162,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
                 Description: Description,
                 RootManifestId: ManifestId,
                 When: ScheduledAt ?? DateTime.Now,
-                State: Utils.ParseEnum<UpdateCampaignPutRequest.StateEnum>(State),
+                State: State.ParseEnum<UpdateCampaignPutRequest.StateEnum>(),
                 DeviceFilter: DeviceFilter?.FilterString,
                 Name: Name,
                 _Object: string.Empty);

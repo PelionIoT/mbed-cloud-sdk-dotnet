@@ -15,7 +15,6 @@ machine:
     UNITTEST_REPORT: ${SDK_REPORTS}/unittests.html
     INTTEST_REPORT: ${SDK_REPORTS}/inttests.html
     RAW_REPORT: ${SDK_REPORTS}/raw.txt
-    NUGET_NAME: Mbed.Cloud.SDK.1.2.11.nupkg
     ARTIFACTORY_URL: http://localhost:5000/artifactory/
     TESTRUNNER_DOCKER_IMAGE : 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
   services:
@@ -49,12 +48,14 @@ dependencies:
     - mkdir -p ${SDK_DOCS}
     - mkdir -p ${SDK_REPORTS}
     - mkdir -p ${SDK_COVERAGE_REPORTS}
+    - mkdir -p ${HOME}/rpc_fixtures
+    - chmod -R 777 ${HOME}/rpc_fixtures
   post:
     - npm install -g ansi-html-stream
 compile:
   pre:
-    - python3 scripts/tpip.py
-    - cp tpip.csv ${SDK_REPORTS}
+    # - python3 scripts/tpip.py
+    # - cp tpip.csv ${SDK_REPORTS}
     - python scripts/dvcs_version.py
     - pip install towncrier==18.5.0
     - cd docs/news && towncrier --yes --name="" --version=$(python ../../scripts/dvcs_version.py version)
@@ -82,7 +83,7 @@ deployment:
       - echo "Uploading to latest"
       - aws s3 sync --delete --cache-control max-age=3600 ${SDK_DOCS} s3://mbed-cloud-sdk-dotnet-dist/latest/docs
       - aws s3 sync --delete --cache-control max-age=3600 ${SDK_REPORTS} s3://mbed-cloud-sdk-dotnet-dist/latest/reports
-      - dotnet nuget push MbedCloudSDK/bin/Release/${NUGET_NAME} -k ${ARTIFACTORY_API_KEY} -s ${ARTIFACTORY_URL}/api/nuget/mbed-cloud-sdk-dotnet-snapshots
+      - dotnet nuget push MbedCloudSDK/bin/Release/*.nupkg -k ${ARTIFACTORY_API_KEY} -s ${ARTIFACTORY_URL}/api/nuget/mbed-cloud-sdk-dotnet-snapshots
   release:
     branch: /[0-9]+\.[0-9]+.*/
     commands:
@@ -92,4 +93,4 @@ deployment:
       - git add CHANGELOG.md docs/news/*
       - git commit -m "Hear yea, hear yea. News O'Clock. [skip ci]"
       - git push --set-upstream origin 1.2
-      - dotnet nuget push MbedCloudSDK/bin/Release/${NUGET_NAME} -k ${NUGET_KEY} -s https://api.nuget.org/v3/index.json
+      - dotnet nuget push MbedCloudSDK/bin/Release/*.nupkg -k ${NUGET_KEY} -s https://api.nuget.org/v3/index.json

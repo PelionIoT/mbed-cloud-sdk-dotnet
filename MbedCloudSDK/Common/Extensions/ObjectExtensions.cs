@@ -2,7 +2,7 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-namespace MbedCloudSDK.Common
+namespace MbedCloudSDK.Common.Extensions
 {
     using System;
     using System.Collections.Generic;
@@ -10,9 +10,9 @@ namespace MbedCloudSDK.Common
     using System.Text;
 
     /// <summary>
-    /// Object Extensions
+    /// ObjectExtensions
     /// </summary>
-    internal static class ObjectExtensions
+    public static class ObjectExtensions
     {
         /// <summary>
         /// Represents the output format for <see cref="DebugDump(object, DumpFormat)"/>.
@@ -109,12 +109,68 @@ namespace MbedCloudSDK.Common
             return text.ToString();
         }
 
+        /// <summary>
+        /// Prints the specified collection.
+        /// </summary>
+        /// <typeparam name="T">T</typeparam>
+        /// <param name="collection">The collection.</param>
         public static void Print<T>(this IEnumerable<T> collection)
         {
             foreach (T item in collection)
             {
                 Console.WriteLine(item);
             }
+        }
+
+        /// <summary>
+        /// Map update object to original object.
+        /// </summary>
+        /// <param name="origObj">Original object</param>
+        /// <param name="updateObj">Update object</param>
+        /// <returns>Object</returns>
+        public static object MapToUpdate(this object origObj, object updateObj)
+        {
+            var type = updateObj.GetType();
+            var props = type.GetProperties();
+            var newObj = Activator.CreateInstance(type);
+
+            foreach (var prop in props)
+            {
+                var targetProperty = type.GetProperty(prop.Name);
+                if (targetProperty.GetSetMethod(true) == null)
+                {
+                    continue;
+                }
+                else
+                {
+                    var val = prop.GetValue(updateObj, null);
+                    if (val != null)
+                    {
+                        if (typeof(Filter.Filter) == val.GetType())
+                        {
+                            var filter = val as MbedCloudSDK.Common.Filter.Filter;
+                            if (filter.IsBlank)
+                            {
+                                targetProperty.SetValue(newObj, prop.GetValue(origObj, null));
+                            }
+                            else
+                            {
+                                targetProperty.SetValue(newObj, val, null);
+                            }
+                        }
+                        else
+                        {
+                            targetProperty.SetValue(newObj, val, null);
+                        }
+                    }
+                    else
+                    {
+                        targetProperty.SetValue(newObj, prop.GetValue(origObj, null));
+                    }
+                }
+            }
+
+            return newObj;
         }
     }
 }

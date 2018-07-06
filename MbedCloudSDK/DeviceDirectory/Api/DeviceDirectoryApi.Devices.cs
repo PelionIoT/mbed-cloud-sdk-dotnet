@@ -6,6 +6,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
 {
     using device_directory.Model;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.DeviceDirectory.Model.Device;
     using MbedCloudSDK.Exceptions;
@@ -86,7 +87,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Get device details from catalog.
         /// </summary>
-        /// <param name="deviceId"><see cref="Device.Id"/></param>
+        /// <param name="deviceId">Id</param>
         /// <returns><see cref="Device"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
@@ -156,7 +157,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Update existing device in catalog.
         /// </summary>
-        /// <param name="deviceId"><see cref="Device.Id"/></param>
+        /// <param name="deviceId">Id</param>
         /// <param name="deviceToUpdate"><see cref="Device"/> to update</param>
         /// <returns><see cref="Device"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
@@ -181,7 +182,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         public Device UpdateDevice(string deviceId, Device deviceToUpdate)
         {
             var originalDevice = GetDevice(deviceId);
-            var device = Utils.MapToUpdate(originalDevice, deviceToUpdate) as Device;
+            var device = originalDevice.MapToUpdate(deviceToUpdate) as Device;
             try
             {
                 var response = Api.DeviceUpdate(deviceId, Device.CreatePutRequest(device));
@@ -196,7 +197,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Deletes the device.
         /// </summary>
-        /// <param name="deviceId"><see cref="Device.Id"/></param>
+        /// <param name="deviceId">Id</param>
         /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>

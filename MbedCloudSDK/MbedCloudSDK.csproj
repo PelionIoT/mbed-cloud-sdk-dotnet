@@ -7,7 +7,7 @@
     <Title>Mbed Cloud SDK for .NET</Title>
     <AssemblyTitle>MbedCloudSDK</AssemblyTitle>
     <AssemblyName>MbedCloudSDK</AssemblyName>
-    <VersionPrefix>1.2.11</VersionPrefix>
+    <VersionPrefix>1.2.12</VersionPrefix>
     <VersionSuffix></VersionSuffix>
     <Authors>Alex Logan</Authors>
     <Description>The Mbed Cloud SDK provides a simplified interface to the Mbed Cloud APIs by exposing functionality using conventions and paradigms familiar to .NET developers.</Description>
@@ -45,6 +45,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
     <PackageReference Include="codecracker.CSharp" Version="1.0.3" PrivateAssets="All" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="RestSharp" Version="106.2.1" />

@@ -6,6 +6,7 @@ namespace MbedCloudSDK.Bootstrap.Model
 {
     using System;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -41,8 +42,11 @@ namespace MbedCloudSDK.Bootstrap.Model
         public string SecretHex { get; set; }
 
         /// <summary>
-        /// Created at
+        /// Gets created at
         /// </summary>
+        /// <value>
+        /// The created at.
+        /// </value>
         [JsonProperty]
         public DateTime? CreatedAt { get; private set; }
 

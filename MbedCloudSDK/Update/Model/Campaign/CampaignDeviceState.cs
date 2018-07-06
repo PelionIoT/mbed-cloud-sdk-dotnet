@@ -7,6 +7,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
     using System;
     using System.Text;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -98,7 +99,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
                 MechanismUrl = data.MechanismUrl,
                 Name = data.Name,
                 UpdatedAt = data.UpdatedAt.ToNullableUniversalTime(),
-                State = Utils.ParseEnum<CampaignDeviceStateEnum>(data.DeploymentState),
+                State = data.DeploymentState.ParseEnum<CampaignDeviceStateEnum>(),
             };
             return state;
         }

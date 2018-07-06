@@ -6,6 +6,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
 {
     using System;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -34,7 +35,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var enumString = (string)reader.Value;
-            return Utils.GetEnumMemberValue(typeof(CampaignStateEnum), enumString);
+            return enumString.GetEnumMemberValue(typeof(CampaignStateEnum));
         }
 
         /// <summary>
@@ -46,7 +47,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var campaignStateEnum = (CampaignStateEnum)value;
-            writer.WriteValue(Utils.GetEnumMemberValue(typeof(CampaignStateEnum), campaignStateEnum.ToString()));
+            writer.WriteValue(campaignStateEnum.ToString().GetEnumMemberValue(typeof(CampaignStateEnum)));
         }
     }
 }

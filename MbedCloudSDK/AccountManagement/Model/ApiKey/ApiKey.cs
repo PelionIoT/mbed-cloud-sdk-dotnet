@@ -10,6 +10,7 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
     using System.Text;
     using iam.Model;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
@@ -74,7 +75,7 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
         {
             var apiKey = new ApiKey
             {
-                Status = Utils.ParseEnum<ApiKeyStatus>(apiKeyInfo.Status),
+                Status = apiKeyInfo.Status.ParseEnum<ApiKeyStatus>(),
                 Key = apiKeyInfo.Key,
                 Name = apiKeyInfo.Name,
                 CreatedAt = apiKeyInfo.CreatedAt.ToNullableUniversalTime(),
@@ -103,7 +104,7 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
             ApiKeyInfoReq.StatusEnum? status = null;
             if (Status.HasValue)
             {
-                status = Utils.ParseEnum<ApiKeyInfoReq.StatusEnum>(Status);
+                status = Status.ParseEnum<ApiKeyInfoReq.StatusEnum>();
             }
 
             var request = new ApiKeyInfoReq(Owner: OwnerId, Status: status, Name: Name, Groups: Groups);

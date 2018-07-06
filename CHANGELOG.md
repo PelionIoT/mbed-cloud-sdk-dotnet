@@ -1,12 +1,3 @@
- (2018-05-22)
-=============
-
-### Features
-
-- PaginatedResponse objects used in API list endpoints now takes `MaxResults`
-  and `PageSize` to remove the ambiguity of the `limit` parameter. (#1296)
-
-
 # Changelog
 
 The application is hosted on Nuget at https://www.nuget.org/packages/Mbed.Cloud.SDK and can be installed using the dotnet cli:

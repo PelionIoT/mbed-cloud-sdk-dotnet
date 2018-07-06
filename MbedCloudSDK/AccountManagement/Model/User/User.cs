@@ -9,6 +9,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
     using System.Linq;
     using System.Text;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
@@ -125,7 +126,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         /// <returns>User</returns>
         public static User Map(iam.Model.UserInfoResp userInfo)
         {
-            var userStatus = Utils.ParseEnum<UserStatus>(userInfo.Status);
+            var userStatus = userInfo.Status.ParseEnum<UserStatus>();
             var user = new User
             {
                 Status = userStatus,
@@ -194,7 +195,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
                 Address = Address,
                 IsMarketingAccepted = MarketingAccepted,
                 IsTotpEnabled = TwoFactorAuthentication,
-                Status = Utils.GetEnumMemberValue(typeof(UserStatus), Convert.ToString(Status)),
+                Status = Convert.ToString(Status)?.GetEnumMemberValue(typeof(UserStatus)),
                 Groups = Groups,
             };
 

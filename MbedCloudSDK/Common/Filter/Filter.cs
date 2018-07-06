@@ -9,6 +9,7 @@ namespace MbedCloudSDK.Common.Filter
     using System.Globalization;
     using System.Linq;
     using System.Threading;
+    using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Common.Filter.Maps;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
@@ -41,21 +42,7 @@ namespace MbedCloudSDK.Common.Filter
         public Filter(string value, bool isBlank = false)
         {
             IsBlank = isBlank;
-            if (!string.IsNullOrEmpty(value))
-            {
-                if (Utils.IsValidJson(value))
-                {
-                    FilterDictionary = QueryJsonToDictionary(value);
-                }
-                else
-                {
-                    FilterDictionary = QueryStringToDictionary(value);
-                }
-            }
-            else
-            {
-                FilterDictionary = new Dictionary<string, FilterAttribute[]>();
-            }
+            FilterDictionary = !string.IsNullOrEmpty(value) ? value.IsValidJson() ? QueryJsonToDictionary(value) : QueryStringToDictionary(value) : new Dictionary<string, FilterAttribute[]>();
         }
 
         /// <summary>
@@ -111,7 +98,7 @@ namespace MbedCloudSDK.Common.Filter
                     return json;
                 }
 
-                return default(JObject);
+                return default;
             }
         }
 
@@ -207,7 +194,7 @@ namespace MbedCloudSDK.Common.Filter
         /// </example>
         public Dictionary<string, FilterAttribute[]> Add(DeviceFilterMapEnum key, params FilterAttribute[] filterAttributes)
         {
-            return AddFilters(Utils.GetEnumMemberValue(typeof(DeviceFilterMapEnum), Convert.ToString(key)), filterAttributes);
+            return AddFilters(Convert.ToString(key)?.GetEnumMemberValue(typeof(DeviceFilterMapEnum)), filterAttributes);
         }
 
         /// <summary>
@@ -226,7 +213,7 @@ namespace MbedCloudSDK.Common.Filter
         /// </example>
         public Dictionary<string, FilterAttribute[]> Add(UpdateFilterMapEnum key, params FilterAttribute[] filterAttributes)
         {
-            return AddFilters(Utils.GetEnumMemberValue(typeof(UpdateFilterMapEnum), Convert.ToString(key)), filterAttributes);
+            return AddFilters(Convert.ToString(key)?.GetEnumMemberValue(typeof(UpdateFilterMapEnum)), filterAttributes);
         }
 
         /// <summary>
@@ -290,7 +277,7 @@ namespace MbedCloudSDK.Common.Filter
         public Dictionary<string, FilterAttribute[]> Add(DeviceFilterMapEnum key, string value, FilterOperator filterOperator = FilterOperator.Equals)
         {
             var filterAttribute = new FilterAttribute(value, filterOperator);
-            return AddFilters(Utils.GetEnumMemberValue(typeof(DeviceFilterMapEnum), Convert.ToString(key)), new FilterAttribute[] { filterAttribute });
+            return AddFilters(Convert.ToString(key)?.GetEnumMemberValue(typeof(DeviceFilterMapEnum)), new FilterAttribute[] { filterAttribute });
         }
 
         /// <summary>
@@ -311,7 +298,7 @@ namespace MbedCloudSDK.Common.Filter
         public Dictionary<string, FilterAttribute[]> Add(UpdateFilterMapEnum key, string value, FilterOperator filterOperator = FilterOperator.Equals)
         {
             var filterAttribute = new FilterAttribute(value, filterOperator);
-            return AddFilters(Utils.GetEnumMemberValue(typeof(UpdateFilterMapEnum), Convert.ToString(key)), new FilterAttribute[] { filterAttribute });
+            return AddFilters(Convert.ToString(key)?.GetEnumMemberValue(typeof(UpdateFilterMapEnum)), new FilterAttribute[] { filterAttribute });
         }
 
         /// <summary>
@@ -382,7 +369,10 @@ namespace MbedCloudSDK.Common.Filter
         /// Get the first value from a filter by key.
         /// </summary>
         /// <param name="key">They key of the filter</param>
-        /// <returns>The first value in the filter</returns>
+        /// <param name="filterOperator">The filter operator.</param>
+        /// <returns>
+        /// The first value in the filter
+        /// </returns>
         public string GetFirstValueByKey(string key, FilterOperator filterOperator = FilterOperator.Equals)
         {
             if (FilterDictionary.ContainsKey(key))
@@ -526,8 +516,8 @@ namespace MbedCloudSDK.Common.Filter
         /// <returns>The mapped key</returns>
         public static string EncodeKey(string key)
         {
-            var deviceMapValue = Utils.GetEnumMemberValue(typeof(DeviceFilterMapEnum), key);
-            var updateMapValue = Utils.GetEnumMemberValue(typeof(UpdateFilterMapEnum), key);
+            var deviceMapValue = key.GetEnumMemberValue(typeof(DeviceFilterMapEnum));
+            var updateMapValue = key.GetEnumMemberValue(typeof(UpdateFilterMapEnum));
             if (deviceMapValue != null)
             {
                 key = deviceMapValue;
@@ -548,8 +538,8 @@ namespace MbedCloudSDK.Common.Filter
         /// <returns>Original value of key</returns>
         public static string DecodeKey(string key)
         {
-            var deviceMapValue = Utils.GetEnumFromEnumMemberValue(typeof(DeviceFilterMapEnum), key);
-            var updateMapValue = Utils.GetEnumFromEnumMemberValue(typeof(UpdateFilterMapEnum), key);
+            var deviceMapValue = key.GetEnumFromEnumMemberValue(typeof(DeviceFilterMapEnum));
+            var updateMapValue = key.GetEnumFromEnumMemberValue(typeof(UpdateFilterMapEnum));
             if (deviceMapValue != null)
             {
                 key = Convert.ToString((DeviceFilterMapEnum)deviceMapValue);
@@ -565,9 +555,8 @@ namespace MbedCloudSDK.Common.Filter
 
         private static Dictionary<string, FilterAttribute[]> QueryJsonToDictionary(string queryJson)
         {
-            // var decodedString = HttpUtility.UrlDecode(queryJson).Replace("u'", "\"").Replace("'", "\"");
             var customAttributes = new Dictionary<string, FilterAttribute[]>();
-            if (Utils.IsValidJson(queryJson))
+            if (queryJson.IsValidJson())
             {
                 var tempJson = JsonConvert.DeserializeObject<Dictionary<string, object>>(queryJson);
                 var json = new Dictionary<string, object>();

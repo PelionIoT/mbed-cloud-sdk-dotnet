@@ -9,6 +9,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
     using System.Collections.Specialized;
     using System.Text;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Connect.Api;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
     using MbedCloudSDK.Connect.Model.Notifications;

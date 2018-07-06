@@ -5,6 +5,7 @@
 namespace MbedCloudSDK.DeviceDirectory.Api
 {
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.DeviceDirectory.Model.Query;
     using MbedCloudSDK.Exceptions;
@@ -85,7 +86,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Get query in device query service.
         /// </summary>
-        /// <param name="queryId"><see cref="Query.Id"/></param>
+        /// <param name="queryId">Id</param>
         /// <returns><see cref="Query"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
@@ -156,7 +157,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Update existing query in device query service.
         /// </summary>
-        /// <param name="queryId"><see cref="Query.Id"/></param>
+        /// <param name="queryId">Id</param>
         /// <param name="queryToUpdate"><see cref="Query"/> to update</param>
         /// <returns><see cref="Query"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
@@ -181,7 +182,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         public Query UpdateQuery(string queryId, Query queryToUpdate)
         {
             var originalQuery = GetQuery(queryId);
-            var query = Utils.MapToUpdate(originalQuery, queryToUpdate) as Query;
+            var query = originalQuery.MapToUpdate(queryToUpdate) as Query;
             var deviceQueryPostPutRequest = new device_directory.Model.DeviceQueryPostPutRequest(query.Name, query.Filter.FilterString);
 
             try
@@ -198,7 +199,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <summary>
         /// Deletes the query.
         /// </summary>
-        /// <param name="queryId"><see cref="Query.Id"/></param>
+        /// <param name="queryId">Id</param>
         /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <example>
         /// <code>

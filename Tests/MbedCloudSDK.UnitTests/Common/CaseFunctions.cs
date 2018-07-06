@@ -1,4 +1,4 @@
-using MbedCloudSDK.Common;
+using MbedCloudSDK.Common.Extensions;
 using NUnit.Framework;
 
 namespace MbedCloudSDK.Test.Common
@@ -10,7 +10,7 @@ namespace MbedCloudSDK.Test.Common
         public void ShouldBeCamel()
         {
             var strng = "im_a_camel_with_humps";
-            var res = Utils.SnakeToCamel(strng);
+            var res = strng.SnakeToCamel();
             Assert.AreEqual("ImACamelWithHumps", res);
         }
 
@@ -18,7 +18,7 @@ namespace MbedCloudSDK.Test.Common
         public void ShouldBeLowerCamel()
         {
             var strng = "im_a_camel_with_humps";
-            var res = Utils.SnakeToLowerCamel(strng);
+            var res =strng.SnakeToLowerCamel();
             Assert.AreEqual("imACamelWithHumps", res);
         }
 
@@ -26,7 +26,7 @@ namespace MbedCloudSDK.Test.Common
         public void BeginsWithUnderScore()
         {
             var strng = "_im_a_camel_with_humps";
-            var res = Utils.SnakeToCamel(strng);
+            var res = strng.SnakeToCamel();
             Assert.AreEqual("ImACamelWithHumps", res);
         }
 
@@ -34,7 +34,7 @@ namespace MbedCloudSDK.Test.Common
         public void EndsWithUnderScore()
         {
             var strng = "im_a_camel_with_humps_";
-            var res = Utils.SnakeToCamel(strng);
+            var res = strng.SnakeToCamel();
             Assert.AreEqual("ImACamelWithHumps_", res);
         }
 
@@ -42,7 +42,7 @@ namespace MbedCloudSDK.Test.Common
         public void CreatesCapitalAtEnd()
         {
             var strng = "im_a_camel_with_hump_s";
-            var res = Utils.SnakeToCamel(strng);
+            var res = strng.SnakeToCamel();
             Assert.AreEqual("ImACamelWithHumpS", res);
         }
 
@@ -50,7 +50,7 @@ namespace MbedCloudSDK.Test.Common
         public void PreservesCapitals()
         {
             var strng = "iM_a_caMEl_wiTh_huMPs";
-            var res = Utils.SnakeToCamel(strng);
+            var res = strng.SnakeToCamel();
             Assert.AreEqual("IMACaMElWiThHuMPs", res);
         }
 
@@ -58,7 +58,7 @@ namespace MbedCloudSDK.Test.Common
         public void ShouldBeSnake()
         {
             var strng = "imReallyASnake";
-            var res = Utils.CamelToSnake(strng);
+            var res = strng.CamelToSnake();
             Assert.AreEqual("im_really_a_snake", res);
         }
 
@@ -66,7 +66,7 @@ namespace MbedCloudSDK.Test.Common
         public void BeginsWithCapital()
         {
             var strng = "ImReallyASnake";
-            var res = Utils.CamelToSnake(strng);
+            var res = strng.CamelToSnake();
             Assert.AreEqual("_im_really_a_snake", res);
         }
 
@@ -74,7 +74,7 @@ namespace MbedCloudSDK.Test.Common
         public void EndsWithCapital()
         {
             var strng = "imReallyASnakE";
-            var res = Utils.CamelToSnake(strng);
+            var res = strng.CamelToSnake();
             Assert.AreEqual("im_really_a_snak_e", res);
         }
 
@@ -82,7 +82,7 @@ namespace MbedCloudSDK.Test.Common
         public void PreservesUnderscore()
         {
             var strng = "imRe_allyA_Snake";
-            var res = Utils.CamelToSnake(strng);
+            var res = strng.CamelToSnake();
             Assert.AreEqual("im_re_ally_a__snake", res);
         }
     }

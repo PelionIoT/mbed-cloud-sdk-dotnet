@@ -40,12 +40,16 @@ namespace MbedCloudSDK.Common
             After = after;
             HasMore = hasMore.Value;
             TotalCount = totalCount;
+            limit = 0;
+            order = string.Empty;
         }
 
         /// <summary>
-        /// Gets or sets whether there are more results to display
+        /// Gets or sets a value indicating whether there are more results to display
         /// </summary>
-        /// <value>Whether there are more results to display</value>
+        /// <value>
+        /// Whether there are more results to display
+        /// </value>
         public bool HasMore { get; set; }
 
         /// <summary>

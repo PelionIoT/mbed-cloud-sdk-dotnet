@@ -7,6 +7,7 @@ namespace MbedCloudSDK.Connect.Model.Metric
     using System;
     using System.Text;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;
 
     /// <summary>

@@ -8,6 +8,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Query
     using System.Text;
     using device_directory.Model;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Common.Filter;
     using Newtonsoft.Json;
 
