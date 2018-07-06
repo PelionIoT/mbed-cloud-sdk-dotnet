@@ -18,10 +18,22 @@ a list of versions that have been released.
 
 - Add support for billing endpoints GetReportOverview, GetServicePackages,
   GetQuotaHistory and GetQuotaRemaining. (#1210)
+  
+### Bugfixes
 
+- ApiClient no longer double serializes a string. (#gh-192)
 
 1.2.11 (2018-06-26)
 ===================
+
+### Features
+
+- Remove 'CustomProperties' from Account and User. (#1362)
+
+- Support List Pre Shared Keys endpoint. (#631)
+
+1.2.10 (2018-06-01)
+=============
 
 ### Features
 
@@ -30,13 +42,15 @@ a list of versions that have been released.
   property in PaginatedResponse has been removed. Please use the iterator
   instead. (#1296)
 
-- Remove 'CustomProperties' from Account and User. (#1362)
+### Bug Fixes
 
-- Support List Pre Shared Keys endpoint (#631)
+- Generate TPIP report as part of build. (#1014)
 
-1.2.10 (2018-06-01)
-=============
-?
+- Update online documentation and fix links to GitHub. (#1097)
+
+- When creating subsequent observers, the SDK nolonger resets subscriptions for all observers. (#1284)
+
+- Remove old value from mfaStatues enum. (#918)
 
 1.2.9 (2018-05-22)
 =============
