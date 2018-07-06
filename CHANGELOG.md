@@ -9,7 +9,7 @@ $ dotnet add package Mbed.Cloud.SDK
 This news file contains a log of notable changes to the SDK. Please see [nuget history for mbed-cloud-sdk](https://www.nuget.org/packages/Mbed.Cloud.SDK/) for 
 a list of versions that have been released.
 
-[//]: # (begin_release_notes) 
+[//]: # (begin_release_notes)
 
 1.2.11 (2018-06-26)
 ===================
