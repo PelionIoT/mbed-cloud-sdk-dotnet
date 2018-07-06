@@ -11,6 +11,15 @@ a list of versions that have been released.
 
 [//]: # (begin_release_notes)
 
+1.2.12 (2018-07-06)
+===================
+
+### Features
+
+- Add support for billing endpoints GetReportOverview, GetServicePackages,
+  GetQuotaHistory and GetQuotaRemaining. (#1210)
+
+
 1.2.11 (2018-06-26)
 ===================
 
