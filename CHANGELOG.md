@@ -35,7 +35,7 @@ a list of versions that have been released.
 - Support List Pre Shared Keys endpoint (#631)
 
 
-(2018-05-22)
+1.2.10 (2018-05-22)
 =============
 
 ### Features
@@ -57,7 +57,7 @@ a list of versions that have been released.
 - Add security recommendations to PSK documentation. (#742)
 
 
-(2018-04-13)
+1.2.9 (2018-04-13)
 =============
 
 ### Features
@@ -66,7 +66,7 @@ a list of versions that have been released.
   Examples folder for usage. (#722)
 
 
-(2018-04-06)
+1.2.8 (2018-04-06)
 =============
 
 ### Features
