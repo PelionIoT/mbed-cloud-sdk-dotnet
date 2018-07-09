@@ -60,10 +60,10 @@ compile:
     # - cd docs/news && towncrier --yes --name="" --version=$(python ../../scripts/dvcs_version.py version)
     # - cp CHANGELOG.md ${CIRCLE_ARTIFACTS}/
   override:
-    - dotnet build MbedCloudSDK-c Release
+    - dotnet build MbedCloudSDK -c Release
     - dotnet pack MbedCloudSDK -c Release --no-build --no-restore
-    - dotnet build MbedCloudSDK.UnitTests
-    - dotnet build MbedCloudSDK.IntegrationTests
+    - dotnet build Tests/MbedCloudSDK.UnitTests
+    - dotnet build Tests/MbedCloudSDK.IntegrationTests
 test:
   override:
     - echo "<h1>${SDK_NAME} Unit Tests (build ${CIRCLE_BUILD_NUM})</h1>" >> ${UNITTEST_REPORT}
