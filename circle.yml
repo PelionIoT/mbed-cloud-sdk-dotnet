@@ -50,7 +50,7 @@ dependencies:
     - mkdir -p ${HOME}/rpc_fixtures
     - chmod -R 777 ${HOME}/rpc_fixtures
   post:
-    - npm install -g ansi-html-stream
+    - npm install -g codecov ansi-html-stream
 compile:
   pre:
     # - python3 scripts/tpip.py
@@ -67,7 +67,8 @@ compile:
 test:
   override:
     - echo "<h1>${SDK_NAME} Unit Tests (build ${CIRCLE_BUILD_NUM})</h1>" >> ${UNITTEST_REPORT}
-    - dotnet test Tests/MbedCloudSDK.UnitTests --no-build --no-restore | ansi-html >> ${UNITTEST_REPORT}
+    - dotnet test Tests/MbedCloudSDK.UnitTests --no-build --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover | ansi-html >> ${UNITTEST_REPORT}
+    - codecov Tests/MbedCloudSDK.UnitTests/coverage.opencover.xml
     - cat ${UNITTEST_REPORT} | grep 'Total tests:' >> ${RAW_REPORT}
     - echo "<h1>${SDK_NAME} Integration Tests (build ${CIRCLE_BUILD_NUM})</h2>" >> ${INTTEST_REPORT}
     - set -o pipefail && bash scripts/test.sh 2>&1 | tee /dev/tty | ansi-html >> ${INTTEST_REPORT}
