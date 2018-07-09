@@ -8,7 +8,6 @@ machine:
   environment:
     PROJECT_TOP: ${HOME}/${CIRCLE_PROJECT_REPONAME}
     SDK_NAME: ${CIRCLE_PROJECT_REPONAME}
-    SDK_TAG: ${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}
     SDK_DOCS: ${HOME}/docs
     SDK_REPORTS: ${HOME}/reports
     SDK_COVERAGE_REPORTS: ${SDK_REPORTS}/coverage
@@ -39,7 +38,7 @@ dependencies:
     - sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
     - sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-trusty-prod trusty main" > /etc/apt/sources.list.d/dotnetdev.list'
     - sudo apt-get update
-    - sudo apt-get install dotnet-sdk-2.1.4
+    - sudo apt-get install dotnet-sdk-2.1
     # Add artful repo to get latest doxygen
     - sudo apt-get install software-properties-common python-software-properties
     - sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu/ artful main"
@@ -51,22 +50,25 @@ dependencies:
     - mkdir -p ${HOME}/rpc_fixtures
     - chmod -R 777 ${HOME}/rpc_fixtures
   post:
-    - npm install -g ansi-html-stream
+    - npm install -g codecov ansi-html-stream
 compile:
   pre:
     # - python3 scripts/tpip.py
     # - cp tpip.csv ${SDK_REPORTS}
     - python scripts/dvcs_version.py
-    - pip install towncrier==18.5.0
+    - pip install towncrier
     - cd docs/news && towncrier --yes --name="" --version=$(python ../../scripts/dvcs_version.py version)
     - cp CHANGELOG.md ${CIRCLE_ARTIFACTS}/
   override:
-    - dotnet build -c Release
+    - dotnet build MbedCloudSDK -c Release
     - dotnet pack MbedCloudSDK -c Release --no-build --no-restore
+    - dotnet build Tests/MbedCloudSDK.UnitTests
+    - dotnet build Tests/MbedCloudSDK.IntegrationTests
 test:
   override:
     - echo "<h1>${SDK_NAME} Unit Tests (build ${CIRCLE_BUILD_NUM})</h1>" >> ${UNITTEST_REPORT}
-    - dotnet test Tests/MbedCloudSDK.UnitTests -c Release --no-build --no-restore | ansi-html >> ${UNITTEST_REPORT}
+    - dotnet test Tests/MbedCloudSDK.UnitTests --no-build --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=opencover | ansi-html >> ${UNITTEST_REPORT}
+    - codecov Tests/MbedCloudSDK.UnitTests/coverage.opencover.xml
     - cat ${UNITTEST_REPORT} | grep 'Total tests:' >> ${RAW_REPORT}
     - echo "<h1>${SDK_NAME} Integration Tests (build ${CIRCLE_BUILD_NUM})</h2>" >> ${INTTEST_REPORT}
     - set -o pipefail && bash scripts/test.sh 2>&1 | tee /dev/tty | ansi-html >> ${INTTEST_REPORT}
@@ -88,7 +90,7 @@ deployment:
     branch: /[0-9]+\.[0-9]+.*/
     commands:
       - echo Tagging $SDK_NAME in GitHub...
-      - git tag ${SDK_TAG}
+      - git tag $(python ../../scripts/dvcs_version.py version)
       - git push --tags
       - git add CHANGELOG.md docs/news/*
       - git commit -m "Hear yea, hear yea. News O'Clock. [skip ci]"
