@@ -8,7 +8,6 @@ machine:
   environment:
     PROJECT_TOP: ${HOME}/${CIRCLE_PROJECT_REPONAME}
     SDK_NAME: ${CIRCLE_PROJECT_REPONAME}
-    SDK_TAG: ${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}
     SDK_DOCS: ${HOME}/docs
     SDK_REPORTS: ${HOME}/reports
     SDK_COVERAGE_REPORTS: ${SDK_REPORTS}/coverage
@@ -61,12 +60,14 @@ compile:
     - cd docs/news && towncrier --yes --name="" --version=$(python ../../scripts/dvcs_version.py version)
     - cp CHANGELOG.md ${CIRCLE_ARTIFACTS}/
   override:
-    - dotnet build -c Release
+    - dotnet build MbedCloudSDK-c Release
     - dotnet pack MbedCloudSDK -c Release --no-build --no-restore
+    - dotnet build MbedCloudSDK.UnitTests
+    - dotnet build MbedCloudSDK.IntegrationTests
 test:
   override:
     - echo "<h1>${SDK_NAME} Unit Tests (build ${CIRCLE_BUILD_NUM})</h1>" >> ${UNITTEST_REPORT}
-    - dotnet test Tests/MbedCloudSDK.UnitTests -c Release --no-build --no-restore | ansi-html >> ${UNITTEST_REPORT}
+    - dotnet test Tests/MbedCloudSDK.UnitTests --no-build --no-restore | ansi-html >> ${UNITTEST_REPORT}
     - cat ${UNITTEST_REPORT} | grep 'Total tests:' >> ${RAW_REPORT}
     - echo "<h1>${SDK_NAME} Integration Tests (build ${CIRCLE_BUILD_NUM})</h2>" >> ${INTTEST_REPORT}
     - set -o pipefail && bash scripts/test.sh 2>&1 | tee /dev/tty | ansi-html >> ${INTTEST_REPORT}
@@ -88,7 +89,7 @@ deployment:
     branch: /[0-9]+\.[0-9]+.*/
     commands:
       - echo Tagging $SDK_NAME in GitHub...
-      - git tag ${SDK_TAG}
+      - git tag $(python ../../scripts/dvcs_version.py version)
       - git push --tags
       - git add CHANGELOG.md docs/news/*
       - git commit -m "Hear yea, hear yea. News O'Clock. [skip ci]"
