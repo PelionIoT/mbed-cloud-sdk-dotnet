@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Examples\ConsoleExamples\ConsoleExamples.csproj" />
     <ProjectReference Include="..\..\MbedCloudSDK\MbedCloudSDK.csproj" />
   </ItemGroup>
 
