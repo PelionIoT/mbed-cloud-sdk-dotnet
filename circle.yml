@@ -56,7 +56,7 @@ compile:
     # - python3 scripts/tpip.py
     # - cp tpip.csv ${SDK_REPORTS}
     - python scripts/dvcs_version.py
-    - pip install towncrier==18.5.0
+    - pip install towncrier
     - cd docs/news && towncrier --yes --name="" --version=$(python ../../scripts/dvcs_version.py version)
     - cp CHANGELOG.md ${CIRCLE_ARTIFACTS}/
   override:
