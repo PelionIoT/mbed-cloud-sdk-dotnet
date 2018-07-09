@@ -55,10 +55,10 @@ compile:
   pre:
     # - python3 scripts/tpip.py
     # - cp tpip.csv ${SDK_REPORTS}
-    - python scripts/dvcs_version.py
-    - pip install towncrier==18.5.0
-    - cd docs/news && towncrier --yes --name="" --version=$(python ../../scripts/dvcs_version.py version)
-    - cp CHANGELOG.md ${CIRCLE_ARTIFACTS}/
+    # - python scripts/dvcs_version.py
+    # - pip install towncrier==18.5.0
+    # - cd docs/news && towncrier --yes --name="" --version=$(python ../../scripts/dvcs_version.py version)
+    # - cp CHANGELOG.md ${CIRCLE_ARTIFACTS}/
   override:
     - dotnet build MbedCloudSDK-c Release
     - dotnet pack MbedCloudSDK -c Release --no-build --no-restore
