@@ -98,7 +98,7 @@ namespace iam.Model
         /// <param name="EnrollmentMode">Certificate is used in enrollment mode. Default value is false..</param>
         /// <param name="Name">Certificate name, not longer than 100 characters. (required).</param>
         /// <param name="Service">Service name where the certificate must be used. (required).</param>
-        /// <param name="Signature">DEPRECATED: Base64 encoded signature of the account ID signed by the certificate to be uploaded. The signature must be hashed with SHA256. Needed when uploading an interim certificate without the full chain..</param>
+        /// <param name="Signature">DEPRECATED: Base64 encoded signature of the account ID signed by the certificate to be uploaded. The signature must be hashed with SHA256..</param>
         /// <param name="Status">Status of the certificate..</param>
         public TrustedCertificateRootReq(string Certificate = default(string), string Description = default(string), bool? EnrollmentMode = default(bool?), string Name = default(string), ServiceEnum? Service = default(ServiceEnum?), string Signature = default(string), StatusEnum? Status = default(StatusEnum?))
         {
@@ -165,9 +165,9 @@ namespace iam.Model
 
 
         /// <summary>
-        /// DEPRECATED: Base64 encoded signature of the account ID signed by the certificate to be uploaded. The signature must be hashed with SHA256. Needed when uploading an interim certificate without the full chain.
+        /// DEPRECATED: Base64 encoded signature of the account ID signed by the certificate to be uploaded. The signature must be hashed with SHA256.
         /// </summary>
-        /// <value>DEPRECATED: Base64 encoded signature of the account ID signed by the certificate to be uploaded. The signature must be hashed with SHA256. Needed when uploading an interim certificate without the full chain.</value>
+        /// <value>DEPRECATED: Base64 encoded signature of the account ID signed by the certificate to be uploaded. The signature must be hashed with SHA256.</value>
         [DataMember(Name="signature", EmitDefaultValue=false)]
         public string Signature { get; set; }
 

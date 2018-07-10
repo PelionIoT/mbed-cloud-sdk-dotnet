@@ -109,7 +109,6 @@ namespace iam.Model
         /// <param name="Address">Address..</param>
         /// <param name="CreatedAt">Creation UTC time RFC3339..</param>
         /// <param name="CreationTime">A timestamp of the user creation in the storage, in milliseconds..</param>
-        /// <param name="CustomFields">User&#39;s account specific custom properties. The value is a string..</param>
         /// <param name="Email">The email address. (required).</param>
         /// <param name="EmailVerified">A flag indicating whether the user&#39;s email address has been verified or not..</param>
         /// <param name="Etag">API resource entity version. (required).</param>
@@ -128,7 +127,7 @@ namespace iam.Model
         /// <param name="Status">The status of the user. ENROLLING state indicates that the user is in the middle of the enrollment process. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately. INACTIVE users are locked out and not permitted to use the system. (required).</param>
         /// <param name="UpdatedAt">Last update UTC time RFC3339..</param>
         /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters..</param>
-        public UserInfoResp(string AccountId = default(string), string Address = default(string), DateTime? CreatedAt = default(DateTime?), long? CreationTime = default(long?), Dictionary<string, string> CustomFields = default(Dictionary<string, string>), string Email = default(string), bool? EmailVerified = default(bool?), string Etag = default(string), string FullName = default(string), List<string> Groups = default(List<string>), string Id = default(string), bool? IsGtcAccepted = default(bool?), bool? IsMarketingAccepted = default(bool?), bool? IsTotpEnabled = default(bool?), long? LastLoginTime = default(long?), List<LoginHistory> LoginHistory = default(List<LoginHistory>), ObjectEnum? _Object = default(ObjectEnum?), string Password = default(string), long? PasswordChangedTime = default(long?), string PhoneNumber = default(string), StatusEnum? Status = default(StatusEnum?), DateTime? UpdatedAt = default(DateTime?), string Username = default(string))
+        public UserInfoResp(string AccountId = default(string), string Address = default(string), DateTime? CreatedAt = default(DateTime?), long? CreationTime = default(long?), string Email = default(string), bool? EmailVerified = default(bool?), string Etag = default(string), string FullName = default(string), List<string> Groups = default(List<string>), string Id = default(string), bool? IsGtcAccepted = default(bool?), bool? IsMarketingAccepted = default(bool?), bool? IsTotpEnabled = default(bool?), long? LastLoginTime = default(long?), List<LoginHistory> LoginHistory = default(List<LoginHistory>), ObjectEnum? _Object = default(ObjectEnum?), string Password = default(string), long? PasswordChangedTime = default(long?), string PhoneNumber = default(string), StatusEnum? Status = default(StatusEnum?), DateTime? UpdatedAt = default(DateTime?), string Username = default(string))
         {
             // to ensure "AccountId" is required (not null)
             if (AccountId == null)
@@ -187,7 +186,6 @@ namespace iam.Model
             this.Address = Address;
             this.CreatedAt = CreatedAt;
             this.CreationTime = CreationTime;
-            this.CustomFields = CustomFields;
             this.EmailVerified = EmailVerified;
             this.FullName = FullName;
             this.Groups = Groups;
@@ -230,13 +228,6 @@ namespace iam.Model
         /// <value>A timestamp of the user creation in the storage, in milliseconds.</value>
         [DataMember(Name="creation_time", EmitDefaultValue=false)]
         public long? CreationTime { get; set; }
-
-        /// <summary>
-        /// User&#39;s account specific custom properties. The value is a string.
-        /// </summary>
-        /// <value>User&#39;s account specific custom properties. The value is a string.</value>
-        [DataMember(Name="custom_fields", EmitDefaultValue=false)]
-        public Dictionary<string, string> CustomFields { get; set; }
 
         /// <summary>
         /// The email address.
@@ -364,7 +355,6 @@ namespace iam.Model
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  CreationTime: ").Append(CreationTime).Append("\n");
-            sb.Append("  CustomFields: ").Append(CustomFields).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  EmailVerified: ").Append(EmailVerified).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
@@ -436,11 +426,6 @@ namespace iam.Model
                     this.CreationTime == input.CreationTime ||
                     (this.CreationTime != null &&
                     this.CreationTime.Equals(input.CreationTime))
-                ) && 
-                (
-                    this.CustomFields == input.CustomFields ||
-                    this.CustomFields != null &&
-                    this.CustomFields.SequenceEqual(input.CustomFields)
                 ) && 
                 (
                     this.Email == input.Email ||
@@ -551,8 +536,6 @@ namespace iam.Model
                     hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
                 if (this.CreationTime != null)
                     hashCode = hashCode * 59 + this.CreationTime.GetHashCode();
-                if (this.CustomFields != null)
-                    hashCode = hashCode * 59 + this.CustomFields.GetHashCode();
                 if (this.Email != null)
                     hashCode = hashCode * 59 + this.Email.GetHashCode();
                 if (this.EmailVerified != null)

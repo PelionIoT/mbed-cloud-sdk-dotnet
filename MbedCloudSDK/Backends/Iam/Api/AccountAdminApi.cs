@@ -302,9 +302,8 @@ namespace iam.Api
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are retrieved.</param>
-        /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
         /// <returns>UserInfoResp</returns>
-        UserInfoResp GetUser (string userId, string properties = null);
+        UserInfoResp GetUser (string userId);
 
         /// <summary>
         /// Details of a user.
@@ -314,9 +313,8 @@ namespace iam.Api
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are retrieved.</param>
-        /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
         /// <returns>ApiResponse of UserInfoResp</returns>
-        ApiResponse<UserInfoResp> GetUserWithHttpInfo (string userId, string properties = null);
+        ApiResponse<UserInfoResp> GetUserWithHttpInfo (string userId);
         /// <summary>
         /// Get users of a group.
         /// </summary>
@@ -767,9 +765,8 @@ namespace iam.Api
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are retrieved.</param>
-        /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
         /// <returns>Task of UserInfoResp</returns>
-        System.Threading.Tasks.Task<UserInfoResp> GetUserAsync (string userId, string properties = null);
+        System.Threading.Tasks.Task<UserInfoResp> GetUserAsync (string userId);
 
         /// <summary>
         /// Details of a user.
@@ -779,9 +776,8 @@ namespace iam.Api
         /// </remarks>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are retrieved.</param>
-        /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
         /// <returns>Task of ApiResponse (UserInfoResp)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> GetUserAsyncWithHttpInfo (string userId, string properties = null);
+        System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> GetUserAsyncWithHttpInfo (string userId);
         /// <summary>
         /// Get users of a group.
         /// </summary>
@@ -2849,11 +2845,10 @@ namespace iam.Api
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are retrieved.</param>
-        /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
         /// <returns>UserInfoResp</returns>
-        public UserInfoResp GetUser (string userId, string properties = null)
+        public UserInfoResp GetUser (string userId)
         {
-             ApiResponse<UserInfoResp> localVarResponse = GetUserWithHttpInfo(userId, properties);
+             ApiResponse<UserInfoResp> localVarResponse = GetUserWithHttpInfo(userId);
              return localVarResponse.Data;
         }
 
@@ -2862,9 +2857,8 @@ namespace iam.Api
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are retrieved.</param>
-        /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
         /// <returns>ApiResponse of UserInfoResp</returns>
-        public ApiResponse< UserInfoResp > GetUserWithHttpInfo (string userId, string properties = null)
+        public ApiResponse< UserInfoResp > GetUserWithHttpInfo (string userId)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
@@ -2892,7 +2886,6 @@ namespace iam.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (userId != null) localVarPathParams.Add("user-id", Configuration.ApiClient.ParameterToString(userId)); // path parameter
-            if (properties != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "properties", properties)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
@@ -2923,11 +2916,10 @@ namespace iam.Api
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are retrieved.</param>
-        /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
         /// <returns>Task of UserInfoResp</returns>
-        public async System.Threading.Tasks.Task<UserInfoResp> GetUserAsync (string userId, string properties = null)
+        public async System.Threading.Tasks.Task<UserInfoResp> GetUserAsync (string userId)
         {
-             ApiResponse<UserInfoResp> localVarResponse = await GetUserAsyncWithHttpInfo(userId, properties);
+             ApiResponse<UserInfoResp> localVarResponse = await GetUserAsyncWithHttpInfo(userId);
              return localVarResponse.Data;
 
         }
@@ -2937,9 +2929,8 @@ namespace iam.Api
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The ID of the user whose details are retrieved.</param>
-        /// <param name="properties">Request to return account specific user property values according to the given property name. (optional)</param>
         /// <returns>Task of ApiResponse (UserInfoResp)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> GetUserAsyncWithHttpInfo (string userId, string properties = null)
+        public async System.Threading.Tasks.Task<ApiResponse<UserInfoResp>> GetUserAsyncWithHttpInfo (string userId)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
@@ -2967,7 +2958,6 @@ namespace iam.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (userId != null) localVarPathParams.Add("user-id", Configuration.ApiClient.ParameterToString(userId)); // path parameter
-            if (properties != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "properties", properties)); // query parameter
 
             // authentication (Bearer) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))

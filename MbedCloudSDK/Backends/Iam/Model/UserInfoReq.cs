@@ -40,7 +40,6 @@ namespace iam.Model
         /// Initializes a new instance of the <see cref="UserInfoReq" /> class.
         /// </summary>
         /// <param name="Address">Address, not longer than 100 characters..</param>
-        /// <param name="CustomFields">User&#39;s account-specific custom properties as key-value pairs, with a maximum of 10 keys. The maximum length of a key is 100 characters. The values are handled as strings and the maximum length for a value is 1000 characters..</param>
         /// <param name="Email">The email address, not longer than 254 characters. (required).</param>
         /// <param name="FullName">The full name of the user, not longer than 100 characters..</param>
         /// <param name="Groups">A list of IDs of the groups this user belongs to..</param>
@@ -49,7 +48,7 @@ namespace iam.Model
         /// <param name="Password">The password when creating a new user. It will be generated when not present in the request..</param>
         /// <param name="PhoneNumber">Phone number, not longer than 100 characters..</param>
         /// <param name="Username">A username containing alphanumerical letters and -,._@+&#x3D; characters. It must be at least 4 but not more than 30 character long..</param>
-        public UserInfoReq(string Address = default(string), Dictionary<string, string> CustomFields = default(Dictionary<string, string>), string Email = default(string), string FullName = default(string), List<string> Groups = default(List<string>), bool? IsGtcAccepted = default(bool?), bool? IsMarketingAccepted = default(bool?), string Password = default(string), string PhoneNumber = default(string), string Username = default(string))
+        public UserInfoReq(string Address = default(string), string Email = default(string), string FullName = default(string), List<string> Groups = default(List<string>), bool? IsGtcAccepted = default(bool?), bool? IsMarketingAccepted = default(bool?), string Password = default(string), string PhoneNumber = default(string), string Username = default(string))
         {
             // to ensure "Email" is required (not null)
             if (Email == null)
@@ -61,7 +60,6 @@ namespace iam.Model
                 this.Email = Email;
             }
             this.Address = Address;
-            this.CustomFields = CustomFields;
             this.FullName = FullName;
             this.Groups = Groups;
             this.IsGtcAccepted = IsGtcAccepted;
@@ -77,13 +75,6 @@ namespace iam.Model
         /// <value>Address, not longer than 100 characters.</value>
         [DataMember(Name="address", EmitDefaultValue=false)]
         public string Address { get; set; }
-
-        /// <summary>
-        /// User&#39;s account-specific custom properties as key-value pairs, with a maximum of 10 keys. The maximum length of a key is 100 characters. The values are handled as strings and the maximum length for a value is 1000 characters.
-        /// </summary>
-        /// <value>User&#39;s account-specific custom properties as key-value pairs, with a maximum of 10 keys. The maximum length of a key is 100 characters. The values are handled as strings and the maximum length for a value is 1000 characters.</value>
-        [DataMember(Name="custom_fields", EmitDefaultValue=false)]
-        public Dictionary<string, string> CustomFields { get; set; }
 
         /// <summary>
         /// The email address, not longer than 254 characters.
@@ -150,7 +141,6 @@ namespace iam.Model
             var sb = new StringBuilder();
             sb.Append("class UserInfoReq {\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
-            sb.Append("  CustomFields: ").Append(CustomFields).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  FullName: ").Append(FullName).Append("\n");
             sb.Append("  Groups: ").Append(Groups).Append("\n");
@@ -197,11 +187,6 @@ namespace iam.Model
                     this.Address == input.Address ||
                     (this.Address != null &&
                     this.Address.Equals(input.Address))
-                ) && 
-                (
-                    this.CustomFields == input.CustomFields ||
-                    this.CustomFields != null &&
-                    this.CustomFields.SequenceEqual(input.CustomFields)
                 ) && 
                 (
                     this.Email == input.Email ||
@@ -256,8 +241,6 @@ namespace iam.Model
                 int hashCode = 41;
                 if (this.Address != null)
                     hashCode = hashCode * 59 + this.Address.GetHashCode();
-                if (this.CustomFields != null)
-                    hashCode = hashCode * 59 + this.CustomFields.GetHashCode();
                 if (this.Email != null)
                     hashCode = hashCode * 59 + this.Email.GetHashCode();
                 if (this.FullName != null)
