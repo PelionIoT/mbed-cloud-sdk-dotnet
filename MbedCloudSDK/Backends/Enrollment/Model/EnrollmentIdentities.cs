@@ -83,7 +83,7 @@ namespace enrollment.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="EnrollmentIdentities" /> class.
         /// </summary>
-        /// <param name="After">muuid (required).</param>
+        /// <param name="After">ID (required).</param>
         /// <param name="Data">Data (required).</param>
         /// <param name="HasMore">HasMore (required).</param>
         /// <param name="Limit">Range 2-1000, or default. (required).</param>
@@ -158,9 +158,9 @@ namespace enrollment.Model
         }
         
         /// <summary>
-        /// muuid
+        /// ID
         /// </summary>
-        /// <value>muuid</value>
+        /// <value>ID</value>
         [DataMember(Name="after", EmitDefaultValue=false)]
         public string After { get; set; }
 

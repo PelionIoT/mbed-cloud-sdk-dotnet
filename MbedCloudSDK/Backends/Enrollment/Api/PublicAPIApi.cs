@@ -26,10 +26,31 @@ namespace enrollment.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Bulk upload
+        /// </summary>
+        /// <remarks>
+        /// With bulk upload you can upload a CSV file containing a number of enrollment IDs.  **Example usage:** &#x60;&#x60;&#x60; curl -X POST \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ -F &#39;enrollment_identities&#x3D;@/path/to/enrollments/enrollments.csv&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads  &#x60;&#x60;&#x60; **Example csv File:** 1. First line is assumed to be the header. Content of the header is not validated. 2. Each line can contain comma separated values where 1st value is always assumed to be the Enrollment ID. 3. Only one enrollment ID is expected in one line. 4. Valid Enrollments begins with A followed by a - and 95 charactors in the format as given below. 5. Valid Enrollment identities may be enclosed with in quotes. 6. UTF-8 encoding is expected.  &#x60;&#x60;&#x60; \&quot;enrollment_identity\&quot; \&quot;A-4E:63:2D:AE:14:BC:D1:09:77:21:95:44:ED:34:06:57:1E:03:B1:EF:0E:F2:59:44:71:93:23:22:15:43:23:12\&quot;, \&quot;A-4E:63:2D:AE:14:BC:D1:09:77:21:95:44:ED:34:06:57:1E:03:B1:EF:0E:F2:59:25:48:44:71:22:15:43:23:12\&quot;,  &#x60;&#x60;&#x60; 
+        /// </remarks>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="enrollmentIdentities">Enrollment identities CSV file. Maximum file size is 10MB. </param>
+        /// <returns>BulkResponse</returns>
+        BulkResponse CreateBulkDeviceEnrollment (System.IO.Stream enrollmentIdentities);
+
+        /// <summary>
+        /// Bulk upload
+        /// </summary>
+        /// <remarks>
+        /// With bulk upload you can upload a CSV file containing a number of enrollment IDs.  **Example usage:** &#x60;&#x60;&#x60; curl -X POST \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ -F &#39;enrollment_identities&#x3D;@/path/to/enrollments/enrollments.csv&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads  &#x60;&#x60;&#x60; **Example csv File:** 1. First line is assumed to be the header. Content of the header is not validated. 2. Each line can contain comma separated values where 1st value is always assumed to be the Enrollment ID. 3. Only one enrollment ID is expected in one line. 4. Valid Enrollments begins with A followed by a - and 95 charactors in the format as given below. 5. Valid Enrollment identities may be enclosed with in quotes. 6. UTF-8 encoding is expected.  &#x60;&#x60;&#x60; \&quot;enrollment_identity\&quot; \&quot;A-4E:63:2D:AE:14:BC:D1:09:77:21:95:44:ED:34:06:57:1E:03:B1:EF:0E:F2:59:44:71:93:23:22:15:43:23:12\&quot;, \&quot;A-4E:63:2D:AE:14:BC:D1:09:77:21:95:44:ED:34:06:57:1E:03:B1:EF:0E:F2:59:25:48:44:71:22:15:43:23:12\&quot;,  &#x60;&#x60;&#x60; 
+        /// </remarks>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="enrollmentIdentities">Enrollment identities CSV file. Maximum file size is 10MB. </param>
+        /// <returns>ApiResponse of BulkResponse</returns>
+        ApiResponse<BulkResponse> CreateBulkDeviceEnrollmentWithHttpInfo (System.IO.Stream enrollmentIdentities);
+        /// <summary>
         /// Place an enrollment claim for one or several devices.
         /// </summary>
         /// <remarks>
-        /// When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. 
+        /// When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. &lt;br&gt; **Example usage:** &#x60;&#x60;&#x60; curl -X POST \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ -H &#39;content-type: application/json&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments \\ -d &#39;{\&quot;enrollment_identity\&quot;: \&quot;A-35:e7:72:8a:07:50:3b:3d:75:96:57:52:72:41:0d:78:cc:c6:e5:53:48:c6:65:58:5b:fa:af:4d:2d:73:95:c5\&quot;}&#39; &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="enrollmentIdentity"></param>
@@ -40,7 +61,7 @@ namespace enrollment.Api
         /// Place an enrollment claim for one or several devices.
         /// </summary>
         /// <remarks>
-        /// When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. 
+        /// When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. &lt;br&gt; **Example usage:** &#x60;&#x60;&#x60; curl -X POST \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ -H &#39;content-type: application/json&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments \\ -d &#39;{\&quot;enrollment_identity\&quot;: \&quot;A-35:e7:72:8a:07:50:3b:3d:75:96:57:52:72:41:0d:78:cc:c6:e5:53:48:c6:65:58:5b:fa:af:4d:2d:73:95:c5\&quot;}&#39; &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="enrollmentIdentity"></param>
@@ -50,10 +71,10 @@ namespace enrollment.Api
         /// Delete an enrollment by ID.
         /// </summary>
         /// <remarks>
-        /// To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information on the ownership trasfer, see [https://github.com/ARMmbed/mbed_Cloud_Docs/blob/restructure/Docs/provisioning/generic_instructions/device-ownership.md#transferring-ownership-using-first-to-claim](TODO put the right link).
+        /// To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information, see [Transferring the ownership using First-to-Claim](/docs/current/connecting/device-ownership.html). &lt;br&gt; **Example usage:** &#x60;&#x60;&#x60; curl -X DELETE \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments/{id} &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
+        /// <param name="id">Enrollment identity.</param>
         /// <returns></returns>
         void DeleteDeviceEnrollment (string id);
 
@@ -61,20 +82,41 @@ namespace enrollment.Api
         /// Delete an enrollment by ID.
         /// </summary>
         /// <remarks>
-        /// To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information on the ownership trasfer, see [https://github.com/ARMmbed/mbed_Cloud_Docs/blob/restructure/Docs/provisioning/generic_instructions/device-ownership.md#transferring-ownership-using-first-to-claim](TODO put the right link).
+        /// To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information, see [Transferring the ownership using First-to-Claim](/docs/current/connecting/device-ownership.html). &lt;br&gt; **Example usage:** &#x60;&#x60;&#x60; curl -X DELETE \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments/{id} &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
+        /// <param name="id">Enrollment identity.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> DeleteDeviceEnrollmentWithHttpInfo (string id);
+        /// <summary>
+        /// Get bulk upload entity
+        /// </summary>
+        /// <remarks>
+        /// Provides info about bulk upload for the given ID. For example bulk status and processed count of enrollment identities. Info includes also links for the bulk upload reports. **Example usage:** &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/{id} &#x60;&#x60;&#x60; 
+        /// </remarks>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Bulk create task entity ID</param>
+        /// <returns>BulkResponse</returns>
+        BulkResponse GetBulkDeviceEnrollment (string id);
+
+        /// <summary>
+        /// Get bulk upload entity
+        /// </summary>
+        /// <remarks>
+        /// Provides info about bulk upload for the given ID. For example bulk status and processed count of enrollment identities. Info includes also links for the bulk upload reports. **Example usage:** &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/{id} &#x60;&#x60;&#x60; 
+        /// </remarks>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Bulk create task entity ID</param>
+        /// <returns>ApiResponse of BulkResponse</returns>
+        ApiResponse<BulkResponse> GetBulkDeviceEnrollmentWithHttpInfo (string id);
         /// <summary>
         /// Get details of an enrollment by ID.
         /// </summary>
         /// <remarks>
-        /// To check the enrollment info in detail, for example claming date and expiration date.
+        /// To check the enrollment info in detail, for example date of claim and expiration date. **Example usage:** &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments/{id} &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
+        /// <param name="id">Enrollment identity.</param>
         /// <returns>EnrollmentIdentity</returns>
         EnrollmentIdentity GetDeviceEnrollment (string id);
 
@@ -82,23 +124,23 @@ namespace enrollment.Api
         /// Get details of an enrollment by ID.
         /// </summary>
         /// <remarks>
-        /// To check the enrollment info in detail, for example claming date and expiration date.
+        /// To check the enrollment info in detail, for example date of claim and expiration date. **Example usage:** &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments/{id} &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
+        /// <param name="id">Enrollment identity.</param>
         /// <returns>ApiResponse of EnrollmentIdentity</returns>
         ApiResponse<EnrollmentIdentity> GetDeviceEnrollmentWithHttpInfo (string id);
         /// <summary>
         /// Get enrollment list.
         /// </summary>
         /// <remarks>
-        /// Provides a list of pending and claimed enrollments. Example usage: 
+        /// Provides a list of pending and claimed enrollments. **Example usage:** &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments &#x60;&#x60;&#x60; With query parameters: &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ &#39;https://api.us-east-1.mbedcloud.com/v3/device-enrollments?limit&#x3D;10&#39; &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">Number of results to be returned. Between 2 and 1000, inclusive. (optional)</param>
         /// <param name="after">Entity ID to fetch after. (optional)</param>
         /// <param name="order">ASC or DESC (optional, default to ASC)</param>
-        /// <param name="include">Comma separate additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="include">Comma-separated additional data to return. Currently supported: total_count. (optional)</param>
         /// <returns>EnrollmentIdentities</returns>
         EnrollmentIdentities GetDeviceEnrollments (int? limit = null, string after = null, string order = null, string include = null);
 
@@ -106,22 +148,43 @@ namespace enrollment.Api
         /// Get enrollment list.
         /// </summary>
         /// <remarks>
-        /// Provides a list of pending and claimed enrollments. Example usage: 
+        /// Provides a list of pending and claimed enrollments. **Example usage:** &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments &#x60;&#x60;&#x60; With query parameters: &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ &#39;https://api.us-east-1.mbedcloud.com/v3/device-enrollments?limit&#x3D;10&#39; &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">Number of results to be returned. Between 2 and 1000, inclusive. (optional)</param>
         /// <param name="after">Entity ID to fetch after. (optional)</param>
         /// <param name="order">ASC or DESC (optional, default to ASC)</param>
-        /// <param name="include">Comma separate additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="include">Comma-separated additional data to return. Currently supported: total_count. (optional)</param>
         /// <returns>ApiResponse of EnrollmentIdentities</returns>
         ApiResponse<EnrollmentIdentities> GetDeviceEnrollmentsWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
+        /// Bulk upload
+        /// </summary>
+        /// <remarks>
+        /// With bulk upload you can upload a CSV file containing a number of enrollment IDs.  **Example usage:** &#x60;&#x60;&#x60; curl -X POST \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ -F &#39;enrollment_identities&#x3D;@/path/to/enrollments/enrollments.csv&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads  &#x60;&#x60;&#x60; **Example csv File:** 1. First line is assumed to be the header. Content of the header is not validated. 2. Each line can contain comma separated values where 1st value is always assumed to be the Enrollment ID. 3. Only one enrollment ID is expected in one line. 4. Valid Enrollments begins with A followed by a - and 95 charactors in the format as given below. 5. Valid Enrollment identities may be enclosed with in quotes. 6. UTF-8 encoding is expected.  &#x60;&#x60;&#x60; \&quot;enrollment_identity\&quot; \&quot;A-4E:63:2D:AE:14:BC:D1:09:77:21:95:44:ED:34:06:57:1E:03:B1:EF:0E:F2:59:44:71:93:23:22:15:43:23:12\&quot;, \&quot;A-4E:63:2D:AE:14:BC:D1:09:77:21:95:44:ED:34:06:57:1E:03:B1:EF:0E:F2:59:25:48:44:71:22:15:43:23:12\&quot;,  &#x60;&#x60;&#x60; 
+        /// </remarks>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="enrollmentIdentities">Enrollment identities CSV file. Maximum file size is 10MB. </param>
+        /// <returns>Task of BulkResponse</returns>
+        System.Threading.Tasks.Task<BulkResponse> CreateBulkDeviceEnrollmentAsync (System.IO.Stream enrollmentIdentities);
+
+        /// <summary>
+        /// Bulk upload
+        /// </summary>
+        /// <remarks>
+        /// With bulk upload you can upload a CSV file containing a number of enrollment IDs.  **Example usage:** &#x60;&#x60;&#x60; curl -X POST \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ -F &#39;enrollment_identities&#x3D;@/path/to/enrollments/enrollments.csv&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads  &#x60;&#x60;&#x60; **Example csv File:** 1. First line is assumed to be the header. Content of the header is not validated. 2. Each line can contain comma separated values where 1st value is always assumed to be the Enrollment ID. 3. Only one enrollment ID is expected in one line. 4. Valid Enrollments begins with A followed by a - and 95 charactors in the format as given below. 5. Valid Enrollment identities may be enclosed with in quotes. 6. UTF-8 encoding is expected.  &#x60;&#x60;&#x60; \&quot;enrollment_identity\&quot; \&quot;A-4E:63:2D:AE:14:BC:D1:09:77:21:95:44:ED:34:06:57:1E:03:B1:EF:0E:F2:59:44:71:93:23:22:15:43:23:12\&quot;, \&quot;A-4E:63:2D:AE:14:BC:D1:09:77:21:95:44:ED:34:06:57:1E:03:B1:EF:0E:F2:59:25:48:44:71:22:15:43:23:12\&quot;,  &#x60;&#x60;&#x60; 
+        /// </remarks>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="enrollmentIdentities">Enrollment identities CSV file. Maximum file size is 10MB. </param>
+        /// <returns>Task of ApiResponse (BulkResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<BulkResponse>> CreateBulkDeviceEnrollmentAsyncWithHttpInfo (System.IO.Stream enrollmentIdentities);
+        /// <summary>
         /// Place an enrollment claim for one or several devices.
         /// </summary>
         /// <remarks>
-        /// When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. 
+        /// When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. &lt;br&gt; **Example usage:** &#x60;&#x60;&#x60; curl -X POST \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ -H &#39;content-type: application/json&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments \\ -d &#39;{\&quot;enrollment_identity\&quot;: \&quot;A-35:e7:72:8a:07:50:3b:3d:75:96:57:52:72:41:0d:78:cc:c6:e5:53:48:c6:65:58:5b:fa:af:4d:2d:73:95:c5\&quot;}&#39; &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="enrollmentIdentity"></param>
@@ -132,7 +195,7 @@ namespace enrollment.Api
         /// Place an enrollment claim for one or several devices.
         /// </summary>
         /// <remarks>
-        /// When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. 
+        /// When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. &lt;br&gt; **Example usage:** &#x60;&#x60;&#x60; curl -X POST \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ -H &#39;content-type: application/json&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments \\ -d &#39;{\&quot;enrollment_identity\&quot;: \&quot;A-35:e7:72:8a:07:50:3b:3d:75:96:57:52:72:41:0d:78:cc:c6:e5:53:48:c6:65:58:5b:fa:af:4d:2d:73:95:c5\&quot;}&#39; &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="enrollmentIdentity"></param>
@@ -142,10 +205,10 @@ namespace enrollment.Api
         /// Delete an enrollment by ID.
         /// </summary>
         /// <remarks>
-        /// To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information on the ownership trasfer, see [https://github.com/ARMmbed/mbed_Cloud_Docs/blob/restructure/Docs/provisioning/generic_instructions/device-ownership.md#transferring-ownership-using-first-to-claim](TODO put the right link).
+        /// To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information, see [Transferring the ownership using First-to-Claim](/docs/current/connecting/device-ownership.html). &lt;br&gt; **Example usage:** &#x60;&#x60;&#x60; curl -X DELETE \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments/{id} &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
+        /// <param name="id">Enrollment identity.</param>
         /// <returns>Task of void</returns>
         System.Threading.Tasks.Task DeleteDeviceEnrollmentAsync (string id);
 
@@ -153,20 +216,41 @@ namespace enrollment.Api
         /// Delete an enrollment by ID.
         /// </summary>
         /// <remarks>
-        /// To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information on the ownership trasfer, see [https://github.com/ARMmbed/mbed_Cloud_Docs/blob/restructure/Docs/provisioning/generic_instructions/device-ownership.md#transferring-ownership-using-first-to-claim](TODO put the right link).
+        /// To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information, see [Transferring the ownership using First-to-Claim](/docs/current/connecting/device-ownership.html). &lt;br&gt; **Example usage:** &#x60;&#x60;&#x60; curl -X DELETE \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments/{id} &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
+        /// <param name="id">Enrollment identity.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> DeleteDeviceEnrollmentAsyncWithHttpInfo (string id);
+        /// <summary>
+        /// Get bulk upload entity
+        /// </summary>
+        /// <remarks>
+        /// Provides info about bulk upload for the given ID. For example bulk status and processed count of enrollment identities. Info includes also links for the bulk upload reports. **Example usage:** &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/{id} &#x60;&#x60;&#x60; 
+        /// </remarks>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Bulk create task entity ID</param>
+        /// <returns>Task of BulkResponse</returns>
+        System.Threading.Tasks.Task<BulkResponse> GetBulkDeviceEnrollmentAsync (string id);
+
+        /// <summary>
+        /// Get bulk upload entity
+        /// </summary>
+        /// <remarks>
+        /// Provides info about bulk upload for the given ID. For example bulk status and processed count of enrollment identities. Info includes also links for the bulk upload reports. **Example usage:** &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/{id} &#x60;&#x60;&#x60; 
+        /// </remarks>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Bulk create task entity ID</param>
+        /// <returns>Task of ApiResponse (BulkResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<BulkResponse>> GetBulkDeviceEnrollmentAsyncWithHttpInfo (string id);
         /// <summary>
         /// Get details of an enrollment by ID.
         /// </summary>
         /// <remarks>
-        /// To check the enrollment info in detail, for example claming date and expiration date.
+        /// To check the enrollment info in detail, for example date of claim and expiration date. **Example usage:** &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments/{id} &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
+        /// <param name="id">Enrollment identity.</param>
         /// <returns>Task of EnrollmentIdentity</returns>
         System.Threading.Tasks.Task<EnrollmentIdentity> GetDeviceEnrollmentAsync (string id);
 
@@ -174,23 +258,23 @@ namespace enrollment.Api
         /// Get details of an enrollment by ID.
         /// </summary>
         /// <remarks>
-        /// To check the enrollment info in detail, for example claming date and expiration date.
+        /// To check the enrollment info in detail, for example date of claim and expiration date. **Example usage:** &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments/{id} &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
+        /// <param name="id">Enrollment identity.</param>
         /// <returns>Task of ApiResponse (EnrollmentIdentity)</returns>
         System.Threading.Tasks.Task<ApiResponse<EnrollmentIdentity>> GetDeviceEnrollmentAsyncWithHttpInfo (string id);
         /// <summary>
         /// Get enrollment list.
         /// </summary>
         /// <remarks>
-        /// Provides a list of pending and claimed enrollments. Example usage: 
+        /// Provides a list of pending and claimed enrollments. **Example usage:** &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments &#x60;&#x60;&#x60; With query parameters: &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ &#39;https://api.us-east-1.mbedcloud.com/v3/device-enrollments?limit&#x3D;10&#39; &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">Number of results to be returned. Between 2 and 1000, inclusive. (optional)</param>
         /// <param name="after">Entity ID to fetch after. (optional)</param>
         /// <param name="order">ASC or DESC (optional, default to ASC)</param>
-        /// <param name="include">Comma separate additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="include">Comma-separated additional data to return. Currently supported: total_count. (optional)</param>
         /// <returns>Task of EnrollmentIdentities</returns>
         System.Threading.Tasks.Task<EnrollmentIdentities> GetDeviceEnrollmentsAsync (int? limit = null, string after = null, string order = null, string include = null);
 
@@ -198,13 +282,13 @@ namespace enrollment.Api
         /// Get enrollment list.
         /// </summary>
         /// <remarks>
-        /// Provides a list of pending and claimed enrollments. Example usage: 
+        /// Provides a list of pending and claimed enrollments. **Example usage:** &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments &#x60;&#x60;&#x60; With query parameters: &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ &#39;https://api.us-east-1.mbedcloud.com/v3/device-enrollments?limit&#x3D;10&#39; &#x60;&#x60;&#x60; 
         /// </remarks>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">Number of results to be returned. Between 2 and 1000, inclusive. (optional)</param>
         /// <param name="after">Entity ID to fetch after. (optional)</param>
         /// <param name="order">ASC or DESC (optional, default to ASC)</param>
-        /// <param name="include">Comma separate additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="include">Comma-separated additional data to return. Currently supported: total_count. (optional)</param>
         /// <returns>Task of ApiResponse (EnrollmentIdentities)</returns>
         System.Threading.Tasks.Task<ApiResponse<EnrollmentIdentities>> GetDeviceEnrollmentsAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null);
         #endregion Asynchronous Operations
@@ -308,7 +392,152 @@ namespace enrollment.Api
         }
 
         /// <summary>
-        /// Place an enrollment claim for one or several devices. When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. 
+        /// Bulk upload With bulk upload you can upload a CSV file containing a number of enrollment IDs.  **Example usage:** &#x60;&#x60;&#x60; curl -X POST \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ -F &#39;enrollment_identities&#x3D;@/path/to/enrollments/enrollments.csv&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads  &#x60;&#x60;&#x60; **Example csv File:** 1. First line is assumed to be the header. Content of the header is not validated. 2. Each line can contain comma separated values where 1st value is always assumed to be the Enrollment ID. 3. Only one enrollment ID is expected in one line. 4. Valid Enrollments begins with A followed by a - and 95 charactors in the format as given below. 5. Valid Enrollment identities may be enclosed with in quotes. 6. UTF-8 encoding is expected.  &#x60;&#x60;&#x60; \&quot;enrollment_identity\&quot; \&quot;A-4E:63:2D:AE:14:BC:D1:09:77:21:95:44:ED:34:06:57:1E:03:B1:EF:0E:F2:59:44:71:93:23:22:15:43:23:12\&quot;, \&quot;A-4E:63:2D:AE:14:BC:D1:09:77:21:95:44:ED:34:06:57:1E:03:B1:EF:0E:F2:59:25:48:44:71:22:15:43:23:12\&quot;,  &#x60;&#x60;&#x60; 
+        /// </summary>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="enrollmentIdentities">Enrollment identities CSV file. Maximum file size is 10MB. </param>
+        /// <returns>BulkResponse</returns>
+        public BulkResponse CreateBulkDeviceEnrollment (System.IO.Stream enrollmentIdentities)
+        {
+             ApiResponse<BulkResponse> localVarResponse = CreateBulkDeviceEnrollmentWithHttpInfo(enrollmentIdentities);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Bulk upload With bulk upload you can upload a CSV file containing a number of enrollment IDs.  **Example usage:** &#x60;&#x60;&#x60; curl -X POST \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ -F &#39;enrollment_identities&#x3D;@/path/to/enrollments/enrollments.csv&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads  &#x60;&#x60;&#x60; **Example csv File:** 1. First line is assumed to be the header. Content of the header is not validated. 2. Each line can contain comma separated values where 1st value is always assumed to be the Enrollment ID. 3. Only one enrollment ID is expected in one line. 4. Valid Enrollments begins with A followed by a - and 95 charactors in the format as given below. 5. Valid Enrollment identities may be enclosed with in quotes. 6. UTF-8 encoding is expected.  &#x60;&#x60;&#x60; \&quot;enrollment_identity\&quot; \&quot;A-4E:63:2D:AE:14:BC:D1:09:77:21:95:44:ED:34:06:57:1E:03:B1:EF:0E:F2:59:44:71:93:23:22:15:43:23:12\&quot;, \&quot;A-4E:63:2D:AE:14:BC:D1:09:77:21:95:44:ED:34:06:57:1E:03:B1:EF:0E:F2:59:25:48:44:71:22:15:43:23:12\&quot;,  &#x60;&#x60;&#x60; 
+        /// </summary>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="enrollmentIdentities">Enrollment identities CSV file. Maximum file size is 10MB. </param>
+        /// <returns>ApiResponse of BulkResponse</returns>
+        public ApiResponse< BulkResponse > CreateBulkDeviceEnrollmentWithHttpInfo (System.IO.Stream enrollmentIdentities)
+        {
+            // verify the required parameter 'enrollmentIdentities' is set
+            if (enrollmentIdentities == null)
+                throw new ApiException(400, "Missing required parameter 'enrollmentIdentities' when calling PublicAPIApi->CreateBulkDeviceEnrollment");
+
+            var localVarPath = "/v3/device-enrollments-bulk-uploads";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "multipart/form-data"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (enrollmentIdentities != null) localVarFileParams.Add("enrollment_identities", Configuration.ApiClient.ParameterToFile("enrollment_identities", enrollmentIdentities));
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateBulkDeviceEnrollment", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<BulkResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (BulkResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(BulkResponse)));
+        }
+
+        /// <summary>
+        /// Bulk upload With bulk upload you can upload a CSV file containing a number of enrollment IDs.  **Example usage:** &#x60;&#x60;&#x60; curl -X POST \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ -F &#39;enrollment_identities&#x3D;@/path/to/enrollments/enrollments.csv&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads  &#x60;&#x60;&#x60; **Example csv File:** 1. First line is assumed to be the header. Content of the header is not validated. 2. Each line can contain comma separated values where 1st value is always assumed to be the Enrollment ID. 3. Only one enrollment ID is expected in one line. 4. Valid Enrollments begins with A followed by a - and 95 charactors in the format as given below. 5. Valid Enrollment identities may be enclosed with in quotes. 6. UTF-8 encoding is expected.  &#x60;&#x60;&#x60; \&quot;enrollment_identity\&quot; \&quot;A-4E:63:2D:AE:14:BC:D1:09:77:21:95:44:ED:34:06:57:1E:03:B1:EF:0E:F2:59:44:71:93:23:22:15:43:23:12\&quot;, \&quot;A-4E:63:2D:AE:14:BC:D1:09:77:21:95:44:ED:34:06:57:1E:03:B1:EF:0E:F2:59:25:48:44:71:22:15:43:23:12\&quot;,  &#x60;&#x60;&#x60; 
+        /// </summary>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="enrollmentIdentities">Enrollment identities CSV file. Maximum file size is 10MB. </param>
+        /// <returns>Task of BulkResponse</returns>
+        public async System.Threading.Tasks.Task<BulkResponse> CreateBulkDeviceEnrollmentAsync (System.IO.Stream enrollmentIdentities)
+        {
+             ApiResponse<BulkResponse> localVarResponse = await CreateBulkDeviceEnrollmentAsyncWithHttpInfo(enrollmentIdentities);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Bulk upload With bulk upload you can upload a CSV file containing a number of enrollment IDs.  **Example usage:** &#x60;&#x60;&#x60; curl -X POST \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ -F &#39;enrollment_identities&#x3D;@/path/to/enrollments/enrollments.csv&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads  &#x60;&#x60;&#x60; **Example csv File:** 1. First line is assumed to be the header. Content of the header is not validated. 2. Each line can contain comma separated values where 1st value is always assumed to be the Enrollment ID. 3. Only one enrollment ID is expected in one line. 4. Valid Enrollments begins with A followed by a - and 95 charactors in the format as given below. 5. Valid Enrollment identities may be enclosed with in quotes. 6. UTF-8 encoding is expected.  &#x60;&#x60;&#x60; \&quot;enrollment_identity\&quot; \&quot;A-4E:63:2D:AE:14:BC:D1:09:77:21:95:44:ED:34:06:57:1E:03:B1:EF:0E:F2:59:44:71:93:23:22:15:43:23:12\&quot;, \&quot;A-4E:63:2D:AE:14:BC:D1:09:77:21:95:44:ED:34:06:57:1E:03:B1:EF:0E:F2:59:25:48:44:71:22:15:43:23:12\&quot;,  &#x60;&#x60;&#x60; 
+        /// </summary>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="enrollmentIdentities">Enrollment identities CSV file. Maximum file size is 10MB. </param>
+        /// <returns>Task of ApiResponse (BulkResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<BulkResponse>> CreateBulkDeviceEnrollmentAsyncWithHttpInfo (System.IO.Stream enrollmentIdentities)
+        {
+            // verify the required parameter 'enrollmentIdentities' is set
+            if (enrollmentIdentities == null)
+                throw new ApiException(400, "Missing required parameter 'enrollmentIdentities' when calling PublicAPIApi->CreateBulkDeviceEnrollment");
+
+            var localVarPath = "/v3/device-enrollments-bulk-uploads";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "multipart/form-data"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (enrollmentIdentities != null) localVarFileParams.Add("enrollment_identities", Configuration.ApiClient.ParameterToFile("enrollment_identities", enrollmentIdentities));
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateBulkDeviceEnrollment", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<BulkResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (BulkResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(BulkResponse)));
+        }
+
+        /// <summary>
+        /// Place an enrollment claim for one or several devices. When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. &lt;br&gt; **Example usage:** &#x60;&#x60;&#x60; curl -X POST \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ -H &#39;content-type: application/json&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments \\ -d &#39;{\&quot;enrollment_identity\&quot;: \&quot;A-35:e7:72:8a:07:50:3b:3d:75:96:57:52:72:41:0d:78:cc:c6:e5:53:48:c6:65:58:5b:fa:af:4d:2d:73:95:c5\&quot;}&#39; &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="enrollmentIdentity"></param>
@@ -320,7 +549,7 @@ namespace enrollment.Api
         }
 
         /// <summary>
-        /// Place an enrollment claim for one or several devices. When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. 
+        /// Place an enrollment claim for one or several devices. When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. &lt;br&gt; **Example usage:** &#x60;&#x60;&#x60; curl -X POST \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ -H &#39;content-type: application/json&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments \\ -d &#39;{\&quot;enrollment_identity\&quot;: \&quot;A-35:e7:72:8a:07:50:3b:3d:75:96:57:52:72:41:0d:78:cc:c6:e5:53:48:c6:65:58:5b:fa:af:4d:2d:73:95:c5\&quot;}&#39; &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="enrollmentIdentity"></param>
@@ -387,7 +616,7 @@ namespace enrollment.Api
         }
 
         /// <summary>
-        /// Place an enrollment claim for one or several devices. When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. 
+        /// Place an enrollment claim for one or several devices. When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. &lt;br&gt; **Example usage:** &#x60;&#x60;&#x60; curl -X POST \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ -H &#39;content-type: application/json&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments \\ -d &#39;{\&quot;enrollment_identity\&quot;: \&quot;A-35:e7:72:8a:07:50:3b:3d:75:96:57:52:72:41:0d:78:cc:c6:e5:53:48:c6:65:58:5b:fa:af:4d:2d:73:95:c5\&quot;}&#39; &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="enrollmentIdentity"></param>
@@ -400,7 +629,7 @@ namespace enrollment.Api
         }
 
         /// <summary>
-        /// Place an enrollment claim for one or several devices. When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. 
+        /// Place an enrollment claim for one or several devices. When the device connects to the bootstrap server and provides the enrollment ID, it will be assigned to your account. &lt;br&gt; **Example usage:** &#x60;&#x60;&#x60; curl -X POST \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ -H &#39;content-type: application/json&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments \\ -d &#39;{\&quot;enrollment_identity\&quot;: \&quot;A-35:e7:72:8a:07:50:3b:3d:75:96:57:52:72:41:0d:78:cc:c6:e5:53:48:c6:65:58:5b:fa:af:4d:2d:73:95:c5\&quot;}&#39; &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="enrollmentIdentity"></param>
@@ -467,10 +696,10 @@ namespace enrollment.Api
         }
 
         /// <summary>
-        /// Delete an enrollment by ID. To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information on the ownership trasfer, see [https://github.com/ARMmbed/mbed_Cloud_Docs/blob/restructure/Docs/provisioning/generic_instructions/device-ownership.md#transferring-ownership-using-first-to-claim](TODO put the right link).
+        /// Delete an enrollment by ID. To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information, see [Transferring the ownership using First-to-Claim](/docs/current/connecting/device-ownership.html). &lt;br&gt; **Example usage:** &#x60;&#x60;&#x60; curl -X DELETE \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments/{id} &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
+        /// <param name="id">Enrollment identity.</param>
         /// <returns></returns>
         public void DeleteDeviceEnrollment (string id)
         {
@@ -478,10 +707,10 @@ namespace enrollment.Api
         }
 
         /// <summary>
-        /// Delete an enrollment by ID. To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information on the ownership trasfer, see [https://github.com/ARMmbed/mbed_Cloud_Docs/blob/restructure/Docs/provisioning/generic_instructions/device-ownership.md#transferring-ownership-using-first-to-claim](TODO put the right link).
+        /// Delete an enrollment by ID. To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information, see [Transferring the ownership using First-to-Claim](/docs/current/connecting/device-ownership.html). &lt;br&gt; **Example usage:** &#x60;&#x60;&#x60; curl -X DELETE \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments/{id} &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
+        /// <param name="id">Enrollment identity.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         public ApiResponse<Object> DeleteDeviceEnrollmentWithHttpInfo (string id)
         {
@@ -499,6 +728,7 @@ namespace enrollment.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "application/json"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -537,10 +767,10 @@ namespace enrollment.Api
         }
 
         /// <summary>
-        /// Delete an enrollment by ID. To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information on the ownership trasfer, see [https://github.com/ARMmbed/mbed_Cloud_Docs/blob/restructure/Docs/provisioning/generic_instructions/device-ownership.md#transferring-ownership-using-first-to-claim](TODO put the right link).
+        /// Delete an enrollment by ID. To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information, see [Transferring the ownership using First-to-Claim](/docs/current/connecting/device-ownership.html). &lt;br&gt; **Example usage:** &#x60;&#x60;&#x60; curl -X DELETE \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments/{id} &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
+        /// <param name="id">Enrollment identity.</param>
         /// <returns>Task of void</returns>
         public async System.Threading.Tasks.Task DeleteDeviceEnrollmentAsync (string id)
         {
@@ -549,10 +779,10 @@ namespace enrollment.Api
         }
 
         /// <summary>
-        /// Delete an enrollment by ID. To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information on the ownership trasfer, see [https://github.com/ARMmbed/mbed_Cloud_Docs/blob/restructure/Docs/provisioning/generic_instructions/device-ownership.md#transferring-ownership-using-first-to-claim](TODO put the right link).
+        /// Delete an enrollment by ID. To free a device from your account you can delete the enrollment claim. To bypass the device ownership, you need to delete the enrollment and do a factory reset for the device. For more information, see [Transferring the ownership using First-to-Claim](/docs/current/connecting/device-ownership.html). &lt;br&gt; **Example usage:** &#x60;&#x60;&#x60; curl -X DELETE \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments/{id} &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
+        /// <param name="id">Enrollment identity.</param>
         /// <returns>Task of ApiResponse</returns>
         public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteDeviceEnrollmentAsyncWithHttpInfo (string id)
         {
@@ -570,6 +800,7 @@ namespace enrollment.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "application/json"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -608,10 +839,155 @@ namespace enrollment.Api
         }
 
         /// <summary>
-        /// Get details of an enrollment by ID. To check the enrollment info in detail, for example claming date and expiration date.
+        /// Get bulk upload entity Provides info about bulk upload for the given ID. For example bulk status and processed count of enrollment identities. Info includes also links for the bulk upload reports. **Example usage:** &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/{id} &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
+        /// <param name="id">Bulk create task entity ID</param>
+        /// <returns>BulkResponse</returns>
+        public BulkResponse GetBulkDeviceEnrollment (string id)
+        {
+             ApiResponse<BulkResponse> localVarResponse = GetBulkDeviceEnrollmentWithHttpInfo(id);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get bulk upload entity Provides info about bulk upload for the given ID. For example bulk status and processed count of enrollment identities. Info includes also links for the bulk upload reports. **Example usage:** &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/{id} &#x60;&#x60;&#x60; 
+        /// </summary>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Bulk create task entity ID</param>
+        /// <returns>ApiResponse of BulkResponse</returns>
+        public ApiResponse< BulkResponse > GetBulkDeviceEnrollmentWithHttpInfo (string id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling PublicAPIApi->GetBulkDeviceEnrollment");
+
+            var localVarPath = "/v3/device-enrollments-bulk-uploads/{id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetBulkDeviceEnrollment", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<BulkResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (BulkResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(BulkResponse)));
+        }
+
+        /// <summary>
+        /// Get bulk upload entity Provides info about bulk upload for the given ID. For example bulk status and processed count of enrollment identities. Info includes also links for the bulk upload reports. **Example usage:** &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/{id} &#x60;&#x60;&#x60; 
+        /// </summary>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Bulk create task entity ID</param>
+        /// <returns>Task of BulkResponse</returns>
+        public async System.Threading.Tasks.Task<BulkResponse> GetBulkDeviceEnrollmentAsync (string id)
+        {
+             ApiResponse<BulkResponse> localVarResponse = await GetBulkDeviceEnrollmentAsyncWithHttpInfo(id);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get bulk upload entity Provides info about bulk upload for the given ID. For example bulk status and processed count of enrollment identities. Info includes also links for the bulk upload reports. **Example usage:** &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/{id} &#x60;&#x60;&#x60; 
+        /// </summary>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Bulk create task entity ID</param>
+        /// <returns>Task of ApiResponse (BulkResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<BulkResponse>> GetBulkDeviceEnrollmentAsyncWithHttpInfo (string id)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling PublicAPIApi->GetBulkDeviceEnrollment");
+
+            var localVarPath = "/v3/device-enrollments-bulk-uploads/{id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetBulkDeviceEnrollment", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<BulkResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (BulkResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(BulkResponse)));
+        }
+
+        /// <summary>
+        /// Get details of an enrollment by ID. To check the enrollment info in detail, for example date of claim and expiration date. **Example usage:** &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments/{id} &#x60;&#x60;&#x60; 
+        /// </summary>
+        /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Enrollment identity.</param>
         /// <returns>EnrollmentIdentity</returns>
         public EnrollmentIdentity GetDeviceEnrollment (string id)
         {
@@ -620,10 +996,10 @@ namespace enrollment.Api
         }
 
         /// <summary>
-        /// Get details of an enrollment by ID. To check the enrollment info in detail, for example claming date and expiration date.
+        /// Get details of an enrollment by ID. To check the enrollment info in detail, for example date of claim and expiration date. **Example usage:** &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments/{id} &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
+        /// <param name="id">Enrollment identity.</param>
         /// <returns>ApiResponse of EnrollmentIdentity</returns>
         public ApiResponse< EnrollmentIdentity > GetDeviceEnrollmentWithHttpInfo (string id)
         {
@@ -641,6 +1017,7 @@ namespace enrollment.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "application/json"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -679,10 +1056,10 @@ namespace enrollment.Api
         }
 
         /// <summary>
-        /// Get details of an enrollment by ID. To check the enrollment info in detail, for example claming date and expiration date.
+        /// Get details of an enrollment by ID. To check the enrollment info in detail, for example date of claim and expiration date. **Example usage:** &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments/{id} &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
+        /// <param name="id">Enrollment identity.</param>
         /// <returns>Task of EnrollmentIdentity</returns>
         public async System.Threading.Tasks.Task<EnrollmentIdentity> GetDeviceEnrollmentAsync (string id)
         {
@@ -692,10 +1069,10 @@ namespace enrollment.Api
         }
 
         /// <summary>
-        /// Get details of an enrollment by ID. To check the enrollment info in detail, for example claming date and expiration date.
+        /// Get details of an enrollment by ID. To check the enrollment info in detail, for example date of claim and expiration date. **Example usage:** &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments/{id} &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">Enrollment identity internal id</param>
+        /// <param name="id">Enrollment identity.</param>
         /// <returns>Task of ApiResponse (EnrollmentIdentity)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<EnrollmentIdentity>> GetDeviceEnrollmentAsyncWithHttpInfo (string id)
         {
@@ -713,6 +1090,7 @@ namespace enrollment.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "application/json"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -751,13 +1129,13 @@ namespace enrollment.Api
         }
 
         /// <summary>
-        /// Get enrollment list. Provides a list of pending and claimed enrollments. Example usage: 
+        /// Get enrollment list. Provides a list of pending and claimed enrollments. **Example usage:** &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments &#x60;&#x60;&#x60; With query parameters: &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ &#39;https://api.us-east-1.mbedcloud.com/v3/device-enrollments?limit&#x3D;10&#39; &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">Number of results to be returned. Between 2 and 1000, inclusive. (optional)</param>
         /// <param name="after">Entity ID to fetch after. (optional)</param>
         /// <param name="order">ASC or DESC (optional, default to ASC)</param>
-        /// <param name="include">Comma separate additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="include">Comma-separated additional data to return. Currently supported: total_count. (optional)</param>
         /// <returns>EnrollmentIdentities</returns>
         public EnrollmentIdentities GetDeviceEnrollments (int? limit = null, string after = null, string order = null, string include = null)
         {
@@ -766,13 +1144,13 @@ namespace enrollment.Api
         }
 
         /// <summary>
-        /// Get enrollment list. Provides a list of pending and claimed enrollments. Example usage: 
+        /// Get enrollment list. Provides a list of pending and claimed enrollments. **Example usage:** &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments &#x60;&#x60;&#x60; With query parameters: &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ &#39;https://api.us-east-1.mbedcloud.com/v3/device-enrollments?limit&#x3D;10&#39; &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">Number of results to be returned. Between 2 and 1000, inclusive. (optional)</param>
         /// <param name="after">Entity ID to fetch after. (optional)</param>
         /// <param name="order">ASC or DESC (optional, default to ASC)</param>
-        /// <param name="include">Comma separate additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="include">Comma-separated additional data to return. Currently supported: total_count. (optional)</param>
         /// <returns>ApiResponse of EnrollmentIdentities</returns>
         public ApiResponse< EnrollmentIdentities > GetDeviceEnrollmentsWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null)
         {
@@ -787,6 +1165,7 @@ namespace enrollment.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "application/json"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 
@@ -828,13 +1207,13 @@ namespace enrollment.Api
         }
 
         /// <summary>
-        /// Get enrollment list. Provides a list of pending and claimed enrollments. Example usage: 
+        /// Get enrollment list. Provides a list of pending and claimed enrollments. **Example usage:** &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments &#x60;&#x60;&#x60; With query parameters: &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ &#39;https://api.us-east-1.mbedcloud.com/v3/device-enrollments?limit&#x3D;10&#39; &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">Number of results to be returned. Between 2 and 1000, inclusive. (optional)</param>
         /// <param name="after">Entity ID to fetch after. (optional)</param>
         /// <param name="order">ASC or DESC (optional, default to ASC)</param>
-        /// <param name="include">Comma separate additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="include">Comma-separated additional data to return. Currently supported: total_count. (optional)</param>
         /// <returns>Task of EnrollmentIdentities</returns>
         public async System.Threading.Tasks.Task<EnrollmentIdentities> GetDeviceEnrollmentsAsync (int? limit = null, string after = null, string order = null, string include = null)
         {
@@ -844,13 +1223,13 @@ namespace enrollment.Api
         }
 
         /// <summary>
-        /// Get enrollment list. Provides a list of pending and claimed enrollments. Example usage: 
+        /// Get enrollment list. Provides a list of pending and claimed enrollments. **Example usage:** &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ https://api.us-east-1.mbedcloud.com/v3/device-enrollments &#x60;&#x60;&#x60; With query parameters: &#x60;&#x60;&#x60; curl -X GET \\ -H &#39;Authorization: Bearer &lt;valid access token&gt;&#39; \\ &#39;https://api.us-east-1.mbedcloud.com/v3/device-enrollments?limit&#x3D;10&#39; &#x60;&#x60;&#x60; 
         /// </summary>
         /// <exception cref="enrollment.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="limit">Number of results to be returned. Between 2 and 1000, inclusive. (optional)</param>
         /// <param name="after">Entity ID to fetch after. (optional)</param>
         /// <param name="order">ASC or DESC (optional, default to ASC)</param>
-        /// <param name="include">Comma separate additional data to return. Currently supported: total_count (optional)</param>
+        /// <param name="include">Comma-separated additional data to return. Currently supported: total_count. (optional)</param>
         /// <returns>Task of ApiResponse (EnrollmentIdentities)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<EnrollmentIdentities>> GetDeviceEnrollmentsAsyncWithHttpInfo (int? limit = null, string after = null, string order = null, string include = null)
         {
@@ -865,6 +1244,7 @@ namespace enrollment.Api
 
             // to determine the Content-Type header
             String[] localVarHttpContentTypes = new String[] {
+                "application/json"
             };
             String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
 

@@ -197,7 +197,7 @@ namespace enrollment.Model
         /// <param name="Fields">Failed input fields during request object validation..</param>
         /// <param name="Message">A human readable message with detailed info..</param>
         /// <param name="_Object">Entity name, always &#39;error&#39;. (default to ObjectEnum.Error).</param>
-        /// <param name="RequestId">Request ID (muuid)..</param>
+        /// <param name="RequestId">Request ID..</param>
         /// <param name="Type">Error type..</param>
         public ErrorResponse(CodeEnum? Code = default(CodeEnum?), List<Field> Fields = default(List<Field>), string Message = default(string), ObjectEnum? _Object = ObjectEnum.Error, string RequestId = default(string), TypeEnum? Type = default(TypeEnum?))
         {
@@ -234,9 +234,9 @@ namespace enrollment.Model
 
 
         /// <summary>
-        /// Request ID (muuid).
+        /// Request ID.
         /// </summary>
-        /// <value>Request ID (muuid).</value>
+        /// <value>Request ID.</value>
         [DataMember(Name="request_id", EmitDefaultValue=false)]
         public string RequestId { get; set; }
 

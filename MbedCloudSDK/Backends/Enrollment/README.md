@@ -74,17 +74,17 @@ namespace Example
             // Configuration.Default.ApiKeyPrefix.Add("Authorization", "Bearer");
 
             var apiInstance = new PublicAPIApi();
-            var enrollmentIdentity = new EnrollmentId(); // EnrollmentId | 
+            var enrollmentIdentities = new System.IO.Stream(); // System.IO.Stream | Enrollment identities CSV file. Maximum file size is 10MB. 
 
             try
             {
-                // Place an enrollment claim for one or several devices.
-                EnrollmentIdentity result = apiInstance.CreateDeviceEnrollment(enrollmentIdentity);
+                // Bulk upload
+                BulkResponse result = apiInstance.CreateBulkDeviceEnrollment(enrollmentIdentities);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling PublicAPIApi.CreateDeviceEnrollment: " + e.Message );
+                Debug.Print("Exception when calling PublicAPIApi.CreateBulkDeviceEnrollment: " + e.Message );
             }
 
         }
@@ -99,8 +99,10 @@ All URIs are relative to *http://api.us-east-1.mbedcloud.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*PublicAPIApi* | [**CreateBulkDeviceEnrollment**](docs/PublicAPIApi.md#createbulkdeviceenrollment) | **POST** /v3/device-enrollments-bulk-uploads | Bulk upload
 *PublicAPIApi* | [**CreateDeviceEnrollment**](docs/PublicAPIApi.md#createdeviceenrollment) | **POST** /v3/device-enrollments | Place an enrollment claim for one or several devices.
 *PublicAPIApi* | [**DeleteDeviceEnrollment**](docs/PublicAPIApi.md#deletedeviceenrollment) | **DELETE** /v3/device-enrollments/{id} | Delete an enrollment by ID.
+*PublicAPIApi* | [**GetBulkDeviceEnrollment**](docs/PublicAPIApi.md#getbulkdeviceenrollment) | **GET** /v3/device-enrollments-bulk-uploads/{id} | Get bulk upload entity
 *PublicAPIApi* | [**GetDeviceEnrollment**](docs/PublicAPIApi.md#getdeviceenrollment) | **GET** /v3/device-enrollments/{id} | Get details of an enrollment by ID.
 *PublicAPIApi* | [**GetDeviceEnrollments**](docs/PublicAPIApi.md#getdeviceenrollments) | **GET** /v3/device-enrollments | Get enrollment list.
 
@@ -108,6 +110,7 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
+ - [Model.BulkResponse](docs/BulkResponse.md)
  - [Model.EnrollmentId](docs/EnrollmentId.md)
  - [Model.EnrollmentIdentities](docs/EnrollmentIdentities.md)
  - [Model.EnrollmentIdentity](docs/EnrollmentIdentity.md)
