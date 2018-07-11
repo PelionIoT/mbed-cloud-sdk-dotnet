@@ -9,11 +9,11 @@ namespace ConnectedDevicesTemplate
     {
         static void Main(string[] args)
         {
-            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
+            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
             if (string.IsNullOrEmpty(key))
             {
                 Console.WriteLine("No Api Key!!!");
-                Console.WriteLine("Please set environment variable MBED_CLOUD_API_KEY");
+                Console.WriteLine("Please set environment variable MBED_CLOUD_SDK_API_KEY");
             }
             else
             {

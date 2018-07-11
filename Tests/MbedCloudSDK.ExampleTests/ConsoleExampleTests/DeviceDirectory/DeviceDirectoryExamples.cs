@@ -17,8 +17,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.DeviceDirectory
         [Test]
         public void AddQuery()
         {
-            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
+            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
             var config = new Config(key, host);
             var deviceQuery = new ConsoleExamples.Examples.DeviceDirectory.DeviceDirectoryExamples(config);
             var query = deviceQuery.AddQuery();
@@ -28,8 +28,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.DeviceDirectory
         [Test]
         public void CreateDevice()
         {
-            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
+            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
             var config = new Config(key, host);
             var deviceQuery = new ConsoleExamples.Examples.DeviceDirectory.DeviceDirectoryExamples(config);
             var device = deviceQuery.CreateDevice();
@@ -39,8 +39,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.DeviceDirectory
         [Test]
         public void ListAllDevices()
         {
-            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
+            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
             var config = new Config(key, host);
             var deviceQuery = new ConsoleExamples.Examples.DeviceDirectory.DeviceDirectoryExamples(config);
             var devices = deviceQuery.ListAllDevices();
@@ -50,8 +50,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.DeviceDirectory
         [Test]
         public void ListDeviceLogs()
         {
-            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
+            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
             var config = new Config(key, host);
             var listLogs = new ConsoleExamples.Examples.DeviceDirectory.DeviceDirectoryExamples(config);
             var logs = listLogs.ListDevicesLogs();
@@ -61,8 +61,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.DeviceDirectory
         [Test]
         public void ListDeviceEvents()
         {
-            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
+            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
             var config = new Config(key, host);
             var listEvents = new ConsoleExamples.Examples.DeviceDirectory.DeviceDirectoryExamples(config);
             var events = listEvents.ListDeviceEvents();

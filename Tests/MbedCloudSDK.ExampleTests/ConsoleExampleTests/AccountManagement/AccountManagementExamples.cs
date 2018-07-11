@@ -17,8 +17,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         [Test]
         public void GetAccountDetails()
         {
-            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
+            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
             var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var account = accountApi.GetAccountDetails();
@@ -28,8 +28,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         [Test]
         public void GetAccountDetailsAsync()
         {
-            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
+            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
             var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var account = accountApi.GetAccountDetailsAsync();
@@ -39,8 +39,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         [Test]
         public void ListApiKeys()
         {
-            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
+            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
             var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var keys = accountApi.ListApiKeys();
@@ -50,8 +50,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         [Test]
         public void ListActiveUsers()
         {
-            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
+            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
             var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var users = accountApi.ListActiveUsers();
@@ -61,8 +61,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         [Test]
         public void ListAllGroups()
         {
-            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
+            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
             var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var groups = accountApi.ListAllGroups();
@@ -72,8 +72,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         [Test]
         public void UpdateAccount()
         {
-            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
+            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
             var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var account = accountApi.UpdateAccount();
@@ -83,8 +83,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         [Test]
         public void UpdateAccountAsync()
         {
-            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
+            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
             var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var account = accountApi.UpdateAccountAsync().Result;
@@ -94,8 +94,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         [Test]
         public void GetApiKey()
         {
-            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
+            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
             var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var apiKey = accountApi.GetApiKey();
@@ -105,8 +105,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         [Test]
         public void GetApiKeyAsync()
         {
-            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
+            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
             var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var apiKey = accountApi.GetApiKeyAsync().Result;
@@ -116,8 +116,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         [Test]
         public void AddApiKey()
         {
-            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
+            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
             var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var apiKey = accountApi.AddApiKey();
@@ -127,8 +127,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         [Test]
         public void AddApiKeyAsync()
         {
-            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
+            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
             var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var apiKey = accountApi.AddApiKeyAsync().Result;
@@ -138,8 +138,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         [Test]
         public void AddUser()
         {
-            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
+            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
             var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var user = accountApi.AddUser();
@@ -149,8 +149,8 @@ namespace MbedCloudSDK.Test.ConsoleExampleTests.AccountManagement
         [Test]
         public void AddUserAsync()
         {
-            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
+            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
             var config = new Config(key, host);
             var accountApi = new ConsoleExamples.Examples.AccountManagement.AccountManagementExamples(config);
             var user = accountApi.AddUserAsync().Result;

@@ -20,7 +20,7 @@ namespace ConsoleExamples
 
         public static void Main(string[] args)
         {
-            var apiKey = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
+            var apiKey = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
             if (string.IsNullOrEmpty(apiKey))
             {
                 Console.Error.WriteLine("API key is required!!!");
@@ -28,7 +28,7 @@ namespace ConsoleExamples
                 return;
             }
 
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
             if (string.IsNullOrEmpty(host))
             {
                 host = "https://api.us-east-1.mbedcloud.com";

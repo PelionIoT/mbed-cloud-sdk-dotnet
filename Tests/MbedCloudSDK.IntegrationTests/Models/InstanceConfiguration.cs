@@ -21,18 +21,18 @@ namespace MbedCloudSDK.IntegrationTests.Models
 
         public void ReverseMap()
         {
-            ApiKey = Convert.ToString(InnerHashtable["api_key"]) ?? Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            Host = Convert.ToString(InnerHashtable["host"]) ?? Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
+            ApiKey = Convert.ToString(InnerHashtable["api_key"]) ?? Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
+            Host = Convert.ToString(InnerHashtable["host"]) ?? Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
             AutostartDaemon = Convert.ToBoolean(InnerHashtable["autostart_daemon"]);
 
             if (string.IsNullOrEmpty(ApiKey))
             {
-                ApiKey = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
+                ApiKey = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
             }
 
             if (string.IsNullOrEmpty(Host))
             {
-                Host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
+                Host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
             }
         }
     }

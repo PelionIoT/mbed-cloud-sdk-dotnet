@@ -4,9 +4,9 @@ set -e
 BACKEND_URL="http://localhost:5000";
 
 # Ensure we have API key
-API_KEY="${MBED_CLOUD_API_KEY}"
+API_KEY="${MBED_CLOUD_SDK_API_KEY}"
 if [ -z $API_KEY ]; then
-  >&2 echo "API Key needs to be set using MBED_CLOUD_API_KEY env var";
+  >&2 echo "API Key needs to be set using MBED_CLOUD_SDK_API_KEY env var";
   exit 1;
 fi
 

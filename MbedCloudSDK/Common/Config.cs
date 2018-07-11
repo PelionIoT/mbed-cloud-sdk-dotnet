@@ -6,34 +6,92 @@ namespace MbedCloudSDK.Common
 {
     using System;
     using System.Net;
+    using MbedCloudSDK.Exceptions;
 
     /// <summary>
-    /// Config for cloud API.
+    /// Config for MbedCloud
     /// </summary>
     public class Config
     {
         /// <summary>
+        /// The API key environment key
+        /// </summary>
+        public const string API_KEY = "MBED_CLOUD_SDK_API_KEY";
+
+        /// <summary>
+        /// The host environment key
+        /// </summary>
+        public const string HOST = "MBED_CLOUD_SDK_HOST";
+
+        /// <summary>
+        /// The log level environment key
+        /// </summary>
+        public const string LOG_LEVEL = "MBED_CLOUD_SDK_LOG_LEVEL";
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Config"/> class.
         /// </summary>
-        /// <param name="apiKey"><see cref="ApiKey"/></param>
-        /// <param name="host">Host url</param>
-        /// <param name="authorizationPrefix">Authorization prefix</param>
-        /// <param name="forceClear">Force clear notification channel. If true, when adding a webhook, notifications will be stopped.</param>
-        /// <param name="autostartNotifications">Auto start notifications. If true, notifications will start automatically when required.</param>
-        public Config(string apiKey, string host = "https://api.us-east-1.mbedcloud.com", bool forceClear = false, bool autostartNotifications = false, string authorizationPrefix = "Bearer")
+        public Config()
+        : this(null, null)
         {
-            AuthorizationPrefix = authorizationPrefix;
-            ApiKey = apiKey;
-            Host = host;
-            ForceClear = forceClear;
-            AutostartNotifications = autostartNotifications;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Config"/> class.
+        /// </summary>
+        /// <param name="forceClear">if set to <c>true</c> [force clear].</param>
+        /// <param name="autostartNotifications">if set to <c>true</c> [autostart notifications].</param>
+        public Config(bool forceClear = false, bool autostartNotifications = false)
+        : this(null, null, forceClear, autostartNotifications)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Config"/> class.
+        /// </summary>
+        /// <param name="apiKey">The API key.</param>
+        public Config(string apiKey)
+        : this(apiKey, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Config"/> class.
+        /// </summary>
+        /// <param name="apiKey">The API key.</param>
+        /// <param name="host">The host.</param>
+        /// <param name="forceClear">if set to <c>true</c> [force clear].</param>
+        /// <param name="autostartNotifications">if set to <c>true</c> [autostart notifications].</param>
+        /// <exception cref="ConfigurationException">No Api Key provided!</exception>
+        public Config(string apiKey, string host, bool forceClear = false, bool autostartNotifications = false)
+        {
+            try
+            {
+                DotNetEnv.Env.Load();
+            }
+            catch (System.IO.FileNotFoundException)
+            {
+                Console.WriteLine("No .env file found.");
+            }
+            finally
+            {
+                ApiKey = apiKey ?? DotNetEnv.Env.GetString(API_KEY, Environment.GetEnvironmentVariable(API_KEY));
+                if (string.IsNullOrEmpty(ApiKey))
+                {
+                    throw new ConfigurationException("No Api Key provided!");
+                }
+
+                Host = host ?? DotNetEnv.Env.GetString(HOST, Environment.GetEnvironmentVariable(HOST) ?? "https://api.us-east-1.mbedcloud.com");
+                ForceClear = forceClear;
+                AutostartNotifications = autostartNotifications;
+            }
         }
 
         /// <summary>
         /// Gets or sets the host.
         /// </summary>
         /// <value>The host.</value>
-        public string Host { get; set; }
+        public string Host { get; }
 
         /// <summary>
         /// Gets a value indicating whether to clear any existing notification channels
@@ -42,9 +100,9 @@ namespace MbedCloudSDK.Common
         public bool ForceClear { get; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to auto start notifications
+        /// Gets a value indicating whether to auto start notifications
         /// </summary>
-        public bool AutostartNotifications { get; set; }
+        public bool AutostartNotifications { get; }
 
         /// <summary>
         /// Gets the API key.
@@ -56,6 +114,6 @@ namespace MbedCloudSDK.Common
         /// Gets the authorization prefix.
         /// </summary>
         /// <value>The authorization prefix.</value>
-        public string AuthorizationPrefix { get; }
+        public string AuthorizationPrefix { get; } = "Bearer";
     }
 }

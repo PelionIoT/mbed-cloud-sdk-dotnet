@@ -22,7 +22,7 @@ Build the example
 $ dotnet build
 ```
 
-Before you run the project, make sure you have set `$MBED_CLOUD_API_KEY` envrionment variable to your api key.
+Before you run the project, make sure you have set `$MBED_CLOUD_SDK_API_KEY` envrionment variable to your api key.
 
 ```bash
 $ dotnet run

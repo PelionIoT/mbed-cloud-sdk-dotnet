@@ -8,14 +8,12 @@ namespace Playground
     {
         static void Main(string[] args)
         {
-            var apiKey = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
+            var apiKey = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
 
-            var config = new Config(apiKey, host);
+            var config = new Config();
 
             var billing = new BillingApi(config);
-
-            
         }
     }
 }

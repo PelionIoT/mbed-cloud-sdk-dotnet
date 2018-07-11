@@ -13,17 +13,17 @@ namespace MbedCloudSDK.ExampleTests
         {
             try
             {
-                if (Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY") == null)
+                if (Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY") == null)
                 {
                     using (var file = File.OpenText("mbedKeys.json"))
                     {
                         var reader = new JsonTextReader(file);
                         var jObject = JObject.Load(reader);
-                        var key = jObject.GetValue("MBED_CLOUD_API_KEY");
-                        var host = jObject.GetValue("MBED_CLOUD_API_HOST");
+                        var key = jObject.GetValue("MBED_CLOUD_SDK_API_KEY");
+                        var host = jObject.GetValue("MBED_CLOUD_SDK_HOST");
 
-                        Environment.SetEnvironmentVariable("MBED_CLOUD_API_KEY", key.Value<string>());
-                        Environment.SetEnvironmentVariable("MBED_CLOUD_API_HOST", host.Value<string>());
+                        Environment.SetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY", key.Value<string>());
+                        Environment.SetEnvironmentVariable("MBED_CLOUD_SDK_HOST", host.Value<string>());
                     }
                 }
             }

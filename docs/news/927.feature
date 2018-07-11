@@ -1,0 +1,1 @@
+Configuration can now be set using a .env file

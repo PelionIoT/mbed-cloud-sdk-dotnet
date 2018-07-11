@@ -19,8 +19,8 @@ namespace WebhookExample.Services
 
         public ConnectService(IApplicationLifetime applicationLifetime)
         {
-            var apiKey = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
+            var apiKey = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
 
             if (string.IsNullOrEmpty(apiKey))
             {
