@@ -41,9 +41,9 @@ namespace billing.Model
         /// </summary>
         /// <param name="ActiveDevices">ActiveDevices (required).</param>
         /// <param name="FirmwareUpdates">FirmwareUpdates (required).</param>
-        /// <param name="Generated">Generated (required).</param>
-        /// <param name="PeriodEnd">PeriodEnd (required).</param>
-        /// <param name="PeriodStart">PeriodStart (required).</param>
+        /// <param name="Generated">Billing report generated time in RFC3339 date-time with millisecond accuracy and UTC time zone. (required).</param>
+        /// <param name="PeriodEnd">Billing report end time in RFC3339 date-time with millisecond accuracy and UTC time zone. (required).</param>
+        /// <param name="PeriodStart">Billing report start time in RFC3339 date-time with millisecond accuracy and UTC time zone. (required).</param>
         public ReportBillingData(long? ActiveDevices = default(long?), long? FirmwareUpdates = default(long?), DateTime? Generated = default(DateTime?), DateTime? PeriodEnd = default(DateTime?), DateTime? PeriodStart = default(DateTime?))
         {
             // to ensure "ActiveDevices" is required (not null)
@@ -106,20 +106,23 @@ namespace billing.Model
         public long? FirmwareUpdates { get; set; }
 
         /// <summary>
-        /// Gets or Sets Generated
+        /// Billing report generated time in RFC3339 date-time with millisecond accuracy and UTC time zone.
         /// </summary>
+        /// <value>Billing report generated time in RFC3339 date-time with millisecond accuracy and UTC time zone.</value>
         [DataMember(Name="generated", EmitDefaultValue=false)]
         public DateTime? Generated { get; set; }
 
         /// <summary>
-        /// Gets or Sets PeriodEnd
+        /// Billing report end time in RFC3339 date-time with millisecond accuracy and UTC time zone.
         /// </summary>
+        /// <value>Billing report end time in RFC3339 date-time with millisecond accuracy and UTC time zone.</value>
         [DataMember(Name="period_end", EmitDefaultValue=false)]
         public DateTime? PeriodEnd { get; set; }
 
         /// <summary>
-        /// Gets or Sets PeriodStart
+        /// Billing report start time in RFC3339 date-time with millisecond accuracy and UTC time zone.
         /// </summary>
+        /// <value>Billing report start time in RFC3339 date-time with millisecond accuracy and UTC time zone.</value>
         [DataMember(Name="period_start", EmitDefaultValue=false)]
         public DateTime? PeriodStart { get; set; }
 

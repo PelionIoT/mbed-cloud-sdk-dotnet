@@ -7,8 +7,7 @@
     <Title>Mbed Cloud SDK for .NET</Title>
     <AssemblyTitle>MbedCloudSDK</AssemblyTitle>
     <AssemblyName>MbedCloudSDK</AssemblyName>
-    <VersionPrefix>1.2.12</VersionPrefix>
-    <VersionSuffix></VersionSuffix>
+    <Version>2.0.0</Version>
     <Authors>Alex Logan</Authors>
     <Description>The Mbed Cloud SDK provides a simplified interface to the Mbed Cloud APIs by exposing functionality using conventions and paradigms familiar to .NET developers.</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
@@ -22,6 +21,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RepositoryUrl>https://github.com/ARMmbed/mbed-cloud-sdk-dotnet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <VersionLock>true</VersionLock>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

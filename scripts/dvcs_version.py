@@ -59,7 +59,7 @@ def get_csproj_version():
     )
     tree = ElementTree.parse(target)
     for node in tree.iter():
-        version = node.findall('VersionPrefix')
+        version = node.findall('Version')
         if version:
             break
     else:

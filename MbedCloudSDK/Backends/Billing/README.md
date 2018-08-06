@@ -114,6 +114,7 @@ Class | Method | HTTP request | Description
  - [Model.AggregatedQuotaUsageReport](docs/AggregatedQuotaUsageReport.md)
  - [Model.BadRequestErrorResponse](docs/BadRequestErrorResponse.md)
  - [Model.BadRequestErrorResponseField](docs/BadRequestErrorResponseField.md)
+ - [Model.BillingReportRawDataResponse](docs/BillingReportRawDataResponse.md)
  - [Model.ForbiddenErrorResponse](docs/ForbiddenErrorResponse.md)
  - [Model.InternalServerErrorResponse](docs/InternalServerErrorResponse.md)
  - [Model.PendingServicePackage](docs/PendingServicePackage.md)

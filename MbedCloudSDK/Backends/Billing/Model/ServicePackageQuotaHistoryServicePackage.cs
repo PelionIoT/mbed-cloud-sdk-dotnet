@@ -39,11 +39,11 @@ namespace billing.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ServicePackageQuotaHistoryServicePackage" /> class.
         /// </summary>
-        /// <param name="Expires">Service package expiration time in RFC3339 date-time with UTC time zone. (required).</param>
+        /// <param name="Expires">Service package expiration time in RFC3339 date-time with millisecond accuracy and UTC time zone. (required).</param>
         /// <param name="FirmwareUpdateCount">Size of firmware update quota of this service package. (required).</param>
         /// <param name="Id">ID of this service package. (required).</param>
         /// <param name="PreviousId">Previous service package ID or null..</param>
-        /// <param name="StartTime">Service package start time in RFC3339 date-time with UTC time zone. (required).</param>
+        /// <param name="StartTime">Service package start time in RFC3339 date-time with millisecond accuracy and UTC time zone. (required).</param>
         public ServicePackageQuotaHistoryServicePackage(DateTime? Expires = default(DateTime?), int? FirmwareUpdateCount = default(int?), string Id = default(string), string PreviousId = default(string), DateTime? StartTime = default(DateTime?))
         {
             // to ensure "Expires" is required (not null)
@@ -86,9 +86,9 @@ namespace billing.Model
         }
         
         /// <summary>
-        /// Service package expiration time in RFC3339 date-time with UTC time zone.
+        /// Service package expiration time in RFC3339 date-time with millisecond accuracy and UTC time zone.
         /// </summary>
-        /// <value>Service package expiration time in RFC3339 date-time with UTC time zone.</value>
+        /// <value>Service package expiration time in RFC3339 date-time with millisecond accuracy and UTC time zone.</value>
         [DataMember(Name="expires", EmitDefaultValue=false)]
         public DateTime? Expires { get; set; }
 
@@ -114,9 +114,9 @@ namespace billing.Model
         public string PreviousId { get; set; }
 
         /// <summary>
-        /// Service package start time in RFC3339 date-time with UTC time zone.
+        /// Service package start time in RFC3339 date-time with millisecond accuracy and UTC time zone.
         /// </summary>
-        /// <value>Service package start time in RFC3339 date-time with UTC time zone.</value>
+        /// <value>Service package start time in RFC3339 date-time with millisecond accuracy and UTC time zone.</value>
         [DataMember(Name="start_time", EmitDefaultValue=false)]
         public DateTime? StartTime { get; set; }
 

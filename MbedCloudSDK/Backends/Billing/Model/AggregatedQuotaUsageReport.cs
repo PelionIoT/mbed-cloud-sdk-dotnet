@@ -91,9 +91,9 @@ namespace billing.Model
         /// Initializes a new instance of the <see cref="AggregatedQuotaUsageReport" /> class.
         /// </summary>
         /// <param name="AccountId">AccountId (required).</param>
-        /// <param name="Amount">Amount of quota usage entry. Negavtive if it is quota consumption. (required).</param>
+        /// <param name="Amount">Amount of quota usage entry. Negative if it is quota consumption. (required).</param>
         /// <param name="CampaignName">Campaign name of quota usage entry. Null if quota usage entry type is not reservation or reservation release..</param>
-        /// <param name="Time">Added time of quota usage entry. (required).</param>
+        /// <param name="Time">Added time of quota usage entry in RFC3339 date-time with millisecond accuracy and UTC time zone. (required).</param>
         /// <param name="Type">Type of quota usage entry. (required).</param>
         public AggregatedQuotaUsageReport(string AccountId = default(string), long? Amount = default(long?), string CampaignName = default(string), DateTime? Time = default(DateTime?), TypeEnum? Type = default(TypeEnum?))
         {
@@ -143,9 +143,9 @@ namespace billing.Model
         public string AccountId { get; set; }
 
         /// <summary>
-        /// Amount of quota usage entry. Negavtive if it is quota consumption.
+        /// Amount of quota usage entry. Negative if it is quota consumption.
         /// </summary>
-        /// <value>Amount of quota usage entry. Negavtive if it is quota consumption.</value>
+        /// <value>Amount of quota usage entry. Negative if it is quota consumption.</value>
         [DataMember(Name="amount", EmitDefaultValue=false)]
         public long? Amount { get; set; }
 
@@ -157,9 +157,9 @@ namespace billing.Model
         public string CampaignName { get; set; }
 
         /// <summary>
-        /// Added time of quota usage entry.
+        /// Added time of quota usage entry in RFC3339 date-time with millisecond accuracy and UTC time zone.
         /// </summary>
-        /// <value>Added time of quota usage entry.</value>
+        /// <value>Added time of quota usage entry in RFC3339 date-time with millisecond accuracy and UTC time zone.</value>
         [DataMember(Name="time", EmitDefaultValue=false)]
         public DateTime? Time { get; set; }
 

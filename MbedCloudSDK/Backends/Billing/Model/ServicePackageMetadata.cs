@@ -39,10 +39,10 @@ namespace billing.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ServicePackageMetadata" /> class.
         /// </summary>
-        /// <param name="EndTime">Service package end time. (required).</param>
+        /// <param name="EndTime">Service package end time in RFC3339 date-time with millisecond accuracy and UTC time zone. (required).</param>
         /// <param name="RemainingQuota">Current available service package quota. (required).</param>
         /// <param name="ReservedQuota">Sum of all open reservations for this account. (required).</param>
-        /// <param name="StartTime">Service package start time. (required).</param>
+        /// <param name="StartTime">Service package start time in RFC3339 date-time with millisecond accuracy and UTC time zone. (required).</param>
         public ServicePackageMetadata(DateTime? EndTime = default(DateTime?), long? RemainingQuota = default(long?), long? ReservedQuota = default(long?), DateTime? StartTime = default(DateTime?))
         {
             // to ensure "EndTime" is required (not null)
@@ -84,9 +84,9 @@ namespace billing.Model
         }
         
         /// <summary>
-        /// Service package end time.
+        /// Service package end time in RFC3339 date-time with millisecond accuracy and UTC time zone.
         /// </summary>
-        /// <value>Service package end time.</value>
+        /// <value>Service package end time in RFC3339 date-time with millisecond accuracy and UTC time zone.</value>
         [DataMember(Name="end_time", EmitDefaultValue=false)]
         public DateTime? EndTime { get; set; }
 
@@ -105,9 +105,9 @@ namespace billing.Model
         public long? ReservedQuota { get; set; }
 
         /// <summary>
-        /// Service package start time.
+        /// Service package start time in RFC3339 date-time with millisecond accuracy and UTC time zone.
         /// </summary>
-        /// <value>Service package start time.</value>
+        /// <value>Service package start time in RFC3339 date-time with millisecond accuracy and UTC time zone.</value>
         [DataMember(Name="start_time", EmitDefaultValue=false)]
         public DateTime? StartTime { get; set; }
 

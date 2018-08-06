@@ -1,0 +1,20 @@
+sdk_test_server:
+    image: testserver
+    environment:
+      - MBED_CLOUD_SDK_HOST
+      - MBED_CLOUD_SDK_API_KEY
+    volumes:
+      - ./results:/testserver/build_logs/
+      - ./build/coverage-results:/testserver/build/coverage-results
+      - ./test_fixtures:/testserver/test_fixtures
+testrunner:
+    image: 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
+    environment:
+      - TEST_SERVER_URL=http://sdk_test_server:80
+      #folder on test server to get test files from
+      - TEST_FIXTURES_DIR=/testserver/test_fixtures
+    links:
+      - sdk_test_server
+    volumes:
+      - ./results:/runner/results
+      - ./test_fixtures:/runner/test_fixtures

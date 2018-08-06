@@ -90,7 +90,7 @@ namespace billing.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ServicePackageQuotaHistoryItem" /> class.
         /// </summary>
-        /// <param name="Added">Added time of quota history entry. (required).</param>
+        /// <param name="Added">Added time of quota history entry in RFC3339 date-time with millisecond accuracy and UTC time zone. (required).</param>
         /// <param name="Amount">the amount of quota usage, negative or positive (required).</param>
         /// <param name="Id">Service package quota history id. (required).</param>
         /// <param name="Reason">Type of quota usage entry. (required).</param>
@@ -139,9 +139,9 @@ namespace billing.Model
         }
         
         /// <summary>
-        /// Added time of quota history entry.
+        /// Added time of quota history entry in RFC3339 date-time with millisecond accuracy and UTC time zone.
         /// </summary>
-        /// <value>Added time of quota history entry.</value>
+        /// <value>Added time of quota history entry in RFC3339 date-time with millisecond accuracy and UTC time zone.</value>
         [DataMember(Name="added", EmitDefaultValue=false)]
         public DateTime? Added { get; set; }
 

@@ -83,6 +83,7 @@ namespace MbedCloudSDK.UnitTests.Common
             Assert.AreEqual(config.Host, host);
         }
 
+        /*
         [Test]
         public void ApiKeyPassedAndDefaultHost()
         {
@@ -91,6 +92,7 @@ namespace MbedCloudSDK.UnitTests.Common
             Assert.AreEqual(config.ApiKey, apiKey);
             Assert.AreEqual(config.Host, "https://api.us-east-1.mbedcloud.com");
         }
+        */
 
         [Test]
         public void AllParamsSet()

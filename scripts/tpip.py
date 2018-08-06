@@ -165,16 +165,19 @@ def main():
                 nugetInfo = urllib.request.urlopen(
                     "https://api.nuget.org/v3/registration3/" + lower_name + "/index.json").read()
                 res = json.loads(nugetInfo)
-                entry = res['items'][0]['items'][-1]['catalogEntry']
+                if 'items' in res:
+                    first = res['items'][0]
+                    if 'items' in first:
+                        entry = first['items'][-1]['catalogEntry']
 
-                licence_text = urllib.request.urlopen(entry['licenseUrl']).read().decode('utf-8')
-                licence_type = identify_license(licence_text)
+                        licence_text = urllib.request.urlopen(entry['licenseUrl']).read().decode('utf-8')
+                        licence_type = identify_license(licence_text)
 
-                tpip_pkg = dict(
-                    zip(FIELDNAMES, [[entry['id']], ["Nuget"], [entry['authors']], [package.attrib['Version']], [entry['title']], [entry['projectUrl']], licence_type, [entry['licenseUrl']], ["https://www.nuget.org/packages/" + entry['id']]]))
+                        tpip_pkg = dict(
+                            zip(FIELDNAMES, [[entry['id']], ["Nuget"], [entry['authors']], [package.attrib['Version']], [entry['title']], [entry['projectUrl']], licence_type, [entry['licenseUrl']], ["https://www.nuget.org/packages/" + entry['id']]]))
 
-                flattened = dict((key, '; '.join(value)) for(key, value) in tpip_pkg.items())
-                pkgs.append(flattened)
+                        flattened = dict((key, '; '.join(value)) for(key, value) in tpip_pkg.items())
+                        pkgs.append(flattened)
 
     write_csv_file('tpip.csv', pkgs)
 

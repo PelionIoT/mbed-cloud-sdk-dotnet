@@ -6,6 +6,7 @@ namespace MbedCloudSDK.Billing.Api
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Text;
     using AutoMapper;
@@ -17,6 +18,7 @@ namespace MbedCloudSDK.Billing.Api
     using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Exceptions;
     using Newtonsoft.Json;
+    using RestSharp;
 
     /// <summary>
     /// Billing
@@ -26,6 +28,8 @@ namespace MbedCloudSDK.Billing.Api
     {
         private readonly DefaultApi api;
         private readonly IMapper mapper;
+
+        private readonly string baseUrl = "https://s3.eu-west-1.amazonaws.com";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BillingApi"/> class.
@@ -124,14 +128,24 @@ namespace MbedCloudSDK.Billing.Api
             }
         }
 
-        /*
-        public string GetReportDevices(DateTime month)
+        private void StreamFileFromUrl(string url, string filepath, BillingReportRawDataResponse report)
+        {
+            using (var writer = File.OpenWrite(filepath))
+            {
+                var client = new RestClient(baseUrl);
+                var request = new RestRequest(report.Url.Replace(baseUrl, string.Empty));
+                request.ResponseWriter = (responseStream) => responseStream.CopyTo(writer);
+                var response = client.Execute(request);
+            }
+        }
+
+        public string GetReportActiveDevices(DateTime month, string filepath)
         {
             try
             {
-                var report = api.GetBillingReportActiveDevicesWithHttpInfo(month.ToBillingMonth());
-                var path = report.Headers.TryGetValue("Location", out var s3Path);
-                return path ? s3Path : "could not get path.";
+                var report = api.GetBillingReportActiveDevices(month.ToBillingMonth());
+                StreamFileFromUrl(report.Url, filepath, report);
+                return report.DebugDump();
             }
             catch (billing.Client.ApiException e)
             {
@@ -139,20 +153,19 @@ namespace MbedCloudSDK.Billing.Api
             }
         }
 
-        public string GetReportFirmwareUpdates(DateTime month)
+        public string GetReportFirmwareUpdates(DateTime month, string filepath)
         {
             try
             {
-                var report = api.GetBillingReportFirmwareUpdatesWithHttpInfo(month.ToBillingMonth());
-                var path = report.Headers.TryGetValue("Location", out var s3Path);
-                return path ? s3Path : "could not get path.";
+                var report = api.GetBillingReportFirmwareUpdates(month.ToBillingMonth());
+                StreamFileFromUrl(report.Url, filepath, report);
+                return report.DebugDump();
             }
             catch (billing.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
         }
-        */
 
         /// <summary>
         /// Gets the service packages.

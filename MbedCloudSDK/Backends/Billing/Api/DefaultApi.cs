@@ -50,44 +50,44 @@ namespace billing.Api
         /// Get raw active devices billing data for the month.
         /// </summary>
         /// <remarks>
-        /// Fetch raw active devices billing data for the currently authenticated commercial non-subtenant account. They are supplementary data for billing report. The raw active devices billing data for subtenant accounts are included in their aggregator&#39;s raw active devices billing data.
+        /// Fetch raw active devices billing data for the currently authenticated commercial non-subtenant account. They are supplementary data for billing report. The raw active devices billing data for subtenant accounts are included in their aggregator&#39;s raw active devices billing data. Endpoint returns the URL to download the gzipped csv file. First line of the file is the header which describes information of active devices included, e.g. active device id.
         /// </remarks>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="month">Queried year and month of billing report</param>
-        /// <returns></returns>
-        void GetBillingReportActiveDevices (string month);
+        /// <returns>BillingReportRawDataResponse</returns>
+        BillingReportRawDataResponse GetBillingReportActiveDevices (string month);
 
         /// <summary>
         /// Get raw active devices billing data for the month.
         /// </summary>
         /// <remarks>
-        /// Fetch raw active devices billing data for the currently authenticated commercial non-subtenant account. They are supplementary data for billing report. The raw active devices billing data for subtenant accounts are included in their aggregator&#39;s raw active devices billing data.
+        /// Fetch raw active devices billing data for the currently authenticated commercial non-subtenant account. They are supplementary data for billing report. The raw active devices billing data for subtenant accounts are included in their aggregator&#39;s raw active devices billing data. Endpoint returns the URL to download the gzipped csv file. First line of the file is the header which describes information of active devices included, e.g. active device id.
         /// </remarks>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="month">Queried year and month of billing report</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> GetBillingReportActiveDevicesWithHttpInfo (string month);
+        /// <returns>ApiResponse of BillingReportRawDataResponse</returns>
+        ApiResponse<BillingReportRawDataResponse> GetBillingReportActiveDevicesWithHttpInfo (string month);
         /// <summary>
         /// Get raw firmware updates billing data for the month.
         /// </summary>
         /// <remarks>
-        /// Fetch generated firmware update devices billing report for the currently authenticated commercial non-subtenant account. The firmware update devices billing reports for subtenant accounts are included in their aggregator&#39;s firmware update devices billing report.
+        /// Fetch raw firmware updates billing data for the currently authenticated commercial non-subtenant account. They are supplementary data for billing report. The raw firmware updates billing data for subtenant accounts are included in their aggregator&#39;s raw firmware updates billing data. Endpoint returns the URL to download the gzipped csv file. First line of the file is the header which describes information of firmware updates included, e.g. firmware update device id.
         /// </remarks>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="month">Queried year and month of billing report</param>
-        /// <returns></returns>
-        void GetBillingReportFirmwareUpdates (string month);
+        /// <returns>BillingReportRawDataResponse</returns>
+        BillingReportRawDataResponse GetBillingReportFirmwareUpdates (string month);
 
         /// <summary>
         /// Get raw firmware updates billing data for the month.
         /// </summary>
         /// <remarks>
-        /// Fetch generated firmware update devices billing report for the currently authenticated commercial non-subtenant account. The firmware update devices billing reports for subtenant accounts are included in their aggregator&#39;s firmware update devices billing report.
+        /// Fetch raw firmware updates billing data for the currently authenticated commercial non-subtenant account. They are supplementary data for billing report. The raw firmware updates billing data for subtenant accounts are included in their aggregator&#39;s raw firmware updates billing data. Endpoint returns the URL to download the gzipped csv file. First line of the file is the header which describes information of firmware updates included, e.g. firmware update device id.
         /// </remarks>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="month">Queried year and month of billing report</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> GetBillingReportFirmwareUpdatesWithHttpInfo (string month);
+        /// <returns>ApiResponse of BillingReportRawDataResponse</returns>
+        ApiResponse<BillingReportRawDataResponse> GetBillingReportFirmwareUpdatesWithHttpInfo (string month);
         /// <summary>
         /// Service package quota
         /// </summary>
@@ -176,44 +176,44 @@ namespace billing.Api
         /// Get raw active devices billing data for the month.
         /// </summary>
         /// <remarks>
-        /// Fetch raw active devices billing data for the currently authenticated commercial non-subtenant account. They are supplementary data for billing report. The raw active devices billing data for subtenant accounts are included in their aggregator&#39;s raw active devices billing data.
+        /// Fetch raw active devices billing data for the currently authenticated commercial non-subtenant account. They are supplementary data for billing report. The raw active devices billing data for subtenant accounts are included in their aggregator&#39;s raw active devices billing data. Endpoint returns the URL to download the gzipped csv file. First line of the file is the header which describes information of active devices included, e.g. active device id.
         /// </remarks>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="month">Queried year and month of billing report</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task GetBillingReportActiveDevicesAsync (string month);
+        /// <returns>Task of BillingReportRawDataResponse</returns>
+        System.Threading.Tasks.Task<BillingReportRawDataResponse> GetBillingReportActiveDevicesAsync (string month);
 
         /// <summary>
         /// Get raw active devices billing data for the month.
         /// </summary>
         /// <remarks>
-        /// Fetch raw active devices billing data for the currently authenticated commercial non-subtenant account. They are supplementary data for billing report. The raw active devices billing data for subtenant accounts are included in their aggregator&#39;s raw active devices billing data.
+        /// Fetch raw active devices billing data for the currently authenticated commercial non-subtenant account. They are supplementary data for billing report. The raw active devices billing data for subtenant accounts are included in their aggregator&#39;s raw active devices billing data. Endpoint returns the URL to download the gzipped csv file. First line of the file is the header which describes information of active devices included, e.g. active device id.
         /// </remarks>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="month">Queried year and month of billing report</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> GetBillingReportActiveDevicesAsyncWithHttpInfo (string month);
+        /// <returns>Task of ApiResponse (BillingReportRawDataResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<BillingReportRawDataResponse>> GetBillingReportActiveDevicesAsyncWithHttpInfo (string month);
         /// <summary>
         /// Get raw firmware updates billing data for the month.
         /// </summary>
         /// <remarks>
-        /// Fetch generated firmware update devices billing report for the currently authenticated commercial non-subtenant account. The firmware update devices billing reports for subtenant accounts are included in their aggregator&#39;s firmware update devices billing report.
+        /// Fetch raw firmware updates billing data for the currently authenticated commercial non-subtenant account. They are supplementary data for billing report. The raw firmware updates billing data for subtenant accounts are included in their aggregator&#39;s raw firmware updates billing data. Endpoint returns the URL to download the gzipped csv file. First line of the file is the header which describes information of firmware updates included, e.g. firmware update device id.
         /// </remarks>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="month">Queried year and month of billing report</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task GetBillingReportFirmwareUpdatesAsync (string month);
+        /// <returns>Task of BillingReportRawDataResponse</returns>
+        System.Threading.Tasks.Task<BillingReportRawDataResponse> GetBillingReportFirmwareUpdatesAsync (string month);
 
         /// <summary>
         /// Get raw firmware updates billing data for the month.
         /// </summary>
         /// <remarks>
-        /// Fetch generated firmware update devices billing report for the currently authenticated commercial non-subtenant account. The firmware update devices billing reports for subtenant accounts are included in their aggregator&#39;s firmware update devices billing report.
+        /// Fetch raw firmware updates billing data for the currently authenticated commercial non-subtenant account. They are supplementary data for billing report. The raw firmware updates billing data for subtenant accounts are included in their aggregator&#39;s raw firmware updates billing data. Endpoint returns the URL to download the gzipped csv file. First line of the file is the header which describes information of firmware updates included, e.g. firmware update device id.
         /// </remarks>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="month">Queried year and month of billing report</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> GetBillingReportFirmwareUpdatesAsyncWithHttpInfo (string month);
+        /// <returns>Task of ApiResponse (BillingReportRawDataResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<BillingReportRawDataResponse>> GetBillingReportFirmwareUpdatesAsyncWithHttpInfo (string month);
         /// <summary>
         /// Service package quota
         /// </summary>
@@ -519,23 +519,24 @@ namespace billing.Api
         }
 
         /// <summary>
-        /// Get raw active devices billing data for the month. Fetch raw active devices billing data for the currently authenticated commercial non-subtenant account. They are supplementary data for billing report. The raw active devices billing data for subtenant accounts are included in their aggregator&#39;s raw active devices billing data.
+        /// Get raw active devices billing data for the month. Fetch raw active devices billing data for the currently authenticated commercial non-subtenant account. They are supplementary data for billing report. The raw active devices billing data for subtenant accounts are included in their aggregator&#39;s raw active devices billing data. Endpoint returns the URL to download the gzipped csv file. First line of the file is the header which describes information of active devices included, e.g. active device id.
         /// </summary>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="month">Queried year and month of billing report</param>
-        /// <returns></returns>
-        public void GetBillingReportActiveDevices (string month)
+        /// <returns>BillingReportRawDataResponse</returns>
+        public BillingReportRawDataResponse GetBillingReportActiveDevices (string month)
         {
-             GetBillingReportActiveDevicesWithHttpInfo(month);
+             ApiResponse<BillingReportRawDataResponse> localVarResponse = GetBillingReportActiveDevicesWithHttpInfo(month);
+             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get raw active devices billing data for the month. Fetch raw active devices billing data for the currently authenticated commercial non-subtenant account. They are supplementary data for billing report. The raw active devices billing data for subtenant accounts are included in their aggregator&#39;s raw active devices billing data.
+        /// Get raw active devices billing data for the month. Fetch raw active devices billing data for the currently authenticated commercial non-subtenant account. They are supplementary data for billing report. The raw active devices billing data for subtenant accounts are included in their aggregator&#39;s raw active devices billing data. Endpoint returns the URL to download the gzipped csv file. First line of the file is the header which describes information of active devices included, e.g. active device id.
         /// </summary>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="month">Queried year and month of billing report</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> GetBillingReportActiveDevicesWithHttpInfo (string month)
+        /// <returns>ApiResponse of BillingReportRawDataResponse</returns>
+        public ApiResponse< BillingReportRawDataResponse > GetBillingReportActiveDevicesWithHttpInfo (string month)
         {
             // verify the required parameter 'month' is set
             if (month == null)
@@ -583,30 +584,31 @@ namespace billing.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<BillingReportRawDataResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
+                (BillingReportRawDataResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(BillingReportRawDataResponse)));
         }
 
         /// <summary>
-        /// Get raw active devices billing data for the month. Fetch raw active devices billing data for the currently authenticated commercial non-subtenant account. They are supplementary data for billing report. The raw active devices billing data for subtenant accounts are included in their aggregator&#39;s raw active devices billing data.
+        /// Get raw active devices billing data for the month. Fetch raw active devices billing data for the currently authenticated commercial non-subtenant account. They are supplementary data for billing report. The raw active devices billing data for subtenant accounts are included in their aggregator&#39;s raw active devices billing data. Endpoint returns the URL to download the gzipped csv file. First line of the file is the header which describes information of active devices included, e.g. active device id.
         /// </summary>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="month">Queried year and month of billing report</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task GetBillingReportActiveDevicesAsync (string month)
+        /// <returns>Task of BillingReportRawDataResponse</returns>
+        public async System.Threading.Tasks.Task<BillingReportRawDataResponse> GetBillingReportActiveDevicesAsync (string month)
         {
-             await GetBillingReportActiveDevicesAsyncWithHttpInfo(month);
+             ApiResponse<BillingReportRawDataResponse> localVarResponse = await GetBillingReportActiveDevicesAsyncWithHttpInfo(month);
+             return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Get raw active devices billing data for the month. Fetch raw active devices billing data for the currently authenticated commercial non-subtenant account. They are supplementary data for billing report. The raw active devices billing data for subtenant accounts are included in their aggregator&#39;s raw active devices billing data.
+        /// Get raw active devices billing data for the month. Fetch raw active devices billing data for the currently authenticated commercial non-subtenant account. They are supplementary data for billing report. The raw active devices billing data for subtenant accounts are included in their aggregator&#39;s raw active devices billing data. Endpoint returns the URL to download the gzipped csv file. First line of the file is the header which describes information of active devices included, e.g. active device id.
         /// </summary>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="month">Queried year and month of billing report</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> GetBillingReportActiveDevicesAsyncWithHttpInfo (string month)
+        /// <returns>Task of ApiResponse (BillingReportRawDataResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<BillingReportRawDataResponse>> GetBillingReportActiveDevicesAsyncWithHttpInfo (string month)
         {
             // verify the required parameter 'month' is set
             if (month == null)
@@ -654,29 +656,30 @@ namespace billing.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<BillingReportRawDataResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
+                (BillingReportRawDataResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(BillingReportRawDataResponse)));
         }
 
         /// <summary>
-        /// Get raw firmware updates billing data for the month. Fetch generated firmware update devices billing report for the currently authenticated commercial non-subtenant account. The firmware update devices billing reports for subtenant accounts are included in their aggregator&#39;s firmware update devices billing report.
+        /// Get raw firmware updates billing data for the month. Fetch raw firmware updates billing data for the currently authenticated commercial non-subtenant account. They are supplementary data for billing report. The raw firmware updates billing data for subtenant accounts are included in their aggregator&#39;s raw firmware updates billing data. Endpoint returns the URL to download the gzipped csv file. First line of the file is the header which describes information of firmware updates included, e.g. firmware update device id.
         /// </summary>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="month">Queried year and month of billing report</param>
-        /// <returns></returns>
-        public void GetBillingReportFirmwareUpdates (string month)
+        /// <returns>BillingReportRawDataResponse</returns>
+        public BillingReportRawDataResponse GetBillingReportFirmwareUpdates (string month)
         {
-             GetBillingReportFirmwareUpdatesWithHttpInfo(month);
+             ApiResponse<BillingReportRawDataResponse> localVarResponse = GetBillingReportFirmwareUpdatesWithHttpInfo(month);
+             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get raw firmware updates billing data for the month. Fetch generated firmware update devices billing report for the currently authenticated commercial non-subtenant account. The firmware update devices billing reports for subtenant accounts are included in their aggregator&#39;s firmware update devices billing report.
+        /// Get raw firmware updates billing data for the month. Fetch raw firmware updates billing data for the currently authenticated commercial non-subtenant account. They are supplementary data for billing report. The raw firmware updates billing data for subtenant accounts are included in their aggregator&#39;s raw firmware updates billing data. Endpoint returns the URL to download the gzipped csv file. First line of the file is the header which describes information of firmware updates included, e.g. firmware update device id.
         /// </summary>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="month">Queried year and month of billing report</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> GetBillingReportFirmwareUpdatesWithHttpInfo (string month)
+        /// <returns>ApiResponse of BillingReportRawDataResponse</returns>
+        public ApiResponse< BillingReportRawDataResponse > GetBillingReportFirmwareUpdatesWithHttpInfo (string month)
         {
             // verify the required parameter 'month' is set
             if (month == null)
@@ -724,30 +727,31 @@ namespace billing.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<BillingReportRawDataResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
+                (BillingReportRawDataResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(BillingReportRawDataResponse)));
         }
 
         /// <summary>
-        /// Get raw firmware updates billing data for the month. Fetch generated firmware update devices billing report for the currently authenticated commercial non-subtenant account. The firmware update devices billing reports for subtenant accounts are included in their aggregator&#39;s firmware update devices billing report.
+        /// Get raw firmware updates billing data for the month. Fetch raw firmware updates billing data for the currently authenticated commercial non-subtenant account. They are supplementary data for billing report. The raw firmware updates billing data for subtenant accounts are included in their aggregator&#39;s raw firmware updates billing data. Endpoint returns the URL to download the gzipped csv file. First line of the file is the header which describes information of firmware updates included, e.g. firmware update device id.
         /// </summary>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="month">Queried year and month of billing report</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task GetBillingReportFirmwareUpdatesAsync (string month)
+        /// <returns>Task of BillingReportRawDataResponse</returns>
+        public async System.Threading.Tasks.Task<BillingReportRawDataResponse> GetBillingReportFirmwareUpdatesAsync (string month)
         {
-             await GetBillingReportFirmwareUpdatesAsyncWithHttpInfo(month);
+             ApiResponse<BillingReportRawDataResponse> localVarResponse = await GetBillingReportFirmwareUpdatesAsyncWithHttpInfo(month);
+             return localVarResponse.Data;
 
         }
 
         /// <summary>
-        /// Get raw firmware updates billing data for the month. Fetch generated firmware update devices billing report for the currently authenticated commercial non-subtenant account. The firmware update devices billing reports for subtenant accounts are included in their aggregator&#39;s firmware update devices billing report.
+        /// Get raw firmware updates billing data for the month. Fetch raw firmware updates billing data for the currently authenticated commercial non-subtenant account. They are supplementary data for billing report. The raw firmware updates billing data for subtenant accounts are included in their aggregator&#39;s raw firmware updates billing data. Endpoint returns the URL to download the gzipped csv file. First line of the file is the header which describes information of firmware updates included, e.g. firmware update device id.
         /// </summary>
         /// <exception cref="billing.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="month">Queried year and month of billing report</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> GetBillingReportFirmwareUpdatesAsyncWithHttpInfo (string month)
+        /// <returns>Task of ApiResponse (BillingReportRawDataResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<BillingReportRawDataResponse>> GetBillingReportFirmwareUpdatesAsyncWithHttpInfo (string month)
         {
             // verify the required parameter 'month' is set
             if (month == null)
@@ -795,9 +799,9 @@ namespace billing.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<BillingReportRawDataResponse>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
-                null);
+                (BillingReportRawDataResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(BillingReportRawDataResponse)));
         }
 
         /// <summary>
