@@ -11,6 +11,16 @@ a list of versions that have been released.
 
 [//]: # (begin_release_notes)
 
+2.0.0 (2018-08-06)
+==================
+
+### Features
+
+- circle 2 (#1111)
+
+- Configuration can now be set using a .env file (#927)
+
+
 1.2.12 (2018-07-06)
 ===================
 
