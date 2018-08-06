@@ -287,7 +287,7 @@ jobs:
                  . venv/bin/activate
                  auto_version --config=scripts/version.toml --bump=patch --news
          name: bump the version for a dev release
-      - run: python ./project/scripts/tag_and_release.py tag $(python ./project/scripts/dvcs_version.py version)
+      - run: python ./scripts/tag_and_release.py tag $(python ./scripts/dvcs_version.py version)
   #############################################################################################
   #                                Release Jobs                                               #
   #############################################################################################
