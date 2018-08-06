@@ -61,12 +61,11 @@ def slack(version):
 
 
 if __name__ == '__main__':
-    setup_git()
-    # if len(sys.argv) >= 1:
-    #     if sys.argv[1] == 'tag':
-    #         setup_git()
-    #         tag(sys.argv[2])
-    #     if sys.argv[1] == 'news':
-    #         setup_git()
-    #         news()
-    #         slack(sys.argv[2])
+    if len(sys.argv) >= 1:
+        if sys.argv[1] == 'tag':
+            setup_git()
+            tag(sys.argv[2])
+        if sys.argv[1] == 'news':
+            setup_git()
+            news()
+            slack(sys.argv[2])
