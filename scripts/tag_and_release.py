@@ -27,7 +27,7 @@ def setup_git():
     url = subprocess.check_output(['git', 'ls-remote', '--get-url', 'origin'])
     new_url = git_url_ssh_to_https(url.decode())
     subprocess.check_call(['git', 'remote', 'set-url', 'origin', new_url])
-    branch_spec = 'origin/%s' % os.getenv('CIRCLE_BRANCH')
+    branch_spec = 'origin/%s' % os.getenv('CIRCLE_BRANCH', 'master')
     subprocess.check_call(['git', 'branch', '--set-upstream-to', branch_spec])
 
 def tag(version):
