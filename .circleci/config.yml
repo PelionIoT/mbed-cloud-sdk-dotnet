@@ -35,6 +35,15 @@ references:
           ignore:
           - /.*/
 
+  filter_branch_only: &filter_branch_only
+      filters:
+        branches:
+          ignore:
+          - master
+        tags:
+          ignore:
+          - /.*/
+
   tag_release_only: &tag_release_only
     filters:
       tags:
@@ -340,7 +349,7 @@ workflows:
   csharp_sdk_workflow:
     jobs:
       - assert_news:
-          <<: *filter_master_only_build
+          <<: *filter_branch_only
       - cache_test_server_image:
           <<: *filter_ignore_release
       - docs:
