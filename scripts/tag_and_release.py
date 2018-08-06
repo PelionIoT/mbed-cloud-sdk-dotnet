@@ -21,7 +21,7 @@ def git_url_ssh_to_https(url):
     return new.format(GITHUB_TOKEN = os.getenv('GITHUB_TOKEN'))
 
 
-def setup_git():
+def setup_git(tag=None):
     #setup git to use GITHUB_TOKEN
     #url = subprocess.check_output(['git', 'remote', 'get-url', 'origin'])
     url = subprocess.check_output(['git', 'ls-remote', '--get-url', 'origin'])
@@ -31,6 +31,8 @@ def setup_git():
     if branch == '': branch = 'master'
     branch_spec = 'origin/%s' % branch
     print(branch_spec)
+    if tag:
+        subprocess.check_call(['git', 'checkout', 'master'])
     subprocess.check_call(['git', 'branch', '--set-upstream-to', branch_spec])
 
 def tag(version):
@@ -66,6 +68,6 @@ if __name__ == '__main__':
             setup_git()
             tag(sys.argv[2])
         if sys.argv[1] == 'news':
-            setup_git()
+            setup_git(True)
             news()
             slack(sys.argv[2])
