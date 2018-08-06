@@ -276,9 +276,18 @@ jobs:
     <<: *circle_python
     steps:
       - checkout
-      - <<: *attach_workspace
+      - run:
+         command: |
+                 python -m venv venv
+                 . venv/bin/activate
+                 pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@features/v2#subdirectory=scripts/auto_version/&egg=auto_version"
+         name: install auto_version
+      - run:
+         command: |
+                 . venv/bin/activate
+                 auto_version --config=scripts/version.toml --bump=patch --news
+         name: bump the version for a dev release
       - run: python ./project/scripts/tag_and_release.py tag $(python ./project/scripts/dvcs_version.py version)
-      #- run: python ./scripts/tag_and_release.py tag ${CIRCLE_BUILD_NUM}
   #############################################################################################
   #                                Release Jobs                                               #
   #############################################################################################
