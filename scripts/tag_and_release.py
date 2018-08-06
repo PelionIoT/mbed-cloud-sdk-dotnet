@@ -31,6 +31,7 @@ def setup_git(tag=None):
     if branch == '': branch = 'master'
     branch_spec = 'origin/%s' % branch
     print(branch_spec)
+    # On a tag build the HEAD is deteched, so checkout master
     if tag:
         subprocess.check_call(['git', 'checkout', 'master'])
     subprocess.check_call(['git', 'branch', '--set-upstream-to', branch_spec])

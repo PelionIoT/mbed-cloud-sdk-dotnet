@@ -420,6 +420,6 @@ workflows:
           <<: *tag_release_only
       - commit_news_and_version:
           requires:
-          - build_pack_deploy
+          - version_bump_release
           <<: *tag_release_only
   version: 2

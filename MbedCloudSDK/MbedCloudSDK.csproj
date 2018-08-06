@@ -21,7 +21,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RepositoryUrl>https://github.com/ARMmbed/mbed-cloud-sdk-dotnet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <VersionLock>false</VersionLock>
+    <VersionLock>true</VersionLock>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
