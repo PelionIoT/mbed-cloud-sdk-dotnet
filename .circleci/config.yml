@@ -276,9 +276,9 @@ jobs:
     <<: *circle_python
     steps:
       - checkout
-      #- <<: *attach_workspace
-      #- run: python ./project/scripts/tag_and_release.py tag $(python ./project/scripts/dvcs_version.py version)
-      - run: python ./scripts/tag_and_release.py tag ${CIRCLE_BUILD_NUM}
+      - <<: *attach_workspace
+      - run: python ./project/scripts/tag_and_release.py tag $(python ./project/scripts/dvcs_version.py version)
+      #- run: python ./scripts/tag_and_release.py tag ${CIRCLE_BUILD_NUM}
   #############################################################################################
   #                                Release Jobs                                               #
   #############################################################################################
