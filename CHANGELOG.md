@@ -14,6 +14,13 @@ a list of versions that have been released.
 2.0.0 (2018-08-06)
 ==================
 
+
+No significant changes.
+
+
+2.0.0 (2018-08-06)
+==================
+
 ### Features
 
 - circle 2 (#1111)
