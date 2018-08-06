@@ -327,6 +327,8 @@ jobs:
       #    name: build, pack and publish nuget package
   commit_news_and_version:
     <<: *circle_python
+    environment:
+      <<: *sdk_environment
     steps:
       - checkout
       - run: |
@@ -352,7 +354,7 @@ jobs:
                   . venv/bin/activate
                   auto_version --config=scripts/version.toml --bump=patch --news --release
           name: bump the version for a production release
-      - run: python ./scripts/tag_and_release.py news $(python ../../scripts/dvcs_version.py version)
+      - run: python ./scripts/tag_and_release.py news $(python ./scripts/dvcs_version.py version)
 version: 2
 workflows:
   csharp_sdk_workflow:
