@@ -27,7 +27,10 @@ def setup_git():
     url = subprocess.check_output(['git', 'ls-remote', '--get-url', 'origin'])
     new_url = git_url_ssh_to_https(url.decode())
     subprocess.check_call(['git', 'remote', 'set-url', 'origin', new_url])
-    branch_spec = 'origin/%s' % os.getenv('CIRCLE_BRANCH', 'master')
+    branch = os.getenv('CIRCLE_BRANCH')
+    if branch == '': branch = 'master'
+    branch_spec = 'origin/%s' % branch
+    print(branch_spec)
     subprocess.check_call(['git', 'branch', '--set-upstream-to', branch_spec])
 
 def tag(version):
@@ -58,11 +61,12 @@ def slack(version):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) >= 1:
-        if sys.argv[1] == 'tag':
-            setup_git()
-            tag(sys.argv[2])
-        if sys.argv[1] == 'news':
-            setup_git()
-            news()
-            slack(sys.argv[2])
+    setup_git()
+    # if len(sys.argv) >= 1:
+    #     if sys.argv[1] == 'tag':
+    #         setup_git()
+    #         tag(sys.argv[2])
+    #     if sys.argv[1] == 'news':
+    #         setup_git()
+    #         news()
+    #         slack(sys.argv[2])
