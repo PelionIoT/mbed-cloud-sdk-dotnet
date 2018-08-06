@@ -197,7 +197,6 @@ Task("Create-NuGet-Package")
             Configuration = configuration,
             NoBuild = true,
             NoRestore = true,
-            IncludeSymbols = true,
         });
     });
 
