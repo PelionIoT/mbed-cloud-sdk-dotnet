@@ -1,0 +1,1319 @@
+entities:
+- _KeY: User
+  _kEY: User
+  _key: user
+  fields:
+  - _KeY: Id
+    _kEY: Id
+    _key: id
+    api_fieldname: user-id
+    description: The UUID of the user.
+    example: 01619571e2e89242ac12000600000000
+    required: true
+    type: string
+  - _KeY: CreatedAt
+    _kEY: createdAt
+    _key: created_at
+    api_fieldname: created_at
+    description: Creation UTC time RFC3339.
+    example: '2018-02-13T09:35:20Z'
+    format: date-time
+    type: string
+  - _KeY: UpdatedAt
+    _kEY: updatedAt
+    _key: updated_at
+    api_fieldname: updated_at
+    description: Last update UTC time RFC3339.
+    example: '2018-02-14T15:24:14Z'
+    format: date-time
+    type: string
+  - _KeY: Username
+    _kEY: Username
+    _key: username
+    api_fieldname: username
+    description: A username containing alphanumerical letters and -,._@+= characters.
+    example: admin
+    type: string
+  - _KeY: Password
+    _kEY: Password
+    _key: password
+    api_fieldname: password
+    description: The password when creating a new user. It will be generated when
+      not present in the request.
+    example: PZf9eEUH43DAPE9ULINFeuj
+    type: string
+  - _KeY: FullName
+    _kEY: fullName
+    _key: full_name
+    api_fieldname: full_name
+    description: The full name of the user.
+    example: User Doe
+    type: string
+  - _KeY: Address
+    _kEY: Address
+    _key: address
+    api_fieldname: address
+    description: Address.
+    example: 110 Fulbourn Rd, Cambridge, United Kingdom
+    type: string
+  - _KeY: PhoneNumber
+    _kEY: phoneNumber
+    _key: phone_number
+    api_fieldname: phone_number
+    description: Phone number.
+    example: +44 (1223) 400 400
+    type: string
+  - _KeY: Groups
+    _kEY: Groups
+    _key: groups
+    api_fieldname: groups
+    description: A list of IDs of the groups this user belongs to.
+    items:
+      type: string
+    type: array
+  - _KeY: IsGtcAccepted
+    _kEY: isGtcAccepted
+    _key: is_gtc_accepted
+    api_fieldname: is_gtc_accepted
+    description: A flag indicating that the General Terms and Conditions has been
+      accepted.
+    example: true
+    type: boolean
+  - _KeY: IsMarketingAccepted
+    _kEY: isMarketingAccepted
+    _key: is_marketing_accepted
+    api_fieldname: is_marketing_accepted
+    description: A flag indicating that receiving marketing information has been accepted.
+    example: true
+    type: boolean
+  - _KeY: EmailVerified
+    _kEY: emailVerified
+    _key: email_verified
+    api_fieldname: email_verified
+    description: A flag indicating whether the user's email address has been verified
+      or not.
+    example: true
+    type: boolean
+  - _KeY: CreationTime
+    _kEY: creationTime
+    _key: creation_time
+    api_fieldname: creation_time
+    description: A timestamp of the user creation in the storage, in milliseconds.
+    example: 1518630727683
+    format: int64
+    type: integer
+  - _KeY: LastLoginTime
+    _kEY: lastLoginTime
+    _key: last_login_time
+    api_fieldname: last_login_time
+    description: A timestamp of the latest login of the user, in milliseconds.
+    example: 1518630727688
+    format: int64
+    type: integer
+  - _KeY: PasswordChangedTime
+    _kEY: passwordChangedTime
+    _key: password_changed_time
+    api_fieldname: password_changed_time
+    description: A timestamp of the latest change of the user password, in milliseconds.
+    example: 1518630727688
+    format: int64
+    type: integer
+  - _KeY: AccountId
+    _kEY: accountId
+    _key: account_id
+    api_fieldname: account_id
+    description: The UUID of the account.
+    example: 01619571e2e90242ac12000600000000
+    type: string
+  - _KeY: LoginHistory
+    _kEY: loginHistory
+    _key: login_history
+    api_fieldname: login_history
+    description: Timestamps, succeedings, IP addresses and user agent information
+      of the last five logins of the user, with timestamps in RFC3339 format.
+    items:
+      $ref: '#/definitions/LoginHistory'
+    type: array
+  modes:
+  - description: "An endpoint for retrieving the details of a user. \n\n**Example\
+      \ usage:**\n`curl https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -H\
+      \ 'Authorization: Bearer API_KEY'`"
+    field_renames:
+    - _key: two_factor_auth_enabled
+      api_fieldname: is_totp_enabled
+    fields:
+    - &id001
+      _KeY: Id
+      _kEY: Id
+      _key: id
+      api_fieldname: user-id
+      description: The UUID of the user.
+      example: 01619571e2e89242ac12000600000000
+      in:
+      - path
+      required: true
+      type: string
+    fields_internal:
+    - *id001
+    fields_path:
+    - *id001
+    fields_path_internal:
+    - *id001
+    fields_required:
+    - *id001
+    method: get
+    mode: read
+    operation_id: getUser
+    path: /v3/users/{user-id}
+    summary: Details of a user.
+  - description: "An endpoint for updating user details. \n\n**Example usage:**\n\
+      `curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -d '{\"\
+      username\": \"myusername\"}' -H 'content-type: application/json' -H 'Authorization:\
+      \ Bearer API_KEY'`"
+    field_renames:
+    - _key: two_factor_auth_enabled
+      api_fieldname: is_totp_enabled
+    fields:
+    - &id002
+      _KeY: Id
+      _kEY: Id
+      _key: id
+      api_fieldname: user-id
+      description: The UUID of the user.
+      example: 01619571e2e89242ac12000600000000
+      in:
+      - path
+      - body
+      required: true
+      type: string
+    - &id003
+      _KeY: CreatedAt
+      _kEY: createdAt
+      _key: created_at
+      api_fieldname: created_at
+      description: Creation UTC time RFC3339.
+      example: '2018-02-13T09:35:20Z'
+      format: date-time
+      in:
+      - body
+      required: false
+      type: string
+    - &id004
+      _KeY: UpdatedAt
+      _kEY: updatedAt
+      _key: updated_at
+      api_fieldname: updated_at
+      description: Last update UTC time RFC3339.
+      example: '2018-02-14T15:24:14Z'
+      format: date-time
+      in:
+      - body
+      required: false
+      type: string
+    - &id005
+      _KeY: Username
+      _kEY: Username
+      _key: username
+      api_fieldname: username
+      description: A username containing alphanumerical letters and -,._@+= characters.
+      example: admin
+      in:
+      - body
+      required: false
+      type: string
+    - &id006
+      _KeY: Password
+      _kEY: Password
+      _key: password
+      api_fieldname: password
+      description: The password when creating a new user. It will be generated when
+        not present in the request.
+      example: PZf9eEUH43DAPE9ULINFeuj
+      in:
+      - body
+      required: false
+      type: string
+    - &id007
+      _KeY: FullName
+      _kEY: fullName
+      _key: full_name
+      api_fieldname: full_name
+      description: The full name of the user.
+      example: User Doe
+      in:
+      - body
+      required: false
+      type: string
+    - &id008
+      _KeY: Address
+      _kEY: Address
+      _key: address
+      api_fieldname: address
+      description: Address.
+      example: 110 Fulbourn Rd, Cambridge, United Kingdom
+      in:
+      - body
+      required: false
+      type: string
+    - &id009
+      _KeY: PhoneNumber
+      _kEY: phoneNumber
+      _key: phone_number
+      api_fieldname: phone_number
+      description: Phone number.
+      example: +44 (1223) 400 400
+      in:
+      - body
+      required: false
+      type: string
+    - &id010
+      _KeY: Groups
+      _kEY: Groups
+      _key: groups
+      api_fieldname: groups
+      description: A list of IDs of the groups this user belongs to.
+      in:
+      - body
+      items:
+        type: string
+      required: false
+      type: array
+    - &id011
+      _KeY: IsGtcAccepted
+      _kEY: isGtcAccepted
+      _key: is_gtc_accepted
+      api_fieldname: is_gtc_accepted
+      description: A flag indicating that the General Terms and Conditions has been
+        accepted.
+      example: true
+      in:
+      - body
+      required: false
+      type: boolean
+    - &id012
+      _KeY: IsMarketingAccepted
+      _kEY: isMarketingAccepted
+      _key: is_marketing_accepted
+      api_fieldname: is_marketing_accepted
+      description: A flag indicating that receiving marketing information has been
+        accepted.
+      example: true
+      in:
+      - body
+      required: false
+      type: boolean
+    - &id013
+      _KeY: EmailVerified
+      _kEY: emailVerified
+      _key: email_verified
+      api_fieldname: email_verified
+      description: A flag indicating whether the user's email address has been verified
+        or not.
+      example: true
+      in:
+      - body
+      required: false
+      type: boolean
+    - &id014
+      _KeY: CreationTime
+      _kEY: creationTime
+      _key: creation_time
+      api_fieldname: creation_time
+      description: A timestamp of the user creation in the storage, in milliseconds.
+      example: 1518630727683
+      format: int64
+      in:
+      - body
+      required: false
+      type: integer
+    - &id015
+      _KeY: LastLoginTime
+      _kEY: lastLoginTime
+      _key: last_login_time
+      api_fieldname: last_login_time
+      description: A timestamp of the latest login of the user, in milliseconds.
+      example: 1518630727688
+      format: int64
+      in:
+      - body
+      required: false
+      type: integer
+    - &id016
+      _KeY: PasswordChangedTime
+      _kEY: passwordChangedTime
+      _key: password_changed_time
+      api_fieldname: password_changed_time
+      description: A timestamp of the latest change of the user password, in milliseconds.
+      example: 1518630727688
+      format: int64
+      in:
+      - body
+      required: false
+      type: integer
+    - &id017
+      _KeY: AccountId
+      _kEY: accountId
+      _key: account_id
+      api_fieldname: account_id
+      description: The UUID of the account.
+      example: 01619571e2e90242ac12000600000000
+      in:
+      - body
+      required: false
+      type: string
+    - &id018
+      _KeY: LoginHistory
+      _kEY: loginHistory
+      _key: login_history
+      api_fieldname: login_history
+      description: Timestamps, succeedings, IP addresses and user agent information
+        of the last five logins of the user, with timestamps in RFC3339 format.
+      in:
+      - body
+      items:
+        $ref: '#/definitions/LoginHistory'
+      required: false
+      type: array
+    fields_body:
+    - *id002
+    - *id003
+    - *id004
+    - *id005
+    - *id006
+    - *id007
+    - *id008
+    - *id009
+    - *id010
+    - *id011
+    - *id012
+    - *id013
+    - *id014
+    - *id015
+    - *id016
+    - *id017
+    - *id018
+    fields_body_internal:
+    - *id002
+    - *id003
+    - *id004
+    - *id005
+    - *id006
+    - *id007
+    - *id008
+    - *id009
+    - *id010
+    - *id011
+    - *id012
+    - *id013
+    - *id014
+    - *id015
+    - *id016
+    - *id017
+    - *id018
+    fields_internal:
+    - *id002
+    - *id003
+    - *id004
+    - *id005
+    - *id006
+    - *id007
+    - *id008
+    - *id009
+    - *id010
+    - *id011
+    - *id012
+    - *id013
+    - *id014
+    - *id015
+    - *id016
+    - *id017
+    - *id018
+    fields_optional:
+    - *id003
+    - *id004
+    - *id005
+    - *id006
+    - *id007
+    - *id008
+    - *id009
+    - *id010
+    - *id011
+    - *id012
+    - *id013
+    - *id014
+    - *id015
+    - *id016
+    - *id017
+    - *id018
+    fields_path:
+    - *id002
+    fields_path_internal:
+    - *id002
+    fields_required:
+    - *id002
+    method: put
+    mode: update
+    operation_id: updateUser
+    path: /v3/users/{user-id}
+    summary: Update user details.
+  - description: "An endpoint for deleting a user. \n\n**Example usage:**\n`curl -X\
+      \ DELETE https://api.us-east-1.mbedcloud.com/v3/users/{user-id} -H 'Authorization:\
+      \ Bearer API_KEY'`"
+    field_renames:
+    - _key: two_factor_auth_enabled
+      api_fieldname: is_totp_enabled
+    fields:
+    - &id019
+      _KeY: Id
+      _kEY: Id
+      _key: id
+      api_fieldname: user-id
+      description: The UUID of the user.
+      example: 01619571e2e89242ac12000600000000
+      in:
+      - path
+      required: true
+      type: string
+    fields_internal:
+    - *id019
+    fields_path:
+    - *id019
+    fields_path_internal:
+    - *id019
+    fields_required:
+    - *id019
+    method: delete
+    mode: delete
+    operation_id: deleteUser
+    path: /v3/users/{user-id}
+    summary: Delete a user.
+  - description: "An endpoint for retrieving the details of all users. \n\n**Example\
+      \ usage:**\n`curl https://api.us-east-1.mbedcloud.com/v3/users -H 'Authorization:\
+      \ Bearer API_KEY'`"
+    field_renames:
+    - _key: two_factor_auth_enabled
+      api_fieldname: is_totp_enabled
+    fields:
+    - &id025
+      _KeY: Limit
+      _kEY: Limit
+      _key: limit
+      api_fieldname: limit
+      description: 'The number of results to return, (range: 2-1000), or equals to
+        `total_count`'
+      example: 50
+      format: int32
+      in:
+      - query
+      required: false
+      type: integer
+    - &id026
+      _KeY: After
+      _kEY: After
+      _key: after
+      api_fieldname: after
+      description: The entity ID to fetch after the given one.
+      example: 01619571f3c00242ac12000600000000
+      in:
+      - query
+      required: false
+      type: string
+    - &id027
+      _KeY: Order
+      _kEY: Order
+      _key: order
+      api_fieldname: order
+      description: 'The order of the records to return based on creation time. Available
+        values: ASC, DESC; by default ASC.'
+      enum:
+      - ASC
+      - DESC
+      in:
+      - query
+      required: false
+      type: string
+    - &id020
+      _key: include
+      api_fieldname: include
+      description: 'Comma separated additional data to return. Currently supported:
+        total_count'
+      external_param: true
+      in:
+      - query
+      name: include
+      required: false
+      type: string
+    - &id021
+      _key: email__eq
+      api_fieldname: email__eq
+      description: Filter for email address
+      external_param: true
+      in:
+      - query
+      name: email__eq
+      required: false
+      type: string
+    - &id022
+      _key: status__eq
+      api_fieldname: status__eq
+      description: Filter for status, for example active or reset
+      external_param: true
+      in:
+      - query
+      name: status__eq
+      required: false
+      type: string
+    - &id023
+      _key: status__in
+      api_fieldname: status__in
+      description: An optional filter for getting users with a specified set of statuses.
+      external_param: true
+      in:
+      - query
+      name: status__in
+      required: false
+      type: string
+    - &id024
+      _key: status__nin
+      api_fieldname: status__nin
+      description: An optional filter for excluding users with a specified set of
+        statuses.
+      external_param: true
+      in:
+      - query
+      name: status__nin
+      required: false
+      type: string
+    fields_external:
+    - *id020
+    - *id021
+    - *id022
+    - *id023
+    - *id024
+    fields_internal:
+    - *id025
+    - *id026
+    - *id027
+    fields_optional:
+    - *id025
+    - *id026
+    - *id027
+    - *id020
+    - *id021
+    - *id022
+    - *id023
+    - *id024
+    fields_query:
+    - *id025
+    - *id026
+    - *id027
+    - *id020
+    - *id021
+    - *id022
+    - *id023
+    - *id024
+    fields_query_external:
+    - *id020
+    - *id021
+    - *id022
+    - *id023
+    - *id024
+    fields_query_internal:
+    - *id025
+    - *id026
+    - *id027
+    method: get
+    mode: list
+    operation_id: getAllUsers
+    path: /v3/users
+    summary: Get the details of all users.
+- _KeY: ApiKey
+  _kEY: apiKey
+  _key: api_key
+  fields:
+  - _KeY: Id
+    _kEY: Id
+    _key: id
+    api_fieldname: apiKey
+    description: The UUID of the API key.
+    example: 01619571f7020242ac12000600000000
+    type: string
+  - _KeY: CreatedAt
+    _kEY: createdAt
+    _key: created_at
+    api_fieldname: created_at
+    description: Creation UTC time RFC3339.
+    example: '2018-02-13T09:35:20Z'
+    format: date-time
+    type: string
+  - _KeY: UpdatedAt
+    _kEY: updatedAt
+    _key: updated_at
+    api_fieldname: updated_at
+    description: Last update UTC time RFC3339.
+    example: '2018-02-14T15:24:14Z'
+    format: date-time
+    type: string
+  - _KeY: Key
+    _kEY: Key
+    _key: key
+    api_fieldname: key
+    description: The API key.
+    example: ak_1MDE2MTk1NzFmNmU4MDI0MmFjMTIwMDA2MDAwMDAwMDA01619571f7020242ac12000600000000
+    type: string
+  - _KeY: Name
+    _kEY: Name
+    _key: name
+    api_fieldname: name
+    description: The display name for the API key.
+    example: API key gorgon
+    type: string
+  - _KeY: Groups
+    _kEY: Groups
+    _key: groups
+    api_fieldname: groups
+    description: A list of group IDs this API key belongs to.
+    items:
+      type: string
+    type: array
+  - _KeY: Owner
+    _kEY: Owner
+    _key: owner
+    api_fieldname: owner
+    description: The owner of this API key, who is the creator by default.
+    example: 01619571e2e89242ac12000600000000
+    type: string
+  - _KeY: Status
+    _kEY: Status
+    _key: status
+    api_fieldname: status
+    description: The status of the API key.
+    enum: &id028
+    - ACTIVE
+    - INACTIVE
+    example: ACTIVE
+    type: string
+  - _KeY: CreationTime
+    _kEY: creationTime
+    _key: creation_time
+    api_fieldname: creation_time
+    description: The timestamp of the API key creation in the storage, in milliseconds.
+    example: 1518630727683
+    format: int64
+    type: integer
+  - _KeY: LastLoginTime
+    _kEY: lastLoginTime
+    _key: last_login_time
+    api_fieldname: last_login_time
+    description: The timestamp of the latest API key usage, in milliseconds.
+    example: 1518630727688
+    format: int64
+    type: integer
+  modes:
+  - description: "An endpoint for creating a new API key. \n\n**Example usage:**\n\
+      `curl -X POST https://api.us-east-1.mbedcloud.com/v3/api-keys -d '{\"name\"\
+      : \"MyKey1\"}' -H 'content-type: application/json' -H 'Authorization: Bearer\
+      \ API_KEY'`"
+    field_renames: []
+    fields:
+    - &id029
+      _KeY: Id
+      _kEY: Id
+      _key: id
+      api_fieldname: apiKey
+      description: The UUID of the API key.
+      example: 01619571f7020242ac12000600000000
+      in:
+      - body
+      required: false
+      type: string
+    - &id030
+      _KeY: CreatedAt
+      _kEY: createdAt
+      _key: created_at
+      api_fieldname: created_at
+      description: Creation UTC time RFC3339.
+      example: '2018-02-13T09:35:20Z'
+      format: date-time
+      in:
+      - body
+      required: false
+      type: string
+    - &id031
+      _KeY: UpdatedAt
+      _kEY: updatedAt
+      _key: updated_at
+      api_fieldname: updated_at
+      description: Last update UTC time RFC3339.
+      example: '2018-02-14T15:24:14Z'
+      format: date-time
+      in:
+      - body
+      required: false
+      type: string
+    - &id032
+      _KeY: Key
+      _kEY: Key
+      _key: key
+      api_fieldname: key
+      description: The API key.
+      example: ak_1MDE2MTk1NzFmNmU4MDI0MmFjMTIwMDA2MDAwMDAwMDA01619571f7020242ac12000600000000
+      in:
+      - body
+      required: false
+      type: string
+    - &id033
+      _KeY: Name
+      _kEY: Name
+      _key: name
+      api_fieldname: name
+      description: The display name for the API key.
+      example: API key gorgon
+      in:
+      - body
+      required: false
+      type: string
+    - &id034
+      _KeY: Groups
+      _kEY: Groups
+      _key: groups
+      api_fieldname: groups
+      description: A list of group IDs this API key belongs to.
+      in:
+      - body
+      items:
+        type: string
+      required: false
+      type: array
+    - &id035
+      _KeY: Owner
+      _kEY: Owner
+      _key: owner
+      api_fieldname: owner
+      description: The owner of this API key, who is the creator by default.
+      example: 01619571e2e89242ac12000600000000
+      in:
+      - body
+      required: false
+      type: string
+    - &id036
+      _KeY: Status
+      _kEY: Status
+      _key: status
+      api_fieldname: status
+      description: The status of the API key.
+      enum: *id028
+      example: ACTIVE
+      in:
+      - body
+      required: false
+      type: string
+    - &id037
+      _KeY: CreationTime
+      _kEY: creationTime
+      _key: creation_time
+      api_fieldname: creation_time
+      description: The timestamp of the API key creation in the storage, in milliseconds.
+      example: 1518630727683
+      format: int64
+      in:
+      - body
+      required: false
+      type: integer
+    - &id038
+      _KeY: LastLoginTime
+      _kEY: lastLoginTime
+      _key: last_login_time
+      api_fieldname: last_login_time
+      description: The timestamp of the latest API key usage, in milliseconds.
+      example: 1518630727688
+      format: int64
+      in:
+      - body
+      required: false
+      type: integer
+    fields_body:
+    - *id029
+    - *id030
+    - *id031
+    - *id032
+    - *id033
+    - *id034
+    - *id035
+    - *id036
+    - *id037
+    - *id038
+    fields_body_internal:
+    - *id029
+    - *id030
+    - *id031
+    - *id032
+    - *id033
+    - *id034
+    - *id035
+    - *id036
+    - *id037
+    - *id038
+    fields_internal:
+    - *id029
+    - *id030
+    - *id031
+    - *id032
+    - *id033
+    - *id034
+    - *id035
+    - *id036
+    - *id037
+    - *id038
+    fields_optional:
+    - *id029
+    - *id030
+    - *id031
+    - *id032
+    - *id033
+    - *id034
+    - *id035
+    - *id036
+    - *id037
+    - *id038
+    method: post
+    mode: create
+    operation_id: createApiKey
+    path: /v3/api-keys
+    summary: Create a new API key.
+  - description: "An endpoint for retrieving API key details. \n\n**Example usage:**\n\
+      `curl https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id} -H 'Authorization:\
+      \ Bearer API_KEY'`"
+    field_renames: []
+    fields:
+    - &id039
+      _KeY: Id
+      _kEY: Id
+      _key: id
+      api_fieldname: apiKey
+      description: The UUID of the API key.
+      example: 01619571f7020242ac12000600000000
+      in:
+      - path
+      required: true
+      type: string
+    fields_internal:
+    - *id039
+    fields_path:
+    - *id039
+    fields_path_internal:
+    - *id039
+    fields_required:
+    - *id039
+    method: get
+    mode: read
+    operation_id: getApiKey
+    path: /v3/api-keys/{apiKey}
+    summary: Get API key details.
+  - description: "An endpoint for updating API key details. \n\n**Example usage:**\n\
+      `curl -X PUT https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id} -d\
+      \ '{\"name\": \"TestApiKey25\"}' -H 'content-type: application/json' -H 'Authorization:\
+      \ Bearer API_KEY'`"
+    field_renames: []
+    fields:
+    - &id040
+      _KeY: Id
+      _kEY: Id
+      _key: id
+      api_fieldname: apiKey
+      description: The UUID of the API key.
+      example: 01619571f7020242ac12000600000000
+      in:
+      - path
+      - body
+      required: true
+      type: string
+    - &id041
+      _KeY: Key
+      _kEY: Key
+      _key: key
+      api_fieldname: key
+      description: The API key.
+      example: ak_1MDE2MTk1NzFmNmU4MDI0MmFjMTIwMDA2MDAwMDAwMDA01619571f7020242ac12000600000000
+      in:
+      - body
+      required: false
+      type: string
+    - &id042
+      _KeY: Name
+      _kEY: Name
+      _key: name
+      api_fieldname: name
+      description: The display name for the API key.
+      example: API key gorgon
+      in:
+      - body
+      required: false
+      type: string
+    - &id043
+      _KeY: Groups
+      _kEY: Groups
+      _key: groups
+      api_fieldname: groups
+      description: A list of group IDs this API key belongs to.
+      in:
+      - body
+      items:
+        type: string
+      required: false
+      type: array
+    - &id044
+      _KeY: Owner
+      _kEY: Owner
+      _key: owner
+      api_fieldname: owner
+      description: The owner of this API key, who is the creator by default.
+      example: 01619571e2e89242ac12000600000000
+      in:
+      - body
+      required: false
+      type: string
+    - &id045
+      _KeY: Status
+      _kEY: Status
+      _key: status
+      api_fieldname: status
+      description: The status of the API key.
+      enum: *id028
+      example: ACTIVE
+      in:
+      - body
+      required: false
+      type: string
+    fields_body:
+    - *id040
+    - *id041
+    - *id042
+    - *id043
+    - *id044
+    - *id045
+    fields_body_internal:
+    - *id040
+    - *id041
+    - *id042
+    - *id043
+    - *id044
+    - *id045
+    fields_internal:
+    - *id040
+    - *id041
+    - *id042
+    - *id043
+    - *id044
+    - *id045
+    fields_optional:
+    - *id041
+    - *id042
+    - *id043
+    - *id044
+    - *id045
+    fields_path:
+    - *id040
+    fields_path_internal:
+    - *id040
+    fields_required:
+    - *id040
+    method: put
+    mode: update
+    operation_id: updateApiKey
+    path: /v3/api-keys/{apiKey}
+    summary: Update API key details.
+  - description: "An endpoint for deleting the API key. \n\n**Example usage:**\n`curl\
+      \ -X DELETE https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey-id} -H 'Authorization:\
+      \ Bearer API_KEY'`"
+    field_renames: []
+    fields:
+    - &id046
+      _key: id
+      api_fieldname: apiKey
+      description: The ID of the API key to be deleted.
+      external_param: true
+      in:
+      - path
+      name: apiKey
+      required: true
+      type: string
+    fields_external:
+    - *id046
+    fields_path:
+    - *id046
+    fields_path_external:
+    - *id046
+    fields_required:
+    - *id046
+    method: delete
+    mode: delete
+    operation_id: deleteApiKey
+    path: /v3/api-keys/{apiKey}
+    summary: Delete API key.
+  - description: "An endpoint for retrieving API keys in an array, optionally filtered\
+      \ by the owner. \n\n**Example usage:**\n`curl https://api.us-east-1.mbedcloud.com/v3/api-keys\
+      \ -H 'Authorization: Bearer API_KEY'`"
+    field_renames: []
+    fields:
+    - &id050
+      _KeY: Limit
+      _kEY: Limit
+      _key: limit
+      api_fieldname: limit
+      description: 'The number of results to return, (range: 2-1000), or equals to
+        `total_count`'
+      example: 50
+      format: int32
+      in:
+      - query
+      required: false
+      type: integer
+    - &id051
+      _KeY: After
+      _kEY: After
+      _key: after
+      api_fieldname: after
+      description: The entity ID to fetch after the given one.
+      example: 01619571f3c00242ac12000600000000
+      in:
+      - query
+      required: false
+      type: string
+    - &id052
+      _KeY: Order
+      _kEY: Order
+      _key: order
+      api_fieldname: order
+      description: 'The order of the records to return based on creation time. Available
+        values: ASC, DESC; by default ASC.'
+      enum:
+      - ASC
+      - DESC
+      in:
+      - query
+      required: false
+      type: string
+    - &id047
+      _key: include
+      api_fieldname: include
+      description: 'Comma separated additional data to return. Currently supported:
+        total_count'
+      external_param: true
+      in:
+      - query
+      name: include
+      required: false
+      type: string
+    - &id048
+      _key: key__eq
+      api_fieldname: key__eq
+      description: API key filter.
+      external_param: true
+      in:
+      - query
+      name: key__eq
+      required: false
+      type: string
+    - &id049
+      _key: owner__eq
+      api_fieldname: owner__eq
+      description: Owner name filter.
+      external_param: true
+      in:
+      - query
+      name: owner__eq
+      required: false
+      type: string
+    fields_external:
+    - *id047
+    - *id048
+    - *id049
+    fields_internal:
+    - *id050
+    - *id051
+    - *id052
+    fields_optional:
+    - *id050
+    - *id051
+    - *id052
+    - *id047
+    - *id048
+    - *id049
+    fields_query:
+    - *id050
+    - *id051
+    - *id052
+    - *id047
+    - *id048
+    - *id049
+    fields_query_external:
+    - *id047
+    - *id048
+    - *id049
+    fields_query_internal:
+    - *id050
+    - *id051
+    - *id052
+    method: get
+    mode: list
+    operation_id: getAllApiKeys
+    path: /v3/api-keys
+    summary: Get all API keys
+- _KeY: PSK
+  _kEY: PSK
+  _key: PSK
+  fields: []
+  modes:
+  - description: "Upload a pre-shared key (PSK) for an endpoint to allow it to bootstrap.\
+      \ The existing key will not be overwritten but needs\nto be deleted first in\
+      \ case of re-setting PSK for an endpoint.\n\n**Note**: The PSK APIs are available\
+      \ only to accounts that have this feature enabled.\n\n**Example usage:**\n\n\
+      ```\ncurl -H \"authorization: Bearer ${API_TOKEN}\" -H \"content-type: application/json\"\
+      \ -X POST https://api.us-east-1.mbedcloud.com/v2/device-shared-keys \\\n   \
+      \  -d '{\"endpoint_name\": \"my-endpoint-0001\", \"secret_hex\": \"4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a4a\"\
+      \ }'\n```\n"
+    field_renames: []
+    fields: []
+    method: post
+    mode: create
+    operation_id: uploadPreSharedKey
+    path: /v2/device-shared-keys
+    summary: Upload a pre-shared key to Mbed Cloud.
+  - description: 'Check if a pre-shared key for an endpoint exists or not. The response
+      does not contain the secret itself.
+
+
+      **Example usage:**
+
+
+      ```
+
+      curl -H "authorization: Bearer ${API_TOKEN}" https://api.us-east-1.mbedcloud.com/v2/device-shared-keys/my-endpoint-0001
+
+      ```
+
+      '
+    field_renames: []
+    fields:
+    - &id053
+      _key: endpoint_name
+      api_fieldname: endpoint_name
+      description: The unique endpoint identifier that this pre-shared key applies
+        to. [Reserved characters](https://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters)
+        must be percent-encoded.
+      external_param: true
+      in:
+      - path
+      name: endpoint_name
+      required: true
+      type: string
+    fields_external:
+    - *id053
+    fields_path:
+    - *id053
+    fields_path_external:
+    - *id053
+    fields_required:
+    - *id053
+    method: get
+    mode: read
+    operation_id: getPreSharedKey
+    path: /v2/device-shared-keys/{endpoint_name}
+    summary: Get a pre-shared key.
+  - description: 'Remove a pre-shared key.
+
+
+      **Example usage:**
+
+
+      ```
+
+      curl -H "authorization: Bearer ${API_TOKEN}" -X DELETE https://api.us-east-1.mbedcloud.com/v2/device-shared-keys/my-endpoint-0001
+
+      ```
+
+      '
+    field_renames: []
+    fields:
+    - &id054
+      _key: endpoint_name
+      api_fieldname: endpoint_name
+      description: The unique endpoint identifier that this pre-shared key applies
+        to. [Reserved characters](https://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters)
+        must be percent-encoded.
+      external_param: true
+      in:
+      - path
+      name: endpoint_name
+      required: true
+      type: string
+    fields_external:
+    - *id054
+    fields_path:
+    - *id054
+    fields_path_external:
+    - *id054
+    fields_required:
+    - *id054
+    method: delete
+    mode: delete
+    operation_id: deletePreSharedKey
+    path: /v2/device-shared-keys/{endpoint_name}
+    summary: Remove a pre-shared key.
+  - description: 'List pre-shared keys with pagination and default page size of 50
+      entries.
+
+
+      **Example usage:**
+
+
+      ```
+
+      curl -H "authorization: Bearer ${API_TOKEN}" https://api.us-east-1.mbedcloud.com/v2/device-shared-keys
+
+      ```
+
+      '
+    field_renames: []
+    fields:
+    - &id055
+      _KeY: Limit
+      _kEY: Limit
+      _key: limit
+      api_fieldname: limit
+      description: The value of limit query parameter from the request, or default
+        if not specified.
+      example: 50
+      in:
+      - query
+      required: false
+      type: integer
+    - &id056
+      _KeY: After
+      _kEY: After
+      _key: after
+      api_fieldname: after
+      description: An offset token for current page.
+      example: 001e001000120010fac8f300487f11e8839a459edde8bd42f07fffffebf07fffffebb1219cc7862b64bbaf775dc545e274810004
+      in:
+      - query
+      required: false
+      type: string
+    fields_internal:
+    - *id055
+    - *id056
+    fields_optional:
+    - *id055
+    - *id056
+    fields_query:
+    - *id055
+    - *id056
+    fields_query_internal:
+    - *id055
+    - *id056
+    method: get
+    mode: list
+    operation_id: listPreSharedKeys
+    path: /v2/device-shared-keys
+    summary: List pre-shared keys.
