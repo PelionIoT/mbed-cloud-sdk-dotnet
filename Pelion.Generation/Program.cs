@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using MbedCloudSDK.AccountManagement.Api;
-using MbedCloudSDK.AccountManagement.Model.User;
 using MbedCloudSDK.Common;
+using MbedCloudSDK.TagPOC.User;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Newtonsoft.Json;
@@ -73,7 +72,7 @@ namespace Pelion.Generation
             //     configuration: iamConfig
             // );
 
-            var iam = new AccountManagementApi(new Config());
+            // var iam = new AccountManagementApi(new Config());
 
             // var user2 = new User
             // {
@@ -88,7 +87,7 @@ namespace Pelion.Generation
 
             //===========================================
 
-            var newUser = await new User
+            var user = await new User
             {
                 Email = "forlan@forlan.com",
                 FullName = "Diego Forlan",
@@ -98,19 +97,22 @@ namespace Pelion.Generation
             }
             .Create();
 
-            Console.WriteLine($"My first phone number is {newUser.PhoneNumber}");
+            Console.WriteLine(user.GetHashCode());
 
-            var user = await User.Get(newUser.Id);
+            Console.WriteLine($"My first phone number is {user.PhoneNumber}");
 
-            Console.WriteLine($"Got my user again and the phone number is {user.PhoneNumber}");
+            //var user = await User.Get(newUser.Id);
+
+            //Console.WriteLine($"Got my user again and the phone number is {user.PhoneNumber}");
 
             user.PhoneNumber = "118118";
+            await user.Update();
 
-            var updatedUser = await user.Update();
+            Console.WriteLine(user.GetHashCode());
 
-            Console.WriteLine($"My phone number is now {updatedUser.PhoneNumber}");
+            Console.WriteLine($"My phone number is now {user.PhoneNumber}");
 
-            await updatedUser.Delete();
+            await user.Delete();
 
             return 0;
         }
