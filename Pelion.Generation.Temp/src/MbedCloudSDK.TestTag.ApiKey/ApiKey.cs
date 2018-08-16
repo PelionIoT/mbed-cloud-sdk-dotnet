@@ -1,7 +1,7 @@
 // <copyright file="AccountManagementApi.Account.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
-namespace Pelion.Generated.ApiKey
+namespace MbedCloudSDK.TestTag.ApiKey
 {
     using MbedCloudSDK.Common;
     using System;
@@ -11,7 +11,7 @@ namespace Pelion.Generated.ApiKey
     /// <summary>
     /// ApiKey
     /// </summary>
-    public abstract class ApiKey : BaseModel
+    public partial class ApiKey : BaseModel
     {
         /// <summary>
         /// Creation UTC time RFC3339.

@@ -43,9 +43,8 @@ namespace Pelion.Generation
 
             foreach (var entity in entities)
             {
-                var namespaceContainer = new NamespaceContainer(entity);
+                var namespaceContainer = new NamespaceContainer("TestTag", entity);
                 namespaceContainer.GenerateModelClass();
-                namespaceContainer.GenerateAdapterClass();
                 GeneratedNamespaces.Add(namespaceContainer);
             }
 
@@ -58,10 +57,8 @@ namespace Pelion.Generation
 
             var compile = new Compile(targetProjectFile, targetProjectName);
             var result = compile.CompileFiles(root.SyntaxTree);
-            if (result == 6)
-            {
-                WriteClassesToFiles();
-            }
+
+            WriteClassesToFiles();
 
             return result;
         }

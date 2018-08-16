@@ -32,7 +32,7 @@ namespace Pelion.Generation.src.common
 
         public ClassContainer GenerateModelClass()
         {
-            var modelClass = ClassGenerators.CreateClass(ClassName, Modifiers.PublicMod, Modifiers.AbstractMod);
+            var modelClass = ClassGenerators.CreateClass(ClassName, Modifiers.PublicMod, Modifiers.PartialMod);
 
             modelClass = modelClass.AddSummary(ClassName) as ClassDeclarationSyntax;
 

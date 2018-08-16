@@ -19,7 +19,6 @@ namespace Pelion.Generation
     {
         static async Task<int> Main(string[] args)
         {
-            /*
             if (args.Length < 3)
             {
                 Console.WriteLine("Too few arguments");
@@ -35,86 +34,85 @@ namespace Pelion.Generation
             var generation = new Generation(pathToYaml, targetProjectName, rootDirectory);
             generation.RunGeneration();
             return 0;
-            */
 
-            // var config = new Config();
+            // // var config = new Config();
 
-            // var userId = "0160220bab144212f02c240e00000000";
+            // // var userId = "0160220bab144212f02c240e00000000";
 
-            // var testIam = new AccountManagementApi(config);
+            // // var testIam = new AccountManagementApi(config);
 
-            // var iamConfig = new iam.Client.Configuration
-            // {
-            //     BasePath = config.Host,
-            //     DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ",
-            // };
-            // iamConfig.AddApiKey("Authorization", config.ApiKey);
-            // iamConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
-            // iamConfig.CreateApiClient();
+            // // var iamConfig = new iam.Client.Configuration
+            // // {
+            // //     BasePath = config.Host,
+            // //     DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ",
+            // // };
+            // // iamConfig.AddApiKey("Authorization", config.ApiKey);
+            // // iamConfig.AddApiKeyPrefix("Authorization", config.AuthorizationPrefix);
+            // // iamConfig.CreateApiClient();
 
-            // var testUser = testIam.GetUser(userId);
+            // // var testUser = testIam.GetUser(userId);
 
-            // Console.WriteLine(JsonConvert.SerializeObject(testUser, settings));
+            // // Console.WriteLine(JsonConvert.SerializeObject(testUser, settings));
 
-            // var user = new User()
-            // {
-            //     Id = userId,
-            //     TwoFactorAuthentication = true,
-            // };
+            // // var user = new User()
+            // // {
+            // //     Id = userId,
+            // //     TwoFactorAuthentication = true,
+            // // };
 
-            // // var x = JsonConvert.SerializeObject(user);
-            // // Console.WriteLine(x);
+            // // // var x = JsonConvert.SerializeObject(user);
+            // // // Console.WriteLine(x);
 
-            // var res = ApiMethodCall.CallApi<User>(
-            //     path: "/v3/users/{user-id}",
-            //     pathParams: new Dictionary<string, object>() { { "user-id", user.Id } },
-            //     accepts: new string[] { "application/json" },
-            //     configuration: iamConfig
-            // );
+            // // var res = ApiMethodCall.CallApi<User>(
+            // //     path: "/v3/users/{user-id}",
+            // //     pathParams: new Dictionary<string, object>() { { "user-id", user.Id } },
+            // //     accepts: new string[] { "application/json" },
+            // //     configuration: iamConfig
+            // // );
 
-            // var iam = new AccountManagementApi(new Config());
+            // // var iam = new AccountManagementApi(new Config());
 
-            // var user2 = new User
+            // // var user2 = new User
+            // // {
+            // //     Email = "forlan@forlan.com",
+            // //     FullName = "Diego Forlan",
+            // //     MarketingAccepted = true,
+            // //     Username = "diego.forlan",
+            // //     PhoneNumber = "0800001066"
+            // // };
+
+            // // var createdUser2 = iam.AddUser(user2);
+
+            // //===========================================
+
+            // var user = await new User
             // {
             //     Email = "forlan@forlan.com",
             //     FullName = "Diego Forlan",
             //     MarketingAccepted = true,
             //     Username = "diego.forlan",
             //     PhoneNumber = "0800001066"
-            // };
+            // }
+            // .Create();
 
-            // var createdUser2 = iam.AddUser(user2);
+            // Console.WriteLine(user.GetHashCode());
 
-            //===========================================
+            // Console.WriteLine($"My first phone number is {user.PhoneNumber}");
 
-            var user = await new User
-            {
-                Email = "forlan@forlan.com",
-                FullName = "Diego Forlan",
-                MarketingAccepted = true,
-                Username = "diego.forlan",
-                PhoneNumber = "0800001066"
-            }
-            .Create();
+            // //var user = await User.Get(newUser.Id);
 
-            Console.WriteLine(user.GetHashCode());
+            // //Console.WriteLine($"Got my user again and the phone number is {user.PhoneNumber}");
 
-            Console.WriteLine($"My first phone number is {user.PhoneNumber}");
+            // user.PhoneNumber = "118118";
+            // await user.Update();
 
-            //var user = await User.Get(newUser.Id);
+            // Console.WriteLine(user.GetHashCode());
 
-            //Console.WriteLine($"Got my user again and the phone number is {user.PhoneNumber}");
+            // Console.WriteLine($"My phone number is now {user.PhoneNumber}");
 
-            user.PhoneNumber = "118118";
-            await user.Update();
+            // await user.Delete();
 
-            Console.WriteLine(user.GetHashCode());
-
-            Console.WriteLine($"My phone number is now {user.PhoneNumber}");
-
-            await user.Delete();
-
-            return 0;
+            // return 0;
         }
     }
 }

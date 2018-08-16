@@ -13,14 +13,16 @@ namespace Pelion.Generation.src.common
         private readonly string entityName;
         private readonly string namespaceName;
         private List<ClassContainer> Classes;
+        private readonly string tagName;
         private JToken EntityJson;
         private NamespaceDeclarationSyntax parentNamespace;
 
-        public NamespaceContainer(JToken entityJson)
+        public NamespaceContainer(string tagName, JToken entityJson)
         {
+            this.tagName = tagName;
             EntityJson = entityJson;
             entityName = entityJson[JsonKeys.key].Value<string>();
-            namespaceName = $"Pelion.Generated.{entityName}";
+            namespaceName = $"MbedCloudSDK.{tagName}.{entityName}";
             parentNamespace = NamespaceGenerators.CreateNamespace(namespaceName);
             Classes = new List<ClassContainer>();
         }
@@ -28,17 +30,6 @@ namespace Pelion.Generation.src.common
         public void GenerateModelClass()
         {
             Classes.Add(new ClassContainer(entityName, EntityJson).GenerateModelClass());
-        }
-
-        public void GenerateAdapterClass()
-        {
-            var adapterClass = ClassGenerators.CreateClass($"{entityName}Adapter", Modifiers.InternalMod);
-
-            var @class = new ClassContainer($"{entityName}Adapter", adapterClass);
-            @class.AddUsing(Usings.JsonConverter);
-            @class.AddUsing(Usings.DebugDump);
-
-            Classes.Add(@class);
         }
 
         public void GenerateEnum()
