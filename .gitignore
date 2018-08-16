@@ -331,3 +331,4 @@ tools
 NuGet.Config
 Tests/MbedCloudSDK.UnitTests/coverage.opencover.xml
 src/auto-version
+!MbedCloudSDK.TestTag.User
