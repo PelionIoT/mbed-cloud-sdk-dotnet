@@ -8,5 +8,6 @@ namespace Pelion.Generation.src.common
         public static readonly string StringEnumConverter = "Newtonsoft.Json.Converters";
         public static readonly string Lists = "System.Collections.Generic";
         public static readonly string DebugDump = "MbedCloudSDK.Common.Extensions";
+        public static readonly string EnumMemberValue = "System.Runtime.Serialization";
     }
 }

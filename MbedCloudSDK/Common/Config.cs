@@ -71,7 +71,6 @@ namespace MbedCloudSDK.Common
             }
             catch (System.IO.FileNotFoundException)
             {
-                Console.WriteLine("No .env file found.");
             }
             finally
             {

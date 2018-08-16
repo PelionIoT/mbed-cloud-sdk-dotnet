@@ -157,15 +157,15 @@ namespace ConsoleExamples
                 case 11:
                     accountManagementExamples.ListAllGroups();
                     break;
-                case 12:
-                    accountManagementExamples.ListActiveUsers();
-                    break;
-                case 13:
-                    accountManagementExamples.AddUser();
-                    break;
-                case 14:
-                    await accountManagementExamples.AddUserAsync();
-                    break;
+                // case 12:
+                //     accountManagementExamples.ListActiveUsers();
+                //     break;
+                // case 13:
+                //     accountManagementExamples.AddUser();
+                //     break;
+                // case 14:
+                //     await accountManagementExamples.AddUserAsync();
+                //     break;
                 case 15:
                     certificateExamples.CreateCertificate();
                     break;

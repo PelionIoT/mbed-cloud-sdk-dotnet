@@ -10,18 +10,18 @@ namespace Pelion.Generation.src.common
 {
     public class NamespaceContainer
     {
-        private readonly string module;
         private readonly string entityName;
+        private readonly string namespaceName;
         private List<ClassContainer> Classes;
         private JToken EntityJson;
         private NamespaceDeclarationSyntax parentNamespace;
 
-        public NamespaceContainer(JToken entityJson, string module)
+        public NamespaceContainer(JToken entityJson)
         {
             EntityJson = entityJson;
-            this.module = module;
             entityName = entityJson[JsonKeys.key].Value<string>();
-            parentNamespace = NamespaceGenerators.CreateNamespace(entityName);
+            namespaceName = $"Pelion.Generated.{entityName}";
+            parentNamespace = NamespaceGenerators.CreateNamespace(namespaceName);
             Classes = new List<ClassContainer>();
         }
 
@@ -41,18 +41,11 @@ namespace Pelion.Generation.src.common
             Classes.Add(@class);
         }
 
-        public string GetSDKNamespacePath(string className)
+        public void GenerateEnum()
         {
-            return $"MbedCloudSDK.{module}.Model.{className}";
-        }
-
-        public string GetFilePath(string className)
-        {
-            var currentDir = Directory.GetCurrentDirectory();
-            var parent = Directory.GetParent(currentDir);
-            var newDir = Path.Join(parent.FullName, $"Pelion.Generation.Lib/src/{module}/{entityName}/{className}.cs");
-            Directory.CreateDirectory(Directory.GetParent(newDir).FullName);
-            return newDir;
+            var entityEnum = EnumGenerators.CreateEnum($"{entityName}Enum");
+            parentNamespace = parentNamespace.AddEnum(entityEnum);
+            parentNamespace.ToFullString();
         }
 
         public List<NamespaceDeclarationSyntax> GetClasses()
@@ -60,16 +53,7 @@ namespace Pelion.Generation.src.common
             var classes = new List<NamespaceDeclarationSyntax>();
             Classes.ForEach(c =>
             {
-                var localNamespace = parentNamespace;
-                localNamespace = localNamespace.AddClass(c.GeneratedClass);
-                if (c.Usings.Any())
-                {
-                    c.Usings.ForEach(u =>
-                    {
-                        localNamespace = localNamespace.AddUsing(u);
-                    });
-                }
-                localNamespace = localNamespace.AddFileHeader(c.ClassName);
+                var localNamespace = CreateLocalNamespace(c);
 
                 classes.Add(localNamespace);
             });
@@ -77,14 +61,34 @@ namespace Pelion.Generation.src.common
             return classes;
         }
 
-        public void WriteFiles()
+        private NamespaceDeclarationSyntax CreateLocalNamespace(ClassContainer c)
         {
-            // GetClasses().ForEach(c => {
-            //     using (var file = new StreamWriter(GetFilePath(c  .ClassName)))
-            //     {
-            //         file.Write(localNamespace.ToFullString());
-            //     }
-            // });
+            var localNamespace = parentNamespace;
+            localNamespace = localNamespace.AddClass(c.GeneratedClass);
+            if (c.Usings.Any())
+            {
+                c.Usings.ForEach(u =>
+                {
+                    localNamespace = localNamespace.AddUsing(u);
+                });
+            }
+            localNamespace = localNamespace.AddFileHeader(c.ClassName);
+
+            return localNamespace;
+        }
+
+        public void WriteFiles(string rootDirectory)
+        {
+            Classes.ForEach(c =>
+            {
+                var localNamespace = CreateLocalNamespace(c);
+                var dir = $"{rootDirectory}/src/{namespaceName}/";
+                Directory.CreateDirectory(dir);
+                using (var file = new StreamWriter($"{dir}/{c.ClassName}.cs"))
+                {
+                    file.Write(localNamespace.ToFullString());
+                }
+            });
         }
     }
 }

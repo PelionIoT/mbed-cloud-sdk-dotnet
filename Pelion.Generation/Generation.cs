@@ -17,18 +17,20 @@ namespace Pelion.Generation
     public class Generation
     {
         private readonly string filepath;
-        private readonly string targetProjectPath;
         private readonly string targetProjectName;
         private readonly string rootDirectory;
+        private readonly string targetProjectFile;
+        private readonly string targetProjectOutputDirectory;
         private CompilationUnitSyntax root;
         private List<NamespaceContainer> GeneratedNamespaces;
-        public Generation(string filepath, string targetProjectPath, string targetProjectName, string rootDirectory)
+        public Generation(string filepath, string targetProjectName, string rootDirectory)
         {
             this.filepath = filepath;
-            this.targetProjectPath = targetProjectPath;
             this.targetProjectName = targetProjectName;
             this.rootDirectory = rootDirectory;
             GeneratedNamespaces = new List<NamespaceContainer>();
+            targetProjectFile = $"{rootDirectory}/{targetProjectName}/{targetProjectName}.csproj";
+            targetProjectOutputDirectory = $"{rootDirectory}/{targetProjectName}";
         }
 
         public int RunGeneration()
@@ -41,7 +43,7 @@ namespace Pelion.Generation
 
             foreach (var entity in entities)
             {
-                var namespaceContainer = new NamespaceContainer(entity, "AccountManagement");
+                var namespaceContainer = new NamespaceContainer(entity);
                 namespaceContainer.GenerateModelClass();
                 namespaceContainer.GenerateAdapterClass();
                 GeneratedNamespaces.Add(namespaceContainer);
@@ -54,7 +56,7 @@ namespace Pelion.Generation
 
             Console.WriteLine(root.NormalizeWhitespace().ToFullString());
 
-            var compile = new Compile(targetProjectPath, targetProjectName);
+            var compile = new Compile(targetProjectFile, targetProjectName);
             var result = compile.CompileFiles(root.SyntaxTree);
             if (result == 6)
             {
@@ -68,14 +70,7 @@ namespace Pelion.Generation
         {
             GeneratedNamespaces.ForEach(n =>
             {
-                n.GetClasses().ForEach(c =>
-                {
-                    Directory.CreateDirectory($"/Pelion.Generation.Lib/src/{c.Name}/");
-                    using (var file = new StreamWriter(Path.Combine(rootDirectory, $"/Pelion.Generation.Lib/src/{c.Name}/{c.Name}.cs")))
-                    {
-                        file.Write(c.ToFullString());
-                    }
-                });
+                n.WriteFiles(targetProjectOutputDirectory);
             });
         }
 

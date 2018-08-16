@@ -6,6 +6,7 @@ using System.Reflection;
 using Buildalyzer;
 using Buildalyzer.Workspaces;
 using MbedCloudSDK.AccountManagement.Model.ApiKey;
+using MbedCloudSDK.Bootstrap.Model;
 using MbedCloudSDK.Common;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -86,7 +87,7 @@ namespace Pelion.Generation.src.compile
         private static IEnumerable<MetadataReference> DefaultReferences = new[]
         {
             MetadataReference.CreateFromFile(typeof(object).GetTypeInfo().Assembly.Location),
-            MetadataReference.CreateFromFile(typeof(ApiKey).GetTypeInfo().Assembly.Location),
+            MetadataReference.CreateFromFile(typeof(PreSharedKey).GetTypeInfo().Assembly.Location),
             MetadataReference.CreateFromFile(typeof(Newtonsoft.Json.JsonException).GetTypeInfo().Assembly.Location),
             MetadataReference.CreateFromFile(Assembly.Load("netstandard, Version=2.0.0.0").Location),
             MetadataReference.CreateFromFile(Assembly.Load("System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a").Location),

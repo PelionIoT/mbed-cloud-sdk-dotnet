@@ -5,6 +5,10 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup>
+   <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Buildalyzer.Workspaces" Version="1.0.0" />
     <PackageReference Include="Microsoft.CodeAnalysis" Version="2.8.2" />

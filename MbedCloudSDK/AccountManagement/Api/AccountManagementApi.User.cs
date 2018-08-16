@@ -55,9 +55,9 @@ namespace MbedCloudSDK.AccountManagement.Api
 
             try
             {
-                return new PaginatedResponse<QueryOptions, User>(ListUsersFunc, options);
+                return User.List(options);
             }
-            catch (iam.Client.ApiException e)
+            catch (MbedCloudSDK.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -136,12 +136,12 @@ namespace MbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                var user = await AdminApi.GetUserAsync(userId);
-                return User.Map(user);
+                var user = await new User { Id = userId}.Get();
+                return user;
             }
-            catch (iam.Client.ApiException e)
+            catch (MbedCloudSDK.Client.ApiException e)
             {
-                return HandleNotFound<User, iam.Client.ApiException>(e);
+                return HandleNotFound<User, MbedCloudSDK.Client.ApiException>(e);
             }
         }
 
@@ -206,10 +206,9 @@ namespace MbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                var req = user.CreatePostRequest();
-                return User.Map(await AdminApi.CreateUserAsync(req));
+                return await user.Create();
             }
-            catch (iam.Client.ApiException e)
+            catch (MbedCloudSDK.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -276,11 +275,14 @@ namespace MbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                var req = user.CreatePutRequest();
-                var userData = await AdminApi.UpdateUserAsync(userId, req);
-                return User.Map(userData);
+                if (user.Id == null)
+                {
+                    user.Id = userId;
+                }
+
+                return await user.Update();
             }
-            catch (iam.Client.ApiException e)
+            catch (MbedCloudSDK.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -332,11 +334,11 @@ namespace MbedCloudSDK.AccountManagement.Api
         {
             try
             {
-                await AdminApi.DeleteUserAsync(userId);
+                await new User { Id = userId }.Delete();
             }
-            catch (iam.Client.ApiException e)
+            catch (MbedCloudSDK.Client.ApiException e)
             {
-                HandleNotFound<string, iam.Client.ApiException>(e);
+                HandleNotFound<string, MbedCloudSDK.Client.ApiException>(e);
             }
         }
     }

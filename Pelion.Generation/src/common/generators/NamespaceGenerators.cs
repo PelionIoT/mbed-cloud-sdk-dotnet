@@ -26,6 +26,11 @@ namespace Pelion.Generation.src.common.generators
             return me.AddMembers(@class).NormalizeWhitespace();
         }
 
+        public static NamespaceDeclarationSyntax AddEnum(this NamespaceDeclarationSyntax me, EnumDeclarationSyntax @enum)
+        {
+            return me.AddMembers(@enum).NormalizeWhitespace();
+        }
+
         public static NamespaceDeclarationSyntax AddUsing(this NamespaceDeclarationSyntax me, string @using)
         {
             return me.AddUsings(SyntaxFactory.UsingDirective(SyntaxFactory.ParseName(@using))).NormalizeWhitespace();

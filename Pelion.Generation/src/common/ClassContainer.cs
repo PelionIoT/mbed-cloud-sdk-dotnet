@@ -61,9 +61,9 @@ namespace Pelion.Generation.src.common
         private PropertyDeclarationSyntax ParseProperty(JToken property)
         {
             var type = GetType(property["format"] ?? property["type"], property);
-            var prop = PropertyGenerators.CreateProperty(type, property["_KeY"].Value<string>(), Modifiers.PrivateMod);
-            prop = prop.AddAttribute("JsonProperty");
-            AddUsing(common.Usings.JsonConverter);
+            var prop = PropertyGenerators.CreateProperty(type, property["_KeY"].Value<string>());
+            //prop = prop.AddAttribute("JsonProperty");
+            //AddUsing(common.Usings.JsonConverter);
             prop = prop.AddSummary(property[JsonKeys.description].Value<string>()) as PropertyDeclarationSyntax;
             return prop;
         }
@@ -100,6 +100,11 @@ namespace Pelion.Generation.src.common
             {
                 Usings.Add(@using);
             }
+        }
+
+        private string GetReferenceNamespace(string entityName)
+        {
+            return $"Pelion.Generated.{entityName}";
         }
     }
 }

@@ -218,6 +218,67 @@ Task("_publish")
         }
     });
 
+Task("_clean_generation")
+    .Does(() => {
+        CleanDirectory("./Pelion.Generation.Temp");
+        CleanDirectory("./MbedCloudSDK/Generated");
+    });
+
+Task("_create empty_project")
+    .Does(() => {
+        StartProcess("./scripts/generation_setup.sh");
+    });
+
+Task("_restore_empty_project")
+    .Does(() => {
+        DotNetCoreRestore("./Pelion.Generation.Temp", new DotNetCoreRestoreSettings {
+            Verbosity = DotNetCoreVerbosity.Minimal,
+        });
+    });
+
+Task("_restore_generator")
+    .Does(() => {
+        DotNetCoreRestore("./Pelion.Generation", new DotNetCoreRestoreSettings {
+            Verbosity = DotNetCoreVerbosity.Minimal,
+        });
+    });
+
+Task("_build_generator")
+    .Does(() => {
+        DotNetCoreBuild("./Pelion.Generation", new DotNetCoreBuildSettings {
+            NoRestore = true,
+            Configuration = configuration,
+        });
+    });
+
+Task("_generate_and_compile")
+    .Does(() => {
+        DotNetCoreRun("./Pelion.Generation", new ProcessArgumentBuilder()
+            .Append("./Pelion.Generation/raw.yaml")
+            //.Append("./Pelion.Generation.Temp/Pelion.Generation.Temp.csproj")
+            .Append("Pelion.Generation.Temp")
+            .Append("/Users/alelog01/git/mbed-cloud-sdk-dotnet/"),
+            new DotNetCoreRunSettings {
+                NoBuild = true,
+                NoRestore = true,
+                Configuration = configuration,
+            });
+    });
+
+Task("_write_files")
+    .Does(() => {
+        CopyDirectory("./Pelion.Generation.Temp/src", "./MbedCloudSDK/Generated");
+    });
+
+Task("generation_debug")
+    .IsDependentOn("_clean_generation")
+    .IsDependentOn("_create empty_project")
+    .IsDependentOn("_restore_empty_project")
+    .IsDependentOn("_restore_generator")
+    .IsDependentOn("_build_generator")
+    .IsDependentOn("_generate_and_compile")
+    .IsDependentOn("_write_files");
+
 Task("Build-Pack-Publish")
     .IsDependentOn("_restore_sdk")
     .IsDependentOn("_build_sdk")

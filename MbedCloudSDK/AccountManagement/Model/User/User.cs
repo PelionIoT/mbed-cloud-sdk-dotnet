@@ -8,10 +8,18 @@ namespace MbedCloudSDK.AccountManagement.Model.User
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using System.Threading.Tasks;
+    using MbedCloudSDK.Client;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.CustomSerializers;
     using MbedCloudSDK.Common.Extensions;
+    using MbedCloudSDK.Common.Filter;
+    using MbedCloudSDK.Common.Query;
+    using MbedCloudSDK.Exceptions;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
+    using Newtonsoft.Json.Serialization;
+    using RestSharp;
 
     /// <summary>
     /// This object represents a user in Mbed Cloud.
@@ -111,13 +119,172 @@ namespace MbedCloudSDK.AccountManagement.Model.User
         /// Gets whether two factor authentication has been enabled for this user.
         /// </summary>
         [JsonProperty]
-        public bool? TwoFactorAuthentication { get; private set; }
+        public bool? TwoFactorAuthentication { get; set; }
 
         /// <summary>
         /// Gets history of logins for this user.
         /// </summary>
         [JsonProperty]
         public List<LoginHistory> LoginHistory { get; private set; }
+
+        /// <summary>
+        /// Returns the string presentation of the object.
+        /// </summary>
+        /// <returns>String presentation of the object.</returns>
+        public override string ToString()
+            => this.DebugDump();
+
+        internal static readonly Dictionary<string, string> renames = new Dictionary<string, string>
+        {
+            {"TwoFactorAuthentication", "is_totp_enabled"},
+            {"TermsAccepted", "is_gtc_accepted"},
+            {"MarketingAccepted", "is_marketing_accepted"},
+        };
+
+        public static PaginatedResponse<QueryOptions, User> List(QueryOptions options = null)
+        {
+            if (options == null)
+            {
+                options = new QueryOptions();
+            }
+
+            try
+            {
+                return new PaginatedResponse<QueryOptions, User>((QueryOptions _options) => {
+                    var data = new
+                    {
+                        limit = _options.Limit,
+                        order = _options.Order,
+                        after = _options.After,
+                        include = _options.Include,
+                        statusEq = _options.Filter.GetFirstValueByKey("status", FilterOperator.Equals),
+                        statusIn = _options.Filter.GetFirstValueByKey("status", FilterOperator.In),
+                        statusNin = _options.Filter.GetFirstValueByKey("status", FilterOperator.NotIn),
+                    };
+
+                    return AsyncHelper.RunSync<ResponsePage<User>>(() => MbedCloudSDK.Client.ApiCall.CallApi<ResponsePage<User>>(
+                        path: "/v3/users",
+                        body: data,
+                        accepts: new string[] {},
+                        queryParams: new Dictionary<string, object>() {
+                            {"limit", data.limit},
+                            {"after", data.after},
+                            {"order", data.order},
+                            {"include", data.include},
+                            {"status__eq", data.statusEq},
+                            {"status__in", data.statusIn},
+                            {"status__nin", data.statusNin}
+                        },
+                        configuration: Config,
+                        settings: SerializationSettings.GetSettings(renames),
+                        method: Method.GET
+                    ));
+                }, options);
+            }
+            catch (MbedCloudSDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<User> Get()
+        {
+            var res = await MbedCloudSDK.Client.ApiCall.CallApi<User>(
+                path: "/v3/users/{user-id}",
+                pathParams: new Dictionary<string, object>() { { "user-id", Id } },
+                accepts: new string[] { "application/json" },
+                configuration: Config,
+                settings: SerializationSettings.GetSettings(renames),
+                method: Method.GET
+            );
+            return res;
+        }
+
+        public static async Task<User> Get(string userId)
+        {
+            var res = await MbedCloudSDK.Client.ApiCall.CallApi<User>(
+                path: "/v3/users/{user-id}",
+                pathParams: new Dictionary<string, object>() { { "user-id", userId } },
+                accepts: new string[] { "application/json" },
+                configuration: Config,
+                settings: SerializationSettings.GetSettings(renames),
+                method: Method.GET
+            );
+            return res;
+        }
+
+        public async Task<User> Create()
+        {
+            var data = new User
+            {
+                Address = Address,
+                Email = Email,
+                FullName = FullName,
+                Groups = Groups,
+                TermsAccepted = TermsAccepted,
+                MarketingAccepted = MarketingAccepted,
+                Password = Password,
+                PhoneNumber = PhoneNumber,
+                Username = Username,
+            };
+
+            var res = await MbedCloudSDK.Client.ApiCall.CallApi<User>
+            (
+                path: "/v3/users",
+                accepts: new string[] { "application/json" },
+                contentTypes: new string[] { "application/json" },
+                body: data,
+                settings: SerializationSettings.GetSettings(renames),
+                configuration: Config,
+                method: Method.POST
+            );
+
+            return res;
+        }
+
+        public async Task<User> Update()
+        {
+            var data = new User
+            {
+                Address = Address,
+                //Email = Email,
+                FullName = FullName,
+                Groups = Groups,
+                TermsAccepted = TermsAccepted,
+                MarketingAccepted = MarketingAccepted,
+                TwoFactorAuthentication = TwoFactorAuthentication,
+                PhoneNumber = PhoneNumber,
+                //Status = Status,
+                Username = Username,
+            };
+
+            var res = await MbedCloudSDK.Client.ApiCall.CallApi<User>
+            (
+                path: "/v3/users/{user-id}",
+                accepts: new string[] { "application/json" },
+                contentTypes: new string[] { "application/json" },
+                body: data,
+                pathParams: new Dictionary<string, object> { { "user-id", Id } },
+                settings: SerializationSettings.GetSettings(renames),
+                configuration: Config,
+                method: Method.PUT
+            );
+
+            return res;
+        }
+
+        public async Task Delete()
+        {
+            await MbedCloudSDK.Client.ApiCall.CallApi<Object>
+            (
+                path: "/v3/users/{user-id}",
+                contentTypes: new string[] { "application/json" },
+                pathParams: new Dictionary<string, object> { { "user-id", Id } },
+                settings: SerializationSettings.GetSettings(renames),
+                configuration: Config,
+                method: Method.DELETE
+            );
+        }
 
         /// <summary>
         /// Map to User object.
@@ -150,56 +317,6 @@ namespace MbedCloudSDK.AccountManagement.Model.User
                 LoginHistory = userInfo?.LoginHistory?.Select(l => { return Model.User.LoginHistory.Map(l); })?.ToList() ?? Enumerable.Empty<LoginHistory>().ToList()
             };
             return user;
-        }
-
-        /// <summary>
-        /// Returns the string presentation of the object.
-        /// </summary>
-        /// <returns>String presentation of the object.</returns>
-        public override string ToString()
-            => this.DebugDump();
-
-        /// <summary>
-        /// Create post request
-        /// </summary>
-        /// <returns>User info request</returns>
-        public iam.Model.UserInfoReq CreatePostRequest()
-        {
-            var request = new iam.Model.UserInfoReq(Email: Email)
-            {
-                Username = Username,
-                FullName = FullName,
-                Address = Address,
-                Password = Password,
-                PhoneNumber = PhoneNumber,
-                IsGtcAccepted = TermsAccepted,
-                IsMarketingAccepted = MarketingAccepted,
-                Groups = Groups,
-            };
-            return request;
-        }
-
-        /// <summary>
-        /// Create put request
-        /// </summary>
-        /// <returns>User info request</returns>
-        public iam.Model.UserUpdateReq CreatePutRequest()
-        {
-            var request = new iam.Model.UserUpdateReq
-            {
-                Email = Email,
-                PhoneNumber = PhoneNumber,
-                Username = Username,
-                IsGtcAccepted = TermsAccepted,
-                FullName = FullName,
-                Address = Address,
-                IsMarketingAccepted = MarketingAccepted,
-                IsTotpEnabled = TwoFactorAuthentication,
-                Status = Convert.ToString(Status)?.GetEnumMemberValue(typeof(UserStatus)),
-                Groups = Groups,
-            };
-
-            return request;
         }
     }
 }
