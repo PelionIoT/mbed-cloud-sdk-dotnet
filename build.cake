@@ -254,7 +254,7 @@ Task("_build_generator")
 Task("_generate_and_compile")
     .Does(() => {
         DotNetCoreRun("./Pelion.Generation", new ProcessArgumentBuilder()
-            .Append("./Pelion.Generation/raw.yaml")
+            .Append("/Users/alelog01/git/mbed-cloud-api-contract/out/sdk_generation_cache.yaml")
             //.Append("./Pelion.Generation.Temp/Pelion.Generation.Temp.csproj")
             .Append("Pelion.Generation.Temp")
             .Append("/Users/alelog01/git/mbed-cloud-sdk-dotnet/"),

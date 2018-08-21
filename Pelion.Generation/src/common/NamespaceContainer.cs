@@ -13,18 +13,20 @@ namespace Pelion.Generation.src.common
         private readonly string entityName;
         private readonly string namespaceName;
         private List<ClassContainer> Classes;
+        private List<EnumContainer> Enums;
         private readonly string tagName;
         private JToken EntityJson;
         private NamespaceDeclarationSyntax parentNamespace;
 
-        public NamespaceContainer(string tagName, JToken entityJson)
+        public NamespaceContainer(string tagName, string entityName, JToken entityJson)
         {
             this.tagName = tagName;
             EntityJson = entityJson;
-            entityName = entityJson[JsonKeys.key].Value<string>();
+            this.entityName = entityName;
             namespaceName = $"MbedCloudSDK.{tagName}.{entityName}";
             parentNamespace = NamespaceGenerators.CreateNamespace(namespaceName);
             Classes = new List<ClassContainer>();
+            Enums = new List<EnumContainer>();
         }
 
         public void GenerateModelClass()
@@ -32,11 +34,17 @@ namespace Pelion.Generation.src.common
             Classes.Add(new ClassContainer(entityName, EntityJson).GenerateModelClass());
         }
 
-        public void GenerateEnum()
+        public void GenerateEnums()
         {
-            var entityEnum = EnumGenerators.CreateEnum($"{entityName}Enum");
-            parentNamespace = parentNamespace.AddEnum(entityEnum);
-            parentNamespace.ToFullString();
+            var properties = EntityJson[JsonKeys.fields];
+
+            foreach (var item in properties)
+            {
+                if (item["enum"] != null)
+                {
+                    Enums.Add(new EnumContainer(item));
+                }
+            }
         }
 
         public List<NamespaceDeclarationSyntax> GetClasses()
@@ -45,6 +53,15 @@ namespace Pelion.Generation.src.common
             Classes.ForEach(c =>
             {
                 var localNamespace = CreateLocalNamespace(c);
+
+                classes.Add(localNamespace);
+            });
+
+            Enums.ForEach(e =>
+            {
+                var localNamespace = parentNamespace;
+
+                localNamespace = localNamespace.AddEnum(e.GeneratedEnum);
 
                 classes.Add(localNamespace);
             });
@@ -76,6 +93,20 @@ namespace Pelion.Generation.src.common
                 var dir = $"{rootDirectory}/src/{namespaceName}/";
                 Directory.CreateDirectory(dir);
                 using (var file = new StreamWriter($"{dir}/{c.ClassName}.cs"))
+                {
+                    file.Write(localNamespace.ToFullString());
+                }
+            });
+
+            Enums.ForEach(e =>
+            {
+                var localNamespace = parentNamespace;
+
+                localNamespace = localNamespace.AddEnum(e.GeneratedEnum);
+
+                var dir = $"{rootDirectory}/src/{namespaceName}/";
+                Directory.CreateDirectory(dir);
+                using (var file = new StreamWriter($"{dir}/{e.EnumName}.cs"))
                 {
                     file.Write(localNamespace.ToFullString());
                 }

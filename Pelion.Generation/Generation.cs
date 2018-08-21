@@ -43,7 +43,10 @@ namespace Pelion.Generation
 
             foreach (var entity in entities)
             {
-                var namespaceContainer = new NamespaceContainer("TestTag", entity);
+                var entityName = entity[JsonKeys.key][JsonKeys.pascal].Value<string>();
+                var tag = entity[JsonKeys.groupId][JsonKeys.pascal].Value<string>();
+                var namespaceContainer = new NamespaceContainer(tag, entityName, entity);
+                namespaceContainer.GenerateEnums();
                 namespaceContainer.GenerateModelClass();
                 GeneratedNamespaces.Add(namespaceContainer);
             }
@@ -53,7 +56,7 @@ namespace Pelion.Generation
                 root = root.AddNamespace(n.GetClasses());
             });
 
-            Console.WriteLine(root.NormalizeWhitespace().ToFullString());
+            // Console.WriteLine(root.NormalizeWhitespace().ToFullString());
 
             var compile = new Compile(targetProjectFile, targetProjectName);
             var result = compile.CompileFiles(root.SyntaxTree);

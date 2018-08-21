@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -52,6 +55,356 @@ namespace Pelion.Generation.src.common.generators
                                 SyntaxFactory.Space))))
                 .WithSemicolonToken(
                     SyntaxFactory.Token(SyntaxKind.SemicolonToken));
+        }
+
+        public static MethodDeclarationSyntax GenerateCrudMethod(
+            string returns,
+            string methodName,
+            string method,
+            string path,
+            Dictionary<string, string> renames = null,
+            Dictionary<string, string> methodParams = null,
+            Dictionary<string, string> pathParams = null,
+            Dictionary<string, string> queryParams = null,
+            Dictionary<string, string> bodyParams = null
+        )
+        {
+            var argList = new List<SyntaxNodeOrToken>();
+
+            argList.Add(GetPath(path));
+            argList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+            argList.Add(GetMethod(method));
+            argList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+            if (pathParams != null)
+            {
+                argList.Add(GetPathParams(pathParams));
+                argList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+            }
+            argList.Add(GetConfiguration());
+
+            return GenerateMethodSyntax(returns, methodName, argList.ToArray(), renames);
+        }
+
+
+        private static MethodDeclarationSyntax GenerateMethodSyntax(
+            string returns,
+            string name,
+            SyntaxNodeOrToken[] argList,
+            Dictionary<string, string> renames)
+        {
+            return SyntaxFactory.MethodDeclaration(
+                    SyntaxFactory.GenericName(
+                        SyntaxFactory.Identifier("Task"))
+                    .WithTypeArgumentList(
+                        SyntaxFactory.TypeArgumentList(
+                            SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
+                                // return type
+                                SyntaxFactory.IdentifierName(returns)))),
+                    // method name
+                    SyntaxFactory.Identifier(name))
+                .WithModifiers(
+                    SyntaxFactory.TokenList(
+                        new[]{
+                            SyntaxFactory.Token(SyntaxKind.PublicKeyword),
+                            SyntaxFactory.Token(SyntaxKind.AsyncKeyword)}))
+                .WithBody(
+                    SyntaxFactory.Block(
+                        // rename dictionary
+                        GetRenameDictionary(renames),
+                        // try catch
+                        GetTryCatchBlock()
+                        .WithBlock(
+                            SyntaxFactory.Block(
+                                SyntaxFactory.SingletonList<StatementSyntax>(
+                                    SyntaxFactory.ReturnStatement(
+                                        SyntaxFactory.AwaitExpression(
+                                            SyntaxFactory.InvocationExpression(
+                                                SyntaxFactory.MemberAccessExpression(
+                                                    SyntaxKind.SimpleMemberAccessExpression,
+                                                    SyntaxFactory.MemberAccessExpression(
+                                                        SyntaxKind.SimpleMemberAccessExpression,
+                                                        SyntaxFactory.MemberAccessExpression(
+                                                            SyntaxKind.SimpleMemberAccessExpression,
+                                                            SyntaxFactory.IdentifierName("MbedCloudSDK"),
+                                                            SyntaxFactory.IdentifierName("Client")),
+                                                        SyntaxFactory.IdentifierName("ApiCall")),
+                                                    SyntaxFactory.GenericName(
+                                                        SyntaxFactory.Identifier("CallApi"))
+                                                    .WithTypeArgumentList(
+                                                        SyntaxFactory.TypeArgumentList(
+                                                            SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
+                                                                // return type
+                                                                SyntaxFactory.IdentifierName(returns))))))
+                                            .WithArgumentList(
+                                                SyntaxFactory.ArgumentList(
+                                                    SyntaxFactory.SeparatedList<ArgumentSyntax>(
+                                                        // arguments
+                                                        argList
+                                                    ))))))))))
+            .NormalizeWhitespace();
+        }
+
+        private static ArgumentSyntax GetMethod(string methodType)
+        {
+            return SyntaxFactory.Argument(
+                SyntaxFactory.MemberAccessExpression(
+                    SyntaxKind.SimpleMemberAccessExpression,
+                    SyntaxFactory.IdentifierName("Method"),
+                    SyntaxFactory.IdentifierName(methodType.ToUpper())))
+            .WithNameColon(
+                SyntaxFactory.NameColon(
+                    SyntaxFactory.IdentifierName("method"))).NormalizeWhitespace();
+        }
+
+        private static ArgumentSyntax GetSerializerSettingsWithRenames()
+        {
+            return SyntaxFactory.Argument(
+                SyntaxFactory.InvocationExpression(
+                    SyntaxFactory.MemberAccessExpression(
+                        SyntaxKind.SimpleMemberAccessExpression,
+                        SyntaxFactory.IdentifierName("SerializationSettings"),
+                        SyntaxFactory.IdentifierName("GetSettings")))
+                .WithArgumentList(
+                    SyntaxFactory.ArgumentList(
+                        SyntaxFactory.SingletonSeparatedList<ArgumentSyntax>(
+                            SyntaxFactory.Argument(
+                                SyntaxFactory.IdentifierName("renames"))))))
+            .WithNameColon(
+                SyntaxFactory.NameColon(
+                    SyntaxFactory.IdentifierName("settings"))).NormalizeWhitespace();
+        }
+
+        private static ArgumentSyntax GetConfiguration()
+        {
+            return SyntaxFactory.Argument(
+                SyntaxFactory.IdentifierName("Config"))
+            .WithNameColon(
+                SyntaxFactory.NameColon(
+                    SyntaxFactory.IdentifierName("configuration"))).NormalizeWhitespace();
+        }
+
+        private static ArgumentSyntax GetAcceptsArray()
+        {
+            return SyntaxFactory.Argument(
+                SyntaxFactory.ArrayCreationExpression(
+                    SyntaxFactory.ArrayType(
+                        SyntaxFactory.PredefinedType(
+                            SyntaxFactory.Token(SyntaxKind.StringKeyword)))
+                    .WithRankSpecifiers(
+                        SyntaxFactory.SingletonList<ArrayRankSpecifierSyntax>(
+                            SyntaxFactory.ArrayRankSpecifier(
+                                SyntaxFactory.SingletonSeparatedList<ExpressionSyntax>(
+                                    SyntaxFactory.OmittedArraySizeExpression())))))
+                .WithInitializer(
+                    SyntaxFactory.InitializerExpression(
+                        SyntaxKind.ArrayInitializerExpression,
+                        SyntaxFactory.SingletonSeparatedList<ExpressionSyntax>(
+                            SyntaxFactory.LiteralExpression(
+                                SyntaxKind.StringLiteralExpression,
+                                SyntaxFactory.Literal("application/json"))))))
+            .WithNameColon(
+                SyntaxFactory.NameColon(
+                    SyntaxFactory.IdentifierName("accepts"))).NormalizeWhitespace();
+        }
+
+        private static ArgumentSyntax GetPathParams(Dictionary<string, string> pathParams)
+        {
+            var keyValueList = new List<SyntaxNodeOrToken>();
+
+            foreach (var item in pathParams)
+            {
+                var dictProp = SyntaxFactory.InitializerExpression(
+                                SyntaxKind.ComplexElementInitializerExpression,
+                                SyntaxFactory.SeparatedList<ExpressionSyntax>(
+                                    new SyntaxNodeOrToken[]{
+                                        SyntaxFactory.LiteralExpression(
+                                            SyntaxKind.StringLiteralExpression,
+                                            SyntaxFactory.Literal(item.Key)),
+                                        SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                        SyntaxFactory.IdentifierName(item.Value)}));
+
+                keyValueList.Add(dictProp);
+                keyValueList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+            }
+
+            // remove trailing comma
+            if (keyValueList.Any())
+            {
+                keyValueList.RemoveAt(keyValueList.Count - 1);
+            }
+
+            return SyntaxFactory.Argument(
+                SyntaxFactory.ObjectCreationExpression(
+                    SyntaxFactory.GenericName(
+                        SyntaxFactory.Identifier("Dictionary"))
+                    .WithTypeArgumentList(
+                        SyntaxFactory.TypeArgumentList(
+                            SyntaxFactory.SeparatedList<TypeSyntax>(
+                                new SyntaxNodeOrToken[]{
+                                    SyntaxFactory.PredefinedType(
+                                        SyntaxFactory.Token(SyntaxKind.StringKeyword)),
+                                    SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                    SyntaxFactory.PredefinedType(
+                                        SyntaxFactory.Token(SyntaxKind.ObjectKeyword))}))))
+                .WithArgumentList(
+                    SyntaxFactory.ArgumentList())
+                .WithInitializer(
+                    SyntaxFactory.InitializerExpression(
+                        SyntaxKind.CollectionInitializerExpression,
+                        SyntaxFactory.SeparatedList<ExpressionSyntax>(
+                            keyValueList.ToArray()
+                        ))))
+            .WithNameColon(
+                SyntaxFactory.NameColon(
+                    SyntaxFactory.IdentifierName("pathParams"))).NormalizeWhitespace();
+        }
+
+        private static ArgumentSyntax GetPath(string path)
+        {
+            return SyntaxFactory.Argument(
+                SyntaxFactory.LiteralExpression(
+                    SyntaxKind.StringLiteralExpression,
+                    SyntaxFactory.Literal(path)))
+            .WithNameColon(
+                SyntaxFactory.NameColon(
+                    SyntaxFactory.IdentifierName("path"))).NormalizeWhitespace();
+        }
+
+        private static LocalDeclarationStatementSyntax GetRenameDictionary(Dictionary<string, string> renames)
+        {
+            if (renames.Any())
+            {
+                return SyntaxFactory.LocalDeclarationStatement(
+                    SyntaxFactory.VariableDeclaration(
+                            SyntaxFactory.IdentifierName("var"))
+                        .WithVariables(
+                            SyntaxFactory.SingletonSeparatedList<VariableDeclaratorSyntax>(
+                                SyntaxFactory.VariableDeclarator(
+                                    SyntaxFactory.Identifier("renames"))
+                                .WithInitializer(
+                                    SyntaxFactory.EqualsValueClause(
+                                        SyntaxFactory.ObjectCreationExpression(
+                                            SyntaxFactory.GenericName(
+                                                SyntaxFactory.Identifier("Dictionary"))
+                                            .WithTypeArgumentList(
+                                                SyntaxFactory.TypeArgumentList(
+                                                    SyntaxFactory.SeparatedList<TypeSyntax>(
+                                                        new SyntaxNodeOrToken[]{
+                                                        SyntaxFactory.PredefinedType(
+                                                            SyntaxFactory.Token(SyntaxKind.StringKeyword)),
+                                                        SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                                        SyntaxFactory.PredefinedType(
+                                                            SyntaxFactory.Token(SyntaxKind.StringKeyword))}))))
+                                        .WithInitializer(
+                                            SyntaxFactory.InitializerExpression(
+                                                SyntaxKind.CollectionInitializerExpression,
+                                                SyntaxFactory.SeparatedList<ExpressionSyntax>(
+                                                    new SyntaxNodeOrToken[]{
+                                                    SyntaxFactory.InitializerExpression(
+                                                        SyntaxKind.ComplexElementInitializerExpression,
+                                                        SyntaxFactory.SeparatedList<ExpressionSyntax>(
+                                                            new SyntaxNodeOrToken[]{
+                                                                SyntaxFactory.LiteralExpression(
+                                                                    SyntaxKind.StringLiteralExpression,
+                                                                    SyntaxFactory.Literal("TwoFactorAuthentication")),
+                                                                SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                                                SyntaxFactory.LiteralExpression(
+                                                                    SyntaxKind.StringLiteralExpression,
+                                                                    SyntaxFactory.Literal("is_totp_enabled"))})),
+                                                    SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                                    SyntaxFactory.InitializerExpression(
+                                                        SyntaxKind.ComplexElementInitializerExpression,
+                                                        SyntaxFactory.SeparatedList<ExpressionSyntax>(
+                                                            new SyntaxNodeOrToken[]{
+                                                                SyntaxFactory.LiteralExpression(
+                                                                    SyntaxKind.StringLiteralExpression,
+                                                                    SyntaxFactory.Literal("TermsAccepted")),
+                                                                SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                                                SyntaxFactory.LiteralExpression(
+                                                                    SyntaxKind.StringLiteralExpression,
+                                                                    SyntaxFactory.Literal("is_gtc_accepted"))})),
+                                                    SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                                    SyntaxFactory.InitializerExpression(
+                                                        SyntaxKind.ComplexElementInitializerExpression,
+                                                        SyntaxFactory.SeparatedList<ExpressionSyntax>(
+                                                            new SyntaxNodeOrToken[]{
+                                                                SyntaxFactory.LiteralExpression(
+                                                                    SyntaxKind.StringLiteralExpression,
+                                                                    SyntaxFactory.Literal("MarketingAccepted")),
+                                                                SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                                                SyntaxFactory.LiteralExpression(
+                                                                    SyntaxKind.StringLiteralExpression,
+                                                                    SyntaxFactory.Literal("is_marketing_accepted"))})),
+                                                    SyntaxFactory.Token(SyntaxKind.CommaToken)})))))))
+                ).NormalizeWhitespace();
+            }
+
+            return SyntaxFactory.LocalDeclarationStatement(
+                    SyntaxFactory.VariableDeclaration(
+                        SyntaxFactory.IdentifierName("var"))
+                    .WithVariables(
+                        SyntaxFactory.SingletonSeparatedList<VariableDeclaratorSyntax>(
+                            SyntaxFactory.VariableDeclarator(
+                                SyntaxFactory.Identifier("renames"))
+                            .WithInitializer(
+                                SyntaxFactory.EqualsValueClause(
+                                    SyntaxFactory.ObjectCreationExpression(
+                                        SyntaxFactory.GenericName(
+                                            SyntaxFactory.Identifier("Dictionary"))
+                                        .WithTypeArgumentList(
+                                            SyntaxFactory.TypeArgumentList(
+                                                SyntaxFactory.SeparatedList<TypeSyntax>(
+                                                    new SyntaxNodeOrToken[]{
+                                                        SyntaxFactory.PredefinedType(
+                                                            SyntaxFactory.Token(SyntaxKind.StringKeyword)),
+                                                        SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                                        SyntaxFactory.PredefinedType(
+                                                            SyntaxFactory.Token(SyntaxKind.StringKeyword))}))))
+                                    .WithArgumentList(
+                                        SyntaxFactory.ArgumentList())))))).NormalizeWhitespace();
+        }
+
+        private static TryStatementSyntax GetTryCatchBlock()
+        {
+            return SyntaxFactory.TryStatement(
+                    SyntaxFactory.SingletonList<CatchClauseSyntax>(
+                        SyntaxFactory.CatchClause()
+                        .WithDeclaration(
+                            SyntaxFactory.CatchDeclaration(
+                                SyntaxFactory.QualifiedName(
+                                    SyntaxFactory.QualifiedName(
+                                        SyntaxFactory.IdentifierName("MbedCloudSDK"),
+                                        SyntaxFactory.IdentifierName("Client")),
+                                    SyntaxFactory.IdentifierName("ApiException")))
+                            .WithIdentifier(
+                                SyntaxFactory.Identifier("e")))
+                        .WithBlock(
+                            SyntaxFactory.Block(
+                                SyntaxFactory.SingletonList<StatementSyntax>(
+                                    SyntaxFactory.ThrowStatement(
+                                        SyntaxFactory.ObjectCreationExpression(
+                                            SyntaxFactory.IdentifierName("CloudApiException"))
+                                        .WithArgumentList(
+                                            SyntaxFactory.ArgumentList(
+                                                SyntaxFactory.SeparatedList<ArgumentSyntax>(
+                                                    new SyntaxNodeOrToken[]{
+                                                        SyntaxFactory.Argument(
+                                                            SyntaxFactory.MemberAccessExpression(
+                                                                SyntaxKind.SimpleMemberAccessExpression,
+                                                                SyntaxFactory.IdentifierName("e"),
+                                                                SyntaxFactory.IdentifierName("ErrorCode"))),
+                                                        SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                                        SyntaxFactory.Argument(
+                                                            SyntaxFactory.MemberAccessExpression(
+                                                                SyntaxKind.SimpleMemberAccessExpression,
+                                                                SyntaxFactory.IdentifierName("e"),
+                                                                SyntaxFactory.IdentifierName("Message"))),
+                                                        SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                                        SyntaxFactory.Argument(
+                                                            SyntaxFactory.MemberAccessExpression(
+                                                                SyntaxKind.SimpleMemberAccessExpression,
+                                                                SyntaxFactory.IdentifierName("e"),
+                                                                SyntaxFactory.IdentifierName("ErrorContent")))}))))))))).NormalizeWhitespace();
         }
     }
 }

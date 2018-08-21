@@ -1,3 +1,5 @@
+
+
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -117,15 +119,15 @@ namespace MbedCloudSDK.TagPOC.User
         public override string ToString()
             => this.DebugDump();
 
-        private static readonly Dictionary<string, string> renames = new Dictionary<string, string>
-        {
-            {"TwoFactorAuthentication", "is_totp_enabled"},
-            {"TermsAccepted", "is_gtc_accepted"},
-            {"MarketingAccepted", "is_marketing_accepted"},
-        };
-
         public static PaginatedResponse<QueryOptions, User> List(QueryOptions options = null)
         {
+            var renames = new Dictionary<string, string>
+            {
+                {"TwoFactorAuthentication", "is_totp_enabled"},
+                {"TermsAccepted", "is_gtc_accepted"},
+                {"MarketingAccepted", "is_marketing_accepted"},
+            };
+
             if (options == null)
             {
                 options = new QueryOptions();
@@ -173,19 +175,41 @@ namespace MbedCloudSDK.TagPOC.User
 
         public async Task<User> Get()
         {
-            var res = await MbedCloudSDK.Client.ApiCall.CallApi<User>(
-                path: "/v3/users/{user-id}",
-                pathParams: new Dictionary<string, object>() { { "user-id", Id } },
-                accepts: new string[] { "application/json" },
-                configuration: Config,
-                settings: SerializationSettings.GetSettings(renames),
-                method: Method.GET
-            );
-            return res;
+            var renames = new Dictionary<string, string>
+            {
+                {"TwoFactorAuthentication", "is_totp_enabled"},
+                {"TermsAccepted", "is_gtc_accepted"},
+                {"MarketingAccepted", "is_marketing_accepted"},
+            };
+
+            try
+            {
+                return await MbedCloudSDK.Client.ApiCall.CallApi<User>(
+                    path: "/v3/users/{user-id}",
+                    pathParams: new Dictionary<string, object>() { { "user-id", Id } },
+                    accepts: new string[] { "application/json" },
+                    configuration: Config,
+                    settings: SerializationSettings.GetSettings(renames),
+                    method: Method.GET,
+                    populateObject: true,
+                    @object: this
+                );
+            }
+            catch (MbedCloudSDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
         }
 
         public static async Task<User> Get(string userId)
         {
+            var renames = new Dictionary<string, string>
+            {
+                {"TwoFactorAuthentication", "is_totp_enabled"},
+                {"TermsAccepted", "is_gtc_accepted"},
+                {"MarketingAccepted", "is_marketing_accepted"},
+            };
+
             var res = await MbedCloudSDK.Client.ApiCall.CallApi<User>(
                 path: "/v3/users/{user-id}",
                 pathParams: new Dictionary<string, object>() { { "user-id", userId } },
@@ -199,6 +223,13 @@ namespace MbedCloudSDK.TagPOC.User
 
         public async Task<User> Create()
         {
+            var renames = new Dictionary<string, string>
+            {
+                {"TwoFactorAuthentication", "is_totp_enabled"},
+                {"TermsAccepted", "is_gtc_accepted"},
+                {"MarketingAccepted", "is_marketing_accepted"},
+            };
+
             var data = new User
             {
                 Address = Address,
@@ -230,6 +261,13 @@ namespace MbedCloudSDK.TagPOC.User
 
         public async Task<User> Update()
         {
+            var renames = new Dictionary<string, string>
+            {
+                {"TwoFactorAuthentication", "is_totp_enabled"},
+                {"TermsAccepted", "is_gtc_accepted"},
+                {"MarketingAccepted", "is_marketing_accepted"},
+            };
+
             var data = new User
             {
                 Address = Address,
@@ -268,7 +306,7 @@ namespace MbedCloudSDK.TagPOC.User
                 path: "/v3/users/{user-id}",
                 contentTypes: new string[] { "application/json" },
                 pathParams: new Dictionary<string, object> { { "user-id", Id } },
-                settings: SerializationSettings.GetSettings(renames),
+                settings: SerializationSettings.GetDefaultSettings(),
                 configuration: Config,
                 method: Method.DELETE
             );

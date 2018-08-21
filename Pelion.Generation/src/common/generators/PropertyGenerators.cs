@@ -38,6 +38,23 @@ namespace Pelion.Generation.src.common.generators
             return me.WithAttributeLists(attributes);
         }
 
+        public static PropertyDeclarationSyntax AddEnumConverterAttribute(this PropertyDeclarationSyntax me)
+        {
+            return me.WithAttributeLists(
+            SyntaxFactory.SingletonList<AttributeListSyntax>(
+                SyntaxFactory.AttributeList(
+                    SyntaxFactory.SingletonSeparatedList<AttributeSyntax>(
+                        SyntaxFactory.Attribute(
+                            SyntaxFactory.IdentifierName("JsonConverter"))
+                        .WithArgumentList(
+                            SyntaxFactory.AttributeArgumentList(
+                                SyntaxFactory.SingletonSeparatedList<AttributeArgumentSyntax>(
+                                    SyntaxFactory.AttributeArgument(
+                                        SyntaxFactory.TypeOfExpression(
+                                            SyntaxFactory.IdentifierName("StringEnumConverter"))))))))))
+            .NormalizeWhitespace();
+        }
+
         // public static PropertyDeclarationSyntax AddSummary(this PropertyDeclarationSyntax me, string summary)
         // {
         //     var documentation = DocumentationGenerators.GenerateSummary(summary);

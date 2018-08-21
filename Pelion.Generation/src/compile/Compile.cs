@@ -10,6 +10,7 @@ using MbedCloudSDK.Bootstrap.Model;
 using MbedCloudSDK.Common;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
+using Newtonsoft.Json.Converters;
 
 namespace Pelion.Generation.src.compile
 {
@@ -88,9 +89,13 @@ namespace Pelion.Generation.src.compile
         {
             MetadataReference.CreateFromFile(typeof(object).GetTypeInfo().Assembly.Location),
             MetadataReference.CreateFromFile(typeof(PreSharedKey).GetTypeInfo().Assembly.Location),
-            MetadataReference.CreateFromFile(typeof(Newtonsoft.Json.JsonException).GetTypeInfo().Assembly.Location),
+            // MetadataReference.CreateFromFile(typeof(Newtonsoft.Json.JsonException).GetTypeInfo().Assembly.Location),
+            MetadataReference.CreateFromFile(typeof(StringEnumConverter).GetTypeInfo().Assembly.Location),
+            MetadataReference.CreateFromFile(typeof(RestSharp.Http).GetTypeInfo().Assembly.Location),
+            MetadataReference.CreateFromFile(Assembly.Load("Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed").Location),
             MetadataReference.CreateFromFile(Assembly.Load("netstandard, Version=2.0.0.0").Location),
             MetadataReference.CreateFromFile(Assembly.Load("System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a").Location),
+            MetadataReference.CreateFromFile(Assembly.Load("System.Collections, Version=0.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a").Location),
             //MetadataReference.CreateFromFile(typeof(Enum).GetTypeInfo().Assembly.Location),
     };
     }
