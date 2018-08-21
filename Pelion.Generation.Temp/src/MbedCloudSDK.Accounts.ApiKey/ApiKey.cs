@@ -42,7 +42,7 @@ namespace MbedCloudSDK.Accounts.ApiKey
         /// <summary>
         /// A list of group IDs this API key belongs to.
         /// </summary>
-        public List<string> Groups
+        public List<object> Groups
         {
             get;
             set;

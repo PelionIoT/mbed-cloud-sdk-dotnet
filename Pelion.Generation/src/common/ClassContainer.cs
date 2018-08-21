@@ -113,7 +113,7 @@ namespace Pelion.Generation.src.common
                     foreach (var field in item["fields"])
                     {
                         //Console.WriteLine(field["in"].First);
-                        if (field["in"].First.Value<string>() == "body")
+                        if (field["in"].Value<string>() == "body")
                         {
                             Console.WriteLine($"{field["_key"]["pascal"].Value<string>()}");
                             var val = field["_key"]["pascal"].Value<string>();
@@ -222,17 +222,17 @@ namespace Pelion.Generation.src.common
                         return Types.date;
                     case "array":
                         AddUsing(common.Usings.Lists);
-                        if (_property != null)
-                        {
-                            Console.WriteLine(property);
-                            Console.WriteLine(property["items"]);
-                            var item = property["items"];
-                            if (item["type"] != null)
-                            {
-                                return Types.List(_type(item["type"].Value<string>()).ToString());
-                            }
-                            return Types.List("object");
-                        }
+                        // if (_property != null)
+                        // {
+                        //     Console.WriteLine(property);
+                        //     Console.WriteLine(property["items"]);
+                        //     var item = property["items"];
+                        //     if (item["type"] != null)
+                        //     {
+                        //         return Types.List(_type(item["type"].Value<string>()).ToString());
+                        //     }
+                        //     return Types.List("object");
+                        // }
                         return Types.List("object");
                     case "boolean":
                         return Types.@bool;
