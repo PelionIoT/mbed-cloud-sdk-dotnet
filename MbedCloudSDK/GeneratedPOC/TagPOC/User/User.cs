@@ -186,13 +186,13 @@ namespace MbedCloudSDK.TagPOC.User
             {
                 return await MbedCloudSDK.Client.ApiCall.CallApi<User>(
                     path: "/v3/users/{user-id}",
-                    pathParams: new Dictionary<string, object>() { { "user-id", Id } },
+                    pathParams: new Dictionary<string, object>() { { "user-id", Id }, },
                     accepts: new string[] { "application/json" },
                     configuration: Config,
                     settings: SerializationSettings.GetSettings(renames),
                     method: Method.GET,
                     populateObject: true,
-                    @object: this
+                    objectToPopulate: this
                 );
             }
             catch (MbedCloudSDK.Client.ApiException e)
@@ -230,7 +230,7 @@ namespace MbedCloudSDK.TagPOC.User
                 {"MarketingAccepted", "is_marketing_accepted"},
             };
 
-            var data = new User
+            var data = new
             {
                 Address = Address,
                 Email = Email,
@@ -253,7 +253,7 @@ namespace MbedCloudSDK.TagPOC.User
                 configuration: Config,
                 method: Method.POST,
                 populateObject: true,
-                @object: this
+                objectToPopulate: this
             );
 
             return res;
@@ -293,7 +293,7 @@ namespace MbedCloudSDK.TagPOC.User
                 configuration: Config,
                 method: Method.PUT,
                 populateObject: true,
-                @object: this
+                objectToPopulate: this
             );
 
             return res;

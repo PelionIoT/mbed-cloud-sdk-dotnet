@@ -209,26 +209,42 @@ namespace Pelion.Generation.src.common
             var type = property["format"] ?? property["type"];
 
             var strType = type.Value<string>();
-            switch (strType)
-            {
-                case "string":
-                    return Types.@string;
-                case "date-time":
-                    AddUsing(common.Usings.System);
-                    return Types.date;
-                case "array":
-                    AddUsing(common.Usings.Lists);
-                    // TODO need more info to generate List<T>
-                    return Types.List("string");
-                case "boolean":
-                    return Types.@bool;
-                case "integer":
-                case "int32":
-                case "int64":
-                    return Types.@int;
+            return _type(strType, property);
 
-                default:
-                    return default(TypeSyntax);
+            TypeSyntax _type(string _strType, JToken _property = null)
+            {
+                switch (_strType)
+                {
+                    case "string":
+                        return Types.@string;
+                    case "date-time":
+                        AddUsing(common.Usings.System);
+                        return Types.date;
+                    case "array":
+                        AddUsing(common.Usings.Lists);
+                        if (_property != null)
+                        {
+                            Console.WriteLine(property);
+                            Console.WriteLine(property["items"]);
+                            var item = property["items"];
+                            if (item["type"] != null)
+                            {
+                                return Types.List(_type(item["type"].Value<string>()).ToString());
+                            }
+                            return Types.List("object");
+                        }
+                        return Types.List("object");
+                    case "boolean":
+                        return Types.@bool;
+                    case "integer":
+                    case "int32":
+                        return Types.@int;
+                    case "int64":
+                        return Types.@long;
+
+                    default:
+                        return default(TypeSyntax);
+                }
             }
         }
 

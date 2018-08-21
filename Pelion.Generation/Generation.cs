@@ -43,12 +43,15 @@ namespace Pelion.Generation
 
             foreach (var entity in entities)
             {
-                var entityName = entity[JsonKeys.key][JsonKeys.pascal].Value<string>();
-                var tag = entity[JsonKeys.groupId][JsonKeys.pascal].Value<string>();
-                var namespaceContainer = new NamespaceContainer(tag, entityName, entity);
-                namespaceContainer.GenerateEnums();
-                namespaceContainer.GenerateModelClass();
-                GeneratedNamespaces.Add(namespaceContainer);
+                if (entity["_key"]["pascal"].Value<string>() != "PSK")
+                {
+                    var entityName = entity[JsonKeys.key][JsonKeys.pascal].Value<string>();
+                    var tag = entity[JsonKeys.groupId][JsonKeys.pascal].Value<string>();
+                    var namespaceContainer = new NamespaceContainer(tag, entityName, entity);
+                    namespaceContainer.GenerateEnums();
+                    namespaceContainer.GenerateModelClass();
+                    GeneratedNamespaces.Add(namespaceContainer);
+                }
             }
 
             GeneratedNamespaces.ForEach(n =>

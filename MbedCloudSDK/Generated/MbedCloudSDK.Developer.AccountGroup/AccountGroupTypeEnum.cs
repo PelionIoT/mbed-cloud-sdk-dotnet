@@ -1,4 +1,4 @@
-namespace MbedCloudSDK.AccountAdmin.AccountGroup
+namespace MbedCloudSDK.Developer.AccountGroup
 {
     public enum AccountGroupTypeEnum
     {

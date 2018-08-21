@@ -75,14 +75,28 @@ namespace Pelion.Generation.src.common.generators
             argList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
             argList.Add(GetMethod(method));
             argList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+            argList.Add(GetSerializerSettingsWithRenames());
+            argList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+            argList.Add(GetPopulateObject());
+            argList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+            argList.Add(GetObjectToPopulate());
+            argList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+            argList.Add(GetAcceptsArray());
+            argList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+            argList.Add(GetContentTypesArray());
+            argList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+            argList.Add(GetBodyArg());
+            argList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+
             if (pathParams != null)
             {
                 argList.Add(GetPathParams(pathParams));
                 argList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
             }
+
             argList.Add(GetConfiguration());
 
-            return GenerateMethodSyntax(returns, methodName, argList.ToArray(), renames);
+            return GenerateMethodSyntax(returns, methodName, argList.ToArray(), renames, bodyParams);
         }
 
 
@@ -90,7 +104,8 @@ namespace Pelion.Generation.src.common.generators
             string returns,
             string name,
             SyntaxNodeOrToken[] argList,
-            Dictionary<string, string> renames)
+            Dictionary<string, string> renames,
+            Dictionary<string, string> body)
         {
             return SyntaxFactory.MethodDeclaration(
                     SyntaxFactory.GenericName(
@@ -111,6 +126,8 @@ namespace Pelion.Generation.src.common.generators
                     SyntaxFactory.Block(
                         // rename dictionary
                         GetRenameDictionary(renames),
+                        // data
+                        GetBody(body),
                         // try catch
                         GetTryCatchBlock()
                         .WithBlock(
@@ -140,8 +157,63 @@ namespace Pelion.Generation.src.common.generators
                                                     SyntaxFactory.SeparatedList<ArgumentSyntax>(
                                                         // arguments
                                                         argList
-                                                    ))))))))))
+                                                    ))))))))).NormalizeWhitespace())
             .NormalizeWhitespace();
+        }
+
+        private static ArgumentSyntax GetBodyArg()
+        {
+            return SyntaxFactory.Argument(
+                    SyntaxFactory.IdentifierName("data"))
+                .WithNameColon(
+                    SyntaxFactory.NameColon(
+                        SyntaxFactory.IdentifierName("body")));
+        }
+
+        private static LocalDeclarationStatementSyntax GetBody(Dictionary<string, string> body)
+        {
+            if (body.Any())
+            {
+                var bodyArgs = new List<SyntaxNodeOrToken>();
+
+                foreach (var item in body)
+                {
+                    var bodyItem = SyntaxFactory.AnonymousObjectMemberDeclarator(
+                                        SyntaxFactory.IdentifierName(item.Key))
+                                    .WithNameEquals(
+                                        SyntaxFactory.NameEquals(
+                                            SyntaxFactory.IdentifierName(item.Value)));
+
+                    bodyArgs.Add(bodyItem);
+                    bodyArgs.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+                }
+
+                return SyntaxFactory.LocalDeclarationStatement(
+                        SyntaxFactory.VariableDeclaration(
+                            SyntaxFactory.IdentifierName("var"))
+                        .WithVariables(
+                            SyntaxFactory.SingletonSeparatedList<VariableDeclaratorSyntax>(
+                                SyntaxFactory.VariableDeclarator(
+                                    SyntaxFactory.Identifier("data"))
+                                .WithInitializer(
+                                    SyntaxFactory.EqualsValueClause(
+                                        SyntaxFactory.AnonymousObjectCreationExpression(
+                                            SyntaxFactory.SeparatedList<AnonymousObjectMemberDeclaratorSyntax>(
+                                                bodyArgs.ToArray()
+                                            ))))))).NormalizeWhitespace();
+            }
+
+            return SyntaxFactory.LocalDeclarationStatement(
+                    SyntaxFactory.VariableDeclaration(
+                        SyntaxFactory.IdentifierName("object"))
+                    .WithVariables(
+                        SyntaxFactory.SingletonSeparatedList<VariableDeclaratorSyntax>(
+                            SyntaxFactory.VariableDeclarator(
+                                SyntaxFactory.Identifier("data"))
+                            .WithInitializer(
+                                SyntaxFactory.EqualsValueClause(
+                                    SyntaxFactory.LiteralExpression(
+                                        SyntaxKind.NullLiteralExpression))))));
         }
 
         private static ArgumentSyntax GetMethod(string methodType)
@@ -207,6 +279,30 @@ namespace Pelion.Generation.src.common.generators
                     SyntaxFactory.IdentifierName("accepts"))).NormalizeWhitespace();
         }
 
+        private static ArgumentSyntax GetContentTypesArray()
+        {
+            return SyntaxFactory.Argument(
+                SyntaxFactory.ArrayCreationExpression(
+                    SyntaxFactory.ArrayType(
+                        SyntaxFactory.PredefinedType(
+                            SyntaxFactory.Token(SyntaxKind.StringKeyword)))
+                    .WithRankSpecifiers(
+                        SyntaxFactory.SingletonList<ArrayRankSpecifierSyntax>(
+                            SyntaxFactory.ArrayRankSpecifier(
+                                SyntaxFactory.SingletonSeparatedList<ExpressionSyntax>(
+                                    SyntaxFactory.OmittedArraySizeExpression())))))
+                .WithInitializer(
+                    SyntaxFactory.InitializerExpression(
+                        SyntaxKind.ArrayInitializerExpression,
+                        SyntaxFactory.SingletonSeparatedList<ExpressionSyntax>(
+                            SyntaxFactory.LiteralExpression(
+                                SyntaxKind.StringLiteralExpression,
+                                SyntaxFactory.Literal("application/json"))))))
+            .WithNameColon(
+                SyntaxFactory.NameColon(
+                    SyntaxFactory.IdentifierName("contentTypes"))).NormalizeWhitespace();
+        }
+
         private static ArgumentSyntax GetPathParams(Dictionary<string, string> pathParams)
         {
             var keyValueList = new List<SyntaxNodeOrToken>();
@@ -225,12 +321,6 @@ namespace Pelion.Generation.src.common.generators
 
                 keyValueList.Add(dictProp);
                 keyValueList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
-            }
-
-            // remove trailing comma
-            if (keyValueList.Any())
-            {
-                keyValueList.RemoveAt(keyValueList.Count - 1);
             }
 
             return SyntaxFactory.Argument(
@@ -270,10 +360,49 @@ namespace Pelion.Generation.src.common.generators
                     SyntaxFactory.IdentifierName("path"))).NormalizeWhitespace();
         }
 
+        private static ArgumentSyntax GetPopulateObject()
+        {
+            return SyntaxFactory.Argument(
+                SyntaxFactory.LiteralExpression(
+                    SyntaxKind.TrueLiteralExpression))
+            .WithNameColon(
+                SyntaxFactory.NameColon(
+                    SyntaxFactory.IdentifierName("populateObject")));
+        }
+
+        private static ArgumentSyntax GetObjectToPopulate()
+        {
+            return SyntaxFactory.Argument(
+                SyntaxFactory.ThisExpression())
+            .WithNameColon(
+                SyntaxFactory.NameColon(
+                    SyntaxFactory.IdentifierName("objectToPopulate")));
+        }
+
         private static LocalDeclarationStatementSyntax GetRenameDictionary(Dictionary<string, string> renames)
         {
             if (renames.Any())
             {
+                var renameList = new List<SyntaxNodeOrToken>();
+
+                foreach (var item in renames)
+                {
+                    var renameItem = SyntaxFactory.InitializerExpression(
+                                        SyntaxKind.ComplexElementInitializerExpression,
+                                        SyntaxFactory.SeparatedList<ExpressionSyntax>(
+                                            new SyntaxNodeOrToken[]{
+                                                SyntaxFactory.LiteralExpression(
+                                                    SyntaxKind.StringLiteralExpression,
+                                                    SyntaxFactory.Literal(item.Key)),
+                                                SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                                SyntaxFactory.LiteralExpression(
+                                                    SyntaxKind.StringLiteralExpression,
+                                                    SyntaxFactory.Literal(item.Value))}));
+
+                    renameList.Add(renameItem);
+                    renameList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+                }
+
                 return SyntaxFactory.LocalDeclarationStatement(
                     SyntaxFactory.VariableDeclaration(
                             SyntaxFactory.IdentifierName("var"))
@@ -299,43 +428,8 @@ namespace Pelion.Generation.src.common.generators
                                             SyntaxFactory.InitializerExpression(
                                                 SyntaxKind.CollectionInitializerExpression,
                                                 SyntaxFactory.SeparatedList<ExpressionSyntax>(
-                                                    new SyntaxNodeOrToken[]{
-                                                    SyntaxFactory.InitializerExpression(
-                                                        SyntaxKind.ComplexElementInitializerExpression,
-                                                        SyntaxFactory.SeparatedList<ExpressionSyntax>(
-                                                            new SyntaxNodeOrToken[]{
-                                                                SyntaxFactory.LiteralExpression(
-                                                                    SyntaxKind.StringLiteralExpression,
-                                                                    SyntaxFactory.Literal("TwoFactorAuthentication")),
-                                                                SyntaxFactory.Token(SyntaxKind.CommaToken),
-                                                                SyntaxFactory.LiteralExpression(
-                                                                    SyntaxKind.StringLiteralExpression,
-                                                                    SyntaxFactory.Literal("is_totp_enabled"))})),
-                                                    SyntaxFactory.Token(SyntaxKind.CommaToken),
-                                                    SyntaxFactory.InitializerExpression(
-                                                        SyntaxKind.ComplexElementInitializerExpression,
-                                                        SyntaxFactory.SeparatedList<ExpressionSyntax>(
-                                                            new SyntaxNodeOrToken[]{
-                                                                SyntaxFactory.LiteralExpression(
-                                                                    SyntaxKind.StringLiteralExpression,
-                                                                    SyntaxFactory.Literal("TermsAccepted")),
-                                                                SyntaxFactory.Token(SyntaxKind.CommaToken),
-                                                                SyntaxFactory.LiteralExpression(
-                                                                    SyntaxKind.StringLiteralExpression,
-                                                                    SyntaxFactory.Literal("is_gtc_accepted"))})),
-                                                    SyntaxFactory.Token(SyntaxKind.CommaToken),
-                                                    SyntaxFactory.InitializerExpression(
-                                                        SyntaxKind.ComplexElementInitializerExpression,
-                                                        SyntaxFactory.SeparatedList<ExpressionSyntax>(
-                                                            new SyntaxNodeOrToken[]{
-                                                                SyntaxFactory.LiteralExpression(
-                                                                    SyntaxKind.StringLiteralExpression,
-                                                                    SyntaxFactory.Literal("MarketingAccepted")),
-                                                                SyntaxFactory.Token(SyntaxKind.CommaToken),
-                                                                SyntaxFactory.LiteralExpression(
-                                                                    SyntaxKind.StringLiteralExpression,
-                                                                    SyntaxFactory.Literal("is_marketing_accepted"))})),
-                                                    SyntaxFactory.Token(SyntaxKind.CommaToken)})))))))
+                                                    renameList.ToArray()
+                                                )))))))
                 ).NormalizeWhitespace();
             }
 

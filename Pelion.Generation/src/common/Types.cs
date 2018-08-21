@@ -7,16 +7,17 @@ namespace Pelion.Generation.src.common
 
     public static class Types
     {
-        public static TypeSyntax @bool { get => SyntaxFactory.ParseTypeName("bool"); }
-        public static TypeSyntax @int { get => SyntaxFactory.ParseTypeName("int"); }
+        public static TypeSyntax @bool { get => SyntaxFactory.ParseTypeName("bool?"); }
+        public static TypeSyntax @int { get => SyntaxFactory.ParseTypeName("int?"); }
         public static TypeSyntax @string { get => SyntaxFactory.ParseTypeName("string"); }
-        public static TypeSyntax date { get => SyntaxFactory.ParseTypeName("DateTime"); }
+        public static TypeSyntax date { get => SyntaxFactory.ParseTypeName("DateTime?"); }
+        public static TypeSyntax @long { get => SyntaxFactory.ParseTypeName("long?"); }
 
         public static TypeSyntax List(string type)
         {
             return SyntaxFactory.ParseTypeName($"List<{type}>");
         }
-        
+
         public static TypeSyntax CustomType(string name)
         {
             return SyntaxFactory.ParseTypeName(name);

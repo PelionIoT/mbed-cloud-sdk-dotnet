@@ -23,7 +23,7 @@ namespace MbedCloudSDK.Client
             MbedCloudSDK.Client.Configuration configuration = null,
             JsonSerializerSettings settings = null,
             Method method = default(Method),
-            T @object = default,
+            T objectToPopulate = default,
             bool populateObject = false)
         {
             ExceptionFactory = MbedCloudSDK.Client.Configuration.DefaultExceptionFactory;
@@ -107,8 +107,8 @@ namespace MbedCloudSDK.Client
 
             if (populateObject)
             {
-                JsonConvert.PopulateObject(localVarResponse.Content, @object, settings);
-                return @object;
+                JsonConvert.PopulateObject(localVarResponse.Content, objectToPopulate, settings);
+                return objectToPopulate;
             }
 
             return JsonConvert.DeserializeObject<T>(localVarResponse.Content, settings);

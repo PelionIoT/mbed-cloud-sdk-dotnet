@@ -277,7 +277,9 @@ Task("generation_debug")
     .IsDependentOn("_restore_generator")
     .IsDependentOn("_build_generator")
     .IsDependentOn("_generate_and_compile")
-    .IsDependentOn("_write_files");
+    .IsDependentOn("_write_files")
+    .IsDependentOn("_restore_solution")
+    .IsDependentOn("_build_solution");
 
 Task("Build-Pack-Publish")
     .IsDependentOn("_restore_sdk")
