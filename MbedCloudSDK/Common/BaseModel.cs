@@ -11,24 +11,22 @@ namespace MbedCloudSDK.Common
     /// </summary>
     public abstract class BaseModel
     {
+        private static MbedCloudSDK.Client.Configuration config;
+
         /// <summary>
-        /// Gets the identifier.
+        /// Gets or sets the configuration.
         /// </summary>
         /// <value>
-        /// The identifier.
+        /// The configuration.
         /// </value>
-        [JsonProperty]
-        public string Id { get; set; }
-
-        private static MbedCloudSDK.Client.Configuration _config;
-
         [JsonIgnore]
-        public static MbedCloudSDK.Client.Configuration Config {
+        public static MbedCloudSDK.Client.Configuration Config
+        {
             get
             {
-                if (_config != null)
+                if (config != null)
                 {
-                    return _config;
+                    return config;
                 }
 
                 var sdkConfig = new Config();
@@ -44,10 +42,20 @@ namespace MbedCloudSDK.Common
 
                 return clientConfig;
             }
+
             set
             {
-                _config = value;
+                config = value;
             }
         }
+
+        /// <summary>
+        /// Gets or sets gets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        [JsonProperty]
+        public string Id { get; set; }
     }
 }

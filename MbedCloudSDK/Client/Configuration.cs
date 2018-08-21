@@ -1,10 +1,13 @@
-using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.IO;
+// <copyright file="Configuration.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Client
 {
+    using System;
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
+
     /// <summary>
     /// Represents a set of configuration settings
     /// </summary>
@@ -25,31 +28,40 @@ namespace MbedCloudSDK.Client
             var status = (int)response.StatusCode;
             if (status >= 400)
             {
-                return new ApiException(status,
-                    string.Format("Error calling {0}: {1}", methodName, response.Content),
+                return new ApiException(
+                    status,
+                    $"Error calling {methodName}: {response.Content}",
                     response.Content);
             }
+
             if (status == 0)
             {
-                return new ApiException(status,
-                    string.Format("Error calling {0}: {1}", methodName, response.ErrorMessage), response.ErrorMessage);
+                return new ApiException(
+                    status,
+                    $"Error calling {methodName}: {response.ErrorMessage}",
+                    response.ErrorMessage);
             }
+
             return null;
         };
+
+        private ApiClient apiClient;
 
         /// <summary>
         /// Gets or sets the API key based on the authentication name.
         /// </summary>
         /// <value>The API key.</value>
-        private IDictionary<string, string> _apiKey = null;
+        private IDictionary<string, string> apiKey;
 
         /// <summary>
         /// Gets or sets the prefix (e.g. Token) of the API key based on the authentication name.
         /// </summary>
         /// <value>The prefix of the API key.</value>
-        private IDictionary<string, string> _apiKeyPrefix = null;
+        private IDictionary<string, string> apiKeyPrefix;
 
-        private string _dateTimeFormat = ISO8601_DATETIME_FORMAT;
+        private string basePath;
+
+        private string dateTimeFormat = ISO8601_DATETIME_FORMAT;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Configuration" /> class
@@ -63,7 +75,6 @@ namespace MbedCloudSDK.Client
             Timeout = 100000;
         }
 
-        private ApiClient _apiClient = null;
         /// <summary>
         /// Gets an instance of an ApiClient for this configuration
         /// </summary>
@@ -71,26 +82,94 @@ namespace MbedCloudSDK.Client
         {
             get
             {
-                if (_apiClient == null) _apiClient = CreateApiClient();
-                return _apiClient;
+                if (apiClient == null)
+                {
+                    apiClient = CreateApiClient();
+                }
+
+                return apiClient;
             }
         }
 
-        private String _basePath = null;
+        /// <summary>
+        /// Gets or sets the API key based on the authentication name.
+        /// </summary>
+        /// <value>The API key.</value>
+        public virtual IDictionary<string, string> ApiKey
+        {
+            get
+            {
+                return apiKey;
+            }
+
+            set
+            {
+                apiKey = value ?? throw new InvalidOperationException("ApiKey collection may not be null.");
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the prefix (e.g. Token) of the API key based on the authentication name.
+        /// </summary>
+        /// <value>The prefix of the API key.</value>
+        public virtual IDictionary<string, string> ApiKeyPrefix
+        {
+            get
+            {
+                return apiKeyPrefix;
+            }
+
+            set
+            {
+                apiKeyPrefix = value ?? throw new InvalidOperationException("ApiKeyPrefix collection may not be null.");
+            }
+        }
+
         /// <summary>
         /// Gets or sets the base path for API access.
         /// </summary>
         public virtual string BasePath
         {
-            get { return _basePath; }
+            get
+            {
+                return basePath;
+            }
+
             set
             {
-                _basePath = value;
-                // pass-through to ApiClient if it's set.
-                if (_apiClient != null)
+                basePath = value;
+                if (apiClient != null)
                 {
-                    _apiClient.RestClient.BaseUrl = new Uri(_basePath);
+                    apiClient.RestClient.BaseUrl = new Uri(basePath);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the the date time format used when serializing in the ApiClient
+        /// By default, it's set to ISO 8601 - "o", for others see:
+        /// https://msdn.microsoft.com/en-us/library/az4se3k1(v=vs.110).aspx
+        /// and https://msdn.microsoft.com/en-us/library/8kb3ddd4(v=vs.110).aspx
+        /// No validation is done to ensure that the string you're providing is valid
+        /// </summary>
+        /// <value>The DateTimeFormat string</value>
+        public virtual string DateTimeFormat
+        {
+            get
+            {
+                return dateTimeFormat;
+            }
+
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    // Never allow a blank or null string, go back to the default
+                    dateTimeFormat = ISO8601_DATETIME_FORMAT;
+                    return;
+                }
+
+                dateTimeFormat = value;
             }
         }
 
@@ -111,96 +190,10 @@ namespace MbedCloudSDK.Client
         public virtual string UserAgent { get; set; }
 
         /// <summary>
-        /// Gets the API key with prefix.
-        /// </summary>
-        /// <param name="apiKeyIdentifier">API key identifier (authentication scheme).</param>
-        /// <returns>API key with prefix.</returns>
-        public string GetApiKeyWithPrefix(string apiKeyIdentifier)
-        {
-            var apiKeyValue = "";
-            ApiKey.TryGetValue(apiKeyIdentifier, out apiKeyValue);
-            var apiKeyPrefix = "";
-            if (ApiKeyPrefix.TryGetValue(apiKeyIdentifier, out apiKeyPrefix))
-                return apiKeyPrefix + " " + apiKeyValue;
-            else
-                return apiKeyValue;
-        }
-
-        /// <summary>
-        /// Gets or sets the the date time format used when serializing in the ApiClient
-        /// By default, it's set to ISO 8601 - "o", for others see:
-        /// https://msdn.microsoft.com/en-us/library/az4se3k1(v=vs.110).aspx
-        /// and https://msdn.microsoft.com/en-us/library/8kb3ddd4(v=vs.110).aspx
-        /// No validation is done to ensure that the string you're providing is valid
-        /// </summary>
-        /// <value>The DateTimeFormat string</value>
-        public virtual string DateTimeFormat
-        {
-            get { return _dateTimeFormat; }
-            set
-            {
-                if (string.IsNullOrEmpty(value))
-                {
-                    // Never allow a blank or null string, go back to the default
-                    _dateTimeFormat = ISO8601_DATETIME_FORMAT;
-                    return;
-                }
-
-                // Caution, no validation when you choose date time format other than ISO 8601
-                // Take a look at the above links
-                _dateTimeFormat = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the prefix (e.g. Token) of the API key based on the authentication name.
-        /// </summary>
-        /// <value>The prefix of the API key.</value>
-        public virtual IDictionary<string, string> ApiKeyPrefix
-        {
-            get { return _apiKeyPrefix; }
-            set
-            {
-                if (value == null)
-                {
-                    throw new InvalidOperationException("ApiKeyPrefix collection may not be null.");
-                }
-                _apiKeyPrefix = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the API key based on the authentication name.
-        /// </summary>
-        /// <value>The API key.</value>
-        public virtual IDictionary<string, string> ApiKey
-        {
-            get { return _apiKey; }
-            set
-            {
-                if (value == null)
-                {
-                    throw new InvalidOperationException("ApiKey collection may not be null.");
-                }
-                _apiKey = value;
-            }
-        }
-
-        /// <summary>
-        /// Creates a new <see cref="ApiClient" /> based on this <see cref="Configuration" /> instance.
-        /// </summary>
-        /// <returns></returns>
-        public ApiClient CreateApiClient()
-        {
-            return new ApiClient(BasePath) { Configuration = this };
-        }
-
-        /// <summary>
         /// Add Api Key Header
         /// </summary>
         /// <param name="key">Api Key name.</param>
         /// <param name="value">Api Key value.</param>
-        /// <returns></returns>
         public void AddApiKey(string key, string value)
         {
             ApiKey[key] = value;
@@ -214,6 +207,28 @@ namespace MbedCloudSDK.Client
         public void AddApiKeyPrefix(string key, string value)
         {
             ApiKeyPrefix[key] = value;
+        }
+
+        /// <summary>
+        /// Creates a new <see cref="ApiClient" /> based on this <see cref="Configuration" /> instance.
+        /// </summary>
+        /// <returns>ApiClient</returns>
+        public ApiClient CreateApiClient()
+        {
+            return new ApiClient(BasePath) { Configuration = this };
+        }
+
+        /// <summary>
+        /// Gets the API key with prefix.
+        /// </summary>
+        /// <param name="apiKeyIdentifier">API key identifier (authentication scheme).</param>
+        /// <returns>API key with prefix.</returns>
+        public string GetApiKeyWithPrefix(string apiKeyIdentifier)
+        {
+            var apiKeyValue = string.Empty;
+            ApiKey.TryGetValue(apiKeyIdentifier, out apiKeyValue);
+            var apiKeyPrefix = string.Empty;
+            return ApiKeyPrefix.TryGetValue(apiKeyIdentifier, out apiKeyPrefix) ? apiKeyPrefix + " " + apiKeyValue : apiKeyValue;
         }
     }
 }

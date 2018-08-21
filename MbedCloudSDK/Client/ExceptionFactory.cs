@@ -1,8 +1,12 @@
-using System;
-using RestSharp;
+// <copyright file="ExceptionFactory.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloudSDK.Client
 {
+    using System;
+    using RestSharp;
+
     /// <summary>
     /// A delegate to ExceptionFactory method
     /// </summary>

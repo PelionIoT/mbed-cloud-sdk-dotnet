@@ -14,10 +14,13 @@ namespace MbedCloudSDK.Common
     /// <typeparam name="T">Response page</typeparam>
     public class ResponsePage<T>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ResponsePage{T}"/> class.
+        /// </summary>
         public ResponsePage()
         {
         }
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponsePage{T}"/> class.
         /// Create new instance of response page.

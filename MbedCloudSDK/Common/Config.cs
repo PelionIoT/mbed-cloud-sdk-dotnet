@@ -87,7 +87,7 @@ namespace MbedCloudSDK.Common
         }
 
         /// <summary>
-        /// Gets or sets the host.
+        /// Gets the host.
         /// </summary>
         /// <value>The host.</value>
         public string Host { get; }
