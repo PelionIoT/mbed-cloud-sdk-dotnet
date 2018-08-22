@@ -222,17 +222,22 @@ namespace Pelion.Generation.src.common
                         return Types.date;
                     case "array":
                         AddUsing(common.Usings.Lists);
-                        // if (_property != null)
-                        // {
-                        //     Console.WriteLine(property);
-                        //     Console.WriteLine(property["items"]);
-                        //     var item = property["items"];
-                        //     if (item["type"] != null)
-                        //     {
-                        //         return Types.List(_type(item["type"].Value<string>()).ToString());
-                        //     }
-                        //     return Types.List("object");
-                        // }
+                        if (_property != null)
+                        {
+                            var item = _property["items"];
+                            if (item["type"] != null)
+                            {
+                                return Types.List(_type(item["type"].Value<string>()).ToString());
+                            }
+
+                            if (item["is_foreign_key"] != null)
+                            {
+                                AddUsing(common.Usings.GetForeignKey(item["foreign_key"]["group"]["pascal"].Value<string>(), item["foreign_key"]["entity"]["pascal"].Value<string>()));
+                                return Types.List(item["foreign_key"]["entity"]["pascal"].Value<string>());
+                            }
+
+                            return Types.List("object");
+                        }
                         return Types.List("object");
                     case "boolean":
                         return Types.@bool;

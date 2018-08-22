@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using MbedCloudSDK.AccountManagement.Api;
 using MbedCloudSDK.Billing.Api;
 using MbedCloudSDK.Common;
@@ -13,22 +14,38 @@ namespace Playground
 
             var testUser = iam.ListUsers().First();
 
-            var user = new MbedCloudSDK.AggregatorAccountAdmin.User.User()
+            var user = new MbedCloudSDK.Accounts.User.User()
             {
-                Id = testUser.Id,
+                Address = "the street",
+                Email = "noalgalex22@gmail.com",
+                FullName = "Don D",
+                PhoneNumber = "07845215995",
+                Username = "drdond22",
             };
 
             try
             {
-                await user.Read();
+                var getUser = new MbedCloudSDK.Accounts.User.User()
+                {
+                    Id = testUser.Id,
+                };
 
-                Console.WriteLine(user);
+                // Console.WriteLine(await getUser.Read());
 
-                user.FullName = "Don Draper";
+                await user.Create();
+                //await user.Read();
+
+                Console.WriteLine($"My phone number is {user.PhoneNumber}");
+
+                user.PhoneNumber = "118118";
 
                 await user.Update();
 
-                Console.WriteLine(user);
+                Console.WriteLine($"My phone number is now {user.PhoneNumber}");
+
+                //Console.WriteLine(iam.ListUsers().All().FirstOrDefault(u => u.Id == user.Id));
+
+                await user.Delete();
             }
             catch(Exception e)
             {

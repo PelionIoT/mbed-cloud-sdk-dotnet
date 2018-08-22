@@ -77,10 +77,14 @@ namespace Pelion.Generation.src.common.generators
             argList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
             argList.Add(GetSerializerSettingsWithRenames());
             argList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
-            argList.Add(GetPopulateObject());
-            argList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
-            argList.Add(GetObjectToPopulate());
-            argList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+            if (method != "delete")
+            {
+                argList.Add(GetPopulateObject());
+                argList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+                argList.Add(GetObjectToPopulate());
+                argList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+            }
+
             argList.Add(GetAcceptsArray());
             argList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
             argList.Add(GetContentTypesArray());
@@ -96,7 +100,12 @@ namespace Pelion.Generation.src.common.generators
 
             argList.Add(GetConfiguration());
 
-            return GenerateMethodSyntax(returns, methodName, argList.ToArray(), renames, bodyParams);
+            if (method == "delete")
+            {
+                return GenerateMethodSyntax("object", methodName, argList.ToArray(), renames, bodyParams, true);
+            }
+
+            return GenerateMethodSyntax(returns, methodName, argList.ToArray(), renames, bodyParams, false);
         }
 
 
@@ -105,18 +114,77 @@ namespace Pelion.Generation.src.common.generators
             string name,
             SyntaxNodeOrToken[] argList,
             Dictionary<string, string> renames,
-            Dictionary<string, string> body)
+            Dictionary<string, string> body,
+            bool voidMethod)
         {
-            return SyntaxFactory.MethodDeclaration(
+            var returnCall = SyntaxFactory.Block(
+                                SyntaxFactory.SingletonList<StatementSyntax>(
+                                    SyntaxFactory.ReturnStatement(
+                                                SyntaxFactory.AwaitExpression(
+                                                    SyntaxFactory.InvocationExpression(
+                                                        SyntaxFactory.MemberAccessExpression(
+                                                            SyntaxKind.SimpleMemberAccessExpression,
+                                                            SyntaxFactory.MemberAccessExpression(
+                                                                SyntaxKind.SimpleMemberAccessExpression,
+                                                                SyntaxFactory.MemberAccessExpression(
+                                                                    SyntaxKind.SimpleMemberAccessExpression,
+                                                                    SyntaxFactory.IdentifierName("MbedCloudSDK"),
+                                                                    SyntaxFactory.IdentifierName("Client")),
+                                                                SyntaxFactory.IdentifierName("ApiCall")),
+                                                            SyntaxFactory.GenericName(
+                                                                SyntaxFactory.Identifier("CallApi"))
+                                                            .WithTypeArgumentList(
+                                                                SyntaxFactory.TypeArgumentList(
+                                                                    SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
+                                                                        // return type
+                                                                        SyntaxFactory.IdentifierName(returns))))))
+                                                    .WithArgumentList(
+                                                        SyntaxFactory.ArgumentList(
+                                                            SyntaxFactory.SeparatedList<ArgumentSyntax>(
+                                                                // arguments
+                                                                argList
+                                                            )))))));
+
+            var voidCall = SyntaxFactory.Block(
+                                SyntaxFactory.SingletonList<StatementSyntax>(
+                                    SyntaxFactory.ExpressionStatement(
+                                                SyntaxFactory.AwaitExpression(
+                                                    SyntaxFactory.InvocationExpression(
+                                                        SyntaxFactory.MemberAccessExpression(
+                                                            SyntaxKind.SimpleMemberAccessExpression,
+                                                            SyntaxFactory.MemberAccessExpression(
+                                                                SyntaxKind.SimpleMemberAccessExpression,
+                                                                SyntaxFactory.MemberAccessExpression(
+                                                                    SyntaxKind.SimpleMemberAccessExpression,
+                                                                    SyntaxFactory.IdentifierName("MbedCloudSDK"),
+                                                                    SyntaxFactory.IdentifierName("Client")),
+                                                                SyntaxFactory.IdentifierName("ApiCall")),
+                                                            SyntaxFactory.GenericName(
+                                                                SyntaxFactory.Identifier("CallApi"))
+                                                            .WithTypeArgumentList(
+                                                                SyntaxFactory.TypeArgumentList(
+                                                                    SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
+                                                                        SyntaxFactory.IdentifierName(returns))))))
+                                                    .WithArgumentList(
+                                                        SyntaxFactory.ArgumentList(
+                                                            SyntaxFactory.SeparatedList<ArgumentSyntax>(
+                                                                argList)))))));
+
+            var voidDeclaration = SyntaxFactory.MethodDeclaration(
+                SyntaxFactory.IdentifierName("Task"),
+                SyntaxFactory.Identifier(name)
+            );
+            var returnDeclaration = SyntaxFactory.MethodDeclaration(
                     SyntaxFactory.GenericName(
-                        SyntaxFactory.Identifier("Task"))
+                    SyntaxFactory.Identifier("Task"))
                     .WithTypeArgumentList(
                         SyntaxFactory.TypeArgumentList(
                             SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
-                                // return type
                                 SyntaxFactory.IdentifierName(returns)))),
-                    // method name
-                    SyntaxFactory.Identifier(name))
+                    SyntaxFactory.Identifier(name)
+                );
+
+            return (voidMethod ? voidDeclaration : returnDeclaration)
                 .WithModifiers(
                     SyntaxFactory.TokenList(
                         new[]{
@@ -131,33 +199,8 @@ namespace Pelion.Generation.src.common.generators
                         // try catch
                         GetTryCatchBlock()
                         .WithBlock(
-                            SyntaxFactory.Block(
-                                SyntaxFactory.SingletonList<StatementSyntax>(
-                                    SyntaxFactory.ReturnStatement(
-                                        SyntaxFactory.AwaitExpression(
-                                            SyntaxFactory.InvocationExpression(
-                                                SyntaxFactory.MemberAccessExpression(
-                                                    SyntaxKind.SimpleMemberAccessExpression,
-                                                    SyntaxFactory.MemberAccessExpression(
-                                                        SyntaxKind.SimpleMemberAccessExpression,
-                                                        SyntaxFactory.MemberAccessExpression(
-                                                            SyntaxKind.SimpleMemberAccessExpression,
-                                                            SyntaxFactory.IdentifierName("MbedCloudSDK"),
-                                                            SyntaxFactory.IdentifierName("Client")),
-                                                        SyntaxFactory.IdentifierName("ApiCall")),
-                                                    SyntaxFactory.GenericName(
-                                                        SyntaxFactory.Identifier("CallApi"))
-                                                    .WithTypeArgumentList(
-                                                        SyntaxFactory.TypeArgumentList(
-                                                            SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
-                                                                // return type
-                                                                SyntaxFactory.IdentifierName(returns))))))
-                                            .WithArgumentList(
-                                                SyntaxFactory.ArgumentList(
-                                                    SyntaxFactory.SeparatedList<ArgumentSyntax>(
-                                                        // arguments
-                                                        argList
-                                                    ))))))))).NormalizeWhitespace())
+                            voidMethod ? voidCall : returnCall
+                        )).NormalizeWhitespace())
             .NormalizeWhitespace();
         }
 

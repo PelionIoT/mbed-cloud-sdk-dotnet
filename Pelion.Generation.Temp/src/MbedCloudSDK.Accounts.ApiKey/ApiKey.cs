@@ -42,7 +42,7 @@ namespace MbedCloudSDK.Accounts.ApiKey
         /// <summary>
         /// A list of group IDs this API key belongs to.
         /// </summary>
-        public List<object> Groups
+        public List<string> Groups
         {
             get;
             set;
@@ -122,13 +122,13 @@ namespace MbedCloudSDK.Accounts.ApiKey
             }
         }
 
-        public async Task<ApiKey> Delete()
+        public async Task Delete()
         {
             var renames = new Dictionary<string, string>();
             object data = null;
             try
             {
-                return await MbedCloudSDK.Client.ApiCall.CallApi<ApiKey>(path: "/v3/api-keys/{apiKey}", method: Method.DELETE, settings: SerializationSettings.GetSettings(renames), populateObject: true, objectToPopulate: this, accepts: new string[]{"application/json"}, contentTypes: new string[]{"application/json"}, body: data, pathParams: new Dictionary<string, object>()
+                await MbedCloudSDK.Client.ApiCall.CallApi<object>(path: "/v3/api-keys/{apiKey}", method: Method.DELETE, settings: SerializationSettings.GetSettings(renames), accepts: new string[]{"application/json"}, contentTypes: new string[]{"application/json"}, body: data, pathParams: new Dictionary<string, object>()
                 {{"apiKey", Id}, }, configuration: Config);
             }
             catch (MbedCloudSDK.Client.ApiException e)

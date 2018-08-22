@@ -3,12 +3,10 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
-namespace MbedCloudSDK.Developer.AccountGroup
+namespace MbedCloudSDK.AccountAdmin.AccountGroup
 {
     using MbedCloudSDK.Common;
     using System;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using MbedCloudSDK.Client;
@@ -85,16 +83,6 @@ namespace MbedCloudSDK.Developer.AccountGroup
         }
 
         /// <summary>
-        /// Response type: success.
-        /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public AccountGroupTypeEnum Type
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// Last update UTC time RFC3339.
         /// </summary>
         public DateTime? UpdatedAt
@@ -119,7 +107,7 @@ namespace MbedCloudSDK.Developer.AccountGroup
             try
             {
                 return await MbedCloudSDK.Client.ApiCall.CallApi<AccountGroup>(path: "/v3/policy-groups/{groupID}", method: Method.GET, settings: SerializationSettings.GetSettings(renames), populateObject: true, objectToPopulate: this, accepts: new string[]{"application/json"}, contentTypes: new string[]{"application/json"}, body: data, pathParams: new Dictionary<string, object>()
-                {}, configuration: Config);
+                {{"groupID", Id}, }, configuration: Config);
             }
             catch (MbedCloudSDK.Client.ApiException e)
             {
@@ -134,7 +122,7 @@ namespace MbedCloudSDK.Developer.AccountGroup
             try
             {
                 return await MbedCloudSDK.Client.ApiCall.CallApi<AccountGroup>(path: "/v3/policy-groups/{groupID}", method: Method.PUT, settings: SerializationSettings.GetSettings(renames), populateObject: true, objectToPopulate: this, accepts: new string[]{"application/json"}, contentTypes: new string[]{"application/json"}, body: data, pathParams: new Dictionary<string, object>()
-                {}, configuration: Config);
+                {{"groupID", Id}, }, configuration: Config);
             }
             catch (MbedCloudSDK.Client.ApiException e)
             {
