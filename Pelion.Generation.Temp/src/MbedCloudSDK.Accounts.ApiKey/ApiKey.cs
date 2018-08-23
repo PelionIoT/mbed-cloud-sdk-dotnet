@@ -3,6 +3,7 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
+
 namespace MbedCloudSDK.Accounts.ApiKey
 {
     using MbedCloudSDK.Common;
@@ -14,6 +15,8 @@ namespace MbedCloudSDK.Accounts.ApiKey
     using MbedCloudSDK.Client;
     using MbedCloudSDK.Exceptions;
     using RestSharp;
+    using MbedCloudSDK.Common.Query;
+    using MbedCloudSDK.Developer.AccountGroup;
     using MbedCloudSDK.Common.Extensions;
 
     /// <summary>
@@ -42,7 +45,7 @@ namespace MbedCloudSDK.Accounts.ApiKey
         /// <summary>
         /// A list of group IDs this API key belongs to.
         /// </summary>
-        public List<string> Groups
+        public List<string> GroupIds
         {
             get;
             set;
@@ -105,16 +108,17 @@ namespace MbedCloudSDK.Accounts.ApiKey
 
         public async Task<ApiKey> Create()
         {
-            var renames = new Dictionary<string, string>();
+            var renames = new Dictionary<string, string> { { "GroupIds", "groups" }, };
             var data = new
             {
-            Groups = Groups, Name = Name, Owner = Owner, Status = Status, }
-
-            ;
+                GroupIds = GroupIds,
+                Name = Name,
+                Owner = Owner,
+                Status = Status,
+            };
             try
             {
-                return await MbedCloudSDK.Client.ApiCall.CallApi<ApiKey>(path: "/v3/api-keys", method: Method.POST, settings: SerializationSettings.GetSettings(renames), populateObject: true, objectToPopulate: this, accepts: new string[]{"application/json"}, contentTypes: new string[]{"application/json"}, body: data, pathParams: new Dictionary<string, object>()
-                {{"apiKey", Id}, }, configuration: Config);
+                return await MbedCloudSDK.Client.ApiCall.CallApi<ApiKey>(path: "/v3/api-keys", method: Method.POST, settings: SerializationSettings.GetSettings(renames), populateObject: true, objectToPopulate: this, accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, configuration: Config);
             }
             catch (MbedCloudSDK.Client.ApiException e)
             {
@@ -124,12 +128,11 @@ namespace MbedCloudSDK.Accounts.ApiKey
 
         public async Task Delete()
         {
-            var renames = new Dictionary<string, string>();
+            var renames = new Dictionary<string, string> { { "GroupIds", "groups" }, };
             object data = null;
             try
             {
-                await MbedCloudSDK.Client.ApiCall.CallApi<object>(path: "/v3/api-keys/{apiKey}", method: Method.DELETE, settings: SerializationSettings.GetSettings(renames), accepts: new string[]{"application/json"}, contentTypes: new string[]{"application/json"}, body: data, pathParams: new Dictionary<string, object>()
-                {{"apiKey", Id}, }, configuration: Config);
+                await MbedCloudSDK.Client.ApiCall.CallApi<object>(path: "/v3/api-keys/{apiKey}", method: Method.DELETE, settings: SerializationSettings.GetSettings(renames), accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, pathParams: new Dictionary<string, object>() { { "apiKey", Id }, }, configuration: Config);
             }
             catch (MbedCloudSDK.Client.ApiException e)
             {
@@ -137,14 +140,18 @@ namespace MbedCloudSDK.Accounts.ApiKey
             }
         }
 
-        public async Task<ApiKey> GroupIds()
+        public PaginatedResponse<QueryOptions, AccountGroup> Groups(string after = null, string include = null, int? limit = null, string order = null)
         {
-            var renames = new Dictionary<string, string>();
+            var renames = new Dictionary<string, string> { { "GroupIds", "groups" }, };
             object data = null;
+            var options = new QueryOptions { After = after, Include = include, Limit = limit, Order = order, };
             try
             {
-                return await MbedCloudSDK.Client.ApiCall.CallApi<ApiKey>(path: "/v3/api-keys/me/groups", method: Method.GET, settings: SerializationSettings.GetSettings(renames), populateObject: true, objectToPopulate: this, accepts: new string[]{"application/json"}, contentTypes: new string[]{"application/json"}, body: data, pathParams: new Dictionary<string, object>()
-                {{"apiKey", Id}, }, configuration: Config);
+                Func<QueryOptions, ResponsePage<AccountGroup>> paginatedFunc = (QueryOptions _options) =>
+                {
+                    return AsyncHelper.RunSync<ResponsePage<AccountGroup>>(() => MbedCloudSDK.Client.ApiCall.CallApi<ResponsePage<AccountGroup>>(path: "/v3/api-keys/{apiKey}/groups", method: Method.GET, settings: SerializationSettings.GetSettings(renames), accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, pathParams: new Dictionary<string, object>() { { "apiKey", Id }, }, queryParams: new Dictionary<string, object>() { { "after", after }, { "include", include }, { "limit", limit }, { "order", order }, }, configuration: Config));
+                };
+                return new PaginatedResponse<QueryOptions, AccountGroup>(paginatedFunc, options);
             }
             catch (MbedCloudSDK.Client.ApiException e)
             {
@@ -152,14 +159,18 @@ namespace MbedCloudSDK.Accounts.ApiKey
             }
         }
 
-        public async Task<ApiKey> List()
+        public static PaginatedResponse<QueryOptions, ApiKey> List(string after = null, string include = null, int? limit = null, string order = null)
         {
-            var renames = new Dictionary<string, string>();
+            var renames = new Dictionary<string, string> { { "GroupIds", "groups" }, };
             object data = null;
+            var options = new QueryOptions { After = after, Include = include, Limit = limit, Order = order, };
             try
             {
-                return await MbedCloudSDK.Client.ApiCall.CallApi<ApiKey>(path: "/v3/api-keys", method: Method.GET, settings: SerializationSettings.GetSettings(renames), populateObject: true, objectToPopulate: this, accepts: new string[]{"application/json"}, contentTypes: new string[]{"application/json"}, body: data, pathParams: new Dictionary<string, object>()
-                {{"apiKey", Id}, }, configuration: Config);
+                Func<QueryOptions, ResponsePage<ApiKey>> paginatedFunc = (QueryOptions _options) =>
+                {
+                    return AsyncHelper.RunSync<ResponsePage<ApiKey>>(() => MbedCloudSDK.Client.ApiCall.CallApi<ResponsePage<ApiKey>>(path: "/v3/api-keys", method: Method.GET, settings: SerializationSettings.GetSettings(renames), accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, queryParams: new Dictionary<string, object>() { { "after", after }, { "include", include }, { "limit", limit }, { "order", order }, }, configuration: Config));
+                };
+                return new PaginatedResponse<QueryOptions, ApiKey>(paginatedFunc, options);
             }
             catch (MbedCloudSDK.Client.ApiException e)
             {
@@ -169,12 +180,11 @@ namespace MbedCloudSDK.Accounts.ApiKey
 
         public async Task<ApiKey> Read()
         {
-            var renames = new Dictionary<string, string>();
+            var renames = new Dictionary<string, string> { { "GroupIds", "groups" }, };
             object data = null;
             try
             {
-                return await MbedCloudSDK.Client.ApiCall.CallApi<ApiKey>(path: "/v3/api-keys/{apiKey}", method: Method.GET, settings: SerializationSettings.GetSettings(renames), populateObject: true, objectToPopulate: this, accepts: new string[]{"application/json"}, contentTypes: new string[]{"application/json"}, body: data, pathParams: new Dictionary<string, object>()
-                {{"apiKey", Id}, }, configuration: Config);
+                return await MbedCloudSDK.Client.ApiCall.CallApi<ApiKey>(path: "/v3/api-keys/{apiKey}", method: Method.GET, settings: SerializationSettings.GetSettings(renames), populateObject: true, objectToPopulate: this, accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, pathParams: new Dictionary<string, object>() { { "apiKey", Id }, }, configuration: Config);
             }
             catch (MbedCloudSDK.Client.ApiException e)
             {
@@ -184,16 +194,17 @@ namespace MbedCloudSDK.Accounts.ApiKey
 
         public async Task<ApiKey> Update()
         {
-            var renames = new Dictionary<string, string>();
+            var renames = new Dictionary<string, string> { { "GroupIds", "groups" }, };
             var data = new
             {
-            Groups = Groups, Name = Name, Owner = Owner, Status = Status, }
-
-            ;
+                GroupIds = GroupIds,
+                Name = Name,
+                Owner = Owner,
+                Status = Status,
+            };
             try
             {
-                return await MbedCloudSDK.Client.ApiCall.CallApi<ApiKey>(path: "/v3/api-keys/{apiKey}", method: Method.PUT, settings: SerializationSettings.GetSettings(renames), populateObject: true, objectToPopulate: this, accepts: new string[]{"application/json"}, contentTypes: new string[]{"application/json"}, body: data, pathParams: new Dictionary<string, object>()
-                {{"apiKey", Id}, }, configuration: Config);
+                return await MbedCloudSDK.Client.ApiCall.CallApi<ApiKey>(path: "/v3/api-keys/{apiKey}", method: Method.PUT, settings: SerializationSettings.GetSettings(renames), populateObject: true, objectToPopulate: this, accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, pathParams: new Dictionary<string, object>() { { "apiKey", Id }, }, configuration: Config);
             }
             catch (MbedCloudSDK.Client.ApiException e)
             {
@@ -205,6 +216,7 @@ namespace MbedCloudSDK.Accounts.ApiKey
         /// Get human readable string of this object
         /// </summary>
         /// <returns>Serialized string of object</returns>
-        public override string ToString() => this.DebugDump();
+        public override string ToString()
+            => this.DebugDump();
     }
 }

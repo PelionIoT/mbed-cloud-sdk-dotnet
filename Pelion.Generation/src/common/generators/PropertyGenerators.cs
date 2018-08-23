@@ -23,8 +23,8 @@ namespace Pelion.Generation.src.common.generators
 
             return SyntaxFactory.PropertyDeclaration(type, name)
                                 .AddModifiers(Modifiers.PublicMod)
-                                .AddAccessorListAccessors(getAccessor, setAccessor)
-                                .NormalizeWhitespace();
+                                .AddAccessorListAccessors(getAccessor, setAccessor);
+                                //.NormalizeWhitespace();
         }
 
         public static PropertyDeclarationSyntax AddAttribute(this PropertyDeclarationSyntax me, string name)
@@ -51,8 +51,8 @@ namespace Pelion.Generation.src.common.generators
                                 SyntaxFactory.SingletonSeparatedList<AttributeArgumentSyntax>(
                                     SyntaxFactory.AttributeArgument(
                                         SyntaxFactory.TypeOfExpression(
-                                            SyntaxFactory.IdentifierName("StringEnumConverter"))))))))))
-            .NormalizeWhitespace();
+                                            SyntaxFactory.IdentifierName("StringEnumConverter"))))))))));
+            //.NormalizeWhitespace();
         }
 
         // public static PropertyDeclarationSyntax AddSummary(this PropertyDeclarationSyntax me, string summary)

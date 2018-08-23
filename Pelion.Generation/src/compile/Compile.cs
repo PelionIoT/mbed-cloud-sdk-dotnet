@@ -10,6 +10,7 @@ using MbedCloudSDK.Bootstrap.Model;
 using MbedCloudSDK.Common;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Formatting;
 using Microsoft.CodeAnalysis.Formatting;
 using Newtonsoft.Json.Converters;
 
@@ -42,10 +43,6 @@ namespace Pelion.Generation.src.compile
             proj = AddCompilationOptions(proj);
             var compiler = proj.GetCompilationAsync().Result;
 
-            //var formattedResult = Formatter.Format(tree.GetRoot(), workspace);
-
-            //Console.WriteLine(formattedResult.ToFullString());
-
             return ReviewDiagnosticMessages(compiler);
         }
 
@@ -67,7 +64,7 @@ namespace Pelion.Generation.src.compile
             {
                 project = project.RemoveDocument(targetDocument.Id);
             }
-            var doc = project.AddDocument(documentName, tree.GetRoot().NormalizeWhitespace());
+            var doc = project.AddDocument(documentName, tree.GetRoot());
             return doc;
         }
 

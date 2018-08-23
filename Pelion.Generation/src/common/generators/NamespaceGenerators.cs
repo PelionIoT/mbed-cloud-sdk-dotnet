@@ -18,22 +18,22 @@ namespace Pelion.Generation.src.common.generators
                 @namespace = @namespace.AddUsings(SyntaxFactory.UsingDirective(SyntaxFactory.ParseName(@using)));
             }
 
-            return @namespace.NormalizeWhitespace();
+            return @namespace;//.NormalizeWhitespace();
         }
 
         public static NamespaceDeclarationSyntax AddClass(this NamespaceDeclarationSyntax me, ClassDeclarationSyntax @class)
         {
-            return me.AddMembers(@class).NormalizeWhitespace();
+            return me.AddMembers(@class);//.NormalizeWhitespace();
         }
 
         public static NamespaceDeclarationSyntax AddEnum(this NamespaceDeclarationSyntax me, EnumDeclarationSyntax @enum)
         {
-            return me.AddMembers(@enum).NormalizeWhitespace();
+            return me.AddMembers(@enum);//.NormalizeWhitespace();
         }
 
         public static NamespaceDeclarationSyntax AddUsing(this NamespaceDeclarationSyntax me, string @using)
         {
-            return me.AddUsings(SyntaxFactory.UsingDirective(SyntaxFactory.ParseName(@using))).NormalizeWhitespace();
+            return me.AddUsings(SyntaxFactory.UsingDirective(SyntaxFactory.ParseName(@using)));//.NormalizeWhitespace();
         }
 
         public static NamespaceDeclarationSyntax RemoveDuplicateUsings(this NamespaceDeclarationSyntax me)
@@ -67,7 +67,7 @@ namespace Pelion.Generation.src.common.generators
                 }
             );
 
-            return me.InsertTriviaBefore(me.GetLeadingTrivia().First(), header).NormalizeWhitespace();
+            return me.InsertTriviaBefore(me.GetLeadingTrivia().First(), header);//.NormalizeWhitespace();
         }
     }
 }

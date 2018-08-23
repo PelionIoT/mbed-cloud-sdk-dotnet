@@ -3,6 +3,7 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
+
 namespace MbedCloudSDK.Accounts.LoginHistory
 {
     using MbedCloudSDK.Common;
@@ -54,6 +55,7 @@ namespace MbedCloudSDK.Accounts.LoginHistory
         /// Get human readable string of this object
         /// </summary>
         /// <returns>Serialized string of object</returns>
-        public override string ToString() => this.DebugDump();
+        public override string ToString()
+            => this.DebugDump();
     }
 }

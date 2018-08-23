@@ -24,8 +24,8 @@ namespace Pelion.Generation.src.common.generators
                 .WithMembers(
                     SyntaxFactory.SeparatedList<EnumMemberDeclarationSyntax>(
                         memberList.ToArray()
-                    ))
-                    .NormalizeWhitespace();
+                    ));
+                    //.NormalizeWhitespace();
 
             // var enumDec = SyntaxFactory.EnumDeclaration(
             //     attributeLists: new SyntaxList<AttributeListSyntax>(),

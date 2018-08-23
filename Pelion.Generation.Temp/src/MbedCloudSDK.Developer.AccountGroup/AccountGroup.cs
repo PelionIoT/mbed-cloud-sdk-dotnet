@@ -3,7 +3,8 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
-namespace MbedCloudSDK.AccountAdmin.AccountGroup
+
+namespace MbedCloudSDK.Developer.AccountGroup
 {
     using MbedCloudSDK.Common;
     using System;
@@ -106,8 +107,7 @@ namespace MbedCloudSDK.AccountAdmin.AccountGroup
             object data = null;
             try
             {
-                return await MbedCloudSDK.Client.ApiCall.CallApi<AccountGroup>(path: "/v3/policy-groups/{groupID}", method: Method.GET, settings: SerializationSettings.GetSettings(renames), populateObject: true, objectToPopulate: this, accepts: new string[]{"application/json"}, contentTypes: new string[]{"application/json"}, body: data, pathParams: new Dictionary<string, object>()
-                {{"groupID", Id}, }, configuration: Config);
+                return await MbedCloudSDK.Client.ApiCall.CallApi<AccountGroup>(path: "/v3/policy-groups/{groupID}", method: Method.GET, settings: SerializationSettings.GetSettings(renames), populateObject: true, objectToPopulate: this, accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, pathParams: new Dictionary<string, object>() { { "groupID", Id }, }, configuration: Config);
             }
             catch (MbedCloudSDK.Client.ApiException e)
             {
@@ -118,11 +118,13 @@ namespace MbedCloudSDK.AccountAdmin.AccountGroup
         public async Task<AccountGroup> Update()
         {
             var renames = new Dictionary<string, string>();
-            object data = null;
+            var data = new
+            {
+                Name = Name,
+            };
             try
             {
-                return await MbedCloudSDK.Client.ApiCall.CallApi<AccountGroup>(path: "/v3/policy-groups/{groupID}", method: Method.PUT, settings: SerializationSettings.GetSettings(renames), populateObject: true, objectToPopulate: this, accepts: new string[]{"application/json"}, contentTypes: new string[]{"application/json"}, body: data, pathParams: new Dictionary<string, object>()
-                {{"groupID", Id}, }, configuration: Config);
+                return await MbedCloudSDK.Client.ApiCall.CallApi<AccountGroup>(path: "/v3/policy-groups/{groupID}", method: Method.PUT, settings: SerializationSettings.GetSettings(renames), populateObject: true, objectToPopulate: this, accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, pathParams: new Dictionary<string, object>() { { "groupID", Id }, }, configuration: Config);
             }
             catch (MbedCloudSDK.Client.ApiException e)
             {
@@ -134,6 +136,7 @@ namespace MbedCloudSDK.AccountAdmin.AccountGroup
         /// Get human readable string of this object
         /// </summary>
         /// <returns>Serialized string of object</returns>
-        public override string ToString() => this.DebugDump();
+        public override string ToString()
+            => this.DebugDump();
     }
 }

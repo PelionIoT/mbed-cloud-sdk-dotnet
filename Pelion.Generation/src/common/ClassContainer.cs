@@ -86,16 +86,43 @@ namespace Pelion.Generation.src.common
                 var methodName = item["_key"]["pascal"].Value<string>();
                 var method = item["method"].Value<string>();
                 var path = item["path"].Value<string>();
-                var paramDict = new Dictionary<string, string>();
+                var methodParamDict = new Dictionary<string, TypeSyntax>();
+                var methodParamRequiredDict = new Dictionary<string, TypeSyntax>();
+                var pathDict = new Dictionary<string, string>();
+                var queryDict = new Dictionary<string, string>();
                 var renameDict = new Dictionary<string, string>();
                 var bodyDict = new Dictionary<string, string>();
+                var staticPaginator = true;
+
+                var parameterRemaps = new Dictionary<string, string>();
+
+                var paginated = (item["pagination"] != null) ? item["pagination"].Value<bool>() : false;
+
+                if (paginated)
+                {
+                    AddUsing(common.Usings.QueryOptions);
+                }
+
+                var foreignKey = (item["foreign_key"] != null) ? (item["foreign_key"]["entity"]["pascal"].Value<string>() != ClassName) : false;
+
+                Console.WriteLine($"Is foreign key - {foreignKey}");
+
+                if (foreignKey)
+                {
+                    returns = item["foreign_key"]["entity"]["pascal"].Value<string>();
+                    AddUsing(common.Usings.GetForeignKey(item["foreign_key"]["group"]["pascal"].Value<string>(), item["foreign_key"]["entity"]["pascal"].Value<string>()));
+
+                    if (paginated)
+                    {
+                        staticPaginator = false;
+                    }
+                }
 
                 if (item["parameter_map"] != null)
                 {
                     foreach (var parameter in (JObject)item["parameter_map"])
                     {
-                        paramDict.Add(parameter.Key, parameter.Value.ToString().SnakeToCamel());
-                        Console.WriteLine($"{parameter.Key} - {parameter.Value.ToString().SnakeToCamel()}");
+                        parameterRemaps.Add(parameter.Value.ToString().SnakeToCamel(), parameter.Key);
                     }
                 }
 
@@ -112,15 +139,51 @@ namespace Pelion.Generation.src.common
                 {
                     foreach (var field in item["fields"])
                     {
-                        //Console.WriteLine(field["in"].First);
-                        if (field["in"].Value<string>() == "body")
+                        var external = (field["external_param"] != null) ? field["external_param"].Value<bool>() : false;
+                        if (external)
                         {
-                            Console.WriteLine($"{field["_key"]["pascal"].Value<string>()}");
-                            var val = field["_key"]["pascal"].Value<string>();
-                            bodyDict.Add(val, val);
+                            var type = GetType(field);
+                            var required = field["required"].Value<bool>();
+                            Console.WriteLine(required);
+                            if (required)
+                            {
+                                Console.WriteLine($"{type.ToString()} - {field["_key"]["lower_camel"].ToString()}");
+                                methodParamRequiredDict.Add(field["_key"]["lower_camel"].Value<string>(), type);
+                            }
+                            else
+                            {
+                                Console.WriteLine($"{type.ToString()} - {field["_key"]["lower_camel"].ToString()}");
+                                methodParamDict.Add(field["_key"]["lower_camel"].Value<string>(), type);
+                            }
+
+                            arrangeParams(field["in"].Value<string>(), field["_key"]["lower_camel"].Value<string>());
+                        }
+                        else
+                        {
+                            arrangeParams(field["in"].Value<string>(), field["_key"]["pascal"].Value<string>());
+                        }
+
+                        void arrangeParams(string location, string value)
+                        {
+                            switch(location)
+                            {
+                                case "body":
+                                    bodyDict.Add(parameterRemaps.ContainsKey(value) ? parameterRemaps[value] : value, value);
+                                    break;
+                                case "path":
+                                    pathDict.Add(parameterRemaps.ContainsKey(value) ? parameterRemaps[value] : value, value);
+                                    break;
+                                case "query":
+                                    queryDict.Add(parameterRemaps.ContainsKey(value) ? parameterRemaps[value] : value, value);
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
                     }
                 }
+
+                Console.WriteLine($"static paginator - {staticPaginator}");
 
                 Console.WriteLine("'''''''''''''''''''''''''''''''''''");
 
@@ -130,50 +193,25 @@ namespace Pelion.Generation.src.common
                     method: method,
                     path: path,
                     renames: renameDict,
-                    pathParams: paramDict,
-                    bodyParams: bodyDict
+                    pathParams: pathDict,
+                    bodyParams: bodyDict,
+                    methodParams: methodParamDict,
+                    methodParamsRequired: methodParamRequiredDict,
+                    queryParams: queryDict,
+                    paginated: paginated,
+                    staticPaginator: staticPaginator
                 );
 
-                AddUsingsForGet();
+                AddUsingsForCRUDL();
                 modelClass = modelClass.AddMethod(genMethod);
 
-                Console.WriteLine(genMethod.ToFullString());
+                // Console.WriteLine(CodePrinter.PrintCode(genMethod));
             }
 
             return modelClass;
         }
 
-        private void AddUsingsForGet()
-        {
-            AddUsing(common.Usings.Lists);
-            AddUsing(common.Usings.Task);
-            AddUsing(common.Usings.Client);
-            AddUsing(common.Usings.Common);
-            AddUsing(common.Usings.Exceptions);
-            AddUsing(common.Usings.RestSharp);
-        }
-
-        private void AddUsingsForCreate()
-        {
-            AddUsing(common.Usings.Lists);
-            AddUsing(common.Usings.Task);
-            AddUsing(common.Usings.Client);
-            AddUsing(common.Usings.Common);
-            AddUsing(common.Usings.Exceptions);
-            AddUsing(common.Usings.RestSharp);
-        }
-
-        private void AddUsingsForUpdate()
-        {
-            AddUsing(common.Usings.Lists);
-            AddUsing(common.Usings.Task);
-            AddUsing(common.Usings.Client);
-            AddUsing(common.Usings.Common);
-            AddUsing(common.Usings.Exceptions);
-            AddUsing(common.Usings.RestSharp);
-        }
-
-        private void AddUsingsForDelete()
+        private void AddUsingsForCRUDL()
         {
             AddUsing(common.Usings.Lists);
             AddUsing(common.Usings.Task);

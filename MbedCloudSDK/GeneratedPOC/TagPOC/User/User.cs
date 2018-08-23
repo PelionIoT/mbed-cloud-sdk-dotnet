@@ -119,7 +119,7 @@ namespace MbedCloudSDK.TagPOC.User
         public override string ToString()
             => this.DebugDump();
 
-        public static PaginatedResponse<QueryOptions, User> List(QueryOptions options = null)
+        public static PaginatedResponse<QueryOptions, User> List(string after = null, string include = null, int? limit = null, string order = null)
         {
             var renames = new Dictionary<string, string>
             {
@@ -128,44 +128,22 @@ namespace MbedCloudSDK.TagPOC.User
                 {"MarketingAccepted", "is_marketing_accepted"},
             };
 
-            if (options == null)
+            var options = new QueryOptions
             {
-                options = new QueryOptions();
-            }
+                After = after,
+                Include = include,
+                Limit = limit,
+                Order = order,
+            };
 
             try
             {
-                return new PaginatedResponse<QueryOptions, User>((QueryOptions _options) =>
+                Func<QueryOptions, ResponsePage<User>> paginatedFunc = (QueryOptions _options) =>
                 {
-                    var data = new
-                    {
-                        limit = _options.Limit,
-                        order = _options.Order,
-                        after = _options.After,
-                        include = _options.Include,
-                        statusEq = _options.Filter.GetFirstValueByKey("status", FilterOperator.Equals),
-                        statusIn = _options.Filter.GetFirstValueByKey("status", FilterOperator.In),
-                        statusNin = _options.Filter.GetFirstValueByKey("status", FilterOperator.NotIn),
-                    };
+                    return AsyncHelper.RunSync<ResponsePage<User>>(() => MbedCloudSDK.Client.ApiCall.CallApi<ResponsePage<User>>(path: "/v3/users", queryParams: new Dictionary<string, object>() { { "limit", _options.Limit }, { "after", _options.After }, { "order", _options.Order }, { "include", _options.Include } }, configuration: Config, settings: SerializationSettings.GetSettings(renames), method: Method.GET));
+                };
 
-                    return AsyncHelper.RunSync<ResponsePage<User>>(() => MbedCloudSDK.Client.ApiCall.CallApi<ResponsePage<User>>(
-                        path: "/v3/users",
-                        body: data,
-                        accepts: new string[] { },
-                        queryParams: new Dictionary<string, object>() {
-                            {"limit", data.limit},
-                            {"after", data.after},
-                            {"order", data.order},
-                            {"include", data.include},
-                            {"status__eq", data.statusEq},
-                            {"status__in", data.statusIn},
-                            {"status__nin", data.statusNin}
-                        },
-                        configuration: Config,
-                        settings: SerializationSettings.GetSettings(renames),
-                        method: Method.GET
-                    ));
-                }, options);
+                return new PaginatedResponse<QueryOptions, User>(paginatedFunc, options);
             }
             catch (MbedCloudSDK.Client.ApiException e)
             {

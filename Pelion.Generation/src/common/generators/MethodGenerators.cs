@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using MbedCloudSDK.Common.Extensions;
 
 namespace Pelion.Generation.src.common.generators
 {
@@ -63,10 +64,13 @@ namespace Pelion.Generation.src.common.generators
             string method,
             string path,
             Dictionary<string, string> renames = null,
-            Dictionary<string, string> methodParams = null,
+            Dictionary<string, TypeSyntax> methodParams = null,
+            Dictionary<string, TypeSyntax> methodParamsRequired = null,
             Dictionary<string, string> pathParams = null,
             Dictionary<string, string> queryParams = null,
-            Dictionary<string, string> bodyParams = null
+            Dictionary<string, string> bodyParams = null,
+            bool paginated = false,
+            bool staticPaginator = false
         )
         {
             var argList = new List<SyntaxNodeOrToken>();
@@ -77,7 +81,7 @@ namespace Pelion.Generation.src.common.generators
             argList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
             argList.Add(GetSerializerSettingsWithRenames());
             argList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
-            if (method != "delete")
+            if (method != "delete" && !paginated)
             {
                 argList.Add(GetPopulateObject());
                 argList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
@@ -92,9 +96,15 @@ namespace Pelion.Generation.src.common.generators
             argList.Add(GetBodyArg());
             argList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
 
-            if (pathParams != null)
+            if (pathParams.Any())
             {
                 argList.Add(GetPathParams(pathParams));
+                argList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+            }
+
+            if (queryParams.Any())
+            {
+                argList.Add(GetQueryParams(queryParams));
                 argList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
             }
 
@@ -102,10 +112,11 @@ namespace Pelion.Generation.src.common.generators
 
             if (method == "delete")
             {
-                return GenerateMethodSyntax("object", methodName, argList.ToArray(), renames, bodyParams, true);
+                // if method should return void
+                return GenerateMethodSyntax("object", methodName, argList.ToArray(), renames, bodyParams, methodParams, methodParamsRequired, true, paginated, staticPaginator);
             }
 
-            return GenerateMethodSyntax(returns, methodName, argList.ToArray(), renames, bodyParams, false);
+            return GenerateMethodSyntax(returns, methodName, argList.ToArray(), renames, bodyParams, methodParams, methodParamsRequired, false, paginated, staticPaginator);
         }
 
 
@@ -115,7 +126,11 @@ namespace Pelion.Generation.src.common.generators
             SyntaxNodeOrToken[] argList,
             Dictionary<string, string> renames,
             Dictionary<string, string> body,
-            bool voidMethod)
+            Dictionary<string, TypeSyntax> methodParams,
+            Dictionary<string, TypeSyntax> methodParamsRequired,
+            bool voidMethod,
+            bool paginated,
+            bool staticPaginator)
         {
             var returnCall = SyntaxFactory.Block(
                                 SyntaxFactory.SingletonList<StatementSyntax>(
@@ -170,38 +185,121 @@ namespace Pelion.Generation.src.common.generators
                                                             SyntaxFactory.SeparatedList<ArgumentSyntax>(
                                                                 argList)))))));
 
-            var voidDeclaration = SyntaxFactory.MethodDeclaration(
-                SyntaxFactory.IdentifierName("Task"),
-                SyntaxFactory.Identifier(name)
-            );
-            var returnDeclaration = SyntaxFactory.MethodDeclaration(
+            var t = GetDeclaration(voidMethod, paginated, name, returns, staticPaginator)
+                .WithBody(
+                    paginated ?
+                        SyntaxFactory.Block(
+                            // rename dictionary
+                            GetRenameDictionary(renames),
+                            // data
+                            GetBody(body),
+                            // options
+                            GetOptions(methodParams.Concat(methodParamsRequired).ToDictionary(kvp => kvp.Key, kvp => kvp.Value)),
+                            // try catch
+                            GetTryCatchBlock()
+                            .WithBlock(
+                                // voidMethod ? voidCall : returnCall
+                                GetPaginatedBlock(argList, returns)
+                            ))
+                        : SyntaxFactory.Block(
+                            // rename dictionary
+                            GetRenameDictionary(renames),
+                            // data
+                            GetBody(body),
+                            // try catch
+                            GetTryCatchBlock()
+                            .WithBlock(
+                                voidMethod ? voidCall : returnCall
+                            )));
+
+            return (methodParams.Any() || methodParamsRequired.Any()) ? t.WithParameterList(GetMethodParams(methodParamsRequired, methodParams)) : t;
+        }
+
+        private static MethodDeclarationSyntax GetDeclaration(bool voidMethod, bool paginated, string name, string returns, bool staticPaginator)
+        {
+            if (paginated)
+            {
+                var modifiers = new List<SyntaxToken>() { SyntaxFactory.Token(SyntaxKind.PublicKeyword) };
+
+                if (staticPaginator)
+                {
+                    modifiers.Add(SyntaxFactory.Token(SyntaxKind.StaticKeyword));
+                }
+
+                return SyntaxFactory.MethodDeclaration(
                     SyntaxFactory.GenericName(
-                    SyntaxFactory.Identifier("Task"))
+                        SyntaxFactory.Identifier("PaginatedResponse"))
                     .WithTypeArgumentList(
                         SyntaxFactory.TypeArgumentList(
-                            SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
-                                SyntaxFactory.IdentifierName(returns)))),
-                    SyntaxFactory.Identifier(name)
-                );
-
-            return (voidMethod ? voidDeclaration : returnDeclaration)
+                            SyntaxFactory.SeparatedList<TypeSyntax>(
+                                new SyntaxNodeOrToken[]{
+                                    SyntaxFactory.IdentifierName("QueryOptions"),
+                                    SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                    SyntaxFactory.IdentifierName(returns)}))),
+                    SyntaxFactory.Identifier(name))
                 .WithModifiers(
+                    SyntaxFactory.TokenList(
+                        modifiers.ToArray()));
+            }
+            else if (voidMethod)
+            {
+                return SyntaxFactory.MethodDeclaration(
+                    SyntaxFactory.IdentifierName("Task"),
+                    SyntaxFactory.Identifier(name)
+                ).WithModifiers(
                     SyntaxFactory.TokenList(
                         new[]{
                             SyntaxFactory.Token(SyntaxKind.PublicKeyword),
-                            SyntaxFactory.Token(SyntaxKind.AsyncKeyword)}))
-                .WithBody(
-                    SyntaxFactory.Block(
-                        // rename dictionary
-                        GetRenameDictionary(renames),
-                        // data
-                        GetBody(body),
-                        // try catch
-                        GetTryCatchBlock()
-                        .WithBlock(
-                            voidMethod ? voidCall : returnCall
-                        )).NormalizeWhitespace())
-            .NormalizeWhitespace();
+                            SyntaxFactory.Token(SyntaxKind.AsyncKeyword)}));
+            }
+
+            return SyntaxFactory.MethodDeclaration(
+                        SyntaxFactory.GenericName(
+                        SyntaxFactory.Identifier("Task"))
+                        .WithTypeArgumentList(
+                            SyntaxFactory.TypeArgumentList(
+                                SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
+                                    SyntaxFactory.IdentifierName(returns)))),
+                        SyntaxFactory.Identifier(name)
+                    ).WithModifiers(
+                    SyntaxFactory.TokenList(
+                        new[]{
+                            SyntaxFactory.Token(SyntaxKind.PublicKeyword),
+                            SyntaxFactory.Token(SyntaxKind.AsyncKeyword)}));
+        }
+
+        private static ParameterListSyntax GetMethodParams(Dictionary<string, TypeSyntax> methodParamsRequired, Dictionary<string, TypeSyntax> methodParams)
+        {
+            var paramList = new List<SyntaxNodeOrToken>();
+
+            foreach (var item in methodParamsRequired)
+            {
+                var p = SyntaxFactory.Parameter(SyntaxFactory.Identifier(item.Key))
+                                     .WithType(item.Value);
+
+                paramList.Add(p);
+                paramList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+            }
+
+            foreach (var item in methodParams)
+            {
+                var p = SyntaxFactory.Parameter(SyntaxFactory.Identifier(item.Key))
+                                     .WithType(item.Value)
+                                     .WithDefault(
+                                        SyntaxFactory.EqualsValueClause(
+                                            SyntaxFactory.LiteralExpression(
+                                                SyntaxKind.NullLiteralExpression)));
+
+                paramList.Add(p);
+                paramList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+            }
+
+            if (paramList.Any())
+            {
+                paramList.RemoveAt(paramList.Count - 1);
+            }
+
+            return SyntaxFactory.ParameterList(SyntaxFactory.SeparatedList<ParameterSyntax>(paramList.ToArray()));
         }
 
         private static ArgumentSyntax GetBodyArg()
@@ -211,6 +309,44 @@ namespace Pelion.Generation.src.common.generators
                 .WithNameColon(
                     SyntaxFactory.NameColon(
                         SyntaxFactory.IdentifierName("body")));
+        }
+
+        private static LocalDeclarationStatementSyntax GetOptions(Dictionary<string, TypeSyntax> parameters)
+        {
+            var optionsList = new List<SyntaxNodeOrToken>();
+
+            foreach (var item in parameters)
+            {
+                if (item.Key == "after" || item.Key == "order" || item.Key == "limit" || item.Key == "include")
+                {
+                    var option = SyntaxFactory.AssignmentExpression(
+                                    SyntaxKind.SimpleAssignmentExpression,
+                                    SyntaxFactory.IdentifierName(item.Key.SnakeToCamel()),
+                                    SyntaxFactory.IdentifierName(item.Key));
+
+                    optionsList.Add(option);
+                    optionsList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+                }
+            }
+
+            return SyntaxFactory.LocalDeclarationStatement(
+                    SyntaxFactory.VariableDeclaration(
+                        SyntaxFactory.IdentifierName("var"))
+                    .WithVariables(
+                        SyntaxFactory.SingletonSeparatedList<VariableDeclaratorSyntax>(
+                            SyntaxFactory.VariableDeclarator(
+                                SyntaxFactory.Identifier("options"))
+                            .WithInitializer(
+                                SyntaxFactory.EqualsValueClause(
+                                    SyntaxFactory.ObjectCreationExpression(
+                                        SyntaxFactory.IdentifierName("QueryOptions"))
+                                    .WithInitializer(
+                                        SyntaxFactory.InitializerExpression(
+                                            SyntaxKind.ObjectInitializerExpression,
+                                            SyntaxFactory.SeparatedList<ExpressionSyntax>(
+                                                optionsList.ToArray()
+                                            ))))))));
+
         }
 
         private static LocalDeclarationStatementSyntax GetBody(Dictionary<string, string> body)
@@ -243,7 +379,7 @@ namespace Pelion.Generation.src.common.generators
                                         SyntaxFactory.AnonymousObjectCreationExpression(
                                             SyntaxFactory.SeparatedList<AnonymousObjectMemberDeclaratorSyntax>(
                                                 bodyArgs.ToArray()
-                                            ))))))).NormalizeWhitespace();
+                                            )))))));//.NormalizeWhitespace();
             }
 
             return SyntaxFactory.LocalDeclarationStatement(
@@ -268,7 +404,7 @@ namespace Pelion.Generation.src.common.generators
                     SyntaxFactory.IdentifierName(methodType.ToUpper())))
             .WithNameColon(
                 SyntaxFactory.NameColon(
-                    SyntaxFactory.IdentifierName("method"))).NormalizeWhitespace();
+                    SyntaxFactory.IdentifierName("method")));//.NormalizeWhitespace();
         }
 
         private static ArgumentSyntax GetSerializerSettingsWithRenames()
@@ -286,7 +422,7 @@ namespace Pelion.Generation.src.common.generators
                                 SyntaxFactory.IdentifierName("renames"))))))
             .WithNameColon(
                 SyntaxFactory.NameColon(
-                    SyntaxFactory.IdentifierName("settings"))).NormalizeWhitespace();
+                    SyntaxFactory.IdentifierName("settings")));//.NormalizeWhitespace();
         }
 
         private static ArgumentSyntax GetConfiguration()
@@ -295,7 +431,7 @@ namespace Pelion.Generation.src.common.generators
                 SyntaxFactory.IdentifierName("Config"))
             .WithNameColon(
                 SyntaxFactory.NameColon(
-                    SyntaxFactory.IdentifierName("configuration"))).NormalizeWhitespace();
+                    SyntaxFactory.IdentifierName("configuration")));//.NormalizeWhitespace();
         }
 
         private static ArgumentSyntax GetAcceptsArray()
@@ -319,7 +455,7 @@ namespace Pelion.Generation.src.common.generators
                                 SyntaxFactory.Literal("application/json"))))))
             .WithNameColon(
                 SyntaxFactory.NameColon(
-                    SyntaxFactory.IdentifierName("accepts"))).NormalizeWhitespace();
+                    SyntaxFactory.IdentifierName("accepts")));//.NormalizeWhitespace();
         }
 
         private static ArgumentSyntax GetContentTypesArray()
@@ -343,7 +479,7 @@ namespace Pelion.Generation.src.common.generators
                                 SyntaxFactory.Literal("application/json"))))))
             .WithNameColon(
                 SyntaxFactory.NameColon(
-                    SyntaxFactory.IdentifierName("contentTypes"))).NormalizeWhitespace();
+                    SyntaxFactory.IdentifierName("contentTypes")));//.NormalizeWhitespace();
         }
 
         private static ArgumentSyntax GetPathParams(Dictionary<string, string> pathParams)
@@ -389,7 +525,53 @@ namespace Pelion.Generation.src.common.generators
                         ))))
             .WithNameColon(
                 SyntaxFactory.NameColon(
-                    SyntaxFactory.IdentifierName("pathParams"))).NormalizeWhitespace();
+                    SyntaxFactory.IdentifierName("pathParams")));
+        }
+
+        private static ArgumentSyntax GetQueryParams(Dictionary<string, string> queryParams)
+        {
+            var keyValueList = new List<SyntaxNodeOrToken>();
+
+            foreach (var item in queryParams)
+            {
+                var dictProp = SyntaxFactory.InitializerExpression(
+                                SyntaxKind.ComplexElementInitializerExpression,
+                                SyntaxFactory.SeparatedList<ExpressionSyntax>(
+                                    new SyntaxNodeOrToken[]{
+                                        SyntaxFactory.LiteralExpression(
+                                            SyntaxKind.StringLiteralExpression,
+                                            SyntaxFactory.Literal(item.Key)),
+                                        SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                        SyntaxFactory.IdentifierName(item.Value)}));
+
+                keyValueList.Add(dictProp);
+                keyValueList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+            }
+
+            return SyntaxFactory.Argument(
+                SyntaxFactory.ObjectCreationExpression(
+                    SyntaxFactory.GenericName(
+                        SyntaxFactory.Identifier("Dictionary"))
+                    .WithTypeArgumentList(
+                        SyntaxFactory.TypeArgumentList(
+                            SyntaxFactory.SeparatedList<TypeSyntax>(
+                                new SyntaxNodeOrToken[]{
+                                    SyntaxFactory.PredefinedType(
+                                        SyntaxFactory.Token(SyntaxKind.StringKeyword)),
+                                    SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                    SyntaxFactory.PredefinedType(
+                                        SyntaxFactory.Token(SyntaxKind.ObjectKeyword))}))))
+                .WithArgumentList(
+                    SyntaxFactory.ArgumentList())
+                .WithInitializer(
+                    SyntaxFactory.InitializerExpression(
+                        SyntaxKind.CollectionInitializerExpression,
+                        SyntaxFactory.SeparatedList<ExpressionSyntax>(
+                            keyValueList.ToArray()
+                        ))))
+            .WithNameColon(
+                SyntaxFactory.NameColon(
+                    SyntaxFactory.IdentifierName("queryParams")));
         }
 
         private static ArgumentSyntax GetPath(string path)
@@ -400,7 +582,7 @@ namespace Pelion.Generation.src.common.generators
                     SyntaxFactory.Literal(path)))
             .WithNameColon(
                 SyntaxFactory.NameColon(
-                    SyntaxFactory.IdentifierName("path"))).NormalizeWhitespace();
+                    SyntaxFactory.IdentifierName("path")));//.NormalizeWhitespace();
         }
 
         private static ArgumentSyntax GetPopulateObject()
@@ -473,7 +655,7 @@ namespace Pelion.Generation.src.common.generators
                                                 SyntaxFactory.SeparatedList<ExpressionSyntax>(
                                                     renameList.ToArray()
                                                 )))))))
-                ).NormalizeWhitespace();
+                );//.NormalizeWhitespace();
             }
 
             return SyntaxFactory.LocalDeclarationStatement(
@@ -498,7 +680,7 @@ namespace Pelion.Generation.src.common.generators
                                                         SyntaxFactory.PredefinedType(
                                                             SyntaxFactory.Token(SyntaxKind.StringKeyword))}))))
                                     .WithArgumentList(
-                                        SyntaxFactory.ArgumentList())))))).NormalizeWhitespace();
+                                        SyntaxFactory.ArgumentList()))))));//.NormalizeWhitespace();
         }
 
         private static TryStatementSyntax GetTryCatchBlock()
@@ -541,7 +723,114 @@ namespace Pelion.Generation.src.common.generators
                                                             SyntaxFactory.MemberAccessExpression(
                                                                 SyntaxKind.SimpleMemberAccessExpression,
                                                                 SyntaxFactory.IdentifierName("e"),
-                                                                SyntaxFactory.IdentifierName("ErrorContent")))}))))))))).NormalizeWhitespace();
+                                                                SyntaxFactory.IdentifierName("ErrorContent")))})))))))));//.NormalizeWhitespace();
+        }
+
+        private static BlockSyntax GetPaginatedBlock(SyntaxNodeOrToken[] argList, string returns)
+        {
+            return SyntaxFactory.Block(
+                SyntaxFactory.LocalDeclarationStatement(
+                    SyntaxFactory.VariableDeclaration(
+                        SyntaxFactory.GenericName(
+                            SyntaxFactory.Identifier("Func"))
+                        .WithTypeArgumentList(
+                            SyntaxFactory.TypeArgumentList(
+                                SyntaxFactory.SeparatedList<TypeSyntax>(
+                                    new SyntaxNodeOrToken[]{
+                                        SyntaxFactory.IdentifierName("QueryOptions"),
+                                        SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                        SyntaxFactory.GenericName(
+                                            SyntaxFactory.Identifier("ResponsePage"))
+                                        .WithTypeArgumentList(
+                                            SyntaxFactory.TypeArgumentList(
+                                                SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
+                                                    // return type
+                                                    SyntaxFactory.IdentifierName(returns))))}))))
+                    .WithVariables(
+                        SyntaxFactory.SingletonSeparatedList<VariableDeclaratorSyntax>(
+                            SyntaxFactory.VariableDeclarator(
+                                SyntaxFactory.Identifier("paginatedFunc"))
+                            .WithInitializer(
+                                SyntaxFactory.EqualsValueClause(
+                                    SyntaxFactory.ParenthesizedLambdaExpression(
+                                        SyntaxFactory.Block(
+                                            SyntaxFactory.SingletonList<StatementSyntax>(
+                                                SyntaxFactory.ReturnStatement(
+                                                    SyntaxFactory.InvocationExpression(
+                                                        SyntaxFactory.MemberAccessExpression(
+                                                            SyntaxKind.SimpleMemberAccessExpression,
+                                                            SyntaxFactory.IdentifierName("AsyncHelper"),
+                                                            SyntaxFactory.GenericName(
+                                                                SyntaxFactory.Identifier("RunSync"))
+                                                            .WithTypeArgumentList(
+                                                                SyntaxFactory.TypeArgumentList(
+                                                                    SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
+                                                                        SyntaxFactory.GenericName(
+                                                                            SyntaxFactory.Identifier("ResponsePage"))
+                                                                        .WithTypeArgumentList(
+                                                                            SyntaxFactory.TypeArgumentList(
+                                                                                SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
+                                                                                    // returns
+                                                                                    SyntaxFactory.IdentifierName(returns)))))))))
+                                                    .WithArgumentList(
+                                                        SyntaxFactory.ArgumentList(
+                                                            SyntaxFactory.SingletonSeparatedList<ArgumentSyntax>(
+                                                                SyntaxFactory.Argument(
+                                                                    SyntaxFactory.ParenthesizedLambdaExpression(
+                                                                        SyntaxFactory.InvocationExpression(
+                                                                            SyntaxFactory.MemberAccessExpression(
+                                                                                SyntaxKind.SimpleMemberAccessExpression,
+                                                                                SyntaxFactory.MemberAccessExpression(
+                                                                                    SyntaxKind.SimpleMemberAccessExpression,
+                                                                                    SyntaxFactory.MemberAccessExpression(
+                                                                                        SyntaxKind.SimpleMemberAccessExpression,
+                                                                                        SyntaxFactory.IdentifierName("MbedCloudSDK"),
+                                                                                        SyntaxFactory.IdentifierName("Client")),
+                                                                                    SyntaxFactory.IdentifierName("ApiCall")),
+                                                                                SyntaxFactory.GenericName(
+                                                                                    SyntaxFactory.Identifier("CallApi"))
+                                                                                .WithTypeArgumentList(
+                                                                                    SyntaxFactory.TypeArgumentList(
+                                                                                        SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
+                                                                                            SyntaxFactory.GenericName(
+                                                                                                SyntaxFactory.Identifier("ResponsePage"))
+                                                                                            .WithTypeArgumentList(
+                                                                                                SyntaxFactory.TypeArgumentList(
+                                                                                                    SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
+                                                                                                        // returns
+                                                                                                        SyntaxFactory.IdentifierName(returns)))))))))
+                                                                        .WithArgumentList(
+                                                                            SyntaxFactory.ArgumentList(
+                                                                                SyntaxFactory.SeparatedList<ArgumentSyntax>(argList)
+                                                                            )))))))))))
+                                    .WithParameterList(
+                                        SyntaxFactory.ParameterList(
+                                            SyntaxFactory.SingletonSeparatedList<ParameterSyntax>(
+                                                SyntaxFactory.Parameter(
+                                                    SyntaxFactory.Identifier("_options"))
+                                                .WithType(
+                                                    SyntaxFactory.IdentifierName("QueryOptions")))))))))),
+                SyntaxFactory.ReturnStatement(
+                    SyntaxFactory.ObjectCreationExpression(
+                        SyntaxFactory.GenericName(
+                            SyntaxFactory.Identifier("PaginatedResponse"))
+                        .WithTypeArgumentList(
+                            SyntaxFactory.TypeArgumentList(
+                                SyntaxFactory.SeparatedList<TypeSyntax>(
+                                    new SyntaxNodeOrToken[]{
+                                        SyntaxFactory.IdentifierName("QueryOptions"),
+                                        SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                        // returns
+                                        SyntaxFactory.IdentifierName(returns)}))))
+                    .WithArgumentList(
+                        SyntaxFactory.ArgumentList(
+                            SyntaxFactory.SeparatedList<ArgumentSyntax>(
+                                new SyntaxNodeOrToken[]{
+                                    SyntaxFactory.Argument(
+                                        SyntaxFactory.IdentifierName("paginatedFunc")),
+                                    SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                    SyntaxFactory.Argument(
+                                        SyntaxFactory.IdentifierName("options"))})))));
         }
     }
 }

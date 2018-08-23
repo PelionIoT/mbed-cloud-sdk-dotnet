@@ -94,7 +94,7 @@ namespace Pelion.Generation.src.common
                 Directory.CreateDirectory(dir);
                 using (var file = new StreamWriter($"{dir}/{c.ClassName}.cs"))
                 {
-                    file.Write(localNamespace.ToFullString());
+                    file.Write(CodePrinter.PrintCodeNamespace(localNamespace));
                 }
             });
 
@@ -108,7 +108,7 @@ namespace Pelion.Generation.src.common
                 Directory.CreateDirectory(dir);
                 using (var file = new StreamWriter($"{dir}/{e.EnumName}.cs"))
                 {
-                    file.Write(localNamespace.ToFullString());
+                    file.Write(CodePrinter.PrintCodeNamespace(localNamespace));
                 }
             });
         }

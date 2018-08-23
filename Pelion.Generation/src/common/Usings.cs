@@ -14,6 +14,7 @@ namespace Pelion.Generation.src.common
         public static readonly string Common = "MbedCloudSDK.Common";
         public static readonly string RestSharp = "RestSharp";
         public static readonly string Exceptions = "MbedCloudSDK.Exceptions";
+        public static readonly string QueryOptions = "MbedCloudSDK.Common.Query";
 
         public static string GetForeignKey(string group, string entity)
         {

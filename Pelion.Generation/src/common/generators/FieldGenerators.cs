@@ -14,8 +14,8 @@ namespace Pelion.Generation.src.common.generators
 
             // use variable to create field private bool cancelled
             return SyntaxFactory.FieldDeclaration(variableDeclaration)
-                                .AddModifiers(modifiers)
-                                .NormalizeWhitespace();
+                                .AddModifiers(modifiers);
+                                //.NormalizeWhitespace();
         }
     }
 }
