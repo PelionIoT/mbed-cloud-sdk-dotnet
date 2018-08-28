@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using MbedCloudSDK.AccountManagement.Api;
 using MbedCloudSDK.Billing.Api;
 using MbedCloudSDK.Common;
 using MbedCloudSDK.Accounts.User;
+using MbedCloudSDK.Accounts.ApiKey;
 
 namespace Playground
 {
@@ -11,23 +11,11 @@ namespace Playground
     {
         static async System.Threading.Tasks.Task Main(string[] args)
         {
-            var iam = new AccountManagementApi(new Config());
-
-            var testUser = iam.ListUsers(new MbedCloudSDK.Common.Query.QueryOptions { Limit = 2 }).First();
-
-            var user = new User()
-            {
-                Address = "the street",
-                Email = "noalgalex22222@gmail.com",
-                FullName = "Don D",
-                PhoneNumber = "07845215995",
-                Username = "drdond22222",
-                TwoFactorAuthEnabled = true,
-            };
-
             try
             {
-                var users = User.List();
+                Console.WriteLine("---------------------User-----------------------------");
+
+                var users = User.List(limit: 2);
 
                 Console.WriteLine($"I can list {users.Count()} users.");
 
@@ -38,11 +26,20 @@ namespace Playground
 
                 Console.WriteLine($"The first user has Id {getUser.Id}");
 
-                await getUser.Read();
+                await getUser.Get();
 
                 Console.WriteLine($"and was created on {getUser.CreatedAt}");
 
                 Console.WriteLine($"It has {getUser.Groups().Count()} groups.");
+
+                var user = new User()
+                {
+                    Address = "the street",
+                    Email = "noalgalex22222@gmail.com",
+                    FullName = "Don D",
+                    PhoneNumber = "07845215995",
+                    Username = "drdond22222",
+                };
 
                 Console.WriteLine($"Creating a new user with phone number {user.PhoneNumber}");
 
@@ -56,9 +53,44 @@ namespace Playground
 
                 Console.WriteLine($"The phone number is now {user.PhoneNumber}");
 
-                //Console.WriteLine(iam.ListUsers().All().FirstOrDefault(u => u.Id == user.Id));
                 Console.WriteLine("deleting...");
                 await user.Delete();
+
+                Console.WriteLine("---------------------ApiKey-----------------------------");
+
+                var keys = ApiKey.List();
+
+                Console.WriteLine($"I can list {keys.Count()} keys.");
+
+                var getKey = new ApiKey()
+                {
+                    Id = keys.FirstOrDefault()?.Id,
+                };
+
+                Console.WriteLine($"The first key has Id {getKey.Id}");
+
+                Console.WriteLine($"It has {getKey.Groups().Count()} groups.");
+
+                var apiKey = new ApiKey
+                {
+                    Name = "test key"
+                };
+
+                Console.WriteLine($"Creating a new api key with name {apiKey.Name}");
+
+                await apiKey.Create();
+
+                Console.WriteLine($"The Id is {apiKey.Id} and it was created at {apiKey.CreatedAt}");
+
+                apiKey.Name = "updated test key";
+
+                await apiKey.Update();
+
+                Console.WriteLine($"The name is now {apiKey.Name}");
+
+                Console.WriteLine("Deleting....");
+
+                await apiKey.Delete();
             }
             catch(Exception e)
             {

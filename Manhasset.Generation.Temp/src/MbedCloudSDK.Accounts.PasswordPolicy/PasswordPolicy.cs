@@ -12,48 +12,20 @@
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloudSDK.Accounts.LoginHistory
+namespace MbedCloudSDK.Accounts.PasswordPolicy
 {
     using MbedCloudSDK.Common;
-    using System;
     using MbedCloudSDK.Common.Extensions;
 
     /// <summary>
-    /// LoginHistory
+    /// PasswordPolicy
     /// </summary>
-    public partial class LoginHistory : BaseModel
+    public partial class PasswordPolicy : BaseModel
     {
         /// <summary>
-        /// UTC time RFC3339 for this login attempt.
+        /// Minimum length for the password. A number between 8 and 512.
         /// </summary>
-        public DateTime? Date
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// IP address of the client.
-        /// </summary>
-        public string IpAddress
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Flag indicating whether login attempt was successful or not.
-        /// </summary>
-        public bool? Success
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// User Agent header from the login request.
-        /// </summary>
-        public string UserAgent
+        public string MinimumLength
         {
             get;
             set;

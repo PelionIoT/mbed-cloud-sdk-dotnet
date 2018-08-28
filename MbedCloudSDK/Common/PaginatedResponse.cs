@@ -35,8 +35,7 @@ namespace MbedCloudSDK.Common
         /// </summary>
         /// <param name="getDataFunc">The get data function.</param>
         /// <param name="options">The options.</param>
-        /// <param name="cache">if set to <c>true</c> [cache].</param>
-        public PaginatedResponse(Func<TOptions, ResponsePage<TData>> getDataFunc, TOptions options, bool cache = true)
+        public PaginatedResponse(Func<TOptions, ResponsePage<TData>> getDataFunc, TOptions options)
         {
             this.getDataFunc = getDataFunc;
             this.options = options;
@@ -46,17 +45,20 @@ namespace MbedCloudSDK.Common
             pages = 1;
             pageLimit = long.MaxValue;
 
+            if (this.options.Limit.HasValue)
+            {
+                this.options.MaxResults = this.options.Limit;
+            }
+
             if (this.options.MaxResults.HasValue)
             {
                 var pageSize = this.options.PageSize ?? this.options.Limit;
-                pageLimit = (long)Math.Ceiling((double)this.options.MaxResults.Value / (pageSize.HasValue ? this.options.PageSize.Value : 1));
+                this.options.PageSize = pageSize;
+                pageLimit = (long)Math.Ceiling((double)this.options.MaxResults.Value / (pageSize.HasValue ? pageSize.Value : 1));
             }
 
-            if (cache)
-            {
-                this.cache = new List<TData>();
-                this.cache.AddRange(page.Data);
-            }
+            this.cache = new List<TData>();
+            this.cache.AddRange(page.Data);
         }
 
         [JsonProperty]
@@ -84,12 +86,7 @@ namespace MbedCloudSDK.Common
         /// <returns>If no caching, then first item from current page</returns>
         public TData First()
         {
-            if (cache != null)
-            {
-                return cache.FirstOrDefault();
-            }
-
-            return page.Data.FirstOrDefault();
+            return cache.FirstOrDefault();
         }
 
         /// <summary>
@@ -98,27 +95,37 @@ namespace MbedCloudSDK.Common
         /// <returns>Data</returns>
         public IEnumerator<TData> GetEnumerator()
         {
-            while (page != null)
+            if (page == null)
             {
-                iterator.Reset();
-                while (iterator.MoveNext())
+                foreach (var item in cache)
                 {
-                    if (options.PageSize != null && totalItems > options.MaxResults)
+                    yield return item;
+                }
+            }
+            else
+            {
+                while (page != null)
+                {
+                    iterator.Reset();
+                    while (iterator.MoveNext())
                     {
-                        yield break;
+                        if (options.PageSize != null && totalItems > options.MaxResults)
+                        {
+                            yield break;
+                        }
+
+                        totalItems++;
+                        yield return iterator.Current;
                     }
 
-                    totalItems++;
-                    yield return iterator.Current;
-                }
-
-                if (page.HasMore)
-                {
-                    FetchNextPage();
-                }
-                else
-                {
-                    break;
+                    if (page.HasMore)
+                    {
+                        FetchNextPage();
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
         }
@@ -135,10 +142,7 @@ namespace MbedCloudSDK.Common
             pages++;
             page = GetPage();
             iterator = page.Data.GetEnumerator();
-            if (cache != null)
-            {
-                cache.AddRange(page.Data);
-            }
+            cache.AddRange(page.Data);
         }
 
         /// <summary>

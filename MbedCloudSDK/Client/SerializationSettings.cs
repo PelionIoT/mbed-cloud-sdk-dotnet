@@ -7,6 +7,7 @@ namespace MbedCloudSDK.Client
     using System.Collections.Generic;
     using MbedCloudSDK.Common.CustomSerializers;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
     using Newtonsoft.Json.Serialization;
 
     /// <summary>
@@ -38,6 +39,8 @@ namespace MbedCloudSDK.Client
                 },
                 DateTimeZoneHandling = DateTimeZoneHandling.Utc,
             };
+
+            settings.Converters.Add(new StringEnumConverter());
 
             return settings;
         }
