@@ -16,6 +16,7 @@ namespace MbedCloudSDK.Accounts.PasswordPolicy
 {
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
+    using MbedCloudSDK.Common.Renames;
 
     /// <summary>
     /// PasswordPolicy

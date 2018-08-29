@@ -23,6 +23,7 @@ namespace MbedCloudSDK.PreSharedKeys.PSK
     using RestSharp;
     using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Common.Extensions;
+    using MbedCloudSDK.Common.Renames;
 
     /// <summary>
     /// PSK
@@ -47,17 +48,25 @@ namespace MbedCloudSDK.PreSharedKeys.PSK
             set;
         }
 
-        public async Task<PSK> Create(string secretHex)
+        /// <summary>
+        /// The secret of the pre-shared key in hexadecimal. It is not case sensitive; 4a is same as 4A, and it is allowed with or without 0x in the beginning. The minimum length of the secret is 128 bits and maximum 256 bits.
+        /// </summary>
+        public string SecretHex
         {
-            var renames = new Dictionary<string, string>();
+            get;
+            set;
+        }
+
+        public async Task<PSK> Create()
+        {
             var data = new
             {
                 EndpointName = EndpointName,
-                secretHex = secretHex,
+                SecretHex = SecretHex,
             };
             try
             {
-                return await MbedCloudSDK.Client.ApiCall.CallApi<PSK>(path: "/v2/device-shared-keys", method: Method.POST, settings: SerializationSettings.GetSettings(renames), populateObject: true, objectToPopulate: this, accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, configuration: Config);
+                return await MbedCloudSDK.Client.ApiCall.CallApi<PSK>(path: "/v2/device-shared-keys", method: Method.POST, settings: SerializationSettings.GetSettingsWithRenames(Renames.RenamesDict), populateObject: true, objectToPopulate: this, accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, configuration: Config);
             }
             catch (MbedCloudSDK.Client.ApiException e)
             {
@@ -67,11 +76,10 @@ namespace MbedCloudSDK.PreSharedKeys.PSK
 
         public async Task Delete()
         {
-            var renames = new Dictionary<string, string>();
             object data = null;
             try
             {
-                await MbedCloudSDK.Client.ApiCall.CallApi<object>(path: "/v2/device-shared-keys/{endpoint_name}", method: Method.DELETE, settings: SerializationSettings.GetSettings(renames), accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, pathParams: new Dictionary<string, object>() { { "EndpointName", EndpointName }, }, configuration: Config);
+                await MbedCloudSDK.Client.ApiCall.CallApi<object>(path: "/v2/device-shared-keys/{endpoint_name}", method: Method.DELETE, settings: SerializationSettings.GetSettingsWithRenames(Renames.RenamesDict), accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, pathParams: new Dictionary<string, object>() { { "EndpointName", EndpointName }, }, configuration: Config);
             }
             catch (MbedCloudSDK.Client.ApiException e)
             {
@@ -81,11 +89,10 @@ namespace MbedCloudSDK.PreSharedKeys.PSK
 
         public async Task<PSK> Get()
         {
-            var renames = new Dictionary<string, string>();
             object data = null;
             try
             {
-                return await MbedCloudSDK.Client.ApiCall.CallApi<PSK>(path: "/v2/device-shared-keys/{endpoint_name}", method: Method.GET, settings: SerializationSettings.GetSettings(renames), populateObject: true, objectToPopulate: this, accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, pathParams: new Dictionary<string, object>() { { "EndpointName", EndpointName }, }, configuration: Config);
+                return await MbedCloudSDK.Client.ApiCall.CallApi<PSK>(path: "/v2/device-shared-keys/{endpoint_name}", method: Method.GET, settings: SerializationSettings.GetSettingsWithRenames(Renames.RenamesDict), populateObject: true, objectToPopulate: this, accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, pathParams: new Dictionary<string, object>() { { "EndpointName", EndpointName }, }, configuration: Config);
             }
             catch (MbedCloudSDK.Client.ApiException e)
             {
@@ -95,12 +102,11 @@ namespace MbedCloudSDK.PreSharedKeys.PSK
 
         public static PaginatedResponse<QueryOptions, PSK> List(string after = null, int? limit = null)
         {
-            var renames = new Dictionary<string, string>();
             object data = null;
             var options = new QueryOptions { After = after, Limit = limit, };
             try
             {
-                Func<QueryOptions, ResponsePage<PSK>> paginatedFunc = (QueryOptions _options) => { return AsyncHelper.RunSync<ResponsePage<PSK>>(() => MbedCloudSDK.Client.ApiCall.CallApi<ResponsePage<PSK>>(path: "/v2/device-shared-keys", method: Method.GET, settings: SerializationSettings.GetSettings(renames), accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, queryParams: new Dictionary<string, object>() { { "after", after }, { "limit", limit }, }, configuration: Config)); };
+                Func<QueryOptions, ResponsePage<PSK>> paginatedFunc = (QueryOptions _options) => { return AsyncHelper.RunSync<ResponsePage<PSK>>(() => MbedCloudSDK.Client.ApiCall.CallApi<ResponsePage<PSK>>(path: "/v2/device-shared-keys", method: Method.GET, settings: SerializationSettings.GetSettingsWithRenames(Renames.RenamesDict), accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, queryParams: new Dictionary<string, object>() { { "after", after }, { "limit", limit }, }, configuration: Config)); };
                 return new PaginatedResponse<QueryOptions, PSK>(paginatedFunc, options);
             }
             catch (MbedCloudSDK.Client.ApiException e)

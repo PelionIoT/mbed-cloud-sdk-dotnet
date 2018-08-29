@@ -25,6 +25,7 @@ namespace MbedCloudSDK.Accounts.PolicyGroup
     using RestSharp;
     using MbedCloudSDK.Accounts.User;
     using MbedCloudSDK.Common.Extensions;
+    using MbedCloudSDK.Common.Renames;
 
     /// <summary>
     /// PolicyGroup
@@ -87,12 +88,11 @@ namespace MbedCloudSDK.Accounts.PolicyGroup
 
         public PaginatedResponse<QueryOptions, ApiKey> ApiKeys(string after = null, string include = null, int? limit = null, string order = null)
         {
-            var renames = new Dictionary<string, string>();
             object data = null;
             var options = new QueryOptions { After = after, Include = include, Limit = limit, Order = order, };
             try
             {
-                Func<QueryOptions, ResponsePage<ApiKey>> paginatedFunc = (QueryOptions _options) => { return AsyncHelper.RunSync<ResponsePage<ApiKey>>(() => MbedCloudSDK.Client.ApiCall.CallApi<ResponsePage<ApiKey>>(path: "/v3/policy-groups/{groupID}/api-keys", method: Method.GET, settings: SerializationSettings.GetSettings(renames), accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, pathParams: new Dictionary<string, object>() { { "groupID", Id }, }, queryParams: new Dictionary<string, object>() { { "after", after }, { "include", include }, { "limit", limit }, { "order", order }, }, configuration: Config)); };
+                Func<QueryOptions, ResponsePage<ApiKey>> paginatedFunc = (QueryOptions _options) => { return AsyncHelper.RunSync<ResponsePage<ApiKey>>(() => MbedCloudSDK.Client.ApiCall.CallApi<ResponsePage<ApiKey>>(path: "/v3/policy-groups/{groupID}/api-keys", method: Method.GET, settings: SerializationSettings.GetSettingsWithRenames(Renames.RenamesDict), accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, pathParams: new Dictionary<string, object>() { { "groupID", Id }, }, queryParams: new Dictionary<string, object>() { { "after", after }, { "include", include }, { "limit", limit }, { "order", order }, }, configuration: Config)); };
                 return new PaginatedResponse<QueryOptions, ApiKey>(paginatedFunc, options);
             }
             catch (MbedCloudSDK.Client.ApiException e)
@@ -103,11 +103,10 @@ namespace MbedCloudSDK.Accounts.PolicyGroup
 
         public async Task<PolicyGroup> Get()
         {
-            var renames = new Dictionary<string, string>();
             object data = null;
             try
             {
-                return await MbedCloudSDK.Client.ApiCall.CallApi<PolicyGroup>(path: "/v3/policy-groups/{groupID}", method: Method.GET, settings: SerializationSettings.GetSettings(renames), populateObject: true, objectToPopulate: this, accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, pathParams: new Dictionary<string, object>() { { "groupID", Id }, }, configuration: Config);
+                return await MbedCloudSDK.Client.ApiCall.CallApi<PolicyGroup>(path: "/v3/policy-groups/{groupID}", method: Method.GET, settings: SerializationSettings.GetSettingsWithRenames(Renames.RenamesDict), populateObject: true, objectToPopulate: this, accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, pathParams: new Dictionary<string, object>() { { "groupID", Id }, }, configuration: Config);
             }
             catch (MbedCloudSDK.Client.ApiException e)
             {
@@ -117,12 +116,11 @@ namespace MbedCloudSDK.Accounts.PolicyGroup
 
         public static PaginatedResponse<QueryOptions, PolicyGroup> List(string after = null, string include = null, int? limit = null, string nameEq = null, string order = null)
         {
-            var renames = new Dictionary<string, string>();
             object data = null;
             var options = new QueryOptions { After = after, Include = include, Limit = limit, Order = order, };
             try
             {
-                Func<QueryOptions, ResponsePage<PolicyGroup>> paginatedFunc = (QueryOptions _options) => { return AsyncHelper.RunSync<ResponsePage<PolicyGroup>>(() => MbedCloudSDK.Client.ApiCall.CallApi<ResponsePage<PolicyGroup>>(path: "/v3/policy-groups", method: Method.GET, settings: SerializationSettings.GetSettings(renames), accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, queryParams: new Dictionary<string, object>() { { "after", after }, { "include", include }, { "limit", limit }, { "nameEq", nameEq }, { "order", order }, }, configuration: Config)); };
+                Func<QueryOptions, ResponsePage<PolicyGroup>> paginatedFunc = (QueryOptions _options) => { return AsyncHelper.RunSync<ResponsePage<PolicyGroup>>(() => MbedCloudSDK.Client.ApiCall.CallApi<ResponsePage<PolicyGroup>>(path: "/v3/policy-groups", method: Method.GET, settings: SerializationSettings.GetSettingsWithRenames(Renames.RenamesDict), accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, queryParams: new Dictionary<string, object>() { { "after", after }, { "include", include }, { "limit", limit }, { "nameEq", nameEq }, { "order", order }, }, configuration: Config)); };
                 return new PaginatedResponse<QueryOptions, PolicyGroup>(paginatedFunc, options);
             }
             catch (MbedCloudSDK.Client.ApiException e)
@@ -133,12 +131,11 @@ namespace MbedCloudSDK.Accounts.PolicyGroup
 
         public PaginatedResponse<QueryOptions, User> Users(string after = null, string include = null, int? limit = null, string order = null)
         {
-            var renames = new Dictionary<string, string>();
             object data = null;
             var options = new QueryOptions { After = after, Include = include, Limit = limit, Order = order, };
             try
             {
-                Func<QueryOptions, ResponsePage<User>> paginatedFunc = (QueryOptions _options) => { return AsyncHelper.RunSync<ResponsePage<User>>(() => MbedCloudSDK.Client.ApiCall.CallApi<ResponsePage<User>>(path: "/v3/policy-groups/{groupID}/users", method: Method.GET, settings: SerializationSettings.GetSettings(renames), accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, pathParams: new Dictionary<string, object>() { { "groupID", Id }, }, queryParams: new Dictionary<string, object>() { { "after", after }, { "include", include }, { "limit", limit }, { "order", order }, }, configuration: Config)); };
+                Func<QueryOptions, ResponsePage<User>> paginatedFunc = (QueryOptions _options) => { return AsyncHelper.RunSync<ResponsePage<User>>(() => MbedCloudSDK.Client.ApiCall.CallApi<ResponsePage<User>>(path: "/v3/policy-groups/{groupID}/users", method: Method.GET, settings: SerializationSettings.GetSettingsWithRenames(Renames.RenamesDict), accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, pathParams: new Dictionary<string, object>() { { "groupID", Id }, }, queryParams: new Dictionary<string, object>() { { "after", after }, { "include", include }, { "limit", limit }, { "order", order }, }, configuration: Config)); };
                 return new PaginatedResponse<QueryOptions, User>(paginatedFunc, options);
             }
             catch (MbedCloudSDK.Client.ApiException e)

@@ -15,6 +15,7 @@ namespace Manhasset.Generator.src.Helpers
         public static readonly string RestSharp = "RestSharp";
         public static readonly string Exceptions = "MbedCloudSDK.Exceptions";
         public static readonly string QueryOptions = "MbedCloudSDK.Common.Query";
+        public static readonly string Renames = "MbedCloudSDK.Common.Renames";
 
         public static string GetForeignKey(string group, string entity)
         {

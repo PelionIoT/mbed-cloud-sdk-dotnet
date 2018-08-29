@@ -11,6 +11,7 @@ namespace MbedCloudSDK.Common
     /// </summary>
     public abstract class BaseModel
     {
+        [JsonIgnore]
         private static MbedCloudSDK.Client.Configuration config;
 
         /// <summary>

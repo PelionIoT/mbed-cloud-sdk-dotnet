@@ -4,6 +4,9 @@ using MbedCloudSDK.Billing.Api;
 using MbedCloudSDK.Common;
 using MbedCloudSDK.Accounts.User;
 using MbedCloudSDK.Accounts.ApiKey;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using MbedCloudSDK.Accounts.SubtenantAccount;
 
 namespace Playground
 {
@@ -92,7 +95,7 @@ namespace Playground
 
                 await apiKey.Delete();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
             }

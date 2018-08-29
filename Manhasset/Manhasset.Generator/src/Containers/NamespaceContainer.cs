@@ -5,6 +5,7 @@ using System.Linq;
 using Manhasset.Core.src.Generators;
 using Manhasset.Generator.src.Containers;
 using Manhasset.Generator.src.Helpers;
+using MbedCloudSDK.Common.Extensions;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Newtonsoft.Json.Linq;
 
@@ -13,7 +14,7 @@ namespace Manhasset.Generator.src.Compilers
     public class NamespaceContainer
     {
         private readonly string entityName;
-        private readonly string namespaceName;
+        public readonly string namespaceName;
         private List<ClassContainer> Classes;
         private List<EnumContainer> Enums;
         private readonly string tagName;
@@ -29,6 +30,11 @@ namespace Manhasset.Generator.src.Compilers
             parentNamespace = NamespaceGenerators.CreateNamespace(namespaceName);
             Classes = new List<ClassContainer>();
             Enums = new List<EnumContainer>();
+        }
+
+        public void GenerateRenameClass(Dictionary<string, Dictionary<string, string>> renames)
+        {
+            Classes.Add(new ClassContainer(entityName, EntityJson).GenerateRenameClass(renames));
         }
 
         public void GenerateModelClass()
@@ -47,6 +53,23 @@ namespace Manhasset.Generator.src.Compilers
                     Enums.Add(new EnumContainer(item));
                 }
             }
+        }
+
+        public Dictionary<string, string> GenerateRenames()
+        {
+            var renameDict = new Dictionary<string, string>();
+
+            if (EntityJson["field_renames"] != null)
+            {
+                foreach (var rename in EntityJson["field_renames"])
+                {
+                    renameDict.Add(rename["_key"]["pascal"].Value<string>(), rename["api_fieldname"].Value<string>());
+                    //Console.WriteLine($"{rename["_key"]["pascal"].Value<string>()} - {rename["api_fieldname"].Value<string>()}");
+                }
+            }
+
+            //Console.WriteLine(renameDict.DebugDump());
+            return renameDict;
         }
 
         public List<NamespaceDeclarationSyntax> GetClasses()

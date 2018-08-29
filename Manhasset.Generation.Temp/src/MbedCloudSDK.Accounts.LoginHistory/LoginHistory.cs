@@ -17,6 +17,7 @@ namespace MbedCloudSDK.Accounts.LoginHistory
     using MbedCloudSDK.Common;
     using System;
     using MbedCloudSDK.Common.Extensions;
+    using MbedCloudSDK.Common.Renames;
 
     /// <summary>
     /// LoginHistory

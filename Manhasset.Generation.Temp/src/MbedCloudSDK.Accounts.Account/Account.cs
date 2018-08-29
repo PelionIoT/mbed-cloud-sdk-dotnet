@@ -25,6 +25,7 @@ namespace MbedCloudSDK.Accounts.Account
     using MbedCloudSDK.Exceptions;
     using RestSharp;
     using MbedCloudSDK.Common.Extensions;
+    using MbedCloudSDK.Common.Renames;
 
     /// <summary>
     /// Account
@@ -337,11 +338,10 @@ namespace MbedCloudSDK.Accounts.Account
 
         public async Task<Account> Get(string include = null, string properties = null)
         {
-            var renames = new Dictionary<string, string>();
             object data = null;
             try
             {
-                return await MbedCloudSDK.Client.ApiCall.CallApi<Account>(path: "/v3/accounts/me", method: Method.GET, settings: SerializationSettings.GetSettings(renames), populateObject: true, objectToPopulate: this, accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, queryParams: new Dictionary<string, object>() { { "include", include }, { "properties", properties }, }, configuration: Config);
+                return await MbedCloudSDK.Client.ApiCall.CallApi<Account>(path: "/v3/accounts/me", method: Method.GET, settings: SerializationSettings.GetSettingsWithRenames(Renames.RenamesDict), populateObject: true, objectToPopulate: this, accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, queryParams: new Dictionary<string, object>() { { "include", include }, { "properties", properties }, }, configuration: Config);
             }
             catch (MbedCloudSDK.Client.ApiException e)
             {
@@ -351,7 +351,6 @@ namespace MbedCloudSDK.Accounts.Account
 
         public async Task<Account> Update()
         {
-            var renames = new Dictionary<string, string>();
             var data = new
             {
                 AddressLine1 = AddressLine1,
@@ -376,7 +375,7 @@ namespace MbedCloudSDK.Accounts.Account
             };
             try
             {
-                return await MbedCloudSDK.Client.ApiCall.CallApi<Account>(path: "/v3/accounts/me", method: Method.PUT, settings: SerializationSettings.GetSettings(renames), populateObject: true, objectToPopulate: this, accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, configuration: Config);
+                return await MbedCloudSDK.Client.ApiCall.CallApi<Account>(path: "/v3/accounts/me", method: Method.PUT, settings: SerializationSettings.GetSettingsWithRenames(Renames.RenamesDict), populateObject: true, objectToPopulate: this, accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, configuration: Config);
             }
             catch (MbedCloudSDK.Client.ApiException e)
             {

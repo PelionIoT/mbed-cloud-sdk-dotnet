@@ -4,6 +4,7 @@
 
 namespace MbedCloudSDK.Client
 {
+    using System;
     using System.Collections.Generic;
     using MbedCloudSDK.Common.CustomSerializers;
     using Newtonsoft.Json;
@@ -21,7 +22,7 @@ namespace MbedCloudSDK.Client
         /// <returns>Settings</returns>
         public static JsonSerializerSettings GetDefaultSettings()
         {
-            return new JsonSerializerSettings();
+            return GetSettings(new Dictionary<string, string>());
         }
 
         /// <summary>
@@ -33,10 +34,23 @@ namespace MbedCloudSDK.Client
         {
             var settings = new JsonSerializerSettings
             {
-                ContractResolver = new DefaultContractResolver
+                ContractResolver = new RenameSwitchResolver
                 {
                     NamingStrategy = new SnakeCaseNamingStrategyWithRenaming(renames),
                 },
+                DateTimeZoneHandling = DateTimeZoneHandling.Utc,
+            };
+
+            settings.Converters.Add(new StringEnumConverter());
+
+            return settings;
+        }
+
+        public static JsonSerializerSettings GetSettingsWithRenames(Dictionary<Type, Dictionary<string, string>> renames)
+        {
+            var settings = new JsonSerializerSettings
+            {
+                ContractResolver = new RenameSwitchResolver(renames),
                 DateTimeZoneHandling = DateTimeZoneHandling.Utc,
             };
 

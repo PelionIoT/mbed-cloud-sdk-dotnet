@@ -34,6 +34,20 @@ namespace Manhasset.Generator.src.Containers
             Usings = new List<string>();
         }
 
+        public ClassContainer GenerateRenameClass(Dictionary<string, Dictionary<string, string>> renames)
+        {
+            var renameClass = ClassGenerators.CreateClass(ClassName, Modifiers.PublicMod, Modifiers.StaticMod);
+
+            AddUsing(Helpers.Usings.System);
+            AddUsing(Helpers.Usings.Lists);
+
+            renameClass = renameClass.AddMembers(DictionaryGenerators.GenerateRenameDictionary(renames));
+
+            GeneratedClass = renameClass;
+
+            return this;
+        }
+
         public ClassContainer GenerateModelClass()
         {
             var modelClass = ClassGenerators.CreateClass(ClassName, Modifiers.PublicMod, Modifiers.PartialMod);
@@ -50,6 +64,7 @@ namespace Manhasset.Generator.src.Containers
             modelClass = modelClass.AddMethod(MethodGenerators.GenerateDebugDumpMethod()
                                                               .AddSummaryAndReturns("Get human readable string of this object", "Serialized string of object") as MethodDeclarationSyntax);
             AddUsing(Helpers.Usings.DebugDump);
+            AddUsing(Helpers.Usings.Renames);
 
             GeneratedClass = modelClass;
 
@@ -125,15 +140,6 @@ namespace Manhasset.Generator.src.Containers
                     foreach (var parameter in (JObject)item["parameter_map"])
                     {
                         parameterRemaps.Add(parameter.Value.ToString().SnakeToCamel(), parameter.Key);
-                    }
-                }
-
-                if (item["field_renames"] != null)
-                {
-                    foreach (var rename in item["field_renames"])
-                    {
-                        renameDict.Add(rename["_key"]["pascal"].Value<string>(), rename["api_fieldname"].Value<string>());
-                        Console.WriteLine($"{rename["_key"]["pascal"].Value<string>()} - {rename["api_fieldname"].Value<string>()}");
                     }
                 }
 
@@ -245,7 +251,6 @@ namespace Manhasset.Generator.src.Containers
 
         private TypeSyntax GetType(JToken property)
         {
-            Console.WriteLine(property);
             if (property["enum"] != null)
             {
                 return Types.CustomType(property["enum_reference"]["pascal"].Value<string>());

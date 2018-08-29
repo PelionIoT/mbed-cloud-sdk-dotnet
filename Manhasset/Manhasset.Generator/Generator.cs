@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Manhasset.Core.src.Generators;
@@ -35,6 +36,8 @@ namespace Manhasset.Generator
 
             root = RootGenerators.CreateRoot();
 
+            var renames = new Dictionary<string, Dictionary<string, string>>();
+
             var entities = json[JsonKeys.entities];
 
             foreach (var entity in entities)
@@ -44,8 +47,16 @@ namespace Manhasset.Generator
                 var namespaceContainer = new NamespaceContainer(tag, entityName, entity);
                 namespaceContainer.GenerateEnums();
                 namespaceContainer.GenerateModelClass();
+
+                var entityRenames = namespaceContainer.GenerateRenames();
+                renames.Add($"{namespaceContainer.namespaceName}.{entityName}", entityRenames);
+
                 GeneratedNamespaces.Add(namespaceContainer);
             }
+
+            var commonNamespace = new NamespaceContainer("Common", "Renames", null);
+            commonNamespace.GenerateRenameClass(renames);
+            GeneratedNamespaces.Add(commonNamespace);
 
             GeneratedNamespaces.ForEach(n =>
             {

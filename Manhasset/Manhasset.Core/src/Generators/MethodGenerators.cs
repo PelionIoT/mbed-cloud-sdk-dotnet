@@ -189,8 +189,6 @@ namespace Manhasset.Core.src.Generators
                 .WithBody(
                     paginated ?
                         SyntaxFactory.Block(
-                            // rename dictionary
-                            GetRenameDictionary(renames),
                             // data
                             GetBody(body),
                             // options
@@ -202,8 +200,6 @@ namespace Manhasset.Core.src.Generators
                                 GetPaginatedBlock(argList, returns)
                             ))
                         : SyntaxFactory.Block(
-                            // rename dictionary
-                            GetRenameDictionary(renames),
                             // data
                             GetBody(body),
                             // try catch
@@ -414,12 +410,15 @@ namespace Manhasset.Core.src.Generators
                     SyntaxFactory.MemberAccessExpression(
                         SyntaxKind.SimpleMemberAccessExpression,
                         SyntaxFactory.IdentifierName("SerializationSettings"),
-                        SyntaxFactory.IdentifierName("GetSettings")))
+                        SyntaxFactory.IdentifierName("GetSettingsWithRenames")))
                 .WithArgumentList(
                     SyntaxFactory.ArgumentList(
                         SyntaxFactory.SingletonSeparatedList<ArgumentSyntax>(
                             SyntaxFactory.Argument(
-                                SyntaxFactory.IdentifierName("renames"))))))
+                                SyntaxFactory.MemberAccessExpression(
+                                    SyntaxKind.SimpleMemberAccessExpression,
+                                    SyntaxFactory.IdentifierName("Renames"),
+                                    SyntaxFactory.IdentifierName("RenamesDict")))))))
             .WithNameColon(
                 SyntaxFactory.NameColon(
                     SyntaxFactory.IdentifierName("settings")));//.NormalizeWhitespace();

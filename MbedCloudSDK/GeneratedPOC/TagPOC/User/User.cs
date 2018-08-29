@@ -112,6 +112,8 @@ namespace MbedCloudSDK.TagPOC.User
         /// </summary>
         public List<LoginHistory> LoginHistory { get; private set; }
 
+        // public List<MbedCloudSDK.Accounts.SubtenantAccount.SubtenantAccount> SubAccounts { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object.
         /// </summary>
