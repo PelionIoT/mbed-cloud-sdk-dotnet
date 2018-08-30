@@ -19,9 +19,9 @@ namespace Manhasset.Core.src.Helpers
             return SyntaxFactory.ParseTypeName($"List<{type}>");
         }
 
-        public static TypeSyntax CustomType(string name)
+        public static TypeSyntax CustomType(string name, bool nullable = false)
         {
-            return SyntaxFactory.ParseTypeName(name);
+            return nullable ? SyntaxFactory.ParseTypeName($"{name}?") : SyntaxFactory.ParseTypeName(name);
         }
     }
 }

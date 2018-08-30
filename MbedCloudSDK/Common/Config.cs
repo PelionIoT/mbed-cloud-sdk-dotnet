@@ -7,6 +7,7 @@ namespace MbedCloudSDK.Common
     using System;
     using System.Net;
     using MbedCloudSDK.Exceptions;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Config for MbedCloud
@@ -27,6 +28,9 @@ namespace MbedCloudSDK.Common
         /// The log level environment key
         /// </summary>
         public const string LOG_LEVEL = "MBED_CLOUD_SDK_LOG_LEVEL";
+
+        [JsonIgnore]
+        public MbedCloudSDK.Client.Configuration Configuration { get; internal set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Config"/> class.
@@ -83,6 +87,17 @@ namespace MbedCloudSDK.Common
                 Host = host ?? DotNetEnv.Env.GetString(HOST, Environment.GetEnvironmentVariable(HOST) ?? "https://api.us-east-1.mbedcloud.com");
                 ForceClear = forceClear;
                 AutostartNotifications = autostartNotifications;
+
+                var clientConfig = new MbedCloudSDK.Client.Configuration
+                {
+                    BasePath = Host,
+                    DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ",
+                };
+                clientConfig.AddApiKey("Authorization", ApiKey);
+                clientConfig.AddApiKeyPrefix("Authorization", AuthorizationPrefix);
+                clientConfig.CreateApiClient();
+
+                Configuration = clientConfig;
             }
         }
 

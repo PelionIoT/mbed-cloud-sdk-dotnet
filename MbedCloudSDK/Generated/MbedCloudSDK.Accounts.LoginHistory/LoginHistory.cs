@@ -24,6 +24,15 @@ namespace MbedCloudSDK.Accounts.LoginHistory
     /// </summary>
     public partial class LoginHistory : BaseModel
     {
+        public LoginHistory()
+        {
+        }
+
+        public LoginHistory(Config config)
+        {
+            Config = config;
+        }
+
         /// <summary>
         /// UTC time RFC3339 for this login attempt.
         /// </summary>

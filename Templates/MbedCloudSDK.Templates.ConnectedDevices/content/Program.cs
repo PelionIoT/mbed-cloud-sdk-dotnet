@@ -24,10 +24,10 @@ namespace ConnectedDevicesTemplate
                 {
                     Limit = 5,
                 };
-                var connectedDevices = connect.ListConnectedDevices(options).Data;
-                Console.WriteLine($"You have {connectedDevices.Count} connected devices!");
+                var connectedDevices = connect.ListConnectedDevices(options);
+                //Console.WriteLine($"You have {connectedDevices.Count()} connected devices!");
                 Console.WriteLine();
-                connectedDevices.ForEach(c => Console.WriteLine($"Device {c.Id}: name: {c.Name}, createdAt: {c.CreatedAt.ToString()} state: {c.State}"));
+                //connectedDevices.ForEach(c => Console.WriteLine($"Device {c.Id}: name: {c.Name}, createdAt: {c.CreatedAt.ToString()} state: {c.State}"));
                 Console.ReadLine();
             }
         }

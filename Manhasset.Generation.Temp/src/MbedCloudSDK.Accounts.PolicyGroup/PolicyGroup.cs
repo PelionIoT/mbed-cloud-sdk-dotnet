@@ -32,6 +32,15 @@ namespace MbedCloudSDK.Accounts.PolicyGroup
     /// </summary>
     public partial class PolicyGroup : BaseModel
     {
+        public PolicyGroup()
+        {
+        }
+
+        public PolicyGroup(Config config)
+        {
+            Config = config;
+        }
+
         /// <summary>
         /// The UUID of the account this group belongs to.
         /// </summary>
@@ -114,7 +123,7 @@ namespace MbedCloudSDK.Accounts.PolicyGroup
             }
         }
 
-        public static PaginatedResponse<QueryOptions, PolicyGroup> List(string after = null, string include = null, int? limit = null, string nameEq = null, string order = null)
+        public PaginatedResponse<QueryOptions, PolicyGroup> List(string after = null, string include = null, int? limit = null, string nameEq = null, string order = null)
         {
             object data = null;
             var options = new QueryOptions { After = after, Include = include, Limit = limit, Order = order, };

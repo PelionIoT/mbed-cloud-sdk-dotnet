@@ -18,7 +18,7 @@ namespace Playground
             {
                 Console.WriteLine("---------------------User-----------------------------");
 
-                var users = User.List(limit: 2);
+                var users = new User().List(limit: 2);
 
                 Console.WriteLine($"I can list {users.Count()} users.");
 
@@ -61,7 +61,7 @@ namespace Playground
 
                 Console.WriteLine("---------------------ApiKey-----------------------------");
 
-                var keys = ApiKey.List();
+                var keys = new ApiKey().List();
 
                 Console.WriteLine($"I can list {keys.Count()} keys.");
 

@@ -33,6 +33,15 @@ namespace MbedCloudSDK.Accounts.ApiKey
     /// </summary>
     public partial class ApiKey : BaseModel
     {
+        public ApiKey()
+        {
+        }
+
+        public ApiKey(Config config)
+        {
+            Config = config;
+        }
+
         /// <summary>
         /// Creation UTC time RFC3339.
         /// </summary>
@@ -100,7 +109,7 @@ namespace MbedCloudSDK.Accounts.ApiKey
         /// The status of the API key.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        public ApiKeyStatusEnum Status
+        public ApiKeyStatusEnum? Status
         {
             get;
             set;
@@ -117,13 +126,7 @@ namespace MbedCloudSDK.Accounts.ApiKey
 
         public async Task<ApiKey> Create()
         {
-            var data = new
-            {
-                GroupIds = GroupIds,
-                Name = Name,
-                Owner = Owner,
-                Status = Status,
-            };
+            var data = new ApiKey { GroupIds = GroupIds, Name = Name, Owner = Owner, Status = Status, };
             try
             {
                 return await MbedCloudSDK.Client.ApiCall.CallApi<ApiKey>(path: "/v3/api-keys", method: Method.POST, settings: SerializationSettings.GetSettingsWithRenames(Renames.RenamesDict), populateObject: true, objectToPopulate: this, accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, configuration: Config);
@@ -175,7 +178,7 @@ namespace MbedCloudSDK.Accounts.ApiKey
             }
         }
 
-        public static PaginatedResponse<QueryOptions, ApiKey> List(string after = null, string include = null, int? limit = null, string order = null)
+        public PaginatedResponse<QueryOptions, ApiKey> List(string after = null, string include = null, int? limit = null, string order = null)
         {
             object data = null;
             var options = new QueryOptions { After = after, Include = include, Limit = limit, Order = order, };
@@ -205,13 +208,7 @@ namespace MbedCloudSDK.Accounts.ApiKey
 
         public async Task<ApiKey> Update()
         {
-            var data = new
-            {
-                GroupIds = GroupIds,
-                Name = Name,
-                Owner = Owner,
-                Status = Status,
-            };
+            var data = new ApiKey { GroupIds = GroupIds, Name = Name, Owner = Owner, Status = Status, };
             try
             {
                 return await MbedCloudSDK.Client.ApiCall.CallApi<ApiKey>(path: "/v3/api-keys/{apiKey}", method: Method.PUT, settings: SerializationSettings.GetSettingsWithRenames(Renames.RenamesDict), populateObject: true, objectToPopulate: this, accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, pathParams: new Dictionary<string, object>() { { "apiKey", Id }, }, configuration: Config);

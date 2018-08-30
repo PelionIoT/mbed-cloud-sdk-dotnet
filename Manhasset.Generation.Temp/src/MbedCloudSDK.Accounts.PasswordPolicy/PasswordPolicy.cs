@@ -23,6 +23,15 @@ namespace MbedCloudSDK.Accounts.PasswordPolicy
     /// </summary>
     public partial class PasswordPolicy : BaseModel
     {
+        public PasswordPolicy()
+        {
+        }
+
+        public PasswordPolicy(Config config)
+        {
+            Config = config;
+        }
+
         /// <summary>
         /// Minimum length for the password. A number between 8 and 512.
         /// </summary>

@@ -12,42 +12,13 @@ namespace MbedCloudSDK.Common
     public abstract class BaseModel
     {
         [JsonIgnore]
-        private static MbedCloudSDK.Client.Configuration config;
+        private Config _config;
 
-        /// <summary>
-        /// Gets or sets the configuration.
-        /// </summary>
-        /// <value>
-        /// The configuration.
-        /// </value>
         [JsonIgnore]
-        public static MbedCloudSDK.Client.Configuration Config
+        public Config Config
         {
-            get
-            {
-                if (config != null)
-                {
-                    return config;
-                }
-
-                var sdkConfig = new Config();
-
-                var clientConfig = new MbedCloudSDK.Client.Configuration
-                {
-                    BasePath = sdkConfig.Host,
-                    DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ",
-                };
-                clientConfig.AddApiKey("Authorization", sdkConfig.ApiKey);
-                clientConfig.AddApiKeyPrefix("Authorization", sdkConfig.AuthorizationPrefix);
-                clientConfig.CreateApiClient();
-
-                return clientConfig;
-            }
-
-            set
-            {
-                config = value;
-            }
+            get => _config ?? MbedCloudSDKClient.Config;
+            internal set => _config = value;
         }
 
         /// <summary>

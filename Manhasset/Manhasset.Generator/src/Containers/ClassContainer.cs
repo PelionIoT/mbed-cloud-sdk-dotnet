@@ -54,6 +54,8 @@ namespace Manhasset.Generator.src.Containers
 
             modelClass = modelClass.AddSummary(ClassName) as ClassDeclarationSyntax;
 
+            modelClass = modelClass.WithMembers(ConstructorGenerators.GenerateConstructors(ClassName));
+
             modelClass = modelClass.AddBaseTypes(BaseTypes.BaseModel);
             AddUsing(Helpers.Usings.BaseModel);
 
@@ -109,7 +111,8 @@ namespace Manhasset.Generator.src.Containers
                 var queryDict = new Dictionary<string, string>();
                 var renameDict = new Dictionary<string, string>();
                 var bodyDict = new Dictionary<string, string>();
-                var staticPaginator = true;
+                // FIXME should be false when solution for static methods is introduced
+                var staticPaginator = false;
 
                 var parameterRemaps = new Dictionary<string, string>();
 
@@ -253,7 +256,7 @@ namespace Manhasset.Generator.src.Containers
         {
             if (property["enum"] != null)
             {
-                return Types.CustomType(property["enum_reference"]["pascal"].Value<string>());
+                return Types.CustomType(property["enum_reference"]["pascal"].Value<string>(), true);
             }
 
             var type = property["format"] ?? property["type"];

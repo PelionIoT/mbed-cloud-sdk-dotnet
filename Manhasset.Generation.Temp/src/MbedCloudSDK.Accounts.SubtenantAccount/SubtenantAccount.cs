@@ -36,6 +36,15 @@ namespace MbedCloudSDK.Accounts.SubtenantAccount
     /// </summary>
     public partial class SubtenantAccount : BaseModel
     {
+        public SubtenantAccount()
+        {
+        }
+
+        public SubtenantAccount(Config config)
+        {
+            Config = config;
+        }
+
         /// <summary>
         /// Postal address line 1.
         /// </summary>
@@ -247,7 +256,7 @@ namespace MbedCloudSDK.Accounts.SubtenantAccount
         /// The enforcement status of the multi-factor authentication, either 'enforced' or 'optional'.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        public SubtenantAccountMfaStatusEnum MfaStatus
+        public SubtenantAccountMfaStatusEnum? MfaStatus
         {
             get;
             set;
@@ -343,7 +352,7 @@ namespace MbedCloudSDK.Accounts.SubtenantAccount
         /// The status of the account.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        public SubtenantAccountStatusEnum Status
+        public SubtenantAccountStatusEnum? Status
         {
             get;
             set;
@@ -411,28 +420,7 @@ namespace MbedCloudSDK.Accounts.SubtenantAccount
 
         public async Task<SubtenantAccount> Create(string action = null)
         {
-            var data = new
-            {
-                AddressLine1 = AddressLine1,
-                AddressLine2 = AddressLine2,
-                AdminEmail = AdminEmail,
-                AdminFullName = AdminFullName,
-                AdminName = AdminName,
-                AdminPassword = AdminPassword,
-                Aliases = Aliases,
-                City = City,
-                Company = Company,
-                Contact = Contact,
-                ContractNumber = ContractNumber,
-                Country = Country,
-                CustomerNumber = CustomerNumber,
-                DisplayName = DisplayName,
-                Email = Email,
-                EndMarket = EndMarket,
-                PhoneNumber = PhoneNumber,
-                PostalCode = PostalCode,
-                State = State,
-            };
+            var data = new SubtenantAccount { AddressLine1 = AddressLine1, AddressLine2 = AddressLine2, AdminEmail = AdminEmail, AdminFullName = AdminFullName, AdminName = AdminName, AdminPassword = AdminPassword, Aliases = Aliases, City = City, Company = Company, Contact = Contact, ContractNumber = ContractNumber, Country = Country, CustomerNumber = CustomerNumber, DisplayName = DisplayName, Email = Email, EndMarket = EndMarket, PhoneNumber = PhoneNumber, PostalCode = PostalCode, State = State, };
             try
             {
                 return await MbedCloudSDK.Client.ApiCall.CallApi<SubtenantAccount>(path: "/v3/accounts", method: Method.POST, settings: SerializationSettings.GetSettingsWithRenames(Renames.RenamesDict), populateObject: true, objectToPopulate: this, accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, queryParams: new Dictionary<string, object>() { { "action", action }, }, configuration: Config);
@@ -473,31 +461,7 @@ namespace MbedCloudSDK.Accounts.SubtenantAccount
 
         public async Task<SubtenantAccount> Update()
         {
-            var data = new
-            {
-                AddressLine1 = AddressLine1,
-                AddressLine2 = AddressLine2,
-                Aliases = Aliases,
-                City = City,
-                Company = Company,
-                Contact = Contact,
-                ContractNumber = ContractNumber,
-                Country = Country,
-                CustomFields = CustomFields,
-                CustomerNumber = CustomerNumber,
-                DisplayName = DisplayName,
-                Email = Email,
-                EndMarket = EndMarket,
-                ExpirationWarningThreshold = ExpirationWarningThreshold,
-                IdleTimeout = IdleTimeout,
-                MfaStatus = MfaStatus,
-                NotificationEmails = NotificationEmails,
-                PasswordPolicy = PasswordPolicy,
-                PhoneNumber = PhoneNumber,
-                PostalCode = PostalCode,
-                SalesContact = SalesContact,
-                State = State,
-            };
+            var data = new SubtenantAccount { AddressLine1 = AddressLine1, AddressLine2 = AddressLine2, Aliases = Aliases, City = City, Company = Company, Contact = Contact, ContractNumber = ContractNumber, Country = Country, CustomFields = CustomFields, CustomerNumber = CustomerNumber, DisplayName = DisplayName, Email = Email, EndMarket = EndMarket, ExpirationWarningThreshold = ExpirationWarningThreshold, IdleTimeout = IdleTimeout, MfaStatus = MfaStatus, NotificationEmails = NotificationEmails, PasswordPolicy = PasswordPolicy, PhoneNumber = PhoneNumber, PostalCode = PostalCode, SalesContact = SalesContact, State = State, };
             try
             {
                 return await MbedCloudSDK.Client.ApiCall.CallApi<SubtenantAccount>(path: "/v3/accounts/{accountID}", method: Method.PUT, settings: SerializationSettings.GetSettingsWithRenames(Renames.RenamesDict), populateObject: true, objectToPopulate: this, accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, pathParams: new Dictionary<string, object>() { { "accountID", Id }, }, configuration: Config);

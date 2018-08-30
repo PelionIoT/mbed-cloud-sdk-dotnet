@@ -190,7 +190,7 @@ namespace Manhasset.Core.src.Generators
                     paginated ?
                         SyntaxFactory.Block(
                             // data
-                            GetBody(body),
+                            GetBody(body, returns),
                             // options
                             GetOptions(methodParams.Concat(methodParamsRequired).ToDictionary(kvp => kvp.Key, kvp => kvp.Value)),
                             // try catch
@@ -201,7 +201,7 @@ namespace Manhasset.Core.src.Generators
                             ))
                         : SyntaxFactory.Block(
                             // data
-                            GetBody(body),
+                            GetBody(body, returns),
                             // try catch
                             GetTryCatchBlock()
                             .WithBlock(
@@ -345,7 +345,7 @@ namespace Manhasset.Core.src.Generators
 
         }
 
-        private static LocalDeclarationStatementSyntax GetBody(Dictionary<string, string> body)
+        private static LocalDeclarationStatementSyntax GetBody(Dictionary<string, string> body, string returns)
         {
             if (body.Any())
             {
@@ -353,11 +353,10 @@ namespace Manhasset.Core.src.Generators
 
                 foreach (var item in body)
                 {
-                    var bodyItem = SyntaxFactory.AnonymousObjectMemberDeclarator(
-                                        SyntaxFactory.IdentifierName(item.Key))
-                                    .WithNameEquals(
-                                        SyntaxFactory.NameEquals(
-                                            SyntaxFactory.IdentifierName(item.Value)));
+                    var bodyItem = SyntaxFactory.AssignmentExpression(
+                                        SyntaxKind.SimpleAssignmentExpression,
+                                        SyntaxFactory.IdentifierName(item.Key),
+                                        SyntaxFactory.IdentifierName(item.Value));
 
                     bodyArgs.Add(bodyItem);
                     bodyArgs.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
@@ -372,10 +371,18 @@ namespace Manhasset.Core.src.Generators
                                     SyntaxFactory.Identifier("data"))
                                 .WithInitializer(
                                     SyntaxFactory.EqualsValueClause(
-                                        SyntaxFactory.AnonymousObjectCreationExpression(
-                                            SyntaxFactory.SeparatedList<AnonymousObjectMemberDeclaratorSyntax>(
-                                                bodyArgs.ToArray()
-                                            )))))));//.NormalizeWhitespace();
+                                        SyntaxFactory.ObjectCreationExpression(
+                                            SyntaxFactory.IdentifierName(returns))
+                                            .WithInitializer(
+                                                SyntaxFactory.InitializerExpression(
+                                                    SyntaxKind.ObjectInitializerExpression,
+                                                    SyntaxFactory.SeparatedList<ExpressionSyntax>(
+                                                        bodyArgs.ToArray()
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    ))));//.NormalizeWhitespace();
             }
 
             return SyntaxFactory.LocalDeclarationStatement(

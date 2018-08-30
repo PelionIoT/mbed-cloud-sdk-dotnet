@@ -19,7 +19,10 @@ namespace MbedCloudSDK.Common.CustomSerializers
             }
             else
             {
-                NamingStrategy = new SnakeCaseNamingStrategy();
+                if (NamingStrategy == null)
+                {
+                    NamingStrategy = new SnakeCaseNamingStrategy();
+                }
             }
 
             return base.CreateContract(objectType);

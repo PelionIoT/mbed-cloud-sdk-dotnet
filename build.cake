@@ -220,8 +220,8 @@ Task("_publish")
 
 Task("_clean_generation")
     .Does(() => {
-        CleanDirectory("./Manhasset.Generation.Temp");
         CleanDirectory("./MbedCloudSDK/Generated");
+        CleanDirectory("./Manhasset.Generation.Temp");
     });
 
 Task("_create empty_project")

@@ -30,6 +30,15 @@ namespace MbedCloudSDK.PreSharedKeys.PSK
     /// </summary>
     public partial class PSK : BaseModel
     {
+        public PSK()
+        {
+        }
+
+        public PSK(Config config)
+        {
+            Config = config;
+        }
+
         /// <summary>
         /// The date-time (RFC3339) when this pre-shared key was uploaded to Mbed Cloud.
         /// </summary>
@@ -59,11 +68,7 @@ namespace MbedCloudSDK.PreSharedKeys.PSK
 
         public async Task<PSK> Create()
         {
-            var data = new
-            {
-                EndpointName = EndpointName,
-                SecretHex = SecretHex,
-            };
+            var data = new PSK { EndpointName = EndpointName, SecretHex = SecretHex, };
             try
             {
                 return await MbedCloudSDK.Client.ApiCall.CallApi<PSK>(path: "/v2/device-shared-keys", method: Method.POST, settings: SerializationSettings.GetSettingsWithRenames(Renames.RenamesDict), populateObject: true, objectToPopulate: this, accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, configuration: Config);
@@ -100,7 +105,7 @@ namespace MbedCloudSDK.PreSharedKeys.PSK
             }
         }
 
-        public static PaginatedResponse<QueryOptions, PSK> List(string after = null, int? limit = null)
+        public PaginatedResponse<QueryOptions, PSK> List(string after = null, int? limit = null)
         {
             object data = null;
             var options = new QueryOptions { After = after, Limit = limit, };

@@ -32,6 +32,15 @@ namespace MbedCloudSDK.Accounts.Account
     /// </summary>
     public partial class Account : BaseModel
     {
+        public Account()
+        {
+        }
+
+        public Account(Config config)
+        {
+            Config = config;
+        }
+
         /// <summary>
         /// Postal address line 1.
         /// </summary>
@@ -189,7 +198,7 @@ namespace MbedCloudSDK.Accounts.Account
         /// The enforcement status of the multi-factor authentication, either 'enforced' or 'optional'.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        public AccountMfaStatusEnum MfaStatus
+        public AccountMfaStatusEnum? MfaStatus
         {
             get;
             set;
@@ -285,7 +294,7 @@ namespace MbedCloudSDK.Accounts.Account
         /// The status of the account.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        public AccountStatusEnum Status
+        public AccountStatusEnum? Status
         {
             get;
             set;
@@ -351,28 +360,7 @@ namespace MbedCloudSDK.Accounts.Account
 
         public async Task<Account> Update()
         {
-            var data = new
-            {
-                AddressLine1 = AddressLine1,
-                AddressLine2 = AddressLine2,
-                Aliases = Aliases,
-                City = City,
-                Company = Company,
-                Contact = Contact,
-                Country = Country,
-                CustomFields = CustomFields,
-                DisplayName = DisplayName,
-                Email = Email,
-                EndMarket = EndMarket,
-                ExpirationWarningThreshold = ExpirationWarningThreshold,
-                IdleTimeout = IdleTimeout,
-                MfaStatus = MfaStatus,
-                NotificationEmails = NotificationEmails,
-                PasswordPolicy = PasswordPolicy,
-                PhoneNumber = PhoneNumber,
-                PostalCode = PostalCode,
-                State = State,
-            };
+            var data = new Account { AddressLine1 = AddressLine1, AddressLine2 = AddressLine2, Aliases = Aliases, City = City, Company = Company, Contact = Contact, Country = Country, CustomFields = CustomFields, DisplayName = DisplayName, Email = Email, EndMarket = EndMarket, ExpirationWarningThreshold = ExpirationWarningThreshold, IdleTimeout = IdleTimeout, MfaStatus = MfaStatus, NotificationEmails = NotificationEmails, PasswordPolicy = PasswordPolicy, PhoneNumber = PhoneNumber, PostalCode = PostalCode, State = State, };
             try
             {
                 return await MbedCloudSDK.Client.ApiCall.CallApi<Account>(path: "/v3/accounts/me", method: Method.PUT, settings: SerializationSettings.GetSettingsWithRenames(Renames.RenamesDict), populateObject: true, objectToPopulate: this, accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, configuration: Config);

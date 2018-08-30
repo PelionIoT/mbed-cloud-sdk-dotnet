@@ -8,6 +8,7 @@ namespace MbedCloudSDK.Client
     using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
+    using MbedCloudSDK.Common;
     using Newtonsoft.Json;
     using RestSharp;
 
@@ -47,15 +48,16 @@ namespace MbedCloudSDK.Client
                     string[] contentTypes = null,
                     string[] accepts = null,
                     object body = null,
-                    Configuration configuration = null,
+                    Config configuration = null,
                     JsonSerializerSettings settings = null,
                     Method method = default,
                     T objectToPopulate = default,
                     bool populateObject = false)
         {
+            var clientConfiguration = configuration.Configuration;
             exceptionFactory = Configuration.DefaultExceptionFactory;
             var localVarPath = path;
-            var localVarHeaderParams = new Dictionary<string, string>(configuration.DefaultHeader);
+            var localVarHeaderParams = new Dictionary<string, string>(clientConfiguration.DefaultHeader);
             var localVarPathParams = new Dictionary<string, string>();
             var localVarQueryParams = new List<KeyValuePair<string, string>>();
             var localVarFormParams = new Dictionary<string, string>();
@@ -75,7 +77,7 @@ namespace MbedCloudSDK.Client
                 {
                     if (item.Value != null)
                     {
-                        localVarPathParams.Add(item.Key, configuration.ApiClient.ParameterToString(item.Value));
+                        localVarPathParams.Add(item.Key, clientConfiguration.ApiClient.ParameterToString(item.Value));
                     }
                 }
             }
@@ -87,7 +89,7 @@ namespace MbedCloudSDK.Client
                 {
                     if (item.Value != null)
                     {
-                        localVarQueryParams.AddRange(configuration.ApiClient.ParameterToKeyValuePairs(null, item.Key, item.Value));
+                        localVarQueryParams.AddRange(clientConfiguration.ApiClient.ParameterToKeyValuePairs(null, item.Key, item.Value));
                     }
                 }
             }
@@ -99,7 +101,7 @@ namespace MbedCloudSDK.Client
                 {
                     if (item.Value != null)
                     {
-                        localVarHeaderParams.Add(item.Key, configuration.ApiClient.ParameterToString(item.Value));
+                        localVarHeaderParams.Add(item.Key, clientConfiguration.ApiClient.ParameterToString(item.Value));
                     }
                 }
             }
@@ -111,7 +113,7 @@ namespace MbedCloudSDK.Client
                 {
                     if (item.Value != null)
                     {
-                        localVarFormParams.Add(item.Key, configuration.ApiClient.ParameterToString(item.Value));
+                        localVarFormParams.Add(item.Key, clientConfiguration.ApiClient.ParameterToString(item.Value));
                     }
                 }
             }
@@ -130,15 +132,15 @@ namespace MbedCloudSDK.Client
 
             if (body != null)
             {
-                localVarPostBody = configuration.ApiClient.Serialize(body, settings); // http body (model) parameter
+                localVarPostBody = clientConfiguration.ApiClient.Serialize(body, settings); // http body (model) parameter
             }
 
-            localVarHeaderParams["Authorization"] = configuration.GetApiKeyWithPrefix("Authorization");
+            localVarHeaderParams["Authorization"] = clientConfiguration.GetApiKeyWithPrefix("Authorization");
 
             // Console.WriteLine(localVarPostBody);
 
             // make the HTTP request
-            var localVarResponse = (IRestResponse)await configuration.ApiClient.CallApiAsync(
+            var localVarResponse = (IRestResponse)await clientConfiguration.ApiClient.CallApiAsync(
                 localVarPath,
                 method,
                 localVarQueryParams,

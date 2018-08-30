@@ -20,6 +20,19 @@ namespace Manhasset.Core.src.Generators
                      //.NormalizeWhitespace();
         }
 
+        public static ClassDeclarationSyntax AddGenericBaseType(this ClassDeclarationSyntax me, string className)
+        {
+            return me.WithBaseList(SyntaxFactory.BaseList(
+                SyntaxFactory.SingletonSeparatedList<BaseTypeSyntax>(
+                    SyntaxFactory.SimpleBaseType(
+                        SyntaxFactory.GenericName(
+                            SyntaxFactory.Identifier("BaseModel"))
+                        .WithTypeArgumentList(
+                            SyntaxFactory.TypeArgumentList(
+                                SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
+                                    SyntaxFactory.IdentifierName(className))))))));
+        }
+
         public static ClassDeclarationSyntax AddField(this ClassDeclarationSyntax me, FieldDeclarationSyntax field)
         {
             return me.AddMembers(field);
