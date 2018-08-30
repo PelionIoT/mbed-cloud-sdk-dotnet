@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using MbedCloudSDK.Accounts.Account;
+using MbedCloudSDK.Accounts.MyAccount;
 using NUnit.Framework;
 
 namespace Manhasset.Test
@@ -12,9 +12,9 @@ namespace Manhasset.Test
         [Test]
         public async Task CrudSequence()
         {
-            var myAccount = await new Account().Get();
+            var myAccount = await new MyAccount().Get();
             var isActive = myAccount.Status;
-            Assert.AreEqual(AccountStatusEnum.ACTIVE, isActive);
+            Assert.AreEqual(MyAccountStatusEnum.ACTIVE, isActive);
 
             var newAddress = GetRandonAddress();
 

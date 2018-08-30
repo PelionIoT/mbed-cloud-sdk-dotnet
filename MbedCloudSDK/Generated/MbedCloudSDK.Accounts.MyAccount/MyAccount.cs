@@ -12,7 +12,7 @@
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloudSDK.Accounts.Account
+namespace MbedCloudSDK.Accounts.MyAccount
 {
     using MbedCloudSDK.Common;
     using System.Collections.Generic;
@@ -28,15 +28,15 @@ namespace MbedCloudSDK.Accounts.Account
     using MbedCloudSDK.Common.Renames;
 
     /// <summary>
-    /// Account
+    /// MyAccount
     /// </summary>
-    public partial class Account : BaseModel
+    public partial class MyAccount : BaseModel
     {
-        public Account()
+        public MyAccount()
         {
         }
 
-        public Account(Config config)
+        public MyAccount(Config config)
         {
             Config = config;
         }
@@ -198,7 +198,7 @@ namespace MbedCloudSDK.Accounts.Account
         /// The enforcement status of the multi-factor authentication, either 'enforced' or 'optional'.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        public AccountMfaStatusEnum? MfaStatus
+        public MyAccountMfaStatusEnum? MfaStatus
         {
             get;
             set;
@@ -294,7 +294,7 @@ namespace MbedCloudSDK.Accounts.Account
         /// The status of the account.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        public AccountStatusEnum? Status
+        public MyAccountStatusEnum? Status
         {
             get;
             set;
@@ -345,12 +345,12 @@ namespace MbedCloudSDK.Accounts.Account
             set;
         }
 
-        public async Task<Account> Get(string include = null, string properties = null)
+        public async Task<MyAccount> Get(string include = null, string properties = null)
         {
             object data = null;
             try
             {
-                return await MbedCloudSDK.Client.ApiCall.CallApi<Account>(path: "/v3/accounts/me", method: Method.GET, settings: SerializationSettings.GetSettingsWithRenames(Renames.RenamesDict), populateObject: true, objectToPopulate: this, accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, queryParams: new Dictionary<string, object>() { { "include", include }, { "properties", properties }, }, configuration: Config);
+                return await MbedCloudSDK.Client.ApiCall.CallApi<MyAccount>(path: "/v3/accounts/me", method: Method.GET, settings: SerializationSettings.GetSettingsWithRenames(Renames.RenamesDict), populateObject: true, objectToPopulate: this, accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, queryParams: new Dictionary<string, object>() { { "include", include }, { "properties", properties }, }, configuration: Config);
             }
             catch (MbedCloudSDK.Client.ApiException e)
             {
@@ -358,12 +358,12 @@ namespace MbedCloudSDK.Accounts.Account
             }
         }
 
-        public async Task<Account> Update()
+        public async Task<MyAccount> Update()
         {
-            var data = new Account { AddressLine1 = AddressLine1, AddressLine2 = AddressLine2, Aliases = Aliases, City = City, Company = Company, Contact = Contact, Country = Country, CustomFields = CustomFields, DisplayName = DisplayName, Email = Email, EndMarket = EndMarket, ExpirationWarningThreshold = ExpirationWarningThreshold, IdleTimeout = IdleTimeout, MfaStatus = MfaStatus, NotificationEmails = NotificationEmails, PasswordPolicy = PasswordPolicy, PhoneNumber = PhoneNumber, PostalCode = PostalCode, State = State, };
+            var data = new MyAccount { AddressLine1 = AddressLine1, AddressLine2 = AddressLine2, Aliases = Aliases, City = City, Company = Company, Contact = Contact, Country = Country, CustomFields = CustomFields, DisplayName = DisplayName, Email = Email, EndMarket = EndMarket, ExpirationWarningThreshold = ExpirationWarningThreshold, IdleTimeout = IdleTimeout, MfaStatus = MfaStatus, NotificationEmails = NotificationEmails, PasswordPolicy = PasswordPolicy, PhoneNumber = PhoneNumber, PostalCode = PostalCode, State = State, };
             try
             {
-                return await MbedCloudSDK.Client.ApiCall.CallApi<Account>(path: "/v3/accounts/me", method: Method.PUT, settings: SerializationSettings.GetSettingsWithRenames(Renames.RenamesDict), populateObject: true, objectToPopulate: this, accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, configuration: Config);
+                return await MbedCloudSDK.Client.ApiCall.CallApi<MyAccount>(path: "/v3/accounts/me", method: Method.PUT, settings: SerializationSettings.GetSettingsWithRenames(Renames.RenamesDict), populateObject: true, objectToPopulate: this, accepts: new string[] { "application/json" }, contentTypes: new string[] { "application/json" }, body: data, configuration: Config);
             }
             catch (MbedCloudSDK.Client.ApiException e)
             {

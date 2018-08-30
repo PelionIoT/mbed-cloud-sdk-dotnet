@@ -18,7 +18,7 @@ namespace MbedCloudSDK.Common
         public Config Config
         {
             get => _config ?? MbedCloudSDKClient.Config;
-            internal set => _config = value;
+            set => _config = value;
         }
 
         /// <summary>

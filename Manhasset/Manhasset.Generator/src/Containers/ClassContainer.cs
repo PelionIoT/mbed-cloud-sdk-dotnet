@@ -279,7 +279,7 @@ namespace Manhasset.Generator.src.Containers
                         {
                             var item = _property["items"];
 
-                            if (item["is_foreign_key"] != null)
+                            if (item["foreign_key"] != null)
                             {
                                 AddUsing(Helpers.Usings.GetForeignKey(item["foreign_key"]["group"]["pascal"].Value<string>(), item["foreign_key"]["entity"]["pascal"].Value<string>()));
                                 return Types.List(item["foreign_key"]["entity"]["pascal"].Value<string>());

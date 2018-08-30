@@ -50,9 +50,9 @@ namespace Manhasset.Test
 
             Assert.AreEqual("0800001066", newUser.PhoneNumber);
 
-            // var getUser = await new User { Id = newUser.Id }.Get();
+            var getUser = await new User { Id = newUser.Id }.Get();
 
-            // Assert.AreEqual(newUser, getUser);
+            // Assert.AreEqual(newUser.Id, getUser.Id);
 
             // var newNumber = "118118";
 

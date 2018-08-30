@@ -1,6 +1,6 @@
-namespace MbedCloudSDK.Accounts.Account
+namespace MbedCloudSDK.Accounts.MyAccount
 {
-    public enum AccountStatusEnum
+    public enum MyAccountStatusEnum
     {
         ENROLLING,
         ACTIVE,
