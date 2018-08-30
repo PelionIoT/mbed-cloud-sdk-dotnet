@@ -190,13 +190,13 @@ jobs:
       - run:
          command: cd project && ./build.sh --target=_run_unit_tests
          name: run the unit tests
-      - persist_to_workspace:
-         root: ~/project
-         paths:
-           - project/Tests/MbedCloudSDK.UnitTests/coverage.opencover.xml
-      - store_artifacts:
-         path: ~/project/project/Tests/MbedCloudSDK.UnitTests/coverage.opencover.xml
-         destination: unittest-coverage
+      # - persist_to_workspace:
+      #    root: ~/project
+      #    paths:
+      #      - project/Tests/MbedCloudSDK.UnitTests/coverage.opencover.xml
+      # - store_artifacts:
+      #    path: ~/project/project/Tests/MbedCloudSDK.UnitTests/coverage.opencover.xml
+      #    destination: unittest-coverage
   unit_test_coverage:
     docker:
       - image: circleci/node:10-browsers
@@ -391,9 +391,9 @@ workflows:
           requires:
           - build
           <<: *filter_ignore_release
-      - unit_test_coverage:
-          requires:
-          - unit_test
+      # - unit_test_coverage:
+      #     requires:
+      #     - unit_test
       - artifactory_deploy:
           requires:
           - unit_test
