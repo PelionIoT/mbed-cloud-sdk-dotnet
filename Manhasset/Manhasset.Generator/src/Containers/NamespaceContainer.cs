@@ -127,6 +127,8 @@ namespace Manhasset.Generator.src.Compilers
             {
                 var localNamespace = parentNamespace;
 
+                localNamespace = localNamespace.AddFileHeader(e.EnumName);
+
                 localNamespace = localNamespace.AddEnum(e.GeneratedEnum);
 
                 var dir = $"{rootDirectory}/src/{namespaceName}/";

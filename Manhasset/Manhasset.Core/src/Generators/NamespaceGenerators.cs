@@ -71,7 +71,7 @@ namespace Manhasset.Core.src.Generators
                         SyntaxFactory.LineFeed,
                         SyntaxFactory.Comment("//"),
                         SyntaxFactory.LineFeed,
-                        SyntaxFactory.Comment("// <copyright file=\"AccountManagementApi.Account.cs\" company=\"Arm\">"),
+                        SyntaxFactory.Comment($"// <copyright file=\"{fileHeader}.cs\" company=\"Arm\">"),
                         SyntaxFactory.LineFeed,
                         SyntaxFactory.Comment("// Copyright (c) Arm. All rights reserved."),
                         SyntaxFactory.LineFeed,
