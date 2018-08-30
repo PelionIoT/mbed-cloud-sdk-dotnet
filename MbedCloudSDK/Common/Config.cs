@@ -81,7 +81,8 @@ namespace MbedCloudSDK.Common
                 ApiKey = apiKey ?? DotNetEnv.Env.GetString(API_KEY, Environment.GetEnvironmentVariable(API_KEY));
                 if (string.IsNullOrEmpty(ApiKey))
                 {
-                    throw new ConfigurationException("No Api Key provided!");
+                    ApiKey = "default";
+                    // throw new ConfigurationException("No Api Key provided!");
                 }
 
                 Host = host ?? DotNetEnv.Env.GetString(HOST, Environment.GetEnvironmentVariable(HOST) ?? "https://api.us-east-1.mbedcloud.com");

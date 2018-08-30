@@ -63,7 +63,7 @@ Task("_run_unit_tests")
             NoBuild = true,
             NoRestore = true,
             Configuration = configuration,
-            ArgumentCustomization = args => args.Append("/p:CollectCoverage=true /p:CoverletOutputFormat=opencover"),
+            // ArgumentCustomization = args => args.Append("/p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CopyLocalLockFileAssemblies=true"),
         });
     });
 

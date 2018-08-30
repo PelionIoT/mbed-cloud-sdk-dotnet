@@ -15,84 +15,84 @@ namespace ConsoleExamples.Examples.AccountManagement
     /// </summary>
     public partial class AccountManagementExamples
     {
-        // /// <summary>
-        // /// List the active users
-        // /// </summary>
-        // /// <returns>List of Users</returns>
-        // public IEnumerable<User> ListActiveUsers()
-        // {
-        //     var options = new QueryOptions
-        //     {
-        //         Limit = 5,
-        //     };
+        /// <summary>
+        /// List the active users
+        /// </summary>
+        /// <returns>List of Users</returns>
+        public IEnumerable<User> ListActiveUsers()
+        {
+            var options = new QueryOptions
+            {
+                Limit = 5,
+            };
 
-        //     var users = api.ListUsers(options);
-        //     foreach (var item in users)
-        //     {
-        //         Console.WriteLine(item);
-        //     }
+            var users = api.ListUsers(options);
+            foreach (var item in users)
+            {
+                Console.WriteLine(item);
+            }
 
-        //     return users;
-        // }
+            return users;
+        }
 
-        // /// <summary>
-        // /// Add user
-        // /// </summary>
-        // /// <returns>User</returns>
-        // public User AddUser()
-        // {
-        //     var user = new User
-        //     {
-        //         Email = "montybot@arm.com",
-        //         FullName = "Monty Bot",
-        //         Username = "xXmoBot69Xx",
-        //     };
-        //     var newUser = api.AddUser(user);
+        /// <summary>
+        /// Add user
+        /// </summary>
+        /// <returns>User</returns>
+        public User AddUser()
+        {
+            var user = new User
+            {
+                Email = "montybot@arm.com",
+                FullName = "Monty Bot",
+                Username = "xXmoBot69Xx",
+            };
+            var newUser = api.AddUser(user);
 
-        //     Console.WriteLine(newUser);
+            Console.WriteLine(newUser);
 
-        //     var updatedInfo = new User
-        //     {
-        //         Username = "mBot",
-        //     };
+            var updatedInfo = new User
+            {
+                Username = "mBot",
+            };
 
-        //     var updatedUser = api.UpdateUser(newUser.Id, updatedInfo);
+            var updatedUser = api.UpdateUser(newUser.Id, updatedInfo);
 
-        //     Console.WriteLine(updatedUser);
+            Console.WriteLine(updatedUser);
 
-        //     api.DeleteUser(updatedUser.Id);
+            api.DeleteUser(updatedUser.Id);
 
-        //     return updatedUser;
-        // }
+            return updatedUser;
+        }
 
-        // /// <summary>
-        // /// Add user async
-        // /// </summary>
-        // /// <returns>User</returns>
-        // public async Task<User> AddUserAsync()
-        // {
-        //     var user = new User
-        //     {
-        //         Email = "montybot@arm.com",
-        //         FullName = "Monty Bot",
-        //         Username = "xXmoBot69Xx",
-        //     };
-        //     var newUser = await api.AddUserAsync(user);
+        /// <summary>
+        /// Add user async
+        /// </summary>
+        /// <returns>User</returns>
+        public async Task<User> AddUserAsync()
+        {
+            var user = new User
+            {
+                Email = "montybot@arm.com",
+                FullName = "Monty Bot",
+                Username = "xXmoBot69Xx",
+            };
+            var newUser = await api.AddUserAsync(user);
 
-        //     Console.WriteLine(newUser);
+            Console.WriteLine(newUser);
 
-        //     var updatedInfo = new User
-        //     {
-        //         Username = "mBot",
-        //     };
+            var updatedInfo = new User
+            {
+                Username = "mBot",
+            };
 
-        //     var updatedUser = await api.UpdateUserAsync(newUser.Id, updatedInfo);
+            var updatedUser = await api.UpdateUserAsync(newUser.Id, updatedInfo);
 
-        //     Console.WriteLine(updatedUser);
+            Console.WriteLine(updatedUser);
 
-        //     await api.DeleteUserAsync(updatedUser.Id);
+            await api.DeleteUserAsync(updatedUser.Id);
 
-        //     return updatedUser;
-        // }
+            return updatedUser;
+        }
     }
 }

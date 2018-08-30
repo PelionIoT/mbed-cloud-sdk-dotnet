@@ -36,7 +36,7 @@ namespace MbedCloudSDK.Client
                 throw new ArgumentException("basePath cannot be empty");
             }
 
-            RestClient = new RestClient(basePath);
+            RestClient = new RestClient(basePath ?? "https://api.us-east-1.mbedcloud.com");
             LastApiResponse = new List<IRestResponse>();
         }
 
