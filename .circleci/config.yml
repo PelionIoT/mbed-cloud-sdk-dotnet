@@ -322,9 +322,9 @@ jobs:
     <<: *dotnet_mono_docker
     steps:
       - <<: *attach_workspace
-      #- run:
-      #    command: cd project && ./build.sh --target=Build-Pack-Publish
-      #    name: build, pack and publish nuget package
+      - run:
+         command: cd project && ./build.sh --target=Build-Pack-Publish
+         name: build, pack and publish nuget package
   commit_news_and_version:
     <<: *circle_python
     environment:
