@@ -7,6 +7,7 @@ using System.Linq;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using MbedCloudSDK.Common;
+using MbedCloudSDK.Common.Extensions;
 using MbedCloudSDK.Connect.Model.Notifications;
 using Newtonsoft.Json;
 
@@ -159,7 +160,7 @@ namespace MbedCloudSDK.Test.Common.Tlv
                 ContentType = "tlv",
             };
 
-            var payload = Utils.DecodeBase64(res);
+            var payload = res.DecodeBase64();
             Assert.AreEqual("{}", payload);
         }
 
@@ -172,7 +173,7 @@ namespace MbedCloudSDK.Test.Common.Tlv
                 ContentType = "tlv",
             };
 
-            var payload = Utils.DecodeBase64(res);
+            var payload = res.DecodeBase64();
             Assert.AreEqual("{\"/0\": \"\"}", payload);
         }
 
@@ -184,7 +185,7 @@ namespace MbedCloudSDK.Test.Common.Tlv
                 Payload = "dGVzdA==",
             };
 
-            var payload = Utils.DecodeBase64(res);
+            var payload = res.DecodeBase64();
             Assert.AreEqual("test", payload);
         }
 
@@ -197,7 +198,7 @@ namespace MbedCloudSDK.Test.Common.Tlv
                 ContentType = "tlv",
             };
 
-            var payload = Utils.DecodeBase64(res);
+            var payload = res.DecodeBase64();
             Assert.AreEqual("{\"/0\": \"\"}", payload);
         }
 
@@ -210,7 +211,7 @@ namespace MbedCloudSDK.Test.Common.Tlv
                 ContentType = "tlv",
             };
 
-            var payload = Utils.DecodeBase64(res);
+            var payload = res.DecodeBase64();
             Assert.AreEqual("{\"/11/0\": \"0\",\"/16\": \"U\",\"/0\": \"0\",\"/1\": \"0\",\"/2\": \"0\",\"/17\": \"dev_device_type\",\"/18\": \"dev_hardware_version\",\"/21\": \"0\",\"/13\": \"1506931719\"}", payload);
         }
 
@@ -223,7 +224,7 @@ namespace MbedCloudSDK.Test.Common.Tlv
                 ContentType = "json",
             };
 
-            var payload = Utils.DecodeBase64(res);
+            var payload = res.DecodeBase64();
             Assert.AreEqual("test", payload);
         }
 

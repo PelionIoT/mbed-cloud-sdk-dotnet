@@ -1,4 +1,5 @@
 using MbedCloudSDK.Certificates.Model;
+using MbedCloudSDK.Common.Extensions;
 using MbedCloudSDK.Common;
 using MbedCloudSDK.Common.Tlv;
 using MbedCloudSDK.Update.Model.Campaign;
@@ -12,63 +13,66 @@ namespace MbedCloudSDK.Test.Common.Enum
         [Test]
         public void ParseApiEnumToSDKEnum()
         {
-            var parsedEnum = Utils.ParseEnum<CertificateStatus>(iam.Model.TrustedCertificateReq.StatusEnum.ACTIVE);
+            var parsedEnum = iam.Model.TrustedCertificateReq.StatusEnum.ACTIVE.ParseEnum<CertificateStatus>();
             Assert.AreEqual("Active", parsedEnum.ToString());
         }
 
         [Test]
         public void FailedParseReturnsDefault()
         {
-            var defaultEnum = Utils.ParseEnum<CertificateStatus>(null);
+            object nullEnum = null;
+            var defaultEnum = nullEnum.ParseEnum<CertificateStatus>();
             Assert.AreEqual(default(CertificateStatus), defaultEnum);
         }
 
         [Test]
         public void FailedParseWithIncorrectValueReturnsDefault()
         {
-            var defaultEnum = Utils.ParseEnum<CertificateStatus>("rubbish");
+            var defaultEnum = "rubbish".ParseEnum<CertificateStatus>();
             Assert.AreEqual(default(CertificateStatus), defaultEnum);
         }
 
         [Test]
         public void GetEnumMemberValueFromEnum()
         {
-            var enumMemberValue = Utils.GetEnumMemberValue(typeof(MaskEnum), MaskEnum.LENGTH_TYPE.ToString());
+            var enumMemberValue = MaskEnum.LENGTH_TYPE.ToString().GetEnumMemberValue(typeof(MaskEnum));
             Assert.AreEqual("00011000", enumMemberValue);
         }
 
         [Test]
         public void FailedEnumMemberValueConversionShouldReturnNull()
         {
-            var enumMemberValue = Utils.GetEnumMemberValue(typeof(MaskEnum), null);
+            string nullEnum = null;
+            var enumMemberValue = nullEnum.GetEnumMemberValue(typeof(MaskEnum));
             Assert.IsNull(enumMemberValue);
         }
 
         [Test]
         public void FailedEnumMemberValueConversionWithIncorrectValueShouldReturnNull()
         {
-            var enumMemberValue = Utils.GetEnumMemberValue(typeof(MaskEnum), "rubbush");
+            var enumMemberValue = "rubbush".GetEnumMemberValue(typeof(MaskEnum));
             Assert.IsNull(enumMemberValue);
         }
 
         [Test]
         public void GetEnumFromEnumMemberValue()
         {
-            var enumValue = (CampaignStateEnum)Utils.GetEnumFromEnumMemberValue(typeof(CampaignStateEnum), "draft");
+            var enumValue = (CampaignStateEnum)"draft".GetEnumFromEnumMemberValue(typeof(CampaignStateEnum));
             Assert.AreEqual("Draft", enumValue.ToString());
         }
 
         [Test]
         public void GetEnumFromEnumMemberValueWithIncorrectValueReturnsNull()
         {
-            var enumValue = Utils.GetEnumFromEnumMemberValue(typeof(CampaignStateEnum), "rubbish");
+            var enumValue = "rubbish".GetEnumFromEnumMemberValue(typeof(CampaignStateEnum));
             Assert.IsNull(enumValue);
         }
 
         [Test]
         public void FailedEnumConversionShouldReturnNull()
         {
-            var enumValue = Utils.GetEnumFromEnumMemberValue(typeof(CampaignStateEnum), null);
+            string nullString = null;
+            var enumValue = nullString.GetEnumFromEnumMemberValue(typeof(CampaignStateEnum));
             Assert.IsNull(enumValue);
         }
     }

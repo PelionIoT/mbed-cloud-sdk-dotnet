@@ -5,6 +5,7 @@
 namespace MbedCloudSDK.Common.Tlv
 {
     using System;
+    using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Exceptions;
 
     /// <summary>
@@ -19,7 +20,7 @@ namespace MbedCloudSDK.Common.Tlv
         /// <returns>Int of type</returns>
         public static int GetTypeBinary(TypesEnum value)
         {
-            var enumValue = Utils.GetEnumMemberValue(typeof(TypesEnum), Convert.ToString(value));
+            var enumValue = Convert.ToString(value)?.GetEnumMemberValue(typeof(TypesEnum));
             return Convert.ToInt32(enumValue, 2);
         }
 
@@ -30,9 +31,9 @@ namespace MbedCloudSDK.Common.Tlv
         /// <returns>Types enum</returns>
         public static TypesEnum GetTypeEnumValue(int value)
         {
-            var idType = Convert.ToInt32(Utils.GetEnumMemberValue(typeof(MaskEnum), MaskEnum.ID_TYPE.ToString()), 2);
+            var idType = Convert.ToInt32(MaskEnum.ID_TYPE.ToString()?.GetEnumMemberValue(typeof(MaskEnum)), 2);
             var stringValue = Convert.ToString(value & idType, 2).PadLeft(8, '0');
-            var enumVal = Utils.GetEnumFromEnumMemberValue(typeof(TypesEnum), stringValue);
+            var enumVal = stringValue.GetEnumFromEnumMemberValue(typeof(TypesEnum));
             if (enumVal != null)
             {
                 return (TypesEnum)enumVal;
@@ -50,7 +51,7 @@ namespace MbedCloudSDK.Common.Tlv
         /// <returns>Int of binary value</returns>
         public static int GetLengthTypeBinary(LengthTypeEnum value)
         {
-            var enumValue = Utils.GetEnumMemberValue(typeof(LengthTypeEnum), Convert.ToString(value));
+            var enumValue = Convert.ToString(value)?.GetEnumMemberValue(typeof(LengthTypeEnum));
             return Convert.ToInt32(enumValue, 2);
         }
 
@@ -61,9 +62,9 @@ namespace MbedCloudSDK.Common.Tlv
         /// <returns>Types enum</returns>
         public static LengthTypeEnum GetLengthTypeEnumValue(int value)
         {
-            var idType = Convert.ToInt32(Utils.GetEnumMemberValue(typeof(MaskEnum), MaskEnum.LENGTH_TYPE.ToString()), 2);
+            var idType = Convert.ToInt32(MaskEnum.LENGTH_TYPE.ToString().GetEnumMemberValue(typeof(MaskEnum)), 2);
             var stringValue = Convert.ToString(value & idType, 2).PadLeft(8, '0');
-            var enumVal = Utils.GetEnumFromEnumMemberValue(typeof(LengthTypeEnum), stringValue);
+            var enumVal = stringValue.GetEnumFromEnumMemberValue(typeof(LengthTypeEnum));
             if (enumVal != null)
             {
                 return (LengthTypeEnum)enumVal;

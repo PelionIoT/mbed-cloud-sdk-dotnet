@@ -1,4 +1,4 @@
-﻿// <copyright file="PaginatedResponse.cs" company="Arm">
+// <copyright file="PaginatedResponse.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
@@ -9,65 +9,65 @@ namespace MbedCloudSDK.Common
     using System.Collections.Generic;
     using System.Linq;
     using MbedCloudSDK.Common.Query;
-    using MbedCloudSDK.Connect.Model.Metric;
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Paginated reponse object wrapper.
+    /// Paginated Response
     /// </summary>
-    /// <typeparam name="TOptions">Type of parameter object</typeparam>
-    /// <typeparam name="TData">Type contained in paginated response</typeparam>
+    /// <typeparam name="TOptions">Options</typeparam>
+    /// <typeparam name="TData">Data</typeparam>
     [JsonObject]
     public class PaginatedResponse<TOptions, TData> : IEnumerable<TData>
-        where TOptions : QueryOptions
         where TData : BaseModel
+        where TOptions : QueryOptions
     {
-        private Func<TOptions, ResponsePage<TData>> getDataFunc;
+        private readonly List<TData> cache;
+        private readonly Func<TOptions, ResponsePage<TData>> getDataFunc;
+        private readonly TOptions options;
+        private readonly long pageLimit;
+        private long pages;
+        private long totalItems;
+        private IEnumerator<TData> iterator;
+        private ResponsePage<TData> page;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaginatedResponse{TOne, TTwo}"/> class.
-        /// Create new instance of paginated reponse.
+        /// Initializes a new instance of the <see cref="PaginatedResponse{TOptions, TData}"/> class.
         /// </summary>
-        /// <param name="getDataFunc">function to call to get next page.</param>
-        /// <param name="listParams">Page params</param>
-        public PaginatedResponse(Func<TOptions, ResponsePage<TData>> getDataFunc, TOptions listParams)
+        /// <param name="getDataFunc">The get data function.</param>
+        /// <param name="options">The options.</param>
+        public PaginatedResponse(Func<TOptions, ResponsePage<TData>> getDataFunc, TOptions options)
         {
             this.getDataFunc = getDataFunc;
-            ListParams = listParams;
-            if (ListParams.Limit.HasValue)
+            this.options = options;
+            page = GetPage();
+            iterator = page.Data.GetEnumerator();
+            totalItems = 0;
+            pages = 1;
+            pageLimit = long.MaxValue;
+
+            if (this.options.Limit.HasValue)
             {
-                ListParams.PageSize = ListParams.Limit;
+                this.options.MaxResults = this.options.Limit;
             }
 
-            GetPage();
+            if (this.options.MaxResults.HasValue)
+            {
+                var pageSize = this.options.PageSize ?? this.options.Limit;
+                this.options.PageSize = pageSize;
+                pageLimit = (long)Math.Ceiling((double)this.options.MaxResults.Value / (pageSize.HasValue ? pageSize.Value : 1));
+            }
+
+            this.cache = new List<TData>();
+            this.cache.AddRange(page.Data);
         }
 
-        /// <summary>
-        /// Gets whether there are more results to display
-        /// </summary>
-        /// <value>Whether there are more results to display</value>
         [JsonProperty]
-        public bool? HasMore { get; private set; }
+        private List<TData> Data { get => page.Data; }
 
         /// <summary>
-        /// Gets total number of records
+        /// Get all items
         /// </summary>
-        /// <value>Total number of records</value>
-        [JsonProperty]
-        public int? TotalCount { get; private set; }
-
-        /// <summary>
-        /// Gets the data of the current page
-        /// </summary>
-        [JsonProperty]
-        public List<TData> Data { get; private set; }
-
-        private TOptions ListParams { get; set; }
-
-        /// <summary>
-        /// Return the paginated response as a list containing all elements.
-        /// </summary>
-        /// <returns>List of T</returns>
+        /// <returns>List of all items</returns>
         public List<TData> All()
         {
             var list = new List<TData>();
@@ -81,69 +81,86 @@ namespace MbedCloudSDK.Common
         }
 
         /// <summary>
-        /// Return the next page of responses
+        /// The first item
         /// </summary>
-        /// <returns>List of the Items in the next page</returns>
-        public List<TData> GetNextPage()
-        {
-            GetPage();
-            return Data;
-        }
-
-        /// <summary>
-        /// First
-        /// </summary>
-        /// <returns>The first item</returns>
+        /// <returns>If no caching, then first item from current page</returns>
         public TData First()
         {
-            return Data.FirstOrDefault();
-        }
-
-        private void GetPage()
-        {
-            var resp = getDataFunc?.Invoke(ListParams);
-            HasMore = resp.HasMore;
-            TotalCount = resp.TotalCount;
-            Data = resp.Data;
-            if (resp.Data.Count > 0)
-            {
-                var last = resp.Data.Last();
-                ListParams.After = last.Id;
-            }
-            else if (ListParams.After != null)
-            {
-                ListParams.After = null;
-            }
+            return cache.FirstOrDefault();
         }
 
         /// <summary>
-        /// Get items enumerator
+        /// Get Enumerator
         /// </summary>
-        /// <returns>Enumerator</returns>
+        /// <returns>Data</returns>
         public IEnumerator<TData> GetEnumerator()
         {
-            var i = 0;
-            while (i < (ListParams.MaxResults ?? int.MaxValue))
+            if (page == null)
             {
-                foreach (var obj in Data)
+                foreach (var item in cache)
                 {
-                    i++;
-                    yield return obj;
+                    yield return item;
                 }
-
-                if (HasMore != true)
+            }
+            else
+            {
+                while (page != null)
                 {
-                    yield break;
-                }
+                    iterator.Reset();
+                    while (iterator.MoveNext())
+                    {
+                        if (options.PageSize != null && totalItems > options.MaxResults)
+                        {
+                            yield break;
+                        }
 
-                GetPage();
+                        totalItems++;
+                        yield return iterator.Current;
+                    }
+
+                    if (page.HasMore)
+                    {
+                        FetchNextPage();
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
             }
         }
 
-        /// <inheritdoc/>
+        private void FetchNextPage()
+        {
+            if (!page.HasMore || pages >= pageLimit)
+            {
+                page = null;
+                iterator = null;
+                return;
+            }
+
+            pages++;
+            page = GetPage();
+            iterator = page.Data.GetEnumerator();
+            cache.AddRange(page.Data);
+        }
+
+        /// <summary>
+        /// Returns an enumerator that iterates through a collection.
+        /// </summary>
+        /// <returns>
+        /// An <see cref="T:System.Collections.IEnumerator"></see> object that can be used to iterate through the collection.
+        /// </returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        private ResponsePage<TData> GetPage()
+        {
+            var page = getDataFunc.Invoke(options);
+            options.After = page.After ?? page.Data.LastOrDefault()?.Id;
+            return page;
         }
     }
 }

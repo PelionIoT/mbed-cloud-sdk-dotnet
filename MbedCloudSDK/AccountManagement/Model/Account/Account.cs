@@ -10,6 +10,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
     using System.Text;
     using iam.Model;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
@@ -170,11 +171,6 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
         public DateTime? UpdatedAt { get; private set; }
 
         /// <summary>
-        /// Gets or sets the account custom properties
-        /// </summary>
-        public Dictionary<string, string> CustomProperties { get; set; }
-
-        /// <summary>
         /// Gets the sales contact email
         /// </summary>
         [JsonProperty]
@@ -199,7 +195,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
                 DisplayName = accountInfo.DisplayName,
                 State = accountInfo.State,
                 Email = accountInfo.Email,
-                Status = Utils.ParseEnum<AccountStatus>(accountInfo.Status),
+                Status = accountInfo.Status.ParseEnum<AccountStatus>(),
                 Company = accountInfo.Company,
                 UpgradedAt = accountInfo.UpgradedAt.ToNullableUniversalTime(),
                 Tier = accountInfo.Tier,
@@ -213,11 +209,10 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
                 Reason = accountInfo.Reason,
                 CustomerNumber = accountInfo.CustomerNumber,
                 ExpiryWarning = accountInfo.ExpirationWarningThreshold,
-                MultifactorAuthenticationStatus = Utils.ParseEnum<MultifactorAuthenticationStatusEnum>(accountInfo.MfaStatus),
+                MultifactorAuthenticationStatus = accountInfo.MfaStatus.ParseEnum<MultifactorAuthenticationStatusEnum>(),
                 NotificationEmails = accountInfo.NotificationEmails ?? Enumerable.Empty<string>().ToList(),
                 ReferenceNote = accountInfo.ReferenceNote,
                 UpdatedAt = accountInfo.UpdatedAt,
-                CustomProperties = accountInfo.CustomFields,
                 SalesContactEmail = accountInfo.SalesContact,
             };
             return account;
@@ -252,12 +247,11 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
                 Contact = Contact,
                 NotificationEmails = NotificationEmails,
                 ExpirationWarningThreshold = ExpiryWarning,
-                CustomFields = CustomProperties,
             };
 
             if (MultifactorAuthenticationStatus.HasValue)
             {
-                request.MfaStatus = Utils.ParseEnum<AccountUpdateReq.MfaStatusEnum>(MultifactorAuthenticationStatus);
+                request.MfaStatus = MultifactorAuthenticationStatus.ParseEnum<AccountUpdateReq.MfaStatusEnum>();
             }
 
             return request;

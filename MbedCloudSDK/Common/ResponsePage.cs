@@ -4,7 +4,9 @@
 
 namespace MbedCloudSDK.Common
 {
+    using System;
     using System.Collections.Generic;
+    using MbedCloudSDK.Common.Query;
 
     /// <summary>
     /// Used to access multiple pages of data, either through manually iterating pages or using iterators.
@@ -12,6 +14,13 @@ namespace MbedCloudSDK.Common
     /// <typeparam name="T">Response page</typeparam>
     public class ResponsePage<T>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ResponsePage{T}"/> class.
+        /// </summary>
+        public ResponsePage()
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponsePage{T}"/> class.
         /// Create new instance of response page.
@@ -36,17 +45,19 @@ namespace MbedCloudSDK.Common
         {
             Data = new List<T>();
             After = after;
-            HasMore = hasMore;
-            Limit = limit;
-            Order = order;
+            HasMore = hasMore.Value;
             TotalCount = totalCount;
+            limit = 0;
+            order = string.Empty;
         }
 
         /// <summary>
-        /// Gets or sets whether there are more results to display
+        /// Gets or sets a value indicating whether there are more results to display
         /// </summary>
-        /// <value>Whether there are more results to display</value>
-        public bool? HasMore { get; set; }
+        /// <value>
+        /// Whether there are more results to display
+        /// </value>
+        public bool HasMore { get; set; }
 
         /// <summary>
         /// Gets or sets total number of records
@@ -61,20 +72,8 @@ namespace MbedCloudSDK.Common
         public string After { get; set; }
 
         /// <summary>
-        /// Gets or sets the number of results to return
-        /// </summary>
-        /// <value>The number of results to return</value>
-        public int? Limit { get; set; }
-
-        /// <summary>
         /// Gets or sets gets or Sets Data
         /// </summary>
         public List<T> Data { get; set; }
-
-        /// <summary>
-        /// Gets or sets order of returned records
-        /// </summary>
-        /// <value>Order of returned records</value>
-        public string Order { get; set; }
     }
 }

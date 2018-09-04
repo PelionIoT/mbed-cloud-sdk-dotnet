@@ -8,6 +8,7 @@ namespace MbedCloudSDK.Bootstrap.Api
     using connector_bootstrap.Api;
     using MbedCloudSDK.Bootstrap.Model;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Exceptions;
     using static MbedCloudSDK.Common.Utils;
 
@@ -17,6 +18,14 @@ namespace MbedCloudSDK.Bootstrap.Api
     public class BootstrapApi : BaseApi
     {
         private readonly PreSharedKeysApi api;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BootstrapApi"/> class.
+        /// </summary>
+        public BootstrapApi()
+            : this(null)
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BootstrapApi"/> class.
@@ -37,6 +46,43 @@ namespace MbedCloudSDK.Bootstrap.Api
             bootstrapConfig.CreateApiClient();
 
             api = new connector_bootstrap.Api.PreSharedKeysApi(bootstrapConfig);
+        }
+
+        /// <summary>
+        /// ListPsks
+        /// </summary>
+        /// <param name="options">Query options</param>
+        /// <returns>List of Psks</returns>
+        public PaginatedResponse<QueryOptions, PreSharedKey> ListPsks(QueryOptions options = null)
+        {
+            if (options == null)
+            {
+                options = new QueryOptions();
+            }
+
+            try
+            {
+                return new PaginatedResponse<QueryOptions, PreSharedKey>(ListPreSharedKeysFunc, options);
+            }
+            catch (CloudApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        private ResponsePage<PreSharedKey> ListPreSharedKeysFunc(QueryOptions options)
+        {
+            try
+            {
+                var resp = api.ListPreSharedKeys(limit: options.Limit, after: options.After);
+                var psks = new ResponsePage<PreSharedKey>(resp.ContinuationMarker, resp.HasMore, resp.Limit, resp.Order, null);
+                resp.Data.ForEach(psk => psks.Data.Add(PreSharedKey.Map(psk)));
+                return psks;
+            }
+            catch (connector_bootstrap.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
         }
 
         /// <summary>

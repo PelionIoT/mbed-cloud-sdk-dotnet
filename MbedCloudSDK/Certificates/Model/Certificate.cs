@@ -9,6 +9,7 @@ namespace MbedCloudSDK.Certificates.Model
     using iam.Model;
     using MbedCloudSDK.Certificates.Api;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -304,7 +305,7 @@ namespace MbedCloudSDK.Certificates.Model
             certificate.Name = trustedCertificate.Name;
             certificate.Description = trustedCertificate.Description;
             certificate.CreatedAt = trustedCertificate.CreatedAt;
-            certificate.Status = Utils.ParseEnum<CertificateStatus>(trustedCertificate.Status);
+            certificate.Status = trustedCertificate.Status.ParseEnum<CertificateStatus>();
             certificate.OwnerId = trustedCertificate.OwnerId;
             certificate.EnrollmentMode = trustedCertificate.EnrollmentMode ?? false;
             certificate.UpdatedAt = trustedCertificate.UpdatedAt;

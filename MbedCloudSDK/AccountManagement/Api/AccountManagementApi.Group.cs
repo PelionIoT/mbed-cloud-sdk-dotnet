@@ -102,7 +102,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// }
         /// </code>
         /// </example>
-        /// <param name="groupId"><see cref="Group.Id"/></param>
+        /// <param name="groupId">Id</param>
         /// <returns><see cref="Group"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
         public Group GetGroup(string groupId)
@@ -143,7 +143,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// }
         /// </code>
         /// </example>
-        /// <param name="groupId"><see cref="Group.Id"/></param>
+        /// <param name="groupId">Id</param>
         /// <param name="options"><see cref="QueryOptions"/></param>
         /// <returns>Paginated Respoinse with <see cref="User"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
@@ -209,7 +209,7 @@ namespace MbedCloudSDK.AccountManagement.Api
         /// }
         /// </code>
         /// </example>
-        /// <param name="groupId"><see cref="Group.Id"/></param>
+        /// <param name="groupId">Id</param>
         /// <param name="options"><see cref="QueryOptions"/></param>
         /// <returns>Paginated Response of <see cref="ApiKey"/></returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>

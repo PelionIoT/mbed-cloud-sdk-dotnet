@@ -8,6 +8,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
     using System.Collections.Generic;
     using System.Linq;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Connect.Api.Subscribe.Models;
     using MbedCloudSDK.Connect.Model.Notifications;
     using MbedCloudSDK.Connect.Model.Subscription;
@@ -76,6 +77,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         /// <summary>
         /// SubAddedRaiser
         /// </summary>
+        /// <param name="id">The identifier.</param>
         public delegate void SubAddedRaiser(string id);
 
         /// <summary>

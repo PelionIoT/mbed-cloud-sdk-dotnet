@@ -10,6 +10,7 @@ namespace MbedCloudSDK.Connect.Api
     using System.Threading;
     using System.Threading.Tasks;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Common.Tlv;
     using MbedCloudSDK.Connect.Api.Subscribe.Models;
     using MbedCloudSDK.Connect.Model.Notifications;
@@ -52,7 +53,7 @@ namespace MbedCloudSDK.Connect.Api
                 {
                     if (asyncReponse.Payload != null)
                     {
-                        var payload = Utils.DecodeBase64(asyncReponse);
+                        var payload = asyncReponse.DecodeBase64();
                         if (AsyncResponses.ContainsKey(asyncReponse.Id))
                         {
                             AsyncResponses[asyncReponse.Id].Add(payload);
@@ -65,7 +66,7 @@ namespace MbedCloudSDK.Connect.Api
             {
                 foreach (var item in notification.Notifications)
                 {
-                    var payload = Utils.DecodeBase64(item);
+                    var payload = item.DecodeBase64();
                     item.Payload = payload;
                     Subscribe.Notify(item);
 
@@ -188,7 +189,7 @@ namespace MbedCloudSDK.Connect.Api
                         notificationTask = new Task(new Action(Notifications), cancellationToken.Token, TaskCreationOptions.LongRunning);
                         notificationTask.Start();
                     }
-                    
+
                     handleNotifications = true;
                 }
                 else

@@ -6,6 +6,7 @@ namespace MbedCloudSDK.Enrollment.Model
 {
     using System;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -59,11 +60,12 @@ namespace MbedCloudSDK.Enrollment.Model
             return new Enrollment
             {
                 Id = from.Id,
-                DeviceId = from.DeviceId,
+                DeviceId = from.EnrolledDeviceId,
                 CreatedAt = from.CreatedAt,
                 ClaimId = from._EnrollmentIdentity,
                 AccountId = from.AccountId,
                 ExpiresAt = from.ExpiresAt,
+                ClaimedAt = from.ClaimedAt,
             };
         }
 

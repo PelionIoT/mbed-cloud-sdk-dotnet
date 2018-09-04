@@ -7,8 +7,7 @@
     <Title>Mbed Cloud SDK for .NET</Title>
     <AssemblyTitle>MbedCloudSDK</AssemblyTitle>
     <AssemblyName>MbedCloudSDK</AssemblyName>
-    <VersionPrefix>1.2.10</VersionPrefix>
-    <VersionSuffix></VersionSuffix>
+    <Version>2.1.0-beta</Version>
     <Authors>Alex Logan</Authors>
     <Description>The Mbed Cloud SDK provides a simplified interface to the Mbed Cloud APIs by exposing functionality using conventions and paradigms familiar to .NET developers.</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
@@ -22,6 +21,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RepositoryUrl>https://github.com/ARMmbed/mbed-cloud-sdk-dotnet</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <VersionLock>false</VersionLock>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -45,8 +45,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
     <PackageReference Include="codecracker.CSharp" Version="1.0.3" PrivateAssets="All" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="DotNetEnv" Version="1.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="RestSharp" Version="106.2.1" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" PrivateAssets="All" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.1" />

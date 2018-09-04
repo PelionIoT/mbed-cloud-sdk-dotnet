@@ -18,7 +18,7 @@ namespace ConsoleExamples.Examples.Connect
         /// List metrics from last 30 days in i day intervals
         /// </summary>
         /// <returns>List of metrics</returns>
-        public PaginatedResponse<MetricQueryOptions, Metric> ListLast30Days()
+        public IEnumerable<Metric> ListLast30Days()
         {
             var options = new MetricQueryOptions
             {
@@ -38,7 +38,7 @@ namespace ConsoleExamples.Examples.Connect
         /// List metrics from last 2 days in interval of 3 hours
         /// </summary>
         /// <returns>List of metrics</returns>
-        public PaginatedResponse<MetricQueryOptions, Metric> ListLast2Days()
+        public IEnumerable<Metric> ListLast2Days()
         {
             var options = new MetricQueryOptions
             {
@@ -58,7 +58,7 @@ namespace ConsoleExamples.Examples.Connect
         /// List metrics for month March 2017
         /// </summary>
         /// <returns>List of metrics</returns>
-        public PaginatedResponse<MetricQueryOptions, Metric> ListMonth()
+        public IEnumerable<Metric> ListMonth()
         {
             var options = new MetricQueryOptions
             {

@@ -187,7 +187,6 @@ Class | Method | HTTP request | Description
  - [Model.AccountInfoList](docs/AccountInfoList.md)
  - [Model.AccountUpdateReq](docs/AccountUpdateReq.md)
  - [Model.AccountUpdateRootReq](docs/AccountUpdateRootReq.md)
- - [Model.ActiveSession](docs/ActiveSession.md)
  - [Model.ApiKeyInfoReq](docs/ApiKeyInfoReq.md)
  - [Model.ApiKeyInfoResp](docs/ApiKeyInfoResp.md)
  - [Model.ApiKeyInfoRespList](docs/ApiKeyInfoRespList.md)
@@ -214,7 +213,6 @@ Class | Method | HTTP request | Description
  - [Model.UserInfoResp](docs/UserInfoResp.md)
  - [Model.UserInfoRespList](docs/UserInfoRespList.md)
  - [Model.UserUpdateReq](docs/UserUpdateReq.md)
- - [Model.UserUpdateResp](docs/UserUpdateResp.md)
 
 
 <a name="documentation-for-authorization"></a>

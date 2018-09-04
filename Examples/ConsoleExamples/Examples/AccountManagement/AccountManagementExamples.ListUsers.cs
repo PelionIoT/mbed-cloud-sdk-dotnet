@@ -19,14 +19,14 @@ namespace ConsoleExamples.Examples.AccountManagement
         /// List the active users
         /// </summary>
         /// <returns>List of Users</returns>
-        public List<User> ListActiveUsers()
+        public IEnumerable<User> ListActiveUsers()
         {
             var options = new QueryOptions
             {
                 Limit = 5,
             };
 
-            var users = api.ListUsers(options).Data;
+            var users = api.ListUsers(options);
             foreach (var item in users)
             {
                 Console.WriteLine(item);

@@ -19,8 +19,8 @@ namespace WebhookExample.Services
 
         public ConnectService(IApplicationLifetime applicationLifetime)
         {
-            var apiKey = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_API_HOST");
+            var apiKey = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
+            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
 
             if (string.IsNullOrEmpty(apiKey))
             {
@@ -30,7 +30,9 @@ namespace WebhookExample.Services
 
             var config = string.IsNullOrEmpty(host) ? new Config(apiKey) : new Config(apiKey, host);
 
-            connect = new ConnectApi(config);
+            var observer = connect.Subscribe.ResourceValues(deviceId, resourcePaths);
+            observer.OnNotify += (res) => Console.WriteLine(res);
+            return observer;
         }
     }
 }

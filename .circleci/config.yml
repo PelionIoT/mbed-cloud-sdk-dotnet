@@ -1,0 +1,425 @@
+version: 2
+
+references:
+
+  attach_workspace: &attach_workspace
+    attach_workspace:
+      at: ~/project
+
+  dotnet_mono_docker: &dotnet_mono_docker
+    docker:
+      - image: andrewlock/dotnet-mono
+
+  circle_python: &circle_python
+    docker:
+      - image: circleci/python:3.6-jessie-browsers
+
+  sdk_environment: &sdk_environment
+    TESTRUNNER_DOCKER_IMAGE: 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
+    ARTIFACTORY_URL: http://localhost:80/artifactory/
+
+  install_aws_tools: &install_aws_tools
+    run:
+        name: Installing aws cli
+        command: |
+          python -m venv venv
+          . venv/bin/activate
+          pip install awscli
+
+  filter_master_only_build: &filter_master_only_build
+      filters:
+        branches:
+          only:
+          - master
+        tags:
+          ignore:
+          - /.*/
+
+  filter_branch_only: &filter_branch_only
+      filters:
+        branches:
+          ignore:
+          - master
+        tags:
+          ignore:
+          - /.*/
+
+  tag_release_only: &tag_release_only
+    filters:
+      tags:
+        only:
+        - /[0-9]+\.[0-9]+.*/
+      branches:
+        ignore:
+        - /.*/
+
+  filter_ignore_release: &filter_ignore_release
+    filters:
+      tags:
+        ignore:
+        - /.*/
+
+jobs:
+  #############################################################################################
+  #                                Build Jobs                                               #
+  #############################################################################################
+  cache_test_server_image:
+    machine:
+      docker_layer_caching: true
+    steps:
+      - checkout
+      - run:
+          command: mkdir -p ~/test_server_image
+          name: create directory for the test_server docker image
+      - run:
+          command: docker build -t testserver -f TestServer.Dockerfile .
+          name: build the test_server docker image from TestServer.Dockerfile
+      - run:
+          command: docker save -o ~/test_server_image/testserver.tar testserver
+          name: save the test_server image so it doesn't need building later
+      - persist_to_workspace:
+          root: ~/.
+          paths:
+           - test_server_image
+  docs:
+    docker:
+      - image: hrektts/doxygen
+    environment:
+      - OUTPUT_DIR: "./docs"
+    steps:
+      - checkout
+    #  - run:
+    #      command: doxygen ar.doxygen
+    #      name: run Doxygen to build the docs
+    #  - store_artifacts:
+    #      path: docs
+    #  - persist_to_workspace:
+    #      root: ./
+    #      paths:
+    #        - docs
+  upload_docs:
+    <<: *circle_python
+    steps:
+      - attach_workspace:
+          at: ~/docs
+      - <<: *install_aws_tools
+      - run:
+         command: |
+                 . venv/bin/activate
+                 aws s3 sync --delete --cache-control max-age=3600 ~/docs s3://mbed-cloud-sdk-dotnet-dist/latest/docs
+         name: upload docs to s3
+  tpip:
+    docker:
+      - image: circleci/python:3.6-jessie-browsers
+    steps:
+      - checkout
+      - run:
+         command: python scripts/tpip.py
+         name: generate tpip report
+      - store_artifacts:
+         path: tpip.csv
+  assert_news:
+    <<: *circle_python
+    steps:
+      - checkout
+      - run:
+         command: python scripts/assert_news.py
+         name: Check news file exists
+  version_bump:
+    <<: *circle_python
+    environment:
+      <<: *sdk_environment
+    steps:
+      - checkout
+      - run:
+         command: |
+                 python -m venv venv
+                 . venv/bin/activate
+                 pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@master#subdirectory=scripts/auto_version/&egg=auto_version"
+                 pip install awscli
+         name: install auto_version
+      - setup_remote_docker
+      - run: |
+             . venv/bin/activate
+             login="$(aws ecr get-login --no-include-email)"
+             ${login}
+      - run: docker pull ${TESTRUNNER_DOCKER_IMAGE}
+      - run: echo $(docker run ${TESTRUNNER_DOCKER_IMAGE} python -m trunner --version)
+      - run:
+         command: |
+                 . venv/bin/activate
+                 auto_version --config=scripts/version.toml --bump=patch --news
+         name: bump the version for a dev release
+      - run:
+         command: mkdir -p ~/repo/project
+         name: make a directory for the project
+      - run:
+         command: cp -R ~/project ~/repo/
+         name: copy the checked out project into the repo folder.
+      - persist_to_workspace:
+         root: ~/repo
+         paths:
+           - project/Deploy.Dockerfile
+           - project/docs
+           - project/MbedCloudSDK
+           - project/scripts
+           - project/Tests/MbedCloudSDK.UnitTests
+           - project/build.cake
+           - project/build.sh
+           - project/CHANGELOG.md
+  build:
+    <<: *dotnet_mono_docker
+    steps:
+      - <<: *attach_workspace
+      - run:
+         command: cd project && ./build.sh --target=CI
+         name: build the project
+      - persist_to_workspace:
+         root: ~/project
+         paths:
+           - project/tools
+           - project/packages
+           - project/MbedCloudSDK/obj
+           - project/MbedCloudSDK/bin/Release
+           - project/Tests/MbedCloudSDK.UnitTests/obj
+           - project/Tests/MbedCloudSDK.UnitTests/bin
+  unit_test:
+    <<: *dotnet_mono_docker
+    steps:
+      - <<: *attach_workspace
+      - run:
+         command: cd project && ./build.sh --target=_run_unit_tests
+         name: run the unit tests
+      # - persist_to_workspace:
+      #    root: ~/project
+      #    paths:
+      #      - project/Tests/MbedCloudSDK.UnitTests/coverage.opencover.xml
+      # - store_artifacts:
+      #    path: ~/project/project/Tests/MbedCloudSDK.UnitTests/coverage.opencover.xml
+      #    destination: unittest-coverage
+  unit_test_coverage:
+    docker:
+      - image: circleci/node:10-browsers
+    steps:
+      - <<: *attach_workspace
+      - run:
+         command: npm install codecov
+         name: install codecov
+      # can't install locally so have to go into node_modules
+      - run:
+         command: node ~/project/node_modules/codecov/bin/codecov ~/project/project/Tests/MbedCloudSDK.UnitTests/coverage.opencover.xml
+         name: upload coverage report to codecov
+  integration_test_os2:
+    <<: *circle_python
+    environment:
+      <<: *sdk_environment
+    steps:
+      - checkout
+      - run:
+          name: Setting up the environment for os2
+          command: >
+            export MBED_CLOUD_SDK_API_KEY=${MBED_CLOUD_SDK_API_KEY_OS2}
+            && echo "export MBED_CLOUD_SDK_API_KEY=${MBED_CLOUD_SDK_API_KEY}" >> ${BASH_ENV}
+            && export MBED_CLOUD_SDK_HOST=${MBED_CLOUD_SDK_HOST_OS2}
+            && echo "export MBED_CLOUD_SDK_HOST=${MBED_CLOUD_SDK_HOST}" >> ${BASH_ENV}
+      - <<: *attach_workspace
+      - <<: *install_aws_tools
+      - setup_remote_docker
+      - run: |
+             . venv/bin/activate
+             login="$(aws ecr get-login --no-include-email)"
+             ${login}
+      - run: docker pull ${TESTRUNNER_DOCKER_IMAGE}
+      - run: docker load -i ./test_server_image/testserver.tar
+      - run: docker-compose up --exit-code-from testrunner
+  integration_test_production:
+    <<: *circle_python
+    environment:
+      <<: *sdk_environment
+    steps:
+      - checkout
+      - run:
+          name: Setting up the environment for production
+          command: >
+            export MBED_CLOUD_SDK_API_KEY=${MBED_CLOUD_SDK_API_KEY_PROD}
+            && echo "export MBED_CLOUD_SDK_API_KEY=${MBED_CLOUD_SDK_API_KEY}" >> ${BASH_ENV}
+            && export MBED_CLOUD_SDK_HOST=${MBED_CLOUD_SDK_HOST_PROD}
+            && echo "export MBED_CLOUD_SDK_HOST=${MBED_CLOUD_SDK_HOST}" >> ${BASH_ENV}
+      - <<: *attach_workspace
+      - <<: *install_aws_tools
+      - setup_remote_docker
+      - run: |
+             . venv/bin/activate
+             login="$(aws ecr get-login --no-include-email)"
+             ${login}
+      - run: docker pull ${TESTRUNNER_DOCKER_IMAGE}
+      - run: docker load -i ./test_server_image/testserver.tar
+      - run: docker-compose up --exit-code-from testrunner
+  artifactory_deploy:
+    <<: *circle_python
+    environment:
+      <<: *sdk_environment
+    steps:
+      - setup_remote_docker
+      - <<: *install_aws_tools
+      - <<: *attach_workspace
+      - run: cd ./project && docker build -t sdk_deploy -f Deploy.Dockerfile .
+      - run: |
+            . venv/bin/activate
+            aws s3 sync s3://artifactory-store .
+      - run: docker build -t artifactory ~/project/proxy/
+      - run: docker run -d --name artifactory artifactory && sleep 10
+      - run:
+          name: Deploying the SDK to Artifactory and beyond
+          command: docker run --rm --network container:artifactory sdk_deploy ./build.sh -Target=_publish -nuget_api_key=${ARTIFACTORY_API_KEY} -nuget_source=${ARTIFACTORY_URL}/api/nuget/mbed-cloud-sdk-dotnet-snapshots
+  git_tag_release:
+    <<: *circle_python
+    steps:
+      - checkout
+      - run:
+         command: |
+                 python -m venv venv
+                 . venv/bin/activate
+                 pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@master#subdirectory=scripts/auto_version/&egg=auto_version"
+         name: install auto_version
+      - run:
+         command: |
+                 . venv/bin/activate
+                 auto_version --config=scripts/version.toml --bump=patch --news
+         name: bump the version for a dev release
+      - run: python ./scripts/tag_and_release.py tag $(python ./scripts/dvcs_version.py version)
+  #############################################################################################
+  #                                Release Jobs                                               #
+  #############################################################################################
+  version_bump_release:
+    <<: *circle_python
+    steps:
+      - checkout
+      - run:
+          command: |
+                  python -m venv venv
+                  . venv/bin/activate
+                  pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@master#subdirectory=scripts/auto_version/&egg=auto_version"
+          name: install auto_version
+      - run:
+          command: |
+                  . venv/bin/activate
+                  auto_version --config=scripts/version.toml --bump=patch --news
+          name: bump the version for a dev release
+      - run:
+          command: mkdir -p ~/repo/project
+          name: make a directory for the project
+      - run:
+          command: cp -R ~/project ~/repo/
+          name: copy the checked out project into the repo folder.
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - project/MbedCloudSDK
+            - project/build.cake
+            - project/build.sh
+  build_pack_deploy:
+    <<: *dotnet_mono_docker
+    steps:
+      - <<: *attach_workspace
+      - run:
+         command: cd project && ./build.sh --target=Build-Pack-Publish
+         name: build, pack and publish nuget package
+  commit_news_and_version:
+    <<: *circle_python
+    environment:
+      <<: *sdk_environment
+    steps:
+      - checkout
+      - run: |
+          python -m venv venv
+          . venv/bin/activate
+          pip install towncrier
+          pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@master#subdirectory=scripts/auto_version/&egg=auto_version"
+          pip install awscli
+      - setup_remote_docker
+      - run: |
+             . venv/bin/activate
+             login="$(aws ecr get-login --no-include-email)"
+             ${login}
+      - run: docker pull ${TESTRUNNER_DOCKER_IMAGE}
+      - run: echo $(docker run ${TESTRUNNER_DOCKER_IMAGE} python -m trunner --version)
+      - run:
+          command: |
+                  . venv/bin/activate
+                  cd docs/news && towncrier --yes --name="" --version=$(python ../../scripts/dvcs_version.py version)
+          name: run towncrier to generate news file
+      - run:
+          command: |
+                  . venv/bin/activate
+                  auto_version --config=scripts/version.toml --bump=patch --news --release
+          name: bump the version for a production release
+      - run: python ./scripts/tag_and_release.py news $(python ./scripts/dvcs_version.py version)
+version: 2
+workflows:
+  csharp_sdk_workflow:
+    jobs:
+      - assert_news:
+          <<: *filter_branch_only
+      - cache_test_server_image:
+          <<: *filter_ignore_release
+      - docs:
+          <<: *filter_ignore_release
+      - upload_docs:
+          requires:
+          - docs
+          <<: *filter_master_only_build
+      - tpip:
+          <<: *filter_master_only_build
+      - version_bump:
+          <<: *filter_ignore_release
+      - build:
+          requires:
+          - cache_test_server_image
+          - version_bump
+          - assert_news
+          <<: *filter_ignore_release
+      - integration_test_os2:
+          requires:
+          - build
+          <<: *filter_ignore_release
+      - integration_test_production:
+          requires:
+          - build
+          <<: *filter_ignore_release
+      - unit_test:
+          requires:
+          - build
+          <<: *filter_ignore_release
+      # - unit_test_coverage:
+      #     requires:
+      #     - unit_test
+      - artifactory_deploy:
+          requires:
+          - unit_test
+          - integration_test_os2
+          - integration_test_production
+          <<: *filter_master_only_build
+      - release_to_nuget:
+          requires:
+          - unit_test
+          - integration_test_production
+          type: approval
+          <<: *filter_master_only_build
+      - git_tag_release:
+          requires:
+          - release_to_nuget
+          <<: *filter_master_only_build
+  csharp_sdk_workflow_release:
+    jobs:
+      - version_bump_release:
+          <<: *tag_release_only
+      - build_pack_deploy:
+          requires:
+          - version_bump_release
+          <<: *tag_release_only
+      - commit_news_and_version:
+          requires:
+          - version_bump_release
+          <<: *tag_release_only
+  version: 2

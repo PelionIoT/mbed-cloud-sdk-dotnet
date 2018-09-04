@@ -6,6 +6,7 @@ namespace MbedCloudSDK.Certificates.Model
 {
     using System;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -22,7 +23,7 @@ namespace MbedCloudSDK.Certificates.Model
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var certificateStatus = (CertificateStatus)value;
-            writer.WriteValue(Utils.GetEnumMemberValue(typeof(CertificateStatus), certificateStatus.ToString()));
+            writer.WriteValue(certificateStatus.ToString().GetEnumMemberValue(typeof(CertificateStatus)));
         }
 
         /// <summary>
@@ -36,7 +37,7 @@ namespace MbedCloudSDK.Certificates.Model
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var enumString = (string)reader.Value;
-            return Utils.GetEnumFromEnumMemberValue(typeof(CertificateStatus), enumString);
+            return enumString.GetEnumFromEnumMemberValue(typeof(CertificateStatus));
         }
 
         /// <summary>

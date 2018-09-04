@@ -159,8 +159,6 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
 
             AllLocalSubscriptions = presubs;
 
-            // AllLocalSubscriptions.Print();
-
             if (ConnectApi != null)
             {
                 // get the union of the local subscriptions and the online subscriptions
@@ -172,7 +170,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
 
                 if (Immediacy == FirstValueEnum.OnValueUpdate)
                 {
-                    var connectedDevices = ConnectApi.ListConnectedDevices().Data;
+                    var connectedDevices = ConnectApi.ListConnectedDevices();
                     ResourceValueObservers.Where(v => v.Id == id).ToList().ForEach(v => v.ResourceValueSubscriptions.ToList().ForEach(s =>
                     {
                         // add resource subscriptions for all matching resources on connected devices

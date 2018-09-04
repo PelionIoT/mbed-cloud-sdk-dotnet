@@ -34,10 +34,23 @@ namespace enrollment.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="EnrollmentId" /> class.
         /// </summary>
-        /// <param name="EnrollmentIdentity">Enrollment identity..</param>
+        [JsonConstructorAttribute]
+        protected EnrollmentId() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EnrollmentId" /> class.
+        /// </summary>
+        /// <param name="EnrollmentIdentity">Enrollment identity. (required).</param>
         public EnrollmentId(string EnrollmentIdentity = default(string))
         {
-            this.EnrollmentIdentity = EnrollmentIdentity;
+            // to ensure "EnrollmentIdentity" is required (not null)
+            if (EnrollmentIdentity == null)
+            {
+                throw new InvalidDataException("EnrollmentIdentity is a required property for EnrollmentId and cannot be null");
+            }
+            else
+            {
+                this.EnrollmentIdentity = EnrollmentIdentity;
+            }
         }
         
         /// <summary>

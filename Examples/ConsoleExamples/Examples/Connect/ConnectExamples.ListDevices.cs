@@ -38,13 +38,13 @@ namespace ConsoleExamples.Examples.Connect
         /// List Connected devices.
         /// </summary>
         /// <returns>List of connected devices</returns>
-        public List<ConnectedDevice> ListConnectedDevices()
+        public IEnumerable<ConnectedDevice> ListConnectedDevices()
         {
             var options = new QueryOptions
             {
                 Limit = 5,
             };
-            var deviceList = api.ListConnectedDevices(options).Data;
+            var deviceList = api.ListConnectedDevices(options);
             foreach (var endpoint in deviceList)
             {
                 Console.WriteLine(endpoint);
@@ -57,12 +57,12 @@ namespace ConsoleExamples.Examples.Connect
         /// List connected devices created in October 2017
         /// </summary>
         /// <returns>List of connected devices</returns>
-        public List<ConnectedDevice> ListConnectedDevicesWithFilter()
+        public IEnumerable<ConnectedDevice> ListConnectedDevicesWithFilter()
         {
             var options = new QueryOptions();
             options.Filter.Add("created_at", new DateTime(2017, 10, 1));
             options.Filter.Add("created_at", new DateTime(2017, 10, 31));
-            var deviceList = api.ListConnectedDevices(options).Data;
+            var deviceList = api.ListConnectedDevices(options);
             foreach (var endpoint in deviceList)
             {
                 Console.WriteLine(endpoint);

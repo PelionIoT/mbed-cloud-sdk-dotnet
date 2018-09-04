@@ -7,6 +7,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Policy
     using System.Collections.Generic;
     using System.Text;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;
 
     /// <summary>

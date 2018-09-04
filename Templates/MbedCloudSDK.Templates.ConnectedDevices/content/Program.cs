@@ -9,11 +9,11 @@ namespace ConnectedDevicesTemplate
     {
         static void Main(string[] args)
         {
-            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_API_KEY");
+            var key = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
             if (string.IsNullOrEmpty(key))
             {
                 Console.WriteLine("No Api Key!!!");
-                Console.WriteLine("Please set environment variable MBED_CLOUD_API_KEY");
+                Console.WriteLine("Please set environment variable MBED_CLOUD_SDK_API_KEY");
             }
             else
             {
@@ -24,10 +24,10 @@ namespace ConnectedDevicesTemplate
                 {
                     Limit = 5,
                 };
-                var connectedDevices = connect.ListConnectedDevices(options).Data;
-                Console.WriteLine($"You have {connectedDevices.Count} connected devices!");
+                var connectedDevices = connect.ListConnectedDevices(options);
+                //Console.WriteLine($"You have {connectedDevices.Count()} connected devices!");
                 Console.WriteLine();
-                connectedDevices.ForEach(c => Console.WriteLine($"Device {c.Id}: name: {c.Name}, createdAt: {c.CreatedAt.ToString()} state: {c.State}"));
+                //connectedDevices.ForEach(c => Console.WriteLine($"Device {c.Id}: name: {c.Name}, createdAt: {c.CreatedAt.ToString()} state: {c.State}"));
                 Console.ReadLine();
             }
         }

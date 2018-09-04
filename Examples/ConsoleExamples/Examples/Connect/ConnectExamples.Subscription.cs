@@ -24,7 +24,7 @@ namespace ConsoleExamples.Examples.Connect
             const string buttonResource = "/5002/0/1";
 
             // List all connected endpoints
-            var devices = api.ListConnectedDevices().Data;
+            var devices = api.ListConnectedDevices().All();
             if (devices == null)
             {
                 throw new Exception("No endpoints registered. Aborting.");
@@ -60,7 +60,7 @@ namespace ConsoleExamples.Examples.Connect
             const string buttonResource = "/5002/0/1";
 
             // List all connected endpoints
-            var endpoints = api.ListConnectedDevices().Data;
+            var endpoints = api.ListConnectedDevices().All();
             if (endpoints == null)
             {
                 throw new Exception("No endpoints registered. Aborting.");
@@ -92,7 +92,7 @@ namespace ConsoleExamples.Examples.Connect
             var currentSubscription = default(Resource);
             var powerSubscription = default(Resource);
 
-            var devices = api.ListConnectedDevices().Data;
+            var devices = api.ListConnectedDevices();
 
             var deviceId = devices.FirstOrDefault().Id;
 

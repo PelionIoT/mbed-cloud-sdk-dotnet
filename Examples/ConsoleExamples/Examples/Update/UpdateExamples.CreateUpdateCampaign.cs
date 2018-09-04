@@ -49,7 +49,7 @@ namespace ConsoleExamples.Examples.Update
             {
                 Limit = 5,
             };
-            var manifests = api.ListFirmwareManifests(listParamas).Data;
+            var manifests = api.ListFirmwareManifests(listParamas);
 
             var manifestId = manifests.LastOrDefault()?.Id;
 
@@ -77,7 +77,7 @@ namespace ConsoleExamples.Examples.Update
 
             Console.WriteLine("Created campaign : " + campaign);
 
-            api.ListCampaignDeviceStates(updatedCampaign.Id).Data.ForEach(s => Console.WriteLine(s));
+            api.ListCampaignDeviceStates(updatedCampaign.Id).All().ForEach(s => Console.WriteLine(s));
 
             // Start update campaign
             campaign = api.StartCampaign(updatedCampaign.Id, updatedCampaign);
@@ -90,7 +90,7 @@ namespace ConsoleExamples.Examples.Update
             var countdown = 10;
             while (countdown >= 0)
             {
-                var states = api.ListCampaignDeviceStates(campaign.Id).Data;
+                var states = api.ListCampaignDeviceStates(campaign.Id);
                 foreach (var item in states)
                 {
                     Console.WriteLine($"Device state - {Convert.ToString(item.State)}");

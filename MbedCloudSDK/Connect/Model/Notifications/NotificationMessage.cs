@@ -6,6 +6,7 @@ namespace MbedCloudSDK.Connect.Model.Notifications
     using System.Collections.Generic;
     using System.Linq;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Connect.Api.Subscribe.Models;
     using Newtonsoft.Json;
 

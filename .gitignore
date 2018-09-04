@@ -5,7 +5,6 @@
 
 # User-specific files
 *.suo
-*.user
 *.userosscache
 *.sln.docstates
 
@@ -326,3 +325,10 @@ Tests/MbedCloudSDK.ExampleTests/mbedKeys.json
 .DS_Store
 rpc_fixtures
 tpip.csv
+tools
+*.opencover.xml
+NuGet.Config
+Tests/MbedCloudSDK.UnitTests/coverage.opencover.xml
+src/auto-version
+**/*.env
+Manhasset.Generation.Temp

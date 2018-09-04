@@ -25,7 +25,7 @@ namespace ConsoleExamples.Examples.DeviceDirectory
             };
 
             // list the current queries
-            var queries = api.ListQueries(options).Data;
+            var queries = api.ListQueries(options);
             foreach (var item in queries)
             {
                 Console.WriteLine(item.Id);
@@ -56,7 +56,7 @@ namespace ConsoleExamples.Examples.DeviceDirectory
             };
 
             // run the query and print the matching devices
-            var matchingDevices = api.ListDevices(options).Data;
+            var matchingDevices = api.ListDevices(options);
             Console.WriteLine("printing matching devices");
             foreach (var item in matchingDevices)
             {
