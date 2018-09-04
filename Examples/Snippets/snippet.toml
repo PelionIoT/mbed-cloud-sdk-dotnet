@@ -1,5 +1,5 @@
 [snippet]
-input_glob=['Examples/Snippets/src/*.cs', 'Examples/Snippets/setup_example.md']
+input_glob=['Examples/Snippets/src/**/*.cs', 'Examples/Snippets/setup_example.md']
 log_level=10
 language_name = 'csharp'
 comment_prefix = '// '
