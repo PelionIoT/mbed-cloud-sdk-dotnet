@@ -17,35 +17,10 @@ namespace MbedCloudSDK.Client
     public static class SerializationSettings
     {
         /// <summary>
-        /// Gets the default settings.
-        /// </summary>
-        /// <returns>Settings</returns>
-        public static JsonSerializerSettings GetDefaultSettings()
-        {
-            return GetSettings(new Dictionary<string, string>());
-        }
-
-        /// <summary>
-        /// Gets the settings.
+        /// Gets the settings with renames.
         /// </summary>
         /// <param name="renames">The renames.</param>
         /// <returns>Settings</returns>
-        public static JsonSerializerSettings GetSettings(Dictionary<string, string> renames)
-        {
-            var settings = new JsonSerializerSettings
-            {
-                ContractResolver = new RenameSwitchResolver
-                {
-                    NamingStrategy = new SnakeCaseNamingStrategyWithRenaming(renames),
-                },
-                DateTimeZoneHandling = DateTimeZoneHandling.Utc,
-            };
-
-            settings.Converters.Add(new StringEnumConverter());
-
-            return settings;
-        }
-
         public static JsonSerializerSettings GetSettingsWithRenames(Dictionary<Type, Dictionary<string, string>> renames)
         {
             var settings = new JsonSerializerSettings

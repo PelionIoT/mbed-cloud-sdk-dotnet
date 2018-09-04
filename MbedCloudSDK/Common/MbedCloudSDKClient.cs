@@ -1,33 +1,53 @@
+// <copyright file="MbedCloudSDKClient.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
 namespace MbedCloudSDK.Common
 {
+    /// <summary>
+    /// Client
+    /// </summary>
     public static class MbedCloudSDKClient
     {
-        private static Config _config;
+        private static Config config;
 
+        /// <summary>
+        /// Gets the configuration.
+        /// </summary>
+        /// <value>
+        /// The configuration.
+        /// </value>
         public static Config Config
         {
             get
             {
-                if (_config != null)
+                if (config != null)
                 {
-                    return _config;
+                    return config;
                 }
 
                 var sdkConfig = new Config();
-                _config = sdkConfig;
+                config = sdkConfig;
 
                 return sdkConfig;
             }
         }
 
+        /// <summary>
+        /// Initializes the specified configuration.
+        /// </summary>
+        /// <param name="config">The configuration.</param>
         public static void Init(Config config)
         {
-            _config = config;
+            MbedCloudSDKClient.config = config;
         }
 
+        /// <summary>
+        /// Resets this instance.
+        /// </summary>
         public static void Reset()
         {
-            _config = null;
+            config = null;
         }
     }
 }
