@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using MbedCloudSDK.Accounts.MyAccount;
+using MbedCloudSDK.Entities.MyAccount;
 using NUnit.Framework;
 
 namespace Manhasset.Test

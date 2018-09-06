@@ -1,8 +1,8 @@
 using System.Linq;
 using System.Threading.Tasks;
-using MbedCloudSDK.Accounts.PolicyGroup;
+using MbedCloudSDK.Entities.PolicyGroup;
 using NUnit.Framework;
-using MbedCloudSDK.Accounts.ApiKey;
+using MbedCloudSDK.Entities.ApiKey;
 using System.Collections.Generic;
 using System;
 using MbedCloudSDK.Common.Extensions;

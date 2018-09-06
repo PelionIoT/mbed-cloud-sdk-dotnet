@@ -1,9 +1,9 @@
 using NUnit.Framework;
-using MbedCloudSDK.Accounts.User;
+using MbedCloudSDK.Entities.User;
 using System.Linq;
 using System;
 using System.Threading.Tasks;
-using MbedCloudSDK.Accounts.PolicyGroup;
+using MbedCloudSDK.Entities.PolicyGroup;
 using System.Collections.Generic;
 using MbedCloudSDK.Common.Extensions;
 using MbedCloudSDK.Common;

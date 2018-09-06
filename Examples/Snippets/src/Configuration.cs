@@ -15,7 +15,7 @@ namespace Snippets.src
         public void Configuration()
         {
             // an example: configuring the SDK
-            var config = new Config("An MbedCloud Api  Key", "custom host url");
+            var config = new Config("An MbedCloud Api Key", "https://www.example.com");
 
             var deviceDirectory = new DeviceDirectoryApi(config);
             // end of example

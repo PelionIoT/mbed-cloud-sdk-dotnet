@@ -7,14 +7,14 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
 //
-// <copyright file="SubtenantAccountStatusEnum.cs" company="Arm">
+// <copyright file="MyAccountStatusEnum.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloudSDK.Accounts.SubtenantAccount
+namespace MbedCloudSDK.Entities.MyAccount
 {
-    public enum SubtenantAccountStatusEnum
+    public enum MyAccountStatusEnum
     {
         ENROLLING,
         ACTIVE,

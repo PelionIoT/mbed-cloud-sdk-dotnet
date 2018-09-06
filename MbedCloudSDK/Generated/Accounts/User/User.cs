@@ -12,12 +12,12 @@
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloudSDK.Accounts.User
+namespace MbedCloudSDK.Entities.User
 {
     using MbedCloudSDK.Common;
     using System;
     using System.Collections.Generic;
-    using MbedCloudSDK.Accounts.LoginHistory;
+    using MbedCloudSDK.Entities.LoginHistory;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
     using System.Threading.Tasks;
@@ -25,7 +25,7 @@ namespace MbedCloudSDK.Accounts.User
     using MbedCloudSDK.Exceptions;
     using RestSharp;
     using MbedCloudSDK.Common.Query;
-    using MbedCloudSDK.Accounts.PolicyGroup;
+    using MbedCloudSDK.Entities.PolicyGroup;
     using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Common.Renames;
 

@@ -7,16 +7,16 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
 //
-// <copyright file="MyAccountMfaStatusEnum.cs" company="Arm">
+// <copyright file="ApiKeyStatusEnum.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloudSDK.Accounts.MyAccount
+namespace MbedCloudSDK.Entities.ApiKey
 {
-    public enum MyAccountMfaStatusEnum
+    public enum ApiKeyStatusEnum
     {
-        enforced,
-        optional,
+        ACTIVE,
+        INACTIVE,
     }
 }

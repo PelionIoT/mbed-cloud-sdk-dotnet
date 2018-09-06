@@ -12,18 +12,18 @@
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloudSDK.Accounts.PolicyGroup
+namespace MbedCloudSDK.Entities.PolicyGroup
 {
     using MbedCloudSDK.Common;
     using System;
     using MbedCloudSDK.Common.Query;
-    using MbedCloudSDK.Accounts.ApiKey;
+    using MbedCloudSDK.Entities.ApiKey;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using MbedCloudSDK.Client;
     using MbedCloudSDK.Exceptions;
     using RestSharp;
-    using MbedCloudSDK.Accounts.User;
+    using MbedCloudSDK.Entities.User;
     using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Common.Renames;
 

@@ -12,7 +12,7 @@
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloudSDK.Accounts.SubtenantAccount
+namespace MbedCloudSDK.Entities.SubtenantAccount
 {
     public enum SubtenantAccountMfaStatusEnum
     {

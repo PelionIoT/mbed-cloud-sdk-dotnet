@@ -7,18 +7,16 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
 //
-// <copyright file="MyAccountStatusEnum.cs" company="Arm">
+// <copyright file="MyAccountMfaStatusEnum.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloudSDK.Accounts.MyAccount
+namespace MbedCloudSDK.Entities.MyAccount
 {
-    public enum MyAccountStatusEnum
+    public enum MyAccountMfaStatusEnum
     {
-        ENROLLING,
-        ACTIVE,
-        RESTRICTED,
-        SUSPENDED,
+        enforced,
+        optional,
     }
 }

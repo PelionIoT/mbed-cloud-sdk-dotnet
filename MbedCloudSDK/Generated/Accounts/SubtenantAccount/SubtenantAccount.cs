@@ -12,22 +12,22 @@
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloudSDK.Accounts.SubtenantAccount
+namespace MbedCloudSDK.Entities.SubtenantAccount
 {
     using MbedCloudSDK.Common;
     using System.Collections.Generic;
     using System;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
-    using MbedCloudSDK.Accounts.SubtenantAccount;
+    using MbedCloudSDK.Entities.SubtenantAccount;
     using MbedCloudSDK.Common.Query;
-    using MbedCloudSDK.Accounts.ApiKey;
+    using MbedCloudSDK.Entities.ApiKey;
     using System.Threading.Tasks;
     using MbedCloudSDK.Client;
     using MbedCloudSDK.Exceptions;
     using RestSharp;
-    using MbedCloudSDK.Accounts.PolicyGroup;
-    using MbedCloudSDK.Accounts.User;
+    using MbedCloudSDK.Entities.PolicyGroup;
+    using MbedCloudSDK.Entities.User;
     using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Common.Renames;
 

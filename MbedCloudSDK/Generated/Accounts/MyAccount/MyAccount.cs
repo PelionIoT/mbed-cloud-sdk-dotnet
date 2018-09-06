@@ -12,14 +12,14 @@
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloudSDK.Accounts.MyAccount
+namespace MbedCloudSDK.Entities.MyAccount
 {
     using MbedCloudSDK.Common;
     using System.Collections.Generic;
     using System;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
-    using MbedCloudSDK.Accounts.SubtenantAccount;
+    using MbedCloudSDK.Entities.SubtenantAccount;
     using System.Threading.Tasks;
     using MbedCloudSDK.Client;
     using MbedCloudSDK.Exceptions;

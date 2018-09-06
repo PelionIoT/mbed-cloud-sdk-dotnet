@@ -12,7 +12,7 @@
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloudSDK.Accounts.ApiKey
+namespace MbedCloudSDK.Entities.ApiKey
 {
     using MbedCloudSDK.Common;
     using System;
@@ -24,7 +24,7 @@ namespace MbedCloudSDK.Accounts.ApiKey
     using MbedCloudSDK.Exceptions;
     using RestSharp;
     using MbedCloudSDK.Common.Query;
-    using MbedCloudSDK.Accounts.PolicyGroup;
+    using MbedCloudSDK.Entities.PolicyGroup;
     using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Common.Renames;
 

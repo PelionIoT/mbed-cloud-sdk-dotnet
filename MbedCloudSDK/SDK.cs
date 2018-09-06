@@ -2,14 +2,19 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-namespace MbedCloudSDK.Common
+using MbedCloudSDK.Common;
+using MbedCloudSDK.Entities.User;
+
+namespace MbedCloudSDK
 {
     /// <summary>
     /// Client
     /// </summary>
-    public static class MbedCloudSDKClient
+    public partial class SDK
     {
         private static Config config;
+
+        private Config instanceConfig;
 
         /// <summary>
         /// Gets the configuration.
@@ -33,21 +38,24 @@ namespace MbedCloudSDK.Common
             }
         }
 
-        /// <summary>
-        /// Initializes the specified configuration.
-        /// </summary>
-        /// <param name="config">The configuration.</param>
-        public static void Init(Config config)
+        public SDK(string apiKey)
         {
-            MbedCloudSDKClient.config = config;
+            instanceConfig = new Config(apiKey);
         }
 
-        /// <summary>
-        /// Resets this instance.
-        /// </summary>
-        public static void Reset()
+        public SDK(Config config = null)
         {
-            config = null;
+            if (config != null)
+            {
+                instanceConfig = config;
+            }
         }
+
+        public Config GetConfig()
+        {
+            return instanceConfig ?? Config;
+        }
+
+        public User User() => new User(instanceConfig ?? Config);
     }
 }

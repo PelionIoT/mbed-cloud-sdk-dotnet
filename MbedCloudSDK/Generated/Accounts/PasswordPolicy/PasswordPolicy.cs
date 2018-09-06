@@ -7,63 +7,35 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
 //
-// <copyright file="LoginHistory.cs" company="Arm">
+// <copyright file="PasswordPolicy.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloudSDK.Accounts.LoginHistory
+namespace MbedCloudSDK.Entities.PasswordPolicy
 {
     using MbedCloudSDK.Common;
-    using System;
     using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Common.Renames;
 
     /// <summary>
-    /// LoginHistory
+    /// PasswordPolicy
     /// </summary>
-    public partial class LoginHistory : BaseModel
+    public partial class PasswordPolicy : BaseModel
     {
-        public LoginHistory()
+        public PasswordPolicy()
         {
         }
 
-        public LoginHistory(Config config)
+        public PasswordPolicy(Config config)
         {
             Config = config;
         }
 
         /// <summary>
-        /// UTC time RFC3339 for this login attempt.
+        /// Minimum length for the password. A number between 8 and 512.
         /// </summary>
-        public DateTime? Date
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// IP address of the client.
-        /// </summary>
-        public string IpAddress
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Flag indicating whether login attempt was successful or not.
-        /// </summary>
-        public bool? Success
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// User Agent header from the login request.
-        /// </summary>
-        public string UserAgent
+        public string MinimumLength
         {
             get;
             set;

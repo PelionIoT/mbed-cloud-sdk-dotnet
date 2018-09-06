@@ -2,11 +2,12 @@
 using System.Linq;
 using MbedCloudSDK.Billing.Api;
 using MbedCloudSDK.Common;
-using MbedCloudSDK.Accounts.User;
-using MbedCloudSDK.Accounts.ApiKey;
+using MbedCloudSDK.Entities.User;
+using MbedCloudSDK.Entities.ApiKey;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using MbedCloudSDK.Accounts.SubtenantAccount;
+using MbedCloudSDK.Entities.SubtenantAccount;
+using MbedCloudSDK;
 
 namespace Playground
 {
@@ -16,6 +17,8 @@ namespace Playground
         {
             try
             {
+                var sdk = new SDK();
+
                 Console.WriteLine("---------------------User-----------------------------");
 
                 var users = new User().List(limit: 2);

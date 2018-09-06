@@ -17,7 +17,7 @@ namespace MbedCloudSDK.Common
         [JsonIgnore]
         public Config Config
         {
-            get => config ?? MbedCloudSDKClient.Config;
+            get => config ?? SDK.Config;
             set => config = value;
         }
 
