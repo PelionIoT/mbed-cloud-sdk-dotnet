@@ -34,6 +34,24 @@ namespace Manhasset.Generator.src.Containers
             Usings = new List<string>();
         }
 
+        public ClassContainer GenerateSDKEntityClass()
+        {
+            var entityClass = ClassGenerators.CreateClass(ClassName, Modifiers.PublicMod, Modifiers.PartialMod);
+
+            foreach (var item in Json)
+            {
+                Console.WriteLine(item["_key"]["pascal"]);
+                var entity = item["_key"]["pascal"].Value<string>();
+                var entityFactory = FactoryGenerators.GenerateEntityFactory(entity);
+                entityClass = entityClass.AddMethod(entityFactory);
+                AddUsing(Helpers.Usings.GetForeignKey("", entity));
+            }
+
+            GeneratedClass = entityClass;
+
+            return this;
+        }
+
         public ClassContainer GenerateRenameClass(Dictionary<string, Dictionary<string, string>> renames)
         {
             var renameClass = ClassGenerators.CreateClass(ClassName, Modifiers.PublicMod, Modifiers.StaticMod);

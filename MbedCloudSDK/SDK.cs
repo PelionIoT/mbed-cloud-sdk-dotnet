@@ -3,7 +3,8 @@
 // </copyright>
 
 using MbedCloudSDK.Common;
-using MbedCloudSDK.Entities.User;
+//using MbedCloudSDK.Entities.MyAccount;
+//using MbedCloudSDK.Entities.User;
 
 namespace MbedCloudSDK
 {
@@ -55,7 +56,5 @@ namespace MbedCloudSDK
         {
             return instanceConfig ?? Config;
         }
-
-        public User User() => new User(instanceConfig ?? Config);
     }
 }

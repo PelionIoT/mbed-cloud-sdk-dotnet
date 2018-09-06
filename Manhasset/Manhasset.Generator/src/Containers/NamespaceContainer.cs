@@ -21,15 +21,20 @@ namespace Manhasset.Generator.src.Compilers
         private JToken EntityJson;
         private NamespaceDeclarationSyntax parentNamespace;
 
-        public NamespaceContainer(string tagName, string entityName, JToken entityJson)
+        public NamespaceContainer(string tagName, string entityName, JToken entityJson, bool global = false)
         {
             this.tagName = tagName;
             EntityJson = entityJson;
             this.entityName = entityName;
-            namespaceName = tagName == "Common" ? $"MbedCloudSDK.Common.{entityName}" : $"MbedCloudSDK.Entities.{entityName}";
+            namespaceName = global ? "MbedCloudSDK" : tagName == "Common" ? $"MbedCloudSDK.Common.{entityName}" : $"MbedCloudSDK.Entities.{entityName}";
             parentNamespace = NamespaceGenerators.CreateNamespace(namespaceName);
             Classes = new List<ClassContainer>();
             Enums = new List<EnumContainer>();
+        }
+
+        public void GenerateSDKEntityClass()
+        {
+            Classes.Add(new ClassContainer(entityName, EntityJson).GenerateSDKEntityClass());
         }
 
         public void GenerateRenameClass(Dictionary<string, Dictionary<string, string>> renames)
