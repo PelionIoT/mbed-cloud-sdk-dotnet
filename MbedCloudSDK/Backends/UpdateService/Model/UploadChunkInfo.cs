@@ -26,87 +26,87 @@ using SwaggerDateConverter = update_service.Client.SwaggerDateConverter;
 namespace update_service.Model
 {
     /// <summary>
-    /// FirmwareImageInNinFilter
+    /// UploadChunkInfo
     /// </summary>
     [DataContract]
-    public partial class FirmwareImageInNinFilter :  IEquatable<FirmwareImageInNinFilter>, IValidatableObject
+    public partial class UploadChunkInfo :  IEquatable<UploadChunkInfo>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="FirmwareImageInNinFilter" /> class.
+        /// Initializes a new instance of the <see cref="UploadChunkInfo" /> class.
         /// </summary>
-        /// <param name="CreatedAt">CreatedAt.</param>
-        /// <param name="Datafile">Datafile.</param>
-        /// <param name="DatafileChecksum">DatafileChecksum.</param>
-        /// <param name="DatafileSize">DatafileSize.</param>
-        /// <param name="Description">Description.</param>
-        /// <param name="Etag">Etag.</param>
-        /// <param name="Id">Id.</param>
-        /// <param name="Name">Name.</param>
-        /// <param name="UpdatedAt">UpdatedAt.</param>
-        public FirmwareImageInNinFilter(DateTime? CreatedAt = default(DateTime?), string Datafile = default(string), string DatafileChecksum = default(string), int? DatafileSize = default(int?), string Description = default(string), DateTime? Etag = default(DateTime?), string Id = default(string), string Name = default(string), DateTime? UpdatedAt = default(DateTime?))
+        /// <param name="CreatedAt">The time the entity was created.</param>
+        /// <param name="Etag">API resource entity version.</param>
+        /// <param name="Hash">The hash of the chunk. The default hash is MD5. If no Content-MD5 header is supplied as part of uploading the chunk then this will be empty..</param>
+        /// <param name="Id">The chunk number.</param>
+        /// <param name="Length">The length of the chunk.</param>
+        /// <param name="_Object">Entity name: always &#39;upload-info&#39;.</param>
+        /// <param name="Status">The upload status of this chunk.</param>
+        /// <param name="UpdatedAt">The time the entity was updated.</param>
+        public UploadChunkInfo(DateTime? CreatedAt = default(DateTime?), string Etag = default(string), string Hash = default(string), int? Id = default(int?), int? Length = default(int?), string _Object = default(string), string Status = default(string), DateTime? UpdatedAt = default(DateTime?))
         {
             this.CreatedAt = CreatedAt;
-            this.Datafile = Datafile;
-            this.DatafileChecksum = DatafileChecksum;
-            this.DatafileSize = DatafileSize;
-            this.Description = Description;
             this.Etag = Etag;
+            this.Hash = Hash;
             this.Id = Id;
-            this.Name = Name;
+            this.Length = Length;
+            this._Object = _Object;
+            this.Status = Status;
             this.UpdatedAt = UpdatedAt;
         }
         
         /// <summary>
-        /// Gets or Sets CreatedAt
+        /// The time the entity was created
         /// </summary>
+        /// <value>The time the entity was created</value>
         [DataMember(Name="created_at", EmitDefaultValue=false)]
         public DateTime? CreatedAt { get; set; }
 
         /// <summary>
-        /// Gets or Sets Datafile
+        /// API resource entity version
         /// </summary>
-        [DataMember(Name="datafile", EmitDefaultValue=false)]
-        public string Datafile { get; set; }
-
-        /// <summary>
-        /// Gets or Sets DatafileChecksum
-        /// </summary>
-        [DataMember(Name="datafile_checksum", EmitDefaultValue=false)]
-        public string DatafileChecksum { get; set; }
-
-        /// <summary>
-        /// Gets or Sets DatafileSize
-        /// </summary>
-        [DataMember(Name="datafile_size", EmitDefaultValue=false)]
-        public int? DatafileSize { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Description
-        /// </summary>
-        [DataMember(Name="description", EmitDefaultValue=false)]
-        public string Description { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Etag
-        /// </summary>
+        /// <value>API resource entity version</value>
         [DataMember(Name="etag", EmitDefaultValue=false)]
-        public DateTime? Etag { get; set; }
+        public string Etag { get; set; }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// The hash of the chunk. The default hash is MD5. If no Content-MD5 header is supplied as part of uploading the chunk then this will be empty.
         /// </summary>
+        /// <value>The hash of the chunk. The default hash is MD5. If no Content-MD5 header is supplied as part of uploading the chunk then this will be empty.</value>
+        [DataMember(Name="hash", EmitDefaultValue=false)]
+        public string Hash { get; set; }
+
+        /// <summary>
+        /// The chunk number
+        /// </summary>
+        /// <value>The chunk number</value>
         [DataMember(Name="id", EmitDefaultValue=false)]
-        public string Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// The length of the chunk
         /// </summary>
-        [DataMember(Name="name", EmitDefaultValue=false)]
-        public string Name { get; set; }
+        /// <value>The length of the chunk</value>
+        [DataMember(Name="length", EmitDefaultValue=false)]
+        public int? Length { get; set; }
 
         /// <summary>
-        /// Gets or Sets UpdatedAt
+        /// Entity name: always &#39;upload-info&#39;
         /// </summary>
+        /// <value>Entity name: always &#39;upload-info&#39;</value>
+        [DataMember(Name="object", EmitDefaultValue=false)]
+        public string _Object { get; set; }
+
+        /// <summary>
+        /// The upload status of this chunk
+        /// </summary>
+        /// <value>The upload status of this chunk</value>
+        [DataMember(Name="status", EmitDefaultValue=false)]
+        public string Status { get; set; }
+
+        /// <summary>
+        /// The time the entity was updated
+        /// </summary>
+        /// <value>The time the entity was updated</value>
         [DataMember(Name="updated_at", EmitDefaultValue=false)]
         public DateTime? UpdatedAt { get; set; }
 
@@ -117,15 +117,14 @@ namespace update_service.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class FirmwareImageInNinFilter {\n");
+            sb.Append("class UploadChunkInfo {\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  Datafile: ").Append(Datafile).Append("\n");
-            sb.Append("  DatafileChecksum: ").Append(DatafileChecksum).Append("\n");
-            sb.Append("  DatafileSize: ").Append(DatafileSize).Append("\n");
-            sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Etag: ").Append(Etag).Append("\n");
+            sb.Append("  Hash: ").Append(Hash).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Length: ").Append(Length).Append("\n");
+            sb.Append("  _Object: ").Append(_Object).Append("\n");
+            sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -147,15 +146,15 @@ namespace update_service.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as FirmwareImageInNinFilter);
+            return this.Equals(input as UploadChunkInfo);
         }
 
         /// <summary>
-        /// Returns true if FirmwareImageInNinFilter instances are equal
+        /// Returns true if UploadChunkInfo instances are equal
         /// </summary>
-        /// <param name="input">Instance of FirmwareImageInNinFilter to be compared</param>
+        /// <param name="input">Instance of UploadChunkInfo to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(FirmwareImageInNinFilter input)
+        public bool Equals(UploadChunkInfo input)
         {
             if (input == null)
                 return false;
@@ -167,29 +166,14 @@ namespace update_service.Model
                     this.CreatedAt.Equals(input.CreatedAt))
                 ) && 
                 (
-                    this.Datafile == input.Datafile ||
-                    (this.Datafile != null &&
-                    this.Datafile.Equals(input.Datafile))
-                ) && 
-                (
-                    this.DatafileChecksum == input.DatafileChecksum ||
-                    (this.DatafileChecksum != null &&
-                    this.DatafileChecksum.Equals(input.DatafileChecksum))
-                ) && 
-                (
-                    this.DatafileSize == input.DatafileSize ||
-                    (this.DatafileSize != null &&
-                    this.DatafileSize.Equals(input.DatafileSize))
-                ) && 
-                (
-                    this.Description == input.Description ||
-                    (this.Description != null &&
-                    this.Description.Equals(input.Description))
-                ) && 
-                (
                     this.Etag == input.Etag ||
                     (this.Etag != null &&
                     this.Etag.Equals(input.Etag))
+                ) && 
+                (
+                    this.Hash == input.Hash ||
+                    (this.Hash != null &&
+                    this.Hash.Equals(input.Hash))
                 ) && 
                 (
                     this.Id == input.Id ||
@@ -197,9 +181,19 @@ namespace update_service.Model
                     this.Id.Equals(input.Id))
                 ) && 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    this.Length == input.Length ||
+                    (this.Length != null &&
+                    this.Length.Equals(input.Length))
+                ) && 
+                (
+                    this._Object == input._Object ||
+                    (this._Object != null &&
+                    this._Object.Equals(input._Object))
+                ) && 
+                (
+                    this.Status == input.Status ||
+                    (this.Status != null &&
+                    this.Status.Equals(input.Status))
                 ) && 
                 (
                     this.UpdatedAt == input.UpdatedAt ||
@@ -219,20 +213,18 @@ namespace update_service.Model
                 int hashCode = 41;
                 if (this.CreatedAt != null)
                     hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
-                if (this.Datafile != null)
-                    hashCode = hashCode * 59 + this.Datafile.GetHashCode();
-                if (this.DatafileChecksum != null)
-                    hashCode = hashCode * 59 + this.DatafileChecksum.GetHashCode();
-                if (this.DatafileSize != null)
-                    hashCode = hashCode * 59 + this.DatafileSize.GetHashCode();
-                if (this.Description != null)
-                    hashCode = hashCode * 59 + this.Description.GetHashCode();
                 if (this.Etag != null)
                     hashCode = hashCode * 59 + this.Etag.GetHashCode();
+                if (this.Hash != null)
+                    hashCode = hashCode * 59 + this.Hash.GetHashCode();
                 if (this.Id != null)
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
-                if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this.Length != null)
+                    hashCode = hashCode * 59 + this.Length.GetHashCode();
+                if (this._Object != null)
+                    hashCode = hashCode * 59 + this._Object.GetHashCode();
+                if (this.Status != null)
+                    hashCode = hashCode * 59 + this.Status.GetHashCode();
                 if (this.UpdatedAt != null)
                     hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
                 return hashCode;

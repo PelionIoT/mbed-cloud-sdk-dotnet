@@ -26,41 +26,33 @@ using SwaggerDateConverter = update_service.Client.SwaggerDateConverter;
 namespace update_service.Model
 {
     /// <summary>
-    /// FirmwareImageGteLteFilter
+    /// ErrorResponseFields
     /// </summary>
     [DataContract]
-    public partial class FirmwareImageGteLteFilter :  IEquatable<FirmwareImageGteLteFilter>, IValidatableObject
+    public partial class ErrorResponseFields :  IEquatable<ErrorResponseFields>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="FirmwareImageGteLteFilter" /> class.
+        /// Initializes a new instance of the <see cref="ErrorResponseFields" /> class.
         /// </summary>
-        /// <param name="CreatedAt">CreatedAt.</param>
-        /// <param name="Etag">Etag.</param>
-        /// <param name="UpdatedAt">UpdatedAt.</param>
-        public FirmwareImageGteLteFilter(DateTime? CreatedAt = default(DateTime?), DateTime? Etag = default(DateTime?), DateTime? UpdatedAt = default(DateTime?))
+        /// <param name="Message">Message.</param>
+        /// <param name="Name">Name.</param>
+        public ErrorResponseFields(string Message = default(string), string Name = default(string))
         {
-            this.CreatedAt = CreatedAt;
-            this.Etag = Etag;
-            this.UpdatedAt = UpdatedAt;
+            this.Message = Message;
+            this.Name = Name;
         }
         
         /// <summary>
-        /// Gets or Sets CreatedAt
+        /// Gets or Sets Message
         /// </summary>
-        [DataMember(Name="created_at", EmitDefaultValue=false)]
-        public DateTime? CreatedAt { get; set; }
+        [DataMember(Name="message", EmitDefaultValue=false)]
+        public string Message { get; set; }
 
         /// <summary>
-        /// Gets or Sets Etag
+        /// Gets or Sets Name
         /// </summary>
-        [DataMember(Name="etag", EmitDefaultValue=false)]
-        public DateTime? Etag { get; set; }
-
-        /// <summary>
-        /// Gets or Sets UpdatedAt
-        /// </summary>
-        [DataMember(Name="updated_at", EmitDefaultValue=false)]
-        public DateTime? UpdatedAt { get; set; }
+        [DataMember(Name="name", EmitDefaultValue=false)]
+        public string Name { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -69,10 +61,9 @@ namespace update_service.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class FirmwareImageGteLteFilter {\n");
-            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  Etag: ").Append(Etag).Append("\n");
-            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
+            sb.Append("class ErrorResponseFields {\n");
+            sb.Append("  Message: ").Append(Message).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -93,34 +84,29 @@ namespace update_service.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as FirmwareImageGteLteFilter);
+            return this.Equals(input as ErrorResponseFields);
         }
 
         /// <summary>
-        /// Returns true if FirmwareImageGteLteFilter instances are equal
+        /// Returns true if ErrorResponseFields instances are equal
         /// </summary>
-        /// <param name="input">Instance of FirmwareImageGteLteFilter to be compared</param>
+        /// <param name="input">Instance of ErrorResponseFields to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(FirmwareImageGteLteFilter input)
+        public bool Equals(ErrorResponseFields input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
+                    this.Message == input.Message ||
+                    (this.Message != null &&
+                    this.Message.Equals(input.Message))
                 ) && 
                 (
-                    this.Etag == input.Etag ||
-                    (this.Etag != null &&
-                    this.Etag.Equals(input.Etag))
-                ) && 
-                (
-                    this.UpdatedAt == input.UpdatedAt ||
-                    (this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(input.UpdatedAt))
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
                 );
         }
 
@@ -133,12 +119,10 @@ namespace update_service.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.CreatedAt != null)
-                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
-                if (this.Etag != null)
-                    hashCode = hashCode * 59 + this.Etag.GetHashCode();
-                if (this.UpdatedAt != null)
-                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
+                if (this.Message != null)
+                    hashCode = hashCode * 59 + this.Message.GetHashCode();
+                if (this.Name != null)
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
                 return hashCode;
             }
         }

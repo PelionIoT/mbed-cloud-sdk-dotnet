@@ -26,10 +26,10 @@ using SwaggerDateConverter = update_service.Client.SwaggerDateConverter;
 namespace update_service.Model
 {
     /// <summary>
-    /// FirmwareManifestPage
+    /// UploadChunkInfoPage
     /// </summary>
     [DataContract]
-    public partial class FirmwareManifestPage :  IEquatable<FirmwareManifestPage>, IValidatableObject
+    public partial class UploadChunkInfoPage :  IEquatable<UploadChunkInfoPage>, IValidatableObject
     {
         /// <summary>
         /// The order of the records to return. Acceptable values: ASC, DESC. Default: ASC
@@ -59,7 +59,7 @@ namespace update_service.Model
         [DataMember(Name="order", EmitDefaultValue=false)]
         public OrderEnum? Order { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="FirmwareManifestPage" /> class.
+        /// Initializes a new instance of the <see cref="UploadChunkInfoPage" /> class.
         /// </summary>
         /// <param name="After">After.</param>
         /// <param name="Data">Data.</param>
@@ -68,7 +68,7 @@ namespace update_service.Model
         /// <param name="_Object">_Object.</param>
         /// <param name="Order">The order of the records to return. Acceptable values: ASC, DESC. Default: ASC.</param>
         /// <param name="TotalCount">TotalCount.</param>
-        public FirmwareManifestPage(string After = default(string), List<FirmwareManifest> Data = default(List<FirmwareManifest>), bool? HasMore = default(bool?), int? Limit = default(int?), string _Object = default(string), OrderEnum? Order = default(OrderEnum?), int? TotalCount = default(int?))
+        public UploadChunkInfoPage(string After = default(string), List<UploadChunkInfo> Data = default(List<UploadChunkInfo>), bool? HasMore = default(bool?), int? Limit = default(int?), string _Object = default(string), OrderEnum? Order = default(OrderEnum?), int? TotalCount = default(int?))
         {
             this.After = After;
             this.Data = Data;
@@ -89,7 +89,7 @@ namespace update_service.Model
         /// Gets or Sets Data
         /// </summary>
         [DataMember(Name="data", EmitDefaultValue=false)]
-        public List<FirmwareManifest> Data { get; set; }
+        public List<UploadChunkInfo> Data { get; set; }
 
         /// <summary>
         /// Gets or Sets HasMore
@@ -123,7 +123,7 @@ namespace update_service.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class FirmwareManifestPage {\n");
+            sb.Append("class UploadChunkInfoPage {\n");
             sb.Append("  After: ").Append(After).Append("\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("  HasMore: ").Append(HasMore).Append("\n");
@@ -151,15 +151,15 @@ namespace update_service.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as FirmwareManifestPage);
+            return this.Equals(input as UploadChunkInfoPage);
         }
 
         /// <summary>
-        /// Returns true if FirmwareManifestPage instances are equal
+        /// Returns true if UploadChunkInfoPage instances are equal
         /// </summary>
-        /// <param name="input">Instance of FirmwareManifestPage to be compared</param>
+        /// <param name="input">Instance of UploadChunkInfoPage to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(FirmwareManifestPage input)
+        public bool Equals(UploadChunkInfoPage input)
         {
             if (input == null)
                 return false;

@@ -26,41 +26,35 @@ using SwaggerDateConverter = update_service.Client.SwaggerDateConverter;
 namespace update_service.Model
 {
     /// <summary>
-    /// FirmwareImageGteLteFilter
+    /// UploadJob
     /// </summary>
     [DataContract]
-    public partial class FirmwareImageGteLteFilter :  IEquatable<FirmwareImageGteLteFilter>, IValidatableObject
+    public partial class UploadJob :  IEquatable<UploadJob>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="FirmwareImageGteLteFilter" /> class.
+        /// Initializes a new instance of the <see cref="UploadJob" /> class.
         /// </summary>
-        /// <param name="CreatedAt">CreatedAt.</param>
-        /// <param name="Etag">Etag.</param>
-        /// <param name="UpdatedAt">UpdatedAt.</param>
-        public FirmwareImageGteLteFilter(DateTime? CreatedAt = default(DateTime?), DateTime? Etag = default(DateTime?), DateTime? UpdatedAt = default(DateTime?))
+        /// <param name="Description">Human-readable description.</param>
+        /// <param name="Name">Human-readable name.</param>
+        public UploadJob(string Description = default(string), string Name = default(string))
         {
-            this.CreatedAt = CreatedAt;
-            this.Etag = Etag;
-            this.UpdatedAt = UpdatedAt;
+            this.Description = Description;
+            this.Name = Name;
         }
         
         /// <summary>
-        /// Gets or Sets CreatedAt
+        /// Human-readable description
         /// </summary>
-        [DataMember(Name="created_at", EmitDefaultValue=false)]
-        public DateTime? CreatedAt { get; set; }
+        /// <value>Human-readable description</value>
+        [DataMember(Name="description", EmitDefaultValue=false)]
+        public string Description { get; set; }
 
         /// <summary>
-        /// Gets or Sets Etag
+        /// Human-readable name
         /// </summary>
-        [DataMember(Name="etag", EmitDefaultValue=false)]
-        public DateTime? Etag { get; set; }
-
-        /// <summary>
-        /// Gets or Sets UpdatedAt
-        /// </summary>
-        [DataMember(Name="updated_at", EmitDefaultValue=false)]
-        public DateTime? UpdatedAt { get; set; }
+        /// <value>Human-readable name</value>
+        [DataMember(Name="name", EmitDefaultValue=false)]
+        public string Name { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -69,10 +63,9 @@ namespace update_service.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class FirmwareImageGteLteFilter {\n");
-            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
-            sb.Append("  Etag: ").Append(Etag).Append("\n");
-            sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
+            sb.Append("class UploadJob {\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -93,34 +86,29 @@ namespace update_service.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as FirmwareImageGteLteFilter);
+            return this.Equals(input as UploadJob);
         }
 
         /// <summary>
-        /// Returns true if FirmwareImageGteLteFilter instances are equal
+        /// Returns true if UploadJob instances are equal
         /// </summary>
-        /// <param name="input">Instance of FirmwareImageGteLteFilter to be compared</param>
+        /// <param name="input">Instance of UploadJob to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(FirmwareImageGteLteFilter input)
+        public bool Equals(UploadJob input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this.CreatedAt == input.CreatedAt ||
-                    (this.CreatedAt != null &&
-                    this.CreatedAt.Equals(input.CreatedAt))
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
                 ) && 
                 (
-                    this.Etag == input.Etag ||
-                    (this.Etag != null &&
-                    this.Etag.Equals(input.Etag))
-                ) && 
-                (
-                    this.UpdatedAt == input.UpdatedAt ||
-                    (this.UpdatedAt != null &&
-                    this.UpdatedAt.Equals(input.UpdatedAt))
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
                 );
         }
 
@@ -133,12 +121,10 @@ namespace update_service.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.CreatedAt != null)
-                    hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
-                if (this.Etag != null)
-                    hashCode = hashCode * 59 + this.Etag.GetHashCode();
-                if (this.UpdatedAt != null)
-                    hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
+                if (this.Description != null)
+                    hashCode = hashCode * 59 + this.Description.GetHashCode();
+                if (this.Name != null)
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
                 return hashCode;
             }
         }
@@ -150,6 +136,18 @@ namespace update_service.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // Description (string) maxLength
+            if(this.Description != null && this.Description.Length > 2000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, length must be less than 2000.", new [] { "Description" });
+            }
+
+            // Name (string) maxLength
+            if(this.Name != null && this.Name.Length > 128)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, length must be less than 128.", new [] { "Name" });
+            }
+
             yield break;
         }
     }
