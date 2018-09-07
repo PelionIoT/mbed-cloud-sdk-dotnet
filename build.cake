@@ -63,7 +63,7 @@ Task("_run_unit_tests")
             NoBuild = true,
             NoRestore = true,
             Configuration = configuration,
-            ArgumentCustomization = args => args.Append("/p:CollectCoverage=true /p:CoverletOutputFormat=opencover"),
+            // ArgumentCustomization = args => args.Append("/p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CopyLocalLockFileAssemblies=true"),
         });
     });
 
@@ -217,6 +217,69 @@ Task("_publish")
             });
         }
     });
+
+Task("_clean_generation")
+    .Does(() => {
+        CleanDirectory("./MbedCloudSDK/Generated");
+        CleanDirectory("./Manhasset.Generation.Temp");
+    });
+
+Task("_create empty_project")
+    .Does(() => {
+        StartProcess("./scripts/generation_setup.sh");
+    });
+
+Task("_restore_empty_project")
+    .Does(() => {
+        DotNetCoreRestore("./Manhasset.Generation.Temp", new DotNetCoreRestoreSettings {
+            Verbosity = DotNetCoreVerbosity.Minimal,
+        });
+    });
+
+Task("_restore_generator")
+    .Does(() => {
+        DotNetCoreRestore("./Manhasset/Manhasset.Runner", new DotNetCoreRestoreSettings {
+            Verbosity = DotNetCoreVerbosity.Minimal,
+        });
+    });
+
+Task("_build_generator")
+    .Does(() => {
+        DotNetCoreBuild("./Manhasset/Manhasset.Runner", new DotNetCoreBuildSettings {
+            NoRestore = true,
+            Configuration = configuration,
+        });
+    });
+
+Task("_generate_and_compile")
+    .Does(() => {
+        DotNetCoreRun("./Manhasset/Manhasset.Runner", new ProcessArgumentBuilder()
+            .Append("/Users/alelog01/git/mbed-cloud-api-contract/out/sdk_generation_cache.yaml")
+            //.Append("./Pelion.Generation.Temp/Pelion.Generation.Temp.csproj")
+            .Append("Manhasset.Generation.Temp")
+            .Append("/Users/alelog01/git/mbed-cloud-sdk-dotnet/"),
+            new DotNetCoreRunSettings {
+                NoBuild = true,
+                NoRestore = true,
+                Configuration = configuration,
+            });
+    });
+
+Task("_write_files")
+    .Does(() => {
+        CopyDirectory("./Manhasset.Generation.Temp/src", "./MbedCloudSDK/Generated");
+    });
+
+Task("generation_debug")
+    .IsDependentOn("_clean_generation")
+    .IsDependentOn("_create empty_project")
+    .IsDependentOn("_restore_empty_project")
+    .IsDependentOn("_restore_generator")
+    .IsDependentOn("_build_generator")
+    .IsDependentOn("_generate_and_compile")
+    .IsDependentOn("_write_files")
+    .IsDependentOn("_restore_solution")
+    .IsDependentOn("_build_solution");
 
 Task("Build-Pack-Publish")
     .IsDependentOn("_restore_sdk")

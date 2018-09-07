@@ -11,14 +11,24 @@ a list of versions that have been released.
 
 [//]: # (begin_release_notes)
 
+2.1.0-beta (2018-08-30)
+=======================
+
+### Features
+
+- Adds support for aggregator accounts (#1605)
+
+
 2.0.0 (2018-08-06)
 ==================
 
 ### Features
 
-- circle 2 (#1111)
+- circle 2 (#373)
 
 - Configuration can now be set using a .env file (#927)
+
+- Support for phase two billing endpoints (#1398)
 
 
 1.2.12 (2018-07-06)

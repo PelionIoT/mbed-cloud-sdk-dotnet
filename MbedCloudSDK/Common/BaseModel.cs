@@ -11,13 +11,29 @@ namespace MbedCloudSDK.Common
     /// </summary>
     public abstract class BaseModel
     {
+        [JsonIgnore]
+        private Config config;
+
         /// <summary>
-        /// Gets the identifier.
+        /// Gets or sets the configuration.
+        /// </summary>
+        /// <value>
+        /// The configuration.
+        /// </value>
+        [JsonIgnore]
+        public Config Config
+        {
+            get => config ?? SDK.Config;
+            set => config = value;
+        }
+
+        /// <summary>
+        /// Gets or sets gets the identifier.
         /// </summary>
         /// <value>
         /// The identifier.
         /// </value>
         [JsonProperty]
-        public string Id { get; internal set; }
+        public string Id { get; set; }
     }
 }

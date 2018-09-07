@@ -5,7 +5,6 @@
 
 # User-specific files
 *.suo
-*.user
 *.userosscache
 *.sln.docstates
 
@@ -331,3 +330,5 @@ tools
 NuGet.Config
 Tests/MbedCloudSDK.UnitTests/coverage.opencover.xml
 src/auto-version
+**/*.env
+Manhasset.Generation.Temp
