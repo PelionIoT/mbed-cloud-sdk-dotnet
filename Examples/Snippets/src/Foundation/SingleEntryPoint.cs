@@ -42,7 +42,7 @@ namespace Snippets.src.Foundation
         {
             // an example: custom api call
             var res = await MbedCloudSDK.Client.ApiCall.CallApiEntity<ResponsePage<User>>(method: Method.GET, path: "/v3/users", queryParams: new Dictionary<string, object>{ {"limit", 2 }});
-            // end of example
+            // cloak
 
             Assert.IsInstanceOf(typeof(User), res.Data.FirstOrDefault());
             Assert.IsNotNull(res.Data.FirstOrDefault().Id);
@@ -51,9 +51,10 @@ namespace Snippets.src.Foundation
         [Test]
         public async Task CustomApiCallString()
         {
-            // an example: custom api call
+            // uncloak
+            // or
             var res = await MbedCloudSDK.Client.ApiCall.CallApiString(method: Method.GET, path: "/v3/users", queryParams: new Dictionary<string, object> { { "limit", 2 } });
-            // end of example
+            // cloak
 
             Assert.IsInstanceOf(typeof(string), res);
         }
@@ -61,7 +62,8 @@ namespace Snippets.src.Foundation
         [Test]
         public async Task CustomApiCallDynamic()
         {
-            // an example: custom api call
+            // uncloak
+            // or
             var res = await MbedCloudSDK.Client.ApiCall.CallApiDynamic(method: Method.GET, path: "/v3/users", queryParams: new Dictionary<string, object> { { "limit", 2 } });
             // end of example
 
