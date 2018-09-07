@@ -216,6 +216,29 @@ namespace iam.Api
         /// <returns>ApiResponse of GroupSummary</returns>
         ApiResponse<GroupSummary> CreateAccountGroupWithHttpInfo (string accountID, GroupCreationInfo body);
         /// <summary>
+        /// Create a user invitation.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for inviting a new or an existing user to join the account.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/accouns/{account-id}/user-invitations -d {\&quot;email\&quot;: \&quot;myemail@company.com\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="body">A user invitation object with attributes.</param>
+        /// <returns>UserInvitationResp</returns>
+        UserInvitationResp CreateAccountInvitation (string accountId, UserInvitationReq body);
+
+        /// <summary>
+        /// Create a user invitation.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for inviting a new or an existing user to join the account.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/accouns/{account-id}/user-invitations -d {\&quot;email\&quot;: \&quot;myemail@company.com\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="body">A user invitation object with attributes.</param>
+        /// <returns>ApiResponse of UserInvitationResp</returns>
+        ApiResponse<UserInvitationResp> CreateAccountInvitationWithHttpInfo (string accountId, UserInvitationReq body);
+        /// <summary>
         /// Create a new user.
         /// </summary>
         /// <remarks>
@@ -309,6 +332,29 @@ namespace iam.Api
         /// <param name="groupID">The ID of the group to be deleted.</param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> DeleteAccountGroupWithHttpInfo (string accountID, string groupID);
+        /// <summary>
+        /// Delete a user invitation.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for deleting an active user invitation which has been sent for a new or an existing user to join the account.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/accounts/{account-id}/user-invitations/{invitation-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="invitationId">The ID of the invitation to be deleted.</param>
+        /// <returns></returns>
+        void DeleteAccountInvitation (string accountId, string invitationId);
+
+        /// <summary>
+        /// Delete a user invitation.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for deleting an active user invitation which has been sent for a new or an existing user to join the account.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/accounts/{account-id}/user-invitations/{invitation-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="invitationId">The ID of the invitation to be deleted.</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> DeleteAccountInvitationWithHttpInfo (string accountId, string invitationId);
         /// <summary>
         /// Delete a user.
         /// </summary>
@@ -426,6 +472,29 @@ namespace iam.Api
         /// <param name="properties">Property name to be returned from account specific properties. (optional)</param>
         /// <returns>ApiResponse of AccountInfo</returns>
         ApiResponse<AccountInfo> GetAccountInfoWithHttpInfo (string accountID, string include = null, string properties = null);
+        /// <summary>
+        /// Details of a user invitation.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving the details of an active user invitation sent for a new or an existing user to join the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/{account-id}/user-invitations/{invitation-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="invitationId">The ID of the invitation to be retrieved.</param>
+        /// <returns>UserInvitationResp</returns>
+        UserInvitationResp GetAccountInvitation (string accountId, string invitationId);
+
+        /// <summary>
+        /// Details of a user invitation.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving the details of an active user invitation sent for a new or an existing user to join the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/{account-id}/user-invitations/{invitation-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="invitationId">The ID of the invitation to be retrieved.</param>
+        /// <returns>ApiResponse of UserInvitationResp</returns>
+        ApiResponse<UserInvitationResp> GetAccountInvitationWithHttpInfo (string accountId, string invitationId);
         /// <summary>
         /// Details of the user.
         /// </summary>
@@ -560,6 +629,33 @@ namespace iam.Api
         /// <param name="nameEq">Filter for group name (optional)</param>
         /// <returns>ApiResponse of GroupSummaryList</returns>
         ApiResponse<GroupSummaryList> GetAllAccountGroupsWithHttpInfo (string accountID, int? limit = null, string after = null, string order = null, string include = null, string nameEq = null);
+        /// <summary>
+        /// Get the details of all the user invitations.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving the details of all the active user invitations sent for new or existing users to join the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/{account-id}/user-invitations -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <returns>UserInvitationRespList</returns>
+        UserInvitationRespList GetAllAccountInvitations (string accountId, int? limit = null, string after = null, string order = null);
+
+        /// <summary>
+        /// Get the details of all the user invitations.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving the details of all the active user invitations sent for new or existing users to join the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/{account-id}/user-invitations -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <returns>ApiResponse of UserInvitationRespList</returns>
+        ApiResponse<UserInvitationRespList> GetAllAccountInvitationsWithHttpInfo (string accountId, int? limit = null, string after = null, string order = null);
         /// <summary>
         /// Get all user details.
         /// </summary>
@@ -1234,6 +1330,29 @@ namespace iam.Api
         /// <returns>Task of ApiResponse (GroupSummary)</returns>
         System.Threading.Tasks.Task<ApiResponse<GroupSummary>> CreateAccountGroupAsyncWithHttpInfo (string accountID, GroupCreationInfo body);
         /// <summary>
+        /// Create a user invitation.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for inviting a new or an existing user to join the account.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/accouns/{account-id}/user-invitations -d {\&quot;email\&quot;: \&quot;myemail@company.com\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="body">A user invitation object with attributes.</param>
+        /// <returns>Task of UserInvitationResp</returns>
+        System.Threading.Tasks.Task<UserInvitationResp> CreateAccountInvitationAsync (string accountId, UserInvitationReq body);
+
+        /// <summary>
+        /// Create a user invitation.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for inviting a new or an existing user to join the account.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/accouns/{account-id}/user-invitations -d {\&quot;email\&quot;: \&quot;myemail@company.com\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="body">A user invitation object with attributes.</param>
+        /// <returns>Task of ApiResponse (UserInvitationResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UserInvitationResp>> CreateAccountInvitationAsyncWithHttpInfo (string accountId, UserInvitationReq body);
+        /// <summary>
         /// Create a new user.
         /// </summary>
         /// <remarks>
@@ -1327,6 +1446,29 @@ namespace iam.Api
         /// <param name="groupID">The ID of the group to be deleted.</param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> DeleteAccountGroupAsyncWithHttpInfo (string accountID, string groupID);
+        /// <summary>
+        /// Delete a user invitation.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for deleting an active user invitation which has been sent for a new or an existing user to join the account.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/accounts/{account-id}/user-invitations/{invitation-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="invitationId">The ID of the invitation to be deleted.</param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task DeleteAccountInvitationAsync (string accountId, string invitationId);
+
+        /// <summary>
+        /// Delete a user invitation.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for deleting an active user invitation which has been sent for a new or an existing user to join the account.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/accounts/{account-id}/user-invitations/{invitation-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="invitationId">The ID of the invitation to be deleted.</param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteAccountInvitationAsyncWithHttpInfo (string accountId, string invitationId);
         /// <summary>
         /// Delete a user.
         /// </summary>
@@ -1444,6 +1586,29 @@ namespace iam.Api
         /// <param name="properties">Property name to be returned from account specific properties. (optional)</param>
         /// <returns>Task of ApiResponse (AccountInfo)</returns>
         System.Threading.Tasks.Task<ApiResponse<AccountInfo>> GetAccountInfoAsyncWithHttpInfo (string accountID, string include = null, string properties = null);
+        /// <summary>
+        /// Details of a user invitation.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving the details of an active user invitation sent for a new or an existing user to join the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/{account-id}/user-invitations/{invitation-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="invitationId">The ID of the invitation to be retrieved.</param>
+        /// <returns>Task of UserInvitationResp</returns>
+        System.Threading.Tasks.Task<UserInvitationResp> GetAccountInvitationAsync (string accountId, string invitationId);
+
+        /// <summary>
+        /// Details of a user invitation.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving the details of an active user invitation sent for a new or an existing user to join the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/{account-id}/user-invitations/{invitation-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="invitationId">The ID of the invitation to be retrieved.</param>
+        /// <returns>Task of ApiResponse (UserInvitationResp)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UserInvitationResp>> GetAccountInvitationAsyncWithHttpInfo (string accountId, string invitationId);
         /// <summary>
         /// Details of the user.
         /// </summary>
@@ -1578,6 +1743,33 @@ namespace iam.Api
         /// <param name="nameEq">Filter for group name (optional)</param>
         /// <returns>Task of ApiResponse (GroupSummaryList)</returns>
         System.Threading.Tasks.Task<ApiResponse<GroupSummaryList>> GetAllAccountGroupsAsyncWithHttpInfo (string accountID, int? limit = null, string after = null, string order = null, string include = null, string nameEq = null);
+        /// <summary>
+        /// Get the details of all the user invitations.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving the details of all the active user invitations sent for new or existing users to join the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/{account-id}/user-invitations -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <returns>Task of UserInvitationRespList</returns>
+        System.Threading.Tasks.Task<UserInvitationRespList> GetAllAccountInvitationsAsync (string accountId, int? limit = null, string after = null, string order = null);
+
+        /// <summary>
+        /// Get the details of all the user invitations.
+        /// </summary>
+        /// <remarks>
+        /// An endpoint for retrieving the details of all the active user invitations sent for new or existing users to join the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/{account-id}/user-invitations -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </remarks>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <returns>Task of ApiResponse (UserInvitationRespList)</returns>
+        System.Threading.Tasks.Task<ApiResponse<UserInvitationRespList>> GetAllAccountInvitationsAsyncWithHttpInfo (string accountId, int? limit = null, string after = null, string order = null);
         /// <summary>
         /// Get all user details.
         /// </summary>
@@ -3540,6 +3732,177 @@ namespace iam.Api
         }
 
         /// <summary>
+        /// Create a user invitation. An endpoint for inviting a new or an existing user to join the account.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/accouns/{account-id}/user-invitations -d {\&quot;email\&quot;: \&quot;myemail@company.com\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="body">A user invitation object with attributes.</param>
+        /// <returns>UserInvitationResp</returns>
+        public UserInvitationResp CreateAccountInvitation (string accountId, UserInvitationReq body)
+        {
+             ApiResponse<UserInvitationResp> localVarResponse = CreateAccountInvitationWithHttpInfo(accountId, body);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Create a user invitation. An endpoint for inviting a new or an existing user to join the account.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/accouns/{account-id}/user-invitations -d {\&quot;email\&quot;: \&quot;myemail@company.com\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="body">A user invitation object with attributes.</param>
+        /// <returns>ApiResponse of UserInvitationResp</returns>
+        public ApiResponse< UserInvitationResp > CreateAccountInvitationWithHttpInfo (string accountId, UserInvitationReq body)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AggregatorAccountAdminApi->CreateAccountInvitation");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling AggregatorAccountAdminApi->CreateAccountInvitation");
+
+            var localVarPath = "/v3/accounts/{account-id}/user-invitations";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (accountId != null) localVarPathParams.Add("account-id", Configuration.ApiClient.ParameterToString(accountId)); // path parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateAccountInvitation", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UserInvitationResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UserInvitationResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInvitationResp)));
+        }
+
+        /// <summary>
+        /// Create a user invitation. An endpoint for inviting a new or an existing user to join the account.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/accouns/{account-id}/user-invitations -d {\&quot;email\&quot;: \&quot;myemail@company.com\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="body">A user invitation object with attributes.</param>
+        /// <returns>Task of UserInvitationResp</returns>
+        public async System.Threading.Tasks.Task<UserInvitationResp> CreateAccountInvitationAsync (string accountId, UserInvitationReq body)
+        {
+             ApiResponse<UserInvitationResp> localVarResponse = await CreateAccountInvitationAsyncWithHttpInfo(accountId, body);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Create a user invitation. An endpoint for inviting a new or an existing user to join the account.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/accouns/{account-id}/user-invitations -d {\&quot;email\&quot;: \&quot;myemail@company.com\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="body">A user invitation object with attributes.</param>
+        /// <returns>Task of ApiResponse (UserInvitationResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<UserInvitationResp>> CreateAccountInvitationAsyncWithHttpInfo (string accountId, UserInvitationReq body)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AggregatorAccountAdminApi->CreateAccountInvitation");
+            // verify the required parameter 'body' is set
+            if (body == null)
+                throw new ApiException(400, "Missing required parameter 'body' when calling AggregatorAccountAdminApi->CreateAccountInvitation");
+
+            var localVarPath = "/v3/accounts/{account-id}/user-invitations";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (accountId != null) localVarPathParams.Add("account-id", Configuration.ApiClient.ParameterToString(accountId)); // path parameter
+            if (body != null && body.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(body); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = body; // byte array
+            }
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CreateAccountInvitation", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UserInvitationResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UserInvitationResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInvitationResp)));
+        }
+
+        /// <summary>
         /// Create a new user. An endpoint for creating or inviting a new user to the account. In case of invitation email address is used only, other attributes are set in the 2nd step.   **Example usage:** &#x60;curl -X POST https://api.us-east-1.mbedcloud.com/v3/accounts/{accountID}/users -d {\&quot;email\&quot;: \&quot;myemail@company.com\&quot;} -H &#39;content-type: application/json&#39; -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
@@ -4167,6 +4530,159 @@ namespace iam.Api
             if (ExceptionFactory != null)
             {
                 Exception exception = ExceptionFactory("DeleteAccountGroup", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Delete a user invitation. An endpoint for deleting an active user invitation which has been sent for a new or an existing user to join the account.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/accounts/{account-id}/user-invitations/{invitation-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="invitationId">The ID of the invitation to be deleted.</param>
+        /// <returns></returns>
+        public void DeleteAccountInvitation (string accountId, string invitationId)
+        {
+             DeleteAccountInvitationWithHttpInfo(accountId, invitationId);
+        }
+
+        /// <summary>
+        /// Delete a user invitation. An endpoint for deleting an active user invitation which has been sent for a new or an existing user to join the account.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/accounts/{account-id}/user-invitations/{invitation-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="invitationId">The ID of the invitation to be deleted.</param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> DeleteAccountInvitationWithHttpInfo (string accountId, string invitationId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AggregatorAccountAdminApi->DeleteAccountInvitation");
+            // verify the required parameter 'invitationId' is set
+            if (invitationId == null)
+                throw new ApiException(400, "Missing required parameter 'invitationId' when calling AggregatorAccountAdminApi->DeleteAccountInvitation");
+
+            var localVarPath = "/v3/accounts/{account-id}/user-invitations/{invitation-id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (accountId != null) localVarPathParams.Add("account-id", Configuration.ApiClient.ParameterToString(accountId)); // path parameter
+            if (invitationId != null) localVarPathParams.Add("invitation-id", Configuration.ApiClient.ParameterToString(invitationId)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeleteAccountInvitation", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Delete a user invitation. An endpoint for deleting an active user invitation which has been sent for a new or an existing user to join the account.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/accounts/{account-id}/user-invitations/{invitation-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="invitationId">The ID of the invitation to be deleted.</param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task DeleteAccountInvitationAsync (string accountId, string invitationId)
+        {
+             await DeleteAccountInvitationAsyncWithHttpInfo(accountId, invitationId);
+
+        }
+
+        /// <summary>
+        /// Delete a user invitation. An endpoint for deleting an active user invitation which has been sent for a new or an existing user to join the account.   **Example usage:** &#x60;curl -X DELETE https://api.us-east-1.mbedcloud.com/v3/accounts/{account-id}/user-invitations/{invitation-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="invitationId">The ID of the invitation to be deleted.</param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteAccountInvitationAsyncWithHttpInfo (string accountId, string invitationId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AggregatorAccountAdminApi->DeleteAccountInvitation");
+            // verify the required parameter 'invitationId' is set
+            if (invitationId == null)
+                throw new ApiException(400, "Missing required parameter 'invitationId' when calling AggregatorAccountAdminApi->DeleteAccountInvitation");
+
+            var localVarPath = "/v3/accounts/{account-id}/user-invitations/{invitation-id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (accountId != null) localVarPathParams.Add("account-id", Configuration.ApiClient.ParameterToString(accountId)); // path parameter
+            if (invitationId != null) localVarPathParams.Add("invitation-id", Configuration.ApiClient.ParameterToString(invitationId)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeleteAccountInvitation", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -4949,6 +5465,161 @@ namespace iam.Api
         }
 
         /// <summary>
+        /// Details of a user invitation. An endpoint for retrieving the details of an active user invitation sent for a new or an existing user to join the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/{account-id}/user-invitations/{invitation-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="invitationId">The ID of the invitation to be retrieved.</param>
+        /// <returns>UserInvitationResp</returns>
+        public UserInvitationResp GetAccountInvitation (string accountId, string invitationId)
+        {
+             ApiResponse<UserInvitationResp> localVarResponse = GetAccountInvitationWithHttpInfo(accountId, invitationId);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Details of a user invitation. An endpoint for retrieving the details of an active user invitation sent for a new or an existing user to join the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/{account-id}/user-invitations/{invitation-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="invitationId">The ID of the invitation to be retrieved.</param>
+        /// <returns>ApiResponse of UserInvitationResp</returns>
+        public ApiResponse< UserInvitationResp > GetAccountInvitationWithHttpInfo (string accountId, string invitationId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AggregatorAccountAdminApi->GetAccountInvitation");
+            // verify the required parameter 'invitationId' is set
+            if (invitationId == null)
+                throw new ApiException(400, "Missing required parameter 'invitationId' when calling AggregatorAccountAdminApi->GetAccountInvitation");
+
+            var localVarPath = "/v3/accounts/{account-id}/user-invitations/{invitation-id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (accountId != null) localVarPathParams.Add("account-id", Configuration.ApiClient.ParameterToString(accountId)); // path parameter
+            if (invitationId != null) localVarPathParams.Add("invitation-id", Configuration.ApiClient.ParameterToString(invitationId)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetAccountInvitation", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UserInvitationResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UserInvitationResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInvitationResp)));
+        }
+
+        /// <summary>
+        /// Details of a user invitation. An endpoint for retrieving the details of an active user invitation sent for a new or an existing user to join the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/{account-id}/user-invitations/{invitation-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="invitationId">The ID of the invitation to be retrieved.</param>
+        /// <returns>Task of UserInvitationResp</returns>
+        public async System.Threading.Tasks.Task<UserInvitationResp> GetAccountInvitationAsync (string accountId, string invitationId)
+        {
+             ApiResponse<UserInvitationResp> localVarResponse = await GetAccountInvitationAsyncWithHttpInfo(accountId, invitationId);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Details of a user invitation. An endpoint for retrieving the details of an active user invitation sent for a new or an existing user to join the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/{account-id}/user-invitations/{invitation-id} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="invitationId">The ID of the invitation to be retrieved.</param>
+        /// <returns>Task of ApiResponse (UserInvitationResp)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<UserInvitationResp>> GetAccountInvitationAsyncWithHttpInfo (string accountId, string invitationId)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AggregatorAccountAdminApi->GetAccountInvitation");
+            // verify the required parameter 'invitationId' is set
+            if (invitationId == null)
+                throw new ApiException(400, "Missing required parameter 'invitationId' when calling AggregatorAccountAdminApi->GetAccountInvitation");
+
+            var localVarPath = "/v3/accounts/{account-id}/user-invitations/{invitation-id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (accountId != null) localVarPathParams.Add("account-id", Configuration.ApiClient.ParameterToString(accountId)); // path parameter
+            if (invitationId != null) localVarPathParams.Add("invitation-id", Configuration.ApiClient.ParameterToString(invitationId)); // path parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetAccountInvitation", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UserInvitationResp>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UserInvitationResp) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInvitationResp)));
+        }
+
+        /// <summary>
         /// Details of the user. An endpoint for retrieving details of the user.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/{accountID}/users/{userID} -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
         /// </summary>
         /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
@@ -5674,6 +6345,167 @@ namespace iam.Api
             return new ApiResponse<GroupSummaryList>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (GroupSummaryList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(GroupSummaryList)));
+        }
+
+        /// <summary>
+        /// Get the details of all the user invitations. An endpoint for retrieving the details of all the active user invitations sent for new or existing users to join the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/{account-id}/user-invitations -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <returns>UserInvitationRespList</returns>
+        public UserInvitationRespList GetAllAccountInvitations (string accountId, int? limit = null, string after = null, string order = null)
+        {
+             ApiResponse<UserInvitationRespList> localVarResponse = GetAllAccountInvitationsWithHttpInfo(accountId, limit, after, order);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get the details of all the user invitations. An endpoint for retrieving the details of all the active user invitations sent for new or existing users to join the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/{account-id}/user-invitations -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <returns>ApiResponse of UserInvitationRespList</returns>
+        public ApiResponse< UserInvitationRespList > GetAllAccountInvitationsWithHttpInfo (string accountId, int? limit = null, string after = null, string order = null)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AggregatorAccountAdminApi->GetAllAccountInvitations");
+
+            var localVarPath = "/v3/accounts/{account-id}/user-invitations";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (accountId != null) localVarPathParams.Add("account-id", Configuration.ApiClient.ParameterToString(accountId)); // path parameter
+            if (limit != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
+            if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
+            if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetAllAccountInvitations", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UserInvitationRespList>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UserInvitationRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInvitationRespList)));
+        }
+
+        /// <summary>
+        /// Get the details of all the user invitations. An endpoint for retrieving the details of all the active user invitations sent for new or existing users to join the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/{account-id}/user-invitations -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <returns>Task of UserInvitationRespList</returns>
+        public async System.Threading.Tasks.Task<UserInvitationRespList> GetAllAccountInvitationsAsync (string accountId, int? limit = null, string after = null, string order = null)
+        {
+             ApiResponse<UserInvitationRespList> localVarResponse = await GetAllAccountInvitationsAsyncWithHttpInfo(accountId, limit, after, order);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get the details of all the user invitations. An endpoint for retrieving the details of all the active user invitations sent for new or existing users to join the account.   **Example usage:** &#x60;curl https://api.us-east-1.mbedcloud.com/v3/accounts/{account-id}/user-invitations -H &#39;Authorization: Bearer API_KEY&#39;&#x60;
+        /// </summary>
+        /// <exception cref="iam.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="accountId">Account ID.</param>
+        /// <param name="limit">The number of results to return (2-1000), default is 50. (optional, default to 50)</param>
+        /// <param name="after">The entity ID to fetch after the given one. (optional)</param>
+        /// <param name="order">The order of the records based on creation time, ASC or DESC; by default ASC (optional, default to ASC)</param>
+        /// <returns>Task of ApiResponse (UserInvitationRespList)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<UserInvitationRespList>> GetAllAccountInvitationsAsyncWithHttpInfo (string accountId, int? limit = null, string after = null, string order = null)
+        {
+            // verify the required parameter 'accountId' is set
+            if (accountId == null)
+                throw new ApiException(400, "Missing required parameter 'accountId' when calling AggregatorAccountAdminApi->GetAllAccountInvitations");
+
+            var localVarPath = "/v3/accounts/{account-id}/user-invitations";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (accountId != null) localVarPathParams.Add("account-id", Configuration.ApiClient.ParameterToString(accountId)); // path parameter
+            if (limit != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "limit", limit)); // query parameter
+            if (after != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "after", after)); // query parameter
+            if (order != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "order", order)); // query parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetAllAccountInvitations", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<UserInvitationRespList>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (UserInvitationRespList) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UserInvitationRespList)));
         }
 
         /// <summary>

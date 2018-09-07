@@ -429,7 +429,7 @@ namespace iam.Client
         }
 
         /// <summary>
-        /// Add Api Key Header
+        /// Add Api Key Header.
         /// </summary>
         /// <param name="key">Api Key name.</param>
         /// <param name="value">Api Key value.</param>

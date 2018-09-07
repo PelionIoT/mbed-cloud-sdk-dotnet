@@ -26,7 +26,7 @@ using SwaggerDateConverter = iam.Client.SwaggerDateConverter;
 namespace iam.Model
 {
     /// <summary>
-    /// This object represents an API key in mbed Cloud.
+    /// This object represents an API key in Device Management.
     /// </summary>
     [DataContract]
     public partial class ApiKeyInfoResp :  IEquatable<ApiKeyInfoResp>, IValidatableObject

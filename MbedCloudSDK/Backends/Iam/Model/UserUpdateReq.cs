@@ -26,7 +26,7 @@ using SwaggerDateConverter = iam.Client.SwaggerDateConverter;
 namespace iam.Model
 {
     /// <summary>
-    /// This object represents a user in requests towards mbed Cloud.
+    /// This object represents a user in requests towards Device Management.
     /// </summary>
     [DataContract]
     public partial class UserUpdateReq :  IEquatable<UserUpdateReq>, IValidatableObject
