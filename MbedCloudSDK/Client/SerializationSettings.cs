@@ -33,5 +33,21 @@ namespace MbedCloudSDK.Client
 
             return settings;
         }
+
+        public static JsonSerializerSettings GetDefaultSettings()
+        {
+            var settings = new JsonSerializerSettings
+            {
+                DateTimeZoneHandling = DateTimeZoneHandling.Utc,
+                ContractResolver = new DefaultContractResolver
+                {
+                    NamingStrategy = new SnakeCaseNamingStrategy()
+                }
+            };
+
+            settings.Converters.Add(new StringEnumConverter());
+
+            return settings;
+        }
     }
 }

@@ -5,13 +5,16 @@ using System.Threading.Tasks;
 using MbedCloudSDK.Entities.SubtenantAccount;
 using MbedCloudSDK.Entities.User;
 using MbedCloudSDK.Common;
+using NUnit.Framework;
 
 namespace Snippets.src.Foundation
 {
+    [TestFixture]
     public class SubTenantExamples
     {
         private static Random random = new Random();
 
+        [Test]
         public async Task SubTenantFlow()
         {
             // an example: creating and managing a subtenant account
@@ -24,20 +27,28 @@ namespace Snippets.src.Foundation
                 AdminEmail = "dan@example.com",
             };
 
+            // when creating a new subtenant, this is the only opportunity to obtain
+            // the `admin_key` for that subtenant account
             await newSubtenant.Create();
 
+            // now log in as this subtenant using the `admin_key`
             var config = new Config(apiKey: newSubtenant.AdminKey);
 
+            // and add another user
             var user = await new User(config)
             {
                 FullName = "tommi the wombat",
-                Username = $"tommi_the_wombat_{randomString()}",
+                Username = $"tommi_{randomString()}",
                 PhoneNumber = "0800001066",
                 Email = $"tommi_{randomString()}@example.com",
             }.Create();
 
-            newSubtenant.List().ToList().ForEach(u => Console.WriteLine(u));
+            // back as the aggregator again ...
+            var users = newSubtenant.List();
+            users.ToList().ForEach(u => Console.WriteLine(u));
             // end of example
+
+            Assert.GreaterOrEqual(users.Count(), 2);
         }
 
         private string randomString(int length = 16)

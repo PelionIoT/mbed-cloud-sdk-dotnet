@@ -19,6 +19,106 @@ namespace MbedCloudSDK.Client
     {
         private static ExceptionFactory exceptionFactory;
 
+        public static async Task<T> CallApiEntity<T>(
+            string path,
+            Dictionary<string, object> pathParams = null,
+            Dictionary<string, object> queryParams = null,
+            Dictionary<string, object> headerParams = null,
+            Dictionary<string, Stream> fileParams = null,
+            Dictionary<string, object> formParams = null,
+            string[] contentTypes = null,
+            string[] accepts = null,
+            object body = null,
+            Method method = default,
+            Config config = null,
+            T objectToPopulate = default)
+        {
+            var populate = objectToPopulate != default;
+
+            Console.WriteLine(populate);
+
+            var result = await CallApi<T>(
+                path,
+                pathParams,
+                queryParams,
+                headerParams,
+                fileParams,
+                formParams,
+                contentTypes,
+                accepts,
+                body,
+                config ?? SDK.Config,
+                SerializationSettings.GetDefaultSettings(),
+                method,
+                objectToPopulate,
+                populate
+            );
+
+            return result;
+        }
+
+        public static async Task<string> CallApiString(
+            string path,
+            Dictionary<string, object> pathParams = null,
+            Dictionary<string, object> queryParams = null,
+            Dictionary<string, object> headerParams = null,
+            Dictionary<string, Stream> fileParams = null,
+            Dictionary<string, object> formParams = null,
+            string[] contentTypes = null,
+            string[] accepts = null,
+            object body = null,
+            Method method = default,
+            Config config = null)
+        {
+            var result = await CallApi<object>(
+                path,
+                pathParams,
+                queryParams,
+                headerParams,
+                fileParams,
+                formParams,
+                contentTypes,
+                accepts,
+                body,
+                config ?? SDK.Config,
+                SerializationSettings.GetDefaultSettings(),
+                method
+            );
+
+            return JsonConvert.SerializeObject(result);
+        }
+
+        public static async Task<dynamic> CallApiDynamic(
+            string path,
+            Dictionary<string, object> pathParams = null,
+            Dictionary<string, object> queryParams = null,
+            Dictionary<string, object> headerParams = null,
+            Dictionary<string, Stream> fileParams = null,
+            Dictionary<string, object> formParams = null,
+            string[] contentTypes = null,
+            string[] accepts = null,
+            object body = null,
+            Method method = default,
+            Config config = null)
+        {
+            var result = await CallApi<dynamic>(
+                path,
+                pathParams,
+                queryParams,
+                headerParams,
+                fileParams,
+                formParams,
+                contentTypes,
+                accepts,
+                body,
+                config ?? SDK.Config,
+                SerializationSettings.GetDefaultSettings(),
+                method
+            );
+
+            return result;
+        }
+
         /// <summary>
         /// Calls the API.
         /// </summary>
@@ -63,6 +163,16 @@ namespace MbedCloudSDK.Client
             var localVarFormParams = new Dictionary<string, string>();
             var localVarFileParams = new Dictionary<string, FileParameter>();
             object localVarPostBody = null;
+
+            if (contentTypes == null)
+            {
+                contentTypes = new string[] { "application/json" };
+            }
+
+            if (accepts == null)
+            {
+                accepts = new string[] { "application/json" };
+            }
 
             var localVarHttpContentType = ApiClient.SelectHeaderContentType(contentTypes ?? new string[] { });
 
