@@ -44,6 +44,16 @@ references:
           ignore:
           - /.*/
 
+  filter_branch_only_no_swagger: &filter_branch_only_no_swagger
+      filters:
+        branches:
+          ignore:
+          - master
+          - /swagger-codegen\//
+        tags:
+          ignore:
+          - /.*/
+
   tag_release_only: &tag_release_only
     filters:
       tags:
@@ -360,7 +370,7 @@ workflows:
   csharp_sdk_workflow:
     jobs:
       - assert_news:
-          <<: *filter_branch_only
+          <<: *filter_branch_only_no_swagger
       - cache_test_server_image:
           <<: *filter_ignore_release
       - docs:
@@ -377,7 +387,6 @@ workflows:
           requires:
           - cache_test_server_image
           - version_bump
-          - assert_news
           <<: *filter_ignore_release
       - integration_test_os2:
           requires:
