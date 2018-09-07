@@ -58,6 +58,10 @@ namespace Manhasset.Generator
             commonNamespace.GenerateRenameClass(renames);
             GeneratedNamespaces.Add(commonNamespace);
 
+            var globalEntityNamespace = new NamespaceContainer("Global", "SDK", entities, true);
+            globalEntityNamespace.GenerateSDKEntityClass();
+            GeneratedNamespaces.Add(globalEntityNamespace);
+
             GeneratedNamespaces.ForEach(n =>
             {
                 root = root.AddNamespace(n.GetClasses());

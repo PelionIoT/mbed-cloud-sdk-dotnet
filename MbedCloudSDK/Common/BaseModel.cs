@@ -12,13 +12,19 @@ namespace MbedCloudSDK.Common
     public abstract class BaseModel
     {
         [JsonIgnore]
-        private Config _config;
+        private Config config;
 
+        /// <summary>
+        /// Gets or sets the configuration.
+        /// </summary>
+        /// <value>
+        /// The configuration.
+        /// </value>
         [JsonIgnore]
         public Config Config
         {
-            get => _config ?? MbedCloudSDKClient.Config;
-            set => _config = value;
+            get => config ?? SDK.Config;
+            set => config = value;
         }
 
         /// <summary>

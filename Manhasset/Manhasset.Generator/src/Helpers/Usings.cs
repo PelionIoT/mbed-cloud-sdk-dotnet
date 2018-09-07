@@ -19,7 +19,7 @@ namespace Manhasset.Generator.src.Helpers
 
         public static string GetForeignKey(string group, string entity)
         {
-            return $"MbedCloudSDK.{group}.{entity}";
+            return $"MbedCloudSDK.Entities.{entity}";
         }
     }
 }

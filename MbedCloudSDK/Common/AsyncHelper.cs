@@ -1,3 +1,7 @@
+// <copyright file="AsyncHelper.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
 namespace MbedCloudSDK.Common
 {
     using System;

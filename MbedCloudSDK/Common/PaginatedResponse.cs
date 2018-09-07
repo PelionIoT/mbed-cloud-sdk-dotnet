@@ -54,11 +54,11 @@ namespace MbedCloudSDK.Common
             {
                 var pageSize = this.options.PageSize ?? this.options.Limit;
                 this.options.PageSize = pageSize;
-                pageLimit = (long)Math.Ceiling((double)this.options.MaxResults.Value / (pageSize.HasValue ? pageSize.Value : 1));
+                pageLimit = (long)Math.Ceiling((double)this.options.MaxResults.Value / (pageSize ?? 1));
             }
 
-            this.cache = new List<TData>();
-            this.cache.AddRange(page.Data);
+            cache = new List<TData>();
+            cache.AddRange(page.Data);
         }
 
         [JsonProperty]

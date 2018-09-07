@@ -21,15 +21,20 @@ namespace Manhasset.Generator.src.Compilers
         private JToken EntityJson;
         private NamespaceDeclarationSyntax parentNamespace;
 
-        public NamespaceContainer(string tagName, string entityName, JToken entityJson)
+        public NamespaceContainer(string tagName, string entityName, JToken entityJson, bool global = false)
         {
             this.tagName = tagName;
             EntityJson = entityJson;
             this.entityName = entityName;
-            namespaceName = $"MbedCloudSDK.{tagName}.{entityName}";
+            namespaceName = global ? "MbedCloudSDK" : tagName == "Common" ? $"MbedCloudSDK.Common.{entityName}" : $"MbedCloudSDK.Entities.{entityName}";
             parentNamespace = NamespaceGenerators.CreateNamespace(namespaceName);
             Classes = new List<ClassContainer>();
             Enums = new List<EnumContainer>();
+        }
+
+        public void GenerateSDKEntityClass()
+        {
+            Classes.Add(new ClassContainer(entityName, EntityJson).GenerateSDKEntityClass());
         }
 
         public void GenerateRenameClass(Dictionary<string, Dictionary<string, string>> renames)
@@ -115,7 +120,7 @@ namespace Manhasset.Generator.src.Compilers
             Classes.ForEach(c =>
             {
                 var localNamespace = CreateLocalNamespace(c);
-                var dir = $"{rootDirectory}/src/{namespaceName}/";
+                var dir = $"{rootDirectory}/src/{tagName}/{entityName}/";
                 Directory.CreateDirectory(dir);
                 using (var file = new StreamWriter($"{dir}/{c.ClassName}.cs"))
                 {
@@ -131,7 +136,7 @@ namespace Manhasset.Generator.src.Compilers
 
                 localNamespace = localNamespace.AddEnum(e.GeneratedEnum);
 
-                var dir = $"{rootDirectory}/src/{namespaceName}/";
+                var dir = $"{rootDirectory}/src/{tagName}/{entityName}/";
                 Directory.CreateDirectory(dir);
                 using (var file = new StreamWriter($"{dir}/{e.EnumName}.cs"))
                 {
