@@ -14,6 +14,12 @@ namespace MbedCloudSDK.Common
         [JsonIgnore]
         private Config config;
 
+        /// <summary>
+        /// Gets or sets the configuration.
+        /// </summary>
+        /// <value>
+        /// The configuration.
+        /// </value>
         [JsonIgnore]
         public Config Config
         {

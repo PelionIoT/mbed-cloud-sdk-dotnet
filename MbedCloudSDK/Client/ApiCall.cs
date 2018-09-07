@@ -19,19 +19,36 @@ namespace MbedCloudSDK.Client
     {
         private static ExceptionFactory exceptionFactory;
 
+        /// <summary>
+        /// Calls the API entity.
+        /// </summary>
+        /// <typeparam name="T">Type of entity</typeparam>
+        /// <param name="path">The path.</param>
+        /// <param name="pathParams">The path parameters.</param>
+        /// <param name="queryParams">The query parameters.</param>
+        /// <param name="headerParams">The header parameters.</param>
+        /// <param name="fileParams">The file parameters.</param>
+        /// <param name="formParams">The form parameters.</param>
+        /// <param name="contentTypes">The content types.</param>
+        /// <param name="accepts">The accepts.</param>
+        /// <param name="body">The body.</param>
+        /// <param name="method">The method.</param>
+        /// <param name="config">The configuration.</param>
+        /// <param name="objectToPopulate">The object to populate.</param>
+        /// <returns>The Entity</returns>
         public static async Task<T> CallApiEntity<T>(
-            string path,
-            Dictionary<string, object> pathParams = null,
-            Dictionary<string, object> queryParams = null,
-            Dictionary<string, object> headerParams = null,
-            Dictionary<string, Stream> fileParams = null,
-            Dictionary<string, object> formParams = null,
-            string[] contentTypes = null,
-            string[] accepts = null,
-            object body = null,
-            Method method = default,
-            Config config = null,
-            T objectToPopulate = default)
+                    string path,
+                    Dictionary<string, object> pathParams = null,
+                    Dictionary<string, object> queryParams = null,
+                    Dictionary<string, object> headerParams = null,
+                    Dictionary<string, Stream> fileParams = null,
+                    Dictionary<string, object> formParams = null,
+                    string[] contentTypes = null,
+                    string[] accepts = null,
+                    object body = null,
+                    Method method = default,
+                    Config config = null,
+                    T objectToPopulate = default)
         {
             var populate = objectToPopulate != default;
 
@@ -51,24 +68,38 @@ namespace MbedCloudSDK.Client
                 SerializationSettings.GetDefaultSettings(),
                 method,
                 objectToPopulate,
-                populate
-            );
+                populate).ConfigureAwait(false);
 
             return result;
         }
 
+        /// <summary>
+        /// Calls the API string.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <param name="pathParams">The path parameters.</param>
+        /// <param name="queryParams">The query parameters.</param>
+        /// <param name="headerParams">The header parameters.</param>
+        /// <param name="fileParams">The file parameters.</param>
+        /// <param name="formParams">The form parameters.</param>
+        /// <param name="contentTypes">The content types.</param>
+        /// <param name="accepts">The accepts.</param>
+        /// <param name="body">The body.</param>
+        /// <param name="method">The method.</param>
+        /// <param name="config">The configuration.</param>
+        /// <returns>string</returns>
         public static async Task<string> CallApiString(
-            string path,
-            Dictionary<string, object> pathParams = null,
-            Dictionary<string, object> queryParams = null,
-            Dictionary<string, object> headerParams = null,
-            Dictionary<string, Stream> fileParams = null,
-            Dictionary<string, object> formParams = null,
-            string[] contentTypes = null,
-            string[] accepts = null,
-            object body = null,
-            Method method = default,
-            Config config = null)
+                    string path,
+                    Dictionary<string, object> pathParams = null,
+                    Dictionary<string, object> queryParams = null,
+                    Dictionary<string, object> headerParams = null,
+                    Dictionary<string, Stream> fileParams = null,
+                    Dictionary<string, object> formParams = null,
+                    string[] contentTypes = null,
+                    string[] accepts = null,
+                    object body = null,
+                    Method method = default,
+                    Config config = null)
         {
             var result = await CallApi<object>(
                 path,
@@ -82,24 +113,38 @@ namespace MbedCloudSDK.Client
                 body,
                 config ?? SDK.Config,
                 SerializationSettings.GetDefaultSettings(),
-                method
-            );
+                method).ConfigureAwait(false);
 
             return JsonConvert.SerializeObject(result);
         }
 
+        /// <summary>
+        /// Calls the API dynamic.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <param name="pathParams">The path parameters.</param>
+        /// <param name="queryParams">The query parameters.</param>
+        /// <param name="headerParams">The header parameters.</param>
+        /// <param name="fileParams">The file parameters.</param>
+        /// <param name="formParams">The form parameters.</param>
+        /// <param name="contentTypes">The content types.</param>
+        /// <param name="accepts">The accepts.</param>
+        /// <param name="body">The body.</param>
+        /// <param name="method">The method.</param>
+        /// <param name="config">The configuration.</param>
+        /// <returns>dynamic</returns>
         public static async Task<dynamic> CallApiDynamic(
-            string path,
-            Dictionary<string, object> pathParams = null,
-            Dictionary<string, object> queryParams = null,
-            Dictionary<string, object> headerParams = null,
-            Dictionary<string, Stream> fileParams = null,
-            Dictionary<string, object> formParams = null,
-            string[] contentTypes = null,
-            string[] accepts = null,
-            object body = null,
-            Method method = default,
-            Config config = null)
+                    string path,
+                    Dictionary<string, object> pathParams = null,
+                    Dictionary<string, object> queryParams = null,
+                    Dictionary<string, object> headerParams = null,
+                    Dictionary<string, Stream> fileParams = null,
+                    Dictionary<string, object> formParams = null,
+                    string[] contentTypes = null,
+                    string[] accepts = null,
+                    object body = null,
+                    Method method = default,
+                    Config config = null)
         {
             var result = await CallApi<dynamic>(
                 path,
@@ -113,8 +158,7 @@ namespace MbedCloudSDK.Client
                 body,
                 config ?? SDK.Config,
                 SerializationSettings.GetDefaultSettings(),
-                method
-            );
+                method).ConfigureAwait(false);
 
             return result;
         }

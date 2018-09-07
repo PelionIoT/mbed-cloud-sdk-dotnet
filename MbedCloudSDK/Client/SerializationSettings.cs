@@ -34,6 +34,10 @@ namespace MbedCloudSDK.Client
             return settings;
         }
 
+        /// <summary>
+        /// Gets the default settings.
+        /// </summary>
+        /// <returns>Default settings</returns>
         public static JsonSerializerSettings GetDefaultSettings()
         {
             var settings = new JsonSerializerSettings
