@@ -58,7 +58,7 @@ references:
     filters:
       tags:
         only:
-        - /[0-9]+\.[0-9]+.*/
+        - /[0-9]+\.[0-9]+.[0-9]+\.*/
       branches:
         ignore:
         - /.*/
@@ -339,7 +339,7 @@ jobs:
       - run:
           command: |
                   . venv/bin/activate
-                  auto_version --config=scripts/version.toml --bump=patch --news
+                  auto_version --config=scripts/version.toml --bump=patch --news --release
           name: bump the version for a dev release
       - run:
           command: mkdir -p ~/repo/project
@@ -420,7 +420,7 @@ jobs:
       - run:
           command: |
                   . venv/bin/activate
-                  auto_version --config=scripts/version_beta.toml --bump=patch --news --release
+                  auto_version --config=scripts/version_beta.toml --bump=patch --news
           name: bump the version for a production release
       - run: python ./scripts/tag_and_release.py news_beta $(python ./scripts/dvcs_version.py version)
   version_bump_beta:
@@ -436,7 +436,7 @@ jobs:
       - run:
           command: |
                   . venv/bin/activate
-                  auto_version --config=scripts/version_beta.toml --bump=patch --news --release
+                  auto_version --config=scripts/version_beta.toml --bump=patch --news
           name: bump the version for a dev release
       - run:
           command: mkdir -p ~/repo/project
