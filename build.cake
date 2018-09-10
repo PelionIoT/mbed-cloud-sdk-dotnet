@@ -205,17 +205,17 @@ Task("_publish")
         var nugetApiKey = Argument("nuget_api_key", EnvironmentVariable("NUGET_KEY"));
         var source = Argument("nuget_source", "https://api.nuget.org/v3/index.json");
         var packages = GetFiles("./MbedCloudSDK/bin/Release/*.nupkg");
-        foreach(var file in packages)
-        {
-            Information(file);
-            Information(nugetApiKey);
-            Information(source);
-            NuGetPush(file, new NuGetPushSettings
-            {
-                ApiKey = nugetApiKey,
-                Source = source,
-            });
-        }
+        // foreach(var file in packages)
+        // {
+        //     Information(file);
+        //     Information(nugetApiKey);
+        //     Information(source);
+        //     NuGetPush(file, new NuGetPushSettings
+        //     {
+        //         ApiKey = nugetApiKey,
+        //         Source = source,
+        //     });
+        // }
     });
 
 Task("_clean_generation")
