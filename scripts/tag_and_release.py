@@ -42,6 +42,12 @@ def tag(version):
     subprocess.check_call(['git', 'tag', '-f', 'latest'])
     subprocess.check_call(['git', 'push', '-f', 'origin', '--tags'])
 
+def tag_beta(version):
+    #tag with supplied version
+    subprocess.check_call(['git', 'tag', '-a', version, '-m', 'release %s' % version])
+    subprocess.check_call(['git', 'tag', '-f', 'beta'])
+    subprocess.check_call(['git', 'push', '-f', 'origin', '--tags'])
+
 def news():
     #commit news files
     subprocess.check_call(['git', 'add', 'CHANGELOG.md'])
@@ -66,6 +72,9 @@ def slack(version):
 if __name__ == '__main__':
     if len(sys.argv) >= 1:
         if sys.argv[1] == 'tag':
+            setup_git()
+            tag(sys.argv[2])
+        if sys.argv[1] == 'beta':
             setup_git()
             tag(sys.argv[2])
         if sys.argv[1] == 'news':
