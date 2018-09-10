@@ -39,7 +39,7 @@ references:
       filters:
         branches:
           only:
-          - beta-release-flow
+          - f/beta-release-flow
         tags:
           ignore:
           - /.*/
