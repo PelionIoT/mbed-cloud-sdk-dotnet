@@ -44,7 +44,7 @@ def setup_git_beta(tag=None):
     new_url = git_url_ssh_to_https(url.decode())
     subprocess.check_call(['git', 'remote', 'set-url', 'origin', new_url])
     branch = os.getenv('CIRCLE_BRANCH')
-    if branch == '': branch = 'f/beta-release-flow'
+    if branch == '': branch = 'beta'
     branch_spec = 'origin/%s' % branch
     print(branch_spec)
     # On a tag build the HEAD is deteched, so checkout beta
@@ -81,16 +81,15 @@ def news_beta():
     subprocess.check_call(['git', 'push', 'origin'])
 
 def slack(version):
-    print("hello")
-    # posting message to slack
-    # body = {"text": ":checkered_flag: New version of :c-sharp: SDK released: {}".format(version)}
-    # myurl = "https://hooks.slack.com/services/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"
-    # req = urllib.request.Request(myurl)
-    # req.add_header('Content-Type', 'application/json; charset=utf-8')
-    # jsondata = json.dumps(body)
-    # jsondataasbytes = jsondata.encode('utf-8')   # needs to be bytes
-    # req.add_header('Content-Length', len(jsondataasbytes))
-    # response = urllib.request.urlopen(req, jsondataasbytes)
+    posting message to slack
+    body = {"text": ":checkered_flag: New version of :c-sharp: SDK released: {}".format(version)}
+    myurl = "https://hooks.slack.com/services/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"
+    req = urllib.request.Request(myurl)
+    req.add_header('Content-Type', 'application/json; charset=utf-8')
+    jsondata = json.dumps(body)
+    jsondataasbytes = jsondata.encode('utf-8')   # needs to be bytes
+    req.add_header('Content-Length', len(jsondataasbytes))
+    response = urllib.request.urlopen(req, jsondataasbytes)
 
 
 if __name__ == '__main__':
