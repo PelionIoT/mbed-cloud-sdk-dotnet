@@ -49,7 +49,7 @@ def setup_git_beta(tag=None):
     print(branch_spec)
     # On a tag build the HEAD is deteched, so checkout beta
     if tag:
-        subprocess.check_call(['git', 'checkout', 'beta'])
+        subprocess.check_call(['git', 'checkout', 'origin/beta'])
     subprocess.check_call(['git', 'branch', '--set-upstream-to', branch_spec])
 
 def tag(version):
