@@ -81,7 +81,7 @@ def news_beta():
     subprocess.check_call(['git', 'push', 'origin'])
 
 def slack(version):
-    posting message to slack
+    #posting message to slack
     body = {"text": ":checkered_flag: New version of :c-sharp: SDK released: {}".format(version)}
     myurl = "https://hooks.slack.com/services/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"
     req = urllib.request.Request(myurl)
