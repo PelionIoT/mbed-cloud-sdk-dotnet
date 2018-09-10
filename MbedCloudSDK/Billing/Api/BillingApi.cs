@@ -8,7 +8,6 @@ namespace MbedCloudSDK.Billing.Api
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using System.Text;
     using AutoMapper;
     using billing.Api;
     using billing.Model;
@@ -133,12 +132,21 @@ namespace MbedCloudSDK.Billing.Api
             using (var writer = File.OpenWrite(filepath))
             {
                 var client = new RestClient(baseUrl);
-                var request = new RestRequest(report.Url.Replace(baseUrl, string.Empty));
-                request.ResponseWriter = (responseStream) => responseStream.CopyTo(writer);
+                var request = new RestRequest(report.Url.Replace(baseUrl, string.Empty))
+                {
+                    ResponseWriter = (responseStream) => responseStream.CopyTo(writer)
+                };
                 var response = client.Execute(request);
             }
         }
 
+        /// <summary>
+        /// Gets the report active devices.
+        /// </summary>
+        /// <param name="month">The month.</param>
+        /// <param name="filepath">The filepath.</param>
+        /// <returns>report filepath</returns>
+        /// <exception cref="CloudApiException">exception</exception>
         public string GetReportActiveDevices(DateTime month, string filepath)
         {
             try
@@ -153,6 +161,13 @@ namespace MbedCloudSDK.Billing.Api
             }
         }
 
+        /// <summary>
+        /// Gets the report firmware updates.
+        /// </summary>
+        /// <param name="month">The month.</param>
+        /// <param name="filepath">The filepath.</param>
+        /// <returns>filepath</returns>
+        /// <exception cref="CloudApiException">exception</exception>
         public string GetReportFirmwareUpdates(DateTime month, string filepath)
         {
             try

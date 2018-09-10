@@ -44,11 +44,30 @@ references:
           ignore:
           - /.*/
 
+  filter_branch_only_no_swagger: &filter_branch_only_no_swagger
+      filters:
+        branches:
+          ignore:
+          - master
+          - /swagger-codegen\//
+        tags:
+          ignore:
+          - /.*/
+
   tag_release_only: &tag_release_only
     filters:
       tags:
         only:
-        - /[0-9]+\.[0-9]+.*/
+        - /[0-9]+\.[0-9]+.[0-9]+\.*/
+      branches:
+        ignore:
+        - /.*/
+
+  tag_beta_only: &tag_beta_only
+    filters:
+      tags:
+        only:
+        - /latest-beta.*/
       branches:
         ignore:
         - /.*/
@@ -135,7 +154,7 @@ jobs:
          command: |
                  python -m venv venv
                  . venv/bin/activate
-                 pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@features/v2#subdirectory=scripts/auto_version/&egg=auto_version"
+                 pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@master#subdirectory=scripts/auto_version/&egg=auto_version"
                  pip install awscli
          name: install auto_version
       - setup_remote_docker
@@ -190,13 +209,13 @@ jobs:
       - run:
          command: cd project && ./build.sh --target=_run_unit_tests
          name: run the unit tests
-      - persist_to_workspace:
-         root: ~/project
-         paths:
-           - project/Tests/MbedCloudSDK.UnitTests/coverage.opencover.xml
-      - store_artifacts:
-         path: ~/project/project/Tests/MbedCloudSDK.UnitTests/coverage.opencover.xml
-         destination: unittest-coverage
+      # - persist_to_workspace:
+      #    root: ~/project
+      #    paths:
+      #      - project/Tests/MbedCloudSDK.UnitTests/coverage.opencover.xml
+      # - store_artifacts:
+      #    path: ~/project/project/Tests/MbedCloudSDK.UnitTests/coverage.opencover.xml
+      #    destination: unittest-coverage
   unit_test_coverage:
     docker:
       - image: circleci/node:10-browsers
@@ -280,14 +299,30 @@ jobs:
          command: |
                  python -m venv venv
                  . venv/bin/activate
-                 pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@features/v2#subdirectory=scripts/auto_version/&egg=auto_version"
+                 pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@master#subdirectory=scripts/auto_version/&egg=auto_version"
          name: install auto_version
       - run:
          command: |
                  . venv/bin/activate
-                 auto_version --config=scripts/version.toml --bump=patch --news
+                 auto_version --config=scripts/version.toml --bump=patch --news --release
          name: bump the version for a dev release
       - run: python ./scripts/tag_and_release.py tag $(python ./scripts/dvcs_version.py version)
+  git_tag_release_beta:
+    <<: *circle_python
+    steps:
+      - checkout
+      - run:
+         command: |
+                 python -m venv venv
+                 . venv/bin/activate
+                 pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@master#subdirectory=scripts/auto_version/&egg=auto_version"
+         name: install auto_version
+      - run:
+         command: |
+                 . venv/bin/activate
+                 auto_version --config=scripts/version_beta.toml
+         name: bump the version for a dev release
+      - run: python ./scripts/tag_and_release.py beta $(python ./scripts/dvcs_version.py version)
   #############################################################################################
   #                                Release Jobs                                               #
   #############################################################################################
@@ -299,12 +334,12 @@ jobs:
           command: |
                   python -m venv venv
                   . venv/bin/activate
-                  pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@features/v2#subdirectory=scripts/auto_version/&egg=auto_version"
+                  pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@master#subdirectory=scripts/auto_version/&egg=auto_version"
           name: install auto_version
       - run:
           command: |
                   . venv/bin/activate
-                  auto_version --config=scripts/version.toml --bump=patch --news
+                  auto_version --config=scripts/version.toml --bump=patch --news --release
           name: bump the version for a dev release
       - run:
           command: mkdir -p ~/repo/project
@@ -322,9 +357,9 @@ jobs:
     <<: *dotnet_mono_docker
     steps:
       - <<: *attach_workspace
-      #- run:
-      #    command: cd project && ./build.sh --target=Build-Pack-Publish
-      #    name: build, pack and publish nuget package
+      - run:
+         command: cd project && ./build.sh --target=Build-Pack-Publish
+         name: build, pack and publish nuget package
   commit_news_and_version:
     <<: *circle_python
     environment:
@@ -335,7 +370,7 @@ jobs:
           python -m venv venv
           . venv/bin/activate
           pip install towncrier
-          pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@features/v2#subdirectory=scripts/auto_version/&egg=auto_version"
+          pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@master#subdirectory=scripts/auto_version/&egg=auto_version"
           pip install awscli
       - setup_remote_docker
       - run: |
@@ -355,12 +390,72 @@ jobs:
                   auto_version --config=scripts/version.toml --bump=patch --news --release
           name: bump the version for a production release
       - run: python ./scripts/tag_and_release.py news $(python ./scripts/dvcs_version.py version)
+  #############################################################################################
+  #                                Beta Release Jobs                                          #
+  #############################################################################################
+  commit_news_and_version_beta:
+    <<: *circle_python
+    environment:
+      <<: *sdk_environment
+    steps:
+      - checkout
+      - run: |
+          python -m venv venv
+          . venv/bin/activate
+          pip install towncrier
+          pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@master#subdirectory=scripts/auto_version/&egg=auto_version"
+          pip install awscli
+      - setup_remote_docker
+      - run: |
+             . venv/bin/activate
+             login="$(aws ecr get-login --no-include-email)"
+             ${login}
+      - run: docker pull ${TESTRUNNER_DOCKER_IMAGE}
+      - run: echo $(docker run ${TESTRUNNER_DOCKER_IMAGE} python -m trunner --version)
+      - run:
+          command: |
+                  . venv/bin/activate
+                  cd docs/news && towncrier --yes --name="" --version=$(python ../../scripts/dvcs_version.py version)
+          name: run towncrier to generate news file
+      - run:
+          command: |
+                  . venv/bin/activate
+                  auto_version --config=scripts/version_beta.toml
+          name: bump the version for a production release
+      - run: python ./scripts/tag_and_release.py news_beta $(python ./scripts/dvcs_version.py version)
+  version_bump_beta:
+    <<: *circle_python
+    steps:
+      - checkout
+      - run:
+          command: |
+                  python -m venv venv
+                  . venv/bin/activate
+                  pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@master#subdirectory=scripts/auto_version/&egg=auto_version"
+          name: install auto_version
+      - run:
+          command: |
+                  . venv/bin/activate
+                  auto_version --config=scripts/version_beta.toml
+          name: bump the version for a dev release
+      - run:
+          command: mkdir -p ~/repo/project
+          name: make a directory for the project
+      - run:
+          command: cp -R ~/project ~/repo/
+          name: copy the checked out project into the repo folder.
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - project/MbedCloudSDK
+            - project/build.cake
+            - project/build.sh
 version: 2
 workflows:
   csharp_sdk_workflow:
     jobs:
       - assert_news:
-          <<: *filter_branch_only
+          <<: *filter_branch_only_no_swagger
       - cache_test_server_image:
           <<: *filter_ignore_release
       - docs:
@@ -377,7 +472,6 @@ workflows:
           requires:
           - cache_test_server_image
           - version_bump
-          - assert_news
           <<: *filter_ignore_release
       - integration_test_os2:
           requires:
@@ -406,10 +500,20 @@ workflows:
           - integration_test_production
           type: approval
           <<: *filter_master_only_build
+      - release_beta:
+          requires:
+          - unit_test
+          - integration_test_production
+          type: approval
+          <<: *filter_ignore_release
       - git_tag_release:
           requires:
           - release_to_nuget
           <<: *filter_master_only_build
+      - git_tag_release_beta:
+          requires:
+          - release_beta
+          <<: *filter_ignore_release
   csharp_sdk_workflow_release:
     jobs:
       - version_bump_release:
@@ -422,4 +526,16 @@ workflows:
           requires:
           - version_bump_release
           <<: *tag_release_only
+  csharp_sdk_workflow_beta:
+    jobs:
+      - version_bump_beta:
+          <<: *tag_beta_only
+      - build_pack_deploy:
+          requires:
+          - version_bump_beta
+          <<: *tag_beta_only
+      - commit_news_and_version_beta:
+          requires:
+          - version_bump_beta
+          <<: *tag_beta_only
   version: 2

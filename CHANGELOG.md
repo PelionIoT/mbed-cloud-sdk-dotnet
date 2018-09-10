@@ -16,9 +16,11 @@ a list of versions that have been released.
 
 ### Features
 
-- circle 2 (#1111)
+- circle 2 (#373)
 
 - Configuration can now be set using a .env file (#927)
+
+- Support for phase two billing endpoints (#1398)
 
 
 1.2.12 (2018-07-06)

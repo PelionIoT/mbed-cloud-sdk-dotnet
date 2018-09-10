@@ -7,6 +7,7 @@ namespace MbedCloudSDK.Common
     using System;
     using System.Net;
     using MbedCloudSDK.Exceptions;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Config for MbedCloud
@@ -71,38 +72,32 @@ namespace MbedCloudSDK.Common
             }
             catch (System.IO.FileNotFoundException)
             {
-                Console.WriteLine("No .env file found.");
+                Console.WriteLine("No .env file provided.");
             }
             finally
             {
                 ApiKey = apiKey ?? DotNetEnv.Env.GetString(API_KEY, Environment.GetEnvironmentVariable(API_KEY));
                 if (string.IsNullOrEmpty(ApiKey))
                 {
-                    throw new ConfigurationException("No Api Key provided!");
+                    ApiKey = "default";
                 }
 
                 Host = host ?? DotNetEnv.Env.GetString(HOST, Environment.GetEnvironmentVariable(HOST) ?? "https://api.us-east-1.mbedcloud.com");
                 ForceClear = forceClear;
                 AutostartNotifications = autostartNotifications;
+
+                var clientConfig = new Client.Configuration
+                {
+                    BasePath = Host,
+                    DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ",
+                };
+                clientConfig.AddApiKey("Authorization", ApiKey);
+                clientConfig.AddApiKeyPrefix("Authorization", AuthorizationPrefix);
+                clientConfig.CreateApiClient();
+
+                Configuration = clientConfig;
             }
         }
-
-        /// <summary>
-        /// Gets or sets the host.
-        /// </summary>
-        /// <value>The host.</value>
-        public string Host { get; }
-
-        /// <summary>
-        /// Gets a value indicating whether to clear any existing notification channels
-        /// </summary>
-        /// <value>If true, notifications will start automaticaly</value>
-        public bool ForceClear { get; }
-
-        /// <summary>
-        /// Gets a value indicating whether to auto start notifications
-        /// </summary>
-        public bool AutostartNotifications { get; }
 
         /// <summary>
         /// Gets the API key.
@@ -115,5 +110,31 @@ namespace MbedCloudSDK.Common
         /// </summary>
         /// <value>The authorization prefix.</value>
         public string AuthorizationPrefix { get; } = "Bearer";
+
+        /// <summary>
+        /// Gets a value indicating whether to auto start notifications
+        /// </summary>
+        public bool AutostartNotifications { get; }
+
+        /// <summary>
+        /// Gets the configuration.
+        /// </summary>
+        /// <value>
+        /// The configuration.
+        /// </value>
+        [JsonIgnore]
+        public Client.Configuration Configuration { get; internal set; }
+
+        /// <summary>
+        /// Gets a value indicating whether to clear any existing notification channels
+        /// </summary>
+        /// <value>If true, notifications will start automaticaly</value>
+        public bool ForceClear { get; }
+
+        /// <summary>
+        /// Gets the host.
+        /// </summary>
+        /// <value>The host.</value>
+        public string Host { get; }
     }
 }
