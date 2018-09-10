@@ -36,6 +36,22 @@ def setup_git(tag=None):
         subprocess.check_call(['git', 'checkout', 'master'])
     subprocess.check_call(['git', 'branch', '--set-upstream-to', branch_spec])
 
+
+def setup_git_beta(tag=None):
+    #setup git to use GITHUB_TOKEN
+    #url = subprocess.check_output(['git', 'remote', 'get-url', 'origin'])
+    url = subprocess.check_output(['git', 'ls-remote', '--get-url', 'origin'])
+    new_url = git_url_ssh_to_https(url.decode())
+    subprocess.check_call(['git', 'remote', 'set-url', 'origin', new_url])
+    branch = os.getenv('CIRCLE_BRANCH')
+    if branch == '': branch = 'beta'
+    branch_spec = 'origin/%s' % branch
+    print(branch_spec)
+    # On a tag build the HEAD is deteched, so checkout beta
+    if tag:
+        subprocess.check_call(['git', 'checkout', 'beta'])
+    subprocess.check_call(['git', 'branch', '--set-upstream-to', branch_spec])
+
 def tag(version):
     #tag with supplied version
     subprocess.check_call(['git', 'tag', '-a', version, '-m', 'release %s' % version])
@@ -65,8 +81,8 @@ def news_beta():
     subprocess.check_call(['git', 'push', 'origin'])
 
 def slack(version):
-    # posting message to slack
-    body = {"text": ":its-coming-home: :checkered_flag: New version of :c-sharp: SDK released: {} :its-coming-home:".format(version)}
+    posting message to slack
+    body = {"text": ":checkered_flag: New version of :c-sharp: SDK released: {}".format(version)}
     myurl = "https://hooks.slack.com/services/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"
     req = urllib.request.Request(myurl)
     req.add_header('Content-Type', 'application/json; charset=utf-8')
@@ -89,6 +105,6 @@ if __name__ == '__main__':
             news()
             slack(sys.argv[2])
         if sys.argv[1] == 'news_beta':
-            setup_git(True)
+            setup_git_beta(True)
             news_beta()
             slack(sys.argv[2])
