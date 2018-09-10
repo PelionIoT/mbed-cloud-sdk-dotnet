@@ -61,7 +61,7 @@ def tag(version):
 def tag_beta(version):
     #tag with supplied version
     subprocess.check_call(['git', 'tag', '-a', version, '-m', 'release %s' % version])
-    subprocess.check_call(['git', 'tag', '-f', 'beta'])
+    subprocess.check_call(['git', 'tag', '-f', 'latest-beta'])
     subprocess.check_call(['git', 'push', '-f', 'origin', '--tags'])
 
 def news():
