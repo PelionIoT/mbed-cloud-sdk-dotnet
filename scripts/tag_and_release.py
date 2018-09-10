@@ -57,6 +57,13 @@ def news():
     subprocess.check_call(['git', 'commit', '-m', "Hear yea, hear yea. News O'Clock. [skip ci]"])
     subprocess.check_call(['git', 'push', 'origin'])
 
+def news_beta():
+    #commit news files
+    subprocess.check_call(['git', 'add', 'MbedCloudSDK/Common'])
+    subprocess.check_call(['git', 'add', 'MbedCloudSDK/MbedCloudSDK.csproj'])
+    subprocess.check_call(['git', 'commit', '-m', ":checkered_flag: beta [skip ci]"])
+    subprocess.check_call(['git', 'push', 'origin'])
+
 def slack(version):
     # posting message to slack
     body = {"text": ":its-coming-home: :checkered_flag: New version of :c-sharp: SDK released: {} :its-coming-home:".format(version)}
@@ -76,8 +83,12 @@ if __name__ == '__main__':
             tag(sys.argv[2])
         if sys.argv[1] == 'beta':
             setup_git()
-            tag(sys.argv[2])
+            tag_beta(sys.argv[2])
         if sys.argv[1] == 'news':
             setup_git(True)
             news()
+            slack(sys.argv[2])
+        if sys.argv[1] == 'news_beta':
+            setup_git(True)
+            news_beta()
             slack(sys.argv[2])

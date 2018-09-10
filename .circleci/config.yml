@@ -422,7 +422,7 @@ jobs:
                   . venv/bin/activate
                   auto_version --config=scripts/version_beta.toml --bump=patch --news --release
           name: bump the version for a production release
-      - run: python ./scripts/tag_and_release.py news $(python ./scripts/dvcs_version.py version)
+      - run: python ./scripts/tag_and_release.py news_beta $(python ./scripts/dvcs_version.py version)
   version_bump_beta:
     <<: *circle_python
     steps:
