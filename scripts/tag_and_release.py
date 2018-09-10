@@ -36,6 +36,7 @@ def setup_git(tag=None):
         subprocess.check_call(['git', 'checkout', 'master'])
     subprocess.check_call(['git', 'branch', '--set-upstream-to', branch_spec])
 
+
 def setup_git_beta(tag=None):
     #setup git to use GITHUB_TOKEN
     #url = subprocess.check_output(['git', 'remote', 'get-url', 'origin'])
@@ -80,6 +81,7 @@ def news_beta():
     subprocess.check_call(['git', 'push', 'origin'])
 
 def slack(version):
+    print("hello")
     # posting message to slack
     # body = {"text": ":checkered_flag: New version of :c-sharp: SDK released: {}".format(version)}
     # myurl = "https://hooks.slack.com/services/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"
