@@ -35,6 +35,15 @@ references:
           ignore:
           - /.*/
 
+  filter_beta_only_build: &filter_beta_only_build
+      filters:
+        branches:
+          only:
+          - beta-release-flow
+        tags:
+          ignore:
+          - /.*/
+
   filter_branch_only: &filter_branch_only
       filters:
         branches:
@@ -508,7 +517,7 @@ workflows:
           # - integration_test_production
           - build
           type: approval
-          <<: *filter_ignore_release
+          <<: *filter_beta_only_build
       - git_tag_release:
           requires:
           - release_to_nuget
@@ -516,7 +525,7 @@ workflows:
       - git_tag_release_beta:
           requires:
           - release_beta
-          <<: *filter_ignore_release
+          <<: *filter_beta_only_build
   csharp_sdk_workflow_release:
     jobs:
       - version_bump_release:
