@@ -11,22 +11,6 @@ a list of versions that have been released.
 
 [//]: # (begin_release_notes)
 
-2.0.0 (2018-09-10)
-==================
-
-### Improved Documentation
-
-- Add examples for unified documentation (#1234)
-
-
-2.1.0-beta (2018-08-30)
-=======================
-
-### Features
-
-- Adds support for aggregator accounts (#1605)
-
-
 2.0.0 (2018-08-06)
 ==================
 
