@@ -66,7 +66,7 @@ def news_beta():
 
 def slack(version):
     # posting message to slack
-    body = {"text": ":its-coming-home: :checkered_flag: New version of :c-sharp: SDK released: {} :its-coming-home:".format(version)}
+    body = {"text": ":checkered_flag: New version of :c-sharp: SDK released: {}".format(version)}
     myurl = "https://hooks.slack.com/services/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"
     req = urllib.request.Request(myurl)
     req.add_header('Content-Type', 'application/json; charset=utf-8')

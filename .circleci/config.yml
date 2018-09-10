@@ -546,7 +546,7 @@ workflows:
           requires:
           - version_bump_beta
           <<: *tag_beta_only
-      - commit_news_and_version:
+      - commit_news_and_version_beta:
           requires:
           - version_bump_beta
           <<: *tag_beta_only
