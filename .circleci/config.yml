@@ -76,7 +76,7 @@ references:
     filters:
       tags:
         only:
-        - /beta.*/
+        - /latest-beta.*/
       branches:
         ignore:
         - /.*/
