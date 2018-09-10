@@ -17,7 +17,7 @@ namespace MbedCloudSDK.Common
         /// <summary>
         /// The version
         /// </summary>
-        public const string VersionValue = "2.0.0";  // auto
+        public const string VersionValue = "2.0.0-beta765";  // auto
 
         /// <summary>
         /// The testrunner version
