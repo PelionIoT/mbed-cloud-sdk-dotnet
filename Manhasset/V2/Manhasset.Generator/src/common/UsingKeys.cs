@@ -3,9 +3,11 @@ namespace Manhasset.Generator.src.common
     public static class UsingKeys
     {
         public static readonly string SYSTEM = "System";
-        public static readonly string LISTS = "System.Collections.Generic";
+        public static readonly string GENERIC_COLLECTIONS = "System.Collections.Generic";
 
-        public static readonly string CUSTOM_FUNCTIONS = "MbedCloud.SDK.Common";
+        public static readonly string SDK_COMMON = "MbedCloud.SDK.Common";
+
+        public static readonly string OLD_SDK_COMMON = "MbedCloudSDK.Common";
 
         public static string ForeignKey(string entity)
         {

@@ -38,7 +38,7 @@ namespace Manhasset.Core.src.Compile
             {
                 var formattedResult = Formatter.Format(anEnum.Value.GetSyntaxWithNamespace(), workspace, workspace.Options);
 
-                Console.WriteLine(formattedResult.ToFullString());
+                // Console.WriteLine(formattedResult.ToFullString());
 
                 AddDocumentToWorkspace(workspace, projectId, anEnum.Value.Name, formattedResult);
             }
@@ -47,7 +47,7 @@ namespace Manhasset.Core.src.Compile
             {
                 var formattedResult = Formatter.Format(aClass.Value.GetSyntaxWithNamespace(), workspace, workspace.Options);
 
-                Console.WriteLine(formattedResult.ToFullString());
+                // Console.WriteLine(formattedResult.ToFullString());
 
                 AddDocumentToWorkspace(workspace, projectId, aClass.Value.Name, formattedResult);
             }
@@ -170,7 +170,7 @@ namespace Manhasset.Core.src.Compile
         private int ReviewDiagnosticMessages(Microsoft.CodeAnalysis.Compilation compiler)
         {
             var results = compiler.GetDiagnostics();
-            Console.WriteLine(results.Count());
+            // Console.WriteLine(results.Count());
             foreach (var item in results)
             {
                 // Console.WriteLine(item.Location.SourceTree.GetRoot().ToFullString());

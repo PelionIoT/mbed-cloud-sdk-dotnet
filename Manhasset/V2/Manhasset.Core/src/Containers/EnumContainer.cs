@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Manhasset.Core.src.Generators;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -37,6 +38,8 @@ namespace Manhasset.Core.src.Containers
             var enumSyntax = GetSyntax();
 
             var namespaceSyntax = SyntaxFactory.NamespaceDeclaration(SyntaxFactory.ParseName(Namespace));
+
+            namespaceSyntax = namespaceSyntax.AddFileHeader(Name, "Arm");
 
             namespaceSyntax = namespaceSyntax.AddMembers(enumSyntax);
 

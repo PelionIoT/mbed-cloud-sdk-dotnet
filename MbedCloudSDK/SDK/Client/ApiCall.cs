@@ -8,7 +8,7 @@ namespace MbedCloud.SDK.Client
     using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
-    using MbedCloudSDK.Common;
+    using MbedCloud.SDK.Common;
     using Newtonsoft.Json;
     using RestSharp;
 

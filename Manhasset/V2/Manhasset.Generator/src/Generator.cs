@@ -67,17 +67,49 @@ namespace Manhasset.Generator.src
                 // name
                 entityClass.Name = entity["_key"].GetStringValue().ToPascal();
 
+                // base type
+                entityClass.AddBaseType("BASE_MODEL", "BaseModel");
+                entityClass.AddUsing(nameof(UsingKeys.SDK_COMMON), UsingKeys.SDK_COMMON);
+
+                // default constructor
+                var defaultConstructor = new ConstructorContainer
+                {
+                    Name = entityClass.Name
+                };
+                defaultConstructor.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
+                entityClass.AddConstructor("DEFAULT", defaultConstructor);
+
+                //config constructor
+                var configConstructor = new ConfigConstructorContainer
+                {
+                    Name = entityClass.Name
+                };
+                configConstructor.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
+                entityClass.AddConstructor("CONFIG", configConstructor);
+                entityClass.AddUsing(nameof(UsingKeys.SDK_COMMON), UsingKeys.SDK_COMMON);
+
                 // doc (just use the name for now)
                 entityClass.DocString = entityClass.Name;
 
+                // set the filepath root/groupId/Class/Class.cs
                 entityClass.FilePath = $"{rootFilePath}/{entity["group_id"].GetStringValue().ToPascal()}/{entityClass.Name}/{entityClass.Name}.cs";
 
-                // test add a private field
-                // var field = new PrivateFieldContainer();
-                // field.Name = "renames";
-                // field.AddModifier(nameof(Modifiers.INTERNAL), Modifiers.INTERNAL);
-                // field.FieldType = "string";
-                // entityClass.AddPrivateField("renames", field);
+                // add rename dictionary if any
+                if (entity["field_renames"].Count() > 0)
+                {
+                    var renameContainer = new RenameContainer();
+                    foreach (var rename in entity["field_renames"])
+                    {
+                        var left = rename["_key"].GetStringValue().ToPascal();
+                        var right = rename["api_fieldname"].GetStringValue();
+
+                        renameContainer.AddRename(left, right);
+                    }
+
+                    entityClass.AddPrivateField("RENAMES", renameContainer);
+
+                    entityClass.AddUsing(nameof(UsingKeys.GENERIC_COLLECTIONS), UsingKeys.GENERIC_COLLECTIONS);
+                }
 
                 // get properties
                 var properties = entity["fields"];
@@ -158,7 +190,7 @@ namespace Manhasset.Generator.src
                     // add usings for list
                     if (propertyType.Contains("List<"))
                     {
-                        entityClass.AddUsing(nameof(UsingKeys.LISTS), UsingKeys.LISTS);
+                        entityClass.AddUsing(nameof(UsingKeys.GENERIC_COLLECTIONS), UsingKeys.GENERIC_COLLECTIONS);
                     }
 
                     // check if property type is enum
@@ -171,7 +203,7 @@ namespace Manhasset.Generator.src
                     // add usings for custom functions
                     if (overrideProperty)
                     {
-                        entityClass.AddUsing(nameof(UsingKeys.CUSTOM_FUNCTIONS), UsingKeys.CUSTOM_FUNCTIONS);
+                        entityClass.AddUsing(nameof(UsingKeys.SDK_COMMON), UsingKeys.SDK_COMMON);
                     }
                 }
 
@@ -188,10 +220,13 @@ namespace Manhasset.Generator.src
                     entityClass.AddMethod(methodContainer.Name, methodContainer);
                 }
 
+                // remove Ids
+                entityClass.Properties.Remove("Id");
+
                 CompilationContainer.AddClass(entityClass.Name, entityClass);
             }
 
-            await CompilationContainer.Compile();
+            // await CompilationContainer.Compile();
             CompilationContainer.WriteFiles();
         }
     }

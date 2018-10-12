@@ -16,13 +16,25 @@ namespace Manhasset.Core.src.Containers
 
         public Dictionary<string, string> Usings { get; set; } = new Dictionary<string, string>();
 
-        public Dictionary<string, SimpleBaseTypeSyntax> BaseTypes { get; set; } = new Dictionary<string, SimpleBaseTypeSyntax>();
+        public Dictionary<string, string> BaseTypes { get; set; } = new Dictionary<string, string>();
+
+        public Dictionary<string, ConstructorContainer> Constructors { get; set; } = new Dictionary<string, ConstructorContainer>();
 
         public Dictionary<string, PrivateFieldContainer> PrivateFields { get; set; } = new Dictionary<string, PrivateFieldContainer>();
 
         public Dictionary<string, PropertyContainer> Properties { get; set; } = new Dictionary<string, PropertyContainer>();
 
         public Dictionary<string, MethodContainer> Methods { get; set; } = new Dictionary<string, MethodContainer>();
+
+        public virtual void AddBaseType(string key, string type)
+        {
+            BaseTypes.SafeAdd<string, string>(key, type);
+        }
+
+        public virtual void AddConstructor(string key, ConstructorContainer constructorContainer)
+        {
+            Constructors.SafeAdd<string, ConstructorContainer>(key, constructorContainer);
+        }
 
         public virtual void AddUsing(string key, string value)
         {
@@ -50,8 +62,15 @@ namespace Manhasset.Core.src.Containers
             var classSyntax = SyntaxFactory.ClassDeclaration(Name)
                                 .AddModifiers(MyModifiers.Values.ToArray());
 
+            // add base types
+            classSyntax = classSyntax.AddBaseListTypes(BaseTypes.Values.Select(b => SyntaxFactory.SimpleBaseType(SyntaxFactory.IdentifierName(b))).ToArray());
+
             // add doc
             classSyntax = classSyntax.AddSummary(DocString) as ClassDeclarationSyntax;
+
+            // add any constructors
+            var constructors = Constructors.Values.Select(c => c.GetSyntax()).ToArray();
+            classSyntax = classSyntax.AddMembers(constructors);
 
             // add any private fields
             var privateFields = PrivateFields.Values.Select(p => p.GetSyntax()).ToArray();
@@ -72,6 +91,8 @@ namespace Manhasset.Core.src.Containers
 
             var usingsSyntax = Usings.Values.Select(u => SyntaxFactory.UsingDirective(SyntaxFactory.ParseName(u))).ToArray();
             namespaceSyntax = namespaceSyntax.AddUsings(usingsSyntax);
+
+            namespaceSyntax = namespaceSyntax.AddFileHeader(Name, "Arm");
 
             namespaceSyntax = namespaceSyntax.AddMembers(classSyntax);
 

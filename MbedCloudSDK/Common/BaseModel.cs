@@ -4,7 +4,6 @@
 
 namespace MbedCloudSDK.Common
 {
-    using MbedCloud.SDK;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -12,24 +11,8 @@ namespace MbedCloudSDK.Common
     /// </summary>
     public abstract class BaseModel
     {
-        [JsonIgnore]
-        private Config config;
-
         /// <summary>
-        /// Gets or sets the configuration.
-        /// </summary>
-        /// <value>
-        /// The configuration.
-        /// </value>
-        [JsonIgnore]
-        public Config Config
-        {
-            get => config ?? SDK.Config;
-            set => config = value;
-        }
-
-        /// <summary>
-        /// Gets or sets gets the identifier.
+        /// Gets the identifier.
         /// </summary>
         /// <value>
         /// The identifier.

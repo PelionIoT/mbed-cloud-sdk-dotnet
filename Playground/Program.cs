@@ -1,6 +1,10 @@
 ﻿
 using System;
 using MbedCloud.SDK;
+using MbedCloud.SDK.Client;
+using MbedCloud.SDK.Entities;
+using Newtonsoft.Json;
+using MbedCloudSDK.Common.Extensions;
 
 namespace Playground
 {
@@ -10,86 +14,19 @@ namespace Playground
         {
             try
             {
-                // var sdk = new SDK();
+                var user = new User
+                {
+                    Username = "alex",
+                    TwoFactorAuthentication = true,
+                };
 
-                // Console.WriteLine("---------------------User-----------------------------");
+                var serialized = JsonConvert.SerializeObject(user, Formatting.Indented, SerializationSettings.GetSettingsWithRenames());
 
-                // var users = new User().List(limit: 2);
+                Console.WriteLine(serialized);
 
-                // Console.WriteLine($"I can list {users.Count()} users.");
+                var newUser = JsonConvert.DeserializeObject<User>(serialized, SerializationSettings.GetSettingsWithRenames());
 
-                // var getUser = new User()
-                // {
-                //     Id = users.FirstOrDefault()?.Id,
-                // };
-
-                // Console.WriteLine($"The first user has Id {getUser.Id}");
-
-                // await getUser.Get();
-
-                // Console.WriteLine($"and was created on {getUser.CreatedAt}");
-
-                // Console.WriteLine($"It has {getUser.Groups().Count()} groups.");
-
-                // var user = new User()
-                // {
-                //     Address = "the street",
-                //     Email = "noalgalex22222@gmail.com",
-                //     FullName = "Don D",
-                //     PhoneNumber = "07845215995",
-                //     Username = "drdond22222",
-                // };
-
-                // Console.WriteLine($"Creating a new user with phone number {user.PhoneNumber}");
-
-                // await user.Create();
-
-                // Console.WriteLine($"The id is {user.Id} and the phone number is {user.PhoneNumber}");
-
-                // user.PhoneNumber = "118118";
-
-                // await user.Update();
-
-                // Console.WriteLine($"The phone number is now {user.PhoneNumber}");
-
-                // Console.WriteLine("deleting...");
-                // await user.Delete();
-
-                // Console.WriteLine("---------------------ApiKey-----------------------------");
-
-                // var keys = new ApiKey().List();
-
-                // Console.WriteLine($"I can list {keys.Count()} keys.");
-
-                // var getKey = new ApiKey()
-                // {
-                //     Id = keys.FirstOrDefault()?.Id,
-                // };
-
-                // Console.WriteLine($"The first key has Id {getKey.Id}");
-
-                // Console.WriteLine($"It has {getKey.Groups().Count()} groups.");
-
-                // var apiKey = new ApiKey
-                // {
-                //     Name = "test key"
-                // };
-
-                // Console.WriteLine($"Creating a new api key with name {apiKey.Name}");
-
-                // await apiKey.Create();
-
-                // Console.WriteLine($"The Id is {apiKey.Id} and it was created at {apiKey.CreatedAt}");
-
-                // apiKey.Name = "updated test key";
-
-                // await apiKey.Update();
-
-                // Console.WriteLine($"The name is now {apiKey.Name}");
-
-                // Console.WriteLine("Deleting....");
-
-                // await apiKey.Delete();
+                Console.WriteLine(newUser.DebugDump());
             }
             catch (Exception e)
             {

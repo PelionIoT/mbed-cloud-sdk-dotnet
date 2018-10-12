@@ -4,7 +4,7 @@
 
 namespace MbedCloud.SDK
 {
-    using MbedCloudSDK.Common;
+    using MbedCloud.SDK.Common;
 
     /// <summary>
     /// Client
@@ -15,14 +15,7 @@ namespace MbedCloud.SDK
 
         private readonly Config instanceConfig;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SDK"/> class.
-        /// </summary>
-        /// <param name="apiKey">The API key.</param>
-        public SDK(string apiKey)
-        {
-            instanceConfig = new Config(apiKey);
-        }
+        public MbedCloud.SDK.Client.Client Client { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SDK"/> class.
@@ -34,6 +27,8 @@ namespace MbedCloud.SDK
             {
                 instanceConfig = config;
             }
+
+            Client = new MbedCloud.SDK.Client.Client(GetConfig());
         }
 
         /// <summary>

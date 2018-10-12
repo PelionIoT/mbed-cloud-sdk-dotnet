@@ -6,7 +6,7 @@ namespace MbedCloud.SDK.Client
 {
     using System;
     using System.Collections.Generic;
-    using MbedCloudSDK.Common.CustomSerializers;
+    using MbedCloud.SDK.Common.CustomSerializers;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
     using Newtonsoft.Json.Serialization;
@@ -19,13 +19,12 @@ namespace MbedCloud.SDK.Client
         /// <summary>
         /// Gets the settings with renames.
         /// </summary>
-        /// <param name="renames">The renames.</param>
         /// <returns>Settings</returns>
-        public static JsonSerializerSettings GetSettingsWithRenames(Dictionary<Type, Dictionary<string, string>> renames)
+        public static JsonSerializerSettings GetSettingsWithRenames()
         {
             var settings = new JsonSerializerSettings
             {
-                ContractResolver = new RenameSwitchResolver(renames),
+                ContractResolver = new RenameSwitchResolver(),
                 DateTimeZoneHandling = DateTimeZoneHandling.Utc,
             };
 

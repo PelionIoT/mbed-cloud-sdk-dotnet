@@ -2,10 +2,11 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-namespace MbedCloudSDK.Common.CustomSerializers
+namespace MbedCloud.SDK.Common.CustomSerializers
 {
     using System;
     using System.Collections.Generic;
+    using System.Reflection;
     using Newtonsoft.Json.Serialization;
 
     /// <summary>
@@ -14,17 +15,6 @@ namespace MbedCloudSDK.Common.CustomSerializers
     /// <seealso cref="Newtonsoft.Json.Serialization.DefaultContractResolver" />
     public sealed class RenameSwitchResolver : DefaultContractResolver
     {
-        private readonly Dictionary<Type, Dictionary<string, string>> renames;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RenameSwitchResolver"/> class.
-        /// </summary>
-        /// <param name="renames">The renames.</param>
-        public RenameSwitchResolver(Dictionary<Type, Dictionary<string, string>> renames = null)
-        {
-            this.renames = renames ?? new Dictionary<Type, Dictionary<string, string>>();
-        }
-
         /// <summary>
         /// Determines which contract type is created for the given type.
         /// </summary>
@@ -34,9 +24,12 @@ namespace MbedCloudSDK.Common.CustomSerializers
         /// </returns>
         protected override JsonContract CreateContract(Type objectType)
         {
-            if (renames.ContainsKey(objectType))
+            var renames = objectType.GetProperty("Renames", BindingFlags.NonPublic | BindingFlags.Static);
+
+            if (renames != null)
             {
-                NamingStrategy = new SnakeCaseNamingStrategyWithRenaming(renames[objectType]);
+                var renameDict = renames.GetValue(null, null) as Dictionary<string, string>;
+                NamingStrategy = new SnakeCaseNamingStrategyWithRenaming(renameDict);
             }
             else
             {
