@@ -4,6 +4,7 @@
 
 namespace MbedCloudSDK.Common
 {
+    using MbedCloud.SDK;
     using Newtonsoft.Json;
 
     /// <summary>

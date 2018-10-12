@@ -220,7 +220,7 @@ Task("_publish")
 
 Task("_clean_generation")
     .Does(() => {
-        CleanDirectory("./MbedCloudSDK/Generated");
+        CleanDirectory("./MbedCloudSDK/SDK/Generated");
         CleanDirectory("./Manhasset.Generation.Temp");
     });
 
@@ -254,7 +254,7 @@ Task("_build_generator")
 Task("_generate_and_compile")
     .Does(() => {
         DotNetCoreRun("./Manhasset/Manhasset.Runner", new ProcessArgumentBuilder()
-            .Append("/Users/alelog01/git/mbed-cloud-api-contract/out/sdk_generation_cache.yaml")
+            .Append("/Users/alelog01/git/mbed-cloud-api-contract/out/sdk_gen_intermediate.json")
             //.Append("./Pelion.Generation.Temp/Pelion.Generation.Temp.csproj")
             .Append("Manhasset.Generation.Temp")
             .Append("/Users/alelog01/git/mbed-cloud-sdk-dotnet/"),
@@ -267,7 +267,7 @@ Task("_generate_and_compile")
 
 Task("_write_files")
     .Does(() => {
-        CopyDirectory("./Manhasset.Generation.Temp/src", "./MbedCloudSDK/Generated");
+        CopyDirectory("./Manhasset.Generation.Temp/src", "./MbedCloudSDK/SDK/Generated");
     });
 
 Task("generation_debug")
