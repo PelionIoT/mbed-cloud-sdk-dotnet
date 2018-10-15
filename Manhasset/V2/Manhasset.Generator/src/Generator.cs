@@ -211,13 +211,238 @@ namespace Manhasset.Generator.src
                 var methods = entity["methods"];
                 foreach (var method in methods)
                 {
-                    var methodContainer = new MethodContainer();
-                    // method name
-                    methodContainer.Name = method["_key"].GetStringValue().ToPascal();
-                    // can assume public
-                    methodContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
+                    // gather common info
+                    var methodName = method["_key"].GetStringValue().ToPascal();
+                    // the http method
+                    var httpMethod = method["method"].GetStringValue()?.ToUpper();
 
-                    entityClass.AddMethod(methodContainer.Name, methodContainer);
+                    // default deferToForeignKey to false
+                    var deferToForeignKey = false;
+                    DeferedMethodCallContainer deferedMethodCall = null;
+                    // if not method then defer to foreign key is true
+                    if (httpMethod == null)
+                    {
+                        deferToForeignKey = true;
+                    }
+
+                    // the path
+                    var path = method["path"].GetStringValue();
+
+                    // is method paginated
+                    var isPaginated = method["pagination"].GetBoolValue();
+
+                    // is method private
+                    var isPrivateMethod = method["private_field"] != null;
+
+                    // is method a custom call
+                    var isCustomMethodCall = method["custom_method"] != null;
+
+                    // does method return a foreing key
+                    var foreignKey = method["foreign_key"] != null ? method["foreign_key"]["entity"].GetStringValue().ToPascal() != entityClass.Name : false;
+
+                    // return type
+                    var returns = deferToForeignKey ? method["defer_to_foreign_key_field"]["foreign_key"]["entity"].GetStringValue().ToPascal() : foreignKey ? method["foreign_key"]["entity"].GetStringValue().ToPascal() : entityClass.Name;
+
+                    // name of custom method
+                    var customMethodName = method["custom_method"].GetStringValue();
+
+                    if (isPaginated)
+                    {
+                        // add usings for paginated
+                    }
+
+                    if (foreignKey)
+                    {
+                        // add using for foreign key
+                        entityClass.AddUsing("FOREIGN_KEY", $"MbedCloud.SDK.Entities");
+                    }
+
+                    // get method and field for defered method call
+                    if (deferToForeignKey)
+                    {
+                        deferedMethodCall = new DeferedMethodCallContainer
+                        {
+                            Method = method["defer_to_foreign_key_field"]["method"].GetStringValue(),
+                            field = method["defer_to_foreign_key_field"]["field"].GetStringValue(),
+                        };
+
+                        // add using for foreign key
+                        entityClass.AddUsing("FOREIGN_KEY", $"MbedCloud.SDK.Entities");
+                    }
+
+                    // gather parameters
+                    var pathParams = new List<MyParameterContainer>();
+                    var queryParams = new List<MyParameterContainer>();
+                    var bodyParams = new List<MyParameterContainer>();
+                    var fileParams = new List<MyParameterContainer>();
+                    var deferedParams = new List<MyParameterContainer>();
+
+                    foreach (var field in method["fields"])
+                    {
+                        // where is parameter?
+                        var paramIn = field["in"].GetStringValue();
+                        // is it external?
+                        var external = field["external_param"].GetBoolValue();
+                        // is it required?
+                        var required = field["required"].GetBoolValue();
+                        // the type
+                        string type = null;
+                        // the fieldname as it is in parameter
+                        var fieldName = field["parameter_fieldname"].GetStringValue() ?? field["name"].GetStringValue();
+                        // key on entity
+                        var key = field["_key"].GetStringValue()?.ToPascal();
+                        // replace body with other type
+                        var replaceBody = field["__REPLACE_BODY"] != null;
+
+                        if (external)
+                        {
+                            var internalVal = field["items"] != null ? field["items"]["type"].GetStringValue() : null;
+                            type = SwaggerTypeHelper.MapType(field["type"].GetStringValue(), internalVal);
+                            if (type == "Stream")
+                            {
+                                entityClass.AddUsing(nameof(UsingKeys.SYSTEM_IO), UsingKeys.SYSTEM_IO);
+                            }
+                        }
+
+                        if (deferToForeignKey)
+                        {
+                            var param = new MyParameterContainer
+                            {
+                                Key = key,
+                                ParamType = key,
+                                External = external,
+                                Required = required,
+                                FieldName = fieldName,
+                            };
+                            deferedParams.Add(param);
+
+                            // get assignments
+                            foreach (var assigmnent in field["set_foreign_key_properties"])
+                            {
+                                var tmp = assigmnent as JProperty;
+                                var externalKey = tmp.Name;
+                                var selfKey = tmp.Value.GetStringValue();
+                                deferedMethodCall.AddAsignment(externalKey, selfKey);
+                            }
+                        }
+
+                        if (paramIn == "path")
+                        {
+                            var param = new MyParameterContainer
+                            {
+                                Key = key,
+                                ParamType = type,
+                                External = external,
+                                Required = required,
+                                FieldName = fieldName,
+                            };
+                            pathParams.Add(param);
+                        }
+
+                        if (paramIn == "query")
+                        {
+                            var param = new MyParameterContainer
+                            {
+                                Key = key,
+                                ParamType = type,
+                                External = external,
+                                Required = required,
+                                FieldName = fieldName,
+                            };
+                            queryParams.Add(param);
+                        }
+
+                        if (paramIn == "body")
+                        {
+                            var param = new MyParameterContainer
+                            {
+                                Key = key,
+                                ParamType = type,
+                                External = external,
+                                Required = required,
+                                ReplaceBody = replaceBody,
+                                FieldName = fieldName,
+                            };
+                            bodyParams.Add(param);
+                        }
+
+                        if (paramIn == "stream")
+                        {
+                            var param = new MyParameterContainer
+                            {
+                                Key = key,
+                                ParamType = type,
+                                External = external,
+                                Required = required,
+                                FieldName = fieldName,
+                            };
+                            fileParams.Add(param);
+                        }
+                    }
+
+                    var methodParams = new MyMethodParameterContainer(deferedParams, pathParams, queryParams, bodyParams, fileParams);
+
+                    // method is paginated, so create paginatedMethodContainer
+                    if (isPaginated == true)
+                    {
+                        var paginatedMethodContainer = new PaginatedMethodContainer
+                        {
+                            EntityName = entityClass.Name,
+                            Name = methodName,
+                            HttpMethod = httpMethod,
+                            Path = path,
+                            Paginated = isPaginated,
+                            Returns = returns,
+                            PathParams = pathParams,
+                            QueryParams = queryParams,
+                            BodyParams = bodyParams,
+                            FileParams = fileParams,
+                            MethodParams = methodParams,
+                            DeferToForeignKey = deferToForeignKey,
+                            DeferedMethodCall = deferedMethodCall,
+                            CustomMethodCall = isCustomMethodCall,
+                            CustomMethodName = customMethodName,
+                            privateMethod = isPrivateMethod,
+                        };
+
+                        paginatedMethodContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
+
+                        entityClass.AddMethod(paginatedMethodContainer.Name, paginatedMethodContainer);
+                    }
+                    else
+                    {
+                        var methodContainer = new DefaultMethodContainer()
+                        {
+                            EntityName = entityClass.Name,
+                            Name = methodName,
+                            HttpMethod = httpMethod,
+                            Path = path,
+                            Paginated = isPaginated,
+                            Returns = returns,
+                            PathParams = pathParams,
+                            QueryParams = queryParams,
+                            BodyParams = bodyParams,
+                            FileParams = fileParams,
+                            MethodParams = methodParams,
+                            DeferToForeignKey = deferToForeignKey,
+                            DeferedMethodCall = deferedMethodCall,
+                            CustomMethodCall = isCustomMethodCall,
+                            CustomMethodName = customMethodName,
+                            privateMethod = isPrivateMethod,
+                            IsAsync = true,
+                        };
+
+                        methodContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
+
+                        entityClass.AddMethod(methodContainer.Name, methodContainer);
+                    }
+                }
+
+                if (methods.Any())
+                {
+                    entityClass.AddUsing(nameof(UsingKeys.ASYNC), UsingKeys.ASYNC);
+                    entityClass.AddUsing(nameof(UsingKeys.EXCEPTIONS), UsingKeys.EXCEPTIONS);
+                    entityClass.AddUsing(nameof(UsingKeys.CLIENT), UsingKeys.CLIENT);
                 }
 
                 // remove Ids
@@ -227,7 +452,7 @@ namespace Manhasset.Generator.src
             }
 
             // await CompilationContainer.Compile();
-            CompilationContainer.WriteFiles();
+            // CompilationContainer.WriteFiles();
         }
     }
 }

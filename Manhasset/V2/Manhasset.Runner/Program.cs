@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using MbedCloud.SDK.Common;
 using Microsoft.CodeAnalysis;
 using Newtonsoft.Json;
@@ -34,10 +35,15 @@ namespace Manhasset.Runner
             //     Console.WriteLine(classContainer.Value.GetSyntaxWithNamespace().NormalizeWhitespace().ToFullString());
             // }
 
-            // foreach (var item in generator.Enums)
-            // {
-            //     // Console.WriteLine(item.Value.GetSyntaxWithNamespace().NormalizeWhitespace().ToFullString());
-            // }
+            foreach (var item in generator.CompilationContainer.Classes.Values)
+            {
+                foreach (var method in item.Methods)
+                {
+                    Console.WriteLine(method.Value.GetSyntax().NormalizeWhitespace().ToFullString());
+                }
+                // Console.WriteLine(item.GetSyntaxWithNamespace().NormalizeWhitespace().ToFullString());
+            }
+            // Console.WriteLine(generator.CompilationContainer.Classes.Values.LastOrDefault().GetSyntaxWithNamespace().NormalizeWhitespace().ToFullString());
         }
     }
 }

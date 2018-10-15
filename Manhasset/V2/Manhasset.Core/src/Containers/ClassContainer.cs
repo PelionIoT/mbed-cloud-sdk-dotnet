@@ -80,6 +80,10 @@ namespace Manhasset.Core.src.Containers
             var properties = Properties.Values.Select(p => p.GetSyntax()).ToArray();
             classSyntax = classSyntax.AddMembers(properties);
 
+            // add methods
+            var methods = Methods.Values.Select(m => m.GetSyntax()).ToArray();
+            classSyntax = classSyntax.AddMembers(methods);
+
             return classSyntax;
         }
 

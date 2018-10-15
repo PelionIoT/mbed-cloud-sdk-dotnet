@@ -9,6 +9,14 @@ namespace Manhasset.Generator.src.common
 
         public static readonly string OLD_SDK_COMMON = "MbedCloudSDK.Common";
 
+        public static readonly string EXCEPTIONS = "MbedCloudSDK.Exceptions";
+
+        public static readonly string ASYNC = "System.Threading.Tasks";
+
+        public static readonly string CLIENT = "MbedCloud.SDK.Client";
+
+        public static readonly string SYSTEM_IO = "System.IO";
+
         public static string ForeignKey(string entity)
         {
             return $"FOREIGN_KEY_{entity.ToUpper()}";

@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 
 namespace Manhasset.Generator.src.extensions
@@ -69,6 +70,11 @@ namespace Manhasset.Generator.src.extensions
         public static string ToCamel(this string input)
         {
             return input.ToPascal(true);
+        }
+
+        public static string PascalToCamel(this string input)
+        {
+            return Char.ToLowerInvariant(input[0]) + input.Substring(1);
         }
     }
 }

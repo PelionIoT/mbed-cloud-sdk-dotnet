@@ -19,6 +19,9 @@ namespace MbedCloud.SDK.Entities
     using System;
     using MbedCloud.SDK.Entities;
     using MbedCloud.SDK.Enums;
+    using System.Threading.Tasks;
+    using MbedCloudSDK.Exceptions;
+    using MbedCloud.SDK.Client;
 
     /// <summary>
     /// User
@@ -205,6 +208,19 @@ namespace MbedCloud.SDK.Entities
         {
             get;
             set;
+        }
+
+        public async Task<User> ValidateEmail()
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "accountID", AccountId }, { "user-id", Id }, };
+                return await Client.CallApi<User>(path: "somePath", pathParams: pathParams, method: HttpMethods.POST, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
         }
     }
 }
