@@ -215,7 +215,7 @@ namespace MbedCloud.SDK.Entities
             try
             {
                 var pathParams = new Dictionary<string, object> { { "accountID", AccountId }, { "user-id", Id }, };
-                return await Client.CallApi<User>(path: "somePath", pathParams: pathParams, method: HttpMethods.POST, objectToUnpack: this);
+                return await Client.CallApi<User>(path: "/v3/accounts/{accountID}/users/{user-id}/validate-email", pathParams: pathParams, method: HttpMethods.POST, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {

@@ -50,6 +50,21 @@ namespace Manhasset.Generator.src.CustomContainers
                 methodBody.Add(fileParamDeclaration);
             }
 
+            if (BodyParams.Any())
+            {
+                // body
+            }
+
+            var returnStatement = new ApiCallReturnStatementContainer{
+                Path = Path,
+                PathParams = PathParams,
+                QueryParams = QueryParams,
+                FileParams = FileParams,
+                HttpMethod = HttpMethod
+            };
+
+            methodBody.Add(returnStatement.GetSyntax());
+
             var block = SyntaxFactory.Block(methodBody.ToArray());
 
             tryCatch = tryCatch.WithBlock(block);

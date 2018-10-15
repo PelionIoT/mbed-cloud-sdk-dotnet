@@ -409,6 +409,14 @@ namespace Manhasset.Generator.src
 
                         entityClass.AddMethod(paginatedMethodContainer.Name, paginatedMethodContainer);
                     }
+                    else if (deferToForeignKey)
+                    {
+                        // defered
+                    }
+                    else if (isCustomMethodCall)
+                    {
+                        // custom method call
+                    }
                     else
                     {
                         var methodContainer = new DefaultMethodContainer()
