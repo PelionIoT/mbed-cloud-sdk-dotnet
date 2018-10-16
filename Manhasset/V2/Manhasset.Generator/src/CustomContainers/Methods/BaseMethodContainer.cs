@@ -56,17 +56,19 @@ namespace Manhasset.Generator.src.CustomContainers
                 {
                     Name = "fileParams",
                     MyParams = FileParams,
+                    VarType = "Stream",
                 }.GetSyntax();
 
                 methodBody.Add(fileParamDeclaration);
             }
 
-            if (BodyParams.Any())
+            // only add internal body params
+            if (BodyParams.Where(b => b.External != true || b.ReplaceBody == true).Any())
             {
                 var bodyParamDeclaration = new BodyParameterContainer
                 {
                     BodyType = Returns,
-                    BodyParams = BodyParams
+                    BodyParams = BodyParams.Where(b => b.External != true || b.ReplaceBody == true).ToList(),
                 }.GetSyntax();
 
                 methodBody.Add(bodyParamDeclaration);

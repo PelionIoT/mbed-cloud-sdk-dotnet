@@ -16,6 +16,10 @@ namespace MbedCloud.SDK.Entities
 {
     using MbedCloud.SDK.Common;
     using System;
+    using System.Threading.Tasks;
+    using MbedCloudSDK.Exceptions;
+    using MbedCloud.SDK.Client;
+    using System.Collections.Generic;
 
     /// <summary>
     /// ServerCredentials
@@ -74,6 +78,42 @@ namespace MbedCloud.SDK.Entities
         {
             get;
             set;
+        }
+
+        public async Task<ServerCredentials> GetAll()
+        {
+            try
+            {
+                return await Client.CallApi<ServerCredentials>(path: "/v3/server-credentials", method: HttpMethods.GET, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<ServerCredentials> GetBootstrap()
+        {
+            try
+            {
+                return await Client.CallApi<ServerCredentials>(path: "/v3/server-credentials/bootstrap", method: HttpMethods.GET, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<ServerCredentials> GetLwm2m()
+        {
+            try
+            {
+                return await Client.CallApi<ServerCredentials>(path: "/v3/server-credentials/lwm2m", method: HttpMethods.GET, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
         }
     }
 }

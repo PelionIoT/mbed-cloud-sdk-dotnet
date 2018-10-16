@@ -19,6 +19,8 @@ namespace Manhasset.Generator.src.CustomContainers
             var queryOptionscontainer = new QueryOptionsContainer
             {
                 Name = "options",
+                MethodParams = MethodParams,
+
             }.GetSyntax();
             methodBody.Add(queryOptionscontainer);
 

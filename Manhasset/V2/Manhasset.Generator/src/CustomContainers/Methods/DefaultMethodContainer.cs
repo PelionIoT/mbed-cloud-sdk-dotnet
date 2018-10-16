@@ -24,6 +24,8 @@ namespace Manhasset.Generator.src.CustomContainers
                 FileParams = FileParams,
                 BodyParams = BodyParams,
                 HttpMethod = HttpMethod,
+                Returns = Returns,
+                EntityName = EntityName,
             };
 
             methodBody.Add(returnStatement.GetSyntax());

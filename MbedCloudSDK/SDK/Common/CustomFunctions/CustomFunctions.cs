@@ -12,5 +12,15 @@ namespace MbedCloud.SDK.Common
         public static void DeveloperCertificateSetter(TrustedCertificate self, bool? value)
         {
         }
+
+        public static User SubtenantAccountSwitchGet(User user)
+        {
+            return user;
+        }
+
+        public static User SubtenantAccountSwitchCreate(User user, string action)
+        {
+            return user;
+        }
     }
 }

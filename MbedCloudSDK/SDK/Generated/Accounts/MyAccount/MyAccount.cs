@@ -19,6 +19,9 @@ namespace MbedCloud.SDK.Entities
     using System;
     using MbedCloud.SDK.Enums;
     using MbedCloud.SDK.Entities;
+    using System.Threading.Tasks;
+    using MbedCloudSDK.Exceptions;
+    using MbedCloud.SDK.Client;
 
     /// <summary>
     /// MyAccount
@@ -338,6 +341,32 @@ namespace MbedCloud.SDK.Entities
         {
             get;
             set;
+        }
+
+        public async Task<MyAccount> Get(string include = null, string properties = null)
+        {
+            try
+            {
+                var queryParams = new Dictionary<string, object> { { "include", include }, { "properties", properties }, };
+                return await Client.CallApi<MyAccount>(path: "/v3/accounts/me", queryParams: queryParams, method: HttpMethods.GET, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<MyAccount> Update()
+        {
+            try
+            {
+                var bodyParams = new MyAccount { AddressLine1 = AddressLine1, AddressLine2 = AddressLine2, Aliases = Aliases, City = City, Company = Company, Contact = Contact, Country = Country, CustomFields = CustomFields, DisplayName = DisplayName, Email = Email, EndMarket = EndMarket, ExpirationWarningThreshold = ExpirationWarningThreshold, IdleTimeout = IdleTimeout, MfaStatus = MfaStatus, NotificationEmails = NotificationEmails, PasswordPolicy = PasswordPolicy, PhoneNumber = PhoneNumber, PostalCode = PostalCode, State = State, };
+                return await Client.CallApi<MyAccount>(path: "/v3/accounts/me", bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
         }
     }
 }

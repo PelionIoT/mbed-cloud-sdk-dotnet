@@ -16,6 +16,11 @@ namespace MbedCloud.SDK.Entities
 {
     using MbedCloud.SDK.Common;
     using System;
+    using MbedCloud.SDK.Entities;
+    using System.Threading.Tasks;
+    using MbedCloudSDK.Exceptions;
+    using MbedCloud.SDK.Client;
+    using System.Collections.Generic;
 
     /// <summary>
     /// PolicyGroup
@@ -83,6 +88,66 @@ namespace MbedCloud.SDK.Entities
         {
             get;
             set;
+        }
+
+        public PaginatedResponse<QueryOptions, ApiKey> ApiKeys(string after = null, string include = null, int limit = 0, string order = null)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "groupID", Id }, };
+                var queryParams = new Dictionary<string, object> { { "after", after }, { "include", include }, { "limit", limit }, { "order", order }, };
+                var options = new QueryOptions { After = after, Include = include, Limit = limit, Order = order, };
+                Func<QueryOptions, ResponsePage<ApiKey>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<ApiKey>>(() => Client.CallApi<ResponsePage<ApiKey>>(path: "/v3/policy-groups/{groupID}/api-keys", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET));
+                return new PaginatedResponse<QueryOptions, ApiKey>(paginatedFunc, options);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<PolicyGroup> Get()
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "groupID", Id }, };
+                return await Client.CallApi<PolicyGroup>(path: "/v3/policy-groups/{groupID}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public PaginatedResponse<QueryOptions, PolicyGroup> List(string after = null, string include = null, int limit = 0, string order = null)
+        {
+            try
+            {
+                var queryParams = new Dictionary<string, object> { { "after", after }, { "include", include }, { "limit", limit }, { "order", order }, };
+                var options = new QueryOptions { After = after, Include = include, Limit = limit, Order = order, };
+                Func<QueryOptions, ResponsePage<PolicyGroup>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<PolicyGroup>>(() => Client.CallApi<ResponsePage<PolicyGroup>>(path: "/v3/policy-groups", queryParams: queryParams, method: HttpMethods.GET));
+                return new PaginatedResponse<QueryOptions, PolicyGroup>(paginatedFunc, options);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public PaginatedResponse<QueryOptions, User> Users(string after = null, string include = null, int limit = 0, string order = null)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "groupID", Id }, };
+                var queryParams = new Dictionary<string, object> { { "after", after }, { "include", include }, { "limit", limit }, { "order", order }, };
+                var options = new QueryOptions { After = after, Include = include, Limit = limit, Order = order, };
+                Func<QueryOptions, ResponsePage<User>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<User>>(() => Client.CallApi<ResponsePage<User>>(path: "/v3/policy-groups/{groupID}/users", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET));
+                return new PaginatedResponse<QueryOptions, User>(paginatedFunc, options);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
         }
     }
 }

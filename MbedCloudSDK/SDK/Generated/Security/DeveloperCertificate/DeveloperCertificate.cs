@@ -17,6 +17,10 @@ namespace MbedCloud.SDK.Entities
     using MbedCloud.SDK.Common;
     using System.Collections.Generic;
     using System;
+    using MbedCloud.SDK.Entities;
+    using System.Threading.Tasks;
+    using MbedCloudSDK.Exceptions;
+    using MbedCloud.SDK.Client;
 
     /// <summary>
     /// DeveloperCertificate
@@ -32,12 +36,21 @@ namespace MbedCloud.SDK.Entities
             Config = config;
         }
 
-        internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "DeveloperCertificateContent", "developer_certificate" }, { "Id", "developerCertificateId" }, };
+        internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "CertificateContent", "developer_certificate" }, { "Id", "developerCertificateId" }, };
 
         /// <summary>
         /// account_id
         /// </summary>
         public string AccountId
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// certificate_content
+        /// </summary>
+        public string CertificateContent
         {
             get;
             set;
@@ -56,15 +69,6 @@ namespace MbedCloud.SDK.Entities
         /// description
         /// </summary>
         public string Description
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// developer_certificate_content
-        /// </summary>
-        public string DeveloperCertificateContent
         {
             get;
             set;
@@ -95,6 +99,58 @@ namespace MbedCloud.SDK.Entities
         {
             get;
             set;
+        }
+
+        public async Task<DeveloperCertificate> Create()
+        {
+            try
+            {
+                var bodyParams = new DeveloperCertificate { Description = Description, Name = Name, };
+                return await Client.CallApi<DeveloperCertificate>(path: "/v3/developer-certificates", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<DeveloperCertificate> Delete()
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "cert-id", Id }, };
+                return await Client.CallApi<DeveloperCertificate>(path: "/v3/trusted-certificates/{cert-id}", pathParams: pathParams, method: HttpMethods.DELETE, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<DeveloperCertificate> Get()
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "developerCertificateId", Id }, };
+                return await Client.CallApi<DeveloperCertificate>(path: "/v3/developer-certificates/{developerCertificateId}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<TrustedCertificate> TrustedCertificateInfo()
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "cert-id", Id }, };
+                return await Client.CallApi<TrustedCertificate>(path: "/v3/trusted-certificates/{cert-id}", pathParams: pathParams, method: HttpMethods.GET);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
         }
     }
 }

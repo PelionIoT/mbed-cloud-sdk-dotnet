@@ -18,6 +18,9 @@ namespace MbedCloud.SDK.Entities
     using System.Collections.Generic;
     using System;
     using MbedCloud.SDK.Enums;
+    using System.Threading.Tasks;
+    using MbedCloudSDK.Exceptions;
+    using MbedCloud.SDK.Client;
 
     /// <summary>
     /// CertificateEnrollment
@@ -78,6 +81,33 @@ namespace MbedCloud.SDK.Entities
         {
             get;
             set;
+        }
+
+        public async Task<CertificateEnrollment> Get(string certificateEnrollmentId)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "certificate-enrollment-id", certificateEnrollmentId }, };
+                return await Client.CallApi<CertificateEnrollment>(path: "/v3/certificate-enrollments/{certificate-enrollment-id}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public PaginatedResponse<QueryOptions, CertificateEnrollment> List()
+        {
+            try
+            {
+                var options = new QueryOptions { };
+                Func<QueryOptions, ResponsePage<CertificateEnrollment>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<CertificateEnrollment>>(() => Client.CallApi<ResponsePage<CertificateEnrollment>>(path: "/v3/certificate-enrollments", method: HttpMethods.GET));
+                return new PaginatedResponse<QueryOptions, CertificateEnrollment>(paginatedFunc, options);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
         }
     }
 }

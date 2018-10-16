@@ -210,19 +210,6 @@ namespace MbedCloud.SDK.Entities
             set;
         }
 
-        public async Task<User> ValidateEmail()
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "accountID", AccountId }, { "user-id", Id }, };
-                return await Client.CallApi<User>(path: "/v3/accounts/{accountID}/users/{user-id}/validate-email", pathParams: pathParams, method: HttpMethods.POST, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
         public async Task<User> AddToGroups(List<string> addToGroupIds)
         {
             try
@@ -230,6 +217,100 @@ namespace MbedCloud.SDK.Entities
                 var pathParams = new Dictionary<string, object> { { "user-id", Id }, };
                 var bodyParams = addToGroupIds;
                 return await Client.CallApi<User>(path: "/v3/users/{user-id}/groups", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public User Create(string action = null)
+        {
+            return CustomFunctions.SubtenantAccountSwitchCreate(this, action);
+        }
+
+        public async Task<User> CreateOnAggregator(string action = null)
+        {
+            try
+            {
+                var queryParams = new Dictionary<string, object> { { "action", action }, };
+                var bodyParams = new User { Address = Address, Email = Email, FullName = FullName, GroupIds = GroupIds, MarketingAccepted = MarketingAccepted, Password = Password, PhoneNumber = PhoneNumber, TermsAccepted = TermsAccepted, Username = Username, };
+                return await Client.CallApi<User>(path: "/v3/users", queryParams: queryParams, bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<User> CreateOnSubtenant(string action = null)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "accountID", AccountId }, };
+                var queryParams = new Dictionary<string, object> { { "action", action }, };
+                var bodyParams = new User { Address = Address, Email = Email, FullName = FullName, GroupIds = GroupIds, MarketingAccepted = MarketingAccepted, Password = Password, PhoneNumber = PhoneNumber, TermsAccepted = TermsAccepted, Username = Username, };
+                return await Client.CallApi<User>(path: "/v3/accounts/{accountID}/users", pathParams: pathParams, queryParams: queryParams, bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<User> Delete()
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "user-id", Id }, };
+                return await Client.CallApi<User>(path: "/v3/users/{user-id}", pathParams: pathParams, method: HttpMethods.DELETE, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public User Get()
+        {
+            return CustomFunctions.SubtenantAccountSwitchGet(this);
+        }
+
+        public async Task<User> GetOnAggregator()
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "user-id", Id }, };
+                return await Client.CallApi<User>(path: "/v3/users/{user-id}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<User> GetOnSubtenant()
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "accountID", AccountId }, { "user-id", Id }, };
+                return await Client.CallApi<User>(path: "/v3/accounts/{accountID}/users/{user-id}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public PaginatedResponse<QueryOptions, PolicyGroup> Groups(string after = null, string include = null, int limit = 0, string order = null)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "user-id", Id }, };
+                var queryParams = new Dictionary<string, object> { { "after", after }, { "include", include }, { "limit", limit }, { "order", order }, };
+                var options = new QueryOptions { After = after, Include = include, Limit = limit, Order = order, };
+                Func<QueryOptions, ResponsePage<PolicyGroup>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<PolicyGroup>>(() => Client.CallApi<ResponsePage<PolicyGroup>>(path: "/v3/users/{user-id}/groups", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET));
+                return new PaginatedResponse<QueryOptions, PolicyGroup>(paginatedFunc, options);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {
@@ -245,6 +326,33 @@ namespace MbedCloud.SDK.Entities
                 var options = new QueryOptions { After = after, Include = include, Limit = limit, Order = order, };
                 Func<QueryOptions, ResponsePage<User>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<User>>(() => Client.CallApi<ResponsePage<User>>(path: "/v3/users", queryParams: queryParams, method: HttpMethods.GET));
                 return new PaginatedResponse<QueryOptions, User>(paginatedFunc, options);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<User> Update()
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "user-id", Id }, };
+                var bodyParams = new User { Address = Address, FullName = FullName, GroupIds = GroupIds, MarketingAccepted = MarketingAccepted, PhoneNumber = PhoneNumber, TermsAccepted = TermsAccepted, TwoFactorAuthentication = TwoFactorAuthentication, Username = Username, };
+                return await Client.CallApi<User>(path: "/v3/users/{user-id}", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<User> ValidateEmail()
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "accountID", AccountId }, { "user-id", Id }, };
+                return await Client.CallApi<User>(path: "/v3/accounts/{accountID}/users/{user-id}/validate-email", pathParams: pathParams, method: HttpMethods.POST, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {

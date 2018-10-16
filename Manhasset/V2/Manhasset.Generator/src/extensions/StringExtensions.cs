@@ -13,53 +13,58 @@ namespace Manhasset.Generator.src.extensions
         /// <returns>Camel case string</returns>
         public static string ToPascal(this string input, bool firstLower = false)
         {
-            var newString = new char[input.Length];
-            var startIndex = 1;
-            var newStringIndex = 1;
+            if (input != null)
+            {
+                var newString = new char[input.Length];
+                var startIndex = 1;
+                var newStringIndex = 1;
 
-            if (firstLower)
-            {
-                newString[0] = input[0];
-            }
-            else
-            {
-                if (input[0] == '_')
+                if (firstLower)
                 {
-                    newString[0] = char.ToUpper(input[1]);
-                    startIndex += 1;
+                    newString[0] = input[0];
                 }
                 else
                 {
-                    var firstCap = char.ToUpper(input[0]);
-                    newString[0] = firstCap;
-                }
-            }
-
-            for (int i = startIndex; i < input.Count(); i++)
-            {
-                if (input[i] == '_')
-                {
-                    if (i + 1 >= input.Count())
+                    if (input[0] == '_')
                     {
-                        newString[newStringIndex] = '_';
+                        newString[0] = char.ToUpper(input[1]);
+                        startIndex += 1;
                     }
                     else
                     {
-                        newString[newStringIndex] = char.ToUpper(input[i + 1]);
-                        newString[newStringIndex + 1] = ' ';
-                        i++;
-                        newStringIndex += 1;
+                        var firstCap = char.ToUpper(input[0]);
+                        newString[0] = firstCap;
                     }
                 }
-                else
+
+                for (int i = startIndex; i < input.Count(); i++)
                 {
-                    newString[newStringIndex] = input[i];
+                    if (input[i] == '_')
+                    {
+                        if (i + 1 >= input.Count())
+                        {
+                            newString[newStringIndex] = '_';
+                        }
+                        else
+                        {
+                            newString[newStringIndex] = char.ToUpper(input[i + 1]);
+                            newString[newStringIndex + 1] = ' ';
+                            i++;
+                            newStringIndex += 1;
+                        }
+                    }
+                    else
+                    {
+                        newString[newStringIndex] = input[i];
+                    }
+
+                    newStringIndex += 1;
                 }
 
-                newStringIndex += 1;
+                return new string(newString.Where(c => !char.IsWhiteSpace(c) && !(c == '\0')).ToArray());
             }
 
-            return new string(newString.Where(c => !char.IsWhiteSpace(c) && !(c == '\0')).ToArray());
+            return string.Empty;
         }
 
         /// <summary>

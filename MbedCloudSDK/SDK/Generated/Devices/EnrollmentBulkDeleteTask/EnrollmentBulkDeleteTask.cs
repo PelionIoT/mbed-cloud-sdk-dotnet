@@ -17,6 +17,11 @@ namespace MbedCloud.SDK.Entities
     using MbedCloud.SDK.Common;
     using System;
     using MbedCloud.SDK.Enums;
+    using System.IO;
+    using System.Threading.Tasks;
+    using MbedCloudSDK.Exceptions;
+    using MbedCloud.SDK.Client;
+    using System.Collections.Generic;
 
     /// <summary>
     /// EnrollmentBulkDeleteTask
@@ -111,6 +116,32 @@ namespace MbedCloud.SDK.Entities
         {
             get;
             set;
+        }
+
+        public async Task<EnrollmentBulkDeleteTask> Delete(Stream enrollmentIdentities)
+        {
+            try
+            {
+                var fileParams = new Dictionary<string, Stream> { { "enrollment_identities", enrollmentIdentities }, };
+                return await Client.CallApi<EnrollmentBulkDeleteTask>(path: "/v3/device-enrollments-bulk-deletes", fileParams: fileParams, method: HttpMethods.POST, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<EnrollmentBulkDeleteTask> Get()
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "id", Id }, };
+                return await Client.CallApi<EnrollmentBulkDeleteTask>(path: "/v3/device-enrollments-bulk-deletes/{id}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
         }
     }
 }

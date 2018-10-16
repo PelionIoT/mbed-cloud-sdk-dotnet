@@ -15,6 +15,8 @@ namespace Manhasset.Generator.src.CustomContainers
         public List<MyParameterContainer> FileParams { get; set; }
         public List<MyParameterContainer> BodyParams { get; set; }
         public string HttpMethod { get; set; }
+        public string Returns { get; set; }
+        public string EntityName { get; set; }
 
         public override ReturnStatementSyntax GetSyntax()
         {
@@ -48,9 +50,13 @@ namespace Manhasset.Generator.src.CustomContainers
             }
 
             paramArgList.Add(GetMemberAccessArg("method", "HttpMethods", HttpMethod));
-            paramArgList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
 
-            paramArgList.Add(GetThisArg("objectToUnpack"));
+            if (Returns == EntityName)
+            {
+                paramArgList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+
+                paramArgList.Add(GetThisArg("objectToUnpack"));
+            }
 
             return SyntaxFactory.ReturnStatement(
                 SyntaxFactory.AwaitExpression(
@@ -63,7 +69,7 @@ namespace Manhasset.Generator.src.CustomContainers
                             .WithTypeArgumentList(
                                 SyntaxFactory.TypeArgumentList(
                                     SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
-                                        SyntaxFactory.IdentifierName("User"))))))
+                                        SyntaxFactory.IdentifierName(Returns))))))
                     .WithArgumentList(
                         SyntaxFactory.ArgumentList(
                             SyntaxFactory.SeparatedList<ArgumentSyntax>(

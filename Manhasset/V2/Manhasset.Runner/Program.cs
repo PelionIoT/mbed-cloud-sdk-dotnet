@@ -39,7 +39,7 @@ namespace Manhasset.Runner
             {
                 foreach (var method in item.Methods)
                 {
-                    Console.WriteLine(method.Value.GetSyntax().NormalizeWhitespace().ToFullString());
+                    // Console.WriteLine(method.Value.GetSyntax().NormalizeWhitespace().ToFullString());
                 }
                 // Console.WriteLine(item.GetSyntaxWithNamespace().NormalizeWhitespace().ToFullString());
             }

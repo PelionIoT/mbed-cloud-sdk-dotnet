@@ -18,6 +18,9 @@ namespace MbedCloud.SDK.Entities
     using System.Collections.Generic;
     using System;
     using MbedCloud.SDK.Enums;
+    using System.Threading.Tasks;
+    using MbedCloudSDK.Exceptions;
+    using MbedCloud.SDK.Client;
 
     /// <summary>
     /// CertificateIssuer
@@ -87,6 +90,86 @@ namespace MbedCloud.SDK.Entities
         {
             get;
             set;
+        }
+
+        public async Task<CertificateIssuer> Create(object issuerCredentials = null)
+        {
+            try
+            {
+                var bodyParams = new CertificateIssuer { Description = Description, IssuerAttributes = IssuerAttributes, IssuerType = IssuerType, Name = Name, };
+                return await Client.CallApi<CertificateIssuer>(path: "/v3/certificate-issuers", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<CertificateIssuer> Delete()
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "certificate-issuer-id", Id }, };
+                return await Client.CallApi<CertificateIssuer>(path: "/v3/certificate-issuers/{certificate-issuer-id}", pathParams: pathParams, method: HttpMethods.DELETE, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<CertificateIssuer> Get()
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "certificate-issuer-id", Id }, };
+                return await Client.CallApi<CertificateIssuer>(path: "/v3/certificate-issuers/{certificate-issuer-id}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public PaginatedResponse<QueryOptions, CertificateIssuer> List()
+        {
+            try
+            {
+                var options = new QueryOptions { };
+                Func<QueryOptions, ResponsePage<CertificateIssuer>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<CertificateIssuer>>(() => Client.CallApi<ResponsePage<CertificateIssuer>>(path: "/v3/certificate-issuers", method: HttpMethods.GET));
+                return new PaginatedResponse<QueryOptions, CertificateIssuer>(paginatedFunc, options);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<CertificateIssuer> Update(object issuerCredentials = null)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "certificate-issuer-id", Id }, };
+                var bodyParams = new CertificateIssuer { Description = Description, IssuerAttributes = IssuerAttributes, Name = Name, };
+                return await Client.CallApi<CertificateIssuer>(path: "/v3/certificate-issuers/{certificate-issuer-id}", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<CertificateIssuer> Verify()
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "certificate-issuer-id", Id }, };
+                return await Client.CallApi<CertificateIssuer>(path: "/v3/certificate-issuers/{certificate-issuer-id}/verify", pathParams: pathParams, method: HttpMethods.POST, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
         }
     }
 }

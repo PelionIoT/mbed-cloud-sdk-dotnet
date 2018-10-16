@@ -11,6 +11,7 @@ namespace MbedCloudSDK.Common
     /// <summary>
     /// AsyncHelper
     /// </summary>
+    [Obsolete("No longer being maintained. Please use the newer entity based models under MbedCloud.SDK.Entities")]
     public static class AsyncHelper
     {
         private static readonly TaskFactory TaskFactory = new TaskFactory(

@@ -68,7 +68,7 @@ namespace Manhasset.Generator.src
                 entityClass.Name = entity["_key"].GetStringValue().ToPascal();
 
                 // base type
-                entityClass.AddBaseType("BASE_MODEL", "BaseModel");
+                entityClass.AddBaseType("BASE_ENTITY", "BaseEntity");
                 entityClass.AddUsing(nameof(UsingKeys.SDK_COMMON), UsingKeys.SDK_COMMON);
 
                 // default constructor
@@ -218,7 +218,7 @@ namespace Manhasset.Generator.src
 
                     // default deferToForeignKey to false
                     var deferToForeignKey = false;
-                    DeferedMethodCallContainer deferedMethodCall = null;
+                    DeferedMethodCallContainer deferedMethodCallContainer = null;
                     // if not method then defer to foreign key is true
                     if (httpMethod == null)
                     {
@@ -244,7 +244,7 @@ namespace Manhasset.Generator.src
                     var returns = deferToForeignKey ? method["defer_to_foreign_key_field"]["foreign_key"]["entity"].GetStringValue().ToPascal() : foreignKey ? method["foreign_key"]["entity"].GetStringValue().ToPascal() : entityClass.Name;
 
                     // name of custom method
-                    var customMethodName = method["custom_method"].GetStringValue();
+                    var customMethodName = method["custom_method"].GetStringValue().ToPascal();
 
                     if (isPaginated)
                     {
@@ -260,10 +260,11 @@ namespace Manhasset.Generator.src
                     // get method and field for defered method call
                     if (deferToForeignKey)
                     {
-                        deferedMethodCall = new DeferedMethodCallContainer
+                        deferedMethodCallContainer = new DeferedMethodCallContainer
                         {
-                            Method = method["defer_to_foreign_key_field"]["method"].GetStringValue(),
-                            field = method["defer_to_foreign_key_field"]["field"].GetStringValue(),
+                            Name = methodName,
+                            Method = method["defer_to_foreign_key_field"]["method"].GetStringValue().ToPascal(),
+                            Field = method["defer_to_foreign_key_field"]["field"].GetStringValue().ToCamel(),
                         };
 
                         // add using for foreign key
@@ -320,9 +321,9 @@ namespace Manhasset.Generator.src
                             foreach (var assigmnent in field["set_foreign_key_properties"])
                             {
                                 var tmp = assigmnent as JProperty;
-                                var externalKey = tmp.Name;
-                                var selfKey = tmp.Value.GetStringValue();
-                                deferedMethodCall.AddAsignment(externalKey, selfKey);
+                                var externalKey = tmp.Name.ToPascal();
+                                var selfKey = tmp.Value.GetStringValue().ToPascal();
+                                deferedMethodCallContainer.AddAsignment(externalKey, selfKey);
                             }
                         }
 
@@ -399,7 +400,7 @@ namespace Manhasset.Generator.src
                             FileParams = fileParams,
                             MethodParams = methodParams,
                             DeferToForeignKey = deferToForeignKey,
-                            DeferedMethodCall = deferedMethodCall,
+                            DeferedMethodCall = deferedMethodCallContainer,
                             CustomMethodCall = isCustomMethodCall,
                             CustomMethodName = customMethodName,
                             privateMethod = isPrivateMethod,
@@ -412,10 +413,29 @@ namespace Manhasset.Generator.src
                     else if (deferToForeignKey)
                     {
                         // defered
+                        deferedMethodCallContainer.MethodParams = methodParams;
+
+                        deferedMethodCallContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
+
+                        entityClass.AddMethod(deferedMethodCallContainer.Name, deferedMethodCallContainer);
                     }
                     else if (isCustomMethodCall)
                     {
                         // custom method call
+                        var customFunctionMethodContainer = new CustomFunctionMethodContainer
+                        {
+                            EntityName = entityClass.Name,
+                            Name = methodName,
+                            Returns = returns,
+                            MethodParams = methodParams,
+                            CustomMethodCall = isCustomMethodCall,
+                            CustomMethodName = customMethodName,
+                            privateMethod = isPrivateMethod,
+                        };
+
+                        customFunctionMethodContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
+
+                        entityClass.AddMethod(customFunctionMethodContainer.Name, customFunctionMethodContainer);
                     }
                     else
                     {
@@ -433,7 +453,7 @@ namespace Manhasset.Generator.src
                             FileParams = fileParams,
                             MethodParams = methodParams,
                             DeferToForeignKey = deferToForeignKey,
-                            DeferedMethodCall = deferedMethodCall,
+                            DeferedMethodCall = deferedMethodCallContainer,
                             CustomMethodCall = isCustomMethodCall,
                             CustomMethodName = customMethodName,
                             privateMethod = isPrivateMethod,
@@ -451,6 +471,7 @@ namespace Manhasset.Generator.src
                     entityClass.AddUsing(nameof(UsingKeys.ASYNC), UsingKeys.ASYNC);
                     entityClass.AddUsing(nameof(UsingKeys.EXCEPTIONS), UsingKeys.EXCEPTIONS);
                     entityClass.AddUsing(nameof(UsingKeys.CLIENT), UsingKeys.CLIENT);
+                    entityClass.AddUsing(nameof(UsingKeys.GENERIC_COLLECTIONS), UsingKeys.GENERIC_COLLECTIONS);
                 }
 
                 // remove Ids
@@ -459,8 +480,8 @@ namespace Manhasset.Generator.src
                 CompilationContainer.AddClass(entityClass.Name, entityClass);
             }
 
-            // await CompilationContainer.Compile();
-            // CompilationContainer.WriteFiles();
+            await CompilationContainer.Compile();
+            CompilationContainer.WriteFiles();
         }
     }
 }

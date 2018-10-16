@@ -18,6 +18,10 @@ namespace MbedCloud.SDK.Entities
     using System.Collections.Generic;
     using System;
     using MbedCloud.SDK.Enums;
+    using MbedCloud.SDK.Entities;
+    using System.Threading.Tasks;
+    using MbedCloudSDK.Exceptions;
+    using MbedCloud.SDK.Client;
 
     /// <summary>
     /// MyApiKey
@@ -114,6 +118,46 @@ namespace MbedCloud.SDK.Entities
         {
             get;
             set;
+        }
+
+        public async Task<MyApiKey> Get()
+        {
+            try
+            {
+                return await Client.CallApi<MyApiKey>(path: "/v3/api-keys/me", method: HttpMethods.GET, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public PaginatedResponse<QueryOptions, PolicyGroup> Groups(string after = null, string include = null, int limit = 0, string order = null)
+        {
+            try
+            {
+                var queryParams = new Dictionary<string, object> { { "after", after }, { "include", include }, { "limit", limit }, { "order", order }, };
+                var options = new QueryOptions { After = after, Include = include, Limit = limit, Order = order, };
+                Func<QueryOptions, ResponsePage<PolicyGroup>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<PolicyGroup>>(() => Client.CallApi<ResponsePage<PolicyGroup>>(path: "/v3/api-keys/me/groups", queryParams: queryParams, method: HttpMethods.GET));
+                return new PaginatedResponse<QueryOptions, PolicyGroup>(paginatedFunc, options);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<MyApiKey> Update()
+        {
+            try
+            {
+                var bodyParams = new MyApiKey { GroupIds = GroupIds, Name = Name, Owner = Owner, Status = Status, };
+                return await Client.CallApi<MyApiKey>(path: "/v3/api-keys/me", bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
         }
     }
 }
