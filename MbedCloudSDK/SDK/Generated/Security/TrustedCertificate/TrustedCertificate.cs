@@ -22,7 +22,7 @@ namespace MbedCloud.SDK.Entities
     /// <summary>
     /// TrustedCertificate
     /// </summary>
-    public class TrustedCertificate : BaseModel
+    public class TrustedCertificate : BaseEntity
     {
         public TrustedCertificate()
         {

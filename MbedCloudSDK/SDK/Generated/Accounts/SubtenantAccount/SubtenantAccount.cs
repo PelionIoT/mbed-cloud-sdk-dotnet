@@ -23,7 +23,7 @@ namespace MbedCloud.SDK.Entities
     /// <summary>
     /// SubtenantAccount
     /// </summary>
-    public class SubtenantAccount : BaseModel
+    public class SubtenantAccount : BaseEntity
     {
         public SubtenantAccount()
         {

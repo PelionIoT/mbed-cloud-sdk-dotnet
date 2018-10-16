@@ -21,7 +21,7 @@ namespace MbedCloud.SDK.Entities
     /// <summary>
     /// DeveloperCertificate
     /// </summary>
-    public class DeveloperCertificate : BaseModel
+    public class DeveloperCertificate : BaseEntity
     {
         public DeveloperCertificate()
         {

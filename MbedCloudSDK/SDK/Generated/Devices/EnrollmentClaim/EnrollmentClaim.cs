@@ -20,7 +20,7 @@ namespace MbedCloud.SDK.Entities
     /// <summary>
     /// EnrollmentClaim
     /// </summary>
-    public class EnrollmentClaim : BaseModel
+    public class EnrollmentClaim : BaseEntity
     {
         public EnrollmentClaim()
         {

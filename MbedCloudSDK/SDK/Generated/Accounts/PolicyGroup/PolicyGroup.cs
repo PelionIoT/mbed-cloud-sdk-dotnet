@@ -20,7 +20,7 @@ namespace MbedCloud.SDK.Entities
     /// <summary>
     /// PolicyGroup
     /// </summary>
-    public class PolicyGroup : BaseModel
+    public class PolicyGroup : BaseEntity
     {
         public PolicyGroup()
         {

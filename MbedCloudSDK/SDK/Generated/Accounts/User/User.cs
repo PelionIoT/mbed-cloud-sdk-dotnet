@@ -26,7 +26,7 @@ namespace MbedCloud.SDK.Entities
     /// <summary>
     /// User
     /// </summary>
-    public class User : BaseModel
+    public class User : BaseEntity
     {
         public User()
         {
@@ -216,6 +216,35 @@ namespace MbedCloud.SDK.Entities
             {
                 var pathParams = new Dictionary<string, object> { { "accountID", AccountId }, { "user-id", Id }, };
                 return await Client.CallApi<User>(path: "/v3/accounts/{accountID}/users/{user-id}/validate-email", pathParams: pathParams, method: HttpMethods.POST, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<User> AddToGroups(List<string> addToGroupIds)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "user-id", Id }, };
+                var bodyParams = addToGroupIds;
+                return await Client.CallApi<User>(path: "/v3/users/{user-id}/groups", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public PaginatedResponse<QueryOptions, User> List(string after = null, string include = null, int limit = 0, string order = null)
+        {
+            try
+            {
+                var queryParams = new Dictionary<string, object> { { "after", after }, { "include", include }, { "limit", limit }, { "order", order }, };
+                var options = new QueryOptions { After = after, Include = include, Limit = limit, Order = order, };
+                Func<QueryOptions, ResponsePage<User>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<User>>(() => Client.CallApi<ResponsePage<User>>(path: "/v3/users", queryParams: queryParams, method: HttpMethods.GET));
+                return new PaginatedResponse<QueryOptions, User>(paginatedFunc, options);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {

@@ -15,52 +15,15 @@ namespace Manhasset.Generator.src.CustomContainers
 
             var tryCatch = MethodGenerators.GetTryCatchBlock();
 
-            var methodBody = new List<StatementSyntax>();
-
-            if (PathParams.Any())
-            {
-                var pathDeclaration = new DictionaryParamaterLocalDeclarationSyntax
-                {
-                    Name = "pathParams",
-                    MyParams = PathParams,
-                }.GetSyntax();
-
-                methodBody.Add(pathDeclaration);
-            }
-
-            if (QueryParams.Any())
-            {
-                var queryParamDeclaration = new DictionaryParamaterLocalDeclarationSyntax
-                {
-                    Name = "queryParams",
-                    MyParams = QueryParams,
-                }.GetSyntax();
-
-                methodBody.Add(queryParamDeclaration);
-            }
-
-            if (FileParams.Any())
-            {
-                var fileParamDeclaration = new DictionaryParamaterLocalDeclarationSyntax
-                {
-                    Name = "fileParams",
-                    MyParams = FileParams,
-                }.GetSyntax();
-
-                methodBody.Add(fileParamDeclaration);
-            }
-
-            if (BodyParams.Any())
-            {
-                // body
-            }
+            var methodBody = base.GetMethodBodyParams();
 
             var returnStatement = new ApiCallReturnStatementContainer{
                 Path = Path,
                 PathParams = PathParams,
                 QueryParams = QueryParams,
                 FileParams = FileParams,
-                HttpMethod = HttpMethod
+                BodyParams = BodyParams,
+                HttpMethod = HttpMethod,
             };
 
             methodBody.Add(returnStatement.GetSyntax());

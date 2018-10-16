@@ -21,7 +21,7 @@ namespace MbedCloud.SDK.Entities
     /// <summary>
     /// CertificateIssuerConfig
     /// </summary>
-    public class CertificateIssuerConfig : BaseModel
+    public class CertificateIssuerConfig : BaseEntity
     {
         public CertificateIssuerConfig()
         {

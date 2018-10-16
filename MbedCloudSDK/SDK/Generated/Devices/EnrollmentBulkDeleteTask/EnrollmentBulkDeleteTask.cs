@@ -21,7 +21,7 @@ namespace MbedCloud.SDK.Entities
     /// <summary>
     /// EnrollmentBulkDeleteTask
     /// </summary>
-    public class EnrollmentBulkDeleteTask : BaseModel
+    public class EnrollmentBulkDeleteTask : BaseEntity
     {
         public EnrollmentBulkDeleteTask()
         {

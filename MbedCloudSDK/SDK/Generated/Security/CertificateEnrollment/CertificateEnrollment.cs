@@ -22,7 +22,7 @@ namespace MbedCloud.SDK.Entities
     /// <summary>
     /// CertificateEnrollment
     /// </summary>
-    public class CertificateEnrollment : BaseModel
+    public class CertificateEnrollment : BaseEntity
     {
         public CertificateEnrollment()
         {

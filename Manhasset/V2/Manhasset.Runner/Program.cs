@@ -20,7 +20,7 @@ namespace Manhasset.Runner
 
             var generator = new Manhasset.Generator.src.Generator(jobj);
             // add ref to SDK
-            generator.CompilationContainer.AddMetadataReference(typeof(BaseModel));
+            generator.CompilationContainer.AddMetadataReference(typeof(BaseEntity));
             await generator.Run();
 
             // foreach (var classContainer in generator.Classes)

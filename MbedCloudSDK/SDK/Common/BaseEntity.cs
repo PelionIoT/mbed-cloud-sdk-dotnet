@@ -7,7 +7,7 @@ namespace MbedCloud.SDK.Common
     /// <summary>
     /// BaseModel
     /// </summary>
-    public abstract class BaseModel
+    public abstract class BaseEntity
     {
         [JsonIgnore]
         private Config config;

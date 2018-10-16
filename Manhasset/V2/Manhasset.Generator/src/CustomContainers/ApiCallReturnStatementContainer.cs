@@ -13,6 +13,7 @@ namespace Manhasset.Generator.src.CustomContainers
         public List<MyParameterContainer> PathParams { get; set; }
         public List<MyParameterContainer> QueryParams { get; set; }
         public List<MyParameterContainer> FileParams { get; set; }
+        public List<MyParameterContainer> BodyParams { get; set; }
         public string HttpMethod { get; set; }
 
         public override ReturnStatementSyntax GetSyntax()
@@ -34,9 +35,15 @@ namespace Manhasset.Generator.src.CustomContainers
                 paramArgList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
             }
 
-            if(FileParams.Any())
+            if (FileParams.Any())
             {
                 paramArgList.Add(GetVariableArg("fileParams", "fileParams"));
+                paramArgList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+            }
+
+            if (BodyParams.Any())
+            {
+                paramArgList.Add(GetVariableArg("bodyParams", "bodyParams"));
                 paramArgList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
             }
 
@@ -62,47 +69,6 @@ namespace Manhasset.Generator.src.CustomContainers
                             SyntaxFactory.SeparatedList<ArgumentSyntax>(
                                 paramArgList.ToArray()
                             )))));
-        }
-
-        private ArgumentSyntax GetLiteralArg(string identifier, string literal)
-        {
-            return SyntaxFactory.Argument(
-                        SyntaxFactory.LiteralExpression(
-                            SyntaxKind.StringLiteralExpression,
-                            SyntaxFactory.Literal(literal)))
-                    .WithNameColon(
-                        SyntaxFactory.NameColon(
-                            SyntaxFactory.IdentifierName(identifier)));
-        }
-
-        private ArgumentSyntax GetVariableArg(string identifier, string name)
-        {
-            return SyntaxFactory.Argument(
-                        SyntaxFactory.IdentifierName(identifier))
-                    .WithNameColon(
-                        SyntaxFactory.NameColon(
-                            SyntaxFactory.IdentifierName(name)));
-        }
-
-        private ArgumentSyntax GetMemberAccessArg(string identifier, string member, string value)
-        {
-            return SyntaxFactory.Argument(
-                    SyntaxFactory.MemberAccessExpression(
-                        SyntaxKind.SimpleMemberAccessExpression,
-                        SyntaxFactory.IdentifierName(member),
-                        SyntaxFactory.IdentifierName(value)))
-                .WithNameColon(
-                    SyntaxFactory.NameColon(
-                        SyntaxFactory.IdentifierName(identifier)));
-        }
-
-        private ArgumentSyntax GetThisArg(string identifier)
-        {
-            return SyntaxFactory.Argument(
-                    SyntaxFactory.ThisExpression())
-                .WithNameColon(
-                    SyntaxFactory.NameColon(
-                        SyntaxFactory.IdentifierName(identifier)));
         }
     }
 }

@@ -39,6 +39,15 @@ namespace Manhasset.Generator.src.CustomContainers
 
             if (!p.Required)
             {
+                if (p.ParamType == "int")
+                {
+                    return syntax.WithDefault(
+                        SyntaxFactory.EqualsValueClause(
+                            SyntaxFactory.LiteralExpression(
+                                SyntaxKind.NumericLiteralExpression,
+                                SyntaxFactory.Literal(0))));
+                }
+
                 return syntax.WithDefault(
                     SyntaxFactory.EqualsValueClause(
                         SyntaxFactory.LiteralExpression(

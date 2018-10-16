@@ -7,8 +7,6 @@ namespace Manhasset.Generator.src.common
 
         public static readonly string SDK_COMMON = "MbedCloud.SDK.Common";
 
-        public static readonly string OLD_SDK_COMMON = "MbedCloudSDK.Common";
-
         public static readonly string EXCEPTIONS = "MbedCloudSDK.Exceptions";
 
         public static readonly string ASYNC = "System.Threading.Tasks";

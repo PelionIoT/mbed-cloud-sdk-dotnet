@@ -19,7 +19,7 @@ namespace MbedCloud.SDK.Entities
     /// <summary>
     /// PasswordPolicy
     /// </summary>
-    public class PasswordPolicy : BaseModel
+    public class PasswordPolicy : BaseEntity
     {
         public PasswordPolicy()
         {

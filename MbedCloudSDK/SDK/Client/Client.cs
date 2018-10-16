@@ -32,7 +32,7 @@ namespace MbedCloud.SDK.Client
                     Dictionary<string, object> formParams = null,
                     string[] contentTypes = null,
                     string[] accepts = null,
-                    object body = null,
+                    object bodyParams = null,
                     HttpMethods method = default,
                     T objectToUnpack = default)
         {
@@ -121,9 +121,9 @@ namespace MbedCloud.SDK.Client
                 }
             }
 
-            if (body != null)
+            if (bodyParams != null)
             {
-                localVarPostBody = clientConfiguration.ApiClient.Serialize(body, settings); // http body (model) parameter
+                localVarPostBody = clientConfiguration.ApiClient.Serialize(bodyParams, settings); // http body (model) parameter
             }
 
             localVarHeaderParams["Authorization"] = clientConfiguration.GetApiKeyWithPrefix("Authorization");

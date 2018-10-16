@@ -22,7 +22,7 @@ namespace MbedCloud.SDK.Entities
     /// <summary>
     /// MyApiKey
     /// </summary>
-    public class MyApiKey : BaseModel
+    public class MyApiKey : BaseEntity
     {
         public MyApiKey()
         {

@@ -20,7 +20,7 @@ namespace MbedCloud.SDK.Entities
     /// <summary>
     /// ServerCredentials
     /// </summary>
-    public class ServerCredentials : BaseModel
+    public class ServerCredentials : BaseEntity
     {
         public ServerCredentials()
         {

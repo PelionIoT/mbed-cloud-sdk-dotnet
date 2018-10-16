@@ -20,7 +20,7 @@ namespace MbedCloud.SDK.Entities
     /// <summary>
     /// LoginHistory
     /// </summary>
-    public class LoginHistory : BaseModel
+    public class LoginHistory : BaseEntity
     {
         public LoginHistory()
         {

@@ -21,7 +21,7 @@ namespace MbedCloud.SDK.Entities
     /// <summary>
     /// EnrollmentBulkCreateTask
     /// </summary>
-    public class EnrollmentBulkCreateTask : BaseModel
+    public class EnrollmentBulkCreateTask : BaseEntity
     {
         public EnrollmentBulkCreateTask()
         {
