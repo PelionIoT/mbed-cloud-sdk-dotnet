@@ -37,16 +37,17 @@ namespace Manhasset.Generator.src.CustomContainers
             }
 
             return SyntaxFactory.ReturnStatement(
-                SyntaxFactory.InvocationExpression(
-                    SyntaxFactory.MemberAccessExpression(
-                        SyntaxKind.SimpleMemberAccessExpression,
-                        SyntaxFactory.IdentifierName("CustomFunctions"),
-                        SyntaxFactory.IdentifierName(CustomFunctionName)))
-                .WithArgumentList(
-                    SyntaxFactory.ArgumentList(
-                        SyntaxFactory.SeparatedList<ArgumentSyntax>(
-                            paramList.ToArray()
-                        ))));
+                SyntaxFactory.AwaitExpression(
+                    SyntaxFactory.InvocationExpression(
+                        SyntaxFactory.MemberAccessExpression(
+                            SyntaxKind.SimpleMemberAccessExpression,
+                            SyntaxFactory.IdentifierName("CustomFunctions"),
+                            SyntaxFactory.IdentifierName(CustomFunctionName)))
+                    .WithArgumentList(
+                        SyntaxFactory.ArgumentList(
+                            SyntaxFactory.SeparatedList<ArgumentSyntax>(
+                                paramList.ToArray()
+                    )))));
         }
     }
 }

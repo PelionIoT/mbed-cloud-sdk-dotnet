@@ -427,10 +427,10 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public User CreateUser(User user)
+        public async Task<User> CreateUser(User user)
         {
             user.AccountId = Id;
-            return user.Create();
+            return await user.Create();
         }
 
         public async Task<SubtenantAccount> Get(string include = null, string properties = null)

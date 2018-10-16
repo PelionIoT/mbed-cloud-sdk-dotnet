@@ -11,11 +11,12 @@ namespace Manhasset.Generator.src.CustomContainers
         public override ReturnStatementSyntax GetSyntax()
         {
             return SyntaxFactory.ReturnStatement(
-                SyntaxFactory.InvocationExpression(
-                    SyntaxFactory.MemberAccessExpression(
-                        SyntaxKind.SimpleMemberAccessExpression,
-                        SyntaxFactory.IdentifierName(DeferedEntity),
-                        SyntaxFactory.IdentifierName(MethodName))));
+                SyntaxFactory.AwaitExpression(
+                    SyntaxFactory.InvocationExpression(
+                        SyntaxFactory.MemberAccessExpression(
+                            SyntaxKind.SimpleMemberAccessExpression,
+                            SyntaxFactory.IdentifierName(DeferedEntity),
+                            SyntaxFactory.IdentifierName(MethodName)))));
         }
     }
 }

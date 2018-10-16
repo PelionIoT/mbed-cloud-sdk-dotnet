@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using MbedCloud.SDK.Entities;
 
 namespace MbedCloud.SDK.Common
@@ -13,12 +14,12 @@ namespace MbedCloud.SDK.Common
         {
         }
 
-        public static User SubtenantAccountSwitchGet(User user)
+        public static async Task<User> SubtenantAccountSwitchGet(User user)
         {
             return user;
         }
 
-        public static User SubtenantAccountSwitchCreate(User user, string action)
+        public static async Task<User> SubtenantAccountSwitchCreate(User user, string action)
         {
             return user;
         }

@@ -224,9 +224,9 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public User Create(string action = null)
+        public async Task<User> Create(string action = null)
         {
-            return CustomFunctions.SubtenantAccountSwitchCreate(this, action);
+            return await CustomFunctions.SubtenantAccountSwitchCreate(this, action);
         }
 
         public async Task<User> CreateOnAggregator(string action = null)
@@ -271,9 +271,9 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public User Get()
+        public async Task<User> Get()
         {
-            return CustomFunctions.SubtenantAccountSwitchGet(this);
+            return await CustomFunctions.SubtenantAccountSwitchGet(this);
         }
 
         public async Task<User> GetOnAggregator()

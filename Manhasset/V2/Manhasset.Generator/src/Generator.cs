@@ -265,6 +265,7 @@ namespace Manhasset.Generator.src
                             Name = methodName,
                             Method = method["defer_to_foreign_key_field"]["method"].GetStringValue().ToPascal(),
                             Field = method["defer_to_foreign_key_field"]["field"].GetStringValue().ToCamel(),
+                            IsAsync = true,
                         };
 
                         // add using for foreign key
@@ -414,6 +415,7 @@ namespace Manhasset.Generator.src
                     {
                         // defered
                         deferedMethodCallContainer.MethodParams = methodParams;
+                        deferedMethodCallContainer.Returns = returns;
 
                         deferedMethodCallContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
 
@@ -431,6 +433,7 @@ namespace Manhasset.Generator.src
                             CustomMethodCall = isCustomMethodCall,
                             CustomMethodName = customMethodName,
                             privateMethod = isPrivateMethod,
+                            IsAsync = true,
                         };
 
                         customFunctionMethodContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
