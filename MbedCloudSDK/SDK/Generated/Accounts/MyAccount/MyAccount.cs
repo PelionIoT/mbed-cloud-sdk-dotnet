@@ -15,13 +15,13 @@
 namespace MbedCloud.SDK.Entities
 {
     using MbedCloud.SDK.Common;
+    using MbedCloud.SDK.Client;
     using System.Collections.Generic;
     using System;
     using MbedCloud.SDK.Enums;
     using MbedCloud.SDK.Entities;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
-    using MbedCloud.SDK.Client;
 
     /// <summary>
     /// MyAccount
@@ -30,11 +30,13 @@ namespace MbedCloud.SDK.Entities
     {
         public MyAccount()
         {
+            Client = new Client(Config);
         }
 
         public MyAccount(Config config)
         {
             Config = config;
+            Client = new Client(Config);
         }
 
         /// <summary>

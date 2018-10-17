@@ -15,10 +15,10 @@
 namespace MbedCloud.SDK.Entities
 {
     using MbedCloud.SDK.Common;
+    using MbedCloud.SDK.Client;
     using System;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
-    using MbedCloud.SDK.Client;
     using System.Collections.Generic;
 
     /// <summary>
@@ -28,11 +28,13 @@ namespace MbedCloud.SDK.Entities
     {
         public ServerCredentials()
         {
+            Client = new Client(Config);
         }
 
         public ServerCredentials(Config config)
         {
             Config = config;
+            Client = new Client(Config);
         }
 
         /// <summary>

@@ -16,7 +16,7 @@ namespace MbedCloud.SDK
 
         private readonly Config instanceConfig;
 
-        // public EntityFactory Entities { get; }
+        public EntityFactory Entities { get; }
 
         public MbedCloud.SDK.Client.Client Client { get; }
 
@@ -31,7 +31,7 @@ namespace MbedCloud.SDK
                 instanceConfig = config;
             }
 
-            // Entities = new EntityFactory(GetConfig());
+            Entities = new EntityFactory(GetConfig());
             Client = new MbedCloud.SDK.Client.Client(GetConfig());
         }
 

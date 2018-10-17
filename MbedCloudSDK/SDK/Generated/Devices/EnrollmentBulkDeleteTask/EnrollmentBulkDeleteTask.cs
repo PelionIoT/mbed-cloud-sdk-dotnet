@@ -15,12 +15,12 @@
 namespace MbedCloud.SDK.Entities
 {
     using MbedCloud.SDK.Common;
+    using MbedCloud.SDK.Client;
     using System;
     using MbedCloud.SDK.Enums;
     using System.IO;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
-    using MbedCloud.SDK.Client;
     using System.Collections.Generic;
 
     /// <summary>
@@ -30,11 +30,13 @@ namespace MbedCloud.SDK.Entities
     {
         public EnrollmentBulkDeleteTask()
         {
+            Client = new Client(Config);
         }
 
         public EnrollmentBulkDeleteTask(Config config)
         {
             Config = config;
+            Client = new Client(Config);
         }
 
         /// <summary>

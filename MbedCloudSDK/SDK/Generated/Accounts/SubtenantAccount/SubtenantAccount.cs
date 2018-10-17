@@ -15,13 +15,13 @@
 namespace MbedCloud.SDK.Entities
 {
     using MbedCloud.SDK.Common;
+    using MbedCloud.SDK.Client;
     using System.Collections.Generic;
     using System;
     using MbedCloud.SDK.Enums;
     using MbedCloud.SDK.Entities;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
-    using MbedCloud.SDK.Client;
 
     /// <summary>
     /// SubtenantAccount
@@ -30,11 +30,13 @@ namespace MbedCloud.SDK.Entities
     {
         public SubtenantAccount()
         {
+            Client = new Client(Config);
         }
 
         public SubtenantAccount(Config config)
         {
             Config = config;
+            Client = new Client(Config);
         }
 
         /// <summary>
@@ -397,7 +399,7 @@ namespace MbedCloud.SDK.Entities
             set;
         }
 
-        public PaginatedResponse<QueryOptions, ApiKey> ApiKeys(string after = null, string include = null, int limit = 0, string order = null)
+        public PaginatedResponse<QueryOptions, ApiKey> ApiKeys(string after = null, string include = null, int limit = 25, string order = null)
         {
             try
             {
@@ -447,7 +449,7 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public PaginatedResponse<QueryOptions, PolicyGroup> Groups(string after = null, string include = null, int limit = 0, string order = null)
+        public PaginatedResponse<QueryOptions, PolicyGroup> Groups(string after = null, string include = null, int limit = 25, string order = null)
         {
             try
             {
@@ -463,7 +465,7 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public PaginatedResponse<QueryOptions, SubtenantAccount> List(string after = null, string format = null, string include = null, int limit = 0, string order = null, string properties = null)
+        public PaginatedResponse<QueryOptions, SubtenantAccount> List(string after = null, string format = null, string include = null, int limit = 25, string order = null, string properties = null)
         {
             try
             {
@@ -492,7 +494,7 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public PaginatedResponse<QueryOptions, User> Users(string after = null, string include = null, int limit = 0, string order = null)
+        public PaginatedResponse<QueryOptions, User> Users(string after = null, string include = null, int limit = 25, string order = null)
         {
             try
             {

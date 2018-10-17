@@ -15,6 +15,8 @@ namespace Manhasset.Generator.src.common
 
         public static readonly string SYSTEM_IO = "System.IO";
 
+        public static readonly string ENTITIES = "MbedCloud.SDK.Entities";
+
         public static string ForeignKey(string entity)
         {
             return $"FOREIGN_KEY_{entity.ToUpper()}";

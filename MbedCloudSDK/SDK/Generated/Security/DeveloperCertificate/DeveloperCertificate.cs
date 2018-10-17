@@ -15,12 +15,12 @@
 namespace MbedCloud.SDK.Entities
 {
     using MbedCloud.SDK.Common;
+    using MbedCloud.SDK.Client;
     using System.Collections.Generic;
     using System;
     using MbedCloud.SDK.Entities;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
-    using MbedCloud.SDK.Client;
 
     /// <summary>
     /// DeveloperCertificate
@@ -29,11 +29,13 @@ namespace MbedCloud.SDK.Entities
     {
         public DeveloperCertificate()
         {
+            Client = new Client(Config);
         }
 
         public DeveloperCertificate(Config config)
         {
             Config = config;
+            Client = new Client(Config);
         }
 
         internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "CertificateContent", "developer_certificate" }, { "Id", "developerCertificateId" }, };

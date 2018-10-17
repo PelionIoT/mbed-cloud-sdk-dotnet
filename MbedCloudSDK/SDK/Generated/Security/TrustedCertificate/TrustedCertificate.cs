@@ -15,13 +15,13 @@
 namespace MbedCloud.SDK.Entities
 {
     using MbedCloud.SDK.Common;
+    using MbedCloud.SDK.Client;
     using System.Collections.Generic;
     using System;
     using MbedCloud.SDK.Enums;
     using MbedCloud.SDK.Entities;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
-    using MbedCloud.SDK.Client;
 
     /// <summary>
     /// TrustedCertificate
@@ -30,11 +30,13 @@ namespace MbedCloud.SDK.Entities
     {
         public TrustedCertificate()
         {
+            Client = new Client(Config);
         }
 
         public TrustedCertificate(Config config)
         {
             Config = config;
+            Client = new Client(Config);
         }
 
         internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "Id", "cert-id" }, };
@@ -78,7 +80,7 @@ namespace MbedCloud.SDK.Entities
         /// <summary>
         /// device_execution_mode
         /// </summary>
-        public int? DeviceExecutionMode
+        internal int? DeviceExecutionMode
         {
             get;
             set;
@@ -181,7 +183,7 @@ namespace MbedCloud.SDK.Entities
             set;
         }
 
-        public async Task<TrustedCertificate> Create(string signature = null)
+        public async Task<TrustedCertificate> Create()
         {
             try
             {
@@ -233,7 +235,7 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public PaginatedResponse<QueryOptions, TrustedCertificate> List(string after = null, string include = null, int limit = 0, string order = null)
+        public PaginatedResponse<QueryOptions, TrustedCertificate> List(string after = null, string include = null, int limit = 25, string order = null)
         {
             try
             {
@@ -248,7 +250,7 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public async Task<TrustedCertificate> Update(string signature = null)
+        public async Task<TrustedCertificate> Update()
         {
             try
             {

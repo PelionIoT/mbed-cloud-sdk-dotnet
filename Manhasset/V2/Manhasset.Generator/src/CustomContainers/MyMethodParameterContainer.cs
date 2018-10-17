@@ -45,7 +45,7 @@ namespace Manhasset.Generator.src.CustomContainers
                         SyntaxFactory.EqualsValueClause(
                             SyntaxFactory.LiteralExpression(
                                 SyntaxKind.NumericLiteralExpression,
-                                SyntaxFactory.Literal(0))));
+                                SyntaxFactory.Literal(25))));
                 }
 
                 return syntax.WithDefault(

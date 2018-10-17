@@ -26,6 +26,41 @@ namespace Manhasset.Generator.src
             // root file path
             var rootFilePath = "/Users/alelog01/git/mbed-cloud-sdk-dotnet/MbedCloudSDK/SDK/Generated";
 
+            var entities = Config["entities"];
+
+            var entityFactory = new ClassContainer()
+            {
+                Name = "EntityFactory",
+                Namespace = "MbedCloud.SDK",
+                FilePath = $"{rootFilePath}/EntityFactory.cs",
+                DocString = "Entity Factory",
+            };
+
+            // var configField = new PrivateFieldContainer
+            // {
+            //     Name = "config",
+            //     FieldType = "Config",
+            // };
+
+            // configField.AddModifier(nameof(Modifiers.PRIVATE), Modifiers.PRIVATE);
+
+            // entityFactory.AddPrivateField(nameof(configField), configField);
+
+            // // entity factory constructor
+            // var entityFactoryConstructorContainer = new EntityFactoryConstructorContainer
+            // {
+            //     Name = "EntityFactory"
+            // };
+
+            // entityFactoryConstructorContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
+            // entityFactory.AddConstructor(nameof(entityFactoryConstructorContainer), entityFactoryConstructorContainer);
+
+            entityFactory.AddUsing(nameof(UsingKeys.SDK_COMMON), UsingKeys.SDK_COMMON);
+            entityFactory.AddUsing(nameof(UsingKeys.ENTITIES), UsingKeys.ENTITIES);
+
+            entityFactory.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
+            entityFactory.AddModifier(nameof(Modifiers.PARTIAL), Modifiers.PARTIAL);
+
             // generate enums
             var enums = Config["enums"];
 
@@ -52,8 +87,6 @@ namespace Manhasset.Generator.src
             }
 
             // generate entities
-            var entities = Config["entities"];
-
             foreach (var entity in entities)
             {
                 var entityClass = new ClassContainer();
@@ -67,12 +100,24 @@ namespace Manhasset.Generator.src
                 // name
                 entityClass.Name = entity["_key"].GetStringValue().ToPascal();
 
+                // add entity to factory
+                var factoryProp = new EntityFactoryPropertyContainer
+                {
+                    Name = entityClass.Name,
+                    PropertyType = entityClass.Name,
+                    GetAccessor = true,
+                    SetAccessor = false,
+                    DocString = entityClass.Name,
+                };
+                factoryProp.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
+                entityFactory.AddProperty($"{entityClass.Name}FacroryProp", factoryProp);
+
                 // base type
                 entityClass.AddBaseType("BASE_ENTITY", "BaseEntity");
                 entityClass.AddUsing(nameof(UsingKeys.SDK_COMMON), UsingKeys.SDK_COMMON);
 
                 // default constructor
-                var defaultConstructor = new ConstructorContainer
+                var defaultConstructor = new DefaultConfigConstructorContainer
                 {
                     Name = entityClass.Name
                 };
@@ -87,6 +132,7 @@ namespace Manhasset.Generator.src
                 configConstructor.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
                 entityClass.AddConstructor("CONFIG", configConstructor);
                 entityClass.AddUsing(nameof(UsingKeys.SDK_COMMON), UsingKeys.SDK_COMMON);
+                entityClass.AddUsing(nameof(UsingKeys.CLIENT), UsingKeys.CLIENT);
 
                 // doc (just use the name for now)
                 entityClass.DocString = entityClass.Name;
@@ -121,6 +167,9 @@ namespace Manhasset.Generator.src
                     // TODO restore when multiline comment issue is solved
                     // var docString = property["description"].GetStringValue() ?? property["_key"].GetStringValue();
                     var docString = property["_key"].GetStringValue();
+
+                    // if property is private
+                    var isPrivate = property["private_field"] != null;
 
                     // get type
                     // format or type for most methods
@@ -168,7 +217,14 @@ namespace Manhasset.Generator.src
                         };
 
                         // can assume public
-                        propContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
+                        if (isPrivate)
+                        {
+                            propContainer.AddModifier(nameof(Modifiers.INTERNAL), Modifiers.INTERNAL);
+                        }
+                        else
+                        {
+                            propContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
+                        }
 
                         entityClass.AddProperty(name, propContainer);
                     }
@@ -473,7 +529,6 @@ namespace Manhasset.Generator.src
                 {
                     entityClass.AddUsing(nameof(UsingKeys.ASYNC), UsingKeys.ASYNC);
                     entityClass.AddUsing(nameof(UsingKeys.EXCEPTIONS), UsingKeys.EXCEPTIONS);
-                    entityClass.AddUsing(nameof(UsingKeys.CLIENT), UsingKeys.CLIENT);
                     entityClass.AddUsing(nameof(UsingKeys.GENERIC_COLLECTIONS), UsingKeys.GENERIC_COLLECTIONS);
                 }
 
@@ -482,6 +537,8 @@ namespace Manhasset.Generator.src
 
                 CompilationContainer.AddClass(entityClass.Name, entityClass);
             }
+
+            CompilationContainer.AddClass(nameof(entityFactory), entityFactory);
 
             await CompilationContainer.Compile();
             CompilationContainer.WriteFiles();

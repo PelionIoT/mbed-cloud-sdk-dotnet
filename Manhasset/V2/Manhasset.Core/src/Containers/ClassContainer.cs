@@ -63,8 +63,11 @@ namespace Manhasset.Core.src.Containers
                                 .AddModifiers(MyModifiers.Values.ToArray());
 
             // add base types
-            classSyntax = classSyntax.AddBaseListTypes(BaseTypes.Values.Select(b => SyntaxFactory.SimpleBaseType(SyntaxFactory.IdentifierName(b))).ToArray());
-
+            if (BaseTypes.Any())
+            {
+                classSyntax = classSyntax.AddBaseListTypes(BaseTypes.Values.Select(b => SyntaxFactory.SimpleBaseType(SyntaxFactory.IdentifierName(b))).ToArray());
+            }
+            
             // add doc
             classSyntax = classSyntax.AddSummary(DocString) as ClassDeclarationSyntax;
 

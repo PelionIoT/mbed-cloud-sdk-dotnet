@@ -15,6 +15,7 @@
 namespace MbedCloud.SDK.Entities
 {
     using MbedCloud.SDK.Common;
+    using MbedCloud.SDK.Client;
     using System;
 
     /// <summary>
@@ -24,11 +25,13 @@ namespace MbedCloud.SDK.Entities
     {
         public LoginHistory()
         {
+            Client = new Client(Config);
         }
 
         public LoginHistory(Config config)
         {
             Config = config;
+            Client = new Client(Config);
         }
 
         /// <summary>

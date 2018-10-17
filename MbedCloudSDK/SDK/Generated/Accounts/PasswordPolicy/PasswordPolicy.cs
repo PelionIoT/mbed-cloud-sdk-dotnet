@@ -15,6 +15,7 @@
 namespace MbedCloud.SDK.Entities
 {
     using MbedCloud.SDK.Common;
+    using MbedCloud.SDK.Client;
 
     /// <summary>
     /// PasswordPolicy
@@ -23,11 +24,13 @@ namespace MbedCloud.SDK.Entities
     {
         public PasswordPolicy()
         {
+            Client = new Client(Config);
         }
 
         public PasswordPolicy(Config config)
         {
             Config = config;
+            Client = new Client(Config);
         }
 
         /// <summary>
