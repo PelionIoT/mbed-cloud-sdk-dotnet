@@ -9,7 +9,7 @@ namespace MbedCloudSDK.Common.Query
     /// <summary>
     /// Parameters send with list requests.
     /// </summary>
-    [Obsolete("No longer being maintained. Please use the newer entity based models under MbedCloud.SDK.Entities")]
+    // [Obsolete("No longer being maintained. Please use the newer entity based models under MbedCloud.SDK.Entities")]
     public class QueryOptions
     {
         /// <summary>

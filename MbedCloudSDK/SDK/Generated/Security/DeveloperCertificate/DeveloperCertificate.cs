@@ -38,7 +38,7 @@ namespace MbedCloud.SDK.Entities
             Client = new Client(Config);
         }
 
-        internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "CertificateContent", "developer_certificate" }, { "Id", "developerCertificateId" }, };
+        internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "Certificate", "developer_certificate" }, { "Id", "developerCertificateId" }, { "PrivateKey", "developer_private_key" }, };
 
         /// <summary>
         /// account_id
@@ -50,9 +50,9 @@ namespace MbedCloud.SDK.Entities
         }
 
         /// <summary>
-        /// certificate_content
+        /// certificate
         /// </summary>
-        public string CertificateContent
+        public string Certificate
         {
             get;
             set;
@@ -77,18 +77,18 @@ namespace MbedCloud.SDK.Entities
         }
 
         /// <summary>
-        /// developer_private_key
+        /// name
         /// </summary>
-        public string DeveloperPrivateKey
+        public string Name
         {
             get;
             set;
         }
 
         /// <summary>
-        /// name
+        /// private_key
         /// </summary>
-        public string Name
+        public string PrivateKey
         {
             get;
             set;

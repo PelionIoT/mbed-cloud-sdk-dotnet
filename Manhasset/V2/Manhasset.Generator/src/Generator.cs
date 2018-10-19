@@ -288,7 +288,7 @@ namespace Manhasset.Generator.src
                     var isPaginated = method["pagination"].GetBoolValue();
 
                     // is method private
-                    var isPrivateMethod = method["private_field"] != null;
+                    var isPrivateMethod = method["private_method"] != null;
 
                     // is method a custom call
                     var isCustomMethodCall = method["custom_method"] != null;
@@ -519,7 +519,14 @@ namespace Manhasset.Generator.src
                             IsAsync = true,
                         };
 
-                        methodContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
+                        if (isPrivateMethod)
+                        {
+                            methodContainer.AddModifier(nameof(Modifiers.INTERNAL), Modifiers.INTERNAL);
+                        }
+                        else
+                        {
+                            methodContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
+                        }
 
                         entityClass.AddMethod(methodContainer.Name, methodContainer);
                     }

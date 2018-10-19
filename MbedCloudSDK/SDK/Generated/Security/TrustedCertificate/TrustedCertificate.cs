@@ -102,12 +102,12 @@ namespace MbedCloud.SDK.Entities
         {
             get
             {
-                return CustomFunctions.DeveloperCertificateGetter(this);
+                return CustomFunctions.IsDeveloperCertificateGetter(this);
             }
 
             set
             {
-                CustomFunctions.DeveloperCertificateSetter(this, value);
+                CustomFunctions.IsDeveloperCertificateSetter(this, value);
             }
         }
 

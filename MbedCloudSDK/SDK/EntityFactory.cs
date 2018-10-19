@@ -1,7 +1,11 @@
-using MbedCloud.SDK.Common;
+// <copyright file="EntityFactory.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace MbedCloud.SDK
 {
+    using MbedCloud.SDK.Common;
+    
     public partial class EntityFactory
     {
         public EntityFactory(Config config)

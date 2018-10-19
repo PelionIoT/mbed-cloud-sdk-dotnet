@@ -10,7 +10,7 @@ namespace MbedCloudSDK.Common
     /// <summary>
     /// BaseModel
     /// </summary>
-    [Obsolete("No longer being maintained. Please use the newer entity based models under MbedCloud.SDK.Entities")]
+    // [Obsolete("No longer being maintained. Please use the newer entity based models under MbedCloud.SDK.Entities")]
     public abstract class BaseModel
     {
         /// <summary>

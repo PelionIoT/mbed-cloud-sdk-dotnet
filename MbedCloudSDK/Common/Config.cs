@@ -12,7 +12,7 @@ namespace MbedCloudSDK.Common
     /// <summary>
     /// Config for MbedCloud
     /// </summary>
-    [Obsolete("No longer being maintained. Please use the newer entity based models under MbedCloud.SDK.Entities")]
+    // [Obsolete("No longer being maintained. Please use the newer entity based models under MbedCloud.SDK.Entities")]
     public class Config
     {
         /// <summary>
