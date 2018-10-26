@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
 //
-// <copyright file="EnrollmentBulkDeleteTask.cs" company="Arm">
+// <copyright file="DeviceEvents.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -17,41 +17,30 @@ namespace MbedCloud.SDK.Entities
     using MbedCloud.SDK.Common;
     using MbedCloud.SDK.Client;
     using System;
-    using MbedCloud.SDK.Enums;
-    using System.IO;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
 
     /// <summary>
-    /// EnrollmentBulkDeleteTask
+    /// DeviceEvents
     /// </summary>
-    public class EnrollmentBulkDeleteTask : BaseEntity
+    public class DeviceEvents : BaseEntity
     {
-        public EnrollmentBulkDeleteTask()
+        public DeviceEvents()
         {
             Client = new Client(Config);
         }
 
-        public EnrollmentBulkDeleteTask(Config config)
+        public DeviceEvents(Config config)
         {
             Config = config;
             Client = new Client(Config);
         }
 
         /// <summary>
-        /// account_id
+        /// changes
         /// </summary>
-        public string AccountId
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// completed_at
-        /// </summary>
-        public DateTime? CompletedAt
+        public object Changes
         {
             get;
             set;
@@ -67,65 +56,83 @@ namespace MbedCloud.SDK.Entities
         }
 
         /// <summary>
-        /// errors_count
+        /// data
         /// </summary>
-        public int? ErrorsCount
+        public object Data
         {
             get;
             set;
         }
 
         /// <summary>
-        /// errors_report_file
+        /// date_time
         /// </summary>
-        public string ErrorsReportFile
+        public DateTime? DateTime
         {
             get;
             set;
         }
 
         /// <summary>
-        /// full_report_file
+        /// description
         /// </summary>
-        public string FullReportFile
+        public string Description
         {
             get;
             set;
         }
 
         /// <summary>
-        /// processed_count
+        /// device_id
         /// </summary>
-        public int? ProcessedCount
+        public string DeviceId
         {
             get;
             set;
         }
 
         /// <summary>
-        /// status
+        /// event_type
         /// </summary>
-        public EnrollmentBulkDeleteTaskStatusEnum? Status
+        public string EventType
         {
             get;
             set;
         }
 
         /// <summary>
-        /// total_count
+        /// event_type_category
         /// </summary>
-        public int? TotalCount
+        public string EventTypeCategory
         {
             get;
             set;
         }
 
-        public async Task<EnrollmentBulkDeleteTask> Delete(Stream enrollmentIdentities)
+        /// <summary>
+        /// event_type_description
+        /// </summary>
+        public string EventTypeDescription
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// state_change
+        /// </summary>
+        public bool? StateChange
+        {
+            get;
+            set;
+        }
+
+        public async Task<DeviceEvents> Get()
         {
             try
             {
-                var fileParams = new Dictionary<string, Stream> { { "enrollment_identities", enrollmentIdentities }, };
-                return await Client.CallApi<EnrollmentBulkDeleteTask>(path: "/v3/device-enrollments-bulk-deletes", fileParams: fileParams, method: HttpMethods.POST, objectToUnpack: this);
+                var pathParams = new Dictionary<string, object> { { "device_event_id", Id }, };
+                return await Client.CallApi<DeviceEvents>(path: "/v3/device-events/{device_event_id}/", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {
@@ -133,12 +140,14 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public async Task<EnrollmentBulkDeleteTask> Get()
+        public PaginatedResponse<QueryOptions, DeviceEvents> List(string after = null, string filter = null, string include = null, int limit = 25, string order = null)
         {
             try
             {
-                var pathParams = new Dictionary<string, object> { { "id", Id }, };
-                return await Client.CallApi<EnrollmentBulkDeleteTask>(path: "/v3/device-enrollments-bulk-deletes/{id}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
+                var queryParams = new Dictionary<string, object> { { "after", after }, { "filter", filter }, { "include", include }, { "limit", limit }, { "order", order }, };
+                var options = new QueryOptions { After = after, Include = include, Limit = limit, Order = order, };
+                Func<QueryOptions, ResponsePage<DeviceEvents>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<DeviceEvents>>(() => Client.CallApi<ResponsePage<DeviceEvents>>(path: "/v3/device-events/", queryParams: queryParams, method: HttpMethods.GET));
+                return new PaginatedResponse<QueryOptions, DeviceEvents>(paginatedFunc, options);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {

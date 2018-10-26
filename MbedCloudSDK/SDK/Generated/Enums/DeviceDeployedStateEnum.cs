@@ -7,17 +7,16 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
 //
-// <copyright file="EnrollmentBulkDeleteTaskStatusEnum.cs" company="Arm">
+// <copyright file="DeviceDeployedStateEnum.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
 namespace MbedCloud.SDK.Enums
 {
-    public enum EnrollmentBulkDeleteTaskStatusEnum
+    public enum DeviceDeployedStateEnum
     {
-        COMPLETED,
-        NEW,
-        PROCESSING,
+        DEVELOPMENT,
+        PRODUCTION,
     }
 }

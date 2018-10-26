@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
 //
-// <copyright file="EnrollmentClaim.cs" company="Arm">
+// <copyright file="DeviceEnrollment.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -22,16 +22,16 @@ namespace MbedCloud.SDK.Entities
     using System.Collections.Generic;
 
     /// <summary>
-    /// EnrollmentClaim
+    /// DeviceEnrollment
     /// </summary>
-    public class EnrollmentClaim : BaseEntity
+    public class DeviceEnrollment : BaseEntity
     {
-        public EnrollmentClaim()
+        public DeviceEnrollment()
         {
             Client = new Client(Config);
         }
 
-        public EnrollmentClaim(Config config)
+        public DeviceEnrollment(Config config)
         {
             Config = config;
             Client = new Client(Config);
@@ -91,12 +91,12 @@ namespace MbedCloud.SDK.Entities
             set;
         }
 
-        public async Task<EnrollmentClaim> Create()
+        public async Task<DeviceEnrollment> Create()
         {
             try
             {
-                var bodyParams = new EnrollmentClaim { EnrollmentIdentity = EnrollmentIdentity, };
-                return await Client.CallApi<EnrollmentClaim>(path: "/v3/device-enrollments", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
+                var bodyParams = new DeviceEnrollment { EnrollmentIdentity = EnrollmentIdentity, };
+                return await Client.CallApi<DeviceEnrollment>(path: "/v3/device-enrollments", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {
@@ -104,25 +104,12 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public async Task<EnrollmentClaim> Delete()
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "id", Id }, };
-                return await Client.CallApi<EnrollmentClaim>(path: "/v3/device-enrollments/{id}", pathParams: pathParams, method: HttpMethods.DELETE, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public async Task<EnrollmentClaim> Get()
+        public async Task<DeviceEnrollment> Delete()
         {
             try
             {
                 var pathParams = new Dictionary<string, object> { { "id", Id }, };
-                return await Client.CallApi<EnrollmentClaim>(path: "/v3/device-enrollments/{id}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
+                return await Client.CallApi<DeviceEnrollment>(path: "/v3/device-enrollments/{id}", pathParams: pathParams, method: HttpMethods.DELETE, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {
@@ -130,14 +117,27 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public PaginatedResponse<QueryOptions, EnrollmentClaim> List(string after = null, string include = null, int limit = 25, string order = null)
+        public async Task<DeviceEnrollment> Get()
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "id", Id }, };
+                return await Client.CallApi<DeviceEnrollment>(path: "/v3/device-enrollments/{id}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public PaginatedResponse<QueryOptions, DeviceEnrollment> List(string after = null, string include = null, int limit = 25, string order = null)
         {
             try
             {
                 var queryParams = new Dictionary<string, object> { { "after", after }, { "include", include }, { "limit", limit }, { "order", order }, };
                 var options = new QueryOptions { After = after, Include = include, Limit = limit, Order = order, };
-                Func<QueryOptions, ResponsePage<EnrollmentClaim>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<EnrollmentClaim>>(() => Client.CallApi<ResponsePage<EnrollmentClaim>>(path: "/v3/device-enrollments", queryParams: queryParams, method: HttpMethods.GET));
-                return new PaginatedResponse<QueryOptions, EnrollmentClaim>(paginatedFunc, options);
+                Func<QueryOptions, ResponsePage<DeviceEnrollment>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<DeviceEnrollment>>(() => Client.CallApi<ResponsePage<DeviceEnrollment>>(path: "/v3/device-enrollments", queryParams: queryParams, method: HttpMethods.GET));
+                return new PaginatedResponse<QueryOptions, DeviceEnrollment>(paginatedFunc, options);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {

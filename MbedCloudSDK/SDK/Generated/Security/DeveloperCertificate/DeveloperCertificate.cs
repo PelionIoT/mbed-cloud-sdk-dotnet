@@ -38,7 +38,7 @@ namespace MbedCloud.SDK.Entities
             Client = new Client(Config);
         }
 
-        internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "Certificate", "developer_certificate" }, { "Id", "developerCertificateId" }, { "PrivateKey", "developer_private_key" }, };
+        internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "Certificate", "developer_certificate" }, { "PrivateKey", "developer_private_key" }, };
 
         /// <summary>
         /// account_id

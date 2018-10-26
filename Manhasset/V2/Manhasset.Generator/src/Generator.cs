@@ -181,7 +181,7 @@ namespace Manhasset.Generator.src
                     var innerValues = items != null ? foreignKey != null ? foreignKey["entity"].GetStringValue().ToPascal() : property["items"]["type"].GetStringValue() : null;
 
                     // might be enum
-                    var propertyType = property["enum"] != null ? property["enum_reference"].GetStringValue().ToPascal() : SwaggerTypeHelper.MapType(swaggerType, innerValues);
+                    var propertyType = (property["enum"] != null && property["enum_reference"] != null) ? property["enum_reference"].GetStringValue().ToPascal() : SwaggerTypeHelper.MapType(swaggerType, innerValues);
 
                     // check if property has custom getters and setters
                     var overrideProperty = property["_override"] != null && !property["private_field"].GetBoolValue();

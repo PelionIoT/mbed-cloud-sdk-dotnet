@@ -192,11 +192,11 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public async Task<ApiKey> ResetSecret(string accountID)
+        public async Task<ApiKey> ResetSecret(string accountId)
         {
             try
             {
-                var pathParams = new Dictionary<string, object> { { "accountID", accountID }, { "apiKey", Id }, };
+                var pathParams = new Dictionary<string, object> { { "accountID", accountId }, { "apiKey", Id }, };
                 return await Client.CallApi<ApiKey>(path: "/v3/accounts/{accountID}/api-keys/{apiKey}/reset-secret", pathParams: pathParams, method: HttpMethods.POST, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)

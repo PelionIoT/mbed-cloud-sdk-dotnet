@@ -16,11 +16,11 @@ namespace MbedCloud.SDK.Entities
 {
     using MbedCloud.SDK.Common;
     using MbedCloud.SDK.Client;
-    using System.Collections.Generic;
     using System;
     using MbedCloud.SDK.Enums;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
+    using System.Collections.Generic;
 
     /// <summary>
     /// CertificateEnrollment
@@ -37,8 +37,6 @@ namespace MbedCloud.SDK.Entities
             Config = config;
             Client = new Client(Config);
         }
-
-        internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "CertificateEnrollmentId", "certificate-enrollment-id" }, };
 
         /// <summary>
         /// certificate_name
@@ -85,11 +83,20 @@ namespace MbedCloud.SDK.Entities
             set;
         }
 
-        public async Task<CertificateEnrollment> Get(string certificateEnrollmentId)
+        /// <summary>
+        /// updated_at
+        /// </summary>
+        public DateTime? UpdatedAt
+        {
+            get;
+            set;
+        }
+
+        public async Task<CertificateEnrollment> Get()
         {
             try
             {
-                var pathParams = new Dictionary<string, object> { { "certificate-enrollment-id", certificateEnrollmentId }, };
+                var pathParams = new Dictionary<string, object> { { "certificate-enrollment-id", Id }, };
                 return await Client.CallApi<CertificateEnrollment>(path: "/v3/certificate-enrollments/{certificate-enrollment-id}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
@@ -98,12 +105,13 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public PaginatedResponse<QueryOptions, CertificateEnrollment> List()
+        public PaginatedResponse<QueryOptions, CertificateEnrollment> List(string after = null, string include = null, int limit = 25, string order = null)
         {
             try
             {
-                var options = new QueryOptions { };
-                Func<QueryOptions, ResponsePage<CertificateEnrollment>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<CertificateEnrollment>>(() => Client.CallApi<ResponsePage<CertificateEnrollment>>(path: "/v3/certificate-enrollments", method: HttpMethods.GET));
+                var queryParams = new Dictionary<string, object> { { "after", after }, { "include", include }, { "limit", limit }, { "order", order }, };
+                var options = new QueryOptions { After = after, Include = include, Limit = limit, Order = order, };
+                Func<QueryOptions, ResponsePage<CertificateEnrollment>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<CertificateEnrollment>>(() => Client.CallApi<ResponsePage<CertificateEnrollment>>(path: "/v3/certificate-enrollments", queryParams: queryParams, method: HttpMethods.GET));
                 return new PaginatedResponse<QueryOptions, CertificateEnrollment>(paginatedFunc, options);
             }
             catch (MbedCloud.SDK.Client.ApiException e)

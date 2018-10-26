@@ -16,10 +16,10 @@ namespace MbedCloud.SDK.Entities
 {
     using MbedCloud.SDK.Common;
     using MbedCloud.SDK.Client;
-    using System.Collections.Generic;
     using System;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
+    using System.Collections.Generic;
 
     /// <summary>
     /// CertificateIssuerConfig
@@ -36,8 +36,6 @@ namespace MbedCloud.SDK.Entities
             Config = config;
             Client = new Client(Config);
         }
-
-        internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "Id", "certificate-issuer-configuration-id" }, };
 
         /// <summary>
         /// certificate_issuer_id

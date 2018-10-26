@@ -63,27 +63,35 @@ namespace MbedCloud.SDK
         }
 
         /// <summary>
-        /// EnrollmentBulkCreateTask
+        /// Device
         /// </summary>
-        public EnrollmentBulkCreateTask EnrollmentBulkCreateTask
+        public Device Device
         {
-            get => new EnrollmentBulkCreateTask(config);
+            get => new Device(config);
         }
 
         /// <summary>
-        /// EnrollmentBulkDeleteTask
+        /// DeviceEnrollment
         /// </summary>
-        public EnrollmentBulkDeleteTask EnrollmentBulkDeleteTask
+        public DeviceEnrollment DeviceEnrollment
         {
-            get => new EnrollmentBulkDeleteTask(config);
+            get => new DeviceEnrollment(config);
         }
 
         /// <summary>
-        /// EnrollmentClaim
+        /// DeviceEnrollmentBulkCreate
         /// </summary>
-        public EnrollmentClaim EnrollmentClaim
+        public DeviceEnrollmentBulkCreate DeviceEnrollmentBulkCreate
         {
-            get => new EnrollmentClaim(config);
+            get => new DeviceEnrollmentBulkCreate(config);
+        }
+
+        /// <summary>
+        /// DeviceEvents
+        /// </summary>
+        public DeviceEvents DeviceEvents
+        {
+            get => new DeviceEvents(config);
         }
 
         /// <summary>
