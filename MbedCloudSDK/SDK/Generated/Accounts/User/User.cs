@@ -304,14 +304,17 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public PaginatedResponse<QueryOptions, PolicyGroup> Groups(string after = null, string include = null, int limit = 25, string order = null)
+        public PaginatedResponse<QueryOptions, PolicyGroup> Groups(QueryOptions options = null)
         {
             try
             {
                 var pathParams = new Dictionary<string, object> { { "user-id", Id }, };
-                var queryParams = new Dictionary<string, object> { { "after", after }, { "include", include }, { "limit", limit }, { "order", order }, };
-                var options = new QueryOptions { After = after, Include = include, Limit = limit, Order = order, };
-                Func<QueryOptions, ResponsePage<PolicyGroup>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<PolicyGroup>>(() => Client.CallApi<ResponsePage<PolicyGroup>>(path: "/v3/users/{user-id}/groups", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET));
+                if (options == null)
+                {
+                    options = new QueryOptions();
+                }
+
+                Func<QueryOptions, ResponsePage<PolicyGroup>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<PolicyGroup>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<PolicyGroup>>(path: "/v3/users/{user-id}/groups", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); });
                 return new PaginatedResponse<QueryOptions, PolicyGroup>(paginatedFunc, options);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
@@ -320,13 +323,16 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public PaginatedResponse<QueryOptions, User> List(string after = null, string include = null, int limit = 25, string order = null)
+        public PaginatedResponse<QueryOptions, User> List(QueryOptions options = null)
         {
             try
             {
-                var queryParams = new Dictionary<string, object> { { "after", after }, { "include", include }, { "limit", limit }, { "order", order }, };
-                var options = new QueryOptions { After = after, Include = include, Limit = limit, Order = order, };
-                Func<QueryOptions, ResponsePage<User>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<User>>(() => Client.CallApi<ResponsePage<User>>(path: "/v3/users", queryParams: queryParams, method: HttpMethods.GET));
+                if (options == null)
+                {
+                    options = new QueryOptions();
+                }
+
+                Func<QueryOptions, ResponsePage<User>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<User>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<User>>(path: "/v3/users", queryParams: queryParams, method: HttpMethods.GET); });
                 return new PaginatedResponse<QueryOptions, User>(paginatedFunc, options);
             }
             catch (MbedCloud.SDK.Client.ApiException e)

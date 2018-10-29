@@ -233,13 +233,16 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public PaginatedResponse<QueryOptions, TrustedCertificate> List(string after = null, string include = null, int limit = 25, string order = null)
+        public PaginatedResponse<QueryOptions, TrustedCertificate> List(QueryOptions options = null)
         {
             try
             {
-                var queryParams = new Dictionary<string, object> { { "after", after }, { "include", include }, { "limit", limit }, { "order", order }, };
-                var options = new QueryOptions { After = after, Include = include, Limit = limit, Order = order, };
-                Func<QueryOptions, ResponsePage<TrustedCertificate>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<TrustedCertificate>>(() => Client.CallApi<ResponsePage<TrustedCertificate>>(path: "/v3/trusted-certificates", queryParams: queryParams, method: HttpMethods.GET));
+                if (options == null)
+                {
+                    options = new QueryOptions();
+                }
+
+                Func<QueryOptions, ResponsePage<TrustedCertificate>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<TrustedCertificate>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<TrustedCertificate>>(path: "/v3/trusted-certificates", queryParams: queryParams, method: HttpMethods.GET); });
                 return new PaginatedResponse<QueryOptions, TrustedCertificate>(paginatedFunc, options);
             }
             catch (MbedCloud.SDK.Client.ApiException e)

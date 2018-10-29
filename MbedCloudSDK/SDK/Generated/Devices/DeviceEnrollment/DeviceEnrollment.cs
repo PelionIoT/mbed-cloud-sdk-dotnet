@@ -130,13 +130,16 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public PaginatedResponse<QueryOptions, DeviceEnrollment> List(string after = null, string include = null, int limit = 25, string order = null)
+        public PaginatedResponse<QueryOptions, DeviceEnrollment> List(QueryOptions options = null)
         {
             try
             {
-                var queryParams = new Dictionary<string, object> { { "after", after }, { "include", include }, { "limit", limit }, { "order", order }, };
-                var options = new QueryOptions { After = after, Include = include, Limit = limit, Order = order, };
-                Func<QueryOptions, ResponsePage<DeviceEnrollment>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<DeviceEnrollment>>(() => Client.CallApi<ResponsePage<DeviceEnrollment>>(path: "/v3/device-enrollments", queryParams: queryParams, method: HttpMethods.GET));
+                if (options == null)
+                {
+                    options = new QueryOptions();
+                }
+
+                Func<QueryOptions, ResponsePage<DeviceEnrollment>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<DeviceEnrollment>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<DeviceEnrollment>>(path: "/v3/device-enrollments", queryParams: queryParams, method: HttpMethods.GET); });
                 return new PaginatedResponse<QueryOptions, DeviceEnrollment>(paginatedFunc, options);
             }
             catch (MbedCloud.SDK.Client.ApiException e)

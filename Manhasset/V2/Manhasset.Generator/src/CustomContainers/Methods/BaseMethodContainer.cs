@@ -24,7 +24,7 @@ namespace Manhasset.Generator.src.CustomContainers
         public string CustomMethodName { get; set; }
         public bool privateMethod { get; set; }
 
-        protected List<StatementSyntax> GetMethodBodyParams()
+        protected List<StatementSyntax> GetMethodBodyParams(bool ignoreQuery = false)
         {
             var methodBody = new List<StatementSyntax>();
 
@@ -39,7 +39,7 @@ namespace Manhasset.Generator.src.CustomContainers
                 methodBody.Add(pathDeclaration);
             }
 
-            if (QueryParams.Any())
+            if (QueryParams.Any() && !ignoreQuery)
             {
                 var queryParamDeclaration = new DictionaryParamaterLocalDeclarationSyntax
                 {
@@ -77,6 +77,22 @@ namespace Manhasset.Generator.src.CustomContainers
             return methodBody;
         }
 
+        protected StatementSyntax GetPaginatedQueryParams()
+        {
+            if (QueryParams.Any())
+            {
+                var queryParamDeclaration = new PaginatedQueryParamLocalDeclarationSyntax
+                {
+                    Name = "queryParams",
+                    MyParams = QueryParams,
+                }.GetSyntax();
+
+                return queryParamDeclaration;
+            }
+
+            return default(StatementSyntax);
+        }
+
         protected MethodDeclarationSyntax GetPaginatedSignature()
         {
             return SyntaxFactory.MethodDeclaration(
@@ -95,7 +111,16 @@ namespace Manhasset.Generator.src.CustomContainers
                         SyntaxFactory.Token(SyntaxKind.PublicKeyword)))
                 .WithBody(
                     SyntaxFactory.Block())
-                .WithParameterList(MethodParams.GetSyntax());
+                .WithParameterList(SyntaxFactory.ParameterList(
+                        SyntaxFactory.SingletonSeparatedList<ParameterSyntax>(
+                            SyntaxFactory.Parameter(
+                                SyntaxFactory.Identifier("options"))
+                            .WithType(
+                                SyntaxFactory.IdentifierName("QueryOptions"))
+                            .WithDefault(
+                                SyntaxFactory.EqualsValueClause(
+                                    SyntaxFactory.LiteralExpression(
+                                        SyntaxKind.NullLiteralExpression))))));
         }
     }
 }

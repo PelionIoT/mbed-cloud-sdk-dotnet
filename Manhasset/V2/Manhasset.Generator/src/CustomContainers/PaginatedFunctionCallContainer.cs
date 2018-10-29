@@ -15,6 +15,7 @@ namespace Manhasset.Generator.src.CustomContainers
         public List<MyParameterContainer> QueryParams { get; set; }
         public List<MyParameterContainer> BodyParams { get; set; }
         public string HttpMethod { get; set; }
+        public StatementSyntax QueryParamDict { get; set; }
 
         public override LocalDeclarationStatementSyntax GetSyntax()
         {
@@ -86,26 +87,8 @@ namespace Manhasset.Generator.src.CustomContainers
                                             SyntaxFactory.SingletonSeparatedList<ArgumentSyntax>(
                                                 SyntaxFactory.Argument(
                                                     SyntaxFactory.ParenthesizedLambdaExpression(
-                                                        SyntaxFactory.InvocationExpression(
-                                                            SyntaxFactory.MemberAccessExpression(
-                                                                SyntaxKind.SimpleMemberAccessExpression,
-                                                                SyntaxFactory.IdentifierName("Client"),
-                                                                SyntaxFactory.GenericName(
-                                                                    SyntaxFactory.Identifier("CallApi"))
-                                                                .WithTypeArgumentList(
-                                                                    SyntaxFactory.TypeArgumentList(
-                                                                        SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
-                                                                            SyntaxFactory.GenericName(
-                                                                                SyntaxFactory.Identifier("ResponsePage"))
-                                                                            .WithTypeArgumentList(
-                                                                                SyntaxFactory.TypeArgumentList(
-                                                                                    SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
-                                                                                        SyntaxFactory.IdentifierName(Returns)))))))))
-                                                        .WithArgumentList(
-                                                            SyntaxFactory.ArgumentList(
-                                                                SyntaxFactory.SeparatedList<ArgumentSyntax>(
-                                                                    paramArgList.ToArray()
-                                                                )))))))))
+                                                        getFunctionBlock(paramArgList)
+                                                    ))))))
                                 .WithParameterList(
                                     SyntaxFactory.ParameterList(
                                         SyntaxFactory.SingletonSeparatedList<ParameterSyntax>(
@@ -113,6 +96,44 @@ namespace Manhasset.Generator.src.CustomContainers
                                                 SyntaxFactory.Identifier("_options"))
                                             .WithType(
                                                 SyntaxFactory.IdentifierName("QueryOptions"))))))))));
+        }
+
+        private BlockSyntax getFunctionBlock(List<SyntaxNodeOrToken> paramArgList)
+        {
+            if (QueryParamDict != null)
+            {
+                return SyntaxFactory.Block(
+                    QueryParamDict,
+                    GetPaginatedReturnStatement(paramArgList)
+                );
+            }
+
+            return SyntaxFactory.Block(GetPaginatedReturnStatement(paramArgList));
+        }
+
+        private ReturnStatementSyntax GetPaginatedReturnStatement(List<SyntaxNodeOrToken> paramArgList)
+        {
+            return SyntaxFactory.ReturnStatement(
+                SyntaxFactory.InvocationExpression(
+                    SyntaxFactory.MemberAccessExpression(
+                        SyntaxKind.SimpleMemberAccessExpression,
+                        SyntaxFactory.IdentifierName("Client"),
+                        SyntaxFactory.GenericName(
+                            SyntaxFactory.Identifier("CallApi"))
+                        .WithTypeArgumentList(
+                            SyntaxFactory.TypeArgumentList(
+                                SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
+                                    SyntaxFactory.GenericName(
+                                        SyntaxFactory.Identifier("ResponsePage"))
+                                    .WithTypeArgumentList(
+                                        SyntaxFactory.TypeArgumentList(
+                                            SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
+                                                SyntaxFactory.IdentifierName(Returns)))))))))
+                .WithArgumentList(
+                    SyntaxFactory.ArgumentList(
+                        SyntaxFactory.SeparatedList<ArgumentSyntax>(
+                            paramArgList.ToArray()
+                        ))));
         }
     }
 }

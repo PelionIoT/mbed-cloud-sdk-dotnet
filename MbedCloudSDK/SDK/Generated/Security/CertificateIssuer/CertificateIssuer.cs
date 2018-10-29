@@ -131,12 +131,16 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public PaginatedResponse<QueryOptions, CertificateIssuer> List()
+        public PaginatedResponse<QueryOptions, CertificateIssuer> List(QueryOptions options = null)
         {
             try
             {
-                var options = new QueryOptions { };
-                Func<QueryOptions, ResponsePage<CertificateIssuer>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<CertificateIssuer>>(() => Client.CallApi<ResponsePage<CertificateIssuer>>(path: "/v3/certificate-issuers", method: HttpMethods.GET));
+                if (options == null)
+                {
+                    options = new QueryOptions();
+                }
+
+                Func<QueryOptions, ResponsePage<CertificateIssuer>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<CertificateIssuer>>(() => { return Client.CallApi<ResponsePage<CertificateIssuer>>(path: "/v3/certificate-issuers", method: HttpMethods.GET); });
                 return new PaginatedResponse<QueryOptions, CertificateIssuer>(paginatedFunc, options);
             }
             catch (MbedCloud.SDK.Client.ApiException e)

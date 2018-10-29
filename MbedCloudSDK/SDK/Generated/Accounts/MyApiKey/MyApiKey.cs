@@ -134,13 +134,16 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public PaginatedResponse<QueryOptions, PolicyGroup> Groups(string after = null, string include = null, int limit = 25, string order = null)
+        public PaginatedResponse<QueryOptions, PolicyGroup> Groups(QueryOptions options = null)
         {
             try
             {
-                var queryParams = new Dictionary<string, object> { { "after", after }, { "include", include }, { "limit", limit }, { "order", order }, };
-                var options = new QueryOptions { After = after, Include = include, Limit = limit, Order = order, };
-                Func<QueryOptions, ResponsePage<PolicyGroup>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<PolicyGroup>>(() => Client.CallApi<ResponsePage<PolicyGroup>>(path: "/v3/api-keys/me/groups", queryParams: queryParams, method: HttpMethods.GET));
+                if (options == null)
+                {
+                    options = new QueryOptions();
+                }
+
+                Func<QueryOptions, ResponsePage<PolicyGroup>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<PolicyGroup>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<PolicyGroup>>(path: "/v3/api-keys/me/groups", queryParams: queryParams, method: HttpMethods.GET); });
                 return new PaginatedResponse<QueryOptions, PolicyGroup>(paginatedFunc, options);
             }
             catch (MbedCloud.SDK.Client.ApiException e)

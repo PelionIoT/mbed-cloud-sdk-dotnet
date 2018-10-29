@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Manhasset.Core.src.Generators;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -13,16 +16,12 @@ namespace Manhasset.Generator.src.CustomContainers
 
             var tryCatch = MethodGenerators.GetTryCatchBlock();
 
-            var methodBody = base.GetMethodBodyParams();
+            var methodBody = base.GetMethodBodyParams(ignoreQuery: true);
 
-            // query options
-            var queryOptionscontainer = new QueryOptionsContainer
-            {
-                Name = "options",
-                MethodParams = MethodParams,
+            var queryOptionsNullCheck = new QueryOptionsNullCheckContainer().GetSyntax();
+            methodBody.Add(queryOptionsNullCheck);
 
-            }.GetSyntax();
-            methodBody.Add(queryOptionscontainer);
+            var queryParams = base.GetPaginatedQueryParams();
 
             // paginated function call
             var paginatedFunctionCallContainer = new PaginatedFunctionCallContainer
@@ -33,6 +32,7 @@ namespace Manhasset.Generator.src.CustomContainers
                 PathParams = PathParams,
                 QueryParams = QueryParams,
                 BodyParams = BodyParams,
+                QueryParamDict = queryParams,
             }.GetSyntax();
             methodBody.Add(paginatedFunctionCallContainer);
 
