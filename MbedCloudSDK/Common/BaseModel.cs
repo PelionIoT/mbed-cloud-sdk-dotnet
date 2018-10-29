@@ -4,31 +4,17 @@
 
 namespace MbedCloudSDK.Common
 {
+    using System;
     using Newtonsoft.Json;
 
     /// <summary>
     /// BaseModel
     /// </summary>
+    // [Obsolete("No longer being maintained. Please use the newer entity based models under MbedCloud.SDK.Entities")]
     public abstract class BaseModel
     {
-        [JsonIgnore]
-        private Config config;
-
         /// <summary>
-        /// Gets or sets the configuration.
-        /// </summary>
-        /// <value>
-        /// The configuration.
-        /// </value>
-        [JsonIgnore]
-        public Config Config
-        {
-            get => config ?? SDK.Config;
-            set => config = value;
-        }
-
-        /// <summary>
-        /// Gets or sets gets the identifier.
+        /// Gets the identifier.
         /// </summary>
         /// <value>
         /// The identifier.

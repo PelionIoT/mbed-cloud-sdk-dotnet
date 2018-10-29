@@ -2,11 +2,14 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
+using System;
+
 namespace MbedCloudSDK.Common.Query
 {
     /// <summary>
     /// Parameters send with list requests.
     /// </summary>
+    // [Obsolete("No longer being maintained. Please use the newer entity based models under MbedCloud.SDK.Entities")]
     public class QueryOptions
     {
         /// <summary>
@@ -18,7 +21,9 @@ namespace MbedCloudSDK.Common.Query
         /// <param name="include">Comma separated list of fields to include in response.</param>
         /// <param name="filterString">Filter to apply to query.</param>
         /// <param name="id">Used when query requires an ID to be passed</param>
-        public QueryOptions(int? limit = null, string order = null, string after = null, string include = null, string filterString = null, string id = null)
+        /// <param name="pageSize">Size of each page to retrieve</param>
+        /// <param name="maxResults">Maximum number of results to return</param>
+        public QueryOptions(int? limit = null, string order = null, string after = null, string include = null, string filterString = null, string id = null, int? pageSize = null, int? maxResults = null)
         {
             Limit = limit;
             Order = order;
@@ -26,6 +31,8 @@ namespace MbedCloudSDK.Common.Query
             Include = include;
             Filter = new MbedCloudSDK.Common.Filter.Filter(filterString);
             Id = id;
+            PageSize = pageSize;
+            MaxResults = maxResults;
         }
 
         /// <summary>

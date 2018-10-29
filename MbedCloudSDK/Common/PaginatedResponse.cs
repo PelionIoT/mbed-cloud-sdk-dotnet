@@ -16,6 +16,7 @@ namespace MbedCloudSDK.Common
     /// </summary>
     /// <typeparam name="TOptions">Options</typeparam>
     /// <typeparam name="TData">Data</typeparam>
+    // [Obsolete("No longer being maintained. Please use the newer entity based models under MbedCloud.SDK.Entities")]
     [JsonObject]
     public class PaginatedResponse<TOptions, TData> : IEnumerable<TData>
         where TData : BaseModel

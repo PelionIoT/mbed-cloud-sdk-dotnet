@@ -12,6 +12,7 @@ namespace MbedCloudSDK.Common
     /// <summary>
     /// Config for MbedCloud
     /// </summary>
+    // [Obsolete("No longer being maintained. Please use the newer entity based models under MbedCloud.SDK.Entities")]
     public class Config
     {
         /// <summary>
@@ -86,7 +87,7 @@ namespace MbedCloudSDK.Common
                 ForceClear = forceClear;
                 AutostartNotifications = autostartNotifications;
 
-                var clientConfig = new Client.Configuration
+                var clientConfig = new MbedCloud.SDK.Client.Configuration
                 {
                     BasePath = Host,
                     DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ",
@@ -123,7 +124,7 @@ namespace MbedCloudSDK.Common
         /// The configuration.
         /// </value>
         [JsonIgnore]
-        public Client.Configuration Configuration { get; internal set; }
+        public MbedCloud.SDK.Client.Configuration Configuration { get; internal set; }
 
         /// <summary>
         /// Gets a value indicating whether to clear any existing notification channels

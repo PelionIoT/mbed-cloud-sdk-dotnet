@@ -12,6 +12,7 @@ namespace MbedCloudSDK.Common
     /// Used to access multiple pages of data, either through manually iterating pages or using iterators.
     /// </summary>
     /// <typeparam name="T">Response page</typeparam>
+    // [Obsolete("No longer being maintained. Please use the newer entity based models under MbedCloud.SDK.Entities")]
     public class ResponsePage<T>
     {
         /// <summary>

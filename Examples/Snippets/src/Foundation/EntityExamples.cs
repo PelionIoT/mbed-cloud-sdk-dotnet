@@ -1,12 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MbedCloudSDK.Entities.ApiKey;
-using MbedCloudSDK.Entities.MyAccount;
-using MbedCloudSDK.Entities.User;
-using MbedCloudSDK.Common;
 using NUnit.Framework;
 using System;
+using MbedCloud.SDK.Entities;
+using MbedCloud.SDK.Enums;
 
 namespace Snippets.src.Foundation
 {

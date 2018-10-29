@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MbedCloudSDK.Entities.SubtenantAccount;
-using MbedCloudSDK.Entities.User;
-using MbedCloudSDK.Common;
+using MbedCloud.SDK.Common;
+using MbedCloud.SDK.Entities;
 using NUnit.Framework;
 
 namespace Snippets.src.Foundation
