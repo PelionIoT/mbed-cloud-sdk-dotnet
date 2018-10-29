@@ -1,7 +1,8 @@
-
-
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using MbedCloud.SDK;
+using MbedCloud.SDK.Client;
 using MbedCloud.SDK.Common;
 using MbedCloud.SDK.Entities;
 using MbedCloudSDK.Exceptions;
@@ -35,37 +36,16 @@ namespace Snippets.src.Foundation
             });
         }
 
-        // [Test]
-        // public async Task CustomApiCall()
-        // {
-        //     // an example: custom api call
-        //     var res = await MbedCloudSDK.Client.ApiCall.CallApiEntity<ResponsePage<User>>(method: Method.GET, path: "/v3/users", queryParams: new Dictionary<string, object>{ {"limit", 2 }});
-        //     // cloak
+        [Test]
+        public async Task CustomApiCall()
+        {
+            // an example: custom api call
+            var client = new MbedCloud.SDK.Client.Client(new Config());
+            var res = await client.CallApi<ResponsePage<User>>(method: HttpMethods.GET, path: "/v3/users", queryParams: new Dictionary<string, object>{ {"limit", 2 }});
+            // end of example
 
-        //     Assert.IsInstanceOf(typeof(User), res.Data.FirstOrDefault());
-        //     Assert.IsNotNull(res.Data.FirstOrDefault().Id);
-        // }
-
-        // [Test]
-        // public async Task CustomApiCallString()
-        // {
-        //     // uncloak
-        //     // or
-        //     var res = await MbedCloudSDK.Client.ApiCall.CallApiString(method: Method.GET, path: "/v3/users", queryParams: new Dictionary<string, object> { { "limit", 2 } });
-        //     // cloak
-
-        //     Assert.IsInstanceOf(typeof(string), res);
-        // }
-
-        // [Test]
-        // public async Task CustomApiCallDynamic()
-        // {
-        //     // uncloak
-        //     // or
-        //     var res = await MbedCloudSDK.Client.ApiCall.CallApiDynamic(method: Method.GET, path: "/v3/users", queryParams: new Dictionary<string, object> { { "limit", 2 } });
-        //     // end of example
-
-        //     Assert.IsNotNull(res);
-        // }
+            Assert.IsInstanceOf(typeof(User), res.Data.FirstOrDefault());
+            Assert.IsNotNull(res.Data.FirstOrDefault().Id);
+        }
     }
 }
