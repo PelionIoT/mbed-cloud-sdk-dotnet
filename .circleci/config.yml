@@ -154,7 +154,7 @@ jobs:
          command: |
                  python -m venv venv
                  . venv/bin/activate
-                 pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@master#subdirectory=scripts/auto_version/&egg=auto_version"
+                 pip install pyautoversion
                  pip install awscli
          name: install auto_version
       - setup_remote_docker
@@ -299,7 +299,7 @@ jobs:
          command: |
                  python -m venv venv
                  . venv/bin/activate
-                 pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@master#subdirectory=scripts/auto_version/&egg=auto_version"
+                 pip install pyautoversion
          name: install auto_version
       - run:
          command: |
@@ -315,7 +315,7 @@ jobs:
          command: |
                  python -m venv venv
                  . venv/bin/activate
-                 pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@master#subdirectory=scripts/auto_version/&egg=auto_version"
+                 pip install pyautoversion
          name: install auto_version
       - run:
          command: |
@@ -334,7 +334,7 @@ jobs:
           command: |
                   python -m venv venv
                   . venv/bin/activate
-                  pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@master#subdirectory=scripts/auto_version/&egg=auto_version"
+                  pip install pyautoversion
           name: install auto_version
       - run:
           command: |
@@ -370,7 +370,7 @@ jobs:
           python -m venv venv
           . venv/bin/activate
           pip install towncrier
-          pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@master#subdirectory=scripts/auto_version/&egg=auto_version"
+          pip install pyautoversion
           pip install awscli
       - setup_remote_docker
       - run: |
@@ -403,7 +403,7 @@ jobs:
           python -m venv venv
           . venv/bin/activate
           pip install towncrier
-          pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@master#subdirectory=scripts/auto_version/&egg=auto_version"
+          pip install pyautoversion
           pip install awscli
       - setup_remote_docker
       - run: |
@@ -431,7 +431,7 @@ jobs:
           command: |
                   python -m venv venv
                   . venv/bin/activate
-                  pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@master#subdirectory=scripts/auto_version/&egg=auto_version"
+                  pyautoversion
           name: install auto_version
       - run:
           command: |
