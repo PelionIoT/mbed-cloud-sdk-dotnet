@@ -154,7 +154,7 @@ namespace MbedCloud.SDK.Common
         private ResponsePage<TData> GetPage()
         {
             var page = getDataFunc.Invoke(options);
-            options.After = page.After ?? page.Data.LastOrDefault()?.Id;
+            options.After = page.Data.LastOrDefault()?.Id;
             return page;
         }
     }

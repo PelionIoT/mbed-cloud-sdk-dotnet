@@ -5,6 +5,8 @@ using MbedCloud.SDK.Client;
 using MbedCloud.SDK.Entities;
 using Newtonsoft.Json;
 using MbedCloudSDK.Common.Extensions;
+using System.Linq;
+using MbedCloud.SDK.Enums;
 
 namespace Playground
 {
@@ -14,19 +16,14 @@ namespace Playground
         {
             try
             {
-                var user = new User
-                {
-                    Username = "alex",
-                    TwoFactorAuthentication = true,
-                };
+                var myConfig = new CertificateIssuerConfig().List().All().FirstOrDefault(c => c.Reference == "LWM2M");
 
-                var serialized = JsonConvert.SerializeObject(user, Formatting.Indented, SerializationSettings.GetSettingsWithRenames());
-
-                Console.WriteLine(serialized);
-
-                var newUser = JsonConvert.DeserializeObject<User>(serialized, SerializationSettings.GetSettingsWithRenames());
-
-                Console.WriteLine(newUser.DebugDump());
+                new Device()
+                    .List()
+                    .All()
+                    .Where(d => d.State == DeviceStateEnum.REGISTERED)
+                    .ToList()
+                    .ForEach(async d => await d.RenewCertificate(myConfig.Reference));
             }
             catch (Exception e)
             {
