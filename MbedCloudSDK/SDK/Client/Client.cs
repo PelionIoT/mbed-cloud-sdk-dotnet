@@ -153,6 +153,11 @@ namespace MbedCloud.SDK.Client
                 }
             }
 
+            if (string.IsNullOrEmpty(localVarResponse.Content))
+            {
+                return default(T);
+            }
+
             if (objectToUnpack != null)
             {
                 JsonConvert.PopulateObject(localVarResponse.Content, objectToUnpack, settings);
