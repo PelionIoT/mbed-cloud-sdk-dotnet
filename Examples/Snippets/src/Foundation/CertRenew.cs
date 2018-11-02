@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using MbedCloud.SDK.Entities;
 using MbedCloud.SDK.Enums;
+using MbedCloudSDK.Exceptions;
 using NUnit.Framework;
 
 namespace Snippets.src.Foundation
@@ -27,15 +28,24 @@ namespace Snippets.src.Foundation
                     .Where(d => d.State == DeviceStateEnum.REGISTERED)
                     .ToList();
 
+                // cloak
+                Assert.GreaterOrEqual(connectedDevices.Count, 1);
+                // uncloak
+
                 foreach (var device in connectedDevices)
                 {
                     await device.RenewCertificate(myConfig.Reference);
                 }
                 // end of example
             }
-            catch (Exception e )
+            catch (CloudApiException e) when (e.ErrorCode == 400)
             {
-                Console.WriteLine(e);
+                // should throw 400, device cert cannot be renewed
+                return;
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
     }
