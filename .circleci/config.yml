@@ -112,6 +112,11 @@ jobs:
           name: Update Python Installers
           command: sudo pip install -U setuptools pip pipenv
       - run:
+          name: Install python extras
+          command: |
+            sudo apt-get update -qq
+            sudo apt-get install -y openssl python3.6-dev libffi-dev libssl-dev
+      - run:
           name: Install awscli
           command: pipenv install awscli --python=python3.6
       - save_cache:
