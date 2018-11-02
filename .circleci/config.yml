@@ -80,6 +80,64 @@ references:
 
 jobs:
   #############################################################################################
+  #                                Cache Docker Images                                        #
+  #############################################################################################
+  cache_test_server_image:
+    machine:
+      docker_layer_caching: true
+    steps:
+      - checkout
+      - run:
+          command: mkdir -p ~/test_server_image
+          name: create directory for the test_server docker image
+      - run:
+          command: docker build -t testserver -f TestServer.Dockerfile .
+          name: build the test_server docker image from TestServer.Dockerfile
+      - run:
+          command: docker save -o ~/test_server_image/testserver.tar testserver
+          name: save the test_server image so it doesn't need building later
+      - persist_to_workspace:
+          root: ~/.
+          paths:
+           - test_server_image
+  cache_test_runner_image:
+    machine: true
+    steps:
+      - restore_cache:
+          key: v0-package-cache-aws-cli
+      - run:
+          name: Install python3
+          command: sudo bash -c "yes | add-apt-repository ppa:jonathonf/python-3.6 && apt-get update && apt-get install -y python3.6"
+      - run:
+          name: Update Python Installers
+          command: sudo pip install -U pip pipenv
+      - run:
+          name: Install awscli
+          command: pipenv install awscli --python=python3.6
+      - save_cache:
+          key: v0-package-cache-aws-cli
+          paths:
+            - .venv
+      - run:
+          name: Configure Docker to use AWS
+          command: |
+            source $(pipenv --venv)/bin/activate
+            login="$(aws ecr get-login --no-include-email)"
+            ${login}
+      - run:
+          name: Fetch the test runner
+          command: docker pull ${TESTRUNNER_DOCKER_IMAGE}
+      - run:
+          command: mkdir -p ~/test_runner_image
+          name: create directory for the test_runner docker image
+      - run:
+          command: docker save -o ~/test_runner_image/testrunner.tar ${TESTRUNNER_DOCKER_IMAGE}
+          name: save the test_runner image so it doesn't need building later
+      - persist_to_workspace:
+          root: ~/.
+          paths:
+           - test_runner_image
+  #############################################################################################
   #                                Build Jobs                                               #
   #############################################################################################
   cache_test_server_image:
@@ -454,10 +512,12 @@ version: 2
 workflows:
   csharp_sdk_workflow:
     jobs:
-      - assert_news:
-          <<: *filter_branch_only_no_swagger
       - cache_test_server_image:
           <<: *filter_ignore_release
+      - cache_test_runner_image:
+          <<: *filter_ignore_release
+      - assert_news:
+          <<: *filter_branch_only_no_swagger
       - docs:
           <<: *filter_ignore_release
       - upload_docs:
@@ -467,10 +527,13 @@ workflows:
       - tpip:
           <<: *filter_master_only_build
       - version_bump:
+          requires:
+          - cache_test_runner_image
           <<: *filter_ignore_release
       - build:
           requires:
           - cache_test_server_image
+          - cache_test_runner_image
           - version_bump
           <<: *filter_ignore_release
       - integration_test_os2:
