@@ -110,7 +110,7 @@ jobs:
           command: sudo bash -c "yes | add-apt-repository ppa:jonathonf/python-3.6 && apt-get update && apt-get install -y python3.6"
       - run:
           name: Update Python Installers
-          command: sudo pip install -U pip pipenv
+          command: sudo pip install -U setuptools pip pipenv
       - run:
           name: Install awscli
           command: pipenv install awscli --python=python3.6
