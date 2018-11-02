@@ -375,23 +375,31 @@ jobs:
           name: run beta tag script
           command: python ./scripts/tag_and_release.py beta $(pipenv run auto_version --config=scripts/version_beta.toml)
   #############################################################################################
-  #                                Release Jobs                                               #
+  #                                Common Release Jobs                                        #
+  #############################################################################################
+  build_pack_deploy:
+    <<: *dotnet_mono_docker
+    steps:
+      - <<: *attach_workspace
+      - run:
+         command: cd project && ./build.sh --target=Build-Pack-Publish
+         name: build, pack and publish nuget package
+  #############################################################################################
+  #                                Production Release Jobs                                    #
   #############################################################################################
   version_bump_release:
     <<: *circle_python
     steps:
       - checkout
       - run:
-          command: |
-                  python -m venv venv
-                  . venv/bin/activate
-                  pip install pyautoversion
-          name: install auto_version
+          name: Update Python Installers
+          command: sudo python -m pip install -U setuptools pip pipenv
       - run:
-          command: |
-                  . venv/bin/activate
-                  auto_version --config=scripts/version.toml --bump=patch --news --release
-          name: bump the version for a dev release
+          name: Install Python Libraries
+          command: pipenv run pip install -r scripts/requirements.txt
+      - run:
+          name: bump the version for a production release
+          command: pipenv run auto_version --config=scripts/version.toml --bump=patch --news --release
       - run:
           command: mkdir -p ~/repo/project
           name: make a directory for the project
@@ -404,43 +412,28 @@ jobs:
             - project/MbedCloudSDK
             - project/build.cake
             - project/build.sh
-  build_pack_deploy:
-    <<: *dotnet_mono_docker
-    steps:
-      - <<: *attach_workspace
-      - run:
-         command: cd project && ./build.sh --target=Build-Pack-Publish
-         name: build, pack and publish nuget package
   commit_news_and_version:
     <<: *circle_python
     environment:
       <<: *sdk_environment
     steps:
       - checkout
-      - run: |
-          python -m venv venv
-          . venv/bin/activate
-          pip install towncrier
-          pip install pyautoversion
-          pip install awscli
-      - setup_remote_docker
-      - run: |
-             . venv/bin/activate
-             login="$(aws ecr get-login --no-include-email)"
-             ${login}
-      - run: docker pull ${TESTRUNNER_DOCKER_IMAGE}
-      - run: echo $(docker run ${TESTRUNNER_DOCKER_IMAGE} python -m trunner --version)
       - run:
-          command: |
-                  . venv/bin/activate
-                  cd docs/news && towncrier --yes --name="" --version=$(python ../../scripts/dvcs_version.py version)
-          name: run towncrier to generate news file
+          name: Update Python Installers
+          command: sudo python -m pip install -U setuptools pip pipenv
       - run:
-          command: |
-                  . venv/bin/activate
-                  auto_version --config=scripts/version.toml --bump=patch --news --release
+          name: Install Python Libraries
+          command: pipenv run pip install -r scripts/requirements.txt
+      - run:
           name: bump the version for a production release
-      - run: python ./scripts/tag_and_release.py news $(python ./scripts/dvcs_version.py version)
+          command: pip env run auto_version --config=scripts/version.toml --bump=patch --news --release
+      - run:
+          name: run towncrier to generate news file
+          command: pipenv run towncrier --yes --name="" --version=$(cd ../../ && pipenv run autoversion --config=scripts/version.toml)
+          working_directory: docs/news
+      - run:
+          name: tag and release
+          command: python ./scripts/tag_and_release.py news $(pipenv run autoversion --config=scripts/version.toml)
   #############################################################################################
   #                                Beta Release Jobs                                          #
   #############################################################################################
@@ -450,45 +443,35 @@ jobs:
       <<: *sdk_environment
     steps:
       - checkout
-      - run: |
-          python -m venv venv
-          . venv/bin/activate
-          pip install towncrier
-          pip install pyautoversion
-          pip install awscli
-      - setup_remote_docker
-      - run: |
-             . venv/bin/activate
-             login="$(aws ecr get-login --no-include-email)"
-             ${login}
-      - run: docker pull ${TESTRUNNER_DOCKER_IMAGE}
-      - run: echo $(docker run ${TESTRUNNER_DOCKER_IMAGE} python -m trunner --version)
       - run:
-          command: |
-                  . venv/bin/activate
-                  cd docs/news && towncrier --yes --name="" --version=$(python ../../scripts/dvcs_version.py version)
-          name: run towncrier to generate news file
+          name: Update Python Installers
+          command: sudo python -m pip install -U setuptools pip pipenv
       - run:
-          command: |
-                  . venv/bin/activate
-                  auto_version --config=scripts/version_beta.toml
+          name: Install Python Libraries
+          command: pipenv run pip install -r scripts/requirements.txt
+      - run:
           name: bump the version for a production release
-      - run: python ./scripts/tag_and_release.py news_beta $(python ./scripts/dvcs_version.py version)
+          command: pip env run auto_version --config=scripts/version_beta.toml --bump=patch --news --release
+      - run:
+          name: run towncrier to generate news file
+          command: pipenv run towncrier --yes --name="" --version=$(cd ../../ && pipenv run autoversion --config=scripts/version_beta.toml)
+          working_directory: docs/news
+      - run:
+          name: tag and release
+          command: python ./scripts/tag_and_release.py news $(pipenv run autoversion --config=scripts/version_beta.toml)
   version_bump_beta:
     <<: *circle_python
     steps:
       - checkout
       - run:
-          command: |
-                  python -m venv venv
-                  . venv/bin/activate
-                  pyautoversion
-          name: install auto_version
+          name: Update Python Installers
+          command: sudo python -m pip install -U setuptools pip pipenv
       - run:
-          command: |
-                  . venv/bin/activate
-                  auto_version --config=scripts/version_beta.toml
-          name: bump the version for a dev release
+          name: Install Python Libraries
+          command: pipenv run pip install -r scripts/requirements.txt
+      - run:
+          name: bump the version for a production release
+          command: pipenv run auto_version --config=scripts/version_beta.toml --bump=patch --news --release
       - run:
           command: mkdir -p ~/repo/project
           name: make a directory for the project
@@ -502,6 +485,9 @@ jobs:
             - project/build.cake
             - project/build.sh
 version: 2
+#############################################################################################
+#                                Workflows                                                  #
+#############################################################################################
 workflows:
   csharp_sdk_workflow:
     jobs:
