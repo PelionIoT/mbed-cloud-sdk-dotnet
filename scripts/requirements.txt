@@ -1,0 +1,2 @@
+towncrier==18.5.0
+pyautoversion==1.0.24

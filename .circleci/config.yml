@@ -104,7 +104,6 @@ jobs:
     machine: true
     environment:
       TESTRUNNER_DOCKER_IMAGE: 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
-      PIPENV_VENV_IN_PROJECT: TRUE
     steps:
       - restore_cache:
           key: v0-package-cache-aws-cli
@@ -146,26 +145,8 @@ jobs:
           paths:
            - test_runner_image
   #############################################################################################
-  #                                Build Jobs                                               #
+  #                                Documentation                                              #
   #############################################################################################
-  cache_test_server_image:
-    machine:
-      docker_layer_caching: true
-    steps:
-      - checkout
-      - run:
-          command: mkdir -p ~/test_server_image
-          name: create directory for the test_server docker image
-      - run:
-          command: docker build -t testserver -f TestServer.Dockerfile .
-          name: build the test_server docker image from TestServer.Dockerfile
-      - run:
-          command: docker save -o ~/test_server_image/testserver.tar testserver
-          name: save the test_server image so it doesn't need building later
-      - persist_to_workspace:
-          root: ~/.
-          paths:
-           - test_server_image
   docs:
     docker:
       - image: hrektts/doxygen
@@ -193,6 +174,9 @@ jobs:
                  . venv/bin/activate
                  aws s3 sync --delete --cache-control max-age=3600 ~/docs s3://mbed-cloud-sdk-dotnet-dist/latest/docs
          name: upload docs to s3
+  #############################################################################################
+  #                                Misc pre jobs                                              #
+  #############################################################################################
   tpip:
     docker:
       - image: circleci/python:3.6-jessie-browsers
@@ -210,6 +194,9 @@ jobs:
       - run:
          command: python scripts/assert_news.py
          name: Check news file exists
+  #############################################################################################
+  #                                Version bump                                               #
+  #############################################################################################
   version_bump:
     <<: *circle_python
     environment:
@@ -217,24 +204,14 @@ jobs:
     steps:
       - checkout
       - run:
-         command: |
-                 python -m venv venv
-                 . venv/bin/activate
-                 pip install pyautoversion
-                 pip install awscli
-         name: install auto_version
-      - setup_remote_docker
-      - run: |
-             . venv/bin/activate
-             login="$(aws ecr get-login --no-include-email)"
-             ${login}
-      - run: docker pull ${TESTRUNNER_DOCKER_IMAGE}
-      - run: echo $(docker run ${TESTRUNNER_DOCKER_IMAGE} python -m trunner --version)
+          name: Update Python Installers
+          command: sudo python -m pip install -U setuptools pip pipenv
       - run:
-         command: |
-                 . venv/bin/activate
-                 auto_version --config=scripts/version.toml --bump=patch --news
-         name: bump the version for a dev release
+          name: Install Python Libraries
+          command: pipenv run pip install -r scripts/requirements.txt
+      - run:
+          name: bump the version for a dev release
+          command: pipenv run auto_version --config=scripts/version.toml --bump=patch --news
       - run:
          command: mkdir -p ~/repo/project
          name: make a directory for the project
@@ -252,6 +229,9 @@ jobs:
            - project/build.cake
            - project/build.sh
            - project/CHANGELOG.md
+  #############################################################################################
+  #                                Build                                                      #
+  #############################################################################################
   build:
     <<: *dotnet_mono_docker
     steps:
@@ -268,6 +248,9 @@ jobs:
            - project/MbedCloudSDK/bin/Release
            - project/Tests/MbedCloudSDK.UnitTests/obj
            - project/Tests/MbedCloudSDK.UnitTests/bin
+  #############################################################################################
+  #                                Unit Test                                                  #
+  #############################################################################################
   unit_test:
     <<: *dotnet_mono_docker
     steps:
@@ -294,6 +277,9 @@ jobs:
       - run:
          command: node ~/project/node_modules/codecov/bin/codecov ~/project/project/Tests/MbedCloudSDK.UnitTests/coverage.opencover.xml
          name: upload coverage report to codecov
+  #############################################################################################
+  #                                Integration Tests                                          #
+  #############################################################################################
   integration_test_os2:
     <<: *circle_python
     environment:
@@ -308,13 +294,8 @@ jobs:
             && export MBED_CLOUD_SDK_HOST=${MBED_CLOUD_SDK_HOST_OS2}
             && echo "export MBED_CLOUD_SDK_HOST=${MBED_CLOUD_SDK_HOST}" >> ${BASH_ENV}
       - <<: *attach_workspace
-      - <<: *install_aws_tools
       - setup_remote_docker
-      - run: |
-             . venv/bin/activate
-             login="$(aws ecr get-login --no-include-email)"
-             ${login}
-      - run: docker pull ${TESTRUNNER_DOCKER_IMAGE}
+      - run: docker load -i ./test_runner_image/testrunner.tar
       - run: docker load -i ./test_server_image/testserver.tar
       - run: docker-compose up --exit-code-from testrunner
   integration_test_production:
@@ -331,15 +312,13 @@ jobs:
             && export MBED_CLOUD_SDK_HOST=${MBED_CLOUD_SDK_HOST_PROD}
             && echo "export MBED_CLOUD_SDK_HOST=${MBED_CLOUD_SDK_HOST}" >> ${BASH_ENV}
       - <<: *attach_workspace
-      - <<: *install_aws_tools
       - setup_remote_docker
-      - run: |
-             . venv/bin/activate
-             login="$(aws ecr get-login --no-include-email)"
-             ${login}
-      - run: docker pull ${TESTRUNNER_DOCKER_IMAGE}
+      - run: docker load -i ./test_runner_image/testrunner.tar
       - run: docker load -i ./test_server_image/testserver.tar
       - run: docker-compose up --exit-code-from testrunner
+  #############################################################################################
+  #                                Artifactory Deploy                                         #
+  #############################################################################################
   artifactory_deploy:
     <<: *circle_python
     environment:
@@ -357,38 +336,44 @@ jobs:
       - run:
           name: Deploying the SDK to Artifactory and beyond
           command: docker run --rm --network container:artifactory sdk_deploy ./build.sh -Target=_publish -nuget_api_key=${ARTIFACTORY_API_KEY} -nuget_source=${ARTIFACTORY_URL}/api/nuget/mbed-cloud-sdk-dotnet-snapshots
+  #############################################################################################
+  #                                Tag for release                                            #
+  #############################################################################################
   git_tag_release:
     <<: *circle_python
     steps:
       - checkout
       - run:
-         command: |
-                 python -m venv venv
-                 . venv/bin/activate
-                 pip install pyautoversion
-         name: install auto_version
+          name: Update Python Installers
+          command: sudo python -m pip install -U setuptools pip pipenv
       - run:
-         command: |
-                 . venv/bin/activate
-                 auto_version --config=scripts/version.toml --bump=patch --news --release
-         name: bump the version for a dev release
-      - run: python ./scripts/tag_and_release.py tag $(python ./scripts/dvcs_version.py version)
+          name: Install Python Libraries
+          command: pipenv run pip install -r scripts/requirements.txt
+      - run:
+          name: bump the version for a dev release
+          command: pipenv run auto_version --config=scripts/version.toml --bump=patch --news --release
+      - run:
+          name: run tag script
+          command: python ./scripts/tag_and_release.py tag $(pipenv run auto_version --config=scripts/version.toml)
+  #############################################################################################
+  #                                Tag for beta                                               #
+  #############################################################################################
   git_tag_release_beta:
     <<: *circle_python
     steps:
       - checkout
       - run:
-         command: |
-                 python -m venv venv
-                 . venv/bin/activate
-                 pip install pyautoversion
-         name: install auto_version
+          name: Update Python Installers
+          command: sudo python -m pip install -U setuptools pip pipenv
       - run:
-         command: |
-                 . venv/bin/activate
-                 auto_version --config=scripts/version_beta.toml
-         name: bump the version for a dev release
-      - run: python ./scripts/tag_and_release.py beta $(python ./scripts/dvcs_version.py version)
+          name: Install Python Libraries
+          command: pipenv run pip install -r scripts/requirements.txt
+      - run:
+          name: bump the version for a beta release
+          command: pipenv run auto_version --config=scripts/version_beta.toml
+      - run:
+          name: run beta tag script
+          command: python ./scripts/tag_and_release.py beta $(pipenv run auto_version --config=scripts/version_beta.toml)
   #############################################################################################
   #                                Release Jobs                                               #
   #############################################################################################
