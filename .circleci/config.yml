@@ -101,30 +101,16 @@ jobs:
           paths:
            - test_server_image
   cache_test_runner_image:
-    machine: true
+    <<: *circle_python
     environment:
       TESTRUNNER_DOCKER_IMAGE: 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
     steps:
-      - restore_cache:
-          key: v0-package-cache-aws-cli
-      - run:
-          name: Install python3
-          command: sudo bash -c "yes | add-apt-repository ppa:jonathonf/python-3.6 && apt-get update && apt-get install -y python3.6"
       - run:
           name: Update Python Installers
           command: sudo pip install -U setuptools pip pipenv
       - run:
-          name: Install python extras
-          command: |
-            sudo apt-get update -qq
-            sudo apt-get install -y openssl python3.6-dev libffi-dev libssl-dev
-      - run:
           name: Install awscli
           command: pipenv install awscli --python=python3.6
-      - save_cache:
-          key: v0-package-cache-aws-cli
-          paths:
-            - .venv
       - run:
           name: Configure Docker to use AWS
           command: |
