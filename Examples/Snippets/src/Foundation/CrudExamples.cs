@@ -14,13 +14,14 @@ namespace Snippets.src.Foundation
         {
             try
             {
-                var user = new User().List().FirstOrDefault();
+                var user = new Account().MyUsers().FirstOrDefault();
 
                 Assert.IsInstanceOf(typeof(User), user);
 
                 var gotUser = await new User
                 {
                     Id = user.Id,
+                    AccountId = user.AccountId,
                 }.Get();
 
                 Assert.IsInstanceOf(typeof(User), gotUser);
@@ -40,35 +41,8 @@ namespace Snippets.src.Foundation
         {
             try
             {
-                var user = new User().List().FirstOrDefault();
+                var user = new Account().MyUsers().FirstOrDefault();
                 Assert.IsInstanceOf(typeof(User), user);
-            }
-            catch (System.Exception)
-            {
-                throw;
-            }
-        }
-
-        [Test]
-        public async System.Threading.Tasks.Task UserListForeignKeyAsync()
-        {
-            try
-            {
-                var groups = new PolicyGroup().List().All();
-
-                var user = new User().List().FirstOrDefault();
-
-                var newGroup = groups.FirstOrDefault(g => user.GroupIds != null ? user.GroupIds.Any(f => f == g.Id) : false);
-
-                if (newGroup != null)
-                {
-                    user.GroupIds.Add(newGroup.Id);
-                    await user.Update();
-
-                    var userGroupIds = user.Groups().All().Select(g => g.Id).ToList();
-
-                    Assert.Contains(newGroup.Id, userGroupIds);
-                }
             }
             catch (System.Exception)
             {
@@ -81,8 +55,11 @@ namespace Snippets.src.Foundation
         {
             try
             {
+                var myAccount = await new Account().Me();
+
                 var user = await new User
                 {
+                    AccountId = myAccount.Id,
                     Username = "alexcs",
                     Email = "alex@alex.alex",
                     PhoneNumber = "01638742545",

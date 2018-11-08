@@ -19,8 +19,8 @@ namespace Snippets.src.Foundation
             try
             {
                 // an example: checking account status
-                var myAccount = await new MyAccount().Get();
-                var isActive = myAccount.Status == MyAccountStatusEnum.ACTIVE;
+                var myAccount = await new Account().Me();
+                var isActive = myAccount.Status == AccountStatusEnum.ACTIVE;
                 // end of example
 
                 Assert.IsTrue(isActive);
@@ -56,7 +56,7 @@ namespace Snippets.src.Foundation
             {
                 // an example: using multiple api keys
                 var allUsers = new List<User>();
-                new List<string> { "ak_1", "ak_2" }.ForEach(k => allUsers.AddRange(new SDK(new Config(k)).Entities.User.List()));
+                new List<string> { "ak_1", "ak_2" }.ForEach(k => allUsers.AddRange(new SDK(new Config(k)).Entities.Account.MyUsers()));
                 // end of example
             }
             catch (CloudApiException e) when (e.ErrorCode == 401)

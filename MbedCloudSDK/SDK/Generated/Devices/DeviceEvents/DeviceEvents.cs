@@ -28,19 +28,16 @@ namespace MbedCloud.SDK.Entities
     {
         public DeviceEvents()
         {
-            Client = new Client(Config);
         }
 
-        public DeviceEvents(Config config)
+        public DeviceEvents(Config config) : base(config)
         {
-            Config = config;
-            Client = new Client(Config);
         }
 
         /// <summary>
         /// changes
         /// </summary>
-        public object Changes
+        public Dictionary<string, string> Changes
         {
             get;
             set;

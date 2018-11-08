@@ -10,10 +10,10 @@ namespace MbedCloud.SDK.Common
     public abstract class BaseEntity
     {
         [JsonIgnore]
-        private Config config;
+        private readonly Config _config;
 
         [JsonIgnore]
-        protected MbedCloud.SDK.Client.Client Client;
+        protected readonly MbedCloud.SDK.Client.Client Client;
 
         /// <summary>
         /// Gets or sets the configuration.
@@ -24,8 +24,7 @@ namespace MbedCloud.SDK.Common
         [JsonIgnore]
         public Config Config
         {
-            get => config ?? SDK.Config;
-            set => config = value;
+            get => _config;
         }
 
         /// <summary>
@@ -36,5 +35,11 @@ namespace MbedCloud.SDK.Common
         /// </value>
         [JsonProperty]
         public string Id { get; set; }
+
+        public BaseEntity(Config config = null)
+        {
+            _config = config ?? new Config();
+            Client = new MbedCloud.SDK.Client.Client(_config);
+        }
     }
 }

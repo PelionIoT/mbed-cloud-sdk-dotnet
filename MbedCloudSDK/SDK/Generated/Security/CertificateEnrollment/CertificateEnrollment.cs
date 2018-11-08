@@ -29,13 +29,10 @@ namespace MbedCloud.SDK.Entities
     {
         public CertificateEnrollment()
         {
-            Client = new Client(Config);
         }
 
-        public CertificateEnrollment(Config config)
+        public CertificateEnrollment(Config config) : base(config)
         {
-            Config = config;
-            Client = new Client(Config);
         }
 
         /// <summary>

@@ -116,21 +116,21 @@ namespace Manhasset.Generator.src
                 entityClass.AddBaseType("BASE_ENTITY", "BaseEntity");
                 entityClass.AddUsing(nameof(UsingKeys.SDK_COMMON), UsingKeys.SDK_COMMON);
 
-                // default constructor
-                var defaultConstructor = new DefaultConfigConstructorContainer
+                //default constructor
+                var defaultConstructor = new ConstructorContainer
                 {
                     Name = entityClass.Name
                 };
-                defaultConstructor.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
                 entityClass.AddConstructor("DEFAULT", defaultConstructor);
 
-                //config constructor
-                var configConstructor = new ConfigConstructorContainer
+                // config constructor
+                var configConstructor = new DefaultConfigConstructorContainer
                 {
                     Name = entityClass.Name
                 };
                 configConstructor.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
                 entityClass.AddConstructor("CONFIG", configConstructor);
+
                 entityClass.AddUsing(nameof(UsingKeys.SDK_COMMON), UsingKeys.SDK_COMMON);
                 entityClass.AddUsing(nameof(UsingKeys.CLIENT), UsingKeys.CLIENT);
 
@@ -169,7 +169,7 @@ namespace Manhasset.Generator.src
                     var docString = property["_key"].GetStringValue();
 
                     // if property is private
-                    var isPrivate = property["private_field"] != null;
+                    var isPrivate = false;// property["private_field"] != null;
 
                     // get type
                     // format or type for most methods
@@ -181,14 +181,14 @@ namespace Manhasset.Generator.src
                     var innerValues = items != null ? foreignKey != null ? foreignKey["entity"].GetStringValue().ToPascal() : property["items"]["type"].GetStringValue() : null;
 
                     // might be enum
-                    var propertyType = (property["enum"] != null && property["enum_reference"] != null) ? property["enum_reference"].GetStringValue().ToPascal() : SwaggerTypeHelper.MapType(swaggerType, innerValues);
+                    var propertyType = (property["enum"] != null && property["enum_reference"] != null) ? property["enum_reference"].GetStringValue().ToPascal() : SwaggerTypeHelper.GetForeignKeyType(property) ?? SwaggerTypeHelper.GetAdditionalProperties(property) ?? SwaggerTypeHelper.MapType(swaggerType, innerValues);
 
                     // check if property has custom getters and setters
                     var overrideProperty = property["_override"] != null && !property["private_field"].GetBoolValue();
                     var customGetter = property["getter_custom_method"] != null;
                     var customSetter = property["setter_custom_method"] != null;
 
-                    var isNullable = !propertyType.Contains("List<") && !propertyType.Contains("string") && !propertyType.Contains("object");
+                    var isNullable = !propertyType.Contains("List<") && !propertyType.Contains("Dictionary<") && !propertyType.Contains("string") && !propertyType.Contains("object") && !(SwaggerTypeHelper.GetForeignKeyType(property) != null);
 
                     if (overrideProperty) {
                         var overridePropContainer = new PropertyWithCustomGetterAndSetter
@@ -355,7 +355,7 @@ namespace Manhasset.Generator.src
                         if (external)
                         {
                             var internalVal = field["items"] != null ? field["items"]["type"].GetStringValue() : null;
-                            type = SwaggerTypeHelper.MapType(field["type"].GetStringValue(), internalVal);
+                            type = SwaggerTypeHelper.GetAdditionalProperties(field) ?? SwaggerTypeHelper.MapType(field["type"].GetStringValue(), internalVal);
                             if (type == "Stream")
                             {
                                 entityClass.AddUsing(nameof(UsingKeys.SYSTEM_IO), UsingKeys.SYSTEM_IO);

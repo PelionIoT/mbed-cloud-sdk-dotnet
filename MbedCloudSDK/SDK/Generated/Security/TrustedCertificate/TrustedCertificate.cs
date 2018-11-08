@@ -30,13 +30,10 @@ namespace MbedCloud.SDK.Entities
     {
         public TrustedCertificate()
         {
-            Client = new Client(Config);
         }
 
-        public TrustedCertificate(Config config)
+        public TrustedCertificate(Config config) : base(config)
         {
-            Config = config;
-            Client = new Client(Config);
         }
 
         /// <summary>
@@ -78,7 +75,7 @@ namespace MbedCloud.SDK.Entities
         /// <summary>
         /// device_execution_mode
         /// </summary>
-        internal int? DeviceExecutionMode
+        public int? DeviceExecutionMode
         {
             get;
             set;
@@ -131,6 +128,15 @@ namespace MbedCloud.SDK.Entities
         /// owner_id
         /// </summary>
         public string OwnerId
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// private_key
+        /// </summary>
+        public string PrivateKey
         {
             get;
             set;

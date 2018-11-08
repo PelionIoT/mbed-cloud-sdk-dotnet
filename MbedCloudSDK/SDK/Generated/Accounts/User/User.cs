@@ -30,16 +30,13 @@ namespace MbedCloud.SDK.Entities
     {
         public User()
         {
-            Client = new Client(Config);
         }
 
-        public User(Config config)
+        public User(Config config) : base(config)
         {
-            Config = config;
-            Client = new Client(Config);
         }
 
-        internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "GroupIds", "groups" }, { "MarketingAccepted", "is_marketing_accepted" }, { "TermsAccepted", "is_gtc_accepted" }, { "TwoFactorAuthentication", "is_totp_enabled" }, };
+        internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "MarketingAccepted", "is_marketing_accepted" }, { "TermsAccepted", "is_gtc_accepted" }, { "TwoFactorAuthentication", "is_totp_enabled" }, };
 
         /// <summary>
         /// account_id
@@ -105,9 +102,9 @@ namespace MbedCloud.SDK.Entities
         }
 
         /// <summary>
-        /// group_ids
+        /// groups
         /// </summary>
-        public List<string> GroupIds
+        public List<string> Groups
         {
             get;
             set;
@@ -212,46 +209,13 @@ namespace MbedCloud.SDK.Entities
             set;
         }
 
-        public async Task<User> AddToGroups(List<string> addToGroupIds)
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "user-id", Id }, };
-                var bodyParams = addToGroupIds;
-                return await Client.CallApi<User>(path: "/v3/users/{user-id}/groups", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
         public async Task<User> Create(string action = null)
-        {
-            return await CustomFunctions.SubtenantAccountSwitchCreate(this, action);
-        }
-
-        internal async Task<User> CreateOnAggregator(string action = null)
-        {
-            try
-            {
-                var queryParams = new Dictionary<string, object> { { "action", action }, };
-                var bodyParams = new User { Address = Address, Email = Email, FullName = FullName, GroupIds = GroupIds, MarketingAccepted = MarketingAccepted, Password = Password, PhoneNumber = PhoneNumber, TermsAccepted = TermsAccepted, Username = Username, };
-                return await Client.CallApi<User>(path: "/v3/users", queryParams: queryParams, bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        internal async Task<User> CreateOnSubtenant(string action = null)
         {
             try
             {
                 var pathParams = new Dictionary<string, object> { { "accountID", AccountId }, };
                 var queryParams = new Dictionary<string, object> { { "action", action }, };
-                var bodyParams = new User { Address = Address, Email = Email, FullName = FullName, GroupIds = GroupIds, MarketingAccepted = MarketingAccepted, Password = Password, PhoneNumber = PhoneNumber, TermsAccepted = TermsAccepted, Username = Username, };
+                var bodyParams = new User { Address = Address, Email = Email, FullName = FullName, Groups = Groups, MarketingAccepted = MarketingAccepted, Password = Password, PhoneNumber = PhoneNumber, TermsAccepted = TermsAccepted, Username = Username, };
                 return await Client.CallApi<User>(path: "/v3/accounts/{accountID}/users", pathParams: pathParams, queryParams: queryParams, bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
@@ -264,8 +228,8 @@ namespace MbedCloud.SDK.Entities
         {
             try
             {
-                var pathParams = new Dictionary<string, object> { { "user-id", Id }, };
-                return await Client.CallApi<User>(path: "/v3/users/{user-id}", pathParams: pathParams, method: HttpMethods.DELETE, objectToUnpack: this);
+                var pathParams = new Dictionary<string, object> { { "accountID", AccountId }, { "user-id", Id }, };
+                return await Client.CallApi<User>(path: "/v3/accounts/{accountID}/users/{user-id}", pathParams: pathParams, method: HttpMethods.DELETE, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {
@@ -274,24 +238,6 @@ namespace MbedCloud.SDK.Entities
         }
 
         public async Task<User> Get()
-        {
-            return await CustomFunctions.SubtenantAccountSwitchGet(this);
-        }
-
-        internal async Task<User> GetOnAggregator()
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "user-id", Id }, };
-                return await Client.CallApi<User>(path: "/v3/users/{user-id}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        internal async Task<User> GetOnSubtenant()
         {
             try
             {
@@ -304,35 +250,17 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public PaginatedResponse<QueryOptions, PolicyGroup> Groups(QueryOptions options = null)
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "user-id", Id }, };
-                if (options == null)
-                {
-                    options = new QueryOptions();
-                }
-
-                Func<QueryOptions, ResponsePage<PolicyGroup>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<PolicyGroup>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<PolicyGroup>>(path: "/v3/users/{user-id}/groups", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); });
-                return new PaginatedResponse<QueryOptions, PolicyGroup>(paginatedFunc, options);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
         public PaginatedResponse<QueryOptions, User> List(QueryOptions options = null)
         {
             try
             {
+                var pathParams = new Dictionary<string, object> { { "accountID", AccountId }, };
                 if (options == null)
                 {
                     options = new QueryOptions();
                 }
 
-                Func<QueryOptions, ResponsePage<User>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<User>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<User>>(path: "/v3/users", queryParams: queryParams, method: HttpMethods.GET); });
+                Func<QueryOptions, ResponsePage<User>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<User>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<User>>(path: "/v3/accounts/{accountID}/users", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); });
                 return new PaginatedResponse<QueryOptions, User>(paginatedFunc, options);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
@@ -345,9 +273,9 @@ namespace MbedCloud.SDK.Entities
         {
             try
             {
-                var pathParams = new Dictionary<string, object> { { "user-id", Id }, };
-                var bodyParams = new User { Address = Address, FullName = FullName, GroupIds = GroupIds, MarketingAccepted = MarketingAccepted, PhoneNumber = PhoneNumber, TermsAccepted = TermsAccepted, TwoFactorAuthentication = TwoFactorAuthentication, Username = Username, };
-                return await Client.CallApi<User>(path: "/v3/users/{user-id}", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: this);
+                var pathParams = new Dictionary<string, object> { { "accountID", AccountId }, { "user-id", Id }, };
+                var bodyParams = new User { Address = Address, FullName = FullName, Groups = Groups, MarketingAccepted = MarketingAccepted, PhoneNumber = PhoneNumber, TermsAccepted = TermsAccepted, TwoFactorAuthentication = TwoFactorAuthentication, Username = Username, };
+                return await Client.CallApi<User>(path: "/v3/accounts/{accountID}/users/{user-id}", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {

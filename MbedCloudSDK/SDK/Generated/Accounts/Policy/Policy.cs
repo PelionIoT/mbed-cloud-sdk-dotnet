@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
 //
-// <copyright file="LoginHistory.cs" company="Arm">
+// <copyright file="Policy.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -16,52 +16,60 @@ namespace MbedCloud.SDK.Entities
 {
     using MbedCloud.SDK.Common;
     using MbedCloud.SDK.Client;
-    using System;
 
     /// <summary>
-    /// LoginHistory
+    /// Policy
     /// </summary>
-    public class LoginHistory : BaseEntity
+    public class Policy : BaseEntity
     {
-        public LoginHistory()
+        public Policy()
         {
         }
 
-        public LoginHistory(Config config) : base(config)
+        public Policy(Config config) : base(config)
         {
         }
 
         /// <summary>
-        /// date
+        /// action
         /// </summary>
-        public DateTime? Date
+        public string Action
         {
             get;
             set;
         }
 
         /// <summary>
-        /// ip_address
+        /// allow
         /// </summary>
-        public string IpAddress
+        public bool? Allow
         {
             get;
             set;
         }
 
         /// <summary>
-        /// success
+        /// feature
         /// </summary>
-        public bool? Success
+        public string Feature
         {
             get;
             set;
         }
 
         /// <summary>
-        /// user_agent
+        /// inherited
         /// </summary>
-        public string UserAgent
+        public bool? Inherited
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// resource
+        /// </summary>
+        public string Resource
         {
             get;
             set;

@@ -28,37 +28,16 @@ namespace MbedCloud.SDK.Entities
     {
         public ServerCredentials()
         {
-            Client = new Client(Config);
         }
 
-        public ServerCredentials(Config config)
+        public ServerCredentials(Config config) : base(config)
         {
-            Config = config;
-            Client = new Client(Config);
-        }
-
-        /// <summary>
-        /// bootstrap
-        /// </summary>
-        public object Bootstrap
-        {
-            get;
-            set;
         }
 
         /// <summary>
         /// created_at
         /// </summary>
         public DateTime? CreatedAt
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// lwm2m
-        /// </summary>
-        public object Lwm2m
         {
             get;
             set;
@@ -80,18 +59,6 @@ namespace MbedCloud.SDK.Entities
         {
             get;
             set;
-        }
-
-        public async Task<ServerCredentials> GetAll()
-        {
-            try
-            {
-                return await Client.CallApi<ServerCredentials>(path: "/v3/server-credentials", method: HttpMethods.GET, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
         }
 
         public async Task<ServerCredentials> GetBootstrap()

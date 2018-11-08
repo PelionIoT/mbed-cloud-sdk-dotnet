@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using MbedCloud.SDK.Client;
 using MbedCloud.SDK.Common;
+using MbedCloud.SDK.Common.CustomSerializers;
 using Newtonsoft.Json;
 using RestSharp;
 
@@ -10,16 +11,18 @@ namespace MbedCloud.SDK.Client
 {
     public class Client
     {
-        private readonly JsonSerializerSettings settings;
-
         private static MbedCloud.SDK.Client.ExceptionFactory exceptionFactory;
 
         public Config Config { get; }
 
+        private readonly JsonSerializerSettings serializationSettings;
+        private readonly JsonSerializerSettings deserializationSettings;
+
         public Client(Config config)
         {
             Config = config;
-            settings = SerializationSettings.GetSettingsWithRenames();
+            serializationSettings = SerializationSettings.GetSerializationSettings();
+            deserializationSettings = SerializationSettings.GetDeserializationSettings(config);
             exceptionFactory = MbedCloud.SDK.Client.Configuration.DefaultExceptionFactory;
         }
 
@@ -35,6 +38,7 @@ namespace MbedCloud.SDK.Client
                     object bodyParams = null,
                     HttpMethods method = default,
                     T objectToUnpack = default)
+            where T : new()
         {
             var clientConfiguration = Config.Configuration;
             var localVarPath = path;
@@ -123,7 +127,7 @@ namespace MbedCloud.SDK.Client
 
             if (bodyParams != null)
             {
-                localVarPostBody = clientConfiguration.ApiClient.Serialize(bodyParams, settings); // http body (model) parameter
+                localVarPostBody = clientConfiguration.ApiClient.Serialize(bodyParams, serializationSettings); // http body (model) parameter
             }
 
             localVarHeaderParams["Authorization"] = clientConfiguration.GetApiKeyWithPrefix("Authorization");
@@ -160,11 +164,11 @@ namespace MbedCloud.SDK.Client
 
             if (objectToUnpack != null)
             {
-                JsonConvert.PopulateObject(localVarResponse.Content, objectToUnpack, settings);
+                JsonConvert.PopulateObject(localVarResponse.Content, objectToUnpack, deserializationSettings);
                 return objectToUnpack;
             }
 
-            return JsonConvert.DeserializeObject<T>(localVarResponse.Content, settings);
+            return JsonConvert.DeserializeObject<T>(localVarResponse.Content, deserializationSettings);
         }
     }
 }

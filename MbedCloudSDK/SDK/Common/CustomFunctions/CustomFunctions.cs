@@ -15,27 +15,5 @@ namespace MbedCloud.SDK.Common
             self.DeviceExecutionMode = value.HasValue ? 1 : 0;
             self.IsDeveloperCertificate = value;
         }
-
-        public static async Task<User> SubtenantAccountSwitchGet(User user)
-        {
-            var myAccount = await new MyAccount().Get();
-            if (user.AccountId != null || user.Id == myAccount.Id)
-            {
-                return await user.GetOnSubtenant();
-            }
-
-            return await user.GetOnAggregator();
-        }
-
-        public static async Task<User> SubtenantAccountSwitchCreate(User user, string action)
-        {
-            var myAccount = await new MyAccount().Get();
-            if (user.AccountId != null || user.Id == myAccount.Id)
-            {
-                return await user.CreateOnSubtenant(action);
-            }
-
-            return await user.CreateOnAggregator(action);
-        }
     }
 }

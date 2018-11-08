@@ -29,13 +29,10 @@ namespace MbedCloud.SDK.Entities
     {
         public CertificateIssuer()
         {
-            Client = new Client(Config);
         }
 
-        public CertificateIssuer(Config config)
+        public CertificateIssuer(Config config) : base(config)
         {
-            Config = config;
-            Client = new Client(Config);
         }
 
         /// <summary>
@@ -59,7 +56,7 @@ namespace MbedCloud.SDK.Entities
         /// <summary>
         /// issuer_attributes
         /// </summary>
-        public object IssuerAttributes
+        public Dictionary<string, string> IssuerAttributes
         {
             get;
             set;
@@ -92,7 +89,7 @@ namespace MbedCloud.SDK.Entities
             set;
         }
 
-        public async Task<CertificateIssuer> Create(object issuerCredentials = null)
+        public async Task<CertificateIssuer> Create(Dictionary<string, string> issuerCredentials = null)
         {
             try
             {
@@ -149,7 +146,7 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public async Task<CertificateIssuer> Update(object issuerCredentials = null)
+        public async Task<CertificateIssuer> Update(Dictionary<string, string> issuerCredentials = null)
         {
             try
             {

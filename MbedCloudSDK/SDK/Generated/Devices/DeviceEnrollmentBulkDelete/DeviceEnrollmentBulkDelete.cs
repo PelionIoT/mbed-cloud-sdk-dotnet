@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
 //
-// <copyright file="DeviceEnrollmentBulkCreate.cs" company="Arm">
+// <copyright file="DeviceEnrollmentBulkDelete.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -24,15 +24,15 @@ namespace MbedCloud.SDK.Entities
     using System.Collections.Generic;
 
     /// <summary>
-    /// DeviceEnrollmentBulkCreate
+    /// DeviceEnrollmentBulkDelete
     /// </summary>
-    public class DeviceEnrollmentBulkCreate : BaseEntity
+    public class DeviceEnrollmentBulkDelete : BaseEntity
     {
-        public DeviceEnrollmentBulkCreate()
+        public DeviceEnrollmentBulkDelete()
         {
         }
 
-        public DeviceEnrollmentBulkCreate(Config config) : base(config)
+        public DeviceEnrollmentBulkDelete(Config config) : base(config)
         {
         }
 
@@ -102,7 +102,7 @@ namespace MbedCloud.SDK.Entities
         /// <summary>
         /// status
         /// </summary>
-        public DeviceEnrollmentBulkCreateStatusEnum? Status
+        public DeviceEnrollmentBulkDeleteStatusEnum? Status
         {
             get;
             set;
@@ -117,12 +117,12 @@ namespace MbedCloud.SDK.Entities
             set;
         }
 
-        public async Task<DeviceEnrollmentBulkCreate> Create(Stream enrollmentIdentities)
+        public async Task<DeviceEnrollmentBulkDelete> Delete(Stream enrollmentIdentities)
         {
             try
             {
                 var fileParams = new Dictionary<string, Stream> { { "enrollment_identities", enrollmentIdentities }, };
-                return await Client.CallApi<DeviceEnrollmentBulkCreate>(path: "/v3/device-enrollments-bulk-uploads", fileParams: fileParams, method: HttpMethods.POST, objectToUnpack: this);
+                return await Client.CallApi<DeviceEnrollmentBulkDelete>(path: "/v3/device-enrollments-bulk-deletes", fileParams: fileParams, method: HttpMethods.POST, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {
@@ -130,12 +130,12 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public async Task<DeviceEnrollmentBulkCreate> Get()
+        public async Task<DeviceEnrollmentBulkDelete> Get()
         {
             try
             {
                 var pathParams = new Dictionary<string, object> { { "id", Id }, };
-                return await Client.CallApi<DeviceEnrollmentBulkCreate>(path: "/v3/device-enrollments-bulk-uploads/{id}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
+                return await Client.CallApi<DeviceEnrollmentBulkDelete>(path: "/v3/device-enrollments-bulk-deletes/{id}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {

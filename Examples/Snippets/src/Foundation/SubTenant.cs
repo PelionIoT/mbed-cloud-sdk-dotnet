@@ -20,7 +20,7 @@ namespace Snippets.src.Foundation
             try
             {
                 // an example: creating and managing a subtenant account
-                var newSubtenant = new SubtenantAccount
+                var newSubtenant = new Account
                 {
                     DisplayName = "sdk test dan",
                     Aliases = new List<string> { $"sdk_test_dan_{randomString()}" },
