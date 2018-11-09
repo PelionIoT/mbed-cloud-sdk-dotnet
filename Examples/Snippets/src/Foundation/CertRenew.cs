@@ -38,9 +38,9 @@ namespace Snippets.src.Foundation
                 }
                 // end of example
             }
-            catch (CloudApiException e) when (e.ErrorCode == 400)
+            catch (CloudApiException e) when (e.ErrorCode == 400 || e.ErrorCode == 423)
             {
-                // should throw 400, device cert cannot be renewed
+                // should throw 423, device cert cannot be renewed
                 return;
             }
             catch (Exception)

@@ -16,6 +16,7 @@ namespace MbedCloud.SDK.Enums
 {
     public enum AccountOrderEnum
     {
+        UNKNOWN_ENUM_VALUE_RECEIVED,
         ASC,
         DESC,
     }

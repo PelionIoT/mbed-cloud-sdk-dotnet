@@ -16,6 +16,7 @@ namespace MbedCloud.SDK.Enums
 {
     public enum DeviceEnrollmentBulkCreateStatusEnum
     {
+        UNKNOWN_ENUM_VALUE_RECEIVED,
         COMPLETED,
         NEW,
         PROCESSING,

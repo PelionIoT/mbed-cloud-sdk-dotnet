@@ -16,6 +16,7 @@ namespace MbedCloud.SDK.Enums
 {
     public enum AccountMfaStatusEnum
     {
+        UNKNOWN_ENUM_VALUE_RECEIVED,
         ENFORCED,
         OPTIONAL,
     }

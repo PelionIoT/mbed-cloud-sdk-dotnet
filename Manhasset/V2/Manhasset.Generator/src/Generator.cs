@@ -69,8 +69,9 @@ namespace Manhasset.Generator.src
 
             foreach (var anEnum in enums)
             {
+                var values = new List<string>() { "UNKNOWN_ENUM_VALUE_RECEIVED" };
                 var name = anEnum["enum_name"].GetStringValue().ToPascal();
-                var values = anEnum["values"].Values<string>().ToList();
+                values.AddRange(anEnum["values"].Values<string>().ToList());
                 var filePath = $"{rootFilePath}/Enums/{name}.cs";
 
                 var enumContainer = new EnumContainer

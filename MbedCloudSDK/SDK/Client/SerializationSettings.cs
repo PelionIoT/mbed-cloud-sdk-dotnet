@@ -29,7 +29,7 @@ namespace MbedCloud.SDK.Client
                 DateTimeZoneHandling = DateTimeZoneHandling.Utc,
             };
 
-            settings.Converters.Add(new StringEnumConverter());
+            settings.Converters.Add(new TolerantEnumConverter());
 
             return settings;
         }
