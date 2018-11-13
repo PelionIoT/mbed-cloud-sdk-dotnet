@@ -16,10 +16,10 @@ namespace Snippets.src.Foundation
             try
             {
                 // an example: certificate renew
-                var myConfig = new CertificateIssuerConfig().List().All().FirstOrDefault(c => c.Reference == "LWM2M");
+                var myConfig = new CertificateIssuerConfig().List().All().FirstOrDefault(c => c.CertificateReference == "LWM2M");
                 // cloak
                 Assert.IsAssignableFrom(typeof(CertificateIssuerConfig), myConfig, "config should be instance of CertificateIssuerConfig");
-                Assert.AreEqual("LWM2M", myConfig.Reference);
+                Assert.AreEqual("LWM2M", myConfig.CertificateReference);
                 // uncloak
 
                 var connectedDevices = new Device()
@@ -34,7 +34,7 @@ namespace Snippets.src.Foundation
 
                 foreach (var device in connectedDevices)
                 {
-                    await device.RenewCertificate(myConfig.Reference);
+                    await device.RenewCertificate(myConfig.CertificateReference);
                 }
                 // end of example
             }

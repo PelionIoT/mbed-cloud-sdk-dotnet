@@ -130,6 +130,16 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
+        public async Task<Stream> DownloadErrorsReportFile()
+        {
+            return await CustomFunctions.DownloadErrorsReportFile(this);
+        }
+
+        public async Task<Stream> DownloadFullReportFile()
+        {
+            return await CustomFunctions.DownloadFullReportFile(this);
+        }
+
         public async Task<DeviceEnrollmentBulkDelete> Get()
         {
             try

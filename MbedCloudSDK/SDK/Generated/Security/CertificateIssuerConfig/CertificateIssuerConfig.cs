@@ -16,10 +16,10 @@ namespace MbedCloud.SDK.Entities
 {
     using MbedCloud.SDK.Common;
     using MbedCloud.SDK.Client;
+    using System.Collections.Generic;
     using System;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
-    using System.Collections.Generic;
 
     /// <summary>
     /// CertificateIssuerConfig
@@ -34,10 +34,21 @@ namespace MbedCloud.SDK.Entities
         {
         }
 
+        internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "CertificateReference", "reference" }, };
+
         /// <summary>
         /// certificate_issuer_id
         /// </summary>
         public string CertificateIssuerId
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// certificate_reference
+        /// </summary>
+        public string CertificateReference
         {
             get;
             set;
@@ -62,15 +73,6 @@ namespace MbedCloud.SDK.Entities
         }
 
         /// <summary>
-        /// reference
-        /// </summary>
-        public string Reference
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// updated_at
         /// </summary>
         public DateTime? UpdatedAt
@@ -83,7 +85,7 @@ namespace MbedCloud.SDK.Entities
         {
             try
             {
-                var bodyParams = new CertificateIssuerConfig { CertificateIssuerId = CertificateIssuerId, Reference = Reference, };
+                var bodyParams = new CertificateIssuerConfig { CertificateIssuerId = CertificateIssuerId, CertificateReference = CertificateReference, };
                 return await Client.CallApi<CertificateIssuerConfig>(path: "/v3/certificate-issuer-configurations", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)

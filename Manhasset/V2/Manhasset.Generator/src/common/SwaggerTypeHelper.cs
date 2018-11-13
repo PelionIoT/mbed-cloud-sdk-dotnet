@@ -8,29 +8,41 @@ namespace Manhasset.Generator.src.common
     {
         public static string MapType(string swaggerType, string internalValue = null)
         {
-            switch (swaggerType)
+            var type = getType() ?? swaggerType.ToPascal();
+
+            if (type == "PaginatedResponse")
             {
-                case "boolean":
-                    return "bool";
-                case "string":
-                    return "string";
-                case "integer":
-                case "int32":
-                    return "int";
-                case "int64":
-                    return "long";
-                case "object":
-                    return "object";
-                case "file":
-                    return "Stream";
-                case "date-time":
-                case "date":
-                    return "DateTime";
-                case "array":
-                    return $"List<{internalValue}>";
-                default:
-                    return "object";
+                return null;
             }
+
+            return type;
+
+            string getType()
+            {
+                switch (swaggerType)
+                {
+                    case "boolean":
+                        return "bool";
+                    case "string":
+                        return "string";
+                    case "integer":
+                    case "int32":
+                        return "int";
+                    case "int64":
+                        return "long";
+                    case "object":
+                        return "object";
+                    case "file":
+                        return "Stream";
+                    case "date-time":
+                    case "date":
+                        return "DateTime";
+                    case "array":
+                        return $"List<{internalValue}>";
+                    default:
+                        return null;
+                }
+            };
         }
 
         public static string GetForeignKeyType(JToken field)

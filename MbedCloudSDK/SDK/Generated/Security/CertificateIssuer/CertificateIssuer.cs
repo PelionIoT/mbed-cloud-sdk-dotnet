@@ -18,6 +18,7 @@ namespace MbedCloud.SDK.Entities
     using MbedCloud.SDK.Client;
     using System;
     using MbedCloud.SDK.Enums;
+    using MbedCloud.SDK.Entities;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
@@ -75,15 +76,6 @@ namespace MbedCloud.SDK.Entities
         /// name
         /// </summary>
         public string Name
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// successful
-        /// </summary>
-        public bool? Successful
         {
             get;
             set;
@@ -160,12 +152,12 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public async Task<CertificateIssuer> Verify()
+        public async Task<VerificationResponse> Verify()
         {
             try
             {
                 var pathParams = new Dictionary<string, object> { { "certificate-issuer-id", Id }, };
-                return await Client.CallApi<CertificateIssuer>(path: "/v3/certificate-issuers/{certificate-issuer-id}/verify", pathParams: pathParams, method: HttpMethods.POST, objectToUnpack: this);
+                return await Client.CallApi<VerificationResponse>(path: "/v3/certificate-issuers/{certificate-issuer-id}/verify", pathParams: pathParams, method: HttpMethods.POST);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {

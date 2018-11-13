@@ -165,5 +165,13 @@ namespace MbedCloud.SDK
         {
             get => new UserInvitation(config);
         }
+
+        /// <summary>
+        /// VerificationResponse
+        /// </summary>
+        public VerificationResponse VerificationResponse
+        {
+            get => new VerificationResponse(config);
+        }
     }
 }
