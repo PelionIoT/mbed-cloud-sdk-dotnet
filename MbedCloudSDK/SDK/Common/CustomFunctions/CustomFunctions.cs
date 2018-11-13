@@ -1,6 +1,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using MbedCloud.SDK.Entities;
+using RestSharp;
 
 namespace MbedCloud.SDK.Common
 {
@@ -19,22 +20,40 @@ namespace MbedCloud.SDK.Common
 
         public static Task<Stream> DownloadFullReportFile(DeviceEnrollmentBulkCreate self)
         {
-            return null;
+            return StreamToFile(self.Config, self.FullReportFile);
         }
 
         public static Task<Stream> DownloadFullReportFile(DeviceEnrollmentBulkDelete self)
         {
-            return null;
+            return StreamToFile(self.Config, self.ErrorsReportFile);
         }
 
         public static Task<Stream> DownloadErrorsReportFile(DeviceEnrollmentBulkCreate self)
         {
-            return null;
+            return StreamToFile(self.Config, self.FullReportFile);
         }
 
         public static Task<Stream> DownloadErrorsReportFile(DeviceEnrollmentBulkDelete self)
         {
-            return null;
+            return StreamToFile(self.Config, self.ErrorsReportFile);
+        }
+
+        private static Task<Stream> StreamToFile(Config config, string url, string filePath = "report.csv")
+        {
+            using (var writer = File.OpenWrite(filePath))
+            {
+                var client = new RestClient(config.Host);
+                var request = new RestRequest(url.Replace(config.Host, string.Empty))
+                {
+                    ResponseWriter = (responseStream) => responseStream.CopyTo(writer)
+                };
+                request.AddHeader("Authorization", $"Bearer {config.ApiKey}");
+                client.Execute(request);
+            }
+
+            var y = File.OpenRead(filePath);
+            
+            return Task.FromResult<Stream>(File.OpenRead(filePath));
         }
     }
 }

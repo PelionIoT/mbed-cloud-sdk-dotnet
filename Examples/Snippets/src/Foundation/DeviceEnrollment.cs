@@ -58,6 +58,10 @@ namespace Snippets.src.Foundation
                 // end of example
 
                 Assert.IsTrue(bulk.Status == DeviceEnrollmentBulkCreateStatusEnum.COMPLETED || bulk.Status == DeviceEnrollmentBulkCreateStatusEnum.PROCESSING);
+
+                var reportFile = await bulk.DownloadFullReportFile();
+
+                Assert.IsTrue(reportFile.CanRead);
             }
             catch (Exception)
             {
