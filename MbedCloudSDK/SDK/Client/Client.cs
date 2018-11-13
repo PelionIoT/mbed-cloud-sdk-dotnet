@@ -159,6 +159,12 @@ namespace MbedCloud.SDK.Client
 
             if (string.IsNullOrEmpty(localVarResponse.Content))
             {
+                // we have an instance, if no content, then just return it.
+                if (objectToUnpack != null)
+                {
+                    return objectToUnpack;
+                }
+
                 return default(T);
             }
 
