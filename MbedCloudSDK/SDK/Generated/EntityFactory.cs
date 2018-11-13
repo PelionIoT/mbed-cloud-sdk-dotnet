@@ -143,6 +143,30 @@ namespace MbedCloud.SDK
         }
 
         /// <summary>
+        /// SubtenantTrustedCertificate
+        /// </summary>
+        public SubtenantTrustedCertificate SubtenantTrustedCertificate
+        {
+            get => new SubtenantTrustedCertificate(config);
+        }
+
+        /// <summary>
+        /// SubtenantUser
+        /// </summary>
+        public SubtenantUser SubtenantUser
+        {
+            get => new SubtenantUser(config);
+        }
+
+        /// <summary>
+        /// SubtenantUserInvitation
+        /// </summary>
+        public SubtenantUserInvitation SubtenantUserInvitation
+        {
+            get => new SubtenantUserInvitation(config);
+        }
+
+        /// <summary>
         /// TrustedCertificate
         /// </summary>
         public TrustedCertificate TrustedCertificate

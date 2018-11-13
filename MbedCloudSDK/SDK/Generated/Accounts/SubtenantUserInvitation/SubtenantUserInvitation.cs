@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
 //
-// <copyright file="UserInvitation.cs" company="Arm">
+// <copyright file="SubtenantUserInvitation.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -22,15 +22,15 @@ namespace MbedCloud.SDK.Entities
     using MbedCloudSDK.Exceptions;
 
     /// <summary>
-    /// UserInvitation
+    /// SubtenantUserInvitation
     /// </summary>
-    public class UserInvitation : BaseEntity
+    public class SubtenantUserInvitation : BaseEntity
     {
-        public UserInvitation()
+        public SubtenantUserInvitation()
         {
         }
 
-        public UserInvitation(Config config) : base(config)
+        public SubtenantUserInvitation(Config config) : base(config)
         {
         }
 
@@ -97,12 +97,13 @@ namespace MbedCloud.SDK.Entities
             set;
         }
 
-        public async Task<UserInvitation> Create()
+        public async Task<SubtenantUserInvitation> Create()
         {
             try
             {
-                var bodyParams = new UserInvitation { Email = Email, };
-                return await Client.CallApi<UserInvitation>(path: "/v3/user-invitations", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
+                var pathParams = new Dictionary<string, object> { { "account-id", AccountId }, };
+                var bodyParams = new SubtenantUserInvitation { Email = Email, };
+                return await Client.CallApi<SubtenantUserInvitation>(path: "/v3/accounts/{account-id}/user-invitations", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {
@@ -110,12 +111,12 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public async Task<UserInvitation> Delete()
+        public async Task<SubtenantUserInvitation> Delete()
         {
             try
             {
-                var pathParams = new Dictionary<string, object> { { "invitation-id", Id }, };
-                return await Client.CallApi<UserInvitation>(path: "/v3/user-invitations/{invitation-id}", pathParams: pathParams, method: HttpMethods.DELETE, objectToUnpack: this);
+                var pathParams = new Dictionary<string, object> { { "account-id", AccountId }, { "invitation-id", Id }, };
+                return await Client.CallApi<SubtenantUserInvitation>(path: "/v3/accounts/{account-id}/user-invitations/{invitation-id}", pathParams: pathParams, method: HttpMethods.DELETE, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {
@@ -123,30 +124,12 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public async Task<UserInvitation> Get()
+        public async Task<SubtenantUserInvitation> Get()
         {
             try
             {
-                var pathParams = new Dictionary<string, object> { { "invitation-id", Id }, };
-                return await Client.CallApi<UserInvitation>(path: "/v3/user-invitations/{invitation-id}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public PaginatedResponse<QueryOptions, UserInvitation> List(QueryOptions options = null)
-        {
-            try
-            {
-                if (options == null)
-                {
-                    options = new QueryOptions();
-                }
-
-                Func<QueryOptions, ResponsePage<UserInvitation>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<UserInvitation>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<UserInvitation>>(path: "/v3/user-invitations", queryParams: queryParams, method: HttpMethods.GET); });
-                return new PaginatedResponse<QueryOptions, UserInvitation>(paginatedFunc, options);
+                var pathParams = new Dictionary<string, object> { { "account-id", AccountId }, { "invitation-id", Id }, };
+                return await Client.CallApi<SubtenantUserInvitation>(path: "/v3/accounts/{account-id}/user-invitations/{invitation-id}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {

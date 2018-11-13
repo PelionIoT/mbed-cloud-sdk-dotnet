@@ -56,7 +56,7 @@ namespace Snippets.src.Foundation
             {
                 // an example: using multiple api keys
                 var allUsers = new List<User>();
-                new List<string> { "ak_1", "ak_2" }.ForEach(k => allUsers.AddRange(new SDK(new Config(k)).Entities.Account.MyUsers()));
+                new List<string> { "ak_1", "ak_2" }.ForEach(k => allUsers.AddRange(new SDK(new Config(k)).Entities.User.List()));
                 // end of example
             }
             catch (CloudApiException e) when (e.ErrorCode == 401)

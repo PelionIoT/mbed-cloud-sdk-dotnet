@@ -14,7 +14,7 @@ namespace Snippets.src.Foundation
         {
             try
             {
-                var user = new Account().MyUsers().FirstOrDefault();
+                var user = new User().List().FirstOrDefault();
 
                 Assert.IsInstanceOf(typeof(User), user);
 
@@ -41,7 +41,7 @@ namespace Snippets.src.Foundation
         {
             try
             {
-                var user = new Account().MyUsers().FirstOrDefault();
+                var user = new User().List().FirstOrDefault();
                 Assert.IsInstanceOf(typeof(User), user);
             }
             catch (System.Exception)
@@ -55,11 +55,8 @@ namespace Snippets.src.Foundation
         {
             try
             {
-                var myAccount = await new Account().Me();
-
                 var user = await new User
                 {
-                    AccountId = myAccount.Id,
                     Username = "alexcs",
                     Email = "alex@alex.alex",
                     PhoneNumber = "01638742545",

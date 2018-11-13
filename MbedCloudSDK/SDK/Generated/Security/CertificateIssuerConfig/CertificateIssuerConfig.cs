@@ -138,6 +138,18 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
+        public async Task<CertificateIssuerConfig> Lwm2m()
+        {
+            try
+            {
+                return await Client.CallApi<CertificateIssuerConfig>(path: "/v3/certificate-issuer-configurations/lwm2m", method: HttpMethods.GET, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
         public async Task<CertificateIssuerConfig> Update()
         {
             try

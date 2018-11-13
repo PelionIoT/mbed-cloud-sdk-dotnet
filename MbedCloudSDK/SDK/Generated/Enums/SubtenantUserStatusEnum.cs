@@ -7,19 +7,20 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
 //
-// <copyright file="AccountStatusEnum.cs" company="Arm">
+// <copyright file="SubtenantUserStatusEnum.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
 namespace MbedCloud.SDK.Enums
 {
-    public enum AccountStatusEnum
+    public enum SubtenantUserStatusEnum
     {
         UNKNOWN_ENUM_VALUE_RECEIVED,
         ACTIVE,
         ENROLLING,
-        RESTRICTED,
-        SUSPENDED,
+        INACTIVE,
+        INVITED,
+        RESET,
     }
 }

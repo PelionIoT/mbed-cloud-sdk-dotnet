@@ -12,7 +12,18 @@ namespace MbedCloud.SDK.Common
             return self.DeviceExecutionMode.HasValue ? (self.DeviceExecutionMode != 0) : false;
         }
 
+        public static bool IsDeveloperCertificateGetter(SubtenantTrustedCertificate self)
+        {
+            return self.DeviceExecutionMode.HasValue ? (self.DeviceExecutionMode != 0) : false;
+        }
+
         public static void IsDeveloperCertificateSetter(TrustedCertificate self, bool? value)
+        {
+            self.DeviceExecutionMode = value.HasValue ? 1 : 0;
+            self.IsDeveloperCertificate = value;
+        }
+
+        public static void IsDeveloperCertificateSetter(SubtenantTrustedCertificate self, bool? value)
         {
             self.DeviceExecutionMode = value.HasValue ? 1 : 0;
             self.IsDeveloperCertificate = value;
@@ -52,7 +63,7 @@ namespace MbedCloud.SDK.Common
             }
 
             var y = File.OpenRead(filePath);
-            
+
             return Task.FromResult<Stream>(File.OpenRead(filePath));
         }
     }
