@@ -299,7 +299,7 @@ namespace Manhasset.Generator.src
 
                     // return type
                     var returns = deferToForeignKey ? method["defer_to_foreign_key_field"]["foreign_key"]["entity"].GetStringValue().ToPascal() : foreignKey ? method["foreign_key"]["entity"].GetStringValue().ToPascal() : method["return_type"] != null ? SwaggerTypeHelper.MapType(method["return_type"].GetStringValue()) ?? entityClass.Name : entityClass.Name;
-                    
+
                     // name of custom method
                     var customMethodName = method["custom_method"].GetStringValue().ToPascal();
 

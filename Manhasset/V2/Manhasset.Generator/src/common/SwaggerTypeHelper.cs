@@ -10,7 +10,7 @@ namespace Manhasset.Generator.src.common
         {
             var type = getType() ?? swaggerType.ToPascal();
 
-            if (type == "PaginatedResponse")
+            if (type.Contains("PaginatedResponse("))
             {
                 return null;
             }

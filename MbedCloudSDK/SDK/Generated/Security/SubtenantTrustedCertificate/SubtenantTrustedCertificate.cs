@@ -134,15 +134,6 @@ namespace MbedCloud.SDK.Entities
         }
 
         /// <summary>
-        /// private_key
-        /// </summary>
-        public string PrivateKey
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// service
         /// </summary>
         public SubtenantTrustedCertificateServiceEnum? Service

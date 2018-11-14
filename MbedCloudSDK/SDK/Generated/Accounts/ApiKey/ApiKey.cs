@@ -17,10 +17,10 @@ namespace MbedCloud.SDK.Entities
     using MbedCloud.SDK.Common;
     using MbedCloud.SDK.Client;
     using System;
-    using System.Collections.Generic;
     using MbedCloud.SDK.Enums;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
+    using System.Collections.Generic;
 
     /// <summary>
     /// ApiKey
@@ -48,15 +48,6 @@ namespace MbedCloud.SDK.Entities
         /// creation_time
         /// </summary>
         public long? CreationTime
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// groups
-        /// </summary>
-        public List<string> Groups
         {
             get;
             set;
@@ -120,7 +111,7 @@ namespace MbedCloud.SDK.Entities
         {
             try
             {
-                var bodyParams = new ApiKey { Groups = Groups, Name = Name, Owner = Owner, Status = Status, };
+                var bodyParams = new ApiKey { Name = Name, Owner = Owner, Status = Status, };
                 return await Client.CallApi<ApiKey>(path: "/v3/api-keys", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
@@ -190,7 +181,7 @@ namespace MbedCloud.SDK.Entities
             try
             {
                 var pathParams = new Dictionary<string, object> { { "apiKey", Id }, };
-                var bodyParams = new ApiKey { Groups = Groups, Name = Name, Owner = Owner, Status = Status, };
+                var bodyParams = new ApiKey { Name = Name, Owner = Owner, Status = Status, };
                 return await Client.CallApi<ApiKey>(path: "/v3/api-keys/{apiKey}", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)

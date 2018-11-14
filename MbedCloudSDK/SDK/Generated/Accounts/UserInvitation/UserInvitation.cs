@@ -17,9 +17,9 @@ namespace MbedCloud.SDK.Entities
     using MbedCloud.SDK.Common;
     using MbedCloud.SDK.Client;
     using System;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
+    using System.Collections.Generic;
 
     /// <summary>
     /// UserInvitation
@@ -65,15 +65,6 @@ namespace MbedCloud.SDK.Entities
         /// expiration
         /// </summary>
         public DateTime? Expiration
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// groups
-        /// </summary>
-        public List<string> Groups
         {
             get;
             set;

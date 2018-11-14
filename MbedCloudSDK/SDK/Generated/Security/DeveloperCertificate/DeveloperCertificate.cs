@@ -83,15 +83,6 @@ namespace MbedCloud.SDK.Entities
         }
 
         /// <summary>
-        /// private_key
-        /// </summary>
-        public string PrivateKey
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// security_file_content
         /// </summary>
         public string SecurityFileContent

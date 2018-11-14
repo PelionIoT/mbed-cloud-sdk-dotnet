@@ -64,15 +64,6 @@ namespace MbedCloud.SDK.Entities
         }
 
         /// <summary>
-        /// is_custom
-        /// </summary>
-        public bool? IsCustom
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// updated_at
         /// </summary>
         public DateTime? UpdatedAt

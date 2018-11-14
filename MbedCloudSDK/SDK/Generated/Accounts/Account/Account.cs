@@ -352,15 +352,6 @@ namespace MbedCloud.SDK.Entities
         }
 
         /// <summary>
-        /// sub_accounts
-        /// </summary>
-        public List<object> SubAccounts
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// template_id
         /// </summary>
         public string TemplateId

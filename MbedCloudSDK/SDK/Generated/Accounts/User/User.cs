@@ -102,15 +102,6 @@ namespace MbedCloud.SDK.Entities
         }
 
         /// <summary>
-        /// groups
-        /// </summary>
-        public List<string> Groups
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// last_login_time
         /// </summary>
         public long? LastLoginTime
@@ -214,7 +205,7 @@ namespace MbedCloud.SDK.Entities
             try
             {
                 var queryParams = new Dictionary<string, object> { { "action", action }, };
-                var bodyParams = new User { Address = Address, Email = Email, FullName = FullName, Groups = Groups, MarketingAccepted = MarketingAccepted, Password = Password, PhoneNumber = PhoneNumber, TermsAccepted = TermsAccepted, Username = Username, };
+                var bodyParams = new User { Address = Address, Email = Email, FullName = FullName, MarketingAccepted = MarketingAccepted, Password = Password, PhoneNumber = PhoneNumber, TermsAccepted = TermsAccepted, Username = Username, };
                 return await Client.CallApi<User>(path: "/v3/users", queryParams: queryParams, bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
@@ -272,7 +263,7 @@ namespace MbedCloud.SDK.Entities
             try
             {
                 var pathParams = new Dictionary<string, object> { { "user-id", Id }, };
-                var bodyParams = new User { Address = Address, FullName = FullName, Groups = Groups, MarketingAccepted = MarketingAccepted, PhoneNumber = PhoneNumber, TermsAccepted = TermsAccepted, TwoFactorAuthentication = TwoFactorAuthentication, Username = Username, };
+                var bodyParams = new User { Address = Address, FullName = FullName, MarketingAccepted = MarketingAccepted, PhoneNumber = PhoneNumber, TermsAccepted = TermsAccepted, TwoFactorAuthentication = TwoFactorAuthentication, Username = Username, };
                 return await Client.CallApi<User>(path: "/v3/users/{user-id}", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
