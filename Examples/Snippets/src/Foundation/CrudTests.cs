@@ -26,13 +26,14 @@ namespace Snippets.src.Foundation
         [Test]
         public async Task CrudUser()
         {
-            var myAccount = await new Account().Me();
-            Func<User, User> accountFunc = (User entity) =>
-            {
-                entity.AccountId = myAccount.Id;
-                return entity;
-            };
-            var crudTest = new CrudTest<User>(preGetFunc: accountFunc, preListFunc: accountFunc);
+            var crudTest = new CrudTest<User>();
+            await crudTest.Test();
+        }
+
+        [Test]
+        public async Task CrudUserInvitation()
+        {
+            var crudTest = new CrudTest<UserInvitation>();
             await crudTest.Test();
         }
 

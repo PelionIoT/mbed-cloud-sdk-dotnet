@@ -47,6 +47,7 @@ namespace Snippets.src.Foundation
                 if (first == default(T))
                 {
                     Console.WriteLine("no items retrieved");
+                    return;
                 }
 
                 Assert.IsInstanceOf(typeof(T), first);

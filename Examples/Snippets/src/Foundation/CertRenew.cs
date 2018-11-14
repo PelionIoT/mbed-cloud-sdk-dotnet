@@ -18,8 +18,8 @@ namespace Snippets.src.Foundation
                 // an example: certificate renew
                 var myConfig = new CertificateIssuerConfig().List().All().FirstOrDefault(c => c.CertificateReference == "LWM2M");
                 // cloak
-                Assert.IsAssignableFrom(typeof(CertificateIssuerConfig), myConfig, "config should be instance of CertificateIssuerConfig");
                 Assert.AreEqual("LWM2M", myConfig.CertificateReference);
+                Assert.IsAssignableFrom(typeof(CertificateIssuerConfig), myConfig, "config should be instance of CertificateIssuerConfig");
                 // uncloak
 
                 var connectedDevices = new Device()
