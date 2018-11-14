@@ -159,6 +159,11 @@ namespace MbedCloud.SDK.Common
                 Console.WriteLine("no .env found in directory");
                 return null;
             }
+            catch(NullReferenceException e)
+            {
+                Console.WriteLine(e);
+                throw e;
+            }
         }
     }
 }
