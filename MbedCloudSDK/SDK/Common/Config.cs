@@ -67,7 +67,14 @@ namespace MbedCloud.SDK.Common
             try
             {
                 var envDirectory = FindDotEnv(Directory.GetCurrentDirectory());
-                DotNetEnv.Env.Load(envDirectory);
+                if (string.IsNullOrEmpty(envDirectory))
+                {
+                    DotNetEnv.Env.Load();
+                }
+                else
+                {
+                    DotNetEnv.Env.Load(envDirectory);
+                }
             }
             catch (System.IO.FileNotFoundException)
             {
@@ -144,25 +151,29 @@ namespace MbedCloud.SDK.Common
         {
             try
             {
-                var envFile = Directory.GetFiles(currentDirectory, ".env") ?? Enumerable.Empty<string>().ToArray();
+                // search current directory for .env
+                var envFile = Directory.GetFiles(currentDirectory, ".env");
                 if (envFile.Length == 0)
                 {
+                    // no env found so check parent directory
                     var parentDirectory = Directory.GetParent(currentDirectory);
+                    if (parentDirectory == null)
+                    {
+                        // reached top of file directory
+                        return null;
+                    }
+
+                    // search the parent directory
                     return FindDotEnv(parentDirectory.FullName);
                 }
 
+                // found an env
                 Console.WriteLine($"found .env in {envFile.FirstOrDefault()}");
                 return envFile.FirstOrDefault();
             }
             catch (UnauthorizedAccessException)
             {
                 Console.WriteLine("no .env found in directory");
-                return null;
-            }
-            catch(NullReferenceException e)
-            {
-                // this is failing on cirlce wtf
-                Console.WriteLine(e);
                 return null;
             }
         }
