@@ -2,6 +2,7 @@ namespace MbedCloud.SDK.Common
 {
     using System;
     using System.IO;
+    using System.Linq;
     using System.Net;
     using MbedCloudSDK.Exceptions;
     using Newtonsoft.Json;
@@ -139,25 +140,25 @@ namespace MbedCloud.SDK.Common
         /// <value>The host.</value>
         public string Host { get; }
 
-private string FindDotEnv(string currentDirectory)
-{
-    try
-    {
-        var envFile = Directory.GetFiles(currentDirectory, ".env");
-        if (envFile.Length == 0)
+        private string FindDotEnv(string currentDirectory)
         {
-            var parentDirectory = Directory.GetParent(currentDirectory);
-            return FindDotEnv(parentDirectory.FullName);
-        }
+            try
+            {
+                var envFile = Directory.GetFiles(currentDirectory, ".env") ?? Enumerable.Empty<string>().ToArray();
+                if (envFile.Length == 0)
+                {
+                    var parentDirectory = Directory.GetParent(currentDirectory);
+                    return FindDotEnv(parentDirectory.FullName);
+                }
 
-        Console.WriteLine($"found .env in {envFile[0]}");
-        return envFile[0];
-    }
-    catch (UnauthorizedAccessException)
-    {
-        Console.WriteLine("no .env found in directory");
-        return null;
-    }
-}
+                Console.WriteLine($"found .env in {envFile.FirstOrDefault()}");
+                return envFile.FirstOrDefault();
+            }
+            catch (UnauthorizedAccessException)
+            {
+                Console.WriteLine("no .env found in directory");
+                return null;
+            }
+        }
     }
 }
