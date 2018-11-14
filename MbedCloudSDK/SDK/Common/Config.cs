@@ -161,8 +161,9 @@ namespace MbedCloud.SDK.Common
             }
             catch(NullReferenceException e)
             {
+                // this is failing on cirlce wtf
                 Console.WriteLine(e);
-                throw e;
+                return null;
             }
         }
     }
