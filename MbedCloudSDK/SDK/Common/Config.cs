@@ -1,6 +1,7 @@
 namespace MbedCloud.SDK.Common
 {
     using System;
+    using System.IO;
     using System.Net;
     using MbedCloudSDK.Exceptions;
     using Newtonsoft.Json;
@@ -64,11 +65,16 @@ namespace MbedCloud.SDK.Common
         {
             try
             {
-                DotNetEnv.Env.Load();
+                var envDirectory = FindDotEnv(Directory.GetCurrentDirectory());
+                DotNetEnv.Env.Load(envDirectory);
             }
             catch (System.IO.FileNotFoundException)
             {
                 Console.WriteLine("No .env file provided.");
+            }
+            catch (UnauthorizedAccessException)
+            {
+                Console.WriteLine("Can't load .env from this directory");
             }
             finally
             {
@@ -132,5 +138,26 @@ namespace MbedCloud.SDK.Common
         /// </summary>
         /// <value>The host.</value>
         public string Host { get; }
+
+private string FindDotEnv(string currentDirectory)
+{
+    try
+    {
+        var envFile = Directory.GetFiles(currentDirectory, ".env");
+        if (envFile.Length == 0)
+        {
+            var parentDirectory = Directory.GetParent(currentDirectory);
+            return FindDotEnv(parentDirectory.FullName);
+        }
+
+        Console.WriteLine($"found .env in {envFile[0]}");
+        return envFile[0];
+    }
+    catch (UnauthorizedAccessException)
+    {
+        Console.WriteLine("no .env found in directory");
+        return null;
+    }
+}
     }
 }

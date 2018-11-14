@@ -45,6 +45,11 @@ namespace MbedCloud.SDK.Common.CustomSerializers
                 }
             }
 
+            if(isNullable && reader.Value == null)
+            {
+                return null;
+            }
+
             var defaultName = names
                 .Where(n => string.Equals(n, "UNKNOWN_ENUM_VALUE_RECEIVED", StringComparison.OrdinalIgnoreCase))
                 .FirstOrDefault();
@@ -53,6 +58,8 @@ namespace MbedCloud.SDK.Common.CustomSerializers
             {
                 defaultName = names.First();
             }
+
+            Console.WriteLine($"Received unknown enum value {reader?.Value?.ToString()}");
 
             return Enum.Parse(enumType, defaultName);
         }
