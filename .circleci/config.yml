@@ -226,7 +226,7 @@ jobs:
          name: install codecov
       # can't install locally so have to go into node_modules
       - run:
-         command: node ~/project/node_modules/codecov/bin/codecov ~/project/project/Tests/MbedCloudSDK.UnitTests/coverage.opencover.xml
+         command: node ~/project/node_modules/codecov/bin/codecov ~/project/project/Tests/MbedCloudSDK.UnitTests/lcov.info
          name: upload coverage report to codecov
   integration_test_os2:
     <<: *circle_python
