@@ -210,9 +210,9 @@ jobs:
          command: cd project && ./build.sh --target=_run_unit_tests
          name: run the unit tests
       - persist_to_workspace:
-         root: ~/project
+         root: ~/project/project
          paths:
-           - project/Tests/MbedCloudSDK.UnitTests/lcov.info
+           - Tests/MbedCloudSDK.UnitTests/lcov.info
       - store_artifacts:
          path: ~/project/project/Tests/MbedCloudSDK.UnitTests/lcov.info
          destination: unittest-coverage
