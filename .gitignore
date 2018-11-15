@@ -332,3 +332,4 @@ Tests/MbedCloudSDK.UnitTests/coverage.opencover.xml
 src/auto-version
 **/*.env
 Manhasset.Generation.Temp
+lcov.info

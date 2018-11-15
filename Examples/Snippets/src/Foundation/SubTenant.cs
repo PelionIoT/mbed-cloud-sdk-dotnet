@@ -15,52 +15,143 @@ namespace Snippets.src.Foundation
         private static Random random = new Random();
 
         [Test]
+        public async Task UpdateUserAsSubtenant()
+        {
+            Account myAccount = null;
+            try
+            {
+                myAccount = await new Account
+                {
+                    DisplayName = "new test account",
+                    Aliases = new List<string>() { "alex_test_account" },
+                    EndMarket = "IOT",
+                    AdminFullName = "Alex Logan",
+                    AdminEmail = "alexadmin@admin.com",
+                }.Create();
+            }
+            catch (CloudApiException e) when (e.ErrorCode == 403)
+            {
+                // get an admin account
+                myAccount = new Account().List().FirstOrDefault(a => a.DisplayName == "sdk_test_bob");
+            }
+            finally
+            {
+                Assert.IsInstanceOf(typeof(Account), myAccount);
+
+                // get first subtenant user acociated with the account
+                var firstUser = myAccount.Users().FirstOrDefault();
+
+                var phoneNumber = firstUser.PhoneNumber;
+
+                // update the user's phone number
+                firstUser.PhoneNumber = "117117";
+                await firstUser.Update();
+
+                Assert.AreNotEqual(phoneNumber, firstUser.PhoneNumber);
+                Assert.AreEqual("117117", firstUser.PhoneNumber);
+
+                // change it back to the original
+                firstUser.PhoneNumber = phoneNumber;
+                await firstUser.Update();
+
+                Assert.AreNotEqual("117117", firstUser.PhoneNumber);
+            }
+        }
+
+        [Test]
         public async Task SubTenantFlow()
         {
             try
             {
-                // an example: creating and managing a subtenant account
-                var newSubtenant = new Account
+                // gat an admin account
+                var myAccount = new Account().List().FirstOrDefault(a => a.DisplayName == "sdk_test_bob");
+
+                // cloak
+                if (myAccount.PasswordPolicy != null)
                 {
-                    DisplayName = "sdk test dan",
-                    Aliases = new List<string> { $"sdk_test_dan_{randomString()}" },
-                    EndMarket = "connected warrens",
-                    AdminFullName = "dan the wombat",
-                    AdminEmail = "dan@example.com",
-                };
+                    Assert.IsInstanceOf(typeof(PasswordPolicy), myAccount.PasswordPolicy);
+                }
+                // uncloak
 
-                // when creating a new subtenant, this is the only opportunity to obtain
-                // the `admin_key` for that subtenant account
-                await newSubtenant.Create();
+                // get all users acociated with the account
+                var users = myAccount.Users().All();
 
-                // now log in as this subtenant using the `admin_key`
-                var config = new Config(apiKey: newSubtenant.AdminKey);
+                Assert.GreaterOrEqual(users.Count, 1);
 
-                // and add another user
-                var user = await new User(config)
+                // add a user to account
+                var user = await new SubtenantUser
                 {
+                    AccountId = myAccount.Id,
                     FullName = "tommi the wombat",
                     Username = $"tommi_{randomString()}",
                     PhoneNumber = "0800001066",
                     Email = $"tommi_{randomString()}@example.com",
                 }.Create();
 
-                // back as the aggregator again ...
-                var users = newSubtenant.List();
-                users.ToList().ForEach(u => Console.WriteLine(u));
-                // end of example
+                var sub = new SubtenantUser
+                {
+                    AccountId = myAccount.Id,
+                    Id = "some-id"
+                };
 
-                Assert.GreaterOrEqual(users.Count(), 2);
-            }
-            catch (CloudApiException e) when (e.ErrorCode == 403)
-            {
-                // should throw 403, subtenant limit reached
-                return;
+                Assert.IsInstanceOf(typeof(SubtenantUser), user);
+                Assert.IsNotNull(user.CreatedAt);
+
+                // created user is now in account user list
+                var userInList = myAccount.Users().FirstOrDefault(u => u.Id == user.Id);
+
+                Assert.IsInstanceOf(typeof(SubtenantUser), userInList);
+                Assert.AreEqual(user.CreatedAt, userInList.CreatedAt);
+
+                // update the user's phone number
+                user.PhoneNumber = "118118";
+                await user.Update();
+
+                Assert.AreEqual("118118", user.PhoneNumber);
+
+                // delete the user
+                await user.Delete();
             }
             catch (System.Exception)
             {
                 throw;
             }
+        }
+
+        [Test]
+        public async Task AccountLists()
+        {
+            var myAccount = await new Account().Me();
+
+            var user = myAccount.Users().First();
+            if (user != null)
+            {
+                Assert.IsInstanceOf(typeof(SubtenantUser), user);
+            }
+
+            var trustedCert = myAccount.TrustedCertificates().First();
+            if (trustedCert != null)
+            {
+                Assert.IsInstanceOf(typeof(SubtenantTrustedCertificate), trustedCert);
+            }
+
+            var invitation = myAccount.UserInvitations().First();
+            if (invitation != null)
+            {
+                Assert.IsInstanceOf(typeof(SubtenantUserInvitation), invitation);
+            }
+        }
+
+        [Test]
+        public void AccountPasswordPolicies()
+        {
+            new Account().List().All().ForEach(a =>
+            {
+                if (a.PasswordPolicy != null)
+                {
+                    Assert.IsInstanceOf(typeof(PasswordPolicy), a.PasswordPolicy);
+                }
+            });
         }
 
         private string randomString(int length = 16)

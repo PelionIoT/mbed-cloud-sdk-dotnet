@@ -24,6 +24,8 @@ namespace Snippets.src.Foundation
                 // end of example
 
                 Assert.NotNull(enrollment.ClaimedAt);
+
+                await enrollment.Delete();
             }
             catch (CloudApiException e) when (e.ErrorCode == 409)
             {
@@ -60,8 +62,49 @@ namespace Snippets.src.Foundation
                 Assert.IsTrue(bulk.Status == DeviceEnrollmentBulkCreateStatusEnum.COMPLETED || bulk.Status == DeviceEnrollmentBulkCreateStatusEnum.PROCESSING);
 
                 var reportFile = await bulk.DownloadFullReportFile();
-
                 Assert.IsTrue(reportFile.CanRead);
+                reportFile.Close();
+
+                var errors = await bulk.DownloadErrorsReportFile();
+                Assert.IsTrue(errors.CanRead);
+                errors.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [Test]
+        public async System.Threading.Tasks.Task BulkEnrollDeleteDevicesAsync()
+        {
+            try
+            {
+                var pathToCsv = "/Users/alelog01/git/mbed-cloud-sdk-dotnet/Examples/Snippets/src/Foundation/test.csv";
+                // an example: device enrollment bulk
+                var bulk = new DeviceEnrollmentBulkDelete();
+                // use System.IO file open
+                using (var file = File.Open(pathToCsv, FileMode.Open))
+                {
+                    await bulk.Delete(file);
+                }
+
+                // cloak
+                Assert.AreEqual(bulk.Status, DeviceEnrollmentBulkDeleteStatusEnum.NEW);
+                // uncloak
+
+                await bulk.Get();
+                // end of example
+
+                Assert.IsTrue(bulk.Status == DeviceEnrollmentBulkDeleteStatusEnum.COMPLETED || bulk.Status == DeviceEnrollmentBulkDeleteStatusEnum.PROCESSING);
+
+                var reportFile = await bulk.DownloadFullReportFile();
+                Assert.IsTrue(reportFile.CanRead);
+                reportFile.Close();
+
+                var errors = await bulk.DownloadErrorsReportFile();
+                Assert.IsTrue(errors.CanRead);
+                errors.Close();
             }
             catch (Exception)
             {

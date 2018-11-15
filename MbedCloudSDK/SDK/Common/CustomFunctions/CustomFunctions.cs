@@ -41,29 +41,30 @@ namespace MbedCloud.SDK.Common
 
         public static Task<Stream> DownloadErrorsReportFile(DeviceEnrollmentBulkCreate self)
         {
-            return StreamToFile(self.Config, self.FullReportFile);
+            return StreamToFile(self.Config, self.FullReportFile, "error-report.csv");
         }
 
         public static Task<Stream> DownloadErrorsReportFile(DeviceEnrollmentBulkDelete self)
         {
-            return StreamToFile(self.Config, self.ErrorsReportFile);
+            return StreamToFile(self.Config, self.ErrorsReportFile, "error-report.csv");
         }
 
         private static Task<Stream> StreamToFile(Config config, string url, string filePath = "report.csv")
         {
             using (var writer = File.OpenWrite(filePath))
             {
-                var client = new RestClient(config.Host);
-                var request = new RestRequest(url.Replace(config.Host, string.Empty))
+                if (!string.IsNullOrEmpty(url) && config != null)
                 {
-                    ResponseWriter = (responseStream) => responseStream.CopyTo(writer)
-                };
-                request.AddHeader("Authorization", $"Bearer {config.ApiKey}");
-                client.Execute(request);
+                    var client = new RestClient(config.Host);
+                    var request = new RestRequest(url.Replace(config.Host, string.Empty))
+                    {
+                        ResponseWriter = (responseStream) => responseStream.CopyTo(writer)
+                    };
+                    request.AddHeader("Authorization", $"Bearer {config.ApiKey}");
+                    client.Execute(request);
+                }
             }
-
-            var y = File.OpenRead(filePath);
-
+            
             return Task.FromResult<Stream>(File.OpenRead(filePath));
         }
     }
