@@ -23,7 +23,6 @@ namespace Snippets.src.Foundation
         private readonly bool get;
         private readonly bool create;
         private readonly bool update;
-        private string idToGet;
         private T firstObj;
         private List<int> expectedFails = new List<int>();
 
@@ -39,7 +38,6 @@ namespace Snippets.src.Foundation
             Func<T, T> preUpdateFunc = null,
             Func<T, T> preDeleteFunc = null,
             List<int> expectedFails = null,
-            string idToGet = null,
             Dictionary<string, object> propsToUpdate = null,
             T firstObj = null,
             T objectInstance = null
@@ -57,7 +55,6 @@ namespace Snippets.src.Foundation
             this.preDeleteFunc = preDeleteFunc;
             this.objectInstance = objectInstance;
             this.propsToUpdate = propsToUpdate;
-            this.idToGet = idToGet;
             this.firstObj = firstObj;
             if (expectedFails != null)
             {
@@ -90,7 +87,6 @@ namespace Snippets.src.Foundation
 
                     Assert.IsInstanceOf(typeof(T), first);
 
-                    idToGet = first.Id;
                     firstObj = first;
                 }
 
@@ -105,7 +101,7 @@ namespace Snippets.src.Foundation
                         gotEntity = preGetFunc.Invoke(gotEntity);
                     }
 
-                    gotEntity.Id = idToGet;
+                    gotEntity.Id = firstObj.GetType().GetProperty("Id").GetValue(firstObj, null) as string;
                     await (gotEntity.GetType().GetMethod("Get").Invoke(gotEntity, GetDefaultParamList(typeof(T), "Get")) as Task<T>);
 
                     var gotProperty = gotEntity.GetType().GetProperty(this.commonProperty).GetValue(gotEntity, null);
@@ -130,7 +126,6 @@ namespace Snippets.src.Foundation
                     }
 
                     await (objectInstance.GetType().GetMethod("Update").Invoke(objectInstance, GetDefaultParamList(typeof(T), "Update")) as Task<T>);
-                    Console.WriteLine(objectInstance.DebugDump());
 
                     foreach (var item in propsToUpdate)
                     {

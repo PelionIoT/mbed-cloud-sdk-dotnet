@@ -116,7 +116,6 @@ namespace Snippets.src.Foundation
                 list: false,
                 preGetFunc: preFunc,
                 firstObj: firstSubUser,
-                idToGet: firstSubUser.Id,
                 objectInstance: newSubUser,
                 propsToUpdate: propsToUpdate,
                 create: true,
@@ -129,17 +128,7 @@ namespace Snippets.src.Foundation
         [Test]
         public async Task CrudDevice()
         {
-            var device = new Device().List().First();
-
-            var propsToUpdate = new Dictionary<string, object>()
-            {
-                { "Name", "Alex Updated Device Name" },
-            };
-
-            var crudTest = new CrudTest<Device>(
-                objectInstance: device,
-                propsToUpdate: propsToUpdate
-            );
+            var crudTest = new CrudTest<Device>();
 
             await crudTest.Test();
         }
@@ -219,7 +208,6 @@ namespace Snippets.src.Foundation
                 list: false,
                 firstObj: trustedCert,
                 preGetFunc: preFunc,
-                idToGet: trustedCert.Id,
                 objectInstance: trustedCert,
                 propsToUpdate: propsToUpdate,
                 update: true
@@ -242,7 +230,6 @@ namespace Snippets.src.Foundation
                 list: false,
                 objectInstance: devCert,
                 firstObj: firstDevCert,
-                idToGet: firstDevCert.Id,
                 create: true
             );
             await crudTest.Test();

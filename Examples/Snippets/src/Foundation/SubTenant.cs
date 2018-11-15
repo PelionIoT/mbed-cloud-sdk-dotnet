@@ -20,6 +20,7 @@ namespace Snippets.src.Foundation
             Account myAccount = null;
             try
             {
+                //  an example: creating and managing a subtenant account
                 myAccount = await new Account
                 {
                     DisplayName = "new test account",
@@ -28,15 +29,16 @@ namespace Snippets.src.Foundation
                     AdminFullName = "Alex Logan",
                     AdminEmail = "alexadmin@admin.com",
                 }.Create();
+                // cloak
             }
             catch (CloudApiException e) when (e.ErrorCode == 403)
             {
-                // get an admin account
                 myAccount = new Account().List().FirstOrDefault(a => a.DisplayName == "sdk_test_bob");
             }
             finally
             {
                 Assert.IsInstanceOf(typeof(Account), myAccount);
+                // uncloak
 
                 // get first subtenant user acociated with the account
                 var firstUser = myAccount.Users().FirstOrDefault();
@@ -61,25 +63,42 @@ namespace Snippets.src.Foundation
         [Test]
         public async Task SubTenantFlow()
         {
+            Account myAccount = null;
             try
             {
-                // gat an admin account
-                var myAccount = new Account().List().FirstOrDefault(a => a.DisplayName == "sdk_test_bob");
-
-                // get all users acociated with the account
-                var users = myAccount.Users().All();
-                Assert.GreaterOrEqual(users.Count, 1);
-
-                // add a user to account
-                var user = await new SubtenantUser
+                //  an example: creating and managing a subtenant account
+                myAccount = await new Account
                 {
+                    DisplayName = "new test account",
+                    Aliases = new List<string>() { "alex_test_account" },
+                    EndMarket = "IOT",
+                    AdminFullName = "Alex Logan",
+                    AdminEmail = "alexadmin@admin.com",
+                }.Create();
+                // cloak
+            }
+            catch (CloudApiException e) when (e.ErrorCode == 403)
+            {
+                myAccount = new Account().List().FirstOrDefault(a => a.DisplayName == "sdk_test_bob");
+            }
+            finally
+            {
+                // uncloak
+                // Populate the new user details
+                var user = new SubtenantUser
+                {
+                    // Link this user to the account
                     AccountId = myAccount.Id,
                     FullName = "tommi the wombat",
                     Username = $"tommi_{randomString()}",
                     PhoneNumber = "0800001066",
                     Email = $"tommi_{randomString()}@example.com",
-                }.Create();
+                };
 
+                // create the user
+                await user.Create();
+
+                // end of example
                 Assert.IsInstanceOf(typeof(SubtenantUser), user);
                 Assert.IsNotNull(user.CreatedAt);
 
@@ -89,18 +108,8 @@ namespace Snippets.src.Foundation
                 Assert.IsInstanceOf(typeof(SubtenantUser), userInList);
                 Assert.AreEqual(user.CreatedAt, userInList.CreatedAt);
 
-                // update the user's phone number
-                user.PhoneNumber = "118118";
-                await user.Update();
-
-                Assert.AreEqual("118118", user.PhoneNumber);
-
                 // delete the user
                 await user.Delete();
-            }
-            catch (System.Exception)
-            {
-                throw;
             }
         }
 
