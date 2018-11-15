@@ -28,13 +28,10 @@ namespace MbedCloud.SDK.Entities
     {
         public DeviceEnrollment()
         {
-            Client = new Client(Config);
         }
 
-        public DeviceEnrollment(Config config)
+        public DeviceEnrollment(Config config) : base(config)
         {
-            Config = config;
-            Client = new Client(Config);
         }
 
         /// <summary>

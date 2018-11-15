@@ -16,6 +16,7 @@ namespace MbedCloud.SDK.Enums
 {
     public enum DeviceStateEnum
     {
+        UNKNOWN_ENUM_VALUE_RECEIVED,
         BOOTSTRAPPED,
         CLOUD_ENROLLING,
         DEREGISTERED,

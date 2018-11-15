@@ -16,6 +16,7 @@ namespace MbedCloud.SDK.Enums
 {
     public enum CertificateEnrollmentEnrollResultEnum
     {
+        UNKNOWN_ENUM_VALUE_RECEIVED,
         FAILURE,
         FORBIDDEN,
         NOT_FOUND,

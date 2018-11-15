@@ -23,6 +23,14 @@ namespace MbedCloud.SDK
     public partial class EntityFactory
     {
         /// <summary>
+        /// Account
+        /// </summary>
+        public Account Account
+        {
+            get => new Account(config);
+        }
+
+        /// <summary>
         /// ApiKey
         /// </summary>
         public ApiKey ApiKey
@@ -87,6 +95,14 @@ namespace MbedCloud.SDK
         }
 
         /// <summary>
+        /// DeviceEnrollmentBulkDelete
+        /// </summary>
+        public DeviceEnrollmentBulkDelete DeviceEnrollmentBulkDelete
+        {
+            get => new DeviceEnrollmentBulkDelete(config);
+        }
+
+        /// <summary>
         /// DeviceEvents
         /// </summary>
         public DeviceEvents DeviceEvents
@@ -103,22 +119,6 @@ namespace MbedCloud.SDK
         }
 
         /// <summary>
-        /// MyAccount
-        /// </summary>
-        public MyAccount MyAccount
-        {
-            get => new MyAccount(config);
-        }
-
-        /// <summary>
-        /// MyApiKey
-        /// </summary>
-        public MyApiKey MyApiKey
-        {
-            get => new MyApiKey(config);
-        }
-
-        /// <summary>
         /// PasswordPolicy
         /// </summary>
         public PasswordPolicy PasswordPolicy
@@ -127,11 +127,11 @@ namespace MbedCloud.SDK
         }
 
         /// <summary>
-        /// PolicyGroup
+        /// Policy
         /// </summary>
-        public PolicyGroup PolicyGroup
+        public Policy Policy
         {
-            get => new PolicyGroup(config);
+            get => new Policy(config);
         }
 
         /// <summary>
@@ -143,11 +143,27 @@ namespace MbedCloud.SDK
         }
 
         /// <summary>
-        /// SubtenantAccount
+        /// SubtenantTrustedCertificate
         /// </summary>
-        public SubtenantAccount SubtenantAccount
+        public SubtenantTrustedCertificate SubtenantTrustedCertificate
         {
-            get => new SubtenantAccount(config);
+            get => new SubtenantTrustedCertificate(config);
+        }
+
+        /// <summary>
+        /// SubtenantUser
+        /// </summary>
+        public SubtenantUser SubtenantUser
+        {
+            get => new SubtenantUser(config);
+        }
+
+        /// <summary>
+        /// SubtenantUserInvitation
+        /// </summary>
+        public SubtenantUserInvitation SubtenantUserInvitation
+        {
+            get => new SubtenantUserInvitation(config);
         }
 
         /// <summary>
@@ -164,6 +180,22 @@ namespace MbedCloud.SDK
         public User User
         {
             get => new User(config);
+        }
+
+        /// <summary>
+        /// UserInvitation
+        /// </summary>
+        public UserInvitation UserInvitation
+        {
+            get => new UserInvitation(config);
+        }
+
+        /// <summary>
+        /// VerificationResponse
+        /// </summary>
+        public VerificationResponse VerificationResponse
+        {
+            get => new VerificationResponse(config);
         }
     }
 }

@@ -25,13 +25,10 @@ namespace MbedCloud.SDK.Entities
     {
         public LoginHistory()
         {
-            Client = new Client(Config);
         }
 
-        public LoginHistory(Config config)
+        public LoginHistory(Config config) : base(config)
         {
-            Config = config;
-            Client = new Client(Config);
         }
 
         /// <summary>

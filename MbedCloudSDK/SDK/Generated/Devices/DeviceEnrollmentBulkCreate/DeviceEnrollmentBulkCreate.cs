@@ -30,13 +30,10 @@ namespace MbedCloud.SDK.Entities
     {
         public DeviceEnrollmentBulkCreate()
         {
-            Client = new Client(Config);
         }
 
-        public DeviceEnrollmentBulkCreate(Config config)
+        public DeviceEnrollmentBulkCreate(Config config) : base(config)
         {
-            Config = config;
-            Client = new Client(Config);
         }
 
         /// <summary>
@@ -131,6 +128,16 @@ namespace MbedCloud.SDK.Entities
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
+        }
+
+        public async Task<Stream> DownloadErrorsReportFile()
+        {
+            return await CustomFunctions.DownloadErrorsReportFile(this);
+        }
+
+        public async Task<Stream> DownloadFullReportFile()
+        {
+            return await CustomFunctions.DownloadFullReportFile(this);
         }
 
         public async Task<DeviceEnrollmentBulkCreate> Get()

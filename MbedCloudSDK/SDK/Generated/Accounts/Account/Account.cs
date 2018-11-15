@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
 //
-// <copyright file="SubtenantAccount.cs" company="Arm">
+// <copyright file="Account.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -24,19 +24,16 @@ namespace MbedCloud.SDK.Entities
     using MbedCloudSDK.Exceptions;
 
     /// <summary>
-    /// SubtenantAccount
+    /// Account
     /// </summary>
-    public class SubtenantAccount : BaseEntity
+    public class Account : BaseEntity
     {
-        public SubtenantAccount()
+        public Account()
         {
-            Client = new Client(Config);
         }
 
-        public SubtenantAccount(Config config)
+        public Account(Config config) : base(config)
         {
-            Config = config;
-            Client = new Client(Config);
         }
 
         /// <summary>
@@ -177,7 +174,7 @@ namespace MbedCloud.SDK.Entities
         /// <summary>
         /// custom_fields
         /// </summary>
-        public object CustomFields
+        public Dictionary<string, string> CustomFields
         {
             get;
             set;
@@ -240,7 +237,7 @@ namespace MbedCloud.SDK.Entities
         /// <summary>
         /// limits
         /// </summary>
-        public object Limits
+        public Dictionary<string, string> Limits
         {
             get;
             set;
@@ -249,7 +246,7 @@ namespace MbedCloud.SDK.Entities
         /// <summary>
         /// mfa_status
         /// </summary>
-        public SubtenantAccountMfaStatusEnum? MfaStatus
+        public AccountMfaStatusEnum? MfaStatus
         {
             get;
             set;
@@ -276,7 +273,7 @@ namespace MbedCloud.SDK.Entities
         /// <summary>
         /// password_policy
         /// </summary>
-        public object PasswordPolicy
+        public PasswordPolicy PasswordPolicy
         {
             get;
             set;
@@ -294,7 +291,7 @@ namespace MbedCloud.SDK.Entities
         /// <summary>
         /// policies
         /// </summary>
-        public List<object> Policies
+        public List<Policy> Policies
         {
             get;
             set;
@@ -348,16 +345,7 @@ namespace MbedCloud.SDK.Entities
         /// <summary>
         /// status
         /// </summary>
-        public SubtenantAccountStatusEnum? Status
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// sub_accounts
-        /// </summary>
-        public List<SubtenantAccount> SubAccounts
+        public AccountStatusEnum? Status
         {
             get;
             set;
@@ -399,32 +387,13 @@ namespace MbedCloud.SDK.Entities
             set;
         }
 
-        public PaginatedResponse<QueryOptions, ApiKey> ApiKeys(QueryOptions options = null)
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "accountID", Id }, };
-                if (options == null)
-                {
-                    options = new QueryOptions();
-                }
-
-                Func<QueryOptions, ResponsePage<ApiKey>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<ApiKey>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<ApiKey>>(path: "/v3/accounts/{accountID}/api-keys", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); });
-                return new PaginatedResponse<QueryOptions, ApiKey>(paginatedFunc, options);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public async Task<SubtenantAccount> Create(string action = null)
+        public async Task<Account> Create(string action = null)
         {
             try
             {
                 var queryParams = new Dictionary<string, object> { { "action", action }, };
-                var bodyParams = new SubtenantAccount { AddressLine1 = AddressLine1, AddressLine2 = AddressLine2, AdminEmail = AdminEmail, AdminFullName = AdminFullName, AdminName = AdminName, AdminPassword = AdminPassword, Aliases = Aliases, City = City, Company = Company, Contact = Contact, ContractNumber = ContractNumber, Country = Country, CustomerNumber = CustomerNumber, DisplayName = DisplayName, Email = Email, EndMarket = EndMarket, PhoneNumber = PhoneNumber, PostalCode = PostalCode, State = State, };
-                return await Client.CallApi<SubtenantAccount>(path: "/v3/accounts", queryParams: queryParams, bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
+                var bodyParams = new Account { AddressLine1 = AddressLine1, AddressLine2 = AddressLine2, AdminEmail = AdminEmail, AdminFullName = AdminFullName, AdminName = AdminName, AdminPassword = AdminPassword, Aliases = Aliases, City = City, Company = Company, Contact = Contact, ContractNumber = ContractNumber, Country = Country, CustomerNumber = CustomerNumber, DisplayName = DisplayName, Email = Email, EndMarket = EndMarket, PhoneNumber = PhoneNumber, PostalCode = PostalCode, State = State, };
+                return await Client.CallApi<Account>(path: "/v3/accounts", queryParams: queryParams, bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {
@@ -432,19 +401,13 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public async Task<User> CreateUser(User user)
-        {
-            user.AccountId = Id;
-            return await user.Create();
-        }
-
-        public async Task<SubtenantAccount> Get(string include = null, string properties = null)
+        public async Task<Account> Get(string include = null, string properties = null)
         {
             try
             {
                 var pathParams = new Dictionary<string, object> { { "accountID", Id }, };
                 var queryParams = new Dictionary<string, object> { { "include", include }, { "properties", properties }, };
-                return await Client.CallApi<SubtenantAccount>(path: "/v3/accounts/{accountID}", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET, objectToUnpack: this);
+                return await Client.CallApi<Account>(path: "/v3/accounts/{accountID}", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {
@@ -452,7 +415,38 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public PaginatedResponse<QueryOptions, PolicyGroup> Groups(QueryOptions options = null)
+        public PaginatedResponse<QueryOptions, Account> List(QueryOptions options = null)
+        {
+            try
+            {
+                if (options == null)
+                {
+                    options = new QueryOptions();
+                }
+
+                Func<QueryOptions, ResponsePage<Account>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<Account>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<Account>>(path: "/v3/accounts", queryParams: queryParams, method: HttpMethods.GET); });
+                return new PaginatedResponse<QueryOptions, Account>(paginatedFunc, options);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<Account> Me(string include = null, string properties = null)
+        {
+            try
+            {
+                var queryParams = new Dictionary<string, object> { { "include", include }, { "properties", properties }, };
+                return await Client.CallApi<Account>(path: "/v3/accounts/me", queryParams: queryParams, method: HttpMethods.GET, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public PaginatedResponse<QueryOptions, SubtenantTrustedCertificate> TrustedCertificates(QueryOptions options = null)
         {
             try
             {
@@ -462,8 +456,8 @@ namespace MbedCloud.SDK.Entities
                     options = new QueryOptions();
                 }
 
-                Func<QueryOptions, ResponsePage<PolicyGroup>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<PolicyGroup>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<PolicyGroup>>(path: "/v3/accounts/{accountID}/policy-groups", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); });
-                return new PaginatedResponse<QueryOptions, PolicyGroup>(paginatedFunc, options);
+                Func<QueryOptions, ResponsePage<SubtenantTrustedCertificate>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<SubtenantTrustedCertificate>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<SubtenantTrustedCertificate>>(path: "/v3/accounts/{accountID}/trusted-certificates", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); });
+                return new PaginatedResponse<QueryOptions, SubtenantTrustedCertificate>(paginatedFunc, options);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {
@@ -471,17 +465,32 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public PaginatedResponse<QueryOptions, SubtenantAccount> List(QueryOptions options = null)
+        public async Task<Account> Update()
         {
             try
             {
+                var pathParams = new Dictionary<string, object> { { "accountID", Id }, };
+                var bodyParams = new Account { AddressLine1 = AddressLine1, AddressLine2 = AddressLine2, Aliases = Aliases, City = City, Company = Company, Contact = Contact, ContractNumber = ContractNumber, Country = Country, CustomFields = CustomFields, CustomerNumber = CustomerNumber, DisplayName = DisplayName, Email = Email, EndMarket = EndMarket, ExpirationWarningThreshold = ExpirationWarningThreshold, IdleTimeout = IdleTimeout, MfaStatus = MfaStatus, NotificationEmails = NotificationEmails, PasswordPolicy = PasswordPolicy, PhoneNumber = PhoneNumber, PostalCode = PostalCode, SalesContact = SalesContact, State = State, };
+                return await Client.CallApi<Account>(path: "/v3/accounts/{accountID}", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public PaginatedResponse<QueryOptions, SubtenantUserInvitation> UserInvitations(QueryOptions options = null)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "account-id", Id }, };
                 if (options == null)
                 {
                     options = new QueryOptions();
                 }
 
-                Func<QueryOptions, ResponsePage<SubtenantAccount>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<SubtenantAccount>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<SubtenantAccount>>(path: "/v3/accounts", queryParams: queryParams, method: HttpMethods.GET); });
-                return new PaginatedResponse<QueryOptions, SubtenantAccount>(paginatedFunc, options);
+                Func<QueryOptions, ResponsePage<SubtenantUserInvitation>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<SubtenantUserInvitation>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<SubtenantUserInvitation>>(path: "/v3/accounts/{account-id}/user-invitations", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); });
+                return new PaginatedResponse<QueryOptions, SubtenantUserInvitation>(paginatedFunc, options);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {
@@ -489,21 +498,7 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public async Task<SubtenantAccount> Update()
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "accountID", Id }, };
-                var bodyParams = new SubtenantAccount { AddressLine1 = AddressLine1, AddressLine2 = AddressLine2, Aliases = Aliases, City = City, Company = Company, Contact = Contact, ContractNumber = ContractNumber, Country = Country, CustomFields = CustomFields, CustomerNumber = CustomerNumber, DisplayName = DisplayName, Email = Email, EndMarket = EndMarket, ExpirationWarningThreshold = ExpirationWarningThreshold, IdleTimeout = IdleTimeout, MfaStatus = MfaStatus, NotificationEmails = NotificationEmails, PasswordPolicy = PasswordPolicy, PhoneNumber = PhoneNumber, PostalCode = PostalCode, SalesContact = SalesContact, State = State, };
-                return await Client.CallApi<SubtenantAccount>(path: "/v3/accounts/{accountID}", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public PaginatedResponse<QueryOptions, User> Users(QueryOptions options = null)
+        public PaginatedResponse<QueryOptions, SubtenantUser> Users(QueryOptions options = null)
         {
             try
             {
@@ -513,8 +508,8 @@ namespace MbedCloud.SDK.Entities
                     options = new QueryOptions();
                 }
 
-                Func<QueryOptions, ResponsePage<User>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<User>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<User>>(path: "/v3/accounts/{accountID}/users", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); });
-                return new PaginatedResponse<QueryOptions, User>(paginatedFunc, options);
+                Func<QueryOptions, ResponsePage<SubtenantUser>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<SubtenantUser>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<SubtenantUser>>(path: "/v3/accounts/{accountID}/users", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); });
+                return new PaginatedResponse<QueryOptions, SubtenantUser>(paginatedFunc, options);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {

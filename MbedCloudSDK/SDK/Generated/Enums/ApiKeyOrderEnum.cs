@@ -16,6 +16,7 @@ namespace MbedCloud.SDK.Enums
 {
     public enum ApiKeyOrderEnum
     {
+        UNKNOWN_ENUM_VALUE_RECEIVED,
         ASC,
         DESC,
     }

@@ -16,10 +16,10 @@ namespace MbedCloud.SDK.Entities
 {
     using MbedCloud.SDK.Common;
     using MbedCloud.SDK.Client;
+    using System.Collections.Generic;
     using System;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
-    using System.Collections.Generic;
 
     /// <summary>
     /// CertificateIssuerConfig
@@ -28,14 +28,13 @@ namespace MbedCloud.SDK.Entities
     {
         public CertificateIssuerConfig()
         {
-            Client = new Client(Config);
         }
 
-        public CertificateIssuerConfig(Config config)
+        public CertificateIssuerConfig(Config config) : base(config)
         {
-            Config = config;
-            Client = new Client(Config);
         }
+
+        internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "CertificateReference", "reference" }, };
 
         /// <summary>
         /// certificate_issuer_id
@@ -47,27 +46,18 @@ namespace MbedCloud.SDK.Entities
         }
 
         /// <summary>
+        /// certificate_reference
+        /// </summary>
+        public string CertificateReference
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// created_at
         /// </summary>
         public DateTime? CreatedAt
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// is_custom
-        /// </summary>
-        public bool? IsCustom
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// reference
-        /// </summary>
-        public string Reference
         {
             get;
             set;
@@ -86,7 +76,7 @@ namespace MbedCloud.SDK.Entities
         {
             try
             {
-                var bodyParams = new CertificateIssuerConfig { CertificateIssuerId = CertificateIssuerId, Reference = Reference, };
+                var bodyParams = new CertificateIssuerConfig { CertificateIssuerId = CertificateIssuerId, CertificateReference = CertificateReference, };
                 return await Client.CallApi<CertificateIssuerConfig>(path: "/v3/certificate-issuer-configurations", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
@@ -132,6 +122,18 @@ namespace MbedCloud.SDK.Entities
 
                 Func<QueryOptions, ResponsePage<CertificateIssuerConfig>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<CertificateIssuerConfig>>(() => { return Client.CallApi<ResponsePage<CertificateIssuerConfig>>(path: "/v3/certificate-issuer-configurations", method: HttpMethods.GET); });
                 return new PaginatedResponse<QueryOptions, CertificateIssuerConfig>(paginatedFunc, options);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<CertificateIssuerConfig> Lwm2m()
+        {
+            try
+            {
+                return await Client.CallApi<CertificateIssuerConfig>(path: "/v3/certificate-issuer-configurations/lwm2m", method: HttpMethods.GET, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {

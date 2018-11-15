@@ -16,6 +16,7 @@ namespace MbedCloud.SDK.Enums
 {
     public enum TrustedCertificateServiceEnum
     {
+        UNKNOWN_ENUM_VALUE_RECEIVED,
         BOOTSTRAP,
         LWM2M,
     }

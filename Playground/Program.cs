@@ -16,14 +16,18 @@ namespace Playground
         {
             try
             {
-                var myConfig = new CertificateIssuerConfig().List().All().FirstOrDefault(c => c.Reference == "LWM2M");
+                var myAccount = new Account().List().FirstOrDefault(a => a.DisplayName == "sdk_test_bob");
+
+                var users = myAccount.Users();
+
+                var myConfig = new CertificateIssuerConfig().List().All().FirstOrDefault(c => c.CertificateReference == "LWM2M");
 
                 new Device()
                     .List()
                     .All()
                     .Where(d => d.State == DeviceStateEnum.REGISTERED)
                     .ToList()
-                    .ForEach(async d => await d.RenewCertificate(myConfig.Reference));
+                    .ForEach(async d => await d.RenewCertificate(myConfig.CertificateReference));
             }
             catch (Exception e)
             {

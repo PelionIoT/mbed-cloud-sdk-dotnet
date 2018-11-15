@@ -16,6 +16,7 @@ namespace MbedCloud.SDK.Enums
 {
     public enum CertificateIssuerIssuerTypeEnum
     {
+        UNKNOWN_ENUM_VALUE_RECEIVED,
         CFSSL_AUTH,
         GLOBAL_SIGN,
     }

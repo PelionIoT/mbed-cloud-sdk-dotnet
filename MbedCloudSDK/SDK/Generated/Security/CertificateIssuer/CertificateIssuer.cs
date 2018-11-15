@@ -18,6 +18,7 @@ namespace MbedCloud.SDK.Entities
     using MbedCloud.SDK.Client;
     using System;
     using MbedCloud.SDK.Enums;
+    using MbedCloud.SDK.Entities;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
@@ -29,13 +30,10 @@ namespace MbedCloud.SDK.Entities
     {
         public CertificateIssuer()
         {
-            Client = new Client(Config);
         }
 
-        public CertificateIssuer(Config config)
+        public CertificateIssuer(Config config) : base(config)
         {
-            Config = config;
-            Client = new Client(Config);
         }
 
         /// <summary>
@@ -59,7 +57,7 @@ namespace MbedCloud.SDK.Entities
         /// <summary>
         /// issuer_attributes
         /// </summary>
-        public object IssuerAttributes
+        public Dictionary<string, string> IssuerAttributes
         {
             get;
             set;
@@ -83,16 +81,7 @@ namespace MbedCloud.SDK.Entities
             set;
         }
 
-        /// <summary>
-        /// successful
-        /// </summary>
-        public bool? Successful
-        {
-            get;
-            set;
-        }
-
-        public async Task<CertificateIssuer> Create(object issuerCredentials = null)
+        public async Task<CertificateIssuer> Create(Dictionary<string, string> issuerCredentials = null)
         {
             try
             {
@@ -149,7 +138,7 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public async Task<CertificateIssuer> Update(object issuerCredentials = null)
+        public async Task<CertificateIssuer> Update(Dictionary<string, string> issuerCredentials = null)
         {
             try
             {
@@ -163,12 +152,12 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public async Task<CertificateIssuer> Verify()
+        public async Task<VerificationResponse> Verify()
         {
             try
             {
                 var pathParams = new Dictionary<string, object> { { "certificate-issuer-id", Id }, };
-                return await Client.CallApi<CertificateIssuer>(path: "/v3/certificate-issuers/{certificate-issuer-id}/verify", pathParams: pathParams, method: HttpMethods.POST, objectToUnpack: this);
+                return await Client.CallApi<VerificationResponse>(path: "/v3/certificate-issuers/{certificate-issuer-id}/verify", pathParams: pathParams, method: HttpMethods.POST);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {

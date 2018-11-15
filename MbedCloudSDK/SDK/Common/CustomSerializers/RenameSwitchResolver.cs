@@ -24,11 +24,11 @@ namespace MbedCloud.SDK.Common.CustomSerializers
         /// </returns>
         protected override JsonContract CreateContract(Type objectType)
         {
-            var renames = objectType.GetProperty("Renames", BindingFlags.NonPublic | BindingFlags.Static);
+            var renames = objectType.GetField("Renames", BindingFlags.NonPublic | BindingFlags.Static);
 
             if (renames != null)
             {
-                var renameDict = renames.GetValue(null, null) as Dictionary<string, string>;
+                var renameDict = renames.GetValue(null) as Dictionary<string, string>;
                 NamingStrategy = new SnakeCaseNamingStrategyWithRenaming(renameDict);
             }
             else

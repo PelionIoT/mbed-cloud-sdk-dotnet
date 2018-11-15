@@ -7,16 +7,17 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
 //
-// <copyright file="SubtenantAccountMfaStatusEnum.cs" company="Arm">
+// <copyright file="AccountOrderEnum.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
 namespace MbedCloud.SDK.Enums
 {
-    public enum SubtenantAccountMfaStatusEnum
+    public enum AccountOrderEnum
     {
-        ENFORCED,
-        OPTIONAL,
+        UNKNOWN_ENUM_VALUE_RECEIVED,
+        ASC,
+        DESC,
     }
 }

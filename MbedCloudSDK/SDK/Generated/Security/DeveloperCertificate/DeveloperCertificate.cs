@@ -29,13 +29,10 @@ namespace MbedCloud.SDK.Entities
     {
         public DeveloperCertificate()
         {
-            Client = new Client(Config);
         }
 
-        public DeveloperCertificate(Config config)
+        public DeveloperCertificate(Config config) : base(config)
         {
-            Config = config;
-            Client = new Client(Config);
         }
 
         internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "Certificate", "developer_certificate" }, { "PrivateKey", "developer_private_key" }, };
@@ -80,15 +77,6 @@ namespace MbedCloud.SDK.Entities
         /// name
         /// </summary>
         public string Name
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// private_key
-        /// </summary>
-        public string PrivateKey
         {
             get;
             set;
