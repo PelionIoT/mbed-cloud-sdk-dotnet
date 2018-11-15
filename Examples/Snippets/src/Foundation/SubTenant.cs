@@ -66,16 +66,8 @@ namespace Snippets.src.Foundation
                 // gat an admin account
                 var myAccount = new Account().List().FirstOrDefault(a => a.DisplayName == "sdk_test_bob");
 
-                // cloak
-                if (myAccount.PasswordPolicy != null)
-                {
-                    Assert.IsInstanceOf(typeof(PasswordPolicy), myAccount.PasswordPolicy);
-                }
-                // uncloak
-
                 // get all users acociated with the account
                 var users = myAccount.Users().All();
-
                 Assert.GreaterOrEqual(users.Count, 1);
 
                 // add a user to account
@@ -87,12 +79,6 @@ namespace Snippets.src.Foundation
                     PhoneNumber = "0800001066",
                     Email = $"tommi_{randomString()}@example.com",
                 }.Create();
-
-                var sub = new SubtenantUser
-                {
-                    AccountId = myAccount.Id,
-                    Id = "some-id"
-                };
 
                 Assert.IsInstanceOf(typeof(SubtenantUser), user);
                 Assert.IsNotNull(user.CreatedAt);

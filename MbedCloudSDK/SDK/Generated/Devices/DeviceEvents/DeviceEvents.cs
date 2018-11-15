@@ -55,7 +55,7 @@ namespace MbedCloud.SDK.Entities
         /// <summary>
         /// data
         /// </summary>
-        public object Data
+        public Dictionary<string, string> Data
         {
             get;
             set;
