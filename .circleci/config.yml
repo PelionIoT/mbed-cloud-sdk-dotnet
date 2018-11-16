@@ -35,6 +35,15 @@ references:
           ignore:
           - /.*/
 
+  filter_beta_only_build: &filter_beta_only_build
+      filters:
+        branches:
+          only:
+          - beta
+        tags:
+          ignore:
+          - /.*/
+
   filter_master_or_beta_only_build: &filter_master_or_beta_only_build
       filters:
         branches:
@@ -90,7 +99,7 @@ references:
 
 jobs:
   #############################################################################################
-  #                                Build Jobs                                               #
+  #                                Cache Docker Images                                        #
   #############################################################################################
   cache_test_server_image:
     machine:
@@ -110,6 +119,40 @@ jobs:
           root: ~/.
           paths:
            - test_server_image
+  cache_test_runner_image:
+    <<: *circle_python
+    environment:
+      TESTRUNNER_DOCKER_IMAGE: 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
+    steps:
+      - setup_remote_docker
+      - run:
+          name: Update Python Installers
+          command: sudo pip install -U setuptools pip pipenv
+      - run:
+          name: Install awscli
+          command: pipenv install awscli --python=python3.6
+      - run:
+          name: Configure Docker to use AWS
+          command: |
+            source $(pipenv --venv)/bin/activate
+            login="$(aws ecr get-login --no-include-email)"
+            ${login}
+      - run:
+          name: Fetch the test runner
+          command: docker pull ${TESTRUNNER_DOCKER_IMAGE}
+      - run:
+          command: mkdir -p ~/test_runner_image
+          name: create directory for the test_runner docker image
+      - run:
+          command: docker save -o ~/test_runner_image/testrunner.tar ${TESTRUNNER_DOCKER_IMAGE}
+          name: save the test_runner image so it doesn't need building later
+      - persist_to_workspace:
+          root: ~/.
+          paths:
+           - test_runner_image
+  #############################################################################################
+  #                                Documentation                                              #
+  #############################################################################################
   docs:
     docker:
       - image: hrektts/doxygen
@@ -137,6 +180,9 @@ jobs:
                  . venv/bin/activate
                  aws s3 sync --delete --cache-control max-age=3600 ~/docs s3://mbed-cloud-sdk-dotnet-dist/latest/docs
          name: upload docs to s3
+  #############################################################################################
+  #                                Misc pre jobs                                              #
+  #############################################################################################
   tpip:
     docker:
       - image: circleci/python:3.6-jessie-browsers
@@ -152,8 +198,11 @@ jobs:
     steps:
       - checkout
       - run:
-         command: python scripts/assert_news.py
+         command: python scripts/assert_news.py docs/news
          name: Check news file exists
+  #############################################################################################
+  #                                Version bump                                               #
+  #############################################################################################
   version_bump:
     <<: *circle_python
     environment:
@@ -161,24 +210,14 @@ jobs:
     steps:
       - checkout
       - run:
-         command: |
-                 python -m venv venv
-                 . venv/bin/activate
-                 pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@master#subdirectory=scripts/auto_version/&egg=auto_version"
-                 pip install awscli
-         name: install auto_version
-      - setup_remote_docker
-      - run: |
-             . venv/bin/activate
-             login="$(aws ecr get-login --no-include-email)"
-             ${login}
-      - run: docker pull ${TESTRUNNER_DOCKER_IMAGE}
-      - run: echo $(docker run ${TESTRUNNER_DOCKER_IMAGE} python -m trunner --version)
+          name: Update Python Installers
+          command: sudo python -m pip install -U setuptools pip pipenv
       - run:
-         command: |
-                 . venv/bin/activate
-                 auto_version --config=scripts/version.toml --bump=patch --news
-         name: bump the version for a dev release
+          name: Install Python Libraries
+          command: pipenv run pip install -r scripts/requirements.txt
+      - run:
+          name: bump the version for a dev release
+          command: pipenv run auto_version --config=scripts/version.toml --bump=patch --news
       - run:
          command: mkdir -p ~/repo/project
          name: make a directory for the project
@@ -196,6 +235,9 @@ jobs:
            - project/build.cake
            - project/build.sh
            - project/CHANGELOG.md
+  #############################################################################################
+  #                                Build                                                      #
+  #############################################################################################
   build:
     <<: *dotnet_mono_docker
     steps:
@@ -222,6 +264,9 @@ jobs:
               curl -X POST --header "Content-Type: application/json" \
                -d '{"branch":"master"}' \
                https://circleci.com/api/v1.1/project/github/${ORGANISATION}/${DOCUMENTATION_PROJECT}/build?circle-token=${CIRCLE_TOKEN}
+  #############################################################################################
+  #                                Unit Test                                                  #
+  #############################################################################################
   unit_test:
     <<: *dotnet_mono_docker
     steps:
@@ -248,6 +293,9 @@ jobs:
       - run:
          command: node ~/project/node_modules/codecov/bin/codecov ~/project/project/Tests/MbedCloudSDK.UnitTests/lcov.info
          name: upload coverage report to codecov
+  #############################################################################################
+  #                                Integration Tests                                          #
+  #############################################################################################
   integration_test_os2:
     <<: *circle_python
     environment:
@@ -262,13 +310,8 @@ jobs:
             && export MBED_CLOUD_SDK_HOST=${MBED_CLOUD_SDK_HOST_OS2}
             && echo "export MBED_CLOUD_SDK_HOST=${MBED_CLOUD_SDK_HOST}" >> ${BASH_ENV}
       - <<: *attach_workspace
-      - <<: *install_aws_tools
       - setup_remote_docker
-      - run: |
-             . venv/bin/activate
-             login="$(aws ecr get-login --no-include-email)"
-             ${login}
-      - run: docker pull ${TESTRUNNER_DOCKER_IMAGE}
+      - run: docker load -i ./test_runner_image/testrunner.tar
       - run: docker load -i ./test_server_image/testserver.tar
       - run: docker-compose up --exit-code-from testrunner
   integration_test_production:
@@ -285,15 +328,13 @@ jobs:
             && export MBED_CLOUD_SDK_HOST=${MBED_CLOUD_SDK_HOST_PROD}
             && echo "export MBED_CLOUD_SDK_HOST=${MBED_CLOUD_SDK_HOST}" >> ${BASH_ENV}
       - <<: *attach_workspace
-      - <<: *install_aws_tools
       - setup_remote_docker
-      - run: |
-             . venv/bin/activate
-             login="$(aws ecr get-login --no-include-email)"
-             ${login}
-      - run: docker pull ${TESTRUNNER_DOCKER_IMAGE}
+      - run: docker load -i ./test_runner_image/testrunner.tar
       - run: docker load -i ./test_server_image/testserver.tar
       - run: docker-compose up --exit-code-from testrunner
+  #############################################################################################
+  #                                Artifactory Deploy                                         #
+  #############################################################################################
   artifactory_deploy:
     <<: *circle_python
     environment:
@@ -311,56 +352,70 @@ jobs:
       - run:
           name: Deploying the SDK to Artifactory and beyond
           command: docker run --rm --network container:artifactory sdk_deploy ./build.sh -Target=_publish -nuget_api_key=${ARTIFACTORY_API_KEY} -nuget_source=${ARTIFACTORY_URL}/api/nuget/mbed-cloud-sdk-dotnet-snapshots
+  #############################################################################################
+  #                                Tag for release                                            #
+  #############################################################################################
   git_tag_release:
     <<: *circle_python
     steps:
       - checkout
       - run:
-         command: |
-                 python -m venv venv
-                 . venv/bin/activate
-                 pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@master#subdirectory=scripts/auto_version/&egg=auto_version"
-         name: install auto_version
+          name: Update Python Installers
+          command: sudo python -m pip install -U setuptools pip pipenv
       - run:
-         command: |
-                 . venv/bin/activate
-                 auto_version --config=scripts/version.toml --bump=patch --news --release
-         name: bump the version for a dev release
-      - run: python ./scripts/tag_and_release.py tag $(python ./scripts/dvcs_version.py version)
+          name: Install Python Libraries
+          command: pipenv run pip install -r scripts/requirements.txt
+      - run:
+          name: bump the version for a dev release
+          command: pipenv run auto_version --config=scripts/version.toml --bump=patch --news --release
+      - run:
+          name: run tag script
+          command: python ./scripts/tag_and_release.py tag $(pipenv run auto_version --config=scripts/version.toml)
+  #############################################################################################
+  #                                Tag for beta                                               #
+  #############################################################################################
   git_tag_release_beta:
     <<: *circle_python
     steps:
       - checkout
       - run:
-         command: |
-                 python -m venv venv
-                 . venv/bin/activate
-                 pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@master#subdirectory=scripts/auto_version/&egg=auto_version"
-         name: install auto_version
+          name: Update Python Installers
+          command: sudo python -m pip install -U setuptools pip pipenv
       - run:
-         command: |
-                 . venv/bin/activate
-                 auto_version --config=scripts/version_beta.toml
-         name: bump the version for a dev release
-      - run: python ./scripts/tag_and_release.py beta $(python ./scripts/dvcs_version.py version)
+          name: Install Python Libraries
+          command: pipenv run pip install -r scripts/requirements.txt
+      - run:
+          name: bump the version for a beta release
+          command: pipenv run auto_version --config=scripts/version_beta.toml --bump=patch --news
+      - run:
+          name: run beta tag script
+          command: python ./scripts/tag_and_release.py beta $(pipenv run auto_version --config=scripts/version_beta.toml)
   #############################################################################################
-  #                                Release Jobs                                               #
+  #                                Common Release Jobs                                        #
+  #############################################################################################
+  build_pack_deploy:
+    <<: *dotnet_mono_docker
+    steps:
+      - <<: *attach_workspace
+      - run:
+         command: cd project && ./build.sh --target=Build-Pack-Publish
+         name: build, pack and publish nuget package
+  #############################################################################################
+  #                                Production Release Jobs                                    #
   #############################################################################################
   version_bump_release:
     <<: *circle_python
     steps:
       - checkout
       - run:
-          command: |
-                  python -m venv venv
-                  . venv/bin/activate
-                  pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@master#subdirectory=scripts/auto_version/&egg=auto_version"
-          name: install auto_version
+          name: Update Python Installers
+          command: sudo python -m pip install -U setuptools pip pipenv
       - run:
-          command: |
-                  . venv/bin/activate
-                  auto_version --config=scripts/version.toml --bump=patch --news --release
-          name: bump the version for a dev release
+          name: Install Python Libraries
+          command: pipenv run pip install -r scripts/requirements.txt
+      - run:
+          name: bump the version for a production release
+          command: pipenv run auto_version --config=scripts/version.toml --bump=patch --news --release
       - run:
           command: mkdir -p ~/repo/project
           name: make a directory for the project
@@ -373,43 +428,28 @@ jobs:
             - project/MbedCloudSDK
             - project/build.cake
             - project/build.sh
-  build_pack_deploy:
-    <<: *dotnet_mono_docker
-    steps:
-      - <<: *attach_workspace
-      - run:
-         command: cd project && ./build.sh --target=Build-Pack-Publish
-         name: build, pack and publish nuget package
   commit_news_and_version:
     <<: *circle_python
     environment:
       <<: *sdk_environment
     steps:
       - checkout
-      - run: |
-          python -m venv venv
-          . venv/bin/activate
-          pip install towncrier
-          pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@master#subdirectory=scripts/auto_version/&egg=auto_version"
-          pip install awscli
-      - setup_remote_docker
-      - run: |
-             . venv/bin/activate
-             login="$(aws ecr get-login --no-include-email)"
-             ${login}
-      - run: docker pull ${TESTRUNNER_DOCKER_IMAGE}
-      - run: echo $(docker run ${TESTRUNNER_DOCKER_IMAGE} python -m trunner --version)
       - run:
-          command: |
-                  . venv/bin/activate
-                  cd docs/news && towncrier --yes --name="" --version=$(python ../../scripts/dvcs_version.py version)
-          name: run towncrier to generate news file
+          name: Update Python Installers
+          command: sudo python -m pip install -U setuptools pip pipenv
       - run:
-          command: |
-                  . venv/bin/activate
-                  auto_version --config=scripts/version.toml --bump=patch --news --release
+          name: Install Python Libraries
+          command: pipenv run pip install -r scripts/requirements.txt
+      - run:
           name: bump the version for a production release
-      - run: python ./scripts/tag_and_release.py news $(python ./scripts/dvcs_version.py version)
+          command: pip env run auto_version --config=scripts/version.toml --bump=patch --news --release
+      - run:
+          name: run towncrier to generate news file
+          command: pipenv run towncrier --yes --name="" --version=$(cd ../../ && pipenv run autoversion --config=scripts/version.toml)
+          working_directory: docs/news
+      - run:
+          name: tag and release
+          command: python ./scripts/tag_and_release.py news $(pipenv run autoversion --config=scripts/version.toml)
   #############################################################################################
   #                                Beta Release Jobs                                          #
   #############################################################################################
@@ -419,45 +459,31 @@ jobs:
       <<: *sdk_environment
     steps:
       - checkout
-      - run: |
-          python -m venv venv
-          . venv/bin/activate
-          pip install towncrier
-          pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@master#subdirectory=scripts/auto_version/&egg=auto_version"
-          pip install awscli
-      - setup_remote_docker
-      - run: |
-             . venv/bin/activate
-             login="$(aws ecr get-login --no-include-email)"
-             ${login}
-      - run: docker pull ${TESTRUNNER_DOCKER_IMAGE}
-      - run: echo $(docker run ${TESTRUNNER_DOCKER_IMAGE} python -m trunner --version)
       - run:
-          command: |
-                  . venv/bin/activate
-                  cd docs/news && towncrier --yes --name="" --version=$(python ../../scripts/dvcs_version.py version)
-          name: run towncrier to generate news file
+          name: Update Python Installers
+          command: sudo python -m pip install -U setuptools pip pipenv
       - run:
-          command: |
-                  . venv/bin/activate
-                  auto_version --config=scripts/version_beta.toml
-          name: bump the version for a production release
-      - run: python ./scripts/tag_and_release.py news_beta $(python ./scripts/dvcs_version.py version)
+          name: Install Python Libraries
+          command: pipenv run pip install -r scripts/requirements.txt
+      - run:
+          name: bump the version for a beta release
+          command: pipenv run auto_version --config=scripts/version_beta.toml --bump=patch --news
+      - run:
+          name: tag and release
+          command: python ./scripts/tag_and_release.py slack $(pipenv run autoversion --config=scripts/version_beta.toml)
   version_bump_beta:
     <<: *circle_python
     steps:
       - checkout
       - run:
-          command: |
-                  python -m venv venv
-                  . venv/bin/activate
-                  pip install "git+https://github.com/ARMmbed/mbed-cloud-sdk-python.git@master#subdirectory=scripts/auto_version/&egg=auto_version"
-          name: install auto_version
+          name: Update Python Installers
+          command: sudo python -m pip install -U setuptools pip pipenv
       - run:
-          command: |
-                  . venv/bin/activate
-                  auto_version --config=scripts/version_beta.toml
-          name: bump the version for a dev release
+          name: Install Python Libraries
+          command: pipenv run pip install -r scripts/requirements.txt
+      - run:
+          name: bump the version for a beta release
+          command: pipenv run auto_version --config=scripts/version_beta.toml --bump=patch --news
       - run:
           command: mkdir -p ~/repo/project
           name: make a directory for the project
@@ -471,13 +497,18 @@ jobs:
             - project/build.cake
             - project/build.sh
 version: 2
+#############################################################################################
+#                                Workflows                                                  #
+#############################################################################################
 workflows:
   csharp_sdk_workflow:
     jobs:
-      - assert_news:
-          <<: *filter_branch_only_no_swagger
       - cache_test_server_image:
           <<: *filter_ignore_release
+      - cache_test_runner_image:
+          <<: *filter_ignore_release
+      - assert_news:
+          <<: *filter_branch_only_no_swagger
       - docs:
           <<: *filter_ignore_release
       - upload_docs:
@@ -487,10 +518,13 @@ workflows:
       - tpip:
           <<: *filter_master_only_build
       - version_bump:
+          requires:
+          - cache_test_runner_image
           <<: *filter_ignore_release
       - build:
           requires:
           - cache_test_server_image
+          - cache_test_runner_image
           - version_bump
           <<: *filter_ignore_release
       - build_documentation:
@@ -529,7 +563,7 @@ workflows:
           - unit_test
           - integration_test_production
           type: approval
-          <<: *filter_ignore_release
+          <<: *filter_beta_only_build
       - git_tag_release:
           requires:
           - release_to_nuget
@@ -537,7 +571,7 @@ workflows:
       - git_tag_release_beta:
           requires:
           - release_beta
-          <<: *filter_ignore_release
+          <<: *filter_beta_only_build
   csharp_sdk_workflow_release:
     jobs:
       - version_bump_release:

@@ -23,8 +23,6 @@ import sys
 
 def main(news_dir=None):
     """Checks for existence of a new newsfile"""
-    if news_dir is None:
-        from generate_news import news_dir
     news_dir = os.path.abspath(news_dir)
 
     # assume the name of the remote alias is just 'origin'
