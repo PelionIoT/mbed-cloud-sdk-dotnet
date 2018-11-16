@@ -40,7 +40,7 @@ references:
         branches:
           only:
           - master
-          - f/trigger-docs-build
+          - beta
         tags:
           ignore:
           - /.*/
