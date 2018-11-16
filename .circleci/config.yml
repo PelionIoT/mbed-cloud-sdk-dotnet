@@ -386,7 +386,7 @@ jobs:
           command: pipenv run pip install -r scripts/requirements.txt
       - run:
           name: bump the version for a beta release
-          command: pipenv run auto_version --config=scripts/version_beta.toml
+          command: pipenv run auto_version --config=scripts/version_beta.toml --bump=patch --news
       - run:
           name: run beta tag script
           command: python ./scripts/tag_and_release.py beta $(pipenv run auto_version --config=scripts/version_beta.toml)
@@ -467,7 +467,7 @@ jobs:
           command: pipenv run pip install -r scripts/requirements.txt
       - run:
           name: bump the version for a beta release
-          command: pip env run auto_version --config=scripts/version_beta.toml --bump=patch --news --release
+          command: pipenv run auto_version --config=scripts/version_beta.toml --bump=patch --news
       - run:
           name: tag and release
           command: python ./scripts/tag_and_release.py slack $(pipenv run autoversion --config=scripts/version_beta.toml)
@@ -483,7 +483,7 @@ jobs:
           command: pipenv run pip install -r scripts/requirements.txt
       - run:
           name: bump the version for a beta release
-          command: pipenv run auto_version --config=scripts/version_beta.toml --bump=patch --news --release
+          command: pipenv run auto_version --config=scripts/version_beta.toml --bump=patch --news
       - run:
           command: mkdir -p ~/repo/project
           name: make a directory for the project
