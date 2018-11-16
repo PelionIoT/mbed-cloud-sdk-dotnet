@@ -35,6 +35,16 @@ references:
           ignore:
           - /.*/
 
+  filter_master_or_beta_only_build: &filter_master_only_build
+      filters:
+        branches:
+          only:
+          - master
+          - f/trigger-docs-build
+        tags:
+          ignore:
+          - /.*/
+
   filter_branch_only: &filter_branch_only
       filters:
         branches:
@@ -486,6 +496,7 @@ workflows:
       - build_documentation:
           requires:
           - build
+          <<: *filter_master_or_beta_only_build
       - integration_test_os2:
           requires:
           - build
