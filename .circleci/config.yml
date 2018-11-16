@@ -35,6 +35,15 @@ references:
           ignore:
           - /.*/
 
+  filter_beta_only_build: &filter_beta_only_build
+      filters:
+        branches:
+          only:
+          - master
+        tags:
+          ignore:
+          - /.*/
+
   filter_master_or_beta_only_build: &filter_master_or_beta_only_build
       filters:
         branches:
@@ -444,28 +453,6 @@ jobs:
   #############################################################################################
   #                                Beta Release Jobs                                          #
   #############################################################################################
-  commit_news_and_version_beta:
-    <<: *circle_python
-    environment:
-      <<: *sdk_environment
-    steps:
-      - checkout
-      - run:
-          name: Update Python Installers
-          command: sudo python -m pip install -U setuptools pip pipenv
-      - run:
-          name: Install Python Libraries
-          command: pipenv run pip install -r scripts/requirements.txt
-      - run:
-          name: bump the version for a production release
-          command: pip env run auto_version --config=scripts/version_beta.toml --bump=patch --news --release
-      - run:
-          name: run towncrier to generate news file
-          command: pipenv run towncrier --yes --name="" --version=$(cd ../../ && pipenv run autoversion --config=scripts/version_beta.toml)
-          working_directory: docs/news
-      - run:
-          name: tag and release
-          command: python ./scripts/tag_and_release.py news $(pipenv run autoversion --config=scripts/version_beta.toml)
   version_bump_beta:
     <<: *circle_python
     steps:
@@ -558,7 +545,7 @@ workflows:
           - unit_test
           - integration_test_production
           type: approval
-          <<: *filter_ignore_release
+          <<: *filter_beta_only_build
       - git_tag_release:
           requires:
           - release_to_nuget
@@ -566,7 +553,7 @@ workflows:
       - git_tag_release_beta:
           requires:
           - release_beta
-          <<: *filter_ignore_release
+          <<: *filter_beta_only_build
   csharp_sdk_workflow_release:
     jobs:
       - version_bump_release:
@@ -584,10 +571,6 @@ workflows:
       - version_bump_beta:
           <<: *tag_beta_only
       - build_pack_deploy:
-          requires:
-          - version_bump_beta
-          <<: *tag_beta_only
-      - commit_news_and_version_beta:
           requires:
           - version_bump_beta
           <<: *tag_beta_only
