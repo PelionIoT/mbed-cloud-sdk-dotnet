@@ -35,6 +35,16 @@ references:
           ignore:
           - /.*/
 
+  filter_master_or_beta_only_build: &filter_master_or_beta_only_build
+      filters:
+        branches:
+          only:
+          - master
+          - beta
+        tags:
+          ignore:
+          - /.*/
+
   filter_branch_only: &filter_branch_only
       filters:
         branches:
@@ -202,6 +212,16 @@ jobs:
            - project/MbedCloudSDK/bin/Release
            - project/Tests/MbedCloudSDK.UnitTests/obj
            - project/Tests/MbedCloudSDK.UnitTests/bin
+  build_documentation:
+    docker:
+      - image: circleci/node:jessie-browsers
+    steps:
+      - run:
+          name: Trigger documentation build
+          command: |
+              curl -X POST --header "Content-Type: application/json" \
+               -d '{"branch":"master"}' \
+               https://circleci.com/api/v1.1/project/github/${ORGANISATION}/${DOCUMENTATION_PROJECT}/build?circle-token=${CIRCLE_TOKEN}
   unit_test:
     <<: *dotnet_mono_docker
     steps:
@@ -473,6 +493,10 @@ workflows:
           - cache_test_server_image
           - version_bump
           <<: *filter_ignore_release
+      - build_documentation:
+          requires:
+          - build
+          <<: *filter_master_or_beta_only_build
       - integration_test_os2:
           requires:
           - build
