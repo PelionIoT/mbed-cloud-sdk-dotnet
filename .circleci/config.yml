@@ -442,7 +442,7 @@ jobs:
           command: pipenv run pip install -r scripts/requirements.txt
       - run:
           name: bump the version for a production release
-          command: pip env run auto_version --config=scripts/version.toml --bump=patch --news --release
+          command: pipenv run auto_version --config=scripts/version.toml --bump=patch --news --release
       - run:
           name: run towncrier to generate news file
           command: pipenv run towncrier --yes --name="" --version=$(cd ../../ && pipenv run autoversion --config=scripts/version.toml)
