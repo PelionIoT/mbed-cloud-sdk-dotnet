@@ -15,52 +15,135 @@ namespace Snippets.src.Foundation
         private static Random random = new Random();
 
         [Test]
-        public async Task SubTenantFlow()
+        public async Task UpdateUserAsSubtenant()
         {
+            Account myAccount = null;
             try
             {
-                // an example: creating and managing a subtenant account
-                var newSubtenant = new SubtenantAccount
+                myAccount = await new Account
                 {
-                    DisplayName = "sdk test dan",
-                    Aliases = new List<string> { $"sdk_test_dan_{randomString()}" },
-                    EndMarket = "connected warrens",
-                    AdminFullName = "dan the wombat",
-                    AdminEmail = "dan@example.com",
-                };
+                    DisplayName = "new test account",
+                    Aliases = new List<string>() { "alex_test_account" },
+                    EndMarket = "IOT",
+                    AdminFullName = "Alex Logan",
+                    AdminEmail = "alexadmin@admin.com",
+                }.Create();
+            }
+            catch (CloudApiException e) when (e.ErrorCode == 403)
+            {
+                myAccount = new Account().List().FirstOrDefault(a => a.DisplayName == "sdk_test_bob");
+            }
+            finally
+            {
+                Assert.IsInstanceOf(typeof(Account), myAccount);
 
-                // when creating a new subtenant, this is the only opportunity to obtain
-                // the `admin_key` for that subtenant account
-                await newSubtenant.Create();
+                // get first subtenant user acociated with the account
+                var firstUser = myAccount.Users().FirstOrDefault();
 
-                // now log in as this subtenant using the `admin_key`
-                var config = new Config(apiKey: newSubtenant.AdminKey);
+                var phoneNumber = firstUser.PhoneNumber;
 
-                // and add another user
-                var user = await new User(config)
+                // update the user's phone number
+                firstUser.PhoneNumber = "117117";
+                await firstUser.Update();
+
+                Assert.AreNotEqual(phoneNumber, firstUser.PhoneNumber);
+                Assert.AreEqual("117117", firstUser.PhoneNumber);
+
+                // change it back to the original
+                firstUser.PhoneNumber = phoneNumber;
+                await firstUser.Update();
+
+                Assert.AreNotEqual("117117", firstUser.PhoneNumber);
+            }
+        }
+
+        [Test]
+        public async Task SubTenantFlow()
+        {
+            Account myAccount = null;
+            try
+            {
+                //  an example: creating and managing a subtenant account
+                myAccount = await new Account
                 {
+                    DisplayName = "new test account",
+                    Aliases = new List<string>() { "alex_test_account" },
+                    EndMarket = "IOT",
+                    AdminFullName = "Alex Logan",
+                    AdminEmail = "alexadmin@admin.com",
+                }.Create();
+                // cloak
+            }
+            catch (CloudApiException e) when (e.ErrorCode == 403)
+            {
+                myAccount = new Account().List().FirstOrDefault(a => a.DisplayName == "sdk_test_bob");
+            }
+            finally
+            {
+                // uncloak
+                // Populate the new user details
+                var user = new SubtenantUser
+                {
+                    // Link this user to the account
+                    AccountId = myAccount.Id,
                     FullName = "tommi the wombat",
                     Username = $"tommi_{randomString()}",
                     PhoneNumber = "0800001066",
                     Email = $"tommi_{randomString()}@example.com",
-                }.Create();
+                };
 
-                // back as the aggregator again ...
-                var users = newSubtenant.List();
-                users.ToList().ForEach(u => Console.WriteLine(u));
+                // create the user
+                await user.Create();
+
                 // end of example
+                Assert.IsInstanceOf(typeof(SubtenantUser), user);
+                Assert.IsNotNull(user.CreatedAt);
 
-                Assert.GreaterOrEqual(users.Count(), 2);
+                // created user is now in account user list
+                var userInList = myAccount.Users().FirstOrDefault(u => u.Id == user.Id);
+
+                Assert.IsInstanceOf(typeof(SubtenantUser), userInList);
+                Assert.AreEqual(user.CreatedAt, userInList.CreatedAt);
+
+                // delete the user
+                await user.Delete();
             }
-            catch (CloudApiException e) when (e.ErrorCode == 403)
+        }
+
+        [Test]
+        public async Task AccountLists()
+        {
+            var myAccount = await new Account().Me();
+
+            var user = myAccount.Users().First();
+            if (user != null)
             {
-                // should throw 403, subtenant limit reached
-                return;
+                Assert.IsInstanceOf(typeof(SubtenantUser), user);
             }
-            catch (System.Exception)
+
+            var trustedCert = myAccount.TrustedCertificates().First();
+            if (trustedCert != null)
             {
-                throw;
+                Assert.IsInstanceOf(typeof(SubtenantTrustedCertificate), trustedCert);
             }
+
+            var invitation = myAccount.UserInvitations().First();
+            if (invitation != null)
+            {
+                Assert.IsInstanceOf(typeof(SubtenantUserInvitation), invitation);
+            }
+        }
+
+        [Test]
+        public void AccountPasswordPolicies()
+        {
+            new Account().List().All().ForEach(a =>
+            {
+                if (a.PasswordPolicy != null)
+                {
+                    Assert.IsInstanceOf(typeof(PasswordPolicy), a.PasswordPolicy);
+                }
+            });
         }
 
         private string randomString(int length = 16)

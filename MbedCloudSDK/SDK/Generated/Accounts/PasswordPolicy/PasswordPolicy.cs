@@ -24,13 +24,10 @@ namespace MbedCloud.SDK.Entities
     {
         public PasswordPolicy()
         {
-            Client = new Client(Config);
         }
 
-        public PasswordPolicy(Config config)
+        public PasswordPolicy(Config config) : base(config)
         {
-            Config = config;
-            Client = new Client(Config);
         }
 
         /// <summary>

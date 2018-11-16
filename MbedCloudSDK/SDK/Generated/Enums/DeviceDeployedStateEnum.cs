@@ -16,6 +16,7 @@ namespace MbedCloud.SDK.Enums
 {
     public enum DeviceDeployedStateEnum
     {
+        UNKNOWN_ENUM_VALUE_RECEIVED,
         DEVELOPMENT,
         PRODUCTION,
     }

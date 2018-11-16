@@ -16,6 +16,7 @@ namespace MbedCloud.SDK.Enums
 {
     public enum TrustedCertificateStatusEnum
     {
+        UNKNOWN_ENUM_VALUE_RECEIVED,
         ACTIVE,
         INACTIVE,
     }

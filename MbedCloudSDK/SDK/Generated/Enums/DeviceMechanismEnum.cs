@@ -16,6 +16,7 @@ namespace MbedCloud.SDK.Enums
 {
     public enum DeviceMechanismEnum
     {
+        UNKNOWN_ENUM_VALUE_RECEIVED,
         CONNECTOR,
         DIRECT,
     }

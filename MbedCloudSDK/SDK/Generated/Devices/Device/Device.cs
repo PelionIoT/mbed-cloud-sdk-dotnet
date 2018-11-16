@@ -30,13 +30,10 @@ namespace MbedCloud.SDK.Entities
     {
         public Device()
         {
-            Client = new Client(Config);
         }
 
-        public Device(Config config)
+        public Device(Config config) : base(config)
         {
-            Config = config;
-            Client = new Client(Config);
         }
 
         /// <summary>
@@ -60,7 +57,7 @@ namespace MbedCloud.SDK.Entities
         /// <summary>
         /// bootstrap_expiration_date
         /// </summary>
-        public object BootstrapExpirationDate
+        public DateTime? BootstrapExpirationDate
         {
             get;
             set;
@@ -87,7 +84,7 @@ namespace MbedCloud.SDK.Entities
         /// <summary>
         /// connector_expiration_date
         /// </summary>
-        public object ConnectorExpirationDate
+        public DateTime? ConnectorExpirationDate
         {
             get;
             set;
@@ -105,7 +102,7 @@ namespace MbedCloud.SDK.Entities
         /// <summary>
         /// custom_attributes
         /// </summary>
-        public object CustomAttributes
+        public Dictionary<string, string> CustomAttributes
         {
             get;
             set;

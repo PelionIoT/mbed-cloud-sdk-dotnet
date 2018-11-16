@@ -7,16 +7,18 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
 //
-// <copyright file="MyAccountMfaStatusEnum.cs" company="Arm">
+// <copyright file="DeviceEnrollmentBulkDeleteStatusEnum.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
 namespace MbedCloud.SDK.Enums
 {
-    public enum MyAccountMfaStatusEnum
+    public enum DeviceEnrollmentBulkDeleteStatusEnum
     {
-        ENFORCED,
-        OPTIONAL,
+        UNKNOWN_ENUM_VALUE_RECEIVED,
+        COMPLETED,
+        NEW,
+        PROCESSING,
     }
 }

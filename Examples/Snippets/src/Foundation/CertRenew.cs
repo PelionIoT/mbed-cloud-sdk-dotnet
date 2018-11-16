@@ -16,10 +16,10 @@ namespace Snippets.src.Foundation
             try
             {
                 // an example: certificate renew
-                var myConfig = new CertificateIssuerConfig().List().All().FirstOrDefault(c => c.Reference == "LWM2M");
+                var myConfig = new CertificateIssuerConfig().List().All().FirstOrDefault(c => c.CertificateReference == "LWM2M");
                 // cloak
+                Assert.AreEqual("LWM2M", myConfig.CertificateReference);
                 Assert.IsAssignableFrom(typeof(CertificateIssuerConfig), myConfig, "config should be instance of CertificateIssuerConfig");
-                Assert.AreEqual("LWM2M", myConfig.Reference);
                 // uncloak
 
                 var connectedDevices = new Device()
@@ -34,13 +34,13 @@ namespace Snippets.src.Foundation
 
                 foreach (var device in connectedDevices)
                 {
-                    await device.RenewCertificate(myConfig.Reference);
+                    await device.RenewCertificate(myConfig.CertificateReference);
                 }
                 // end of example
             }
-            catch (CloudApiException e) when (e.ErrorCode == 400)
+            catch (CloudApiException e) when (e.ErrorCode == 400 || e.ErrorCode == 423)
             {
-                // should throw 400, device cert cannot be renewed
+                // should throw 423, device cert cannot be renewed
                 return;
             }
             catch (Exception)

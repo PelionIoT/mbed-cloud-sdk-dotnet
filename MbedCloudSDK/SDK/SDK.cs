@@ -12,9 +12,7 @@ namespace MbedCloud.SDK
     /// </summary>
     public partial class SDK
     {
-        private static Config config;
-
-        private readonly Config instanceConfig;
+        private readonly Config _config;
 
         public EntityFactory Entities { get; }
 
@@ -26,10 +24,7 @@ namespace MbedCloud.SDK
         /// <param name="config">The configuration.</param>
         public SDK(Config config = null)
         {
-            if (config != null)
-            {
-                instanceConfig = config;
-            }
+            _config = config ?? new Config();
 
             Entities = new EntityFactory(GetConfig());
             Client = new MbedCloud.SDK.Client.Client(GetConfig());
@@ -41,19 +36,11 @@ namespace MbedCloud.SDK
         /// <value>
         /// The configuration.
         /// </value>
-        public static Config Config
+        public Config Config
         {
             get
             {
-                if (config != null)
-                {
-                    return config;
-                }
-
-                var sdkConfig = new Config();
-                config = sdkConfig;
-
-                return sdkConfig;
+                return _config;
             }
         }
 
@@ -63,7 +50,7 @@ namespace MbedCloud.SDK
         /// <returns>The current SDK Config</returns>
         public Config GetConfig()
         {
-            return instanceConfig ?? Config;
+            return _config;
         }
     }
 }

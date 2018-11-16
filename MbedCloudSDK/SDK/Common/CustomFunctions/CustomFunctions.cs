@@ -1,5 +1,7 @@
+using System.IO;
 using System.Threading.Tasks;
 using MbedCloud.SDK.Entities;
+using RestSharp;
 
 namespace MbedCloud.SDK.Common
 {
@@ -10,32 +12,60 @@ namespace MbedCloud.SDK.Common
             return self.DeviceExecutionMode.HasValue ? (self.DeviceExecutionMode != 0) : false;
         }
 
+        public static bool IsDeveloperCertificateGetter(SubtenantTrustedCertificate self)
+        {
+            return self.DeviceExecutionMode.HasValue ? (self.DeviceExecutionMode != 0) : false;
+        }
+
         public static void IsDeveloperCertificateSetter(TrustedCertificate self, bool? value)
         {
             self.DeviceExecutionMode = value.HasValue ? 1 : 0;
             self.IsDeveloperCertificate = value;
         }
 
-        public static async Task<User> SubtenantAccountSwitchGet(User user)
+        public static void IsDeveloperCertificateSetter(SubtenantTrustedCertificate self, bool? value)
         {
-            var myAccount = await new MyAccount().Get();
-            if (user.AccountId != null || user.Id == myAccount.Id)
-            {
-                return await user.GetOnSubtenant();
-            }
-
-            return await user.GetOnAggregator();
+            self.DeviceExecutionMode = value.HasValue ? 1 : 0;
+            self.IsDeveloperCertificate = value;
         }
 
-        public static async Task<User> SubtenantAccountSwitchCreate(User user, string action)
+        public static Task<Stream> DownloadFullReportFile(DeviceEnrollmentBulkCreate self)
         {
-            var myAccount = await new MyAccount().Get();
-            if (user.AccountId != null || user.Id == myAccount.Id)
-            {
-                return await user.CreateOnSubtenant(action);
-            }
+            return StreamToFile(self.Config, self.FullReportFile);
+        }
 
-            return await user.CreateOnAggregator(action);
+        public static Task<Stream> DownloadFullReportFile(DeviceEnrollmentBulkDelete self)
+        {
+            return StreamToFile(self.Config, self.ErrorsReportFile);
+        }
+
+        public static Task<Stream> DownloadErrorsReportFile(DeviceEnrollmentBulkCreate self)
+        {
+            return StreamToFile(self.Config, self.FullReportFile, "error-report.csv");
+        }
+
+        public static Task<Stream> DownloadErrorsReportFile(DeviceEnrollmentBulkDelete self)
+        {
+            return StreamToFile(self.Config, self.ErrorsReportFile, "error-report.csv");
+        }
+
+        private static Task<Stream> StreamToFile(Config config, string url, string filePath = "report.csv")
+        {
+            using (var writer = File.OpenWrite(filePath))
+            {
+                if (!string.IsNullOrEmpty(url) && config != null)
+                {
+                    var client = new RestClient(config.Host);
+                    var request = new RestRequest(url.Replace(config.Host, string.Empty))
+                    {
+                        ResponseWriter = (responseStream) => responseStream.CopyTo(writer)
+                    };
+                    request.AddHeader("Authorization", $"Bearer {config.ApiKey}");
+                    client.Execute(request);
+                }
+            }
+            
+            return Task.FromResult<Stream>(File.OpenRead(filePath));
         }
     }
 }

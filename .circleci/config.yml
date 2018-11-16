@@ -35,6 +35,16 @@ references:
           ignore:
           - /.*/
 
+  filter_master_or_beta_only_build: &filter_master_or_beta_only_build
+      filters:
+        branches:
+          only:
+          - master
+          - beta
+        tags:
+          ignore:
+          - /.*/
+
   filter_branch_only: &filter_branch_only
       filters:
         branches:
@@ -235,6 +245,16 @@ jobs:
            - project/MbedCloudSDK/bin/Release
            - project/Tests/MbedCloudSDK.UnitTests/obj
            - project/Tests/MbedCloudSDK.UnitTests/bin
+  build_documentation:
+    docker:
+      - image: circleci/node:jessie-browsers
+    steps:
+      - run:
+          name: Trigger documentation build
+          command: |
+              curl -X POST --header "Content-Type: application/json" \
+               -d '{"branch":"master"}' \
+               https://circleci.com/api/v1.1/project/github/${ORGANISATION}/${DOCUMENTATION_PROJECT}/build?circle-token=${CIRCLE_TOKEN}
   #############################################################################################
   #                                Unit Test                                                  #
   #############################################################################################
@@ -245,13 +265,13 @@ jobs:
       - run:
          command: cd project && ./build.sh --target=_run_unit_tests
          name: run the unit tests
-      # - persist_to_workspace:
-      #    root: ~/project
-      #    paths:
-      #      - project/Tests/MbedCloudSDK.UnitTests/coverage.opencover.xml
-      # - store_artifacts:
-      #    path: ~/project/project/Tests/MbedCloudSDK.UnitTests/coverage.opencover.xml
-      #    destination: unittest-coverage
+      - persist_to_workspace:
+         root: ~/project/project
+         paths:
+           - Tests/MbedCloudSDK.UnitTests/lcov.info
+      - store_artifacts:
+         path: ~/project/project/Tests/MbedCloudSDK.UnitTests/lcov.info
+         destination: unittest-coverage
   unit_test_coverage:
     docker:
       - image: circleci/node:10-browsers
@@ -262,7 +282,7 @@ jobs:
          name: install codecov
       # can't install locally so have to go into node_modules
       - run:
-         command: node ~/project/node_modules/codecov/bin/codecov ~/project/project/Tests/MbedCloudSDK.UnitTests/coverage.opencover.xml
+         command: node ~/project/node_modules/codecov/bin/codecov ~/project/project/Tests/MbedCloudSDK.UnitTests/lcov.info
          name: upload coverage report to codecov
   #############################################################################################
   #                                Integration Tests                                          #
@@ -502,6 +522,10 @@ workflows:
           - cache_test_runner_image
           - version_bump
           <<: *filter_ignore_release
+      - build_documentation:
+          requires:
+          - build
+          <<: *filter_master_or_beta_only_build
       - integration_test_os2:
           requires:
           - build

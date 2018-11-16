@@ -16,6 +16,7 @@ namespace MbedCloud.SDK.Enums
 {
     public enum CertificateEnrollmentIncludeEnum
     {
+        UNKNOWN_ENUM_VALUE_RECEIVED,
         TOTAL_COUNT,
     }
 }

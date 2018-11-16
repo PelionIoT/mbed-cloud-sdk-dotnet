@@ -19,8 +19,8 @@ namespace Snippets.src.Foundation
             try
             {
                 // an example: checking account status
-                var myAccount = await new MyAccount().Get();
-                var isActive = myAccount.Status == MyAccountStatusEnum.ACTIVE;
+                var myAccount = await new Account().Me();
+                var isActive = myAccount.Status == AccountStatusEnum.ACTIVE;
                 // end of example
 
                 Assert.IsTrue(isActive);

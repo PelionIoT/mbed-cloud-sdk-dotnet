@@ -6,6 +6,7 @@ namespace MbedCloud.SDK.Client
 {
     using System;
     using System.Collections.Generic;
+    using MbedCloud.SDK.Common;
     using MbedCloud.SDK.Common.CustomSerializers;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -20,7 +21,7 @@ namespace MbedCloud.SDK.Client
         /// Gets the settings with renames.
         /// </summary>
         /// <returns>Settings</returns>
-        public static JsonSerializerSettings GetSettingsWithRenames()
+        public static JsonSerializerSettings GetSerializationSettings()
         {
             var settings = new JsonSerializerSettings
             {
@@ -28,8 +29,15 @@ namespace MbedCloud.SDK.Client
                 DateTimeZoneHandling = DateTimeZoneHandling.Utc,
             };
 
-            settings.Converters.Add(new StringEnumConverter());
+            settings.Converters.Add(new TolerantEnumConverter());
 
+            return settings;
+        }
+
+        public static JsonSerializerSettings GetDeserializationSettings(Config config)
+        {
+            var settings = GetSerializationSettings();
+            settings.Converters.Add(new EntityConverter(config));
             return settings;
         }
 

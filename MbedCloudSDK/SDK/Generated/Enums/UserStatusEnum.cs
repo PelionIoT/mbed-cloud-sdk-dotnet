@@ -16,6 +16,7 @@ namespace MbedCloud.SDK.Enums
 {
     public enum UserStatusEnum
     {
+        UNKNOWN_ENUM_VALUE_RECEIVED,
         ACTIVE,
         ENROLLING,
         INACTIVE,
