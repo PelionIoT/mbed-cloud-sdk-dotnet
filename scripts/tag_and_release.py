@@ -69,12 +69,12 @@ def slack(version):
     #posting message to slack
     body = {"text": ":checkered_flag: New version of :c-sharp: SDK released: {}".format(version)}
     myurl = "https://hooks.slack.com/services/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"
-    # req = urllib.request.Request(myurl)
-    # req.add_header('Content-Type', 'application/json; charset=utf-8')
-    # jsondata = json.dumps(body)
-    # jsondataasbytes = jsondata.encode('utf-8')   # needs to be bytes
-    # req.add_header('Content-Length', len(jsondataasbytes))
-    # response = urllib.request.urlopen(req, jsondataasbytes)
+    req = urllib.request.Request(myurl)
+    req.add_header('Content-Type', 'application/json; charset=utf-8')
+    jsondata = json.dumps(body)
+    jsondataasbytes = jsondata.encode('utf-8')   # needs to be bytes
+    req.add_header('Content-Length', len(jsondataasbytes))
+    response = urllib.request.urlopen(req, jsondataasbytes)
 
 
 if __name__ == '__main__':

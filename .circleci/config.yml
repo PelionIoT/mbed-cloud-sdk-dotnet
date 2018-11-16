@@ -39,7 +39,7 @@ references:
       filters:
         branches:
           only:
-          - f/beta-release
+          - beta
         tags:
           ignore:
           - /.*/
@@ -49,7 +49,7 @@ references:
         branches:
           only:
           - master
-          - f/beta-release
+          - beta
         tags:
           ignore:
           - /.*/
