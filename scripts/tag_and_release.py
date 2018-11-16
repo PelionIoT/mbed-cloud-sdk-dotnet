@@ -89,7 +89,5 @@ if __name__ == '__main__':
             setup_git(True)
             news()
             slack(sys.argv[2])
-        if sys.argv[1] == 'news_beta':
-            setup_git(True)
-            news_beta()
+        if sys.argv[1] == 'slack':
             slack(sys.argv[2])

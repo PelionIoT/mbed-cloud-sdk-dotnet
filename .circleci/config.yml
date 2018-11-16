@@ -453,6 +453,24 @@ jobs:
   #############################################################################################
   #                                Beta Release Jobs                                          #
   #############################################################################################
+  commit_news_and_version_beta:
+    <<: *circle_python
+    environment:
+      <<: *sdk_environment
+    steps:
+      - checkout
+      - run:
+          name: Update Python Installers
+          command: sudo python -m pip install -U setuptools pip pipenv
+      - run:
+          name: Install Python Libraries
+          command: pipenv run pip install -r scripts/requirements.txt
+      - run:
+          name: bump the version for a beta release
+          command: pip env run auto_version --config=scripts/version_beta.toml --bump=patch --news --release
+      - run:
+          name: tag and release
+          command: python ./scripts/tag_and_release.py slack $(pipenv run autoversion --config=scripts/version_beta.toml)
   version_bump_beta:
     <<: *circle_python
     steps:
@@ -464,7 +482,7 @@ jobs:
           name: Install Python Libraries
           command: pipenv run pip install -r scripts/requirements.txt
       - run:
-          name: bump the version for a production release
+          name: bump the version for a beta release
           command: pipenv run auto_version --config=scripts/version_beta.toml --bump=patch --news --release
       - run:
           command: mkdir -p ~/repo/project
@@ -571,6 +589,10 @@ workflows:
       - version_bump_beta:
           <<: *tag_beta_only
       - build_pack_deploy:
+          requires:
+          - version_bump_beta
+          <<: *tag_beta_only
+      - commit_news_and_version_beta:
           requires:
           - version_bump_beta
           <<: *tag_beta_only
