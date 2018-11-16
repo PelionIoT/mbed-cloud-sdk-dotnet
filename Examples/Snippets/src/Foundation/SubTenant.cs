@@ -20,7 +20,6 @@ namespace Snippets.src.Foundation
             Account myAccount = null;
             try
             {
-                //  an example: creating and managing a subtenant account
                 myAccount = await new Account
                 {
                     DisplayName = "new test account",
@@ -29,7 +28,6 @@ namespace Snippets.src.Foundation
                     AdminFullName = "Alex Logan",
                     AdminEmail = "alexadmin@admin.com",
                 }.Create();
-                // cloak
             }
             catch (CloudApiException e) when (e.ErrorCode == 403)
             {
@@ -38,7 +36,6 @@ namespace Snippets.src.Foundation
             finally
             {
                 Assert.IsInstanceOf(typeof(Account), myAccount);
-                // uncloak
 
                 // get first subtenant user acociated with the account
                 var firstUser = myAccount.Users().FirstOrDefault();
