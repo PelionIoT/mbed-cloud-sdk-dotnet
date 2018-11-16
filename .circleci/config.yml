@@ -189,7 +189,7 @@ jobs:
     steps:
       - checkout
       - run:
-         command: python scripts/assert_news.py
+         command: python scripts/assert_news.py docs/news
          name: Check news file exists
   #############################################################################################
   #                                Version bump                                               #
