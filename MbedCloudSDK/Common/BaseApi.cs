@@ -40,6 +40,6 @@ namespace MbedCloudSDK.Common
         /// <summary>
         /// Gets or sets config
         /// </summary>
-        protected Config Config { get => config; set => config = value; }
+        public Config Config { get => config; set => config = value; }
     }
 }

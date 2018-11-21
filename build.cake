@@ -36,7 +36,7 @@ Teardown(ctx =>
 
 // default sulution tasks
 
-Task("_restore_solution")
+var restore_solution = Task("_restore_solution")
     .Does(() => {
         var path = MakeAbsolute(new DirectoryPath("./MbedCloudSDK.sln"));
         DotNetCoreRestore(path.FullPath, new DotNetCoreRestoreSettings
@@ -45,7 +45,7 @@ Task("_restore_solution")
         });
     });
 
-Task("_build_solution")
+var build_solution = Task("_build_solution")
     .Does(() => {
         var path = MakeAbsolute(new DirectoryPath("./MbedCloudSDK.sln"));
         DotNetCoreBuild(path.FullPath, new DotNetCoreBuildSettings
@@ -55,7 +55,7 @@ Task("_build_solution")
         });
     });
 
-Task("_run_unit_tests")
+var run_unit_tests = Task("_run_unit_tests")
     .Does(() => {
         var path = MakeAbsolute(new DirectoryPath("Tests/MbedCloudSDK.UnitTests"));
         DotNetCoreTest(path.FullPath, new DotNetCoreTestSettings
@@ -63,23 +63,23 @@ Task("_run_unit_tests")
             NoBuild = true,
             NoRestore = true,
             Configuration = configuration,
-            ArgumentCustomization = args => args.Append("/p:CollectCoverage=true /p:CoverletOutputFormat=opencover"),
+            ArgumentCustomization = args => args.Append("/p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutputFormat=lcov /p:CoverletOutput=./lcov.info /p:ExcludeByFile=\"../../MbedCloudSDK/Backends/**/*.cs\""),
         });
     });
 
-Task("Build")
-    .IsDependentOn("_restore_solution")
-    .IsDependentOn("_build_solution");
+var Build = Task("Build")
+    .IsDependentOn(restore_solution)
+    .IsDependentOn(build_solution);
 
-Task("Run-Unit-Tests")
-    .IsDependentOn("Build")
-    .IsDependentOn("_run_unit_tests");
+var Run_Unit_Tests = Task("Run-Unit-Tests")
+    .IsDependentOn(Build)
+    .IsDependentOn(run_unit_tests);
 
-Task("Default")
-    .IsDependentOn("Build");
+var Default = Task("Default")
+    .IsDependentOn(Build);
 
 // CI Tasks
-Task("_restore_ci")
+var restore_ci =  Task("_restore_ci")
     .Does(() => {
         if(FileExists("NuGet.Config"))
         {
@@ -106,7 +106,7 @@ Task("_restore_ci")
         }
     });
 
-Task("_build_ci")
+var build_ci = Task("_build_ci")
     .Does(() => {
         foreach(var project in ciBuildProjects)
         {
@@ -119,19 +119,19 @@ Task("_build_ci")
         }
     });
 
-Task("CI")
-    .IsDependentOn("_restore_ci")
-    .IsDependentOn("_build_ci");
+var CI = Task("CI")
+    .IsDependentOn(restore_ci)
+    .IsDependentOn(build_ci);
 
 // Integration Tests Tasks
 
-Task("_clean_integration")
+var clean_integration = Task("_clean_integration")
     .Does(() =>
     {
         CleanDirectory(distDirectory);
     });
 
-Task("_restore_integration")
+var restore_integration = Task("_restore_integration")
     .Does(() => {
         var path = MakeAbsolute(new DirectoryPath("./Tests/MbedCloudSDK.IntegrationTests/MbedCloudSDK.IntegrationTests.csproj"));
         DotNetCoreRestore(path.FullPath, new DotNetCoreRestoreSettings
@@ -140,7 +140,7 @@ Task("_restore_integration")
         });
     });
 
-Task("_build_integration")
+var build_integration = Task("_build_integration")
     .Does(() => {
         var path = MakeAbsolute(new DirectoryPath("./Tests/MbedCloudSDK.IntegrationTests/MbedCloudSDK.IntegrationTests.csproj"));
         DotNetCoreBuild(path.FullPath, new DotNetCoreBuildSettings
@@ -150,7 +150,7 @@ Task("_build_integration")
         });
     });
 
-Task("_publish_integration")
+var publish_integration = Task("_publish_integration")
     .Does(() => {
         var path = MakeAbsolute(new DirectoryPath("./Tests/MbedCloudSDK.IntegrationTests/MbedCloudSDK.IntegrationTests.csproj"));
         DotNetCorePublish(path.FullPath, new DotNetCorePublishSettings
@@ -161,15 +161,15 @@ Task("_publish_integration")
         });
     });
 
-Task("Publish_Integration")
-    .IsDependentOn("_clean_integration")
-    .IsDependentOn("_restore_integration")
-    .IsDependentOn("_build_integration")
-    .IsDependentOn("_publish_integration");
+var Publish_integration = Task("Publish_Integration")
+    .IsDependentOn(clean_integration)
+    .IsDependentOn(restore_integration)
+    .IsDependentOn(build_integration)
+    .IsDependentOn(publish_integration);
 
 // SDK Only Tasks
 
-Task("_restore_sdk")
+var restore_sdk = Task("_restore_sdk")
     .Does(() => {
         var path = MakeAbsolute(new DirectoryPath("./MbedCloudSDK/MbedCloudSDK.csproj"));
         DotNetCoreRestore(path.FullPath, new DotNetCoreRestoreSettings
@@ -178,7 +178,7 @@ Task("_restore_sdk")
         });
     });
 
-Task("_build_sdk")
+var build_sdk = Task("_build_sdk")
     .Does(() => {
         var path = MakeAbsolute(new DirectoryPath("./MbedCloudSDK/MbedCloudSDK.csproj"));
         DotNetCoreBuild(path.FullPath, new DotNetCoreBuildSettings
@@ -189,7 +189,7 @@ Task("_build_sdk")
     });
 
 
-Task("Create-NuGet-Package")
+var Create_Nuget_Package = Task("Create-NuGet-Package")
     .Does(() => {
         var path = MakeAbsolute(new DirectoryPath("./MbedCloudSDK/MbedCloudSDK.csproj"));
         DotNetCorePack(path.FullPath, new DotNetCorePackSettings
@@ -200,7 +200,7 @@ Task("Create-NuGet-Package")
         });
     });
 
-Task("_publish")
+var publish = Task("_publish")
     .Does(() => {
         var nugetApiKey = Argument("nuget_api_key", EnvironmentVariable("NUGET_KEY"));
         var source = Argument("nuget_source", "https://api.nuget.org/v3/index.json");
@@ -218,15 +218,67 @@ Task("_publish")
         }
     });
 
-Task("Build-Pack-Publish")
-    .IsDependentOn("_restore_sdk")
-    .IsDependentOn("_build_sdk")
-    .IsDependentOn("Create-NuGet-Package")
-    .IsDependentOn("_publish");
+var clean_generator = Task("_clean_generation")
+    .Does(() => {
+        CleanDirectory("./MbedCloudSDK/SDK/Generated");
+    });
 
-Task("Pack-And-Publish")
-    .IsDependentOn("Create-NuGet-Package")
-    .IsDependentOn("_publish");
+var move_custom_files = Task("_move_custom_files")
+    .Does(() => {
+        CreateDirectory("./tmp");
+        MoveDirectory("./MbedCloudSDK/SDK/Common/CustomFunctions", "./tmp/CustomFunctions");
+    });
+
+var restore_generator = Task("_restore_generator")
+    .Does(() => {
+        DotNetCoreRestore("./Manhasset/V2/Manhasset.Runner", new DotNetCoreRestoreSettings {
+            Verbosity = DotNetCoreVerbosity.Minimal,
+        });
+    });
+
+var build_generator = Task("_build_generator")
+    .Does(() => {
+        DotNetCoreBuild("./Manhasset/V2/Manhasset.Runner", new DotNetCoreBuildSettings {
+            NoRestore = true,
+            Configuration = configuration,
+        });
+    });
+
+var generate_and_compile = Task("_generate_and_compile")
+    .Does(() => {
+        DotNetCoreRun("./Manhasset/V2/Manhasset.Runner", null,
+            new DotNetCoreRunSettings {
+                NoBuild = true,
+                NoRestore = true,
+                Configuration = configuration,
+            });
+    });
+
+var move_Files_back = Task("_move_files_back")
+    .Does(() => {
+        MoveDirectory("./tmp/CustomFunctions", "./MbedCloudSDK/SDK/Common/CustomFunctions");
+        DeleteDirectory("./tmp");
+    });
+
+var generation_debug = Task("generation_debug")
+    .IsDependentOn(clean_generator)
+    .IsDependentOn(move_custom_files)
+    .IsDependentOn(restore_generator)
+    .IsDependentOn(build_generator)
+    .IsDependentOn(generate_and_compile)
+    .IsDependentOn(move_Files_back)
+    .IsDependentOn(restore_solution)
+    .IsDependentOn(build_solution);
+
+var Build_Pack_Publish = Task("Build-Pack-Publish")
+    .IsDependentOn(restore_sdk)
+    .IsDependentOn(build_sdk)
+    .IsDependentOn(Create_Nuget_Package)
+    .IsDependentOn(publish);
+
+var Pack_And_Publish = Task("Pack-And-Publish")
+    .IsDependentOn(Create_Nuget_Package)
+    .IsDependentOn(publish);
 
 
 RunTarget(target);

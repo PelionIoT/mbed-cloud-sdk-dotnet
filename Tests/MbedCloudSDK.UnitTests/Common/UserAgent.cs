@@ -118,7 +118,7 @@ namespace MbedCloudSDK.UnitTests.Common
 
         private void TestUserAgent(string agent)
         {
-            StringAssert.IsMatch(@"^mbed-cloud-sdk-dotnet\/\d+.\d+.\d+.\w+", agent, "User-Agent not in correct format");
+            StringAssert.IsMatch(@"^mbed-cloud-sdk-dotnet\/\d+.\d+.\d+", agent, "User-Agent not in correct format");
         }
     }
 }

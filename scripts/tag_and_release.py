@@ -36,10 +36,17 @@ def setup_git(tag=None):
         subprocess.check_call(['git', 'checkout', 'master'])
     subprocess.check_call(['git', 'branch', '--set-upstream-to', branch_spec])
 
+
 def tag(version):
     #tag with supplied version
     subprocess.check_call(['git', 'tag', '-a', version, '-m', 'release %s' % version])
     subprocess.check_call(['git', 'tag', '-f', 'latest'])
+    subprocess.check_call(['git', 'push', '-f', 'origin', '--tags'])
+
+def tag_beta(version):
+    #tag with supplied version
+    subprocess.check_call(['git', 'tag', '-a', version, '-m', 'release %s' % version])
+    subprocess.check_call(['git', 'tag', '-f', 'latest-beta'])
     subprocess.check_call(['git', 'push', '-f', 'origin', '--tags'])
 
 def news():
@@ -51,9 +58,16 @@ def news():
     subprocess.check_call(['git', 'commit', '-m', "Hear yea, hear yea. News O'Clock. [skip ci]"])
     subprocess.check_call(['git', 'push', 'origin'])
 
+def news_beta():
+    #commit news files
+    subprocess.check_call(['git', 'add', 'MbedCloudSDK/Common'])
+    subprocess.check_call(['git', 'add', 'MbedCloudSDK/MbedCloudSDK.csproj'])
+    subprocess.check_call(['git', 'commit', '-m', ":checkered_flag: beta [skip ci]"])
+    subprocess.check_call(['git', 'push', 'origin'])
+
 def slack(version):
-    # posting message to slack
-    body = {"text": ":its-coming-home: :checkered_flag: New version of :c-sharp: SDK released: {} :its-coming-home:".format(version)}
+    #posting message to slack
+    body = {"text": ":checkered_flag: New version of :c-sharp: SDK released: {}".format(version)}
     myurl = "https://hooks.slack.com/services/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"
     req = urllib.request.Request(myurl)
     req.add_header('Content-Type', 'application/json; charset=utf-8')
@@ -68,7 +82,12 @@ if __name__ == '__main__':
         if sys.argv[1] == 'tag':
             setup_git()
             tag(sys.argv[2])
+        if sys.argv[1] == 'beta':
+            setup_git()
+            tag_beta(sys.argv[2])
         if sys.argv[1] == 'news':
             setup_git(True)
             news()
+            slack(sys.argv[2])
+        if sys.argv[1] == 'slack':
             slack(sys.argv[2])

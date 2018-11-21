@@ -1,19 +1,22 @@
-﻿using System;
-using MbedCloudSDK.Billing.Api;
-using MbedCloudSDK.Common;
+﻿
+using System;
+using Newtonsoft.Json;
+using MbedCloudSDK.Common.Extensions;
+using System.Linq;
 
 namespace Playground
 {
     class Program
     {
-        static void Main(string[] args)
+        static async System.Threading.Tasks.Task Main(string[] args)
         {
-            var apiKey = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
-
-            var config = new Config();
-
-            var billing = new BillingApi(config);
+            try
+            {
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
     }
 }
