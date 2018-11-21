@@ -103,7 +103,13 @@ namespace iam.Model
             /// Enum UserSession for "user-session"
             /// </summary>
             [EnumMember(Value = "user-session")]
-            UserSession
+            UserSession,
+            
+            /// <summary>
+            /// Enum Userinvitation for "user_invitation"
+            /// </summary>
+            [EnumMember(Value = "user_invitation")]
+            Userinvitation
         }
 
         /// <summary>

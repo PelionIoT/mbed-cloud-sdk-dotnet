@@ -1,19 +1,38 @@
-﻿using System;
-using MbedCloudSDK.Billing.Api;
-using MbedCloudSDK.Common;
+﻿
+using System;
+using MbedCloud.SDK;
+using MbedCloud.SDK.Client;
+using MbedCloud.SDK.Entities;
+using Newtonsoft.Json;
+using MbedCloudSDK.Common.Extensions;
+using System.Linq;
+using MbedCloud.SDK.Enums;
 
 namespace Playground
 {
     class Program
     {
-        static void Main(string[] args)
+        static async System.Threading.Tasks.Task Main(string[] args)
         {
-            var apiKey = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
-            var host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
+            try
+            {
+                var myAccount = new Account().List().FirstOrDefault(a => a.DisplayName == "sdk_test_bob");
 
-            var config = new Config();
+                var users = myAccount.Users();
 
-            var billing = new BillingApi(config);
+                var myConfig = new CertificateIssuerConfig().List().All().FirstOrDefault(c => c.CertificateReference == "LWM2M");
+
+                new Device()
+                    .List()
+                    .All()
+                    .Where(d => d.State == DeviceStateEnum.REGISTERED)
+                    .ToList()
+                    .ForEach(async d => await d.RenewCertificate(myConfig.CertificateReference));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
     }
 }

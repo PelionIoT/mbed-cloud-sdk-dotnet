@@ -4,11 +4,13 @@
 
 namespace MbedCloudSDK.Common
 {
+    using System;
     using Newtonsoft.Json;
 
     /// <summary>
     /// BaseModel
     /// </summary>
+    // [Obsolete("No longer being maintained. Please use the newer entity based models under MbedCloud.SDK.Entities")]
     public abstract class BaseModel
     {
         /// <summary>
@@ -18,6 +20,6 @@ namespace MbedCloudSDK.Common
         /// The identifier.
         /// </value>
         [JsonProperty]
-        public string Id { get; internal set; }
+        public string Id { get; set; }
     }
 }
