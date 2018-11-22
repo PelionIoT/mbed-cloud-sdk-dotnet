@@ -11,6 +11,14 @@ a list of versions that have been released.
 
 [//]: # (begin_release_notes)
 
+2.0.1 (2018-11-22)
+==================
+
+### Bugfixes
+
+- Fix issue where paginator can get stuck in infinite loop when paging (#1857)
+
+
 2.0.0 (2018-08-06)
 ==================
 
