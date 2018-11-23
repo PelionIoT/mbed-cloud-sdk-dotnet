@@ -1,10 +1,8 @@
-﻿// <copyright file="Config.cs" company="Arm">
-// Copyright (c) Arm. All rights reserved.
-// </copyright>
-
-namespace MbedCloudSDK.Common
+namespace MbedCloud.SDK.Common
 {
     using System;
+    using System.IO;
+    using System.Linq;
     using System.Net;
     using MbedCloudSDK.Exceptions;
     using Newtonsoft.Json;
@@ -12,7 +10,6 @@ namespace MbedCloudSDK.Common
     /// <summary>
     /// Config for MbedCloud
     /// </summary>
-    // [Obsolete("No longer being maintained. Please use the newer entity based models under MbedCloud.SDK.Entities")]
     public class Config
     {
         /// <summary>
@@ -69,11 +66,23 @@ namespace MbedCloudSDK.Common
         {
             try
             {
-                DotNetEnv.Env.Load();
+                var envDirectory = FindDotEnv(Directory.GetCurrentDirectory());
+                if (string.IsNullOrEmpty(envDirectory))
+                {
+                    DotNetEnv.Env.Load();
+                }
+                else
+                {
+                    DotNetEnv.Env.Load(envDirectory);
+                }
             }
             catch (System.IO.FileNotFoundException)
             {
                 Console.WriteLine("No .env file provided.");
+            }
+            catch (UnauthorizedAccessException)
+            {
+                Console.WriteLine("Can't load .env from this directory");
             }
             finally
             {
@@ -137,5 +146,36 @@ namespace MbedCloudSDK.Common
         /// </summary>
         /// <value>The host.</value>
         public string Host { get; }
+
+        private string FindDotEnv(string currentDirectory)
+        {
+            try
+            {
+                // search current directory for .env
+                var envFile = Directory.GetFiles(currentDirectory, ".env");
+                if (envFile.Length == 0)
+                {
+                    // no env found so check parent directory
+                    var parentDirectory = Directory.GetParent(currentDirectory);
+                    if (parentDirectory == null)
+                    {
+                        // reached top of file directory
+                        return null;
+                    }
+
+                    // search the parent directory
+                    return FindDotEnv(parentDirectory.FullName);
+                }
+
+                // found an env
+                Console.WriteLine($"found .env in {envFile.FirstOrDefault()}");
+                return envFile.FirstOrDefault();
+            }
+            catch (UnauthorizedAccessException)
+            {
+                Console.WriteLine("no .env found in directory");
+                return null;
+            }
+        }
     }
 }
