@@ -300,10 +300,14 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                var consumer = SetResourceValueAsync(deviceId, resourcePath, resourceValue, noResponse).Result;
+                // TODO: when the async call goes back to the main thread waiting can cause a dead-lock...
+                // correct solution SHOULD be to use ConfigureAwait(false) but I wanted to keep this change as little as possible...
+                // We should avoid synchronous variations all together (leaving to the caller, which has a better knowledge about
+                // thread context, to decide how to make is synchronous - if that's really required).
+                var consumer = SetResourceValueAsync(deviceId, resourcePath, resourceValue, noResponse).GetAwaiter().GetResult();
                 if (AsyncResponses.ContainsKey(consumer.AsyncId))
                 {
-                    var res = AsyncResponses[consumer.AsyncId].Take().Result;
+                    var res = AsyncResponses[consumer.AsyncId].Take().GetAwaiter().GetResult();
                     return res;
                 }
                 else
