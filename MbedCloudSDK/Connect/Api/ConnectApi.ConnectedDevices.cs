@@ -199,12 +199,12 @@ namespace MbedCloudSDK.Connect.Api
         /// </code>
         /// </example>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public List<Resource> ListResources(string deviceId)
+        public List<Model.Resource.Resource> ListResources(string deviceId)
         {
             try
             {
                 return EndpointsApi.GetEndpointResources(deviceId)
-                .Select(r => Resource.Map(deviceId, r, this))
+                .Select(r => Model.Resource.Resource.Map(deviceId, r, this))
                 .ToList();
             }
             catch (mds.Client.ApiException e)
@@ -233,10 +233,82 @@ namespace MbedCloudSDK.Connect.Api
         /// </code>
         /// </example>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public Resource GetResource(string deviceId, string resourcePath)
+        public Model.Resource.Resource GetResource(string deviceId, string resourcePath)
         {
             var resources = ListResources(deviceId);
             return resources.FirstOrDefault(r => r.Path.EndsWith(resourcePath));
+        }
+
+        /// <summary>
+        /// Execute a function on a resource
+        /// </summary>
+        /// <param name="deviceId">Device ID</param>
+        /// <param name="resourcePath">Resource path</param>
+        /// <param name="functionName">The function to trigger</param>
+        /// <returns>AsyncConsumer with response</returns>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var resp = connectApi.ExecuteResource("015bb66a92a30000000000010010006d", "5001/0/1");
+        ///     Console.WriteLine(resp);
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <exception cref="ArgumentNullException">
+        /// If <paramref name="deviceId"/> is <see langword="null"/>.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is <see langword="null"/>.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// If <paramref name="deviceId"/> is a blank or empty string.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is a blank or empty string.
+        /// </exception>
+        /// <exception cref="CloudApiException">
+        /// If an error occurred while communicating with the server or if the server responsed with an error.
+        /// </exception>
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public string ExecuteResource(string deviceId, string resourcePath, string functionName = null)
+            => UnsafeExecuteSynchronously(ExecuteResourceAsync(deviceId, resourcePath, functionName));
+
+        /// <summary>
+        /// Execute a function on a resource asynchronously
+        /// </summary>
+        /// <param name="deviceId">Device Id</param>
+        /// <param name="resourcePath">Resource path.</param>
+        /// <param name="functionName">The function to trigger</param>
+        /// <returns>Async consumer with string</returns>
+        /// <exception cref="ArgumentNullException">
+        /// If <paramref name="deviceId"/> is <see langword="null"/>.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is <see langword="null"/>.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// If <paramref name="deviceId"/> is a blank or empty string.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is a blank or empty string.
+        /// </exception>
+        /// <exception cref="CloudApiException">
+        /// If an error occurred while communicating with the server or if the server responsed with an error.
+        /// </exception>
+        public async Task<AsyncConsumer<string>> ExecuteResourceAsync(string deviceId, string resourcePath, string functionName = null)
+        {
+            ThrowIfNullOrEmpty(deviceId, nameof(deviceId));
+            ThrowIfNullOrEmpty(resourcePath, nameof(resourcePath));
+
+            var deviceRequest = new DeviceRequest
+            {
+                Method = HttpMethod.Post.Method,
+                Uri = AddLeadingSlash(resourcePath),
+                PayloadB64 = functionName,
+            };
+
+            return await CreateAsyncRequestAsync(deviceId, deviceRequest).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -258,105 +330,22 @@ namespace MbedCloudSDK.Connect.Api
         /// }
         /// </code>
         /// </example>
-        /// <exception cref="CloudApiException">CloudApiException</exception>
+        /// <exception cref="ArgumentNullException">
+        /// If <paramref name="deviceId"/> is <see langword="null"/>.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is <see langword="null"/>.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// If <paramref name="deviceId"/> is a blank or empty string.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is a blank or empty string.
+        /// </exception>
+        /// <exception cref="CloudApiException">
+        /// If an error occurred while communicating with the server or if the server responsed with an error.
+        /// </exception>
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
         public string GetResourceValue(string deviceId, string resourcePath)
-        {
-            try
-            {
-                var consumer = GetResourceValueAsync(deviceId, resourcePath).Result;
-
-                if (AsyncResponses.ContainsKey(consumer.AsyncId))
-                {
-                    var res = AsyncResponses[consumer.AsyncId].Take().Result;
-                    return res;
-                }
-                else
-                {
-                    throw new CloudApiException(404, "AsyncId not found.");
-                }
-            }
-            catch (CloudApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        /// <summary>
-        /// Execute a function on a resource
-        /// </summary>
-        /// <param name="deviceId">Device ID</param>
-        /// <param name="resourcePath">Resource path</param>
-        /// <param name="functionName">The function to trigger</param>
-        /// <param name="noResponse">If true, Mbed Device Connector will not wait for a response</param>
-        /// <returns>AsyncConsumer with response</returns>
-        /// <example>
-        /// <code>
-        /// try
-        /// {
-        ///     var resp = connectApi.ExecuteResource("015bb66a92a30000000000010010006d", "5001/0/1");
-        ///     Console.WriteLine(resp);
-        /// }
-        /// catch (CloudApiException)
-        /// {
-        ///     throw;
-        /// }
-        /// </code>
-        /// </example>
-        /// <exception cref="CloudApiException">CloudApiException</exception>
-        public string ExecuteResource(string deviceId, string resourcePath, string functionName = null, bool? noResponse = null)
-        {
-            try
-            {
-                var consumer = ExecuteResourceAsync(deviceId, resourcePath, functionName, noResponse).Result;
-                if (AsyncResponses.ContainsKey(consumer.AsyncId))
-                {
-                    var res = AsyncResponses[consumer.AsyncId].Take().Result;
-                    return res;
-                }
-                else
-                {
-                    throw new CloudApiException(404, "AsyncId not found.");
-                }
-            }
-            catch (mds.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        /// <summary>
-        /// Execute a function on a resource asynchronously
-        /// </summary>
-        /// <param name="deviceId">Device Id</param>
-        /// <param name="resourcePath">Resource path.</param>
-        /// <param name="functionName">The function to trigger</param>
-        /// <param name="noResponse">If true, Mbed Device Connector will not wait for a response</param>
-        /// <returns>Async consumer with string</returns>
-        public async Task<AsyncConsumer<string>> ExecuteResourceAsync(string deviceId, string resourcePath, string functionName = null, bool? noResponse = null)
-        {
-            if (Config.AutostartNotifications)
-            {
-                StartNotifications();
-            }
-
-            if (!handleNotifications)
-            {
-                throw new CloudApiException(400, "StartNotifications() needs to be called before executing a resource.");
-            }
-
-            try
-            {
-                var fixedPath = RemoveLeadingSlash(resourcePath);
-                var asyncID = await ResourcesApi.ExecuteOrCreateResourceAsync(deviceId, fixedPath, functionName, noResponse);
-                var collection = new AsyncProducerConsumerCollection<string>();
-                AsyncResponses.Add(asyncID.AsyncResponseId, collection);
-                return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);
-            }
-            catch (mds.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
+            => UnsafeExecuteSynchronously(GetResourceValueAsync(deviceId, resourcePath));
 
         /// <summary>
         /// Gets the value of the resource asynchronously
@@ -417,23 +406,7 @@ namespace MbedCloudSDK.Connect.Api
         /// </exception>
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         public string SetResourceValue(string deviceId, string resourcePath, string resourceValue)
-        {
-            var consumer = SetResourceValueAsync(deviceId, resourcePath, resourceValue)
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
-
-            if (!AsyncResponses.ContainsKey(consumer.AsyncId))
-            {
-                throw new CloudApiException(404, "AsyncId not found.");
-            }
-
-            return AsyncResponses[consumer.AsyncId]
-                .Take()
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
-        }
+            => UnsafeExecuteSynchronously(SetResourceValueAsync(deviceId, resourcePath, resourceValue));
 
         /// <overloads>
         /// Sets the value for the specified resource.
@@ -645,6 +618,26 @@ namespace MbedCloudSDK.Connect.Api
             }
         }
 
+        private string UnsafeExecuteSynchronously(Task<AsyncConsumer<string>> task)
+        {
+            Debug.Assert(task != null, "Task to wait cannot be null");
+
+            var consumer = task
+                .GetAwaiter()
+                .GetResult();
+
+            if (!AsyncResponses.ContainsKey(consumer.AsyncId))
+            {
+                throw new CloudApiException(404, "AsyncId not found.");
+            }
+
+            return AsyncResponses[consumer.AsyncId]
+                .Take()
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
+        }
+
         private async Task<AsyncConsumer<string>> SetResourceValueAsync(string deviceId, string resourcePath, byte[] resourceValue, string resourceValueMimeType)
         {
             Debug.Assert(!string.IsNullOrWhiteSpace(deviceId), "Device ID cannot be a blank string");
@@ -692,6 +685,7 @@ namespace MbedCloudSDK.Connect.Api
 
             var collection = new AsyncProducerConsumerCollection<string>();
             AsyncResponses.Add(asyncId, collection);
+
             return new AsyncConsumer<string>(asyncId, collection);
         }
     }
