@@ -300,10 +300,8 @@ namespace MbedCloudSDK.Connect.Api
             ThrowIfNullOrEmpty(deviceId, nameof(deviceId));
             ThrowIfNullOrEmpty(resourcePath, nameof(resourcePath));
 
-            var deviceRequest = new DeviceRequest
+            var deviceRequest = new DeviceRequest(Method: HttpMethod.Post.Method, Uri: AddLeadingSlash(resourcePath))
             {
-                Method = HttpMethod.Post.Method,
-                Uri = AddLeadingSlash(resourcePath),
                 PayloadB64 = functionName,
             };
 
@@ -370,11 +368,7 @@ namespace MbedCloudSDK.Connect.Api
             ThrowIfNullOrEmpty(deviceId, nameof(deviceId));
             ThrowIfNullOrEmpty(resourcePath, nameof(resourcePath));
 
-            var deviceRequest = new DeviceRequest
-            {
-                Method = HttpMethod.Get.Method,
-                Uri = AddLeadingSlash(resourcePath)
-            };
+            var deviceRequest = new DeviceRequest(Method: HttpMethod.Get.Method, Uri: AddLeadingSlash(resourcePath));
 
             return await CreateAsyncRequestAsync(deviceId, deviceRequest).ConfigureAwait(false);
         }
@@ -684,11 +678,9 @@ namespace MbedCloudSDK.Connect.Api
             Debug.Assert(resourceValue != null, "Resource value cannot be null");
             Debug.Assert(resourceValueMimeType != null, "MIME type cannot be null");
 
-            var deviceRequest = new DeviceRequest
+            var deviceRequest = new DeviceRequest(Method: HttpMethod.Put.Method, Uri: AddLeadingSlash(resourcePath))
             {
-                Method = HttpMethod.Put.Method,
                 ContentType = resourceValueMimeType,
-                Uri = RemoveLeadingSlash(resourcePath),
                 PayloadB64 = Convert.ToBase64String(resourceValue)
             };
 
