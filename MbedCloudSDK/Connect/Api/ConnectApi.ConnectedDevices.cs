@@ -18,7 +18,6 @@ namespace MbedCloudSDK.Connect.Api
     using MbedCloudSDK.Common.Filter;
     using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
-    using MbedCloudSDK.Connect.Model.Resource;
     using MbedCloudSDK.Exceptions;
     using mds.Model;
 
