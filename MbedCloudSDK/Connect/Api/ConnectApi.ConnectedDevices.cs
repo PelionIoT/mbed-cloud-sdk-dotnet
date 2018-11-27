@@ -364,32 +364,31 @@ namespace MbedCloudSDK.Connect.Api
         /// <param name="deviceId">Device Id</param>
         /// <param name="resourcePath">Resource path.</param>
         /// <returns>Async consumer with string</returns>
+        /// <exception cref="ArgumentNullException">
+        /// If <paramref name="deviceId"/> is <see langword="null"/>.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is <see langword="null"/>.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// If <paramref name="deviceId"/> is a blank or empty string.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is a blank or empty string.
+        /// </exception>
+        /// <exception cref="CloudApiException">
+        /// If an error occurred while communicating with the server or if the server responsed with an error.
+        /// </exception>
         public async Task<AsyncConsumer<string>> GetResourceValueAsync(string deviceId, string resourcePath)
         {
-            if (Config.AutostartNotifications)
-            {
-                StartNotifications();
-            }
+            ThrowIfNullOrEmpty(deviceId, nameof(deviceId));
+            ThrowIfNullOrEmpty(resourcePath, nameof(resourcePath));
 
-            if (!handleNotifications)
+            var deviceRequest = new DeviceRequest
             {
-                throw new CloudApiException(400, "StartNotifications() needs to be called before getting resource value.");
-            }
+                Method = HttpMethod.Get.Method,
+                Uri = AddLeadingSlash(resourcePath)
+            };
 
-            try
-            {
-                var fixedPath = AddLeadingSlash(resourcePath);
-                var asyncId = Guid.NewGuid().ToString();
-                var deviceRequest = new DeviceRequest(Method: "GET", Uri: fixedPath);
-                await DeviceRequestsApi.CreateAsyncRequestAsync(deviceId, asyncId, deviceRequest);
-                var collection = new AsyncProducerConsumerCollection<string>();
-                AsyncResponses.Add(asyncId, collection);
-                return new AsyncConsumer<string>(asyncId, collection);
-            }
-            catch (mds.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
+            return await CreateAsyncRequestAsync(deviceId, deviceRequest).ConfigureAwait(false);
         }
 
         /// <summary>
