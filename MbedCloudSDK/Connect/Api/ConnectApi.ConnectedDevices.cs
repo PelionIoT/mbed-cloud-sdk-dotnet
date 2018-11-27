@@ -604,6 +604,46 @@ namespace MbedCloudSDK.Connect.Api
             return await SetResourceValueAsync(deviceId, resourcePath, resourceValue, MediaTypeNames.Application.Octet).ConfigureAwait(false);
         }
 
+#pragma warning disable CC0044, CC0057, CC0097, SA1611, SA1615, IDE0022
+
+        /// <summary>Obsolote, do not use.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("noResp parameter is now ignored, use another overload instead")]
+        public string ExecuteResource(string deviceId, string resourcePath, string functionName, bool? noResp)
+            => ExecuteResource(deviceId, resourcePath, functionName);
+
+        /// <summary>Obsolote, do not use.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("noResp parameter is now ignored, use another overload instead")]
+        public Task<AsyncConsumer<string>> ExecuteResourceAsync(string deviceId, string resourcePath, string functionName, bool? noResp)
+            => ExecuteResourceAsync(deviceId, resourcePath, functionName);
+
+        /// <summary>Obsolote, do not use.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("noResp parameter is now ignored, use another overload instead")]
+        public string GetResourceValue(string deviceId, string resourcePath, bool? noResp)
+            => GetResourceValue(deviceId, resourcePath);
+
+        /// <summary>Obsolote, do not use.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("noResp parameter is now ignored, use another overload instead")]
+        public Task<AsyncConsumer<string>> GetResourceValueAsync(string deviceId, string resourcePath, bool? noResp)
+            => GetResourceValueAsync(deviceId, resourcePath);
+
+        /// <summary>Obsolote, do not use.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("noResp parameter is now ignored, use another overload instead")]
+        public string SetResourceValue(string deviceId, string resourcePath, string resourceValue, bool? noResp)
+            => SetResourceValue(deviceId, resourcePath, resourceValue);
+
+        /// <summary>Obsolote, do not use.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("noResp parameter is now ignored, use another overload instead")]
+        public Task<AsyncConsumer<string>> SetResourceValueAsync(string deviceId, string resourcePath, string resourceValue, bool? noResp)
+            => SetResourceValueAsync(deviceId, resourcePath, resourceValue);
+
+#pragma warning restore CC0044, CC0057, CC0097, SA1611, SA1615, IDE0022
+
         private static void ThrowIfNullOrEmpty(string value, string paramName)
         {
             if (value == null)
