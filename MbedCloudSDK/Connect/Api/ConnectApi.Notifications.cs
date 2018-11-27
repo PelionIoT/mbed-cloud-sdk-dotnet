@@ -9,6 +9,7 @@ namespace MbedCloudSDK.Connect.Api
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using connector_ca.Client;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Common.Tlv;
@@ -17,6 +18,7 @@ namespace MbedCloudSDK.Connect.Api
     using MbedCloudSDK.Connect.Model.Webhook;
     using MbedCloudSDK.Exceptions;
     using Newtonsoft.Json;
+    using Polly;
 
     /// <summary>
     /// Connect Api
@@ -24,6 +26,9 @@ namespace MbedCloudSDK.Connect.Api
     public partial class ConnectApi
     {
         private readonly TlvDecoder tlvDecoder = new TlvDecoder();
+
+        private Policy retryPolicy;
+
         private bool handleNotifications;
 
         /// <summary>
@@ -118,21 +123,13 @@ namespace MbedCloudSDK.Connect.Api
         {
             while (!cancellationToken.IsCancellationRequested)
             {
-                try
-                {
+                retryPolicy.Execute(() => {
                     var resp = NotificationsApi.LongPollNotifications();
-                    if (resp == null)
+                    if (resp != null)
                     {
-                        continue;
+                        Notify(NotificationMessage.Map(resp));
                     }
-
-                    Notify(NotificationMessage.Map(resp));
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    StopNotifications();
-                }
+                });
             }
         }
 
@@ -153,6 +150,24 @@ namespace MbedCloudSDK.Connect.Api
         /// </example>
         public void StartNotifications()
         {
+            // policy handler for retries. Uses Polly (https://github.com/App-vNext/Polly#wait-and-retry)
+            // it will increase the time between retries progressively until it will stop ~2 minutes
+            if(retryPolicy == null)
+            {
+                retryPolicy = Policy.Handle<Exception>().WaitAndRetry(
+                    8,
+                    retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
+                    (exception, TimeSpan, retryCount, context) =>
+                        {
+                            // check that is really an ApiException before doing the retry logic
+                            var apiException = exception as ApiException;
+                            if(apiException == null || apiException.ErrorCode != 500)
+                            {
+                                StopNotifications();
+                            }
+                        });
+            }
+
             try
             {
                 if (notificationTask?.Status != TaskStatus.Running || !handleNotifications)
@@ -180,13 +195,9 @@ namespace MbedCloudSDK.Connect.Api
                     else
                     {
                         Console.WriteLine("Starting notifications");
-                        if (cancellationToken != null)
-                        {
-                            cancellationToken.Dispose();
-                        }
-
+                        cancellationToken?.Dispose();
                         cancellationToken = new CancellationTokenSource();
-                        notificationTask = new Task(new Action(Notifications), cancellationToken.Token, TaskCreationOptions.LongRunning);
+                        notificationTask = new Task(Notifications, cancellationToken.Token, TaskCreationOptions.LongRunning);
                         notificationTask.Start();
                     }
 
@@ -224,16 +235,15 @@ namespace MbedCloudSDK.Connect.Api
             {
                 try
                 {
-                    cancellationToken?.Cancel();
-                    cancellationToken?.Dispose();
-                }
-                catch (ObjectDisposedException e)
-                {
-                    Console.WriteLine(e.Message);
+                    cancellationToken.Cancel();
                 }
                 catch (InvalidOperationException e)
                 {
                     Console.WriteLine(e.Message);
+                }
+                finally
+                {
+                    cancellationToken.Dispose();
                 }
             }
 
@@ -248,9 +258,9 @@ namespace MbedCloudSDK.Connect.Api
 
             if (notificationTask != null)
             {
-                if (notificationTask.IsCanceled || notificationTask.IsFaulted || notificationTask.IsCanceled)
+                if (notificationTask.IsCanceled || notificationTask.IsFaulted)
                 {
-                    notificationTask?.Dispose();
+                    notificationTask.Dispose();
                 }
             }
 
