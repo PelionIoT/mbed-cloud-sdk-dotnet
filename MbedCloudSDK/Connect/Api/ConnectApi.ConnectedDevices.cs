@@ -6,13 +6,20 @@ namespace MbedCloudSDK.Connect.Api
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Diagnostics;
     using System.Linq;
+    using System.Net;
+    using System.Net.Http;
+    using System.Net.Mime;
+    using System.Text;
+    using System.Threading.Tasks;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Filter;
     using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
-    using MbedCloudSDK.Connect.Model.Resource;
     using MbedCloudSDK.Exceptions;
+    using mds.Model;
 
     /// <summary>
     /// Connect Api
@@ -191,12 +198,12 @@ namespace MbedCloudSDK.Connect.Api
         /// </code>
         /// </example>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public List<Resource> ListResources(string deviceId)
+        public List<Model.Resource.Resource> ListResources(string deviceId)
         {
             try
             {
                 return EndpointsApi.GetEndpointResources(deviceId)
-                .Select(r => Resource.Map(deviceId, r, this))
+                .Select(r => Model.Resource.Resource.Map(deviceId, r, this))
                 .ToList();
             }
             catch (mds.Client.ApiException e)
@@ -225,10 +232,80 @@ namespace MbedCloudSDK.Connect.Api
         /// </code>
         /// </example>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public Resource GetResource(string deviceId, string resourcePath)
+        public Model.Resource.Resource GetResource(string deviceId, string resourcePath)
         {
             var resources = ListResources(deviceId);
             return resources.FirstOrDefault(r => r.Path.EndsWith(resourcePath));
+        }
+
+        /// <summary>
+        /// Execute a function on a resource
+        /// </summary>
+        /// <param name="deviceId">Device ID</param>
+        /// <param name="resourcePath">Resource path</param>
+        /// <param name="functionName">The function to trigger</param>
+        /// <returns>AsyncConsumer with response</returns>
+        /// <example>
+        /// <code>
+        /// try
+        /// {
+        ///     var resp = connectApi.ExecuteResource("015bb66a92a30000000000010010006d", "5001/0/1");
+        ///     Console.WriteLine(resp);
+        /// }
+        /// catch (CloudApiException)
+        /// {
+        ///     throw;
+        /// }
+        /// </code>
+        /// </example>
+        /// <exception cref="ArgumentNullException">
+        /// If <paramref name="deviceId"/> is <see langword="null"/>.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is <see langword="null"/>.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// If <paramref name="deviceId"/> is a blank or empty string.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is a blank or empty string.
+        /// </exception>
+        /// <exception cref="CloudApiException">
+        /// If an error occurred while communicating with the server or if the server responsed with an error.
+        /// </exception>
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public string ExecuteResource(string deviceId, string resourcePath, string functionName = null)
+            => UnsafeExecuteSynchronously(ExecuteResourceAsync(deviceId, resourcePath, functionName));
+
+        /// <summary>
+        /// Execute a function on a resource asynchronously
+        /// </summary>
+        /// <param name="deviceId">Device Id</param>
+        /// <param name="resourcePath">Resource path.</param>
+        /// <param name="functionName">The function to trigger</param>
+        /// <returns>Async consumer with string</returns>
+        /// <exception cref="ArgumentNullException">
+        /// If <paramref name="deviceId"/> is <see langword="null"/>.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is <see langword="null"/>.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// If <paramref name="deviceId"/> is a blank or empty string.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is a blank or empty string.
+        /// </exception>
+        /// <exception cref="CloudApiException">
+        /// If an error occurred while communicating with the server or if the server responsed with an error.
+        /// </exception>
+        public async Task<AsyncConsumer<string>> ExecuteResourceAsync(string deviceId, string resourcePath, string functionName = null)
+        {
+            ThrowIfNullOrEmpty(deviceId, nameof(deviceId));
+            ThrowIfNullOrEmpty(resourcePath, nameof(resourcePath));
+
+            var deviceRequest = new DeviceRequest(Method: HttpMethod.Post.Method, Uri: AddLeadingSlash(resourcePath))
+            {
+                PayloadB64 = functionName,
+            };
+
+            return await CreateAsyncRequestAsync(deviceId, deviceRequest).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -250,37 +327,92 @@ namespace MbedCloudSDK.Connect.Api
         /// }
         /// </code>
         /// </example>
-        /// <exception cref="CloudApiException">CloudApiException</exception>
+        /// <exception cref="ArgumentNullException">
+        /// If <paramref name="deviceId"/> is <see langword="null"/>.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is <see langword="null"/>.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// If <paramref name="deviceId"/> is a blank or empty string.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is a blank or empty string.
+        /// </exception>
+        /// <exception cref="CloudApiException">
+        /// If an error occurred while communicating with the server or if the server responsed with an error.
+        /// </exception>
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
         public string GetResourceValue(string deviceId, string resourcePath)
-        {
-            try
-            {
-                var consumer = GetResourceValueAsync(deviceId, resourcePath).Result;
+            => UnsafeExecuteSynchronously(GetResourceValueAsync(deviceId, resourcePath));
 
-                if (AsyncResponses.ContainsKey(consumer.AsyncId))
-                {
-                    var res = AsyncResponses[consumer.AsyncId].Take().Result;
-                    return res;
-                }
-                else
-                {
-                    throw new CloudApiException(404, "AsyncId not found.");
-                }
-            }
-            catch (CloudApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
+        /// <summary>
+        /// Gets the value of the resource asynchronously
+        /// </summary>
+        /// <param name="deviceId">Device Id</param>
+        /// <param name="resourcePath">Resource path.</param>
+        /// <returns>Async consumer with string</returns>
+        /// <exception cref="ArgumentNullException">
+        /// If <paramref name="deviceId"/> is <see langword="null"/>.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is <see langword="null"/>.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// If <paramref name="deviceId"/> is a blank or empty string.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is a blank or empty string.
+        /// </exception>
+        /// <exception cref="CloudApiException">
+        /// If an error occurred while communicating with the server or if the server responsed with an error.
+        /// </exception>
+        public async Task<AsyncConsumer<string>> GetResourceValueAsync(string deviceId, string resourcePath)
+        {
+            ThrowIfNullOrEmpty(deviceId, nameof(deviceId));
+            ThrowIfNullOrEmpty(resourcePath, nameof(resourcePath));
+
+            var deviceRequest = new DeviceRequest(Method: HttpMethod.Get.Method, Uri: AddLeadingSlash(resourcePath));
+
+            return await CreateAsyncRequestAsync(deviceId, deviceRequest).ConfigureAwait(false);
         }
 
         /// <summary>
-        /// Set value of the resource.
+        /// Sets the value for the specified resource.
         /// </summary>
-        /// <param name="deviceId">Id of the device.</param>
-        /// <param name="resourcePath">Path to the resource.</param>
-        /// <param name="resourceValue">Value to set.</param>
-        /// <param name="noResponse">Don't get a response.</param>
-        /// <returns>Async consumer with string</returns>
+        /// <param name="deviceId">ID of the device which contains the resource.</param>
+        /// <param name="resourcePath">Full path of the resource to write.</param>
+        /// <param name="resourceValue">The new value for the specified resource, sent as an UTF-8 encoded stream.</param>
+        /// <returns>
+        /// The ID of the asynchronous request.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// If <paramref name="deviceId"/> is <see langword="null"/>.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is <see langword="null"/>.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourceValue"/> is <see langword="null"/>.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// If <paramref name="deviceId"/> is a blank or empty string.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is a blank or empty string.
+        /// </exception>
+        /// <exception cref="CloudApiException">
+        /// If an error occurred while communicating with the server or if the server responsed with an error.
+        /// </exception>
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
+        public string SetResourceValue(string deviceId, string resourcePath, string resourceValue)
+            => UnsafeExecuteSynchronously(SetResourceValueAsync(deviceId, resourcePath, resourceValue));
+
+        /// <overloads>
+        /// Sets the value for the specified resource.
+        /// </overloads>
+        /// <summary>
+        /// Sets the value for the specified string resource.
+        /// </summary>
+        /// <param name="deviceId">ID of the device which contains the resource.</param>
+        /// <param name="resourcePath">Full path of the resource to write.</param>
+        /// <param name="resourceValue">The new value for the specified resource, sent as an UTF-8 encoded stream.</param>
+        /// <returns>
+        /// The ID of the asynchronous request.
+        /// </returns>
         /// <example>
         /// <code>
         /// try
@@ -295,81 +427,272 @@ namespace MbedCloudSDK.Connect.Api
         /// }
         /// </code>
         /// </example>
-        /// <exception cref="CloudApiException">CloudApiException</exception>
-        public string SetResourceValue(string deviceId, string resourcePath, string resourceValue, bool? noResponse = null)
+        /// <exception cref="ArgumentNullException">
+        /// If <paramref name="deviceId"/> is <see langword="null"/>.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is <see langword="null"/>.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourceValue"/> is <see langword="null"/>.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// If <paramref name="deviceId"/> is a blank or empty string.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is a blank or empty string.
+        /// </exception>
+        /// <exception cref="CloudApiException">
+        /// If an error occurred while communicating with the server or if the server responsed with an error.
+        /// </exception>
+        public async Task<AsyncConsumer<string>> SetResourceValueAsync(string deviceId, string resourcePath, string resourceValue)
         {
-            try
+            ThrowIfNullOrEmpty(deviceId, nameof(deviceId));
+            ThrowIfNullOrEmpty(resourcePath, nameof(resourcePath));
+
+            if (resourceValue == null)
             {
-                var consumer = SetResourceValueAsync(deviceId, resourcePath, resourceValue, noResponse).Result;
-                if (AsyncResponses.ContainsKey(consumer.AsyncId))
-                {
-                    var res = AsyncResponses[consumer.AsyncId].Take().Result;
-                    return res;
-                }
-                else
-                {
-                    throw new CloudApiException(404, "AsyncId not found.");
-                }
+                throw new ArgumentNullException(nameof(resourceValue));
             }
-            catch (mds.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
+
+            return await SetResourceValueAsync(
+                deviceId,
+                resourcePath,
+                Encoding.UTF8.GetBytes(resourceValue),
+                MediaTypeNames.Text.Plain).ConfigureAwait(false);
         }
 
         /// <summary>
-        /// Execute a function on a resource
+        /// Sets the value for the specified 64 bit signed integer resource.
         /// </summary>
-        /// <param name="deviceId">Device ID</param>
-        /// <param name="resourcePath">Resource path</param>
-        /// <param name="functionName">The function to trigger</param>
-        /// <param name="noResponse">If true, Mbed Device Connector will not wait for a response</param>
-        /// <returns>AsyncConsumer with response</returns>
-        /// <example>
-        /// <code>
-        /// try
-        /// {
-        ///     var resp = connectApi.ExecuteResource("015bb66a92a30000000000010010006d", "5001/0/1");
-        ///     Console.WriteLine(resp);
-        /// }
-        /// catch (CloudApiException)
-        /// {
-        ///     throw;
-        /// }
-        /// </code>
-        /// </example>
-        /// <exception cref="CloudApiException">CloudApiException</exception>
-        public string ExecuteResource(string deviceId, string resourcePath, string functionName = null, bool? noResponse = null)
+        /// <param name="deviceId">ID of the device which contains the resource.</param>
+        /// <param name="resourcePath">Full path of the resource to write.</param>
+        /// <param name="resourceValue">The new value for the specified resource, sent as big endian byte array.</param>
+        /// <returns>
+        /// The ID of the asynchronous request.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// If <paramref name="deviceId"/> is <see langword="null"/>.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is <see langword="null"/>.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// If <paramref name="deviceId"/> is a blank or empty string.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is a blank or empty string.
+        /// </exception>
+        /// <exception cref="CloudApiException">
+        /// If an error occurred while communicating with the server or if the server responsed with an error.
+        /// </exception>
+        public async Task<AsyncConsumer<string>> SetResourceValueAsync(string deviceId, string resourcePath, long resourceValue)
         {
-            try
-            {
-                var consumer = ExecuteResourceAsync(deviceId, resourcePath, functionName, noResponse).Result;
-                if (AsyncResponses.ContainsKey(consumer.AsyncId))
-                {
-                    var res = AsyncResponses[consumer.AsyncId].Take().Result;
-                    return res;
-                }
-                else
-                {
-                    throw new CloudApiException(404, "AsyncId not found.");
-                }
-            }
-            catch (mds.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
+            ThrowIfNullOrEmpty(deviceId, nameof(deviceId));
+            ThrowIfNullOrEmpty(resourcePath, nameof(resourcePath));
+
+            return await SetResourceValueAsync(
+                deviceId,
+                resourcePath,
+                BitConverter.GetBytes(IPAddress.HostToNetworkOrder(resourceValue)),
+                MediaTypeNames.Text.Plain).ConfigureAwait(false);
         }
 
         /// <summary>
-        /// Execute a function on a resource asynchronously
+        /// Sets the value for the specified 32 bit signed integer resource.
         /// </summary>
-        /// <param name="deviceId">Device Id</param>
-        /// <param name="resourcePath">Resource path.</param>
-        /// <param name="functionName">The function to trigger</param>
-        /// <param name="noResponse">If true, Mbed Device Connector will not wait for a response</param>
-        /// <returns>Async consumer with string</returns>
-        public async System.Threading.Tasks.Task<AsyncConsumer<string>> ExecuteResourceAsync(string deviceId, string resourcePath, string functionName = null, bool? noResponse = null)
+        /// <param name="deviceId">ID of the device which contains the resource.</param>
+        /// <param name="resourcePath">Full path of the resource to write.</param>
+        /// <param name="resourceValue">The new value for the specified resource, sent as big endian byte array.</param>
+        /// <returns>
+        /// The ID of the asynchronous request.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// If <paramref name="deviceId"/> is <see langword="null"/>.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is <see langword="null"/>.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// If <paramref name="deviceId"/> is a blank or empty string.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is a blank or empty string.
+        /// </exception>
+        /// <exception cref="CloudApiException">
+        /// If an error occurred while communicating with the server or if the server responsed with an error.
+        /// </exception>
+        public async Task<AsyncConsumer<string>> SetResourceValueAsync(string deviceId, string resourcePath, int resourceValue)
         {
+            ThrowIfNullOrEmpty(deviceId, nameof(deviceId));
+            ThrowIfNullOrEmpty(resourcePath, nameof(resourcePath));
+
+            return await SetResourceValueAsync(
+                deviceId,
+                resourcePath,
+                BitConverter.GetBytes(IPAddress.HostToNetworkOrder(resourceValue)),
+                MediaTypeNames.Text.Plain).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Sets the value for the specified 16 bit signed integer resource.
+        /// </summary>
+        /// <param name="deviceId">ID of the device which contains the resource.</param>
+        /// <param name="resourcePath">Full path of the resource to write.</param>
+        /// <param name="resourceValue">The new value for the specified resource, sent as big endian byte array.</param>
+        /// <returns>
+        /// The ID of the asynchronous request.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// If <paramref name="deviceId"/> is <see langword="null"/>.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is <see langword="null"/>.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourceValue"/> is <see langword="null"/>.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// If <paramref name="deviceId"/> is a blank or empty string.
+        /// </exception>
+        /// <exception cref="CloudApiException">
+        /// If an error occurred while communicating with the server or if the server responsed with an error.
+        /// </exception>
+        public async Task<AsyncConsumer<string>> SetResourceValueAsync(string deviceId, string resourcePath, short resourceValue)
+        {
+            ThrowIfNullOrEmpty(deviceId, nameof(deviceId));
+            ThrowIfNullOrEmpty(resourcePath, nameof(resourcePath));
+
+            return await SetResourceValueAsync(
+                deviceId,
+                resourcePath,
+                BitConverter.GetBytes(IPAddress.HostToNetworkOrder(resourceValue)),
+                MediaTypeNames.Text.Plain).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Sets the value for the specified binary resource.
+        /// </summary>
+        /// <param name="deviceId">ID of the device which contains the resource.</param>
+        /// <param name="resourcePath">Full path of the resource to write.</param>
+        /// <param name="resourceValue">The new value for the specified resource.</param>
+        /// <returns>
+        /// The ID of the asynchronous request.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">
+        /// If <paramref name="deviceId"/> is <see langword="null"/>.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is <see langword="null"/>.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourceValue"/> is <see langword="null"/>.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// If <paramref name="deviceId"/> is a blank or empty string.
+        /// <br/>-or-<br/>
+        /// If <paramref name="resourcePath"/> is a blank or empty string.
+        /// </exception>
+        /// <exception cref="CloudApiException">
+        /// If an error occurred while communicating with the server or if the server responsed with an error.
+        /// </exception>
+        public async Task<AsyncConsumer<string>> SetResourceValueAsync(string deviceId, string resourcePath, byte[] resourceValue)
+        {
+            ThrowIfNullOrEmpty(deviceId, nameof(deviceId));
+            ThrowIfNullOrEmpty(resourcePath, nameof(resourcePath));
+
+            if (resourceValue == null)
+            {
+                throw new ArgumentNullException(nameof(resourceValue));
+            }
+
+            return await SetResourceValueAsync(deviceId, resourcePath, resourceValue, MediaTypeNames.Application.Octet).ConfigureAwait(false);
+        }
+
+#pragma warning disable CC0044, CC0057, CC0097, SA1611, SA1615, IDE0022
+
+        /// <summary>Obsolote, do not use.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("noResp parameter is now ignored, use another overload instead")]
+        public string ExecuteResource(string deviceId, string resourcePath, string functionName, bool? noResp)
+            => ExecuteResource(deviceId, resourcePath, functionName);
+
+        /// <summary>Obsolote, do not use.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("noResp parameter is now ignored, use another overload instead")]
+        public Task<AsyncConsumer<string>> ExecuteResourceAsync(string deviceId, string resourcePath, string functionName, bool? noResp)
+            => ExecuteResourceAsync(deviceId, resourcePath, functionName);
+
+        /// <summary>Obsolote, do not use.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("noResp parameter is now ignored, use another overload instead")]
+        public string GetResourceValue(string deviceId, string resourcePath, bool? noResp)
+            => GetResourceValue(deviceId, resourcePath);
+
+        /// <summary>Obsolote, do not use.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("noResp parameter is now ignored, use another overload instead")]
+        public Task<AsyncConsumer<string>> GetResourceValueAsync(string deviceId, string resourcePath, bool? noResp)
+            => GetResourceValueAsync(deviceId, resourcePath);
+
+        /// <summary>Obsolote, do not use.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("noResp parameter is now ignored, use another overload instead")]
+        public string SetResourceValue(string deviceId, string resourcePath, string resourceValue, bool? noResp)
+            => SetResourceValue(deviceId, resourcePath, resourceValue);
+
+        /// <summary>Obsolote, do not use.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("noResp parameter is now ignored, use another overload instead")]
+        public Task<AsyncConsumer<string>> SetResourceValueAsync(string deviceId, string resourcePath, string resourceValue, bool? noResp)
+            => SetResourceValueAsync(deviceId, resourcePath, resourceValue);
+
+#pragma warning restore CC0044, CC0057, CC0097, SA1611, SA1615, IDE0022
+
+        private static void ThrowIfNullOrEmpty(string value, string paramName)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException(paramName);
+            }
+
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                throw new ArgumentException($"Parameter {paramName} cannot be an empty or blank string.", paramName);
+            }
+        }
+
+        private string UnsafeExecuteSynchronously(Task<AsyncConsumer<string>> task)
+        {
+            Debug.Assert(task != null, "Task to wait cannot be null");
+
+            var consumer = task
+                .GetAwaiter()
+                .GetResult();
+
+            if (!AsyncResponses.ContainsKey(consumer.AsyncId))
+            {
+                throw new CloudApiException(404, "AsyncId not found.");
+            }
+
+            return AsyncResponses[consumer.AsyncId]
+                .Take()
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        private async Task<AsyncConsumer<string>> SetResourceValueAsync(string deviceId, string resourcePath, byte[] resourceValue, string resourceValueMimeType)
+        {
+            Debug.Assert(!string.IsNullOrWhiteSpace(deviceId), "Device ID cannot be a blank string");
+            Debug.Assert(!string.IsNullOrWhiteSpace(resourcePath), "Resource path cannot be a blank string");
+            Debug.Assert(resourceValue != null, "Resource value cannot be null");
+            Debug.Assert(resourceValueMimeType != null, "MIME type cannot be null");
+
+            var deviceRequest = new DeviceRequest(Method: HttpMethod.Put.Method, Uri: AddLeadingSlash(resourcePath))
+            {
+                ContentType = resourceValueMimeType,
+                PayloadB64 = Convert.ToBase64String(resourceValue)
+            };
+
+            return await CreateAsyncRequestAsync(deviceId, deviceRequest);
+        }
+
+        private async Task<AsyncConsumer<string>> CreateAsyncRequestAsync(string deviceId, DeviceRequest request)
+        {
+            Debug.Assert(!string.IsNullOrWhiteSpace(deviceId), "Device ID cannot be a blank string");
+            Debug.Assert(request != null, "Request object cannot be null");
+            Debug.Assert(DeviceRequestsApi != null, "Device requests API is required");
+
             if (Config.AutostartNotifications)
             {
                 StartNotifications();
@@ -377,89 +700,24 @@ namespace MbedCloudSDK.Connect.Api
 
             if (!handleNotifications)
             {
-                throw new CloudApiException(400, "StartNotifications() needs to be called before executing a resource.");
+                throw new CloudApiException(400, "StartNotifications() needs to be called before creating an async request.");
             }
+
+            var asyncId = $"async-{Guid.NewGuid():N}";
 
             try
             {
-                var fixedPath = RemoveLeadingSlash(resourcePath);
-                var asyncID = await ResourcesApi.ExecuteOrCreateResourceAsync(deviceId, fixedPath, functionName, noResponse);
-                var collection = new AsyncProducerConsumerCollection<string>();
-                AsyncResponses.Add(asyncID.AsyncResponseId, collection);
-                return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);
+                await DeviceRequestsApi.CreateAsyncRequestAsync(deviceId, asyncId, request);
             }
             catch (mds.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
-        }
 
-        /// <summary>
-        /// Gets the value of the resource asynchronously
-        /// </summary>
-        /// <param name="deviceId">Device Id</param>
-        /// <param name="resourcePath">Resource path.</param>
-        /// <returns>Async consumer with string</returns>
-        public async System.Threading.Tasks.Task<AsyncConsumer<string>> GetResourceValueAsync(string deviceId, string resourcePath)
-        {
-            if (Config.AutostartNotifications)
-            {
-                StartNotifications();
-            }
+            var collection = new AsyncProducerConsumerCollection<string>();
+            AsyncResponses.Add(asyncId, collection);
 
-            if (!handleNotifications)
-            {
-                throw new CloudApiException(400, "StartNotifications() needs to be called before getting resource value.");
-            }
-
-            try
-            {
-                var fixedPath = AddLeadingSlash(resourcePath);
-                var asyncId = Guid.NewGuid().ToString();
-                var deviceRequest = new mds.Model.DeviceRequest(Method: "GET", Uri: fixedPath);
-                await DeviceRequestsApi.CreateAsyncRequestAsync(deviceId, asyncId, deviceRequest);
-                var collection = new AsyncProducerConsumerCollection<string>();
-                AsyncResponses.Add(asyncId, collection);
-                return new AsyncConsumer<string>(asyncId, collection);
-            }
-            catch (mds.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        /// <summary>
-        /// Set value of the resource asynchronously.
-        /// </summary>
-        /// <param name="deviceId">Id of the device.</param>
-        /// <param name="resourcePath">Path to the resource.</param>
-        /// <param name="resourceValue">Value to set.</param>
-        /// <param name="noResponse">Don't get a response.</param>
-        /// <returns>Async consumer with string</returns>
-        public async System.Threading.Tasks.Task<AsyncConsumer<string>> SetResourceValueAsync(string deviceId, string resourcePath, string resourceValue, bool? noResponse = null)
-        {
-            if (Config.AutostartNotifications)
-            {
-                StartNotifications();
-            }
-
-            if (!handleNotifications)
-            {
-                throw new CloudApiException(400, "StartNotifications() needs to be called before setting a resource value.");
-            }
-
-            try
-            {
-                var fixedPath = RemoveLeadingSlash(resourcePath);
-                var asyncID = await ResourcesApi.UpdateResourceValueAsync(deviceId, fixedPath, resourceValue, noResponse);
-                var collection = new AsyncProducerConsumerCollection<string>();
-                AsyncResponses.Add(asyncID.AsyncResponseId, collection);
-                return new AsyncConsumer<string>(asyncID.AsyncResponseId, collection);
-            }
-            catch (mds.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
+            return new AsyncConsumer<string>(asyncId, collection);
         }
     }
 }

@@ -1,0 +1,1 @@
+SetResourceValue and ExecuteResourceValue now use DeviceRequests Api
