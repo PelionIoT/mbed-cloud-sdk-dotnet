@@ -11,6 +11,17 @@ a list of versions that have been released.
 
 [//]: # (begin_release_notes)
 
+2.0.2 (2018-11-30)
+==================
+
+### Bugfixes
+
+- SetResourceValue and ExecuteResourceValue now use DeviceRequests Api (#1718)
+
+- Now retries for HTTP Status 500 without stopping the notifications up to ~2
+  mins (#1891)
+
+
 2.0.1 (2018-11-22)
 ==================
 

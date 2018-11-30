@@ -1,1 +1,0 @@
-Now retries for HTTP Status 500 without stopping the notifications up to ~2 mins
