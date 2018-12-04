@@ -28170,7 +28170,7 @@
             },
             {
               "api_fieldname": "is_totp_enabled",
-              "_key": "two_factor_authentication_changed"
+              "_key": "two_factor_authentication"
             }
           ],
           "fields": [
@@ -28471,7 +28471,7 @@
                     "example": true,
                     "description": "A flag indicating whether 2-factor authentication (TOTP) has been enabled.",
                     "api_fieldname": "is_totp_enabled",
-                    "entity_fieldname": "two_factor_authentication_changed",
+                    "entity_fieldname": "two_factor_authentication",
                     "parameter_fieldname": "is_totp_enabled",
                     "in": "body",
                     "required": false,
@@ -29059,7 +29059,7 @@
             "last_login_time",
             "password_changed_time",
             "login_history",
-            "two_factor_authentication_changed"
+            "two_factor_authentication"
           ],
           "group_id": "Accounts",
           "parameter_map": {
@@ -29083,7 +29083,7 @@
             },
             {
               "api_fieldname": "is_totp_enabled",
-              "_key": "two_factor_authentication_changed"
+              "_key": "two_factor_authentication"
             }
           ],
           "fields": [
@@ -29447,7 +29447,7 @@
             },
             {
               "api_fieldname": "is_totp_enabled",
-              "_key": "two_factor_authentication_changed"
+              "_key": "two_factor_authentication"
             }
           ],
           "fields": [
@@ -29617,7 +29617,7 @@
                     "example": true,
                     "description": "A flag indicating whether 2-factor authentication (TOTP) has been enabled.",
                     "api_fieldname": "is_totp_enabled",
-                    "entity_fieldname": "two_factor_authentication_changed",
+                    "entity_fieldname": "two_factor_authentication",
                     "parameter_fieldname": "is_totp_enabled",
                     "in": "body",
                     "required": false,
@@ -30066,7 +30066,7 @@
             "password_changed_time",
             "login_history",
             "login_profiles",
-            "two_factor_authentication_changed",
+            "two_factor_authentication",
             "terms_accepted",
             "marketing_accepted"
           ],
@@ -30092,7 +30092,7 @@
             },
             {
               "api_fieldname": "is_totp_enabled",
-              "_key": "two_factor_authentication_changed"
+              "_key": "two_factor_authentication"
             }
           ],
           "fields": [
@@ -30209,11 +30209,11 @@
               "example": true,
               "description": "A flag indicating whether 2-factor authentication (TOTP) has been enabled.",
               "api_fieldname": "is_totp_enabled",
-              "entity_fieldname": "two_factor_authentication_changed",
+              "entity_fieldname": "two_factor_authentication",
               "parameter_fieldname": "is_totp_enabled",
               "in": "body",
               "required": false,
-              "_key": "two_factor_authentication_changed"
+              "_key": "two_factor_authentication"
             },
             {
               "name": "user_id",
@@ -30381,7 +30381,7 @@
                     "example": true,
                     "description": "A flag indicating whether 2-factor authentication (TOTP) has been enabled.",
                     "api_fieldname": "is_totp_enabled",
-                    "entity_fieldname": "two_factor_authentication_changed",
+                    "entity_fieldname": "two_factor_authentication",
                     "parameter_fieldname": "is_totp_enabled",
                     "in": "body",
                     "required": false,
@@ -30995,7 +30995,7 @@
             },
             {
               "api_fieldname": "is_totp_enabled",
-              "_key": "two_factor_authentication_changed"
+              "_key": "two_factor_authentication"
             }
           ],
           "fields": [
@@ -31437,7 +31437,7 @@
           "api_fieldname": "is_totp_enabled",
           "parameter_fieldname": "is_totp_enabled",
           "in": "body",
-          "_key": "two_factor_authentication_changed"
+          "_key": "two_factor_authentication"
         },
         {
           "type": "string",
@@ -31468,7 +31468,7 @@
         },
         {
           "api_fieldname": "is_totp_enabled",
-          "_key": "two_factor_authentication_changed"
+          "_key": "two_factor_authentication"
         }
       ],
       "tags": [
