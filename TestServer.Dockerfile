@@ -3,6 +3,7 @@ FROM andrewlock/dotnet-mono AS builder
 WORKDIR /sln
 
 COPY ./build.sh ./build.cake  ./
+COPY ./tools ./tools
 
 RUN ./build.sh -Target=_clean_integration
 
