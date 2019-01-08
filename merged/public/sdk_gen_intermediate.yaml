@@ -148,19 +148,28 @@ entities:
   - _key: parent_account
     api_fieldname: parent_account
     description: This object represents parent account contact details in responses.
+    foreign_key:
+      entity: parent_account
+      group: Accounts
     properties:
     - _key: admin_email
+      api_fieldname: admin_email
       description: The email address of the admin user who is the contact person of
         the parent account.
+      entity_fieldname: admin_email
       example: info@arm.com
       type: string
     - _key: admin_name
+      api_fieldname: admin_name
       description: The name of the admin user who is the contact person of the parent
         account.
+      entity_fieldname: admin_name
       example: J. Doe
       type: string
     - _key: id
+      api_fieldname: id
       description: The ID of the parent account
+      entity_fieldname: id
       example: 01619571dad80242ac12000600000000
       type: string
     type: object
@@ -525,7 +534,7 @@ entities:
     operation_id: createAccount
     pagination: false
     parameter_map:
-      accountID: id
+      account_id: id
     path: /v3/accounts
     responses:
     - _key: '201'
@@ -831,6 +840,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: account
     return_type: account
     summary: Create a new account.
   - _key: get
@@ -850,7 +863,6 @@ entities:
     - is_custom
     - private_key
     - sub_accounts
-    - id
     - created_at
     - updated_at
     - parent_id
@@ -887,13 +899,12 @@ entities:
     - parent_account
     field_renames: []
     fields:
-    - _key: account_id
-      api_fieldname: account_id
-      description: The ID of the account to be fetched.
-      entity_fieldname: account_id
-      external_param: true
+    - _key: id
+      api_fieldname: id
+      description: Account ID.
+      entity_fieldname: id
+      example: 01619571e2e90242ac12000600000000
       in: path
-      name: account_id
       parameter_fieldname: account_id
       required: true
       type: string
@@ -924,7 +935,7 @@ entities:
     operation_id: getAccountInfo
     pagination: false
     parameter_map:
-      accountID: id
+      account_id: id
     path: /v3/accounts/{account_id}
     responses:
     - _key: '200'
@@ -1078,19 +1089,28 @@ entities:
           api_fieldname: parent_account
           description: This object represents parent account contact details in responses.
           entity_fieldname: parent_account
+          foreign_key:
+            entity: parent_account
+            group: Accounts
           properties:
           - _key: admin_email
+            api_fieldname: admin_email
             description: The email address of the admin user who is the contact person
               of the parent account.
+            entity_fieldname: admin_email
             example: info@arm.com
             type: string
           - _key: admin_name
+            api_fieldname: admin_name
             description: The name of the admin user who is the contact person of the
               parent account.
+            entity_fieldname: admin_name
             example: J. Doe
             type: string
           - _key: id
+            api_fieldname: id
             description: The ID of the parent account
+            entity_fieldname: id
             example: 01619571dad80242ac12000600000000
             type: string
           type: object
@@ -1318,19 +1338,28 @@ entities:
             - _key: parent_account
               description: This object represents parent account contact details in
                 responses.
+              foreign_key:
+                entity: parent_account
+                group: Accounts
               properties:
               - _key: admin_email
+                api_fieldname: admin_email
                 description: The email address of the admin user who is the contact
                   person of the parent account.
+                entity_fieldname: admin_email
                 example: info@arm.com
                 type: string
               - _key: admin_name
+                api_fieldname: admin_name
                 description: The name of the admin user who is the contact person
                   of the parent account.
+                entity_fieldname: admin_name
                 example: J. Doe
                 type: string
               - _key: id
+                api_fieldname: id
                 description: The ID of the parent account
+                entity_fieldname: id
                 example: 01619571dad80242ac12000600000000
                 type: string
               type: object
@@ -1645,6 +1674,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: account
     return_type: account
     summary: Get account info.
   - _key: list
@@ -1755,7 +1788,7 @@ entities:
     operation_id: getAllAccounts
     pagination: true
     parameter_map:
-      accountID: id
+      account_id: id
     path: /v3/accounts
     responses:
     - _key: '200'
@@ -1881,19 +1914,28 @@ entities:
             - _key: parent_account
               description: This object represents parent account contact details in
                 responses.
+              foreign_key:
+                entity: parent_account
+                group: Accounts
               properties:
               - _key: admin_email
+                api_fieldname: admin_email
                 description: The email address of the admin user who is the contact
                   person of the parent account.
+                entity_fieldname: admin_email
                 example: info@arm.com
                 type: string
               - _key: admin_name
+                api_fieldname: admin_name
                 description: The name of the admin user who is the contact person
                   of the parent account.
+                entity_fieldname: admin_name
                 example: J. Doe
                 type: string
               - _key: id
+                api_fieldname: id
                 description: The ID of the parent account
+                entity_fieldname: id
                 example: 01619571dad80242ac12000600000000
                 type: string
               type: object
@@ -2100,19 +2142,28 @@ entities:
                 - _key: parent_account
                   description: This object represents parent account contact details
                     in responses.
+                  foreign_key:
+                    entity: parent_account
+                    group: Accounts
                   properties:
                   - _key: admin_email
+                    api_fieldname: admin_email
                     description: The email address of the admin user who is the contact
                       person of the parent account.
+                    entity_fieldname: admin_email
                     example: info@arm.com
                     type: string
                   - _key: admin_name
+                    api_fieldname: admin_name
                     description: The name of the admin user who is the contact person
                       of the parent account.
+                    entity_fieldname: admin_name
                     example: J. Doe
                     type: string
                   - _key: id
+                    api_fieldname: id
                     description: The ID of the parent account
+                    entity_fieldname: id
                     example: 01619571dad80242ac12000600000000
                     type: string
                   type: object
@@ -2419,6 +2470,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: account
     return_type: paginated_response(account)
     summary: Get all accounts.
   - _key: me
@@ -2504,7 +2559,7 @@ entities:
     operation_id: getMyAccountInfo
     pagination: false
     parameter_map:
-      accountID: id
+      account_id: id
     path: /v3/accounts/me
     responses:
     - _key: '200'
@@ -2658,19 +2713,28 @@ entities:
           api_fieldname: parent_account
           description: This object represents parent account contact details in responses.
           entity_fieldname: parent_account
+          foreign_key:
+            entity: parent_account
+            group: Accounts
           properties:
           - _key: admin_email
+            api_fieldname: admin_email
             description: The email address of the admin user who is the contact person
               of the parent account.
+            entity_fieldname: admin_email
             example: info@arm.com
             type: string
           - _key: admin_name
+            api_fieldname: admin_name
             description: The name of the admin user who is the contact person of the
               parent account.
+            entity_fieldname: admin_name
             example: J. Doe
             type: string
           - _key: id
+            api_fieldname: id
             description: The ID of the parent account
+            entity_fieldname: id
             example: 01619571dad80242ac12000600000000
             type: string
           type: object
@@ -2898,19 +2962,28 @@ entities:
             - _key: parent_account
               description: This object represents parent account contact details in
                 responses.
+              foreign_key:
+                entity: parent_account
+                group: Accounts
               properties:
               - _key: admin_email
+                api_fieldname: admin_email
                 description: The email address of the admin user who is the contact
                   person of the parent account.
+                entity_fieldname: admin_email
                 example: info@arm.com
                 type: string
               - _key: admin_name
+                api_fieldname: admin_name
                 description: The name of the admin user who is the contact person
                   of the parent account.
+                entity_fieldname: admin_name
                 example: J. Doe
                 type: string
               - _key: id
+                api_fieldname: id
                 description: The ID of the parent account
+                entity_fieldname: id
                 example: 01619571dad80242ac12000600000000
                 type: string
               type: object
@@ -3177,6 +3250,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: account
     return_type: account
     summary: Get account info.
   - _key: trusted_certificates
@@ -3211,16 +3288,6 @@ entities:
     - subject__like
     field_renames: []
     fields:
-    - _key: account_id
-      api_fieldname: account_id
-      description: Account ID.
-      entity_fieldname: account_id
-      external_param: true
-      in: path
-      name: account_id
-      parameter_fieldname: account_id
-      required: true
-      type: string
     - _key: after
       api_fieldname: after
       description: The entity ID to fetch after the given one.
@@ -3231,6 +3298,16 @@ entities:
       name: after
       parameter_fieldname: after
       required: false
+      type: string
+    - _key: id
+      api_fieldname: account_id
+      description: Account ID.
+      entity_fieldname: id
+      external_param: false
+      in: path
+      name: account_id
+      parameter_fieldname: account_id
+      required: true
       type: string
     - _key: include
       api_fieldname: include
@@ -3281,7 +3358,7 @@ entities:
     operation_id: getAllAccountCertificates
     pagination: true
     parameter_map:
-      accountID: id
+      account_id: id
     path: /v3/accounts/{account_id}/trusted-certificates
     responses:
     - _key: '200'
@@ -3326,10 +3403,10 @@ entities:
               parameter_fieldname: certificate
               required: false
               type: string
-            - _key: certificate_thumbprint
-              api_fieldname: certificate_thumbprint
-              description: A SHA-256 thumbprint of the certificate.
-              entity_fieldname: certificate_thumbprint
+            - _key: certificate_fingerprint
+              api_fieldname: certificate_fingerprint
+              description: A SHA-256 fingerprint of the certificate.
+              entity_fieldname: certificate_fingerprint
               example: a10fb2c8ba90e6de927bd0ae391dcc38f6115685de2d7024712af37ead0608f1
               type: string
             - _key: created_at
@@ -3461,7 +3538,7 @@ entities:
             required:
             - account_id
             - certificate
-            - certificate_thumbprint
+            - certificate_fingerprint
             - etag
             - id
             - issuer
@@ -3662,6 +3739,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: false
+      type: subtenant_trusted_certificate
     return_type: paginated_response(subtenant_trusted_certificate)
     summary: Get all trusted certificates.
   - _key: update
@@ -3686,7 +3767,6 @@ entities:
     - is_custom
     - private_key
     - sub_accounts
-    - id
     - created_at
     - updated_at
     - parent_id
@@ -3701,16 +3781,6 @@ entities:
     - parent_account
     field_renames: []
     fields:
-    - _key: account_id
-      api_fieldname: account_id
-      description: The ID of the account to be updated.
-      entity_fieldname: account_id
-      external_param: true
-      in: path
-      name: account_id
-      parameter_fieldname: account_id
-      required: true
-      type: string
     - _key: address_line1
       api_fieldname: address_line1
       description: Postal address line 1.
@@ -3840,6 +3910,15 @@ entities:
       parameter_fieldname: expiration_warning_threshold
       required: false
       type: string
+    - _key: id
+      api_fieldname: id
+      description: Account ID.
+      entity_fieldname: id
+      example: 01619571e2e90242ac12000600000000
+      in: path
+      parameter_fieldname: account_id
+      required: true
+      type: string
     - _key: idle_timeout
       api_fieldname: idle_timeout
       description: The reference token expiration time in minutes for this account.
@@ -3932,7 +4011,7 @@ entities:
     operation_id: updateAccount
     pagination: false
     parameter_map:
-      accountID: id
+      account_id: id
     path: /v3/accounts/{account_id}
     responses:
     - _key: '200'
@@ -4086,19 +4165,28 @@ entities:
           api_fieldname: parent_account
           description: This object represents parent account contact details in responses.
           entity_fieldname: parent_account
+          foreign_key:
+            entity: parent_account
+            group: Accounts
           properties:
           - _key: admin_email
+            api_fieldname: admin_email
             description: The email address of the admin user who is the contact person
               of the parent account.
+            entity_fieldname: admin_email
             example: info@arm.com
             type: string
           - _key: admin_name
+            api_fieldname: admin_name
             description: The name of the admin user who is the contact person of the
               parent account.
+            entity_fieldname: admin_name
             example: J. Doe
             type: string
           - _key: id
+            api_fieldname: id
             description: The ID of the parent account
+            entity_fieldname: id
             example: 01619571dad80242ac12000600000000
             type: string
           type: object
@@ -4326,19 +4414,28 @@ entities:
             - _key: parent_account
               description: This object represents parent account contact details in
                 responses.
+              foreign_key:
+                entity: parent_account
+                group: Accounts
               properties:
               - _key: admin_email
+                api_fieldname: admin_email
                 description: The email address of the admin user who is the contact
                   person of the parent account.
+                entity_fieldname: admin_email
                 example: info@arm.com
                 type: string
               - _key: admin_name
+                api_fieldname: admin_name
                 description: The name of the admin user who is the contact person
                   of the parent account.
+                entity_fieldname: admin_name
                 example: J. Doe
                 type: string
               - _key: id
+                api_fieldname: id
                 description: The ID of the parent account
+                entity_fieldname: id
                 example: 01619571dad80242ac12000600000000
                 type: string
               type: object
@@ -4701,6 +4798,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: account
     return_type: account
     summary: Update attributes of an existing account.
   - _key: user_invitations
@@ -4727,16 +4828,6 @@ entities:
     - login_profile__eq
     field_renames: []
     fields:
-    - _key: account_id
-      api_fieldname: account_id
-      description: Account ID.
-      entity_fieldname: account_id
-      external_param: true
-      in: path
-      name: account_id
-      parameter_fieldname: account_id
-      required: true
-      type: string
     - _key: after
       api_fieldname: after
       description: The entity ID to fetch after the given one.
@@ -4747,6 +4838,16 @@ entities:
       name: after
       parameter_fieldname: after
       required: false
+      type: string
+    - _key: id
+      api_fieldname: account_id
+      description: Account ID.
+      entity_fieldname: id
+      external_param: false
+      in: path
+      name: account_id
+      parameter_fieldname: account_id
+      required: true
       type: string
     - _key: limit
       api_fieldname: limit
@@ -4786,8 +4887,7 @@ entities:
     operation_id: getAllAccountInvitations
     pagination: true
     parameter_map:
-      account-id: id
-      accountID: id
+      account_id: id
     path: /v3/accounts/{account_id}/user-invitations
     responses:
     - _key: '200'
@@ -5101,6 +5201,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: false
+      type: subtenant_user_invitation
     return_type: paginated_response(subtenant_user_invitation)
     summary: Get the details of all the user invitations.
   - _key: users
@@ -5130,16 +5234,6 @@ entities:
     - login_profile__eq
     field_renames: []
     fields:
-    - _key: account_id
-      api_fieldname: account_id
-      description: Account ID.
-      entity_fieldname: account_id
-      external_param: true
-      in: path
-      name: account_id
-      parameter_fieldname: account_id
-      required: true
-      type: string
     - _key: after
       api_fieldname: after
       description: The entity ID to fetch after the given one.
@@ -5150,6 +5244,16 @@ entities:
       name: after
       parameter_fieldname: after
       required: false
+      type: string
+    - _key: id
+      api_fieldname: account_id
+      description: Account ID.
+      entity_fieldname: id
+      external_param: false
+      in: path
+      name: account_id
+      parameter_fieldname: account_id
+      required: true
       type: string
     - _key: include
       api_fieldname: include
@@ -5200,7 +5304,7 @@ entities:
     operation_id: getAllAccountUsers
     pagination: true
     parameter_map:
-      accountID: id
+      account_id: id
     path: /v3/accounts/{account_id}/users
     responses:
     - _key: '200'
@@ -5620,6 +5724,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: false
+      type: subtenant_user
     return_type: paginated_response(subtenant_user)
     summary: Get all user details.
   primary_key_field: id
@@ -5638,6 +5746,12 @@ entities:
 - _key: api_key
   field_renames: []
   fields:
+  - _key: account_id
+    api_fieldname: account_id
+    description: The ID of the account.
+    example: 01619571e2e90242ac12000600000000
+    pattern: '[a-f0-9]{32}'
+    type: string
   - _key: created_at
     api_fieldname: created_at
     description: Creation UTC time RFC3339.
@@ -5717,6 +5831,7 @@ entities:
     - key
     - creation_time
     - last_login_time
+    - account_id
     field_renames: []
     fields:
     - _key: name
@@ -5756,7 +5871,7 @@ entities:
     operation_id: createApiKey
     pagination: false
     parameter_map:
-      apiKey: id
+      apikey_id: id
     path: /v3/api-keys
     responses:
     - _key: '201'
@@ -5767,6 +5882,13 @@ entities:
           entity: api_key
           group: Accounts
         properties:
+        - _key: account_id
+          api_fieldname: account_id
+          description: The ID of the account.
+          entity_fieldname: account_id
+          example: 01619571e2e90242ac12000600000000
+          pattern: '[a-f0-9]{32}'
+          type: string
         - _key: created_at
           api_fieldname: created_at
           description: Creation UTC time RFC3339.
@@ -5999,6 +6121,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: api_key
     return_type: api_key
     summary: Create a new API key.
   - _key: delete
@@ -6020,11 +6146,11 @@ entities:
     - sub_accounts
     field_renames: []
     fields:
-    - _key: apikey_id
+    - _key: id
       api_fieldname: apikey_id
       description: The ID of the API key to be deleted.
-      entity_fieldname: apikey_id
-      external_param: true
+      entity_fieldname: id
+      external_param: false
       in: path
       name: apikey_id
       parameter_fieldname: apikey_id
@@ -6036,7 +6162,7 @@ entities:
     operation_id: deleteApiKey
     pagination: false
     parameter_map:
-      apiKey: id
+      apikey_id: id
     path: /v3/api-keys/{apikey_id}
     responses:
     - _key: '204'
@@ -6185,6 +6311,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: api_key
     return_type: api_key
     summary: Delete API key.
   - _key: get
@@ -6204,7 +6334,6 @@ entities:
     - is_custom
     - private_key
     - sub_accounts
-    - id
     - created_at
     - updated_at
     - key
@@ -6213,15 +6342,15 @@ entities:
     - status
     - creation_time
     - last_login_time
+    - account_id
     field_renames: []
     fields:
-    - _key: apikey_id
-      api_fieldname: apikey_id
-      description: The ID of the API key to be retrieved.
-      entity_fieldname: apikey_id
-      external_param: true
+    - _key: id
+      api_fieldname: id
+      description: The ID of the API key.
+      entity_fieldname: id
+      example: 01619571f7020242ac12000600000000
       in: path
-      name: apikey_id
       parameter_fieldname: apikey_id
       required: true
       type: string
@@ -6231,7 +6360,7 @@ entities:
     operation_id: getApiKey
     pagination: false
     parameter_map:
-      apiKey: id
+      apikey_id: id
     path: /v3/api-keys/{apikey_id}
     responses:
     - _key: '200'
@@ -6242,6 +6371,13 @@ entities:
           entity: api_key
           group: Accounts
         properties:
+        - _key: account_id
+          api_fieldname: account_id
+          description: The ID of the account.
+          entity_fieldname: account_id
+          example: 01619571e2e90242ac12000600000000
+          pattern: '[a-f0-9]{32}'
+          type: string
         - _key: created_at
           api_fieldname: created_at
           description: Creation UTC time RFC3339.
@@ -6474,6 +6610,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: api_key
     return_type: api_key
     summary: Get API key details.
   - _key: list
@@ -6562,7 +6702,7 @@ entities:
     operation_id: getAllApiKeys
     pagination: true
     parameter_map:
-      apiKey: id
+      apikey_id: id
     path: /v3/api-keys
     responses:
     - _key: '200'
@@ -6589,6 +6729,11 @@ entities:
               entity: api_key
               group: Accounts
             properties:
+            - _key: account_id
+              description: The ID of the account.
+              example: 01619571e2e90242ac12000600000000
+              pattern: '[a-f0-9]{32}'
+              type: string
             - _key: created_at
               description: Creation UTC time RFC3339.
               example: '2018-02-13T09:35:20Z'
@@ -6796,6 +6941,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: api_key
     return_type: paginated_response(api_key)
     summary: Get all API keys
   - _key: me
@@ -6824,6 +6973,7 @@ entities:
     - status
     - creation_time
     - last_login_time
+    - account_id
     field_renames: []
     fields: []
     group_id: Accounts
@@ -6834,7 +6984,7 @@ entities:
     operation_id: getMyApiKey
     pagination: false
     parameter_map:
-      apiKey: id
+      apikey_id: id
     path: /v3/api-keys/me
     responses:
     - _key: '200'
@@ -6845,6 +6995,13 @@ entities:
           entity: api_key
           group: Accounts
         properties:
+        - _key: account_id
+          api_fieldname: account_id
+          description: The ID of the account.
+          entity_fieldname: account_id
+          example: 01619571e2e90242ac12000600000000
+          pattern: '[a-f0-9]{32}'
+          type: string
         - _key: created_at
           api_fieldname: created_at
           description: Creation UTC time RFC3339.
@@ -7029,6 +7186,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: api_key
     return_type: api_key
     summary: Get API key details.
   - _key: update
@@ -7053,21 +7214,20 @@ entities:
     - is_custom
     - private_key
     - sub_accounts
-    - id
     - created_at
     - updated_at
     - key
     - creation_time
     - last_login_time
+    - account_id
     field_renames: []
     fields:
-    - _key: apikey_id
-      api_fieldname: apikey_id
-      description: The ID of the API key to be updated.
-      entity_fieldname: apikey_id
-      external_param: true
+    - _key: id
+      api_fieldname: id
+      description: The ID of the API key.
+      entity_fieldname: id
+      example: 01619571f7020242ac12000600000000
       in: path
-      name: apikey_id
       parameter_fieldname: apikey_id
       required: true
       type: string
@@ -7106,7 +7266,7 @@ entities:
     operation_id: updateApiKey
     pagination: false
     parameter_map:
-      apiKey: id
+      apikey_id: id
     path: /v3/api-keys/{apikey_id}
     responses:
     - _key: '200'
@@ -7117,6 +7277,13 @@ entities:
           entity: api_key
           group: Accounts
         properties:
+        - _key: account_id
+          api_fieldname: account_id
+          description: The ID of the account.
+          entity_fieldname: account_id
+          example: 01619571e2e90242ac12000600000000
+          pattern: '[a-f0-9]{32}'
+          type: string
         - _key: created_at
           api_fieldname: created_at
           description: Creation UTC time RFC3339.
@@ -7397,6 +7564,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: api_key
     return_type: api_key
     summary: Update API key details.
   primary_key_field: id
@@ -7414,7 +7585,12 @@ entities:
     api_fieldname: certificate_name
     description: The certificate name.
     example: customer.dlms
+    external_param: true
+    in: path
     maxLength: 50
+    name: certificate-name
+    parameter_fieldname: certificate-name
+    pattern: '[\w-]{1,10}\.[\w-.]{1,10}'
     type: string
   - _key: created_at
     api_fieldname: created_at
@@ -7447,6 +7623,8 @@ entities:
     api_fieldname: id
     description: The ID of the certificate enrollment.
     example: 01612df56f3b0a580a010fc700000000
+    in: path
+    parameter_fieldname: device-id
     type: string
   - _key: updated_at
     api_fieldname: updated_at
@@ -7519,7 +7697,13 @@ entities:
           description: The certificate name.
           entity_fieldname: certificate_name
           example: customer.dlms
+          external_param: true
+          in: path
           maxLength: 50
+          name: certificate-name
+          parameter_fieldname: certificate-name
+          pattern: '[\w-]{1,10}\.[\w-.]{1,10}'
+          required: true
           type: string
         - _key: created_at
           api_fieldname: created_at
@@ -7561,6 +7745,9 @@ entities:
           description: The ID of the certificate enrollment.
           entity_fieldname: id
           example: 01612df56f3b0a580a010fc700000000
+          in: path
+          parameter_fieldname: device-id
+          required: true
           type: string
         - _key: object
           api_fieldname: object
@@ -7744,6 +7931,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: certificate_enrollment
     return_type: certificate_enrollment
     summary: Get a certificate enrollment by ID.
   - _key: list
@@ -7891,20 +8082,34 @@ entities:
               group: Security
             properties:
             - _key: certificate_name
+              api_fieldname: certificate-name
               description: The certificate name.
+              entity_fieldname: certificate_name
               example: customer.dlms
+              external_param: true
+              in: path
               maxLength: 50
+              name: certificate-name
+              parameter_fieldname: certificate-name
+              pattern: '[\w-]{1,10}\.[\w-.]{1,10}'
+              required: true
               type: string
             - _key: created_at
+              api_fieldname: created_at
               description: Creation UTC time RFC3339.
+              entity_fieldname: created_at
               example: '2017-01-01T00:00:00Z'
               format: date-time
               type: string
             - _key: device_id
+              api_fieldname: device_id
               description: The device ID.
+              entity_fieldname: device_id
               example: 01625daa23230a580a0100bd00000000
               type: string
             - _key: enroll_result
+              api_fieldname: enroll_result
+              entity_fieldname: enroll_result
               enum:
               - success
               - not_found
@@ -7912,24 +8117,37 @@ entities:
               - failure
               type: string
             - _key: enroll_status
+              api_fieldname: enroll_status
+              entity_fieldname: enroll_status
               enum:
               - new
               - completed
               type: string
             - _key: etag
+              api_fieldname: etag
               description: Entity instance signature.
+              entity_fieldname: etag
               example: '1'
               type: string
             - _key: id
+              api_fieldname: id
               description: The ID of the certificate enrollment.
+              entity_fieldname: id
               example: 01612df56f3b0a580a010fc700000000
+              in: path
+              parameter_fieldname: device-id
+              required: true
               type: string
             - _key: object
+              api_fieldname: object
+              entity_fieldname: object
               enum:
               - certificate-enrollment
               type: string
             - _key: updated_at
+              api_fieldname: updated_at
               description: Update UTC time RFC3339.
+              entity_fieldname: updated_at
               example: '2017-01-01T00:00:00Z'
               format: date-time
               type: string
@@ -8097,6 +8315,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: certificate_enrollment
     return_type: paginated_response(certificate_enrollment)
     summary: Get certificate enrollments list.
   primary_key_field: id
@@ -8197,6 +8419,7 @@ entities:
     - sub_accounts
     - created_at
     - id
+    - issuer_type
     field_renames: []
     fields:
     - _key: description
@@ -8246,23 +8469,6 @@ entities:
       required: false
       schema_param: true
       type: object
-    - _key: issuer_type
-      api_fieldname: issuer_type
-      description: "The type of the certificate issuer.\n- GLOBAL_SIGN:\n  Certificates\
-        \ are issued by GlobalSign service. The users must provide their own GlobalSign\
-        \ account credentials.\n- CFSSL_AUTH:\n  Certificates are issued by CFSSL\
-        \ authenticated signing service.\n  The users must provide their own CFSSL\
-        \ host_url and credentials.\n"
-      entity_fieldname: issuer_type
-      enum:
-      - GLOBAL_SIGN
-      - CFSSL_AUTH
-      enum_reference: certificate_issuer_issuer_type_enum
-      example: GLOBAL_SIGN
-      in: body
-      parameter_fieldname: issuer_type
-      required: false
-      type: string
     - _key: name
       api_fieldname: name
       description: Certificate issuer name, unique per account.
@@ -8280,6 +8486,7 @@ entities:
     pagination: false
     parameter_map:
       certificate-issuer-id: id
+      issuer_type: type
     path: /v3/certificate-issuers
     responses:
     - _key: '201'
@@ -8565,6 +8772,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: certificate_issuer
     return_type: certificate_issuer
     summary: Create certificate issuer.
   - _key: delete
@@ -8618,6 +8829,7 @@ entities:
     pagination: false
     parameter_map:
       certificate-issuer-id: id
+      issuer_type: type
     path: /v3/certificate-issuers/{certificate-issuer-id}
     responses:
     - _key: '204'
@@ -8784,6 +8996,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: certificate_issuer
     return_type: certificate_issuer
     summary: Delete certificate issuer.
   - _key: get
@@ -8820,6 +9036,7 @@ entities:
     pagination: false
     parameter_map:
       certificate-issuer-id: id
+      issuer_type: type
     path: /v3/certificate-issuers/{certificate-issuer-id}
     responses:
     - _key: '200'
@@ -9061,6 +9278,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: certificate_issuer
     return_type: certificate_issuer
     summary: Get certificate issuer by ID.
   - _key: list
@@ -9142,6 +9363,7 @@ entities:
     pagination: true
     parameter_map:
       certificate-issuer-id: id
+      issuer_type: type
     path: /v3/certificate-issuers
     responses:
     - _key: '200'
@@ -9352,6 +9574,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: certificate_issuer
     return_type: paginated_response(certificate_issuer)
     summary: Get certificate issuers list.
   - _key: update
@@ -9446,6 +9672,7 @@ entities:
     pagination: false
     parameter_map:
       certificate-issuer-id: id
+      issuer_type: type
     path: /v3/certificate-issuers/{certificate-issuer-id}
     responses:
     - _key: '200'
@@ -9771,6 +9998,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: certificate_issuer
     return_type: certificate_issuer
     summary: Update certificate issuer.
   - _key: verify
@@ -9841,6 +10072,7 @@ entities:
     pagination: false
     parameter_map:
       certificate-issuer-id: id
+      issuer_type: type
     path: /v3/certificate-issuers/{certificate-issuer-id}/verify
     responses:
     - _key: '200'
@@ -10069,6 +10301,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: false
+      type: verification_response
     return_type: verification_response
     summary: Verify certificate issuer.
     unaggregated: true
@@ -10404,6 +10640,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: certificate_issuer_config
     return_type: certificate_issuer_config
     summary: Create certificate issuer configuration.
   - _key: delete
@@ -10608,6 +10848,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: certificate_issuer_config
     return_type: certificate_issuer_config
     summary: Delete certificate issuer configuration.
   - _key: get
@@ -10875,6 +11119,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: certificate_issuer_config
     return_type: certificate_issuer_config
     summary: Get certificate issuer configuration.
   - _key: list
@@ -11213,6 +11461,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: certificate_issuer_config
     return_type: paginated_response(certificate_issuer_config)
     summary: Get certificate issuer configurations.
   - _key: lwm2m
@@ -11433,6 +11685,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: certificate_issuer_config
     return_type: certificate_issuer_config
     summary: Get certificate issuer configuration.
   - _key: update
@@ -11716,6 +11972,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: certificate_issuer_config
     return_type: certificate_issuer_config
     summary: Update certificate issuer configuration.
   primary_key_field: id
@@ -12322,6 +12582,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: developer_certificate
     return_type: developer_certificate
     summary: Create a new developer certificate to connect to the bootstrap server.
   - _key: delete
@@ -12513,6 +12777,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: developer_certificate
     return_type: developer_certificate
     summary: Delete a trusted certificate by ID.
   - _key: get
@@ -12982,6 +13250,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: developer_certificate
     return_type: developer_certificate
     summary: Fetch an existing developer certificate to connect to the bootstrap server.
   - _key: trusted_certificate_info
@@ -13015,7 +13287,7 @@ entities:
     - validity
     - status
     - enrollment_mode
-    - certificate_thumbprint
+    - certificate_fingerprint
     field_renames:
     - _key: certificate
       api_fieldname: developer_certificate
@@ -13074,10 +13346,10 @@ entities:
           entity_fieldname: certificate
           example: '-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----'
           type: string
-        - _key: certificate_thumbprint
-          api_fieldname: certificate_thumbprint
-          description: A SHA-256 thumbprint of the certificate.
-          entity_fieldname: certificate_thumbprint
+        - _key: certificate_fingerprint
+          api_fieldname: certificate_fingerprint
+          description: A SHA-256 fingerprint of the certificate.
+          entity_fieldname: certificate_fingerprint
           example: a10fb2c8ba90e6de927bd0ae391dcc38f6115685de2d7024712af37ead0608f1
           type: string
         - _key: created_at
@@ -13185,7 +13457,7 @@ entities:
         required:
         - account_id
         - certificate
-        - certificate_thumbprint
+        - certificate_fingerprint
         - etag
         - id
         - issuer
@@ -13339,6 +13611,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: false
+      type: trusted_certificate
     return_type: trusted_certificate
     summary: Get trusted certificate by ID.
     unaggregated: true
@@ -13393,16 +13669,10 @@ entities:
     type: string
   - _key: custom_attributes
     additionalProperties:
-      maxLength: 128
-      pattern: ^[A-Za-z].*
       type: string
     api_fieldname: custom_attributes
-    description: Up to five custom key-value attributes. Note that keys cannot begin
-      with a number. Both keys and values are limited to 128 characters. Updating
-      this field replaces existing contents.
-    example:
-      key: value
-    maxProperties: 5
+    description: Up to five custom key-value attributes.
+    example: '{ ''key'': ''value'' }'
     type: object
   - _key: deployed_state
     api_fieldname: deployed_state
@@ -13451,7 +13721,6 @@ entities:
     api_fieldname: endpoint_name
     description: The endpoint name given to the device.
     example: 00000000-0000-0000-0000-000000000000
-    readOnly: true
     type: string
   - _key: endpoint_type
     api_fieldname: endpoint_type
@@ -13480,61 +13749,6 @@ entities:
     description: The ID of the device. The device ID is used across all Device Management
       APIs.
     example: '00000000000000000000000000000000'
-    type: string
-  - _key: issuer_fingerprint
-    api_fieldname: issuer_fingerprint
-    description: SHA256 fingerprint of the certificate used to validate the signature
-      of the device certificate.
-    example: C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322
-    pattern: '[A-Fa-f0-9]{64}'
-    type: string
-  - _key: last_operator_suspended_category
-    api_fieldname: last_operator_suspended_category
-    description: The reference of the block category.
-    example: maintenance
-    pattern: '[a-f0-9]{32}'
-    type: string
-  - _key: last_operator_suspended_description
-    api_fieldname: last_operator_suspended_description
-    description: The most recent description why the device was suspended or returned
-      to service.
-    example: Suspended for maintenance.
-    maxLength: 2000
-    type: string
-  - _key: last_operator_suspended_updated_at
-    api_fieldname: last_operator_suspended_updated_at
-    description: The timestamp of the most recent suspension activity.
-    example: '2017-05-22T12:37:55.576563Z'
-    format: date-time
-    type: string
-  - _key: last_system_suspended_category
-    api_fieldname: last_system_suspended_category
-    description: The reference of the block category.
-    example: maintenance
-    pattern: '[a-f0-9]{32}'
-    type: string
-  - _key: last_system_suspended_description
-    api_fieldname: last_system_suspended_description
-    description: The most recent description of why the device was blocked or unblocked
-      by the system.
-    example: A certificate in the device's certificate chain was blacklisted by the
-      system.
-    maxLength: 2000
-    type: string
-  - _key: last_system_suspended_updated_at
-    api_fieldname: last_system_suspended_updated_at
-    description: The timestamp of the most recent system block activity.
-    example: '2017-05-22T12:37:55.576563Z'
-    format: date-time
-    type: string
-  - _key: lifecycle_status
-    api_fieldname: lifecycle_status
-    description: The lifecycle status of the device.
-    enum:
-    - enabled
-    - blocked
-    enum_reference: device_lifecycle_status_enum
-    example: enabled
     type: string
   - _key: manifest
     api_fieldname: manifest
@@ -13566,10 +13780,6 @@ entities:
     example: 00000000-0000-0000-0000-000000000000
     maxLength: 128
     type: string
-  - _key: operator_suspended
-    api_fieldname: operator_suspended
-    description: Is the device suspended by the operator?
-    type: boolean
   - _key: serial_number
     api_fieldname: serial_number
     description: The serial number of the device.
@@ -13586,10 +13796,6 @@ entities:
     - deregistered
     enum_reference: device_state_enum
     type: string
-  - _key: system_suspended
-    api_fieldname: system_suspended
-    description: Is the device suspended by the system?
-    type: boolean
   - _key: updated_at
     api_fieldname: updated_at
     description: The time the object was updated.
@@ -13614,15 +13820,6 @@ entities:
     - is_custom
     - private_key
     - sub_accounts
-    - operator_suspended
-    - last_operator_suspended_category
-    - last_operator_suspended_description
-    - last_operator_suspended_updated_at
-    - system_suspended
-    - last_system_suspended_category
-    - last_system_suspended_description
-    - last_system_suspended_updated_at
-    - lifecycle_status
     - account_id
     - created_at
     - deployed_state
@@ -13682,18 +13879,12 @@ entities:
       type: string
     - _key: custom_attributes
       additionalProperties:
-        maxLength: 128
-        pattern: ^[A-Za-z].*
         type: string
       api_fieldname: custom_attributes
-      description: Up to five custom key-value attributes. Note that keys cannot begin
-        with a number. Both keys and values are limited to 128 characters. Updating
-        this field replaces existing contents.
+      description: Up to five custom key-value attributes.
       entity_fieldname: custom_attributes
-      example:
-        key: value
+      example: '{ ''key'': ''value'' }'
       in: body
-      maxProperties: 5
       parameter_fieldname: custom_attributes
       required: false
       type: object
@@ -13759,7 +13950,6 @@ entities:
       example: 00000000-0000-0000-0000-000000000000
       in: body
       parameter_fieldname: endpoint_name
-      readOnly: true
       required: false
       type: string
     - _key: endpoint_type
@@ -13788,17 +13978,6 @@ entities:
       example: ''
       in: body
       parameter_fieldname: host_gateway
-      required: false
-      type: string
-    - _key: issuer_fingerprint
-      api_fieldname: issuer_fingerprint
-      description: SHA256 fingerprint of the certificate used to validate the signature
-        of the device certificate.
-      entity_fieldname: issuer_fingerprint
-      example: C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322
-      in: body
-      parameter_fieldname: issuer_fingerprint
-      pattern: '[A-Fa-f0-9]{64}'
       required: false
       type: string
     - _key: manifest
@@ -13937,17 +14116,11 @@ entities:
           type: string
         custom_attributes:
           additionalProperties:
-            maxLength: 128
-            pattern: ^[A-Za-z].*
             type: string
           api_fieldname: custom_attributes
-          description: Up to five custom key-value attributes. Note that keys cannot
-            begin with a number. Both keys and values are limited to 128 characters.
-            Updating this field replaces existing contents.
+          description: Up to five custom key-value attributes.
           entity_fieldname: custom_attributes
-          example:
-            key: value
-          maxProperties: 5
+          example: '{ ''key'': ''value'' }'
           type: object
         deployed_state:
           api_fieldname: deployed_state
@@ -14002,7 +14175,6 @@ entities:
           description: The endpoint name given to the device.
           entity_fieldname: endpoint_name
           example: 00000000-0000-0000-0000-000000000000
-          readOnly: true
           type: string
         endpoint_type:
           api_fieldname: endpoint_type
@@ -14054,68 +14226,6 @@ entities:
           entity_fieldname: id
           example: '00000000000000000000000000000000'
           type: string
-        issuer_fingerprint:
-          api_fieldname: issuer_fingerprint
-          description: SHA256 fingerprint of the certificate used to validate the
-            signature of the device certificate.
-          entity_fieldname: issuer_fingerprint
-          example: C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322
-          pattern: '[A-Fa-f0-9]{64}'
-          type: string
-        last_operator_suspended_category:
-          api_fieldname: last_operator_suspended_category
-          description: The reference of the block category.
-          entity_fieldname: last_operator_suspended_category
-          example: maintenance
-          pattern: '[a-f0-9]{32}'
-          type: string
-        last_operator_suspended_description:
-          api_fieldname: last_operator_suspended_description
-          description: The most recent description why the device was suspended or
-            returned to service.
-          entity_fieldname: last_operator_suspended_description
-          example: Suspended for maintenance.
-          maxLength: 2000
-          type: string
-        last_operator_suspended_updated_at:
-          api_fieldname: last_operator_suspended_updated_at
-          description: The timestamp of the most recent suspension activity.
-          entity_fieldname: last_operator_suspended_updated_at
-          example: '2017-05-22T12:37:55.576563Z'
-          format: date-time
-          type: string
-        last_system_suspended_category:
-          api_fieldname: last_system_suspended_category
-          description: The reference of the block category.
-          entity_fieldname: last_system_suspended_category
-          example: maintenance
-          pattern: '[a-f0-9]{32}'
-          type: string
-        last_system_suspended_description:
-          api_fieldname: last_system_suspended_description
-          description: The most recent description of why the device was blocked or
-            unblocked by the system.
-          entity_fieldname: last_system_suspended_description
-          example: A certificate in the device's certificate chain was blacklisted
-            by the system.
-          maxLength: 2000
-          type: string
-        last_system_suspended_updated_at:
-          api_fieldname: last_system_suspended_updated_at
-          description: The timestamp of the most recent system block activity.
-          entity_fieldname: last_system_suspended_updated_at
-          example: '2017-05-22T12:37:55.576563Z'
-          format: date-time
-          type: string
-        lifecycle_status:
-          api_fieldname: lifecycle_status
-          description: The lifecycle status of the device.
-          entity_fieldname: lifecycle_status
-          enum:
-          - enabled
-          - blocked
-          example: enabled
-          type: string
         manifest:
           api_fieldname: manifest
           description: 'DEPRECATED: The URL for the current device manifest.'
@@ -14156,11 +14266,6 @@ entities:
           entity_fieldname: object
           example: device
           type: string
-        operator_suspended:
-          api_fieldname: operator_suspended
-          description: Is the device suspended by the operator?
-          entity_fieldname: operator_suspended
-          type: boolean
         serial_number:
           api_fieldname: serial_number
           description: The serial number of the device.
@@ -14178,11 +14283,6 @@ entities:
           - registered
           - deregistered
           type: string
-        system_suspended:
-          api_fieldname: system_suspended
-          description: Is the device suspended by the system?
-          entity_fieldname: system_suspended
-          type: boolean
         updated_at:
           api_fieldname: updated_at
           description: The time the object was updated.
@@ -14206,6 +14306,10 @@ entities:
       description: Account limit reached. Could not create device.
     - _key: '409'
       description: Unique-constrained fields are used by other resources.
+    return_info:
+      custom: false
+      self: true
+      type: device
     return_type: device
     summary: Create a device
   - _key: delete
@@ -14246,6 +14350,10 @@ entities:
       description: Not authenticated.
     - _key: '404'
       description: Unable to delete device because it can't be found.
+    return_info:
+      custom: false
+      self: true
+      type: device
     return_type: device
     summary: Delete a device.
   - _key: get
@@ -14259,16 +14367,6 @@ entities:
     - is_custom
     - private_key
     - sub_accounts
-    - issuer_fingerprint
-    - operator_suspended
-    - last_operator_suspended_category
-    - last_operator_suspended_description
-    - last_operator_suspended_updated_at
-    - system_suspended
-    - last_system_suspended_category
-    - last_system_suspended_description
-    - last_system_suspended_updated_at
-    - lifecycle_status
     - account_id
     - device_execution_mode
     - auto_update
@@ -14372,17 +14470,11 @@ entities:
           type: string
         custom_attributes:
           additionalProperties:
-            maxLength: 128
-            pattern: ^[A-Za-z].*
             type: string
           api_fieldname: custom_attributes
-          description: Up to five custom key-value attributes. Note that keys cannot
-            begin with a number. Both keys and values are limited to 128 characters.
-            Updating this field replaces existing contents.
+          description: Up to five custom key-value attributes.
           entity_fieldname: custom_attributes
-          example:
-            key: value
-          maxProperties: 5
+          example: '{ ''key'': ''value'' }'
           type: object
         deployed_state:
           api_fieldname: deployed_state
@@ -14437,7 +14529,6 @@ entities:
           description: The endpoint name given to the device.
           entity_fieldname: endpoint_name
           example: 00000000-0000-0000-0000-000000000000
-          readOnly: true
           type: string
         endpoint_type:
           api_fieldname: endpoint_type
@@ -14489,68 +14580,6 @@ entities:
           entity_fieldname: id
           example: '00000000000000000000000000000000'
           type: string
-        issuer_fingerprint:
-          api_fieldname: issuer_fingerprint
-          description: SHA256 fingerprint of the certificate used to validate the
-            signature of the device certificate.
-          entity_fieldname: issuer_fingerprint
-          example: C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322
-          pattern: '[A-Fa-f0-9]{64}'
-          type: string
-        last_operator_suspended_category:
-          api_fieldname: last_operator_suspended_category
-          description: The reference of the block category.
-          entity_fieldname: last_operator_suspended_category
-          example: maintenance
-          pattern: '[a-f0-9]{32}'
-          type: string
-        last_operator_suspended_description:
-          api_fieldname: last_operator_suspended_description
-          description: The most recent description why the device was suspended or
-            returned to service.
-          entity_fieldname: last_operator_suspended_description
-          example: Suspended for maintenance.
-          maxLength: 2000
-          type: string
-        last_operator_suspended_updated_at:
-          api_fieldname: last_operator_suspended_updated_at
-          description: The timestamp of the most recent suspension activity.
-          entity_fieldname: last_operator_suspended_updated_at
-          example: '2017-05-22T12:37:55.576563Z'
-          format: date-time
-          type: string
-        last_system_suspended_category:
-          api_fieldname: last_system_suspended_category
-          description: The reference of the block category.
-          entity_fieldname: last_system_suspended_category
-          example: maintenance
-          pattern: '[a-f0-9]{32}'
-          type: string
-        last_system_suspended_description:
-          api_fieldname: last_system_suspended_description
-          description: The most recent description of why the device was blocked or
-            unblocked by the system.
-          entity_fieldname: last_system_suspended_description
-          example: A certificate in the device's certificate chain was blacklisted
-            by the system.
-          maxLength: 2000
-          type: string
-        last_system_suspended_updated_at:
-          api_fieldname: last_system_suspended_updated_at
-          description: The timestamp of the most recent system block activity.
-          entity_fieldname: last_system_suspended_updated_at
-          example: '2017-05-22T12:37:55.576563Z'
-          format: date-time
-          type: string
-        lifecycle_status:
-          api_fieldname: lifecycle_status
-          description: The lifecycle status of the device.
-          entity_fieldname: lifecycle_status
-          enum:
-          - enabled
-          - blocked
-          example: enabled
-          type: string
         manifest:
           api_fieldname: manifest
           description: 'DEPRECATED: The URL for the current device manifest.'
@@ -14591,11 +14620,6 @@ entities:
           entity_fieldname: object
           example: device
           type: string
-        operator_suspended:
-          api_fieldname: operator_suspended
-          description: Is the device suspended by the operator?
-          entity_fieldname: operator_suspended
-          type: boolean
         serial_number:
           api_fieldname: serial_number
           description: The serial number of the device.
@@ -14613,11 +14637,6 @@ entities:
           - registered
           - deregistered
           type: string
-        system_suspended:
-          api_fieldname: system_suspended
-          description: Is the device suspended by the system?
-          entity_fieldname: system_suspended
-          type: boolean
         updated_at:
           api_fieldname: updated_at
           description: The time the object was updated.
@@ -14637,6 +14656,10 @@ entities:
       description: Not authenticated.
     - _key: '404'
       description: Unable to find device.
+    return_info:
+      custom: false
+      self: true
+      type: device
     return_type: device
     summary: Get a device
   - _key: list
@@ -14659,7 +14682,7 @@ entities:
       api_fieldname: after
       description: The ID of The item after which to retrieve the next page.
       entity_fieldname: after
-      example: '01631667477600000000000100100374'
+      example: null
       external_param: true
       in: query
       name: after
@@ -14683,7 +14706,7 @@ entities:
         2 and the maximum is 1000. Limit values outside of this range are set to the
         closest limit.
       entity_fieldname: limit
-      example: 50
+      example: 1000
       external_param: true
       in: query
       maximum: 1000
@@ -14726,13 +14749,13 @@ entities:
         properties:
         - _key: after
           api_fieldname: after
-          description: An offset token for current page.
           entity_fieldname: after
-          example: '01631667477600000000000100100374'
+          example: null
           type: string
         - _key: data
           api_fieldname: data
           entity_fieldname: data
+          example: '[]'
           items:
           - _key: foreign_key
             entity: device
@@ -14773,15 +14796,9 @@ entities:
               type: string
             custom_attributes:
               additionalProperties:
-                maxLength: 128
-                pattern: ^[A-Za-z].*
                 type: string
-              description: Up to five custom key-value attributes. Note that keys
-                cannot begin with a number. Both keys and values are limited to 128
-                characters. Updating this field replaces existing contents.
-              example:
-                key: value
-              maxProperties: 5
+              description: Up to five custom key-value attributes.
+              example: '{ ''key'': ''value'' }'
               type: object
             deployed_state:
               description: 'DEPRECATED: The state of the device''s deployment.'
@@ -14823,7 +14840,6 @@ entities:
             endpoint_name:
               description: The endpoint name given to the device.
               example: 00000000-0000-0000-0000-000000000000
-              readOnly: true
               type: string
             endpoint_type:
               description: The endpoint type of the device. For example, the device
@@ -14861,52 +14877,6 @@ entities:
                 Device Management APIs.
               example: '00000000000000000000000000000000'
               type: string
-            issuer_fingerprint:
-              description: SHA256 fingerprint of the certificate used to validate
-                the signature of the device certificate.
-              example: C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322
-              pattern: '[A-Fa-f0-9]{64}'
-              type: string
-            last_operator_suspended_category:
-              description: The reference of the block category.
-              example: maintenance
-              pattern: '[a-f0-9]{32}'
-              type: string
-            last_operator_suspended_description:
-              description: The most recent description why the device was suspended
-                or returned to service.
-              example: Suspended for maintenance.
-              maxLength: 2000
-              type: string
-            last_operator_suspended_updated_at:
-              description: The timestamp of the most recent suspension activity.
-              example: '2017-05-22T12:37:55.576563Z'
-              format: date-time
-              type: string
-            last_system_suspended_category:
-              description: The reference of the block category.
-              example: maintenance
-              pattern: '[a-f0-9]{32}'
-              type: string
-            last_system_suspended_description:
-              description: The most recent description of why the device was blocked
-                or unblocked by the system.
-              example: A certificate in the device's certificate chain was blacklisted
-                by the system.
-              maxLength: 2000
-              type: string
-            last_system_suspended_updated_at:
-              description: The timestamp of the most recent system block activity.
-              example: '2017-05-22T12:37:55.576563Z'
-              format: date-time
-              type: string
-            lifecycle_status:
-              description: The lifecycle status of the device.
-              enum:
-              - enabled
-              - blocked
-              example: enabled
-              type: string
             manifest:
               description: 'DEPRECATED: The URL for the current device manifest.'
               example: ''
@@ -14935,9 +14905,6 @@ entities:
               description: The API resource entity.
               example: device
               type: string
-            operator_suspended:
-              description: Is the device suspended by the operator?
-              type: boolean
             serial_number:
               description: The serial number of the device.
               example: 00000000-0000-0000-0000-000000000000
@@ -14951,9 +14918,6 @@ entities:
               - registered
               - deregistered
               type: string
-            system_suspended:
-              description: Is the device suspended by the system?
-              type: boolean
             updated_at:
               description: The time the object was updated.
               example: '2017-05-22T12:37:55.576563Z'
@@ -14966,30 +14930,21 @@ entities:
           type: array
         - _key: has_more
           api_fieldname: has_more
-          description: Are there more results available.
           entity_fieldname: has_more
           example: false
           type: boolean
         - _key: limit
           api_fieldname: limit
-          description: How many objects to retrieve in the page. The minimum limit
-            is 2 and the maximum is 1000. Limit values outside of this range are set
-            to the closest limit.
           entity_fieldname: limit
-          example: 50
-          maximum: 1000
-          minimum: 2
+          example: 1000
           type: integer
         - _key: object
           api_fieldname: object
-          description: The type of this API object is a "list".
           entity_fieldname: object
           example: list
           type: string
         - _key: order
           api_fieldname: order
-          description: The order of the records based on creation time, `ASC` or `DESC`;
-            by default `ASC`.
           entity_fieldname: order
           example: DESC
           type: string
@@ -14997,7 +14952,6 @@ entities:
           api_fieldname: total_count
           entity_fieldname: total_count
           example: 1
-          format: integer
           type: integer
     - _key: '400'
       description: Bad Request.
@@ -15005,6 +14959,10 @@ entities:
       description: Not authenticated.
     - _key: '404'
       description: Unable to find page.
+    return_info:
+      custom: false
+      self: true
+      type: device
     return_type: paginated_response(device)
     summary: List all devices.
   - _key: renew_certificate
@@ -15132,9 +15090,6 @@ entities:
           description: The ID of the certificate enrollment.
           entity_fieldname: id
           example: 01612df56f3b0a580a010fc700000000
-          in: path
-          parameter_fieldname: certificate-enrollment-id
-          required: true
           type: string
         - _key: object
           api_fieldname: object
@@ -15402,6 +15357,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: false
+      type: certificate_enrollment
     return_type: certificate_enrollment
     summary: Request certificate renewal.
     unaggregated: true
@@ -15416,16 +15375,6 @@ entities:
     - is_custom
     - private_key
     - sub_accounts
-    - issuer_fingerprint
-    - operator_suspended
-    - last_operator_suspended_category
-    - last_operator_suspended_description
-    - last_operator_suspended_updated_at
-    - system_suspended
-    - last_system_suspended_category
-    - last_system_suspended_description
-    - last_system_suspended_updated_at
-    - lifecycle_status
     - account_id
     - device_execution_mode
     - bootstrap_expiration_date
@@ -15467,18 +15416,12 @@ entities:
       type: string
     - _key: custom_attributes
       additionalProperties:
-        maxLength: 128
-        pattern: ^[A-Za-z].*
         type: string
       api_fieldname: custom_attributes
-      description: Up to five custom key-value attributes. Note that keys cannot begin
-        with a number. Both keys and values are limited to 128 characters. Updating
-        this field replaces existing contents.
+      description: Up to five custom key-value attributes.
       entity_fieldname: custom_attributes
-      example:
-        key: value
+      example: '{ ''key'': ''value'' }'
       in: body
-      maxProperties: 5
       parameter_fieldname: custom_attributes
       required: false
       type: object
@@ -15509,7 +15452,6 @@ entities:
       example: 00000000-0000-0000-0000-000000000000
       in: body
       parameter_fieldname: endpoint_name
-      readOnly: true
       required: false
       type: string
     - _key: endpoint_type
@@ -15614,17 +15556,11 @@ entities:
           type: string
         custom_attributes:
           additionalProperties:
-            maxLength: 128
-            pattern: ^[A-Za-z].*
             type: string
           api_fieldname: custom_attributes
-          description: Up to five custom key-value attributes. Note that keys cannot
-            begin with a number. Both keys and values are limited to 128 characters.
-            Updating this field replaces existing contents.
+          description: Up to five custom key-value attributes.
           entity_fieldname: custom_attributes
-          example:
-            key: value
-          maxProperties: 5
+          example: '{ ''key'': ''value'' }'
           type: object
         deployed_state:
           api_fieldname: deployed_state
@@ -15679,7 +15615,6 @@ entities:
           description: The endpoint name given to the device.
           entity_fieldname: endpoint_name
           example: 00000000-0000-0000-0000-000000000000
-          readOnly: true
           type: string
         endpoint_type:
           api_fieldname: endpoint_type
@@ -15731,68 +15666,6 @@ entities:
           entity_fieldname: id
           example: '00000000000000000000000000000000'
           type: string
-        issuer_fingerprint:
-          api_fieldname: issuer_fingerprint
-          description: SHA256 fingerprint of the certificate used to validate the
-            signature of the device certificate.
-          entity_fieldname: issuer_fingerprint
-          example: C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322
-          pattern: '[A-Fa-f0-9]{64}'
-          type: string
-        last_operator_suspended_category:
-          api_fieldname: last_operator_suspended_category
-          description: The reference of the block category.
-          entity_fieldname: last_operator_suspended_category
-          example: maintenance
-          pattern: '[a-f0-9]{32}'
-          type: string
-        last_operator_suspended_description:
-          api_fieldname: last_operator_suspended_description
-          description: The most recent description why the device was suspended or
-            returned to service.
-          entity_fieldname: last_operator_suspended_description
-          example: Suspended for maintenance.
-          maxLength: 2000
-          type: string
-        last_operator_suspended_updated_at:
-          api_fieldname: last_operator_suspended_updated_at
-          description: The timestamp of the most recent suspension activity.
-          entity_fieldname: last_operator_suspended_updated_at
-          example: '2017-05-22T12:37:55.576563Z'
-          format: date-time
-          type: string
-        last_system_suspended_category:
-          api_fieldname: last_system_suspended_category
-          description: The reference of the block category.
-          entity_fieldname: last_system_suspended_category
-          example: maintenance
-          pattern: '[a-f0-9]{32}'
-          type: string
-        last_system_suspended_description:
-          api_fieldname: last_system_suspended_description
-          description: The most recent description of why the device was blocked or
-            unblocked by the system.
-          entity_fieldname: last_system_suspended_description
-          example: A certificate in the device's certificate chain was blacklisted
-            by the system.
-          maxLength: 2000
-          type: string
-        last_system_suspended_updated_at:
-          api_fieldname: last_system_suspended_updated_at
-          description: The timestamp of the most recent system block activity.
-          entity_fieldname: last_system_suspended_updated_at
-          example: '2017-05-22T12:37:55.576563Z'
-          format: date-time
-          type: string
-        lifecycle_status:
-          api_fieldname: lifecycle_status
-          description: The lifecycle status of the device.
-          entity_fieldname: lifecycle_status
-          enum:
-          - enabled
-          - blocked
-          example: enabled
-          type: string
         manifest:
           api_fieldname: manifest
           description: 'DEPRECATED: The URL for the current device manifest.'
@@ -15833,11 +15706,6 @@ entities:
           entity_fieldname: object
           example: device
           type: string
-        operator_suspended:
-          api_fieldname: operator_suspended
-          description: Is the device suspended by the operator?
-          entity_fieldname: operator_suspended
-          type: boolean
         serial_number:
           api_fieldname: serial_number
           description: The serial number of the device.
@@ -15855,11 +15723,6 @@ entities:
           - registered
           - deregistered
           type: string
-        system_suspended:
-          api_fieldname: system_suspended
-          description: Is the device suspended by the system?
-          entity_fieldname: system_suspended
-          type: boolean
         updated_at:
           api_fieldname: updated_at
           description: The time the object was updated.
@@ -15881,6 +15744,10 @@ entities:
       description: Not authenticated.
     - _key: '404'
       description: Unable to update device because it can't be found.
+    return_info:
+      custom: false
+      self: true
+      type: device
     return_type: device
     summary: Update a device
   primary_key_field: id
@@ -16256,6 +16123,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: device_enrollment
     return_type: device_enrollment
     summary: Place an enrollment claim for one or several devices.
   - _key: delete
@@ -16413,6 +16284,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: device_enrollment
     return_type: device_enrollment
     summary: Delete an enrollment by ID.
   - _key: get
@@ -16649,6 +16524,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: device_enrollment
     return_type: device_enrollment
     summary: Get details of an enrollment by ID.
   - _key: list
@@ -17013,6 +16892,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: device_enrollment
     return_type: paginated_response(device_enrollment)
     summary: Get enrollment list.
   primary_key_field: id
@@ -17404,6 +17287,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: device_enrollment_bulk_create
     return_type: device_enrollment_bulk_create
     summary: Bulk upload
   - _key: download_errors_report_file
@@ -17426,6 +17313,10 @@ entities:
     mode: download_errors_report_file
     path: null
     responses: []
+    return_info:
+      custom: true
+      self: false
+      type: file
     return_type: file
     spec:
       description: This method will download the CSV file containing detailed information
@@ -17453,6 +17344,10 @@ entities:
     mode: download_full_report_file
     path: null
     responses: []
+    return_info:
+      custom: true
+      self: false
+      type: file
     return_type: file
     spec:
       description: This method will download the CSV file containing detailed information
@@ -17836,6 +17731,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: device_enrollment_bulk_create
     return_type: device_enrollment_bulk_create
     summary: Get bulk upload entity
   primary_key_field: id
@@ -18231,6 +18130,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: device_enrollment_bulk_delete
     return_type: device_enrollment_bulk_delete
     summary: Bulk delete
   - _key: download_errors_report_file
@@ -18253,6 +18156,10 @@ entities:
     mode: download_errors_report_file
     path: null
     responses: []
+    return_info:
+      custom: true
+      self: false
+      type: file
     return_type: file
     spec:
       description: This method will download the CSV file containing detailed information
@@ -18280,6 +18187,10 @@ entities:
     mode: download_full_report_file
     path: null
     responses: []
+    return_info:
+      custom: true
+      self: false
+      type: file
     return_type: file
     spec:
       description: This method will download the CSV file containing detailed information
@@ -18666,6 +18577,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: device_enrollment_bulk_delete
     return_type: device_enrollment_bulk_delete
     summary: Get bulk delete entity
   primary_key_field: id
@@ -18867,6 +18782,10 @@ entities:
       description: Not authenticated.
     - _key: '404'
       description: Unable to find device.
+    return_info:
+      custom: false
+      self: true
+      type: device_events
     return_type: device_events
     summary: Retrieve a device event.
   - _key: list
@@ -19055,6 +18974,10 @@ entities:
       description: Not authenticated.
     - _key: '404'
       description: Unable to find page.
+    return_info:
+      custom: false
+      self: true
+      type: device_events
     return_type: paginated_response(device_events)
     summary: List all device events.
   primary_key_field: id
@@ -19092,6 +19015,32 @@ entities:
   primary_key_field: null
   swagger_models:
   - LoginHistory
+  tags: []
+- _key: parent_account
+  field_renames: []
+  fields:
+  - _key: admin_email
+    api_fieldname: admin_email
+    description: The email address of the admin user who is the contact person of
+      the parent account.
+    example: info@arm.com
+    type: string
+  - _key: admin_name
+    api_fieldname: admin_name
+    description: The name of the admin user who is the contact person of the parent
+      account.
+    example: J. Doe
+    type: string
+  - _key: id
+    api_fieldname: id
+    description: The ID of the parent account
+    example: 01619571dad80242ac12000600000000
+    type: string
+  group_id: Accounts
+  methods: []
+  primary_key_field: id
+  swagger_models:
+  - ParentAccountInfo
   tags: []
 - _key: password_policy
   field_renames: []
@@ -19355,6 +19304,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: server_credentials
     return_type: server_credentials
     summary: Fetch bootstrap server credentials.
   - _key: get_lwm2m
@@ -19547,6 +19500,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: server_credentials
     return_type: server_credentials
     summary: Fetch LwM2M server credentials.
   primary_key_field: id
@@ -19569,9 +19526,9 @@ entities:
     in: body
     parameter_fieldname: certificate
     type: string
-  - _key: certificate_thumbprint
-    api_fieldname: certificate_thumbprint
-    description: A SHA-256 thumbprint of the certificate.
+  - _key: certificate_fingerprint
+    api_fieldname: certificate_fingerprint
+    description: A SHA-256 fingerprint of the certificate.
     example: a10fb2c8ba90e6de927bd0ae391dcc38f6115685de2d7024712af37ead0608f1
     type: string
   - _key: created_at
@@ -19699,7 +19656,7 @@ entities:
     - issuer
     - subject
     - validity
-    - certificate_thumbprint
+    - certificate_fingerprint
     field_renames: []
     fields:
     - _key: account_id
@@ -19797,9 +19754,6 @@ entities:
     notes: Signature is not used by the SDK as it is a deprecated field.
     operation_id: addAccountCertificate
     pagination: false
-    parameter_map:
-      accountID: account_id
-      cert-id: id
     path: /v3/accounts/{account_id}/trusted-certificates
     responses:
     - _key: '201'
@@ -19825,10 +19779,10 @@ entities:
           parameter_fieldname: certificate
           required: false
           type: string
-        - _key: certificate_thumbprint
-          api_fieldname: certificate_thumbprint
-          description: A SHA-256 thumbprint of the certificate.
-          entity_fieldname: certificate_thumbprint
+        - _key: certificate_fingerprint
+          api_fieldname: certificate_fingerprint
+          description: A SHA-256 fingerprint of the certificate.
+          entity_fieldname: certificate_fingerprint
           example: a10fb2c8ba90e6de927bd0ae391dcc38f6115685de2d7024712af37ead0608f1
           type: string
         - _key: created_at
@@ -19953,7 +19907,7 @@ entities:
         required:
         - account_id
         - certificate
-        - certificate_thumbprint
+        - certificate_fingerprint
         - etag
         - id
         - issuer
@@ -20156,6 +20110,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: subtenant_trusted_certificate
     return_type: subtenant_trusted_certificate
     summary: Upload new trusted certificate.
   - _key: delete
@@ -20218,9 +20176,6 @@ entities:
     model: TrustedCertificateInternalResp
     operation_id: deleteAccountCertificate
     pagination: false
-    parameter_map:
-      accountID: account_id
-      cert-id: id
     path: /v3/accounts/{account_id}/trusted-certificates/{cert_id}
     responses:
     - _key: '204'
@@ -20369,6 +20324,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: subtenant_trusted_certificate
     return_type: subtenant_trusted_certificate
     summary: Delete trusted certificate by ID.
   - _key: developer_certificate_info
@@ -20434,8 +20393,6 @@ entities:
     operation_id: getDeveloperCertificate
     pagination: false
     parameter_map:
-      accountID: account_id
-      cert-id: id
       developerCertificateId: id
     path: /v3/developer-certificates/{developerCertificateId}
     responses:
@@ -20856,6 +20813,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: false
+      type: developer_certificate
     return_type: developer_certificate
     summary: Fetch an existing developer certificate to connect to the bootstrap server.
     unaggregated: true
@@ -20889,7 +20850,7 @@ entities:
     - validity
     - status
     - enrollment_mode
-    - certificate_thumbprint
+    - certificate_fingerprint
     field_renames: []
     fields:
     - _key: account_id
@@ -20937,9 +20898,6 @@ entities:
     - TrustedCertificateInternalResp
     operation_id: getAccountCertificate
     pagination: false
-    parameter_map:
-      accountID: account_id
-      cert-id: id
     path: /v3/accounts/{account_id}/trusted-certificates/{cert_id}
     responses:
     - _key: '200'
@@ -20962,10 +20920,10 @@ entities:
           entity_fieldname: certificate
           example: '-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----'
           type: string
-        - _key: certificate_thumbprint
-          api_fieldname: certificate_thumbprint
-          description: A SHA-256 thumbprint of the certificate.
-          entity_fieldname: certificate_thumbprint
+        - _key: certificate_fingerprint
+          api_fieldname: certificate_fingerprint
+          description: A SHA-256 fingerprint of the certificate.
+          entity_fieldname: certificate_fingerprint
           example: a10fb2c8ba90e6de927bd0ae391dcc38f6115685de2d7024712af37ead0608f1
           type: string
         - _key: created_at
@@ -21080,7 +21038,7 @@ entities:
         required:
         - account_id
         - certificate
-        - certificate_thumbprint
+        - certificate_fingerprint
         - etag
         - id
         - issuer
@@ -21235,6 +21193,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: subtenant_trusted_certificate
     return_type: subtenant_trusted_certificate
     summary: Get trusted certificate by ID.
   - _key: update
@@ -21263,7 +21225,7 @@ entities:
     - issuer
     - subject
     - validity
-    - certificate_thumbprint
+    - certificate_fingerprint
     field_renames: []
     fields:
     - _key: account_id
@@ -21371,9 +21333,6 @@ entities:
     notes: Signature is not used by the SDK as it is a deprecated field.
     operation_id: updateAccountCertificate
     pagination: false
-    parameter_map:
-      accountID: account_id
-      cert-id: id
     path: /v3/accounts/{account_id}/trusted-certificates/{cert_id}
     responses:
     - _key: '200'
@@ -21396,10 +21355,10 @@ entities:
           entity_fieldname: certificate
           example: '-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----'
           type: string
-        - _key: certificate_thumbprint
-          api_fieldname: certificate_thumbprint
-          description: A SHA-256 thumbprint of the certificate.
-          entity_fieldname: certificate_thumbprint
+        - _key: certificate_fingerprint
+          api_fieldname: certificate_fingerprint
+          description: A SHA-256 fingerprint of the certificate.
+          entity_fieldname: certificate_fingerprint
           example: a10fb2c8ba90e6de927bd0ae391dcc38f6115685de2d7024712af37ead0608f1
           type: string
         - _key: created_at
@@ -21514,7 +21473,7 @@ entities:
         required:
         - account_id
         - certificate
-        - certificate_thumbprint
+        - certificate_fingerprint
         - etag
         - id
         - issuer
@@ -21718,6 +21677,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: subtenant_trusted_certificate
     return_type: subtenant_trusted_certificate
     summary: Update trusted certificate.
   primary_key_field: id
@@ -21787,6 +21750,8 @@ entities:
     api_fieldname: id
     description: The ID of the user.
     example: 01619571e2e89242ac12000600000000
+    in: path
+    parameter_fieldname: user_id
     type: string
   - _key: last_login_time
     api_fieldname: last_login_time
@@ -22112,8 +22077,7 @@ entities:
     operation_id: createAccountUser
     pagination: false
     parameter_map:
-      accountID: account_id
-      user-id: id
+      user_id: id
     path: /v3/accounts/{account_id}/users
     responses:
     - _key: '201'
@@ -22202,6 +22166,9 @@ entities:
           description: The ID of the user.
           entity_fieldname: id
           example: 01619571e2e89242ac12000600000000
+          in: path
+          parameter_fieldname: user_id
+          required: true
           type: string
         - _key: is_gtc_accepted
           api_fieldname: is_gtc_accepted
@@ -22632,6 +22599,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: subtenant_user
     return_type: subtenant_user
     summary: Create a new user.
   - _key: delete
@@ -22669,11 +22640,11 @@ entities:
       parameter_fieldname: account_id
       required: true
       type: string
-    - _key: user_id
+    - _key: id
       api_fieldname: user_id
       description: The ID of the user to be deleted.
-      entity_fieldname: user_id
-      external_param: true
+      entity_fieldname: id
+      external_param: false
       in: path
       name: user_id
       parameter_fieldname: user_id
@@ -22685,8 +22656,7 @@ entities:
     operation_id: deleteAccountUser
     pagination: false
     parameter_map:
-      accountID: account_id
-      user-id: id
+      user_id: id
     path: /v3/accounts/{account_id}/users/{user_id}
     responses:
     - _key: '204'
@@ -22883,6 +22853,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: subtenant_user
     return_type: subtenant_user
     summary: Delete a user.
   - _key: get
@@ -22902,7 +22876,6 @@ entities:
     - is_custom
     - private_key
     - sub_accounts
-    - id
     - created_at
     - updated_at
     - status
@@ -22938,13 +22911,12 @@ entities:
       parameter_fieldname: account_id
       required: true
       type: string
-    - _key: user_id
-      api_fieldname: user_id
-      description: The ID of the user to be retrieved.
-      entity_fieldname: user_id
-      external_param: true
+    - _key: id
+      api_fieldname: id
+      description: The ID of the user.
+      entity_fieldname: id
+      example: 01619571e2e89242ac12000600000000
       in: path
-      name: user_id
       parameter_fieldname: user_id
       required: true
       type: string
@@ -22954,8 +22926,7 @@ entities:
     operation_id: getAccountUser
     pagination: false
     parameter_map:
-      accountID: account_id
-      user-id: id
+      user_id: id
     path: /v3/accounts/{account_id}/users/{user_id}
     responses:
     - _key: '200'
@@ -23044,6 +23015,9 @@ entities:
           description: The ID of the user.
           entity_fieldname: id
           example: 01619571e2e89242ac12000600000000
+          in: path
+          parameter_fieldname: user_id
+          required: true
           type: string
         - _key: is_gtc_accepted
           api_fieldname: is_gtc_accepted
@@ -23378,6 +23352,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: subtenant_user
     return_type: subtenant_user
     summary: Details of the user.
   - _key: update
@@ -23401,7 +23379,6 @@ entities:
     - email
     - two_factor_auth_enabled
     - status
-    - id
     - created_at
     - updated_at
     - password
@@ -23444,6 +23421,15 @@ entities:
       in: body
       parameter_fieldname: full_name
       required: false
+      type: string
+    - _key: id
+      api_fieldname: id
+      description: The ID of the user.
+      entity_fieldname: id
+      example: 01619571e2e89242ac12000600000000
+      in: path
+      parameter_fieldname: user_id
+      required: true
       type: string
     - _key: login_profiles
       api_fieldname: login_profiles
@@ -23508,16 +23494,6 @@ entities:
       parameter_fieldname: is_totp_enabled
       required: false
       type: boolean
-    - _key: user_id
-      api_fieldname: user_id
-      description: The ID of the user to be updated.
-      entity_fieldname: user_id
-      external_param: true
-      in: path
-      name: user_id
-      parameter_fieldname: user_id
-      required: true
-      type: string
     - _key: username
       api_fieldname: username
       description: A username containing alphanumerical letters and -,._@+= characters.
@@ -23533,8 +23509,7 @@ entities:
     operation_id: updateAccountUser
     pagination: false
     parameter_map:
-      accountID: account_id
-      user-id: id
+      user_id: id
     path: /v3/accounts/{account_id}/users/{user_id}
     responses:
     - _key: '200'
@@ -23623,6 +23598,9 @@ entities:
           description: The ID of the user.
           entity_fieldname: id
           example: 01619571e2e89242ac12000600000000
+          in: path
+          parameter_fieldname: user_id
+          required: true
           type: string
         - _key: is_gtc_accepted
           api_fieldname: is_gtc_accepted
@@ -24053,6 +24031,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: subtenant_user
     return_type: subtenant_user
     summary: Update user details.
   - _key: validate_email
@@ -24090,11 +24072,11 @@ entities:
       parameter_fieldname: account_id
       required: true
       type: string
-    - _key: user_id
+    - _key: id
       api_fieldname: user_id
       description: The ID of the user whose email is validated.
-      entity_fieldname: user_id
-      external_param: true
+      entity_fieldname: id
+      external_param: false
       in: path
       name: user_id
       parameter_fieldname: user_id
@@ -24106,14 +24088,61 @@ entities:
     operation_id: validateAccountUserEmail
     pagination: false
     parameter_map:
-      accountID: account_id
-      user-id: id
+      user_id: id
     path: /v3/accounts/{account_id}/users/{user_id}/validate-email
     responses:
     - _key: '204'
       description: Email validation successfully requested.
     - _key: '401'
       description: Authentication failure.
+      schema:
+        properties:
+        - _key: code
+          description: HTTP response code
+          example: 400
+          format: int32
+          type: integer
+        - _key: fields
+          description: Request fields which failed validation.
+          items:
+            properties:
+            - _key: message
+              description: Message describing the error condition.
+              type: string
+            - _key: name
+              description: Name of the field which caused the error.
+              type: string
+            required:
+            - name
+            - message
+            type: object
+          type: array
+        - _key: message
+          description: A human readable informative explanation
+          example: Validation error
+          type: string
+        - _key: object
+          description: Entity name, always `error`.
+          enum:
+          - error
+          type: string
+        - _key: request_id
+          description: ID of the request.
+          example: 0161991d63150242ac12000600000000
+          type: string
+        - _key: type
+          description: Error type used to categorise the error.
+          example: validation_error
+          type: string
+        required:
+        - code
+        - message
+        - object
+        - request_id
+        - type
+        type: object
+    - _key: '403'
+      description: Forbidden.
       schema:
         properties:
         - _key: code
@@ -24208,6 +24237,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: subtenant_user
     return_type: subtenant_user
     summary: Validate the user email.
   primary_key_field: id
@@ -24248,6 +24281,8 @@ entities:
     api_fieldname: id
     description: The ID of the invitation.
     example: 01619571e2e89242ac12000600000000
+    in: path
+    parameter_fieldname: invitation_id
     type: string
   - _key: login_profiles
     api_fieldname: login_profiles
@@ -24384,8 +24419,7 @@ entities:
     operation_id: createAccountInvitation
     pagination: false
     parameter_map:
-      account-id: account_id
-      invitation-id: id
+      invitation_id: id
     path: /v3/accounts/{account_id}/user-invitations
     responses:
     - _key: '201'
@@ -24449,6 +24483,9 @@ entities:
           description: The ID of the invitation.
           entity_fieldname: id
           example: 01619571e2e89242ac12000600000000
+          in: path
+          parameter_fieldname: invitation_id
+          required: true
           type: string
         - _key: login_profiles
           api_fieldname: login_profiles
@@ -24653,6 +24690,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: subtenant_user_invitation
     return_type: subtenant_user_invitation
     summary: Create a user invitation.
   - _key: delete
@@ -24685,11 +24726,11 @@ entities:
       parameter_fieldname: account_id
       required: true
       type: string
-    - _key: invitation_id
+    - _key: id
       api_fieldname: invitation_id
       description: The ID of the invitation to be deleted.
-      entity_fieldname: invitation_id
-      external_param: true
+      entity_fieldname: id
+      external_param: false
       in: path
       name: invitation_id
       parameter_fieldname: invitation_id
@@ -24701,8 +24742,7 @@ entities:
     operation_id: deleteAccountInvitation
     pagination: false
     parameter_map:
-      account-id: account_id
-      invitation-id: id
+      invitation_id: id
     path: /v3/accounts/{account_id}/user-invitations/{invitation_id}
     responses:
     - _key: '204'
@@ -24851,6 +24891,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: subtenant_user_invitation
     return_type: subtenant_user_invitation
     summary: Delete a user invitation.
   - _key: get
@@ -24871,7 +24915,6 @@ entities:
     - is_custom
     - private_key
     - sub_accounts
-    - id
     - created_at
     - updated_at
     - email
@@ -24889,13 +24932,12 @@ entities:
       parameter_fieldname: account_id
       required: true
       type: string
-    - _key: invitation_id
-      api_fieldname: invitation_id
-      description: The ID of the invitation to be retrieved.
-      entity_fieldname: invitation_id
-      external_param: true
+    - _key: id
+      api_fieldname: id
+      description: The ID of the invitation.
+      entity_fieldname: id
+      example: 01619571e2e89242ac12000600000000
       in: path
-      name: invitation_id
       parameter_fieldname: invitation_id
       required: true
       type: string
@@ -24905,8 +24947,7 @@ entities:
     operation_id: getAccountInvitation
     pagination: false
     parameter_map:
-      account-id: account_id
-      invitation-id: id
+      invitation_id: id
     path: /v3/accounts/{account_id}/user-invitations/{invitation_id}
     responses:
     - _key: '200'
@@ -24970,6 +25011,9 @@ entities:
           description: The ID of the invitation.
           entity_fieldname: id
           example: 01619571e2e89242ac12000600000000
+          in: path
+          parameter_fieldname: invitation_id
+          required: true
           type: string
         - _key: login_profiles
           api_fieldname: login_profiles
@@ -25174,6 +25218,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: subtenant_user_invitation
     return_type: subtenant_user_invitation
     summary: Details of a user invitation.
   primary_key_field: id
@@ -25195,9 +25243,9 @@ entities:
     description: X509.v3 trusted certificate in PEM format.
     example: '-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----'
     type: string
-  - _key: certificate_thumbprint
-    api_fieldname: certificate_thumbprint
-    description: A SHA-256 thumbprint of the certificate.
+  - _key: certificate_fingerprint
+    api_fieldname: certificate_fingerprint
+    description: A SHA-256 fingerprint of the certificate.
     example: a10fb2c8ba90e6de927bd0ae391dcc38f6115685de2d7024712af37ead0608f1
     type: string
   - _key: created_at
@@ -25316,7 +25364,7 @@ entities:
     - issuer
     - subject
     - validity
-    - certificate_thumbprint
+    - certificate_fingerprint
     field_renames: []
     fields:
     - _key: certificate
@@ -25429,10 +25477,10 @@ entities:
           entity_fieldname: certificate
           example: '-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----'
           type: string
-        - _key: certificate_thumbprint
-          api_fieldname: certificate_thumbprint
-          description: A SHA-256 thumbprint of the certificate.
-          entity_fieldname: certificate_thumbprint
+        - _key: certificate_fingerprint
+          api_fieldname: certificate_fingerprint
+          description: A SHA-256 fingerprint of the certificate.
+          entity_fieldname: certificate_fingerprint
           example: a10fb2c8ba90e6de927bd0ae391dcc38f6115685de2d7024712af37ead0608f1
           type: string
         - _key: created_at
@@ -25540,7 +25588,7 @@ entities:
         required:
         - account_id
         - certificate
-        - certificate_thumbprint
+        - certificate_fingerprint
         - etag
         - id
         - issuer
@@ -25742,6 +25790,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: trusted_certificate
     return_type: trusted_certificate
     summary: Upload a new trusted certificate.
   - _key: delete
@@ -25944,6 +25996,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: trusted_certificate
     return_type: trusted_certificate
     summary: Delete a trusted certificate by ID.
   - _key: developer_certificate_info
@@ -26430,6 +26486,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: false
+      type: developer_certificate
     return_type: developer_certificate
     summary: Fetch an existing developer certificate to connect to the bootstrap server.
     unaggregated: true
@@ -26464,7 +26524,7 @@ entities:
     - validity
     - status
     - enrollment_mode
-    - certificate_thumbprint
+    - certificate_fingerprint
     field_renames: []
     fields:
     - _key: cert_id
@@ -26527,10 +26587,10 @@ entities:
           entity_fieldname: certificate
           example: '-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----'
           type: string
-        - _key: certificate_thumbprint
-          api_fieldname: certificate_thumbprint
-          description: A SHA-256 thumbprint of the certificate.
-          entity_fieldname: certificate_thumbprint
+        - _key: certificate_fingerprint
+          api_fieldname: certificate_fingerprint
+          description: A SHA-256 fingerprint of the certificate.
+          entity_fieldname: certificate_fingerprint
           example: a10fb2c8ba90e6de927bd0ae391dcc38f6115685de2d7024712af37ead0608f1
           type: string
         - _key: created_at
@@ -26638,7 +26698,7 @@ entities:
         required:
         - account_id
         - certificate
-        - certificate_thumbprint
+        - certificate_fingerprint
         - etag
         - id
         - issuer
@@ -26792,6 +26852,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: trusted_certificate
     return_type: trusted_certificate
     summary: Get trusted certificate by ID.
   - _key: list
@@ -26938,8 +27002,8 @@ entities:
               description: X509.v3 trusted certificate in PEM format.
               example: '-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----'
               type: string
-            - _key: certificate_thumbprint
-              description: A SHA-256 thumbprint of the certificate.
+            - _key: certificate_fingerprint
+              description: A SHA-256 fingerprint of the certificate.
               example: a10fb2c8ba90e6de927bd0ae391dcc38f6115685de2d7024712af37ead0608f1
               type: string
             - _key: created_at
@@ -27017,7 +27081,7 @@ entities:
             required:
             - account_id
             - certificate
-            - certificate_thumbprint
+            - certificate_fingerprint
             - etag
             - id
             - issuer
@@ -27169,6 +27233,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: trusted_certificate
     return_type: paginated_response(trusted_certificate)
     summary: Get all trusted certificates.
   - _key: update
@@ -27198,7 +27266,7 @@ entities:
     - issuer
     - subject
     - validity
-    - certificate_thumbprint
+    - certificate_fingerprint
     field_renames: []
     fields:
     - _key: cert_id
@@ -27317,10 +27385,10 @@ entities:
           entity_fieldname: certificate
           example: '-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----'
           type: string
-        - _key: certificate_thumbprint
-          api_fieldname: certificate_thumbprint
-          description: A SHA-256 thumbprint of the certificate.
-          entity_fieldname: certificate_thumbprint
+        - _key: certificate_fingerprint
+          api_fieldname: certificate_fingerprint
+          description: A SHA-256 fingerprint of the certificate.
+          entity_fieldname: certificate_fingerprint
           example: a10fb2c8ba90e6de927bd0ae391dcc38f6115685de2d7024712af37ead0608f1
           type: string
         - _key: created_at
@@ -27428,7 +27496,7 @@ entities:
         required:
         - account_id
         - certificate
-        - certificate_thumbprint
+        - certificate_fingerprint
         - etag
         - id
         - issuer
@@ -27678,6 +27746,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: trusted_certificate
     return_type: trusted_certificate
     summary: Update trusted certificate.
   primary_key_field: id
@@ -28044,7 +28116,7 @@ entities:
     operation_id: createUser
     pagination: false
     parameter_map:
-      user-id: id
+      user_id: id
     path: /v3/users
     responses:
     - _key: '201'
@@ -28476,6 +28548,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: user
     return_type: user
     summary: Create a new user.
   - _key: delete
@@ -28503,11 +28579,11 @@ entities:
     - _key: two_factor_authentication
       api_fieldname: is_totp_enabled
     fields:
-    - _key: user_id
+    - _key: id
       api_fieldname: user_id
       description: The ID of the user to be deleted.
-      entity_fieldname: user_id
-      external_param: true
+      entity_fieldname: id
+      external_param: false
       in: path
       name: user_id
       parameter_fieldname: user_id
@@ -28519,7 +28595,7 @@ entities:
     operation_id: deleteUser
     pagination: false
     parameter_map:
-      user-id: id
+      user_id: id
     path: /v3/users/{user_id}
     responses:
     - _key: '204'
@@ -28716,6 +28792,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: user
     return_type: user
     summary: Delete a user.
   - _key: get
@@ -28735,7 +28815,6 @@ entities:
     - is_custom
     - private_key
     - sub_accounts
-    - id
     - created_at
     - updated_at
     - status
@@ -28763,13 +28842,12 @@ entities:
     - _key: two_factor_authentication
       api_fieldname: is_totp_enabled
     fields:
-    - _key: user_id
-      api_fieldname: user_id
-      description: The ID of the user whose details are retrieved.
-      entity_fieldname: user_id
-      external_param: true
+    - _key: id
+      api_fieldname: id
+      description: The ID of the user.
+      entity_fieldname: id
+      example: 01619571e2e89242ac12000600000000
       in: path
-      name: user_id
       parameter_fieldname: user_id
       required: true
       type: string
@@ -28779,7 +28857,7 @@ entities:
     operation_id: getUser
     pagination: false
     parameter_map:
-      user-id: id
+      user_id: id
     path: /v3/users/{user_id}
     responses:
     - _key: '200'
@@ -29163,6 +29241,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: user
     return_type: user
     summary: Details of a user.
   - _key: list
@@ -29259,7 +29341,7 @@ entities:
     operation_id: getAllUsers
     pagination: true
     parameter_map:
-      user-id: id
+      user_id: id
     path: /v3/users
     responses:
     - _key: '200'
@@ -29614,6 +29696,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: user
     return_type: paginated_response(user)
     summary: Get the details of all users.
   - _key: update
@@ -29637,7 +29723,6 @@ entities:
     - email
     - two_factor_auth_enabled
     - status
-    - id
     - created_at
     - updated_at
     - password
@@ -29672,6 +29757,15 @@ entities:
       in: body
       parameter_fieldname: full_name
       required: false
+      type: string
+    - _key: id
+      api_fieldname: id
+      description: The ID of the user.
+      entity_fieldname: id
+      example: 01619571e2e89242ac12000600000000
+      in: path
+      parameter_fieldname: user_id
+      required: true
       type: string
     - _key: login_profiles
       api_fieldname: login_profiles
@@ -29736,16 +29830,6 @@ entities:
       parameter_fieldname: is_totp_enabled
       required: false
       type: boolean
-    - _key: user_id
-      api_fieldname: user_id
-      description: The ID of the user whose details are updated.
-      entity_fieldname: user_id
-      external_param: true
-      in: path
-      name: user_id
-      parameter_fieldname: user_id
-      required: true
-      type: string
     - _key: username
       api_fieldname: username
       description: A username containing alphanumerical letters and -,._@+= characters.
@@ -29761,7 +29845,7 @@ entities:
     operation_id: updateUser
     pagination: false
     parameter_map:
-      user-id: id
+      user_id: id
     path: /v3/users/{user_id}
     responses:
     - _key: '200'
@@ -30241,6 +30325,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: user
     return_type: user
     summary: Update user details.
   primary_key_field: id
@@ -30406,7 +30494,7 @@ entities:
     operation_id: createInvitation
     pagination: false
     parameter_map:
-      invitation-id: id
+      invitation_id: id
     path: /v3/user-invitations
     responses:
     - _key: '201'
@@ -30662,6 +30750,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: user_invitation
     return_type: user_invitation
     summary: Create a user invitation.
   - _key: delete
@@ -30684,11 +30776,11 @@ entities:
     - sub_accounts
     field_renames: []
     fields:
-    - _key: invitation_id
+    - _key: id
       api_fieldname: invitation_id
       description: The ID of the invitation to be deleted.
-      entity_fieldname: invitation_id
-      external_param: true
+      entity_fieldname: id
+      external_param: false
       in: path
       name: invitation_id
       parameter_fieldname: invitation_id
@@ -30700,7 +30792,7 @@ entities:
     operation_id: deleteInvitation
     pagination: false
     parameter_map:
-      invitation-id: id
+      invitation_id: id
     path: /v3/user-invitations/{invitation_id}
     responses:
     - _key: '204'
@@ -30849,6 +30941,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: user_invitation
     return_type: user_invitation
     summary: Delete a user invitation.
   - _key: get
@@ -30869,7 +30965,6 @@ entities:
     - is_custom
     - private_key
     - sub_accounts
-    - id
     - created_at
     - updated_at
     - email
@@ -30879,13 +30974,12 @@ entities:
     - login_profiles
     field_renames: []
     fields:
-    - _key: invitation_id
-      api_fieldname: invitation_id
-      description: The ID of the invitation to be retrieved.
-      entity_fieldname: invitation_id
-      external_param: true
+    - _key: id
+      api_fieldname: id
+      description: The ID of the invitation.
+      entity_fieldname: id
+      example: 01619571e2e89242ac12000600000000
       in: path
-      name: invitation_id
       parameter_fieldname: invitation_id
       required: true
       type: string
@@ -30895,7 +30989,7 @@ entities:
     operation_id: getInvitation
     pagination: false
     parameter_map:
-      invitation-id: id
+      invitation_id: id
     path: /v3/user-invitations/{invitation_id}
     responses:
     - _key: '200'
@@ -31151,6 +31245,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: user_invitation
     return_type: user_invitation
     summary: Details of a user invitation.
   - _key: list
@@ -31227,7 +31325,7 @@ entities:
     operation_id: getAllInvitations
     pagination: true
     parameter_map:
-      invitation-id: id
+      invitation_id: id
     path: /v3/user-invitations
     responses:
     - _key: '200'
@@ -31476,6 +31574,10 @@ entities:
         - request_id
         - type
         type: object
+    return_info:
+      custom: false
+      self: true
+      type: user_invitation
     return_type: paginated_response(user_invitation)
     summary: Get the details of all the user invitations.
   primary_key_field: id
@@ -31626,14 +31728,6 @@ enums:
   values:
   - ASC
   - DESC
-- _key: device_lifecycle_status_enum
-  entity_name: device
-  enum_name: device_lifecycle_status_enum
-  field_name: lifecycle_status
-  group_id: Devices
-  values:
-  - blocked
-  - enabled
 - _key: device_mechanism_enum
   entity_name: device
   enum_name: device_mechanism_enum
@@ -31736,6 +31830,7 @@ groups:
   entities:
   - password_policy
   - login_history
+  - parent_account
   - policy
   - user
   - subtenant_user
@@ -31761,7 +31856,6 @@ groups:
   - device_enrollment_bulk_delete
   - device_enrollment
   enums:
-  - device_lifecycle_status_enum
   - device_deployed_state_enum
   - device_mechanism_enum
   - device_state_enum

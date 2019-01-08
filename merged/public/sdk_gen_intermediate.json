@@ -4,6 +4,7 @@
       "entities": [
         "password_policy",
         "login_history",
+        "parent_account",
         "policy",
         "user",
         "subtenant_user",
@@ -34,7 +35,6 @@
         "device_enrollment"
       ],
       "enums": [
-        "device_lifecycle_status_enum",
         "device_deployed_state_enum",
         "device_mechanism_enum",
         "device_state_enum",
@@ -229,17 +229,6 @@
       ],
       "group_id": "Devices",
       "_key": "device_enrollment_order_enum"
-    },
-    {
-      "entity_name": "device",
-      "field_name": "lifecycle_status",
-      "enum_name": "device_lifecycle_status_enum",
-      "values": [
-        "blocked",
-        "enabled"
-      ],
-      "group_id": "Devices",
-      "_key": "device_lifecycle_status_enum"
     },
     {
       "entity_name": "device",
@@ -1038,6 +1027,11 @@
           "path": "/v3/accounts",
           "summary": "Create a new account.",
           "return_type": "account",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "account"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -1053,7 +1047,7 @@
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "accountID": "id"
+            "account_id": "id"
           },
           "operation_id": "createAccount",
           "pagination": false,
@@ -1064,16 +1058,15 @@
           "field_renames": [],
           "fields": [
             {
-              "name": "account_id",
-              "in": "path",
-              "description": "The ID of the account to be fetched.",
-              "required": true,
               "type": "string",
-              "entity_fieldname": "account_id",
-              "api_fieldname": "account_id",
-              "external_param": true,
+              "example": "01619571e2e90242ac12000600000000",
+              "description": "Account ID.",
+              "api_fieldname": "id",
+              "entity_fieldname": "id",
               "parameter_fieldname": "account_id",
-              "_key": "account_id"
+              "in": "path",
+              "required": true,
+              "_key": "id"
             },
             {
               "name": "include",
@@ -1314,22 +1307,32 @@
                         "type": "string",
                         "example": "info@arm.com",
                         "description": "The email address of the admin user who is the contact person of the parent account.",
+                        "api_fieldname": "admin_email",
+                        "entity_fieldname": "admin_email",
                         "_key": "admin_email"
                       },
                       {
                         "type": "string",
                         "example": "J. Doe",
                         "description": "The name of the admin user who is the contact person of the parent account.",
+                        "api_fieldname": "admin_name",
+                        "entity_fieldname": "admin_name",
                         "_key": "admin_name"
                       },
                       {
                         "type": "string",
                         "example": "01619571dad80242ac12000600000000",
                         "description": "The ID of the parent account",
+                        "api_fieldname": "id",
+                        "entity_fieldname": "id",
                         "_key": "id"
                       }
                     ],
                     "description": "This object represents parent account contact details in responses.",
+                    "foreign_key": {
+                      "group": "Accounts",
+                      "entity": "parent_account"
+                    },
                     "api_fieldname": "parent_account",
                     "entity_fieldname": "parent_account",
                     "_key": "parent_account"
@@ -1652,22 +1655,32 @@
                               "type": "string",
                               "example": "info@arm.com",
                               "description": "The email address of the admin user who is the contact person of the parent account.",
+                              "api_fieldname": "admin_email",
+                              "entity_fieldname": "admin_email",
                               "_key": "admin_email"
                             },
                             {
                               "type": "string",
                               "example": "J. Doe",
                               "description": "The name of the admin user who is the contact person of the parent account.",
+                              "api_fieldname": "admin_name",
+                              "entity_fieldname": "admin_name",
                               "_key": "admin_name"
                             },
                             {
                               "type": "string",
                               "example": "01619571dad80242ac12000600000000",
                               "description": "The ID of the parent account",
+                              "api_fieldname": "id",
+                              "entity_fieldname": "id",
                               "_key": "id"
                             }
                           ],
                           "description": "This object represents parent account contact details in responses.",
+                          "foreign_key": {
+                            "group": "Accounts",
+                            "entity": "parent_account"
+                          },
                           "_key": "parent_account"
                         },
                         {
@@ -2101,6 +2114,11 @@
           "path": "/v3/accounts/{account_id}",
           "summary": "Get account info.",
           "return_type": "account",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "account"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -2110,7 +2128,6 @@
             "is_custom",
             "private_key",
             "sub_accounts",
-            "id",
             "created_at",
             "updated_at",
             "parent_id",
@@ -2148,7 +2165,7 @@
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "accountID": "id"
+            "account_id": "id"
           },
           "operation_id": "getAccountInfo",
           "pagination": false,
@@ -2432,22 +2449,32 @@
                               "type": "string",
                               "example": "info@arm.com",
                               "description": "The email address of the admin user who is the contact person of the parent account.",
+                              "api_fieldname": "admin_email",
+                              "entity_fieldname": "admin_email",
                               "_key": "admin_email"
                             },
                             {
                               "type": "string",
                               "example": "J. Doe",
                               "description": "The name of the admin user who is the contact person of the parent account.",
+                              "api_fieldname": "admin_name",
+                              "entity_fieldname": "admin_name",
                               "_key": "admin_name"
                             },
                             {
                               "type": "string",
                               "example": "01619571dad80242ac12000600000000",
                               "description": "The ID of the parent account",
+                              "api_fieldname": "id",
+                              "entity_fieldname": "id",
                               "_key": "id"
                             }
                           ],
                           "description": "This object represents parent account contact details in responses.",
+                          "foreign_key": {
+                            "group": "Accounts",
+                            "entity": "parent_account"
+                          },
                           "_key": "parent_account"
                         },
                         {
@@ -2748,22 +2775,32 @@
                                     "type": "string",
                                     "example": "info@arm.com",
                                     "description": "The email address of the admin user who is the contact person of the parent account.",
+                                    "api_fieldname": "admin_email",
+                                    "entity_fieldname": "admin_email",
                                     "_key": "admin_email"
                                   },
                                   {
                                     "type": "string",
                                     "example": "J. Doe",
                                     "description": "The name of the admin user who is the contact person of the parent account.",
+                                    "api_fieldname": "admin_name",
+                                    "entity_fieldname": "admin_name",
                                     "_key": "admin_name"
                                   },
                                   {
                                     "type": "string",
                                     "example": "01619571dad80242ac12000600000000",
                                     "description": "The ID of the parent account",
+                                    "api_fieldname": "id",
+                                    "entity_fieldname": "id",
                                     "_key": "id"
                                   }
                                 ],
                                 "description": "This object represents parent account contact details in responses.",
+                                "foreign_key": {
+                                  "group": "Accounts",
+                                  "entity": "parent_account"
+                                },
                                 "_key": "parent_account"
                               },
                               {
@@ -3172,6 +3209,11 @@
           "path": "/v3/accounts",
           "summary": "Get all accounts.",
           "return_type": "paginated_response(account)",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "account"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -3195,7 +3237,7 @@
           "foreign_key_priority": "self",
           "group_id": "Accounts",
           "parameter_map": {
-            "accountID": "id"
+            "account_id": "id"
           },
           "operation_id": "getAllAccounts",
           "pagination": true,
@@ -3444,22 +3486,32 @@
                         "type": "string",
                         "example": "info@arm.com",
                         "description": "The email address of the admin user who is the contact person of the parent account.",
+                        "api_fieldname": "admin_email",
+                        "entity_fieldname": "admin_email",
                         "_key": "admin_email"
                       },
                       {
                         "type": "string",
                         "example": "J. Doe",
                         "description": "The name of the admin user who is the contact person of the parent account.",
+                        "api_fieldname": "admin_name",
+                        "entity_fieldname": "admin_name",
                         "_key": "admin_name"
                       },
                       {
                         "type": "string",
                         "example": "01619571dad80242ac12000600000000",
                         "description": "The ID of the parent account",
+                        "api_fieldname": "id",
+                        "entity_fieldname": "id",
                         "_key": "id"
                       }
                     ],
                     "description": "This object represents parent account contact details in responses.",
+                    "foreign_key": {
+                      "group": "Accounts",
+                      "entity": "parent_account"
+                    },
                     "api_fieldname": "parent_account",
                     "entity_fieldname": "parent_account",
                     "_key": "parent_account"
@@ -3782,22 +3834,32 @@
                               "type": "string",
                               "example": "info@arm.com",
                               "description": "The email address of the admin user who is the contact person of the parent account.",
+                              "api_fieldname": "admin_email",
+                              "entity_fieldname": "admin_email",
                               "_key": "admin_email"
                             },
                             {
                               "type": "string",
                               "example": "J. Doe",
                               "description": "The name of the admin user who is the contact person of the parent account.",
+                              "api_fieldname": "admin_name",
+                              "entity_fieldname": "admin_name",
                               "_key": "admin_name"
                             },
                             {
                               "type": "string",
                               "example": "01619571dad80242ac12000600000000",
                               "description": "The ID of the parent account",
+                              "api_fieldname": "id",
+                              "entity_fieldname": "id",
                               "_key": "id"
                             }
                           ],
                           "description": "This object represents parent account contact details in responses.",
+                          "foreign_key": {
+                            "group": "Accounts",
+                            "entity": "parent_account"
+                          },
                           "_key": "parent_account"
                         },
                         {
@@ -4158,6 +4220,11 @@
           "path": "/v3/accounts/me",
           "summary": "Get account info.",
           "return_type": "account",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "account"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -4205,7 +4272,7 @@
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "accountID": "id"
+            "account_id": "id"
           },
           "operation_id": "getMyAccountInfo",
           "notes": "This is provided by the SDK to avoid listing to retrieve the user's own Account.",
@@ -4216,18 +4283,6 @@
           "description": "An endpoint for retrieving trusted certificates in an array.\n\n**Example usage:**\n`curl https://api.us-east-1.mbedcloud.com/v3/accounts/{account_id}/trusted-certificates -H 'Authorization: Bearer API_KEY'`",
           "field_renames": [],
           "fields": [
-            {
-              "name": "account_id",
-              "in": "path",
-              "description": "Account ID.",
-              "required": true,
-              "type": "string",
-              "entity_fieldname": "account_id",
-              "api_fieldname": "account_id",
-              "external_param": true,
-              "parameter_fieldname": "account_id",
-              "_key": "account_id"
-            },
             {
               "type": "string",
               "example": "01619571f3c00242ac12000600000000",
@@ -4240,6 +4295,18 @@
               "external_param": true,
               "parameter_fieldname": "after",
               "_key": "after"
+            },
+            {
+              "name": "account_id",
+              "in": "path",
+              "description": "Account ID.",
+              "required": true,
+              "type": "string",
+              "entity_fieldname": "id",
+              "api_fieldname": "account_id",
+              "external_param": false,
+              "parameter_fieldname": "account_id",
+              "_key": "id"
             },
             {
               "name": "include",
@@ -4318,7 +4385,7 @@
                       "required": [
                         "account_id",
                         "certificate",
-                        "certificate_thumbprint",
+                        "certificate_fingerprint",
                         "etag",
                         "id",
                         "issuer",
@@ -4355,10 +4422,10 @@
                         {
                           "type": "string",
                           "example": "a10fb2c8ba90e6de927bd0ae391dcc38f6115685de2d7024712af37ead0608f1",
-                          "description": "A SHA-256 thumbprint of the certificate.",
-                          "api_fieldname": "certificate_thumbprint",
-                          "entity_fieldname": "certificate_thumbprint",
-                          "_key": "certificate_thumbprint"
+                          "description": "A SHA-256 fingerprint of the certificate.",
+                          "api_fieldname": "certificate_fingerprint",
+                          "entity_fieldname": "certificate_fingerprint",
+                          "_key": "certificate_fingerprint"
                         },
                         {
                           "type": "string",
@@ -4810,6 +4877,11 @@
           "path": "/v3/accounts/{account_id}/trusted-certificates",
           "summary": "Get all trusted certificates.",
           "return_type": "paginated_response(subtenant_trusted_certificate)",
+          "return_info": {
+            "self": false,
+            "custom": false,
+            "type": "subtenant_trusted_certificate"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -4835,7 +4907,7 @@
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "accountID": "id"
+            "account_id": "id"
           },
           "operation_id": "getAllAccountCertificates",
           "notes": "This lists the trusted certificates of the subtenant account.",
@@ -4849,18 +4921,6 @@
           "description": "An endpoint for updating an account.\n\n**Example usage:**\n`curl -X PUT https://api.us-east-1.mbedcloud.com/v3/accounts/{account_id} -d '{\"phone_number\": \"12345678\"}' -H 'content-type: application/json' -H 'Authorization: Bearer API_KEY'`",
           "field_renames": [],
           "fields": [
-            {
-              "name": "account_id",
-              "in": "path",
-              "description": "The ID of the account to be updated.",
-              "required": true,
-              "type": "string",
-              "entity_fieldname": "account_id",
-              "api_fieldname": "account_id",
-              "external_param": true,
-              "parameter_fieldname": "account_id",
-              "_key": "account_id"
-            },
             {
               "type": "string",
               "example": "110 Fulbourn Rd",
@@ -5018,6 +5078,17 @@
               "in": "body",
               "required": false,
               "_key": "expiration_warning_threshold"
+            },
+            {
+              "type": "string",
+              "example": "01619571e2e90242ac12000600000000",
+              "description": "Account ID.",
+              "api_fieldname": "id",
+              "entity_fieldname": "id",
+              "parameter_fieldname": "account_id",
+              "in": "path",
+              "required": true,
+              "_key": "id"
             },
             {
               "type": "string",
@@ -5342,22 +5413,32 @@
                         "type": "string",
                         "example": "info@arm.com",
                         "description": "The email address of the admin user who is the contact person of the parent account.",
+                        "api_fieldname": "admin_email",
+                        "entity_fieldname": "admin_email",
                         "_key": "admin_email"
                       },
                       {
                         "type": "string",
                         "example": "J. Doe",
                         "description": "The name of the admin user who is the contact person of the parent account.",
+                        "api_fieldname": "admin_name",
+                        "entity_fieldname": "admin_name",
                         "_key": "admin_name"
                       },
                       {
                         "type": "string",
                         "example": "01619571dad80242ac12000600000000",
                         "description": "The ID of the parent account",
+                        "api_fieldname": "id",
+                        "entity_fieldname": "id",
                         "_key": "id"
                       }
                     ],
                     "description": "This object represents parent account contact details in responses.",
+                    "foreign_key": {
+                      "group": "Accounts",
+                      "entity": "parent_account"
+                    },
                     "api_fieldname": "parent_account",
                     "entity_fieldname": "parent_account",
                     "_key": "parent_account"
@@ -5680,22 +5761,32 @@
                               "type": "string",
                               "example": "info@arm.com",
                               "description": "The email address of the admin user who is the contact person of the parent account.",
+                              "api_fieldname": "admin_email",
+                              "entity_fieldname": "admin_email",
                               "_key": "admin_email"
                             },
                             {
                               "type": "string",
                               "example": "J. Doe",
                               "description": "The name of the admin user who is the contact person of the parent account.",
+                              "api_fieldname": "admin_name",
+                              "entity_fieldname": "admin_name",
                               "_key": "admin_name"
                             },
                             {
                               "type": "string",
                               "example": "01619571dad80242ac12000600000000",
                               "description": "The ID of the parent account",
+                              "api_fieldname": "id",
+                              "entity_fieldname": "id",
                               "_key": "id"
                             }
                           ],
                           "description": "This object represents parent account contact details in responses.",
+                          "foreign_key": {
+                            "group": "Accounts",
+                            "entity": "parent_account"
+                          },
                           "_key": "parent_account"
                         },
                         {
@@ -6202,6 +6293,11 @@
           "path": "/v3/accounts/{account_id}",
           "summary": "Update attributes of an existing account.",
           "return_type": "account",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "account"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -6211,7 +6307,6 @@
             "is_custom",
             "private_key",
             "sub_accounts",
-            "id",
             "created_at",
             "updated_at",
             "parent_id",
@@ -6227,7 +6322,7 @@
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "accountID": "id"
+            "account_id": "id"
           },
           "operation_id": "updateAccount",
           "additional_operations": [
@@ -6244,18 +6339,6 @@
           "field_renames": [],
           "fields": [
             {
-              "name": "account_id",
-              "in": "path",
-              "description": "Account ID.",
-              "required": true,
-              "type": "string",
-              "entity_fieldname": "account_id",
-              "api_fieldname": "account_id",
-              "external_param": true,
-              "parameter_fieldname": "account_id",
-              "_key": "account_id"
-            },
-            {
               "type": "string",
               "example": "01619571f3c00242ac12000600000000",
               "description": "The entity ID to fetch after the given one.",
@@ -6267,6 +6350,18 @@
               "external_param": true,
               "parameter_fieldname": "after",
               "_key": "after"
+            },
+            {
+              "name": "account_id",
+              "in": "path",
+              "description": "Account ID.",
+              "required": true,
+              "type": "string",
+              "entity_fieldname": "id",
+              "api_fieldname": "account_id",
+              "external_param": false,
+              "parameter_fieldname": "account_id",
+              "_key": "id"
             },
             {
               "type": "integer",
@@ -6751,6 +6846,11 @@
           "path": "/v3/accounts/{account_id}/user-invitations",
           "summary": "Get the details of all the user invitations.",
           "return_type": "paginated_response(subtenant_user_invitation)",
+          "return_info": {
+            "self": false,
+            "custom": false,
+            "type": "subtenant_user_invitation"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -6767,8 +6867,7 @@
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "accountID": "id",
-            "account-id": "id"
+            "account_id": "id"
           },
           "operation_id": "getAllAccountInvitations",
           "notes": "This lists the user invitations of the subtenant account.",
@@ -6783,18 +6882,6 @@
           "field_renames": [],
           "fields": [
             {
-              "name": "account_id",
-              "in": "path",
-              "description": "Account ID.",
-              "required": true,
-              "type": "string",
-              "entity_fieldname": "account_id",
-              "api_fieldname": "account_id",
-              "external_param": true,
-              "parameter_fieldname": "account_id",
-              "_key": "account_id"
-            },
-            {
               "type": "string",
               "example": "01619571f3c00242ac12000600000000",
               "description": "The entity ID to fetch after the given one.",
@@ -6806,6 +6893,18 @@
               "external_param": true,
               "parameter_fieldname": "after",
               "_key": "after"
+            },
+            {
+              "name": "account_id",
+              "in": "path",
+              "description": "Account ID.",
+              "required": true,
+              "type": "string",
+              "entity_fieldname": "id",
+              "api_fieldname": "account_id",
+              "external_param": false,
+              "parameter_fieldname": "account_id",
+              "_key": "id"
             },
             {
               "name": "include",
@@ -7431,6 +7530,11 @@
           "path": "/v3/accounts/{account_id}/users",
           "summary": "Get all user details.",
           "return_type": "paginated_response(subtenant_user)",
+          "return_info": {
+            "self": false,
+            "custom": false,
+            "type": "subtenant_user"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -7451,7 +7555,7 @@
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "accountID": "id"
+            "account_id": "id"
           },
           "operation_id": "getAllAccountUsers",
           "notes": "This lists the users of the subtenant account.",
@@ -7665,22 +7769,32 @@
               "type": "string",
               "example": "info@arm.com",
               "description": "The email address of the admin user who is the contact person of the parent account.",
+              "api_fieldname": "admin_email",
+              "entity_fieldname": "admin_email",
               "_key": "admin_email"
             },
             {
               "type": "string",
               "example": "J. Doe",
               "description": "The name of the admin user who is the contact person of the parent account.",
+              "api_fieldname": "admin_name",
+              "entity_fieldname": "admin_name",
               "_key": "admin_name"
             },
             {
               "type": "string",
               "example": "01619571dad80242ac12000600000000",
               "description": "The ID of the parent account",
+              "api_fieldname": "id",
+              "entity_fieldname": "id",
               "_key": "id"
             }
           ],
           "description": "This object represents parent account contact details in responses.",
+          "foreign_key": {
+            "group": "Accounts",
+            "entity": "parent_account"
+          },
           "api_fieldname": "parent_account",
           "_key": "parent_account"
         },
@@ -7928,6 +8042,15 @@
                   "object"
                 ],
                 "properties": [
+                  {
+                    "type": "string",
+                    "example": "01619571e2e90242ac12000600000000",
+                    "description": "The ID of the account.",
+                    "pattern": "[a-f0-9]{32}",
+                    "api_fieldname": "account_id",
+                    "entity_fieldname": "account_id",
+                    "_key": "account_id"
+                  },
                   {
                     "type": "string",
                     "format": "date-time",
@@ -8268,6 +8391,11 @@
           "path": "/v3/api-keys",
           "summary": "Create a new API key.",
           "return_type": "api_key",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "api_key"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -8282,11 +8410,12 @@
             "updated_at",
             "key",
             "creation_time",
-            "last_login_time"
+            "last_login_time",
+            "account_id"
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "apiKey": "id"
+            "apikey_id": "id"
           },
           "operation_id": "createApiKey",
           "pagination": false,
@@ -8302,11 +8431,11 @@
               "description": "The ID of the API key to be deleted.",
               "required": true,
               "type": "string",
-              "entity_fieldname": "apikey_id",
+              "entity_fieldname": "id",
               "api_fieldname": "apikey_id",
-              "external_param": true,
+              "external_param": false,
               "parameter_fieldname": "apikey_id",
-              "_key": "apikey_id"
+              "_key": "id"
             }
           ],
           "method": "delete",
@@ -8539,6 +8668,11 @@
           "path": "/v3/api-keys/{apikey_id}",
           "summary": "Delete API key.",
           "return_type": "api_key",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "api_key"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -8551,7 +8685,7 @@
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "apiKey": "id"
+            "apikey_id": "id"
           },
           "operation_id": "deleteApiKey",
           "pagination": false,
@@ -8562,16 +8696,15 @@
           "field_renames": [],
           "fields": [
             {
-              "name": "apikey_id",
-              "in": "path",
-              "description": "The ID of the API key to be retrieved.",
-              "required": true,
               "type": "string",
-              "entity_fieldname": "apikey_id",
-              "api_fieldname": "apikey_id",
-              "external_param": true,
+              "example": "01619571f7020242ac12000600000000",
+              "description": "The ID of the API key.",
+              "api_fieldname": "id",
+              "entity_fieldname": "id",
               "parameter_fieldname": "apikey_id",
-              "_key": "apikey_id"
+              "in": "path",
+              "required": true,
+              "_key": "id"
             }
           ],
           "method": "get",
@@ -8589,6 +8722,15 @@
                   "object"
                 ],
                 "properties": [
+                  {
+                    "type": "string",
+                    "example": "01619571e2e90242ac12000600000000",
+                    "description": "The ID of the account.",
+                    "pattern": "[a-f0-9]{32}",
+                    "api_fieldname": "account_id",
+                    "entity_fieldname": "account_id",
+                    "_key": "account_id"
+                  },
                   {
                     "type": "string",
                     "format": "date-time",
@@ -8929,6 +9071,11 @@
           "path": "/v3/api-keys/{apikey_id}",
           "summary": "Get API key details.",
           "return_type": "api_key",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "api_key"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -8938,7 +9085,6 @@
             "is_custom",
             "private_key",
             "sub_accounts",
-            "id",
             "created_at",
             "updated_at",
             "key",
@@ -8946,11 +9092,12 @@
             "owner",
             "status",
             "creation_time",
-            "last_login_time"
+            "last_login_time",
+            "account_id"
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "apiKey": "id"
+            "apikey_id": "id"
           },
           "operation_id": "getApiKey",
           "pagination": false,
@@ -9055,6 +9202,13 @@
                         "object"
                       ],
                       "properties": [
+                        {
+                          "type": "string",
+                          "example": "01619571e2e90242ac12000600000000",
+                          "description": "The ID of the account.",
+                          "pattern": "[a-f0-9]{32}",
+                          "_key": "account_id"
+                        },
                         {
                           "type": "string",
                           "format": "date-time",
@@ -9356,6 +9510,11 @@
           "path": "/v3/api-keys",
           "summary": "Get all API keys",
           "return_type": "paginated_response(api_key)",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "api_key"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -9374,7 +9533,7 @@
           "foreign_key_priority": "self",
           "group_id": "Accounts",
           "parameter_map": {
-            "apiKey": "id"
+            "apikey_id": "id"
           },
           "operation_id": "getAllApiKeys",
           "pagination": true,
@@ -9403,6 +9562,15 @@
                   "object"
                 ],
                 "properties": [
+                  {
+                    "type": "string",
+                    "example": "01619571e2e90242ac12000600000000",
+                    "description": "The ID of the account.",
+                    "pattern": "[a-f0-9]{32}",
+                    "api_fieldname": "account_id",
+                    "entity_fieldname": "account_id",
+                    "_key": "account_id"
+                  },
                   {
                     "type": "string",
                     "format": "date-time",
@@ -9670,6 +9838,11 @@
           "path": "/v3/api-keys/me",
           "summary": "Get API key details.",
           "return_type": "api_key",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "api_key"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -9687,11 +9860,12 @@
             "owner",
             "status",
             "creation_time",
-            "last_login_time"
+            "last_login_time",
+            "account_id"
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "apiKey": "id"
+            "apikey_id": "id"
           },
           "operation_id": "getMyApiKey",
           "notes": "This is provided by the SDK to avoid listing to retrieve the user's own API Key.",
@@ -9703,16 +9877,15 @@
           "field_renames": [],
           "fields": [
             {
-              "name": "apikey_id",
-              "in": "path",
-              "description": "The ID of the API key to be updated.",
-              "required": true,
               "type": "string",
-              "entity_fieldname": "apikey_id",
-              "api_fieldname": "apikey_id",
-              "external_param": true,
+              "example": "01619571f7020242ac12000600000000",
+              "description": "The ID of the API key.",
+              "api_fieldname": "id",
+              "entity_fieldname": "id",
               "parameter_fieldname": "apikey_id",
-              "_key": "apikey_id"
+              "in": "path",
+              "required": true,
+              "_key": "id"
             },
             {
               "type": "string",
@@ -9768,6 +9941,15 @@
                   "object"
                 ],
                 "properties": [
+                  {
+                    "type": "string",
+                    "example": "01619571e2e90242ac12000600000000",
+                    "description": "The ID of the account.",
+                    "pattern": "[a-f0-9]{32}",
+                    "api_fieldname": "account_id",
+                    "entity_fieldname": "account_id",
+                    "_key": "account_id"
+                  },
                   {
                     "type": "string",
                     "format": "date-time",
@@ -10181,6 +10363,11 @@
           "path": "/v3/api-keys/{apikey_id}",
           "summary": "Update API key details.",
           "return_type": "api_key",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "api_key"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -10190,16 +10377,16 @@
             "is_custom",
             "private_key",
             "sub_accounts",
-            "id",
             "created_at",
             "updated_at",
             "key",
             "creation_time",
-            "last_login_time"
+            "last_login_time",
+            "account_id"
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "apiKey": "id"
+            "apikey_id": "id"
           },
           "operation_id": "updateApiKey",
           "additional_operations": [
@@ -10213,6 +10400,14 @@
         }
       ],
       "fields": [
+        {
+          "type": "string",
+          "example": "01619571e2e90242ac12000600000000",
+          "description": "The ID of the account.",
+          "pattern": "[a-f0-9]{32}",
+          "api_fieldname": "account_id",
+          "_key": "account_id"
+        },
         {
           "type": "string",
           "format": "date-time",
@@ -10331,6 +10526,12 @@
                     "example": "customer.dlms",
                     "api_fieldname": "certificate_name",
                     "entity_fieldname": "certificate_name",
+                    "in": "path",
+                    "name": "certificate-name",
+                    "required": true,
+                    "pattern": "[\\w-]{1,10}\\.[\\w-.]{1,10}",
+                    "external_param": true,
+                    "parameter_fieldname": "certificate-name",
                     "_key": "certificate_name"
                   },
                   {
@@ -10386,6 +10587,9 @@
                     "example": "01612df56f3b0a580a010fc700000000",
                     "api_fieldname": "id",
                     "entity_fieldname": "id",
+                    "parameter_fieldname": "device-id",
+                    "in": "path",
+                    "required": true,
                     "_key": "id"
                   },
                   {
@@ -10677,6 +10881,11 @@
           "path": "/v3/certificate-enrollments/{certificate-enrollment-id}",
           "summary": "Get a certificate enrollment by ID.",
           "return_type": "certificate_enrollment",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "certificate_enrollment"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -10792,6 +11001,14 @@
                           "maxLength": 50,
                           "description": "The certificate name.",
                           "example": "customer.dlms",
+                          "api_fieldname": "certificate-name",
+                          "entity_fieldname": "certificate_name",
+                          "in": "path",
+                          "name": "certificate-name",
+                          "required": true,
+                          "pattern": "[\\w-]{1,10}\\.[\\w-.]{1,10}",
+                          "external_param": true,
+                          "parameter_fieldname": "certificate-name",
                           "_key": "certificate_name"
                         },
                         {
@@ -10799,12 +11016,16 @@
                           "format": "date-time",
                           "description": "Creation UTC time RFC3339.",
                           "example": "2017-01-01T00:00:00Z",
+                          "api_fieldname": "created_at",
+                          "entity_fieldname": "created_at",
                           "_key": "created_at"
                         },
                         {
                           "type": "string",
                           "description": "The device ID.",
                           "example": "01625daa23230a580a0100bd00000000",
+                          "api_fieldname": "device_id",
+                          "entity_fieldname": "device_id",
                           "_key": "device_id"
                         },
                         {
@@ -10815,6 +11036,8 @@
                             "forbidden",
                             "failure"
                           ],
+                          "api_fieldname": "enroll_result",
+                          "entity_fieldname": "enroll_result",
                           "_key": "enroll_result"
                         },
                         {
@@ -10823,18 +11046,27 @@
                             "new",
                             "completed"
                           ],
+                          "api_fieldname": "enroll_status",
+                          "entity_fieldname": "enroll_status",
                           "_key": "enroll_status"
                         },
                         {
                           "type": "string",
                           "description": "Entity instance signature.",
                           "example": "1",
+                          "api_fieldname": "etag",
+                          "entity_fieldname": "etag",
                           "_key": "etag"
                         },
                         {
                           "type": "string",
                           "description": "The ID of the certificate enrollment.",
                           "example": "01612df56f3b0a580a010fc700000000",
+                          "api_fieldname": "id",
+                          "entity_fieldname": "id",
+                          "parameter_fieldname": "device-id",
+                          "in": "path",
+                          "required": true,
                           "_key": "id"
                         },
                         {
@@ -10842,6 +11074,8 @@
                           "enum": [
                             "certificate-enrollment"
                           ],
+                          "api_fieldname": "object",
+                          "entity_fieldname": "object",
                           "_key": "object"
                         },
                         {
@@ -10849,6 +11083,8 @@
                           "format": "date-time",
                           "description": "Update UTC time RFC3339.",
                           "example": "2017-01-01T00:00:00Z",
+                          "api_fieldname": "updated_at",
+                          "entity_fieldname": "updated_at",
                           "_key": "updated_at"
                         }
                       ],
@@ -11115,6 +11351,11 @@
           "path": "/v3/certificate-enrollments",
           "summary": "Get certificate enrollments list.",
           "return_type": "paginated_response(certificate_enrollment)",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "certificate_enrollment"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -11159,6 +11400,11 @@
           "description": "The certificate name.",
           "example": "customer.dlms",
           "api_fieldname": "certificate_name",
+          "in": "path",
+          "name": "certificate-name",
+          "pattern": "[\\w-]{1,10}\\.[\\w-.]{1,10}",
+          "external_param": true,
+          "parameter_fieldname": "certificate-name",
           "_key": "certificate_name"
         },
         {
@@ -11203,6 +11449,8 @@
           "description": "The ID of the certificate enrollment.",
           "example": "01612df56f3b0a580a010fc700000000",
           "api_fieldname": "id",
+          "parameter_fieldname": "device-id",
+          "in": "path",
           "_key": "id"
         },
         {
@@ -11277,22 +11525,6 @@
               "parameter_fieldname": "issuer_credentials",
               "required": false,
               "_key": "issuer_credentials"
-            },
-            {
-              "type": "string",
-              "enum": [
-                "GLOBAL_SIGN",
-                "CFSSL_AUTH"
-              ],
-              "description": "The type of the certificate issuer.\n- GLOBAL_SIGN:\n  Certificates are issued by GlobalSign service. The users must provide their own GlobalSign account credentials.\n- CFSSL_AUTH:\n  Certificates are issued by CFSSL authenticated signing service.\n  The users must provide their own CFSSL host_url and credentials.\n",
-              "example": "GLOBAL_SIGN",
-              "api_fieldname": "issuer_type",
-              "entity_fieldname": "issuer_type",
-              "parameter_fieldname": "issuer_type",
-              "in": "body",
-              "required": false,
-              "enum_reference": "certificate_issuer_issuer_type_enum",
-              "_key": "issuer_type"
             },
             {
               "type": "string",
@@ -11720,6 +11952,11 @@
           "path": "/v3/certificate-issuers",
           "summary": "Create certificate issuer.",
           "return_type": "certificate_issuer",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "certificate_issuer"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -11730,11 +11967,13 @@
             "private_key",
             "sub_accounts",
             "created_at",
-            "id"
+            "id",
+            "issuer_type"
           ],
           "group_id": "Security",
           "parameter_map": {
-            "certificate-issuer-id": "id"
+            "certificate-issuer-id": "id",
+            "issuer_type": "type"
           },
           "operation_id": "createCertificateIssuer",
           "pagination": false,
@@ -12020,6 +12259,11 @@
           "path": "/v3/certificate-issuers/{certificate-issuer-id}",
           "summary": "Delete certificate issuer.",
           "return_type": "certificate_issuer",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "certificate_issuer"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -12032,7 +12276,8 @@
           ],
           "group_id": "Security",
           "parameter_map": {
-            "certificate-issuer-id": "id"
+            "certificate-issuer-id": "id",
+            "issuer_type": "type"
           },
           "operation_id": "deleteCertificateIssuer",
           "pagination": false,
@@ -12404,6 +12649,11 @@
           "path": "/v3/certificate-issuers/{certificate-issuer-id}",
           "summary": "Get certificate issuer by ID.",
           "return_type": "certificate_issuer",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "certificate_issuer"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -12421,7 +12671,8 @@
           ],
           "group_id": "Security",
           "parameter_map": {
-            "certificate-issuer-id": "id"
+            "certificate-issuer-id": "id",
+            "issuer_type": "type"
           },
           "operation_id": "getCertificateIssuer",
           "pagination": false,
@@ -12775,6 +13026,11 @@
           "path": "/v3/certificate-issuers",
           "summary": "Get certificate issuers list.",
           "return_type": "paginated_response(certificate_issuer)",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "certificate_issuer"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -12791,7 +13047,8 @@
           "foreign_key_priority": "self",
           "group_id": "Security",
           "parameter_map": {
-            "certificate-issuer-id": "id"
+            "certificate-issuer-id": "id",
+            "issuer_type": "type"
           },
           "operation_id": "getCertificateIssuers",
           "pagination": true,
@@ -13348,6 +13605,11 @@
           "path": "/v3/certificate-issuers/{certificate-issuer-id}",
           "summary": "Update certificate issuer.",
           "return_type": "certificate_issuer",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "certificate_issuer"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -13362,7 +13624,8 @@
           ],
           "group_id": "Security",
           "parameter_map": {
-            "certificate-issuer-id": "id"
+            "certificate-issuer-id": "id",
+            "issuer_type": "type"
           },
           "operation_id": "updateCertificateIssuer",
           "pagination": false,
@@ -13736,6 +13999,11 @@
           "path": "/v3/certificate-issuers/{certificate-issuer-id}/verify",
           "summary": "Verify certificate issuer.",
           "return_type": "verification_response",
+          "return_info": {
+            "self": false,
+            "custom": false,
+            "type": "verification_response"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -13750,7 +14018,8 @@
           ],
           "group_id": "Security",
           "parameter_map": {
-            "certificate-issuer-id": "id"
+            "certificate-issuer-id": "id",
+            "issuer_type": "type"
           },
           "unaggregated": true,
           "operation_id": "verifyCertificateIssuer",
@@ -14203,6 +14472,11 @@
           "path": "/v3/certificate-issuer-configurations",
           "summary": "Create certificate issuer configuration.",
           "return_type": "certificate_issuer_config",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "certificate_issuer_config"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -14509,6 +14783,11 @@
           "path": "/v3/certificate-issuer-configurations/{certificate-issuer-configuration-id}",
           "summary": "Delete certificate issuer configuration.",
           "return_type": "certificate_issuer_config",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "certificate_issuer_config"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -14886,6 +15165,11 @@
           "path": "/v3/certificate-issuer-configurations/{certificate-issuer-configuration-id}",
           "summary": "Get certificate issuer configuration.",
           "return_type": "certificate_issuer_config",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "certificate_issuer_config"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -15297,6 +15581,11 @@
           "path": "/v3/certificate-issuer-configurations",
           "summary": "Get certificate issuer configurations.",
           "return_type": "paginated_response(certificate_issuer_config)",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "certificate_issuer_config"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -15608,6 +15897,11 @@
           "path": "/v3/certificate-issuer-configurations/lwm2m",
           "summary": "Get certificate issuer configuration.",
           "return_type": "certificate_issuer_config",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "certificate_issuer_config"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -16001,6 +16295,11 @@
           "path": "/v3/certificate-issuer-configurations/{certificate-issuer-configuration-id}",
           "summary": "Update certificate issuer configuration.",
           "return_type": "certificate_issuer_config",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "certificate_issuer_config"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -16575,6 +16874,11 @@
           "path": "/v3/developer-certificates",
           "summary": "Create a new developer certificate to connect to the bootstrap server.",
           "return_type": "developer_certificate",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "developer_certificate"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -16854,6 +17158,11 @@
           "path": "/v3/trusted-certificates/{cert_id}",
           "summary": "Delete a trusted certificate by ID.",
           "return_type": "developer_certificate",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "developer_certificate"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -17242,6 +17551,11 @@
           "path": "/v3/developer-certificates/{developerCertificateId}",
           "summary": "Fetch an existing developer certificate to connect to the bootstrap server.",
           "return_type": "developer_certificate",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "developer_certificate"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -17313,7 +17627,7 @@
                 "required": [
                   "account_id",
                   "certificate",
-                  "certificate_thumbprint",
+                  "certificate_fingerprint",
                   "etag",
                   "id",
                   "issuer",
@@ -17343,10 +17657,10 @@
                   {
                     "type": "string",
                     "example": "a10fb2c8ba90e6de927bd0ae391dcc38f6115685de2d7024712af37ead0608f1",
-                    "description": "A SHA-256 thumbprint of the certificate.",
-                    "api_fieldname": "certificate_thumbprint",
-                    "entity_fieldname": "certificate_thumbprint",
-                    "_key": "certificate_thumbprint"
+                    "description": "A SHA-256 fingerprint of the certificate.",
+                    "api_fieldname": "certificate_fingerprint",
+                    "entity_fieldname": "certificate_fingerprint",
+                    "_key": "certificate_fingerprint"
                   },
                   {
                     "type": "string",
@@ -17715,6 +18029,11 @@
           "path": "/v3/trusted-certificates/{cert_id}",
           "summary": "Get trusted certificate by ID.",
           "return_type": "trusted_certificate",
+          "return_info": {
+            "self": false,
+            "custom": false,
+            "type": "trusted_certificate"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -17738,7 +18057,7 @@
             "validity",
             "status",
             "enrollment_mode",
-            "certificate_thumbprint"
+            "certificate_fingerprint"
           ],
           "group_id": "Security",
           "parameter_map": {
@@ -17891,16 +18210,11 @@
             },
             {
               "type": "object",
-              "maxProperties": 5,
+              "description": "Up to five custom key-value attributes.",
               "additionalProperties": {
-                "type": "string",
-                "maxLength": 128,
-                "pattern": "^[A-Za-z].*"
+                "type": "string"
               },
-              "description": "Up to five custom key-value attributes. Note that keys cannot begin with a number. Both keys and values are limited to 128 characters. Updating this field replaces existing contents.",
-              "example": {
-                "key": "value"
-              },
+              "example": "{ 'key': 'value' }",
               "api_fieldname": "custom_attributes",
               "entity_fieldname": "custom_attributes",
               "parameter_fieldname": "custom_attributes",
@@ -17975,7 +18289,6 @@
               "type": "string",
               "description": "The endpoint name given to the device.",
               "example": "00000000-0000-0000-0000-000000000000",
-              "readOnly": true,
               "api_fieldname": "endpoint_name",
               "entity_fieldname": "endpoint_name",
               "parameter_fieldname": "endpoint_name",
@@ -18016,18 +18329,6 @@
               "in": "body",
               "required": false,
               "_key": "host_gateway"
-            },
-            {
-              "type": "string",
-              "pattern": "[A-Fa-f0-9]{64}",
-              "description": "SHA256 fingerprint of the certificate used to validate the signature of the device certificate.",
-              "example": "C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322",
-              "api_fieldname": "issuer_fingerprint",
-              "entity_fieldname": "issuer_fingerprint",
-              "parameter_fieldname": "issuer_fingerprint",
-              "in": "body",
-              "required": false,
-              "_key": "issuer_fingerprint"
             },
             {
               "type": "string",
@@ -18141,85 +18442,6 @@
                     "api_fieldname": "groups",
                     "entity_fieldname": "groups"
                   },
-                  "issuer_fingerprint": {
-                    "type": "string",
-                    "pattern": "[A-Fa-f0-9]{64}",
-                    "description": "SHA256 fingerprint of the certificate used to validate the signature of the device certificate.",
-                    "example": "C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322",
-                    "api_fieldname": "issuer_fingerprint",
-                    "entity_fieldname": "issuer_fingerprint"
-                  },
-                  "operator_suspended": {
-                    "type": "boolean",
-                    "description": "Is the device suspended by the operator?",
-                    "api_fieldname": "operator_suspended",
-                    "entity_fieldname": "operator_suspended"
-                  },
-                  "last_operator_suspended_category": {
-                    "type": "string",
-                    "description": "The reference of the block category.",
-                    "pattern": "[a-f0-9]{32}",
-                    "example": "maintenance",
-                    "api_fieldname": "last_operator_suspended_category",
-                    "entity_fieldname": "last_operator_suspended_category"
-                  },
-                  "last_operator_suspended_description": {
-                    "type": "string",
-                    "maxLength": 2000,
-                    "description": "The most recent description why the device was suspended or returned to service.",
-                    "example": "Suspended for maintenance.",
-                    "api_fieldname": "last_operator_suspended_description",
-                    "entity_fieldname": "last_operator_suspended_description"
-                  },
-                  "last_operator_suspended_updated_at": {
-                    "type": "string",
-                    "format": "date-time",
-                    "description": "The timestamp of the most recent suspension activity.",
-                    "example": "2017-05-22T12:37:55.576563Z",
-                    "api_fieldname": "last_operator_suspended_updated_at",
-                    "entity_fieldname": "last_operator_suspended_updated_at"
-                  },
-                  "system_suspended": {
-                    "type": "boolean",
-                    "description": "Is the device suspended by the system?",
-                    "api_fieldname": "system_suspended",
-                    "entity_fieldname": "system_suspended"
-                  },
-                  "last_system_suspended_category": {
-                    "type": "string",
-                    "description": "The reference of the block category.",
-                    "pattern": "[a-f0-9]{32}",
-                    "example": "maintenance",
-                    "api_fieldname": "last_system_suspended_category",
-                    "entity_fieldname": "last_system_suspended_category"
-                  },
-                  "last_system_suspended_description": {
-                    "type": "string",
-                    "maxLength": 2000,
-                    "description": "The most recent description of why the device was blocked or unblocked by the system.",
-                    "example": "A certificate in the device's certificate chain was blacklisted by the system.",
-                    "api_fieldname": "last_system_suspended_description",
-                    "entity_fieldname": "last_system_suspended_description"
-                  },
-                  "last_system_suspended_updated_at": {
-                    "type": "string",
-                    "format": "date-time",
-                    "description": "The timestamp of the most recent system block activity.",
-                    "example": "2017-05-22T12:37:55.576563Z",
-                    "api_fieldname": "last_system_suspended_updated_at",
-                    "entity_fieldname": "last_system_suspended_updated_at"
-                  },
-                  "lifecycle_status": {
-                    "type": "string",
-                    "enum": [
-                      "enabled",
-                      "blocked"
-                    ],
-                    "description": "The lifecycle status of the device.",
-                    "example": "enabled",
-                    "api_fieldname": "lifecycle_status",
-                    "entity_fieldname": "lifecycle_status"
-                  },
                   "account_id": {
                     "type": "string",
                     "description": "The ID of the associated account.",
@@ -18285,16 +18507,11 @@
                   },
                   "custom_attributes": {
                     "type": "object",
-                    "maxProperties": 5,
+                    "description": "Up to five custom key-value attributes.",
                     "additionalProperties": {
-                      "type": "string",
-                      "maxLength": 128,
-                      "pattern": "^[A-Za-z].*"
+                      "type": "string"
                     },
-                    "description": "Up to five custom key-value attributes. Note that keys cannot begin with a number. Both keys and values are limited to 128 characters. Updating this field replaces existing contents.",
-                    "example": {
-                      "key": "value"
-                    },
+                    "example": "{ 'key': 'value' }",
                     "api_fieldname": "custom_attributes",
                     "entity_fieldname": "custom_attributes"
                   },
@@ -18350,7 +18567,6 @@
                     "type": "string",
                     "description": "The endpoint name given to the device.",
                     "example": "00000000-0000-0000-0000-000000000000",
-                    "readOnly": true,
                     "api_fieldname": "endpoint_name",
                     "entity_fieldname": "endpoint_name"
                   },
@@ -18499,6 +18715,11 @@
           "path": "/v3/devices/",
           "summary": "Create a device",
           "return_type": "device",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "device"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -18508,15 +18729,6 @@
             "is_custom",
             "private_key",
             "sub_accounts",
-            "operator_suspended",
-            "last_operator_suspended_category",
-            "last_operator_suspended_description",
-            "last_operator_suspended_updated_at",
-            "system_suspended",
-            "last_system_suspended_category",
-            "last_system_suspended_description",
-            "last_system_suspended_updated_at",
-            "lifecycle_status",
             "account_id",
             "created_at",
             "deployed_state",
@@ -18569,6 +18781,11 @@
           "path": "/v3/devices/{id}/",
           "summary": "Delete a device.",
           "return_type": "device",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "device"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -18621,85 +18838,6 @@
                     },
                     "api_fieldname": "groups",
                     "entity_fieldname": "groups"
-                  },
-                  "issuer_fingerprint": {
-                    "type": "string",
-                    "pattern": "[A-Fa-f0-9]{64}",
-                    "description": "SHA256 fingerprint of the certificate used to validate the signature of the device certificate.",
-                    "example": "C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322",
-                    "api_fieldname": "issuer_fingerprint",
-                    "entity_fieldname": "issuer_fingerprint"
-                  },
-                  "operator_suspended": {
-                    "type": "boolean",
-                    "description": "Is the device suspended by the operator?",
-                    "api_fieldname": "operator_suspended",
-                    "entity_fieldname": "operator_suspended"
-                  },
-                  "last_operator_suspended_category": {
-                    "type": "string",
-                    "description": "The reference of the block category.",
-                    "pattern": "[a-f0-9]{32}",
-                    "example": "maintenance",
-                    "api_fieldname": "last_operator_suspended_category",
-                    "entity_fieldname": "last_operator_suspended_category"
-                  },
-                  "last_operator_suspended_description": {
-                    "type": "string",
-                    "maxLength": 2000,
-                    "description": "The most recent description why the device was suspended or returned to service.",
-                    "example": "Suspended for maintenance.",
-                    "api_fieldname": "last_operator_suspended_description",
-                    "entity_fieldname": "last_operator_suspended_description"
-                  },
-                  "last_operator_suspended_updated_at": {
-                    "type": "string",
-                    "format": "date-time",
-                    "description": "The timestamp of the most recent suspension activity.",
-                    "example": "2017-05-22T12:37:55.576563Z",
-                    "api_fieldname": "last_operator_suspended_updated_at",
-                    "entity_fieldname": "last_operator_suspended_updated_at"
-                  },
-                  "system_suspended": {
-                    "type": "boolean",
-                    "description": "Is the device suspended by the system?",
-                    "api_fieldname": "system_suspended",
-                    "entity_fieldname": "system_suspended"
-                  },
-                  "last_system_suspended_category": {
-                    "type": "string",
-                    "description": "The reference of the block category.",
-                    "pattern": "[a-f0-9]{32}",
-                    "example": "maintenance",
-                    "api_fieldname": "last_system_suspended_category",
-                    "entity_fieldname": "last_system_suspended_category"
-                  },
-                  "last_system_suspended_description": {
-                    "type": "string",
-                    "maxLength": 2000,
-                    "description": "The most recent description of why the device was blocked or unblocked by the system.",
-                    "example": "A certificate in the device's certificate chain was blacklisted by the system.",
-                    "api_fieldname": "last_system_suspended_description",
-                    "entity_fieldname": "last_system_suspended_description"
-                  },
-                  "last_system_suspended_updated_at": {
-                    "type": "string",
-                    "format": "date-time",
-                    "description": "The timestamp of the most recent system block activity.",
-                    "example": "2017-05-22T12:37:55.576563Z",
-                    "api_fieldname": "last_system_suspended_updated_at",
-                    "entity_fieldname": "last_system_suspended_updated_at"
-                  },
-                  "lifecycle_status": {
-                    "type": "string",
-                    "enum": [
-                      "enabled",
-                      "blocked"
-                    ],
-                    "description": "The lifecycle status of the device.",
-                    "example": "enabled",
-                    "api_fieldname": "lifecycle_status",
-                    "entity_fieldname": "lifecycle_status"
                   },
                   "account_id": {
                     "type": "string",
@@ -18766,16 +18904,11 @@
                   },
                   "custom_attributes": {
                     "type": "object",
-                    "maxProperties": 5,
+                    "description": "Up to five custom key-value attributes.",
                     "additionalProperties": {
-                      "type": "string",
-                      "maxLength": 128,
-                      "pattern": "^[A-Za-z].*"
+                      "type": "string"
                     },
-                    "description": "Up to five custom key-value attributes. Note that keys cannot begin with a number. Both keys and values are limited to 128 characters. Updating this field replaces existing contents.",
-                    "example": {
-                      "key": "value"
-                    },
+                    "example": "{ 'key': 'value' }",
                     "api_fieldname": "custom_attributes",
                     "entity_fieldname": "custom_attributes"
                   },
@@ -18831,7 +18964,6 @@
                     "type": "string",
                     "description": "The endpoint name given to the device.",
                     "example": "00000000-0000-0000-0000-000000000000",
-                    "readOnly": true,
                     "api_fieldname": "endpoint_name",
                     "entity_fieldname": "endpoint_name"
                   },
@@ -18976,6 +19108,11 @@
           "path": "/v3/devices/{id}/",
           "summary": "Get a device",
           "return_type": "device",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "device"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -18985,16 +19122,6 @@
             "is_custom",
             "private_key",
             "sub_accounts",
-            "issuer_fingerprint",
-            "operator_suspended",
-            "last_operator_suspended_category",
-            "last_operator_suspended_description",
-            "last_operator_suspended_updated_at",
-            "system_suspended",
-            "last_system_suspended_category",
-            "last_system_suspended_description",
-            "last_system_suspended_updated_at",
-            "lifecycle_status",
             "account_id",
             "device_execution_mode",
             "auto_update",
@@ -19035,10 +19162,10 @@
           "fields": [
             {
               "type": "string",
-              "description": "The ID of The item after which to retrieve the next page.",
-              "example": "01631667477600000000000100100374",
+              "example": null,
               "api_fieldname": "after",
               "entity_fieldname": "after",
+              "description": "The ID of The item after which to retrieve the next page.",
               "in": "query",
               "name": "after",
               "external_param": true,
@@ -19060,14 +19187,14 @@
             },
             {
               "type": "integer",
-              "description": "How many objects to retrieve in the page. The minimum limit is 2 and the maximum is 1000. Limit values outside of this range are set to the closest limit.",
-              "example": 50,
-              "minimum": 2,
-              "maximum": 1000,
+              "example": 1000,
               "api_fieldname": "limit",
               "entity_fieldname": "limit",
+              "description": "How many objects to retrieve in the page. The minimum limit is 2 and the maximum is 1000. Limit values outside of this range are set to the closest limit.",
               "in": "query",
               "name": "limit",
+              "minimum": 2,
+              "maximum": 1000,
               "external_param": true,
               "parameter_fieldname": "limit",
               "required": false,
@@ -19075,10 +19202,10 @@
             },
             {
               "type": "string",
-              "description": "The order of the records based on creation time, `ASC` or `DESC`; by default `ASC`.",
               "example": "DESC",
               "api_fieldname": "order",
               "entity_fieldname": "order",
+              "description": "The order of the records based on creation time, `ASC` or `DESC`; by default `ASC`.",
               "in": "query",
               "name": "order",
               "external_param": true,
@@ -19096,8 +19223,7 @@
                 "properties": [
                   {
                     "type": "string",
-                    "description": "An offset token for current page.",
-                    "example": "01631667477600000000000100100374",
+                    "example": null,
                     "api_fieldname": "after",
                     "entity_fieldname": "after",
                     "_key": "after"
@@ -19117,65 +19243,6 @@
                             "type": "string",
                             "example": "00000000000000000000000000000000"
                           }
-                        },
-                        "issuer_fingerprint": {
-                          "type": "string",
-                          "pattern": "[A-Fa-f0-9]{64}",
-                          "description": "SHA256 fingerprint of the certificate used to validate the signature of the device certificate.",
-                          "example": "C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322"
-                        },
-                        "operator_suspended": {
-                          "type": "boolean",
-                          "description": "Is the device suspended by the operator?"
-                        },
-                        "last_operator_suspended_category": {
-                          "type": "string",
-                          "description": "The reference of the block category.",
-                          "pattern": "[a-f0-9]{32}",
-                          "example": "maintenance"
-                        },
-                        "last_operator_suspended_description": {
-                          "type": "string",
-                          "maxLength": 2000,
-                          "description": "The most recent description why the device was suspended or returned to service.",
-                          "example": "Suspended for maintenance."
-                        },
-                        "last_operator_suspended_updated_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The timestamp of the most recent suspension activity.",
-                          "example": "2017-05-22T12:37:55.576563Z"
-                        },
-                        "system_suspended": {
-                          "type": "boolean",
-                          "description": "Is the device suspended by the system?"
-                        },
-                        "last_system_suspended_category": {
-                          "type": "string",
-                          "description": "The reference of the block category.",
-                          "pattern": "[a-f0-9]{32}",
-                          "example": "maintenance"
-                        },
-                        "last_system_suspended_description": {
-                          "type": "string",
-                          "maxLength": 2000,
-                          "description": "The most recent description of why the device was blocked or unblocked by the system.",
-                          "example": "A certificate in the device's certificate chain was blacklisted by the system."
-                        },
-                        "last_system_suspended_updated_at": {
-                          "type": "string",
-                          "format": "date-time",
-                          "description": "The timestamp of the most recent system block activity.",
-                          "example": "2017-05-22T12:37:55.576563Z"
-                        },
-                        "lifecycle_status": {
-                          "type": "string",
-                          "enum": [
-                            "enabled",
-                            "blocked"
-                          ],
-                          "description": "The lifecycle status of the device.",
-                          "example": "enabled"
                         },
                         "account_id": {
                           "type": "string",
@@ -19226,16 +19293,11 @@
                         },
                         "custom_attributes": {
                           "type": "object",
-                          "maxProperties": 5,
+                          "description": "Up to five custom key-value attributes.",
                           "additionalProperties": {
-                            "type": "string",
-                            "maxLength": 128,
-                            "pattern": "^[A-Za-z].*"
+                            "type": "string"
                           },
-                          "description": "Up to five custom key-value attributes. Note that keys cannot begin with a number. Both keys and values are limited to 128 characters. Updating this field replaces existing contents.",
-                          "example": {
-                            "key": "value"
-                          }
+                          "example": "{ 'key': 'value' }"
                         },
                         "deployed_state": {
                           "enum": [
@@ -19276,8 +19338,7 @@
                         "endpoint_name": {
                           "type": "string",
                           "description": "The endpoint name given to the device.",
-                          "example": "00000000-0000-0000-0000-000000000000",
-                          "readOnly": true
+                          "example": "00000000-0000-0000-0000-000000000000"
                         },
                         "endpoint_type": {
                           "type": "string",
@@ -19373,13 +19434,13 @@
                       }
                     ],
                     "type": "array",
+                    "example": "[]",
                     "api_fieldname": "data",
                     "entity_fieldname": "data",
                     "_key": "data"
                   },
                   {
                     "type": "boolean",
-                    "description": "Are there more results available.",
                     "example": false,
                     "api_fieldname": "has_more",
                     "entity_fieldname": "has_more",
@@ -19387,17 +19448,13 @@
                   },
                   {
                     "type": "integer",
-                    "description": "How many objects to retrieve in the page. The minimum limit is 2 and the maximum is 1000. Limit values outside of this range are set to the closest limit.",
-                    "example": 50,
-                    "minimum": 2,
-                    "maximum": 1000,
+                    "example": 1000,
                     "api_fieldname": "limit",
                     "entity_fieldname": "limit",
                     "_key": "limit"
                   },
                   {
                     "type": "string",
-                    "description": "The type of this API object is a \"list\".",
                     "example": "list",
                     "api_fieldname": "object",
                     "entity_fieldname": "object",
@@ -19405,14 +19462,12 @@
                   },
                   {
                     "type": "string",
-                    "description": "The order of the records based on creation time, `ASC` or `DESC`; by default `ASC`.",
                     "example": "DESC",
                     "api_fieldname": "order",
                     "entity_fieldname": "order",
                     "_key": "order"
                   },
                   {
-                    "format": "integer",
                     "type": "integer",
                     "example": 1,
                     "api_fieldname": "total_count",
@@ -19444,6 +19499,11 @@
           "path": "/v3/devices/",
           "summary": "List all devices.",
           "return_type": "paginated_response(device)",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "device"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -19569,9 +19629,6 @@
                     "example": "01612df56f3b0a580a010fc700000000",
                     "api_fieldname": "id",
                     "entity_fieldname": "id",
-                    "parameter_fieldname": "certificate-enrollment-id",
-                    "in": "path",
-                    "required": true,
                     "_key": "id"
                   },
                   {
@@ -19989,6 +20046,11 @@
           "path": "/v3/devices/{device-id}/certificates/{certificate-name}/renew",
           "summary": "Request certificate renewal.",
           "return_type": "certificate_enrollment",
+          "return_info": {
+            "self": false,
+            "custom": false,
+            "type": "certificate_enrollment"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -20046,16 +20108,11 @@
             },
             {
               "type": "object",
-              "maxProperties": 5,
+              "description": "Up to five custom key-value attributes.",
               "additionalProperties": {
-                "type": "string",
-                "maxLength": 128,
-                "pattern": "^[A-Za-z].*"
+                "type": "string"
               },
-              "description": "Up to five custom key-value attributes. Note that keys cannot begin with a number. Both keys and values are limited to 128 characters. Updating this field replaces existing contents.",
-              "example": {
-                "key": "value"
-              },
+              "example": "{ 'key': 'value' }",
               "api_fieldname": "custom_attributes",
               "entity_fieldname": "custom_attributes",
               "parameter_fieldname": "custom_attributes",
@@ -20091,7 +20148,6 @@
               "type": "string",
               "description": "The endpoint name given to the device.",
               "example": "00000000-0000-0000-0000-000000000000",
-              "readOnly": true,
               "api_fieldname": "endpoint_name",
               "entity_fieldname": "endpoint_name",
               "parameter_fieldname": "endpoint_name",
@@ -20168,85 +20224,6 @@
                     "api_fieldname": "groups",
                     "entity_fieldname": "groups"
                   },
-                  "issuer_fingerprint": {
-                    "type": "string",
-                    "pattern": "[A-Fa-f0-9]{64}",
-                    "description": "SHA256 fingerprint of the certificate used to validate the signature of the device certificate.",
-                    "example": "C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322",
-                    "api_fieldname": "issuer_fingerprint",
-                    "entity_fieldname": "issuer_fingerprint"
-                  },
-                  "operator_suspended": {
-                    "type": "boolean",
-                    "description": "Is the device suspended by the operator?",
-                    "api_fieldname": "operator_suspended",
-                    "entity_fieldname": "operator_suspended"
-                  },
-                  "last_operator_suspended_category": {
-                    "type": "string",
-                    "description": "The reference of the block category.",
-                    "pattern": "[a-f0-9]{32}",
-                    "example": "maintenance",
-                    "api_fieldname": "last_operator_suspended_category",
-                    "entity_fieldname": "last_operator_suspended_category"
-                  },
-                  "last_operator_suspended_description": {
-                    "type": "string",
-                    "maxLength": 2000,
-                    "description": "The most recent description why the device was suspended or returned to service.",
-                    "example": "Suspended for maintenance.",
-                    "api_fieldname": "last_operator_suspended_description",
-                    "entity_fieldname": "last_operator_suspended_description"
-                  },
-                  "last_operator_suspended_updated_at": {
-                    "type": "string",
-                    "format": "date-time",
-                    "description": "The timestamp of the most recent suspension activity.",
-                    "example": "2017-05-22T12:37:55.576563Z",
-                    "api_fieldname": "last_operator_suspended_updated_at",
-                    "entity_fieldname": "last_operator_suspended_updated_at"
-                  },
-                  "system_suspended": {
-                    "type": "boolean",
-                    "description": "Is the device suspended by the system?",
-                    "api_fieldname": "system_suspended",
-                    "entity_fieldname": "system_suspended"
-                  },
-                  "last_system_suspended_category": {
-                    "type": "string",
-                    "description": "The reference of the block category.",
-                    "pattern": "[a-f0-9]{32}",
-                    "example": "maintenance",
-                    "api_fieldname": "last_system_suspended_category",
-                    "entity_fieldname": "last_system_suspended_category"
-                  },
-                  "last_system_suspended_description": {
-                    "type": "string",
-                    "maxLength": 2000,
-                    "description": "The most recent description of why the device was blocked or unblocked by the system.",
-                    "example": "A certificate in the device's certificate chain was blacklisted by the system.",
-                    "api_fieldname": "last_system_suspended_description",
-                    "entity_fieldname": "last_system_suspended_description"
-                  },
-                  "last_system_suspended_updated_at": {
-                    "type": "string",
-                    "format": "date-time",
-                    "description": "The timestamp of the most recent system block activity.",
-                    "example": "2017-05-22T12:37:55.576563Z",
-                    "api_fieldname": "last_system_suspended_updated_at",
-                    "entity_fieldname": "last_system_suspended_updated_at"
-                  },
-                  "lifecycle_status": {
-                    "type": "string",
-                    "enum": [
-                      "enabled",
-                      "blocked"
-                    ],
-                    "description": "The lifecycle status of the device.",
-                    "example": "enabled",
-                    "api_fieldname": "lifecycle_status",
-                    "entity_fieldname": "lifecycle_status"
-                  },
                   "account_id": {
                     "type": "string",
                     "description": "The ID of the associated account.",
@@ -20312,16 +20289,11 @@
                   },
                   "custom_attributes": {
                     "type": "object",
-                    "maxProperties": 5,
+                    "description": "Up to five custom key-value attributes.",
                     "additionalProperties": {
-                      "type": "string",
-                      "maxLength": 128,
-                      "pattern": "^[A-Za-z].*"
+                      "type": "string"
                     },
-                    "description": "Up to five custom key-value attributes. Note that keys cannot begin with a number. Both keys and values are limited to 128 characters. Updating this field replaces existing contents.",
-                    "example": {
-                      "key": "value"
-                    },
+                    "example": "{ 'key': 'value' }",
                     "api_fieldname": "custom_attributes",
                     "entity_fieldname": "custom_attributes"
                   },
@@ -20377,7 +20349,6 @@
                     "type": "string",
                     "description": "The endpoint name given to the device.",
                     "example": "00000000-0000-0000-0000-000000000000",
-                    "readOnly": true,
                     "api_fieldname": "endpoint_name",
                     "entity_fieldname": "endpoint_name"
                   },
@@ -20522,6 +20493,11 @@
           "path": "/v3/devices/{id}/",
           "summary": "Update a device",
           "return_type": "device",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "device"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -20531,16 +20507,6 @@
             "is_custom",
             "private_key",
             "sub_accounts",
-            "issuer_fingerprint",
-            "operator_suspended",
-            "last_operator_suspended_category",
-            "last_operator_suspended_description",
-            "last_operator_suspended_updated_at",
-            "system_suspended",
-            "last_system_suspended_category",
-            "last_system_suspended_description",
-            "last_system_suspended_updated_at",
-            "lifecycle_status",
             "account_id",
             "device_execution_mode",
             "bootstrap_expiration_date",
@@ -20621,16 +20587,11 @@
         },
         {
           "type": "object",
-          "maxProperties": 5,
+          "description": "Up to five custom key-value attributes.",
           "additionalProperties": {
-            "type": "string",
-            "maxLength": 128,
-            "pattern": "^[A-Za-z].*"
+            "type": "string"
           },
-          "description": "Up to five custom key-value attributes. Note that keys cannot begin with a number. Both keys and values are limited to 128 characters. Updating this field replaces existing contents.",
-          "example": {
-            "key": "value"
-          },
+          "example": "{ 'key': 'value' }",
           "api_fieldname": "custom_attributes",
           "_key": "custom_attributes"
         },
@@ -20692,7 +20653,6 @@
           "type": "string",
           "description": "The endpoint name given to the device.",
           "example": "00000000-0000-0000-0000-000000000000",
-          "readOnly": true,
           "api_fieldname": "endpoint_name",
           "_key": "endpoint_name"
         },
@@ -20732,74 +20692,6 @@
           "example": "00000000000000000000000000000000",
           "api_fieldname": "id",
           "_key": "id"
-        },
-        {
-          "type": "string",
-          "pattern": "[A-Fa-f0-9]{64}",
-          "description": "SHA256 fingerprint of the certificate used to validate the signature of the device certificate.",
-          "example": "C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322",
-          "api_fieldname": "issuer_fingerprint",
-          "_key": "issuer_fingerprint"
-        },
-        {
-          "type": "string",
-          "description": "The reference of the block category.",
-          "pattern": "[a-f0-9]{32}",
-          "example": "maintenance",
-          "api_fieldname": "last_operator_suspended_category",
-          "_key": "last_operator_suspended_category"
-        },
-        {
-          "type": "string",
-          "maxLength": 2000,
-          "description": "The most recent description why the device was suspended or returned to service.",
-          "example": "Suspended for maintenance.",
-          "api_fieldname": "last_operator_suspended_description",
-          "_key": "last_operator_suspended_description"
-        },
-        {
-          "type": "string",
-          "format": "date-time",
-          "description": "The timestamp of the most recent suspension activity.",
-          "example": "2017-05-22T12:37:55.576563Z",
-          "api_fieldname": "last_operator_suspended_updated_at",
-          "_key": "last_operator_suspended_updated_at"
-        },
-        {
-          "type": "string",
-          "description": "The reference of the block category.",
-          "pattern": "[a-f0-9]{32}",
-          "example": "maintenance",
-          "api_fieldname": "last_system_suspended_category",
-          "_key": "last_system_suspended_category"
-        },
-        {
-          "type": "string",
-          "maxLength": 2000,
-          "description": "The most recent description of why the device was blocked or unblocked by the system.",
-          "example": "A certificate in the device's certificate chain was blacklisted by the system.",
-          "api_fieldname": "last_system_suspended_description",
-          "_key": "last_system_suspended_description"
-        },
-        {
-          "type": "string",
-          "format": "date-time",
-          "description": "The timestamp of the most recent system block activity.",
-          "example": "2017-05-22T12:37:55.576563Z",
-          "api_fieldname": "last_system_suspended_updated_at",
-          "_key": "last_system_suspended_updated_at"
-        },
-        {
-          "type": "string",
-          "enum": [
-            "enabled",
-            "blocked"
-          ],
-          "description": "The lifecycle status of the device.",
-          "example": "enabled",
-          "api_fieldname": "lifecycle_status",
-          "enum_reference": "device_lifecycle_status_enum",
-          "_key": "lifecycle_status"
         },
         {
           "type": "string",
@@ -20843,12 +20735,6 @@
           "_key": "name"
         },
         {
-          "type": "boolean",
-          "description": "Is the device suspended by the operator?",
-          "api_fieldname": "operator_suspended",
-          "_key": "operator_suspended"
-        },
-        {
           "type": "string",
           "description": "The serial number of the device.",
           "example": "00000000-0000-0000-0000-000000000000",
@@ -20868,12 +20754,6 @@
           "api_fieldname": "state",
           "enum_reference": "device_state_enum",
           "_key": "state"
-        },
-        {
-          "type": "boolean",
-          "description": "Is the device suspended by the system?",
-          "api_fieldname": "system_suspended",
-          "_key": "system_suspended"
         },
         {
           "format": "date-time",
@@ -21302,6 +21182,11 @@
           "path": "/v3/device-enrollments",
           "summary": "Place an enrollment claim for one or several devices.",
           "return_type": "device_enrollment",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "device_enrollment"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -21508,6 +21393,11 @@
           "path": "/v3/device-enrollments/{id}",
           "summary": "Delete an enrollment by ID.",
           "return_type": "device_enrollment",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "device_enrollment"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -21805,6 +21695,11 @@
           "path": "/v3/device-enrollments/{id}",
           "summary": "Get details of an enrollment by ID.",
           "return_type": "device_enrollment",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "device_enrollment"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -22261,6 +22156,11 @@
           "path": "/v3/device-enrollments",
           "summary": "Get enrollment list.",
           "return_type": "paginated_response(device_enrollment)",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "device_enrollment"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -22685,6 +22585,11 @@
           "path": "/v3/device-enrollments-bulk-uploads",
           "summary": "Bulk upload",
           "return_type": "device_enrollment_bulk_create",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "device_enrollment_bulk_create"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -22720,6 +22625,11 @@
           "path": null,
           "summary": "Download the error report file for the created the bulk enrollment.",
           "return_type": "file",
+          "return_info": {
+            "self": false,
+            "custom": true,
+            "type": "file"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -22749,6 +22659,11 @@
           "path": null,
           "summary": "Download the full report file for the created of the bulk enrollment.",
           "return_type": "file",
+          "return_info": {
+            "self": false,
+            "custom": true,
+            "type": "file"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -23189,6 +23104,11 @@
           "path": "/v3/device-enrollments-bulk-uploads/{id}",
           "summary": "Get bulk upload entity",
           "return_type": "device_enrollment_bulk_create",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "device_enrollment_bulk_create"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -23642,6 +23562,11 @@
           "path": "/v3/device-enrollments-bulk-deletes",
           "summary": "Bulk delete",
           "return_type": "device_enrollment_bulk_delete",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "device_enrollment_bulk_delete"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -23677,6 +23602,11 @@
           "path": null,
           "summary": "Download the error report file for the bulk enrollment deletion.",
           "return_type": "file",
+          "return_info": {
+            "self": false,
+            "custom": true,
+            "type": "file"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -23706,6 +23636,11 @@
           "path": null,
           "summary": "Download the full report file for the bulk enrollment deletion.",
           "return_type": "file",
+          "return_info": {
+            "self": false,
+            "custom": true,
+            "type": "file"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -24149,6 +24084,11 @@
           "path": "/v3/device-enrollments-bulk-deletes/{id}",
           "summary": "Get bulk delete entity",
           "return_type": "device_enrollment_bulk_delete",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "device_enrollment_bulk_delete"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -24424,6 +24364,11 @@
           "path": "/v3/device-events/{device_event_id}/",
           "summary": "Retrieve a device event.",
           "return_type": "device_events",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "device_events"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -24684,6 +24629,11 @@
           "path": "/v3/device-events/",
           "summary": "List all device events.",
           "return_type": "paginated_response(device_events)",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "device_events"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -24836,6 +24786,40 @@
       "tags": [],
       "group_id": "Accounts",
       "_key": "login_history"
+    },
+    {
+      "swagger_models": [
+        "ParentAccountInfo"
+      ],
+      "primary_key_field": "id",
+      "methods": [],
+      "fields": [
+        {
+          "type": "string",
+          "example": "info@arm.com",
+          "description": "The email address of the admin user who is the contact person of the parent account.",
+          "api_fieldname": "admin_email",
+          "_key": "admin_email"
+        },
+        {
+          "type": "string",
+          "example": "J. Doe",
+          "description": "The name of the admin user who is the contact person of the parent account.",
+          "api_fieldname": "admin_name",
+          "_key": "admin_name"
+        },
+        {
+          "type": "string",
+          "example": "01619571dad80242ac12000600000000",
+          "description": "The ID of the parent account",
+          "api_fieldname": "id",
+          "_key": "id"
+        }
+      ],
+      "field_renames": [],
+      "tags": [],
+      "group_id": "Accounts",
+      "_key": "parent_account"
     },
     {
       "swagger_models": [
@@ -25145,6 +25129,11 @@
           "path": "/v3/server-credentials/bootstrap",
           "summary": "Fetch bootstrap server credentials.",
           "return_type": "server_credentials",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "server_credentials"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -25404,6 +25393,11 @@
           "path": "/v3/server-credentials/lwm2m",
           "summary": "Fetch LwM2M server credentials.",
           "return_type": "server_credentials",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "server_credentials"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -25597,7 +25591,7 @@
                 "required": [
                   "account_id",
                   "certificate",
-                  "certificate_thumbprint",
+                  "certificate_fingerprint",
                   "etag",
                   "id",
                   "issuer",
@@ -25630,10 +25624,10 @@
                   {
                     "type": "string",
                     "example": "a10fb2c8ba90e6de927bd0ae391dcc38f6115685de2d7024712af37ead0608f1",
-                    "description": "A SHA-256 thumbprint of the certificate.",
-                    "api_fieldname": "certificate_thumbprint",
-                    "entity_fieldname": "certificate_thumbprint",
-                    "_key": "certificate_thumbprint"
+                    "description": "A SHA-256 fingerprint of the certificate.",
+                    "api_fieldname": "certificate_fingerprint",
+                    "entity_fieldname": "certificate_fingerprint",
+                    "_key": "certificate_fingerprint"
                   },
                   {
                     "type": "string",
@@ -26092,6 +26086,11 @@
           "path": "/v3/accounts/{account_id}/trusted-certificates",
           "summary": "Upload new trusted certificate.",
           "return_type": "subtenant_trusted_certificate",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "subtenant_trusted_certificate"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -26109,14 +26108,10 @@
             "issuer",
             "subject",
             "validity",
-            "certificate_thumbprint"
+            "certificate_fingerprint"
           ],
           "group_id": "Security",
           "model": "TrustedCertificateInternalResp",
-          "parameter_map": {
-            "cert-id": "id",
-            "accountID": "account_id"
-          },
           "operation_id": "addAccountCertificate",
           "notes": "Signature is not used by the SDK as it is a deprecated field.",
           "pagination": false,
@@ -26400,6 +26395,11 @@
           "path": "/v3/accounts/{account_id}/trusted-certificates/{cert_id}",
           "summary": "Delete trusted certificate by ID.",
           "return_type": "subtenant_trusted_certificate",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "subtenant_trusted_certificate"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -26412,10 +26412,6 @@
           ],
           "group_id": "Security",
           "model": "TrustedCertificateInternalResp",
-          "parameter_map": {
-            "cert-id": "id",
-            "accountID": "account_id"
-          },
           "operation_id": "deleteAccountCertificate",
           "pagination": false,
           "_key": "delete"
@@ -26799,6 +26795,11 @@
           "path": "/v3/developer-certificates/{developerCertificateId}",
           "summary": "Fetch an existing developer certificate to connect to the bootstrap server.",
           "return_type": "developer_certificate",
+          "return_info": {
+            "self": false,
+            "custom": false,
+            "type": "developer_certificate"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -26818,13 +26819,11 @@
           ],
           "group_id": "Security",
           "model": "TrustedCertificateInternalResp",
-          "parameter_map": {
-            "cert-id": "id",
-            "accountID": "account_id",
-            "developerCertificateId": "id"
-          },
           "operation_id": "getDeveloperCertificate",
           "unaggregated": true,
+          "parameter_map": {
+            "developerCertificateId": "id"
+          },
           "foreign_key": {
             "entity": "developer_certificate",
             "group": "Security"
@@ -26892,7 +26891,7 @@
                 "required": [
                   "account_id",
                   "certificate",
-                  "certificate_thumbprint",
+                  "certificate_fingerprint",
                   "etag",
                   "id",
                   "issuer",
@@ -26923,10 +26922,10 @@
                   {
                     "type": "string",
                     "example": "a10fb2c8ba90e6de927bd0ae391dcc38f6115685de2d7024712af37ead0608f1",
-                    "description": "A SHA-256 thumbprint of the certificate.",
-                    "api_fieldname": "certificate_thumbprint",
-                    "entity_fieldname": "certificate_thumbprint",
-                    "_key": "certificate_thumbprint"
+                    "description": "A SHA-256 fingerprint of the certificate.",
+                    "api_fieldname": "certificate_fingerprint",
+                    "entity_fieldname": "certificate_fingerprint",
+                    "_key": "certificate_fingerprint"
                   },
                   {
                     "type": "string",
@@ -27303,6 +27302,11 @@
           "path": "/v3/accounts/{account_id}/trusted-certificates/{cert_id}",
           "summary": "Get trusted certificate by ID.",
           "return_type": "subtenant_trusted_certificate",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "subtenant_trusted_certificate"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -27325,14 +27329,10 @@
             "validity",
             "status",
             "enrollment_mode",
-            "certificate_thumbprint"
+            "certificate_fingerprint"
           ],
           "group_id": "Security",
           "model": "TrustedCertificateInternalResp",
-          "parameter_map": {
-            "cert-id": "id",
-            "accountID": "account_id"
-          },
           "models": [
             "TrustedCertificateInternalResp"
           ],
@@ -27475,7 +27475,7 @@
                 "required": [
                   "account_id",
                   "certificate",
-                  "certificate_thumbprint",
+                  "certificate_fingerprint",
                   "etag",
                   "id",
                   "issuer",
@@ -27506,10 +27506,10 @@
                   {
                     "type": "string",
                     "example": "a10fb2c8ba90e6de927bd0ae391dcc38f6115685de2d7024712af37ead0608f1",
-                    "description": "A SHA-256 thumbprint of the certificate.",
-                    "api_fieldname": "certificate_thumbprint",
-                    "entity_fieldname": "certificate_thumbprint",
-                    "_key": "certificate_thumbprint"
+                    "description": "A SHA-256 fingerprint of the certificate.",
+                    "api_fieldname": "certificate_fingerprint",
+                    "entity_fieldname": "certificate_fingerprint",
+                    "_key": "certificate_fingerprint"
                   },
                   {
                     "type": "string",
@@ -27959,6 +27959,11 @@
           "path": "/v3/accounts/{account_id}/trusted-certificates/{cert_id}",
           "summary": "Update trusted certificate.",
           "return_type": "subtenant_trusted_certificate",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "subtenant_trusted_certificate"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -27976,14 +27981,10 @@
             "issuer",
             "subject",
             "validity",
-            "certificate_thumbprint"
+            "certificate_fingerprint"
           ],
           "group_id": "Security",
           "model": "TrustedCertificateInternalResp",
-          "parameter_map": {
-            "cert-id": "id",
-            "accountID": "account_id"
-          },
           "operation_id": "updateAccountCertificate",
           "notes": "Signature is not used by the SDK as it is a deprecated field.",
           "pagination": false,
@@ -28010,9 +28011,9 @@
         {
           "type": "string",
           "example": "a10fb2c8ba90e6de927bd0ae391dcc38f6115685de2d7024712af37ead0608f1",
-          "description": "A SHA-256 thumbprint of the certificate.",
-          "api_fieldname": "certificate_thumbprint",
-          "_key": "certificate_thumbprint"
+          "description": "A SHA-256 fingerprint of the certificate.",
+          "api_fieldname": "certificate_fingerprint",
+          "_key": "certificate_fingerprint"
         },
         {
           "type": "string",
@@ -28442,6 +28443,9 @@
                     "description": "The ID of the user.",
                     "api_fieldname": "id",
                     "entity_fieldname": "id",
+                    "parameter_fieldname": "user_id",
+                    "in": "path",
+                    "required": true,
                     "_key": "id"
                   },
                   {
@@ -29041,6 +29045,11 @@
           "path": "/v3/accounts/{account_id}/users",
           "summary": "Create a new user.",
           "return_type": "subtenant_user",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "subtenant_user"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -29063,8 +29072,7 @@
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "user-id": "id",
-            "accountID": "account_id"
+            "user_id": "id"
           },
           "operation_id": "createAccountUser",
           "pagination": false,
@@ -29105,11 +29113,11 @@
               "description": "The ID of the user to be deleted.",
               "required": true,
               "type": "string",
-              "entity_fieldname": "user_id",
+              "entity_fieldname": "id",
               "api_fieldname": "user_id",
-              "external_param": true,
+              "external_param": false,
               "parameter_fieldname": "user_id",
-              "_key": "user_id"
+              "_key": "id"
             }
           ],
           "method": "delete",
@@ -29415,6 +29423,11 @@
           "path": "/v3/accounts/{account_id}/users/{user_id}",
           "summary": "Delete a user.",
           "return_type": "subtenant_user",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "subtenant_user"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -29427,8 +29440,7 @@
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "user-id": "id",
-            "accountID": "account_id"
+            "user_id": "id"
           },
           "operation_id": "deleteAccountUser",
           "pagination": false,
@@ -29463,16 +29475,15 @@
               "_key": "account_id"
             },
             {
-              "name": "user_id",
-              "in": "path",
-              "description": "The ID of the user to be retrieved.",
-              "required": true,
               "type": "string",
-              "entity_fieldname": "user_id",
-              "api_fieldname": "user_id",
-              "external_param": true,
+              "example": "01619571e2e89242ac12000600000000",
+              "description": "The ID of the user.",
+              "api_fieldname": "id",
+              "entity_fieldname": "id",
               "parameter_fieldname": "user_id",
-              "_key": "user_id"
+              "in": "path",
+              "required": true,
+              "_key": "id"
             }
           ],
           "method": "get",
@@ -29588,6 +29599,9 @@
                     "description": "The ID of the user.",
                     "api_fieldname": "id",
                     "entity_fieldname": "id",
+                    "parameter_fieldname": "user_id",
+                    "in": "path",
+                    "required": true,
                     "_key": "id"
                   },
                   {
@@ -30041,6 +30055,11 @@
           "path": "/v3/accounts/{account_id}/users/{user_id}",
           "summary": "Details of the user.",
           "return_type": "subtenant_user",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "subtenant_user"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -30050,7 +30069,6 @@
             "is_custom",
             "private_key",
             "sub_accounts",
-            "id",
             "created_at",
             "updated_at",
             "status",
@@ -30072,8 +30090,7 @@
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "user-id": "id",
-            "accountID": "account_id"
+            "user_id": "id"
           },
           "operation_id": "getAccountUser",
           "pagination": false,
@@ -30128,6 +30145,17 @@
               "in": "body",
               "required": false,
               "_key": "full_name"
+            },
+            {
+              "type": "string",
+              "example": "01619571e2e89242ac12000600000000",
+              "description": "The ID of the user.",
+              "api_fieldname": "id",
+              "entity_fieldname": "id",
+              "parameter_fieldname": "user_id",
+              "in": "path",
+              "required": true,
+              "_key": "id"
             },
             {
               "type": "array",
@@ -30214,18 +30242,6 @@
               "in": "body",
               "required": false,
               "_key": "two_factor_authentication"
-            },
-            {
-              "name": "user_id",
-              "in": "path",
-              "description": "The ID of the user to be updated.",
-              "required": true,
-              "type": "string",
-              "entity_fieldname": "user_id",
-              "api_fieldname": "user_id",
-              "external_param": true,
-              "parameter_fieldname": "user_id",
-              "_key": "user_id"
             },
             {
               "type": "string",
@@ -30352,6 +30368,9 @@
                     "description": "The ID of the user.",
                     "api_fieldname": "id",
                     "entity_fieldname": "id",
+                    "parameter_fieldname": "user_id",
+                    "in": "path",
+                    "required": true,
                     "_key": "id"
                   },
                   {
@@ -30951,6 +30970,11 @@
           "path": "/v3/accounts/{account_id}/users/{user_id}",
           "summary": "Update user details.",
           "return_type": "subtenant_user",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "subtenant_user"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -30963,7 +30987,6 @@
             "email",
             "two_factor_auth_enabled",
             "status",
-            "id",
             "created_at",
             "updated_at",
             "password",
@@ -30975,8 +30998,7 @@
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "user-id": "id",
-            "accountID": "account_id"
+            "user_id": "id"
           },
           "operation_id": "updateAccountUser",
           "pagination": false,
@@ -31017,11 +31039,11 @@
               "description": "The ID of the user whose email is validated.",
               "required": true,
               "type": "string",
-              "entity_fieldname": "user_id",
+              "entity_fieldname": "id",
               "api_fieldname": "user_id",
-              "external_param": true,
+              "external_param": false,
               "parameter_fieldname": "user_id",
-              "_key": "user_id"
+              "_key": "id"
             }
           ],
           "method": "post",
@@ -31105,6 +31127,79 @@
               "_key": "401"
             },
             {
+              "description": "Forbidden.",
+              "schema": {
+                "type": "object",
+                "required": [
+                  "code",
+                  "message",
+                  "object",
+                  "request_id",
+                  "type"
+                ],
+                "properties": [
+                  {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "HTTP response code",
+                    "example": 400,
+                    "_key": "code"
+                  },
+                  {
+                    "type": "array",
+                    "description": "Request fields which failed validation.",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "name",
+                        "message"
+                      ],
+                      "properties": [
+                        {
+                          "type": "string",
+                          "description": "Message describing the error condition.",
+                          "_key": "message"
+                        },
+                        {
+                          "type": "string",
+                          "description": "Name of the field which caused the error.",
+                          "_key": "name"
+                        }
+                      ]
+                    },
+                    "_key": "fields"
+                  },
+                  {
+                    "type": "string",
+                    "description": "A human readable informative explanation",
+                    "example": "Validation error",
+                    "_key": "message"
+                  },
+                  {
+                    "type": "string",
+                    "description": "Entity name, always `error`.",
+                    "enum": [
+                      "error"
+                    ],
+                    "_key": "object"
+                  },
+                  {
+                    "type": "string",
+                    "description": "ID of the request.",
+                    "example": "0161991d63150242ac12000600000000",
+                    "_key": "request_id"
+                  },
+                  {
+                    "type": "string",
+                    "description": "Error type used to categorise the error.",
+                    "example": "validation_error",
+                    "_key": "type"
+                  }
+                ]
+              },
+              "_key": "403"
+            },
+            {
               "description": "An account or a user with the specified ID does not exist.",
               "schema": {
                 "type": "object",
@@ -31181,6 +31276,11 @@
           "path": "/v3/accounts/{account_id}/users/{user_id}/validate-email",
           "summary": "Validate the user email.",
           "return_type": "subtenant_user",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "subtenant_user"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -31193,8 +31293,7 @@
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "user-id": "id",
-            "accountID": "account_id"
+            "user_id": "id"
           },
           "operation_id": "validateAccountUserEmail",
           "pagination": false,
@@ -31264,6 +31363,8 @@
           "example": "01619571e2e89242ac12000600000000",
           "description": "The ID of the user.",
           "api_fieldname": "id",
+          "parameter_fieldname": "user_id",
+          "in": "path",
           "_key": "id"
         },
         {
@@ -31650,6 +31751,9 @@
                     "description": "The ID of the invitation.",
                     "api_fieldname": "id",
                     "entity_fieldname": "id",
+                    "parameter_fieldname": "invitation_id",
+                    "in": "path",
+                    "required": true,
                     "_key": "id"
                   },
                   {
@@ -31953,6 +32057,11 @@
           "path": "/v3/accounts/{account_id}/user-invitations",
           "summary": "Create a user invitation.",
           "return_type": "subtenant_user_invitation",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "subtenant_user_invitation"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -31970,8 +32079,7 @@
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "invitation-id": "id",
-            "account-id": "account_id"
+            "invitation_id": "id"
           },
           "operation_id": "createAccountInvitation",
           "pagination": false,
@@ -31999,11 +32107,11 @@
               "description": "The ID of the invitation to be deleted.",
               "required": true,
               "type": "string",
-              "entity_fieldname": "invitation_id",
+              "entity_fieldname": "id",
               "api_fieldname": "invitation_id",
-              "external_param": true,
+              "external_param": false,
               "parameter_fieldname": "invitation_id",
-              "_key": "invitation_id"
+              "_key": "id"
             }
           ],
           "method": "delete",
@@ -32236,6 +32344,11 @@
           "path": "/v3/accounts/{account_id}/user-invitations/{invitation_id}",
           "summary": "Delete a user invitation.",
           "return_type": "subtenant_user_invitation",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "subtenant_user_invitation"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -32248,8 +32361,7 @@
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "invitation-id": "id",
-            "account-id": "account_id"
+            "invitation_id": "id"
           },
           "operation_id": "deleteAccountInvitation",
           "pagination": false,
@@ -32271,16 +32383,15 @@
               "_key": "account_id"
             },
             {
-              "name": "invitation_id",
-              "in": "path",
-              "description": "The ID of the invitation to be retrieved.",
-              "required": true,
               "type": "string",
-              "entity_fieldname": "invitation_id",
-              "api_fieldname": "invitation_id",
-              "external_param": true,
+              "example": "01619571e2e89242ac12000600000000",
+              "description": "The ID of the invitation.",
+              "api_fieldname": "id",
+              "entity_fieldname": "id",
               "parameter_fieldname": "invitation_id",
-              "_key": "invitation_id"
+              "in": "path",
+              "required": true,
+              "_key": "id"
             }
           ],
           "method": "get",
@@ -32366,6 +32477,9 @@
                     "description": "The ID of the invitation.",
                     "api_fieldname": "id",
                     "entity_fieldname": "id",
+                    "parameter_fieldname": "invitation_id",
+                    "in": "path",
+                    "required": true,
                     "_key": "id"
                   },
                   {
@@ -32669,6 +32783,11 @@
           "path": "/v3/accounts/{account_id}/user-invitations/{invitation_id}",
           "summary": "Details of a user invitation.",
           "return_type": "subtenant_user_invitation",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "subtenant_user_invitation"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -32678,7 +32797,6 @@
             "is_custom",
             "private_key",
             "sub_accounts",
-            "id",
             "created_at",
             "updated_at",
             "email",
@@ -32688,8 +32806,7 @@
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "invitation-id": "id",
-            "account-id": "account_id"
+            "invitation_id": "id"
           },
           "operation_id": "getAccountInvitation",
           "pagination": false,
@@ -32734,6 +32851,8 @@
           "example": "01619571e2e89242ac12000600000000",
           "description": "The ID of the invitation.",
           "api_fieldname": "id",
+          "parameter_fieldname": "invitation_id",
+          "in": "path",
           "_key": "id"
         },
         {
@@ -32922,7 +33041,7 @@
                 "required": [
                   "account_id",
                   "certificate",
-                  "certificate_thumbprint",
+                  "certificate_fingerprint",
                   "etag",
                   "id",
                   "issuer",
@@ -32952,10 +33071,10 @@
                   {
                     "type": "string",
                     "example": "a10fb2c8ba90e6de927bd0ae391dcc38f6115685de2d7024712af37ead0608f1",
-                    "description": "A SHA-256 thumbprint of the certificate.",
-                    "api_fieldname": "certificate_thumbprint",
-                    "entity_fieldname": "certificate_thumbprint",
-                    "_key": "certificate_thumbprint"
+                    "description": "A SHA-256 fingerprint of the certificate.",
+                    "api_fieldname": "certificate_fingerprint",
+                    "entity_fieldname": "certificate_fingerprint",
+                    "_key": "certificate_fingerprint"
                   },
                   {
                     "type": "string",
@@ -33397,6 +33516,11 @@
           "path": "/v3/trusted-certificates",
           "summary": "Upload a new trusted certificate.",
           "return_type": "trusted_certificate",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "trusted_certificate"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -33415,7 +33539,7 @@
             "issuer",
             "subject",
             "validity",
-            "certificate_thumbprint"
+            "certificate_fingerprint"
           ],
           "group_id": "Security",
           "model": "TrustedCertificateInternalResp",
@@ -33693,6 +33817,11 @@
           "path": "/v3/trusted-certificates/{cert_id}",
           "summary": "Delete a trusted certificate by ID.",
           "return_type": "trusted_certificate",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "trusted_certificate"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -34091,6 +34220,11 @@
           "path": "/v3/developer-certificates/{developerCertificateId}",
           "summary": "Fetch an existing developer certificate to connect to the bootstrap server.",
           "return_type": "developer_certificate",
+          "return_info": {
+            "self": false,
+            "custom": false,
+            "type": "developer_certificate"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -34172,7 +34306,7 @@
                 "required": [
                   "account_id",
                   "certificate",
-                  "certificate_thumbprint",
+                  "certificate_fingerprint",
                   "etag",
                   "id",
                   "issuer",
@@ -34202,10 +34336,10 @@
                   {
                     "type": "string",
                     "example": "a10fb2c8ba90e6de927bd0ae391dcc38f6115685de2d7024712af37ead0608f1",
-                    "description": "A SHA-256 thumbprint of the certificate.",
-                    "api_fieldname": "certificate_thumbprint",
-                    "entity_fieldname": "certificate_thumbprint",
-                    "_key": "certificate_thumbprint"
+                    "description": "A SHA-256 fingerprint of the certificate.",
+                    "api_fieldname": "certificate_fingerprint",
+                    "entity_fieldname": "certificate_fingerprint",
+                    "_key": "certificate_fingerprint"
                   },
                   {
                     "type": "string",
@@ -34574,6 +34708,11 @@
           "path": "/v3/trusted-certificates/{cert_id}",
           "summary": "Get trusted certificate by ID.",
           "return_type": "trusted_certificate",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "trusted_certificate"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -34597,7 +34736,7 @@
             "validity",
             "status",
             "enrollment_mode",
-            "certificate_thumbprint"
+            "certificate_fingerprint"
           ],
           "group_id": "Security",
           "model": "TrustedCertificateInternalResp",
@@ -34724,7 +34863,7 @@
                       "required": [
                         "account_id",
                         "certificate",
-                        "certificate_thumbprint",
+                        "certificate_fingerprint",
                         "etag",
                         "id",
                         "issuer",
@@ -34750,8 +34889,8 @@
                         {
                           "type": "string",
                           "example": "a10fb2c8ba90e6de927bd0ae391dcc38f6115685de2d7024712af37ead0608f1",
-                          "description": "A SHA-256 thumbprint of the certificate.",
-                          "_key": "certificate_thumbprint"
+                          "description": "A SHA-256 fingerprint of the certificate.",
+                          "_key": "certificate_fingerprint"
                         },
                         {
                           "type": "string",
@@ -35075,6 +35214,11 @@
           "path": "/v3/trusted-certificates",
           "summary": "Get all trusted certificates.",
           "return_type": "paginated_response(trusted_certificate)",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "trusted_certificate"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -35236,7 +35380,7 @@
                 "required": [
                   "account_id",
                   "certificate",
-                  "certificate_thumbprint",
+                  "certificate_fingerprint",
                   "etag",
                   "id",
                   "issuer",
@@ -35266,10 +35410,10 @@
                   {
                     "type": "string",
                     "example": "a10fb2c8ba90e6de927bd0ae391dcc38f6115685de2d7024712af37ead0608f1",
-                    "description": "A SHA-256 thumbprint of the certificate.",
-                    "api_fieldname": "certificate_thumbprint",
-                    "entity_fieldname": "certificate_thumbprint",
-                    "_key": "certificate_thumbprint"
+                    "description": "A SHA-256 fingerprint of the certificate.",
+                    "api_fieldname": "certificate_fingerprint",
+                    "entity_fieldname": "certificate_fingerprint",
+                    "_key": "certificate_fingerprint"
                   },
                   {
                     "type": "string",
@@ -35784,6 +35928,11 @@
           "path": "/v3/trusted-certificates/{cert_id}",
           "summary": "Update trusted certificate.",
           "return_type": "trusted_certificate",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "trusted_certificate"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -35802,7 +35951,7 @@
             "issuer",
             "subject",
             "validity",
-            "certificate_thumbprint"
+            "certificate_fingerprint"
           ],
           "group_id": "Security",
           "model": "TrustedCertificateInternalResp",
@@ -35833,9 +35982,9 @@
         {
           "type": "string",
           "example": "a10fb2c8ba90e6de927bd0ae391dcc38f6115685de2d7024712af37ead0608f1",
-          "description": "A SHA-256 thumbprint of the certificate.",
-          "api_fieldname": "certificate_thumbprint",
-          "_key": "certificate_thumbprint"
+          "description": "A SHA-256 fingerprint of the certificate.",
+          "api_fieldname": "certificate_fingerprint",
+          "_key": "certificate_fingerprint"
         },
         {
           "type": "string",
@@ -36733,6 +36882,11 @@
           "path": "/v3/users",
           "summary": "Create a new user.",
           "return_type": "user",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "user"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -36756,7 +36910,7 @@
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "user-id": "id"
+            "user_id": "id"
           },
           "operation_id": "createUser",
           "pagination": false,
@@ -36785,11 +36939,11 @@
               "description": "The ID of the user to be deleted.",
               "required": true,
               "type": "string",
-              "entity_fieldname": "user_id",
+              "entity_fieldname": "id",
               "api_fieldname": "user_id",
-              "external_param": true,
+              "external_param": false,
               "parameter_fieldname": "user_id",
-              "_key": "user_id"
+              "_key": "id"
             }
           ],
           "method": "delete",
@@ -37095,6 +37249,11 @@
           "path": "/v3/users/{user_id}",
           "summary": "Delete a user.",
           "return_type": "user",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "user"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -37107,7 +37266,7 @@
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "user-id": "id"
+            "user_id": "id"
           },
           "operation_id": "deleteUser",
           "pagination": false,
@@ -37131,16 +37290,15 @@
           ],
           "fields": [
             {
-              "name": "user_id",
-              "in": "path",
-              "description": "The ID of the user whose details are retrieved.",
-              "required": true,
               "type": "string",
-              "entity_fieldname": "user_id",
-              "api_fieldname": "user_id",
-              "external_param": true,
+              "example": "01619571e2e89242ac12000600000000",
+              "description": "The ID of the user.",
+              "api_fieldname": "id",
+              "entity_fieldname": "id",
               "parameter_fieldname": "user_id",
-              "_key": "user_id"
+              "in": "path",
+              "required": true,
+              "_key": "id"
             }
           ],
           "method": "get",
@@ -37670,6 +37828,11 @@
           "path": "/v3/users/{user_id}",
           "summary": "Details of a user.",
           "return_type": "user",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "user"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -37679,7 +37842,6 @@
             "is_custom",
             "private_key",
             "sub_accounts",
-            "id",
             "created_at",
             "updated_at",
             "status",
@@ -37702,7 +37864,7 @@
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "user-id": "id"
+            "user_id": "id"
           },
           "operation_id": "getUser",
           "pagination": false,
@@ -38271,6 +38433,11 @@
           "path": "/v3/users",
           "summary": "Get the details of all users.",
           "return_type": "paginated_response(user)",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "user"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -38292,7 +38459,7 @@
           "foreign_key_priority": "self",
           "group_id": "Accounts",
           "parameter_map": {
-            "user-id": "id"
+            "user_id": "id"
           },
           "operation_id": "getAllUsers",
           "pagination": true,
@@ -38340,6 +38507,17 @@
               "in": "body",
               "required": false,
               "_key": "full_name"
+            },
+            {
+              "type": "string",
+              "example": "01619571e2e89242ac12000600000000",
+              "description": "The ID of the user.",
+              "api_fieldname": "id",
+              "entity_fieldname": "id",
+              "parameter_fieldname": "user_id",
+              "in": "path",
+              "required": true,
+              "_key": "id"
             },
             {
               "type": "array",
@@ -38426,18 +38604,6 @@
               "in": "body",
               "required": false,
               "_key": "two_factor_authentication"
-            },
-            {
-              "name": "user_id",
-              "in": "path",
-              "description": "The ID of the user whose details are updated.",
-              "required": true,
-              "type": "string",
-              "entity_fieldname": "user_id",
-              "api_fieldname": "user_id",
-              "external_param": true,
-              "parameter_fieldname": "user_id",
-              "_key": "user_id"
             },
             {
               "type": "string",
@@ -39124,6 +39290,11 @@
           "path": "/v3/users/{user_id}",
           "summary": "Update user details.",
           "return_type": "user",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "user"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -39136,7 +39307,6 @@
             "email",
             "two_factor_auth_enabled",
             "status",
-            "id",
             "created_at",
             "updated_at",
             "password",
@@ -39149,7 +39319,7 @@
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "user-id": "id"
+            "user_id": "id"
           },
           "operation_id": "updateUser",
           "pagination": false,
@@ -39864,6 +40034,11 @@
           "path": "/v3/user-invitations",
           "summary": "Create a user invitation.",
           "return_type": "user_invitation",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "user_invitation"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -39882,7 +40057,7 @@
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "invitation-id": "id"
+            "invitation_id": "id"
           },
           "operation_id": "createInvitation",
           "pagination": false,
@@ -39898,11 +40073,11 @@
               "description": "The ID of the invitation to be deleted.",
               "required": true,
               "type": "string",
-              "entity_fieldname": "invitation_id",
+              "entity_fieldname": "id",
               "api_fieldname": "invitation_id",
-              "external_param": true,
+              "external_param": false,
               "parameter_fieldname": "invitation_id",
-              "_key": "invitation_id"
+              "_key": "id"
             }
           ],
           "method": "delete",
@@ -40135,6 +40310,11 @@
           "path": "/v3/user-invitations/{invitation_id}",
           "summary": "Delete a user invitation.",
           "return_type": "user_invitation",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "user_invitation"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -40147,7 +40327,7 @@
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "invitation-id": "id"
+            "invitation_id": "id"
           },
           "operation_id": "deleteInvitation",
           "pagination": false,
@@ -40158,16 +40338,15 @@
           "field_renames": [],
           "fields": [
             {
-              "name": "invitation_id",
-              "in": "path",
-              "description": "The ID of the invitation to be retrieved.",
-              "required": true,
               "type": "string",
-              "entity_fieldname": "invitation_id",
-              "api_fieldname": "invitation_id",
-              "external_param": true,
+              "example": "01619571e2e89242ac12000600000000",
+              "description": "The ID of the invitation.",
+              "api_fieldname": "id",
+              "entity_fieldname": "id",
               "parameter_fieldname": "invitation_id",
-              "_key": "invitation_id"
+              "in": "path",
+              "required": true,
+              "_key": "id"
             }
           ],
           "method": "get",
@@ -40544,6 +40723,11 @@
           "path": "/v3/user-invitations/{invitation_id}",
           "summary": "Details of a user invitation.",
           "return_type": "user_invitation",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "user_invitation"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -40553,7 +40737,6 @@
             "is_custom",
             "private_key",
             "sub_accounts",
-            "id",
             "created_at",
             "updated_at",
             "email",
@@ -40564,7 +40747,7 @@
           ],
           "group_id": "Accounts",
           "parameter_map": {
-            "invitation-id": "id"
+            "invitation_id": "id"
           },
           "operation_id": "getInvitation",
           "pagination": false,
@@ -40979,6 +41162,11 @@
           "path": "/v3/user-invitations",
           "summary": "Get the details of all the user invitations.",
           "return_type": "paginated_response(user_invitation)",
+          "return_info": {
+            "self": true,
+            "custom": false,
+            "type": "user_invitation"
+          },
           "drop_fields": [
             "object",
             "etag",
@@ -40996,7 +41184,7 @@
           "foreign_key_priority": "self",
           "group_id": "Accounts",
           "parameter_map": {
-            "invitation-id": "id"
+            "invitation_id": "id"
           },
           "operation_id": "getAllInvitations",
           "pagination": true,
