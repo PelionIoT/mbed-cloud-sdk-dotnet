@@ -8,14 +8,9 @@ namespace Manhasset.Generator.src.common
     {
         public static string MapType(string swaggerType, string internalValue = null)
         {
-            var type = getType() ?? swaggerType.ToPascal();
+            // var type = getType() ?? swaggerType.ToPascal();
 
-            if (type.Contains("PaginatedResponse("))
-            {
-                return null;
-            }
-
-            return type;
+            return getType();
 
             string getType()
             {

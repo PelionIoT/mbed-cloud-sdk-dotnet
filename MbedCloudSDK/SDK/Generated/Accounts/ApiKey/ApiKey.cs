@@ -17,10 +17,10 @@ namespace MbedCloud.SDK.Entities
     using MbedCloud.SDK.Common;
     using MbedCloud.SDK.Client;
     using System;
+    using System.Collections.Generic;
     using MbedCloud.SDK.Enums;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
-    using System.Collections.Generic;
 
     /// <summary>
     /// ApiKey
@@ -36,6 +36,15 @@ namespace MbedCloud.SDK.Entities
         }
 
         /// <summary>
+        /// account_id
+        /// </summary>
+        public string AccountId
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// created_at
         /// </summary>
         public DateTime? CreatedAt
@@ -48,6 +57,15 @@ namespace MbedCloud.SDK.Entities
         /// creation_time
         /// </summary>
         public long? CreationTime
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// groups
+        /// </summary>
+        public List<string> Groups
         {
             get;
             set;
@@ -111,7 +129,7 @@ namespace MbedCloud.SDK.Entities
         {
             try
             {
-                var bodyParams = new ApiKey { Name = Name, Owner = Owner, Status = Status, };
+                var bodyParams = new ApiKey { Groups = Groups, Name = Name, Owner = Owner, Status = Status, };
                 return await Client.CallApi<ApiKey>(path: "/v3/api-keys", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
@@ -124,8 +142,8 @@ namespace MbedCloud.SDK.Entities
         {
             try
             {
-                var pathParams = new Dictionary<string, object> { { "apiKey", Id }, };
-                return await Client.CallApi<ApiKey>(path: "/v3/api-keys/{apiKey}", pathParams: pathParams, method: HttpMethods.DELETE, objectToUnpack: this);
+                var pathParams = new Dictionary<string, object> { { "apikey_id", Id }, };
+                return await Client.CallApi<ApiKey>(path: "/v3/api-keys/{apikey_id}", pathParams: pathParams, method: HttpMethods.DELETE, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {
@@ -137,8 +155,8 @@ namespace MbedCloud.SDK.Entities
         {
             try
             {
-                var pathParams = new Dictionary<string, object> { { "apiKey", Id }, };
-                return await Client.CallApi<ApiKey>(path: "/v3/api-keys/{apiKey}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
+                var pathParams = new Dictionary<string, object> { { "apikey_id", Id }, };
+                return await Client.CallApi<ApiKey>(path: "/v3/api-keys/{apikey_id}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {
@@ -180,9 +198,9 @@ namespace MbedCloud.SDK.Entities
         {
             try
             {
-                var pathParams = new Dictionary<string, object> { { "apiKey", Id }, };
-                var bodyParams = new ApiKey { Name = Name, Owner = Owner, Status = Status, };
-                return await Client.CallApi<ApiKey>(path: "/v3/api-keys/{apiKey}", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: this);
+                var pathParams = new Dictionary<string, object> { { "apikey_id", Id }, };
+                var bodyParams = new ApiKey { Groups = Groups, Name = Name, Owner = Owner, Status = Status, };
+                return await Client.CallApi<ApiKey>(path: "/v3/api-keys/{apikey_id}", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {

@@ -119,6 +119,22 @@ namespace MbedCloud.SDK
         }
 
         /// <summary>
+        /// LoginProfile
+        /// </summary>
+        public LoginProfile LoginProfile
+        {
+            get => new LoginProfile(config);
+        }
+
+        /// <summary>
+        /// ParentAccount
+        /// </summary>
+        public ParentAccount ParentAccount
+        {
+            get => new ParentAccount(config);
+        }
+
+        /// <summary>
         /// PasswordPolicy
         /// </summary>
         public PasswordPolicy PasswordPolicy

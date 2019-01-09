@@ -218,7 +218,7 @@ namespace Snippets.src.Foundation
         [Test]
         public async Task CrudDeveloperCertificate()
         {
-            var firstDevCert = await new TrustedCertificate().List().FirstOrDefault(d => d.IsDeveloperCertificate == true).DeveloperCertificateInfo();
+            var firstDevCert = await new TrustedCertificate().List().FirstOrDefault(d => d.IsDeveloperCertificate == true).GetDeveloperCertificateInfo();
 
             var devCert = new DeveloperCertificate
             {

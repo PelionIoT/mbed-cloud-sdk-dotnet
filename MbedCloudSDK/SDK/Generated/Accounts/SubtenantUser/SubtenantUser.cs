@@ -102,6 +102,15 @@ namespace MbedCloud.SDK.Entities
         }
 
         /// <summary>
+        /// groups
+        /// </summary>
+        public List<string> Groups
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// last_login_time
         /// </summary>
         public long? LastLoginTime
@@ -114,6 +123,15 @@ namespace MbedCloud.SDK.Entities
         /// login_history
         /// </summary>
         public List<LoginHistory> LoginHistory
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// login_profiles
+        /// </summary>
+        public List<LoginProfile> LoginProfiles
         {
             get;
             set;
@@ -204,10 +222,10 @@ namespace MbedCloud.SDK.Entities
         {
             try
             {
-                var pathParams = new Dictionary<string, object> { { "accountID", AccountId }, };
+                var pathParams = new Dictionary<string, object> { { "account_id", AccountId }, };
                 var queryParams = new Dictionary<string, object> { { "action", action }, };
-                var bodyParams = new SubtenantUser { Address = Address, Email = Email, FullName = FullName, MarketingAccepted = MarketingAccepted, Password = Password, PhoneNumber = PhoneNumber, TermsAccepted = TermsAccepted, Username = Username, };
-                return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{accountID}/users", pathParams: pathParams, queryParams: queryParams, bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
+                var bodyParams = new SubtenantUser { Address = Address, Email = Email, FullName = FullName, Groups = Groups, LoginProfiles = LoginProfiles, MarketingAccepted = MarketingAccepted, Password = Password, PhoneNumber = PhoneNumber, TermsAccepted = TermsAccepted, Username = Username, };
+                return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{account_id}/users", pathParams: pathParams, queryParams: queryParams, bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {
@@ -219,8 +237,8 @@ namespace MbedCloud.SDK.Entities
         {
             try
             {
-                var pathParams = new Dictionary<string, object> { { "accountID", AccountId }, { "user-id", Id }, };
-                return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{accountID}/users/{user-id}", pathParams: pathParams, method: HttpMethods.DELETE, objectToUnpack: this);
+                var pathParams = new Dictionary<string, object> { { "account_id", AccountId }, { "user_id", Id }, };
+                return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{account_id}/users/{user_id}", pathParams: pathParams, method: HttpMethods.DELETE, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {
@@ -232,8 +250,8 @@ namespace MbedCloud.SDK.Entities
         {
             try
             {
-                var pathParams = new Dictionary<string, object> { { "accountID", AccountId }, { "user-id", Id }, };
-                return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{accountID}/users/{user-id}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
+                var pathParams = new Dictionary<string, object> { { "account_id", AccountId }, { "user_id", Id }, };
+                return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{account_id}/users/{user_id}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {
@@ -245,9 +263,9 @@ namespace MbedCloud.SDK.Entities
         {
             try
             {
-                var pathParams = new Dictionary<string, object> { { "accountID", AccountId }, { "user-id", Id }, };
-                var bodyParams = new SubtenantUser { Address = Address, FullName = FullName, MarketingAccepted = MarketingAccepted, PhoneNumber = PhoneNumber, TermsAccepted = TermsAccepted, TwoFactorAuthentication = TwoFactorAuthentication, Username = Username, };
-                return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{accountID}/users/{user-id}", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: this);
+                var pathParams = new Dictionary<string, object> { { "account_id", AccountId }, { "user_id", Id }, };
+                var bodyParams = new SubtenantUser { Address = Address, FullName = FullName, Groups = Groups, LoginProfiles = LoginProfiles, MarketingAccepted = MarketingAccepted, PhoneNumber = PhoneNumber, TermsAccepted = TermsAccepted, TwoFactorAuthentication = TwoFactorAuthentication, Username = Username, };
+                return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{account_id}/users/{user_id}", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {
@@ -259,8 +277,8 @@ namespace MbedCloud.SDK.Entities
         {
             try
             {
-                var pathParams = new Dictionary<string, object> { { "accountID", AccountId }, { "user-id", Id }, };
-                return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{accountID}/users/{user-id}/validate-email", pathParams: pathParams, method: HttpMethods.POST, objectToUnpack: this);
+                var pathParams = new Dictionary<string, object> { { "account_id", AccountId }, { "user_id", Id }, };
+                return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{account_id}/users/{user_id}/validate-email", pathParams: pathParams, method: HttpMethods.POST, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {
