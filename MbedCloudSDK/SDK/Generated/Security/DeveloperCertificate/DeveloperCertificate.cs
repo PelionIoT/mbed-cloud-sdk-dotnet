@@ -108,8 +108,8 @@ namespace MbedCloud.SDK.Entities
         {
             try
             {
-                var pathParams = new Dictionary<string, object> { { "cert-id", Id }, };
-                return await Client.CallApi<DeveloperCertificate>(path: "/v3/trusted-certificates/{cert-id}", pathParams: pathParams, method: HttpMethods.DELETE, objectToUnpack: this);
+                var pathParams = new Dictionary<string, object> { { "cert_id", Id }, };
+                return await Client.CallApi<DeveloperCertificate>(path: "/v3/trusted-certificates/{cert_id}", pathParams: pathParams, method: HttpMethods.DELETE, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {
@@ -130,12 +130,12 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public async Task<TrustedCertificate> TrustedCertificateInfo()
+        public async Task<TrustedCertificate> GetTrustedCertificateInfo()
         {
             try
             {
-                var pathParams = new Dictionary<string, object> { { "cert-id", Id }, };
-                return await Client.CallApi<TrustedCertificate>(path: "/v3/trusted-certificates/{cert-id}", pathParams: pathParams, method: HttpMethods.GET);
+                var pathParams = new Dictionary<string, object> { { "cert_id", Id }, };
+                return await Client.CallApi<TrustedCertificate>(path: "/v3/trusted-certificates/{cert_id}", pathParams: pathParams, method: HttpMethods.GET);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {

@@ -16,12 +16,11 @@ namespace MbedCloud.SDK.Entities
 {
     using MbedCloud.SDK.Common;
     using MbedCloud.SDK.Client;
+    using System.Collections.Generic;
     using System;
-    using MbedCloud.SDK.Enums;
     using MbedCloud.SDK.Entities;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
-    using System.Collections.Generic;
 
     /// <summary>
     /// CertificateIssuer
@@ -35,6 +34,8 @@ namespace MbedCloud.SDK.Entities
         public CertificateIssuer(Config config) : base(config)
         {
         }
+
+        internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "Type", "issuer_type" }, };
 
         /// <summary>
         /// created_at
@@ -64,15 +65,6 @@ namespace MbedCloud.SDK.Entities
         }
 
         /// <summary>
-        /// issuer_type
-        /// </summary>
-        public CertificateIssuerIssuerTypeEnum? IssuerType
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// name
         /// </summary>
         public string Name
@@ -85,7 +77,7 @@ namespace MbedCloud.SDK.Entities
         {
             try
             {
-                var bodyParams = new CertificateIssuer { Description = Description, IssuerAttributes = IssuerAttributes, IssuerType = IssuerType, Name = Name, };
+                var bodyParams = new CertificateIssuer { Description = Description, IssuerAttributes = IssuerAttributes, Name = Name, };
                 return await Client.CallApi<CertificateIssuer>(path: "/v3/certificate-issuers", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
@@ -129,7 +121,7 @@ namespace MbedCloud.SDK.Entities
                     options = new QueryOptions();
                 }
 
-                Func<QueryOptions, ResponsePage<CertificateIssuer>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<CertificateIssuer>>(() => { return Client.CallApi<ResponsePage<CertificateIssuer>>(path: "/v3/certificate-issuers", method: HttpMethods.GET); });
+                Func<QueryOptions, ResponsePage<CertificateIssuer>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<CertificateIssuer>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<CertificateIssuer>>(path: "/v3/certificate-issuers", queryParams: queryParams, method: HttpMethods.GET); });
                 return new PaginatedResponse<QueryOptions, CertificateIssuer>(paginatedFunc, options);
             }
             catch (MbedCloud.SDK.Client.ApiException e)

@@ -66,9 +66,17 @@ def news_beta():
     subprocess.check_call(['git', 'push', 'origin'])
 
 def slack(version):
-    #posting message to slack
-    body = {"text": ":checkered_flag: New version of :c-sharp: SDK released: {}".format(version)}
-    myurl = "https://hooks.slack.com/services/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"
+    """Post a message to the SDK slack channel.
+    This uses an incoming webhook which is made available by a pre-configured Slack App.
+    """
+    print("Posting a message to Slack")
+    body = {
+        "channel": "#isg-dm-sdk",
+        "username": "SDK Release Announcement",
+        "icon_emoji": ":c-sharp:",
+        "text": ":checkered_flag: New version of :c-sharp: SDK released: {}".format(version),
+    }
+    myurl = os.getenv('SLACK_NOTIFICATION_WEBHOOK')
     req = urllib.request.Request(myurl)
     req.add_header('Content-Type', 'application/json; charset=utf-8')
     jsondata = json.dumps(body)

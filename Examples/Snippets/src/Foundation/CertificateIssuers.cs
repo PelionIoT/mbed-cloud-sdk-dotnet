@@ -9,7 +9,7 @@ namespace Snippets.src.Foundation
         [Test]
         public async System.Threading.Tasks.Task GetDefaultCertificateIssuerConfig()
         {
-            var defaultIssuer = await new CertificateIssuerConfig().Lwm2m();
+            var defaultIssuer = await new CertificateIssuerConfig().GetDefault();
             Assert.IsInstanceOf(typeof(CertificateIssuerConfig), defaultIssuer);
         }
     }

@@ -14,7 +14,7 @@ namespace Snippets.src.Foundation
 
             Assert.IsInstanceOf(typeof(TrustedCertificate), certificate);
 
-            var devInfo = await certificate.DeveloperCertificateInfo();
+            var devInfo = await certificate.GetDeveloperCertificateInfo();
 
             Assert.IsInstanceOf(typeof(DeveloperCertificate), devInfo);
         }
@@ -31,7 +31,7 @@ namespace Snippets.src.Foundation
 
             Assert.IsInstanceOf(typeof(DeveloperCertificate), devCertificate);
 
-            var trustedInfo = await devCertificate.TrustedCertificateInfo();
+            var trustedInfo = await devCertificate.GetTrustedCertificateInfo();
             Assert.IsInstanceOf(typeof(TrustedCertificate), trustedInfo);
         }
     }

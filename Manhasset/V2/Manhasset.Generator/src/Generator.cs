@@ -295,10 +295,15 @@ namespace Manhasset.Generator.src
                     var isCustomMethodCall = method["custom_method"] != null;
 
                     // does method return a foreing key
-                    var foreignKey = method["foreign_key"] != null ? method["foreign_key"]["entity"].GetStringValue().ToPascal() != entityClass.Name : false;
+                    // var foreignKey = method["foreign_key"] != null ? method["foreign_key"]["entity"].GetStringValue().ToPascal() != entityClass.Name : false;
+                    var foreignKey = method["return_info"]["self"].GetBoolValue() == false && SwaggerTypeHelper.MapType(method["return_info"]["type"].GetStringValue()) == null;
 
                     // return type
-                    var returns = deferToForeignKey ? method["defer_to_foreign_key_field"]["foreign_key"]["entity"].GetStringValue().ToPascal() : foreignKey ? method["foreign_key"]["entity"].GetStringValue().ToPascal() : method["return_type"] != null ? SwaggerTypeHelper.MapType(method["return_type"].GetStringValue()) ?? entityClass.Name : entityClass.Name;
+                    // var returns = deferToForeignKey ? method["defer_to_foreign_key_field"]["foreign_key"]["entity"].GetStringValue().ToPascal() : foreignKey ? method["foreign_key"]["entity"].GetStringValue().ToPascal() : method["return_type"] != null ? SwaggerTypeHelper.MapType(method["return_type"].GetStringValue()) ?? entityClass.Name : entityClass.Name;
+                    var returns = deferToForeignKey ?
+                    method["defer_to_foreign_key_field"]["foreign_key"]["entity"].GetStringValue().ToPascal() :
+                    SwaggerTypeHelper.MapType(method["return_info"]["type"].GetStringValue()) ?? method["return_info"]["type"].GetStringValue().ToPascal();
+
 
                     // name of custom method
                     var customMethodName = method["custom_method"].GetStringValue().ToPascal();

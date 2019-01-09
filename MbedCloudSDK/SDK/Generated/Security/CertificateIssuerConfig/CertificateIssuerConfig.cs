@@ -111,6 +111,18 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
+        public async Task<CertificateIssuerConfig> GetDefault()
+        {
+            try
+            {
+                return await Client.CallApi<CertificateIssuerConfig>(path: "/v3/certificate-issuer-configurations/lwm2m", method: HttpMethods.GET, objectToUnpack: this);
+            }
+            catch (MbedCloud.SDK.Client.ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
         public PaginatedResponse<QueryOptions, CertificateIssuerConfig> List(QueryOptions options = null)
         {
             try
@@ -120,20 +132,8 @@ namespace MbedCloud.SDK.Entities
                     options = new QueryOptions();
                 }
 
-                Func<QueryOptions, ResponsePage<CertificateIssuerConfig>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<CertificateIssuerConfig>>(() => { return Client.CallApi<ResponsePage<CertificateIssuerConfig>>(path: "/v3/certificate-issuer-configurations", method: HttpMethods.GET); });
+                Func<QueryOptions, ResponsePage<CertificateIssuerConfig>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<CertificateIssuerConfig>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<CertificateIssuerConfig>>(path: "/v3/certificate-issuer-configurations", queryParams: queryParams, method: HttpMethods.GET); });
                 return new PaginatedResponse<QueryOptions, CertificateIssuerConfig>(paginatedFunc, options);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public async Task<CertificateIssuerConfig> Lwm2m()
-        {
-            try
-            {
-                return await Client.CallApi<CertificateIssuerConfig>(path: "/v3/certificate-issuer-configurations/lwm2m", method: HttpMethods.GET, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
             {
