@@ -17,8 +17,8 @@ namespace MbedCloud.SDK.Entities
     using MbedCloud.SDK.Common;
     using MbedCloud.SDK.Client;
     using System;
-    using System.Collections.Generic;
     using MbedCloud.SDK.Entities;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
 
@@ -72,15 +72,6 @@ namespace MbedCloud.SDK.Entities
         }
 
         /// <summary>
-        /// groups
-        /// </summary>
-        public List<string> Groups
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// login_profiles
         /// </summary>
         public List<LoginProfile> LoginProfiles
@@ -112,7 +103,7 @@ namespace MbedCloud.SDK.Entities
             try
             {
                 var pathParams = new Dictionary<string, object> { { "account_id", AccountId }, };
-                var bodyParams = new SubtenantUserInvitation { Email = Email, Groups = Groups, LoginProfiles = LoginProfiles, };
+                var bodyParams = new SubtenantUserInvitation { Email = Email, LoginProfiles = LoginProfiles, };
                 return await Client.CallApi<SubtenantUserInvitation>(path: "/v3/accounts/{account_id}/user-invitations", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)

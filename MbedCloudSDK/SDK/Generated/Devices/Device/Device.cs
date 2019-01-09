@@ -18,10 +18,10 @@ namespace MbedCloud.SDK.Entities
     using MbedCloud.SDK.Client;
     using System;
     using MbedCloud.SDK.Enums;
-    using System.Collections.Generic;
     using MbedCloud.SDK.Entities;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Device
@@ -193,15 +193,6 @@ namespace MbedCloud.SDK.Entities
         /// firmware_checksum
         /// </summary>
         public string FirmwareChecksum
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// groups
-        /// </summary>
-        public List<string> Groups
         {
             get;
             set;
@@ -391,7 +382,7 @@ namespace MbedCloud.SDK.Entities
         {
             try
             {
-                var bodyParams = new Device { AutoUpdate = AutoUpdate, BootstrapExpirationDate = BootstrapExpirationDate, BootstrappedTimestamp = BootstrappedTimestamp, CaId = CaId, ConnectorExpirationDate = ConnectorExpirationDate, CustomAttributes = CustomAttributes, Deployment = Deployment, Description = Description, DeviceClass = DeviceClass, DeviceExecutionMode = DeviceExecutionMode, DeviceKey = DeviceKey, EndpointName = EndpointName, EndpointType = EndpointType, FirmwareChecksum = FirmwareChecksum, Groups = Groups, HostGateway = HostGateway, IssuerFingerprint = IssuerFingerprint, Manifest = Manifest, Mechanism = Mechanism, MechanismUrl = MechanismUrl, Name = Name, SerialNumber = SerialNumber, State = State, VendorId = VendorId, };
+                var bodyParams = new Device { AutoUpdate = AutoUpdate, BootstrapExpirationDate = BootstrapExpirationDate, BootstrappedTimestamp = BootstrappedTimestamp, CaId = CaId, ConnectorExpirationDate = ConnectorExpirationDate, CustomAttributes = CustomAttributes, Deployment = Deployment, Description = Description, DeviceClass = DeviceClass, DeviceExecutionMode = DeviceExecutionMode, DeviceKey = DeviceKey, EndpointName = EndpointName, EndpointType = EndpointType, FirmwareChecksum = FirmwareChecksum, HostGateway = HostGateway, IssuerFingerprint = IssuerFingerprint, Manifest = Manifest, Mechanism = Mechanism, MechanismUrl = MechanismUrl, Name = Name, SerialNumber = SerialNumber, State = State, VendorId = VendorId, };
                 return await Client.CallApi<Device>(path: "/v3/devices/", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
@@ -462,7 +453,7 @@ namespace MbedCloud.SDK.Entities
             try
             {
                 var pathParams = new Dictionary<string, object> { { "id", Id }, };
-                var bodyParams = new Device { AutoUpdate = AutoUpdate, CaId = CaId, CustomAttributes = CustomAttributes, Description = Description, DeviceKey = DeviceKey, EndpointName = EndpointName, EndpointType = EndpointType, Groups = Groups, HostGateway = HostGateway, Name = Name, };
+                var bodyParams = new Device { AutoUpdate = AutoUpdate, CaId = CaId, CustomAttributes = CustomAttributes, Description = Description, DeviceKey = DeviceKey, EndpointName = EndpointName, EndpointType = EndpointType, HostGateway = HostGateway, Name = Name, };
                 return await Client.CallApi<Device>(path: "/v3/devices/{id}/", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)

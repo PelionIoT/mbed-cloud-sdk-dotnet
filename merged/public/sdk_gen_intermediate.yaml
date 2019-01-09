@@ -407,6 +407,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -1473,6 +1474,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -2394,6 +2396,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -3254,6 +3257,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -4120,6 +4124,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -4563,6 +4568,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -5704,6 +5710,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -6114,6 +6121,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -6672,14 +6680,6 @@ entities:
     readOnly: true
     required: false
     type: integer
-  - _key: groups
-    api_fieldname: groups
-    description: A list of group IDs this API key belongs to.
-    items:
-      type: string
-    readOnly: false
-    required: false
-    type: array
   - _key: id
     api_fieldname: id
     description: The ID of the API key.
@@ -6750,6 +6750,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -6763,16 +6764,6 @@ entities:
     - account_id
     field_renames: []
     fields:
-    - _key: groups
-      api_fieldname: groups
-      description: A list of group IDs this API key belongs to.
-      entity_fieldname: groups
-      in: body
-      items:
-        type: string
-      parameter_fieldname: groups
-      required: false
-      type: array
     - _key: name
       api_fieldname: name
       description: The display name for the API key.
@@ -7078,6 +7069,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -7267,6 +7259,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -7275,7 +7268,6 @@ entities:
     - updated_at
     - key
     - name
-    - groups
     - owner
     - status
     - creation_time
@@ -7567,6 +7559,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -7896,6 +7889,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -7905,7 +7899,6 @@ entities:
     - updated_at
     - key
     - name
-    - groups
     - owner
     - status
     - creation_time
@@ -8146,6 +8139,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -8158,16 +8152,6 @@ entities:
     - account_id
     field_renames: []
     fields:
-    - _key: groups
-      api_fieldname: groups
-      description: A list of group IDs this API key belongs to.
-      entity_fieldname: groups
-      in: body
-      items:
-        type: string
-      parameter_fieldname: groups
-      required: false
-      type: array
     - _key: id
       api_fieldname: id
       description: The ID of the API key.
@@ -8607,6 +8591,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -8910,6 +8895,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -9243,9 +9229,7 @@ entities:
   tags:
   - Certificate Enrollments
 - _key: certificate_issuer
-  field_renames:
-  - _key: type
-    api_fieldname: issuer_type
+  field_renames: []
   fields:
   - _key: created_at
     api_fieldname: created_at
@@ -9285,6 +9269,20 @@ entities:
     readOnly: false
     required: false
     type: object
+  - _key: issuer_type
+    api_fieldname: issuer_type
+    description: "The type of the certificate issuer.\n- GLOBAL_SIGN:\n  Certificates\
+      \ are issued by GlobalSign service. The users must provide their own GlobalSign\
+      \ account credentials.\n- CFSSL_AUTH:\n  Certificates are issued by CFSSL authenticated\
+      \ signing service.\n  The users must provide their own CFSSL host_url and credentials.\n"
+    enum:
+    - GLOBAL_SIGN
+    - CFSSL_AUTH
+    enum_reference: certificate_issuer_type_enum
+    example: GLOBAL_SIGN
+    readOnly: false
+    required: true
+    type: string
   - _key: name
     api_fieldname: name
     description: Certificate issuer name, unique per account.
@@ -9327,15 +9325,14 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
     - sub_accounts
     - created_at
     - id
-    field_renames:
-    - _key: type
-      api_fieldname: issuer_type
+    field_renames: []
     fields:
     - _key: description
       api_fieldname: description
@@ -9384,6 +9381,23 @@ entities:
       required: false
       schema_param: true
       type: object
+    - _key: issuer_type
+      api_fieldname: issuer_type
+      description: "The type of the certificate issuer.\n- GLOBAL_SIGN:\n  Certificates\
+        \ are issued by GlobalSign service. The users must provide their own GlobalSign\
+        \ account credentials.\n- CFSSL_AUTH:\n  Certificates are issued by CFSSL\
+        \ authenticated signing service.\n  The users must provide their own CFSSL\
+        \ host_url and credentials.\n"
+      entity_fieldname: issuer_type
+      enum:
+      - GLOBAL_SIGN
+      - CFSSL_AUTH
+      enum_reference: certificate_issuer_type_enum
+      example: GLOBAL_SIGN
+      in: body
+      parameter_fieldname: issuer_type
+      required: true
+      type: string
     - _key: name
       api_fieldname: name
       description: Certificate issuer name, unique per account.
@@ -9457,7 +9471,7 @@ entities:
             \ account credentials.\n- CFSSL_AUTH:\n  Certificates are issued by CFSSL\
             \ authenticated signing service.\n  The users must provide their own CFSSL\
             \ host_url and credentials.\n"
-          entity_fieldname: type
+          entity_fieldname: issuer_type
           enum:
           - GLOBAL_SIGN
           - CFSSL_AUTH
@@ -9715,13 +9729,12 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
     - sub_accounts
-    field_renames:
-    - _key: type
-      api_fieldname: issuer_type
+    field_renames: []
     fields:
     - _key: id
       api_fieldname: certificate-issuer-id
@@ -9922,17 +9935,17 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
     - sub_accounts
     - created_at
+    - issuer_type
     - name
     - description
     - issuer_attributes
-    field_renames:
-    - _key: type
-      api_fieldname: issuer_type
+    field_renames: []
     fields:
     - _key: id
       api_fieldname: id
@@ -10006,7 +10019,7 @@ entities:
             \ account credentials.\n- CFSSL_AUTH:\n  Certificates are issued by CFSSL\
             \ authenticated signing service.\n  The users must provide their own CFSSL\
             \ host_url and credentials.\n"
-          entity_fieldname: type
+          entity_fieldname: issuer_type
           enum:
           - GLOBAL_SIGN
           - CFSSL_AUTH
@@ -10206,6 +10219,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -10213,9 +10227,7 @@ entities:
     - has_more
     - total_count
     - data
-    field_renames:
-    - _key: type
-      api_fieldname: issuer_type
+    field_renames: []
     fields:
     - _key: after
       api_fieldname: after
@@ -10503,14 +10515,14 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
     - sub_accounts
     - created_at
-    field_renames:
-    - _key: type
-      api_fieldname: issuer_type
+    - issuer_type
+    field_renames: []
     fields:
     - _key: description
       api_fieldname: description
@@ -10641,7 +10653,7 @@ entities:
             \ account credentials.\n- CFSSL_AUTH:\n  Certificates are issued by CFSSL\
             \ authenticated signing service.\n  The users must provide their own CFSSL\
             \ host_url and credentials.\n"
-          entity_fieldname: type
+          entity_fieldname: issuer_type
           enum:
           - GLOBAL_SIGN
           - CFSSL_AUTH
@@ -10953,15 +10965,14 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
     - sub_accounts
     - successful
     - message
-    field_renames:
-    - _key: type
-      api_fieldname: issuer_type
+    field_renames: []
     fields:
     - _key: id
       api_fieldname: certificate-issuer-id
@@ -11291,6 +11302,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -11577,6 +11589,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -11782,6 +11795,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -12055,6 +12069,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -12308,6 +12323,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -12620,6 +12636,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -12979,6 +12996,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -13529,6 +13547,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -13727,6 +13746,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -14195,6 +14215,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -14705,15 +14726,6 @@ entities:
     readOnly: false
     required: false
     type: string
-  - _key: groups
-    api_fieldname: groups
-    description: An array containing an ID of each group this device belongs to.
-    items:
-      example: '00000000000000000000000000000000'
-      type: string
-    readOnly: false
-    required: false
-    type: array
   - _key: host_gateway
     api_fieldname: host_gateway
     description: The `endpoint_name` of the host gateway, if appropriate.
@@ -14895,6 +14907,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -15066,17 +15079,6 @@ entities:
       parameter_fieldname: firmware_checksum
       required: false
       type: string
-    - _key: groups
-      api_fieldname: groups
-      description: An array containing an ID of each group this device belongs to.
-      entity_fieldname: groups
-      in: body
-      items:
-        example: '00000000000000000000000000000000'
-        type: string
-      parameter_fieldname: groups
-      required: false
-      type: array
     - _key: host_gateway
       api_fieldname: host_gateway
       description: The `endpoint_name` of the host gateway, if appropriate.
@@ -15515,6 +15517,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -15557,11 +15560,11 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
     - sub_accounts
-    - groups
     - issuer_fingerprint
     - operator_suspended
     - last_operator_suspended_category
@@ -15952,6 +15955,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -16341,6 +16345,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -16724,6 +16729,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -16834,17 +16840,6 @@ entities:
       parameter_fieldname: endpoint_type
       required: false
       type: string
-    - _key: groups
-      api_fieldname: groups
-      description: An array containing an ID of each group this device belongs to.
-      entity_fieldname: groups
-      in: body
-      items:
-        example: '00000000000000000000000000000000'
-        type: string
-      parameter_fieldname: groups
-      required: false
-      type: array
     - _key: host_gateway
       api_fieldname: host_gateway
       description: The `endpoint_name` of the host gateway, if appropriate.
@@ -17305,6 +17300,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -17590,6 +17586,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -17738,6 +17735,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -17980,6 +17978,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -18426,6 +18425,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -18695,6 +18695,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -18725,6 +18726,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -18801,6 +18803,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -19255,6 +19258,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -19527,6 +19531,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -19557,6 +19562,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -19633,6 +19639,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -20034,6 +20041,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -20173,6 +20181,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -20567,6 +20576,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -20762,6 +20772,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -21110,6 +21121,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -21596,6 +21608,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -21810,6 +21823,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -22204,6 +22218,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -22689,6 +22704,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -23245,16 +23261,6 @@ entities:
     readOnly: false
     required: false
     type: string
-  - _key: groups
-    api_fieldname: groups
-    description: A list of IDs of the groups this user belongs to.
-    in: body
-    items:
-      type: string
-    parameter_fieldname: groups
-    readOnly: false
-    required: false
-    type: array
   - _key: id
     api_fieldname: id
     description: The ID of the user.
@@ -23466,6 +23472,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -23535,16 +23542,6 @@ entities:
       parameter_fieldname: full_name
       required: false
       type: string
-    - _key: groups
-      api_fieldname: groups
-      description: A list of IDs of the groups this user belongs to.
-      entity_fieldname: groups
-      in: body
-      items:
-        type: string
-      parameter_fieldname: groups
-      required: false
-      type: array
     - _key: login_profiles
       api_fieldname: login_profiles
       description: A list of login profiles for the user. Specified as the identity
@@ -23712,13 +23709,16 @@ entities:
           type: string
         - _key: groups
           api_fieldname: groups
-          description: A list of IDs of the groups this user belongs to.
+          description: A list of group IDs this user belongs to.
           entity_fieldname: groups
+          external_param: true
           in: body
           items:
             type: string
+          name: groups
           parameter_fieldname: groups
           required: false
+          schema_param: true
           type: array
         - _key: id
           api_fieldname: id
@@ -24185,6 +24185,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -24438,6 +24439,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -24451,7 +24453,6 @@ entities:
     - email
     - address
     - phone_number
-    - groups
     - email_verified
     - creation_time
     - last_login_time
@@ -24566,13 +24567,16 @@ entities:
           type: string
         - _key: groups
           api_fieldname: groups
-          description: A list of IDs of the groups this user belongs to.
+          description: A list of group IDs this user belongs to.
           entity_fieldname: groups
+          external_param: true
           in: body
           items:
             type: string
+          name: groups
           parameter_fieldname: groups
           required: false
+          schema_param: true
           type: array
         - _key: id
           api_fieldname: id
@@ -24944,6 +24948,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -24994,16 +24999,6 @@ entities:
       parameter_fieldname: full_name
       required: false
       type: string
-    - _key: groups
-      api_fieldname: groups
-      description: A list of IDs of the groups this user belongs to.
-      entity_fieldname: groups
-      in: body
-      items:
-        type: string
-      parameter_fieldname: groups
-      required: false
-      type: array
     - _key: id
       api_fieldname: id
       description: The ID of the user.
@@ -25175,13 +25170,16 @@ entities:
           type: string
         - _key: groups
           api_fieldname: groups
-          description: A list of IDs of the groups this user belongs to.
+          description: A list of group IDs this user belongs to.
           entity_fieldname: groups
+          external_param: true
           in: body
           items:
             type: string
+          name: groups
           parameter_fieldname: groups
           required: false
+          schema_param: true
           type: array
         - _key: id
           api_fieldname: id
@@ -25648,6 +25646,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -25883,16 +25882,6 @@ entities:
     readOnly: true
     required: false
     type: string
-  - _key: groups
-    api_fieldname: groups
-    description: A list of IDs of the groups the user is invited to.
-    in: body
-    items:
-      type: string
-    parameter_fieldname: groups
-    readOnly: false
-    required: false
-    type: array
   - _key: id
     api_fieldname: id
     description: The ID of the invitation.
@@ -25972,6 +25961,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -26001,16 +25991,6 @@ entities:
       parameter_fieldname: email
       required: true
       type: string
-    - _key: groups
-      api_fieldname: groups
-      description: A list of IDs of the groups the user is invited to.
-      entity_fieldname: groups
-      in: body
-      items:
-        type: string
-      parameter_fieldname: groups
-      required: false
-      type: array
     - _key: login_profiles
       api_fieldname: login_profiles
       description: A list of login profiles for the user. Specified as the identity
@@ -26118,13 +26098,16 @@ entities:
           type: string
         - _key: groups
           api_fieldname: groups
-          description: A list of IDs of the groups the user is invited to.
+          description: A list of IDs of the groups this user has been invited to.
           entity_fieldname: groups
+          external_param: true
           in: body
           items:
             type: string
+          name: groups
           parameter_fieldname: groups
           required: false
+          schema_param: true
           type: array
         - _key: id
           api_fieldname: id
@@ -26366,6 +26349,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -26566,6 +26550,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -26574,7 +26559,6 @@ entities:
     - updated_at
     - email
     - user_id
-    - groups
     - expiration
     - login_profiles
     field_renames: []
@@ -26651,13 +26635,16 @@ entities:
           type: string
         - _key: groups
           api_fieldname: groups
-          description: A list of IDs of the groups the user is invited to.
+          description: A list of IDs of the groups this user has been invited to.
           entity_fieldname: groups
+          external_param: true
           in: body
           items:
             type: string
+          name: groups
           parameter_fieldname: groups
           required: false
+          schema_param: true
           type: array
         - _key: id
           api_fieldname: id
@@ -27046,6 +27033,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -27500,6 +27488,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -27704,6 +27693,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -28067,6 +28057,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -28551,6 +28542,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -28929,6 +28921,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -29497,14 +29490,6 @@ entities:
     readOnly: false
     required: false
     type: string
-  - _key: groups
-    api_fieldname: groups
-    description: A list of IDs of the groups this user belongs to.
-    items:
-      type: string
-    readOnly: false
-    required: false
-    type: array
   - _key: id
     api_fieldname: id
     description: The ID of the user.
@@ -29698,6 +29683,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -29759,16 +29745,6 @@ entities:
       parameter_fieldname: full_name
       required: false
       type: string
-    - _key: groups
-      api_fieldname: groups
-      description: A list of IDs of the groups this user belongs to.
-      entity_fieldname: groups
-      in: body
-      items:
-        type: string
-      parameter_fieldname: groups
-      required: false
-      type: array
     - _key: login_profiles
       api_fieldname: login_profiles
       description: A list of login profiles for the user. Specified as the identity
@@ -30322,6 +30298,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -30565,6 +30542,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -30578,7 +30556,6 @@ entities:
     - email
     - address
     - phone_number
-    - groups
     - email_verified
     - creation_time
     - last_login_time
@@ -31023,6 +31000,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -31487,6 +31465,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -31529,16 +31508,6 @@ entities:
       parameter_fieldname: full_name
       required: false
       type: string
-    - _key: groups
-      api_fieldname: groups
-      description: A list of IDs of the groups this user belongs to.
-      entity_fieldname: groups
-      in: body
-      items:
-        type: string
-      parameter_fieldname: groups
-      required: false
-      type: array
     - _key: id
       api_fieldname: id
       description: The ID of the user.
@@ -32173,14 +32142,6 @@ entities:
     readOnly: true
     required: false
     type: string
-  - _key: groups
-    api_fieldname: groups
-    description: A list of IDs of the groups the user is invited to.
-    items:
-      type: string
-    readOnly: false
-    required: false
-    type: array
   - _key: id
     api_fieldname: id
     description: The ID of the invitation.
@@ -32256,6 +32217,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -32277,16 +32239,6 @@ entities:
       parameter_fieldname: email
       required: true
       type: string
-    - _key: groups
-      api_fieldname: groups
-      description: A list of IDs of the groups the user is invited to.
-      entity_fieldname: groups
-      in: body
-      items:
-        type: string
-      parameter_fieldname: groups
-      required: false
-      type: array
     - _key: login_profiles
       api_fieldname: login_profiles
       description: A list of login profiles for the user. Specified as the identity
@@ -32630,6 +32582,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -32820,6 +32773,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -32829,7 +32783,6 @@ entities:
     - email
     - user_id
     - account_id
-    - groups
     - expiration
     - login_profiles
     field_renames: []
@@ -33133,6 +33086,7 @@ entities:
     - object
     - etag
     - type
+    - groups
     - filter
     - is_custom
     - private_key
@@ -33567,6 +33521,14 @@ enums:
   values:
   - ASC
   - DESC
+- _key: certificate_issuer_type_enum
+  entity_name: certificate_issuer
+  enum_name: certificate_issuer_type_enum
+  field_name: issuer_type
+  group_id: Security
+  values:
+  - CFSSL_AUTH
+  - GLOBAL_SIGN
 - _key: device_deployed_state_enum
   entity_name: device
   enum_name: device_deployed_state_enum
@@ -33756,6 +33718,7 @@ groups:
   - subtenant_trusted_certificate
   - developer_certificate
   enums:
+  - certificate_issuer_type_enum
   - certificate_enrollment_enroll_status_enum
   - certificate_enrollment_enroll_result_enum
   - certificate_enrollment_order_enum

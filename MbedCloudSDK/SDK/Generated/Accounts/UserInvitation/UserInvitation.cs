@@ -17,8 +17,8 @@ namespace MbedCloud.SDK.Entities
     using MbedCloud.SDK.Common;
     using MbedCloud.SDK.Client;
     using System;
-    using System.Collections.Generic;
     using MbedCloud.SDK.Entities;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
 
@@ -72,15 +72,6 @@ namespace MbedCloud.SDK.Entities
         }
 
         /// <summary>
-        /// groups
-        /// </summary>
-        public List<string> Groups
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// login_profiles
         /// </summary>
         public List<LoginProfile> LoginProfiles
@@ -111,7 +102,7 @@ namespace MbedCloud.SDK.Entities
         {
             try
             {
-                var bodyParams = new UserInvitation { Email = Email, Groups = Groups, LoginProfiles = LoginProfiles, };
+                var bodyParams = new UserInvitation { Email = Email, LoginProfiles = LoginProfiles, };
                 return await Client.CallApi<UserInvitation>(path: "/v3/user-invitations", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)

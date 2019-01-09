@@ -16,11 +16,12 @@ namespace MbedCloud.SDK.Entities
 {
     using MbedCloud.SDK.Common;
     using MbedCloud.SDK.Client;
-    using System.Collections.Generic;
     using System;
+    using MbedCloud.SDK.Enums;
     using MbedCloud.SDK.Entities;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
+    using System.Collections.Generic;
 
     /// <summary>
     /// CertificateIssuer
@@ -34,8 +35,6 @@ namespace MbedCloud.SDK.Entities
         public CertificateIssuer(Config config) : base(config)
         {
         }
-
-        internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "Type", "issuer_type" }, };
 
         /// <summary>
         /// created_at
@@ -65,6 +64,15 @@ namespace MbedCloud.SDK.Entities
         }
 
         /// <summary>
+        /// issuer_type
+        /// </summary>
+        public CertificateIssuerTypeEnum? IssuerType
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// name
         /// </summary>
         public string Name
@@ -77,7 +85,7 @@ namespace MbedCloud.SDK.Entities
         {
             try
             {
-                var bodyParams = new CertificateIssuer { Description = Description, IssuerAttributes = IssuerAttributes, Name = Name, };
+                var bodyParams = new CertificateIssuer { Description = Description, IssuerAttributes = IssuerAttributes, IssuerType = IssuerType, Name = Name, };
                 return await Client.CallApi<CertificateIssuer>(path: "/v3/certificate-issuers", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)

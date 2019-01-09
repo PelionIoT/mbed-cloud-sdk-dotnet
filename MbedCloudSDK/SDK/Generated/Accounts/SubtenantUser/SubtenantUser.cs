@@ -102,15 +102,6 @@ namespace MbedCloud.SDK.Entities
         }
 
         /// <summary>
-        /// groups
-        /// </summary>
-        public List<string> Groups
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// last_login_time
         /// </summary>
         public long? LastLoginTime
@@ -224,7 +215,7 @@ namespace MbedCloud.SDK.Entities
             {
                 var pathParams = new Dictionary<string, object> { { "account_id", AccountId }, };
                 var queryParams = new Dictionary<string, object> { { "action", action }, };
-                var bodyParams = new SubtenantUser { Address = Address, Email = Email, FullName = FullName, Groups = Groups, LoginProfiles = LoginProfiles, MarketingAccepted = MarketingAccepted, Password = Password, PhoneNumber = PhoneNumber, TermsAccepted = TermsAccepted, Username = Username, };
+                var bodyParams = new SubtenantUser { Address = Address, Email = Email, FullName = FullName, LoginProfiles = LoginProfiles, MarketingAccepted = MarketingAccepted, Password = Password, PhoneNumber = PhoneNumber, TermsAccepted = TermsAccepted, Username = Username, };
                 return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{account_id}/users", pathParams: pathParams, queryParams: queryParams, bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
@@ -264,7 +255,7 @@ namespace MbedCloud.SDK.Entities
             try
             {
                 var pathParams = new Dictionary<string, object> { { "account_id", AccountId }, { "user_id", Id }, };
-                var bodyParams = new SubtenantUser { Address = Address, FullName = FullName, Groups = Groups, LoginProfiles = LoginProfiles, MarketingAccepted = MarketingAccepted, PhoneNumber = PhoneNumber, TermsAccepted = TermsAccepted, TwoFactorAuthentication = TwoFactorAuthentication, Username = Username, };
+                var bodyParams = new SubtenantUser { Address = Address, FullName = FullName, LoginProfiles = LoginProfiles, MarketingAccepted = MarketingAccepted, PhoneNumber = PhoneNumber, TermsAccepted = TermsAccepted, TwoFactorAuthentication = TwoFactorAuthentication, Username = Username, };
                 return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{account_id}/users/{user_id}", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: this);
             }
             catch (MbedCloud.SDK.Client.ApiException e)
