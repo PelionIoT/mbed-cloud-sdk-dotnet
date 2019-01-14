@@ -12,7 +12,7 @@ namespace Manhasset.Runner
     {
         static async System.Threading.Tasks.Task Main(string[] args)
         {
-            var pathToConfig = "/Users/alelog01/git/mbed-cloud-sdk-dotnet/merged/public/sdk_gen_intermediate.json";
+            var pathToConfig = "merged/public/sdk_gen_intermediate.json";
 
             var config = File.ReadAllText(pathToConfig);
             // parse to a JObject
