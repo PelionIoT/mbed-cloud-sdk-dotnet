@@ -33,7 +33,7 @@ namespace Manhasset.Generator.src
                 Name = "EntityFactory",
                 Namespace = "MbedCloud.SDK",
                 FilePath = $"{rootFilePath}/EntityFactory.cs",
-                DocString = "Entity Factory",
+                DocString = "Entity Factory Class",
             };
 
             // var configField = new PrivateFieldContainer
