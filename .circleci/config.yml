@@ -97,6 +97,16 @@ references:
         ignore:
         - /.*/
 
+  contract_repo_branch: &contract_repo_branch
+    filters:
+      branches:
+        only:
+        #- /api-contract.*/
+        - /f.*/
+      tags:
+        ignore:
+        - /.*/
+
 jobs:
   #############################################################################################
   #                                Cache Docker Images                                        #
@@ -392,6 +402,28 @@ jobs:
           name: run beta tag script
           command: python ./scripts/tag_and_release.py beta $(pipenv run auto_version --config=scripts/version_beta.toml)
   #############################################################################################
+  #                                Generation                                                 #
+  #############################################################################################
+  commit_back_generation:
+    <<: *dotnet_mono_docker
+    steps:
+      - checkout
+      - run:
+          name: Run generator
+          command: ./build.sh --target="generation_debug"
+      - run:
+          name: Build
+          command: ./build.sh --target=CI
+      - run:
+          name: Test
+          command: ./build.sh --target=_run_unit_tests
+      - run:
+          name: commit changes
+          command: |
+              git add MbedCloudSDK/SDK/Generated
+              git commit --message "Generated code" || true
+              git push -q https://${GITHUB_TOKEN}@github.com/ARMmbed/${CIRCLE_PROJECT_REPONAME}.git ${CIRCLE_BRANCH}
+  #############################################################################################
   #                                Common Release Jobs                                        #
   #############################################################################################
   build_pack_deploy:
@@ -502,6 +534,10 @@ version: 2
 #                                Workflows                                                  #
 #############################################################################################
 workflows:
+  generation_workflow:
+    jobs:
+      - commit_back_generation:
+          <<: *contract_repo_branch
   csharp_sdk_workflow:
     jobs:
       - cache_test_server_image:
