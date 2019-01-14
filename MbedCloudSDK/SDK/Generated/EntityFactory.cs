@@ -18,7 +18,7 @@ namespace MbedCloud.SDK
     using MbedCloud.SDK.Entities;
 
     /// <summary>
-    /// Entity Factory Class
+    /// Entity Factory
     /// </summary>
     public partial class EntityFactory
     {
