@@ -27,7 +27,7 @@ namespace MbedCloud.SDK.Entities
         public string AdminEmail
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace MbedCloud.SDK.Entities
         public string AdminName
         {
             get;
-            set;
+            internal set;
         }
     }
 }

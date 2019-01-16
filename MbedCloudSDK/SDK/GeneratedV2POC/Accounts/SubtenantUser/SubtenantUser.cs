@@ -51,7 +51,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? CreatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace MbedCloud.SDK.Entities
         public long? CreationTime
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace MbedCloud.SDK.Entities
         public bool? EmailVerified
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace MbedCloud.SDK.Entities
         public long? LastLoginTime
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace MbedCloud.SDK.Entities
         public List<LoginHistory> LoginHistory
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace MbedCloud.SDK.Entities
         public long? PasswordChangedTime
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? UpdatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>

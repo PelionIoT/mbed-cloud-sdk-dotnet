@@ -27,7 +27,7 @@ namespace MbedCloud.SDK.Entities
         public string Message
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace MbedCloud.SDK.Entities
         public bool? Successful
         {
             get;
-            set;
+            internal set;
         }
     }
 }

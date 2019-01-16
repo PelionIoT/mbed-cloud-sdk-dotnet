@@ -27,7 +27,7 @@ namespace MbedCloud.SDK.Entities
         public string Name
         {
             get;
-            set;
+            internal set;
         }
     }
 }

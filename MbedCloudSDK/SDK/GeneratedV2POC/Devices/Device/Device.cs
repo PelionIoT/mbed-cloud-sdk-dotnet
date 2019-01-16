@@ -30,7 +30,7 @@ namespace MbedCloud.SDK.Entities
         public string AccountId
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? CreatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace MbedCloud.SDK.Entities
         public DeviceDeployedStateEnum? DeployedState
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -156,7 +156,7 @@ namespace MbedCloud.SDK.Entities
         public string EndpointName
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? EnrolmentListTimestamp
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -210,7 +210,7 @@ namespace MbedCloud.SDK.Entities
         public string LastOperatorSuspendedCategory
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -219,7 +219,7 @@ namespace MbedCloud.SDK.Entities
         public string LastOperatorSuspendedDescription
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -228,7 +228,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? LastOperatorSuspendedUpdatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -237,7 +237,7 @@ namespace MbedCloud.SDK.Entities
         public string LastSystemSuspendedCategory
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -246,7 +246,7 @@ namespace MbedCloud.SDK.Entities
         public string LastSystemSuspendedDescription
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -255,7 +255,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? LastSystemSuspendedUpdatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -264,7 +264,7 @@ namespace MbedCloud.SDK.Entities
         public DeviceLifecycleStatusEnum? LifecycleStatus
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -282,7 +282,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? ManifestTimestamp
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -318,7 +318,7 @@ namespace MbedCloud.SDK.Entities
         public bool? OperatorSuspended
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -345,7 +345,7 @@ namespace MbedCloud.SDK.Entities
         public bool? SystemSuspended
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -354,7 +354,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? UpdatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>

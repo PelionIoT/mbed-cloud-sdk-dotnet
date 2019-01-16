@@ -31,7 +31,7 @@ namespace MbedCloud.SDK.Entities
         public string AccountId
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace MbedCloud.SDK.Entities
         public string Certificate
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? CreatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace MbedCloud.SDK.Entities
         public string SecurityFileContent
         {
             get;
-            set;
+            internal set;
         }
     }
 }

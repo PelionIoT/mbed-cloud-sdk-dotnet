@@ -29,7 +29,7 @@ namespace MbedCloud.SDK.Entities
         public Dictionary<string, string> Changes
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? CreatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace MbedCloud.SDK.Entities
         public Dictionary<string, string> Data
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? DateTime
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace MbedCloud.SDK.Entities
         public string Description
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace MbedCloud.SDK.Entities
         public string DeviceId
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace MbedCloud.SDK.Entities
         public string EventType
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace MbedCloud.SDK.Entities
         public string EventTypeCategory
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace MbedCloud.SDK.Entities
         public string EventTypeDescription
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace MbedCloud.SDK.Entities
         public bool? StateChange
         {
             get;
-            set;
+            internal set;
         }
     }
 }

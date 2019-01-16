@@ -62,9 +62,7 @@ namespace Manhasset.Generator.src.Generators
                 // var docString = property["description"].GetStringValue() ?? property["_key"].GetStringValue();
                 var docString = property["_key"].GetStringValue();
 
-                // if property is private
-                // TODO restore if we start using private fields again
-                var isPrivate = false;// property["private_field"] != null;
+                var isReadOnly = property["readOnly"].GetBoolValue();
 
                 // get type
                 // format or type for most methods
@@ -116,17 +114,10 @@ namespace Manhasset.Generator.src.Generators
                         DocString = docString,
                         PropertyType = propertyType,
                         IsNullable = isNullable,
+                        SetAccessorModifier = isReadOnly ? Modifiers.INTERNAL : Modifiers.PUBLIC,
                     };
 
-                    // can assume public
-                    if (isPrivate)
-                    {
-                        propContainer.AddModifier(nameof(Modifiers.INTERNAL), Modifiers.INTERNAL);
-                    }
-                    else
-                    {
-                        propContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
-                    }
+                    propContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
 
                     entityClass.AddProperty(name, propContainer);
                 }

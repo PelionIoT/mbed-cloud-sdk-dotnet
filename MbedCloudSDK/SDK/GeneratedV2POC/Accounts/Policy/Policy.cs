@@ -27,7 +27,7 @@ namespace MbedCloud.SDK.Entities
         public string Action
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace MbedCloud.SDK.Entities
         public bool? Allow
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace MbedCloud.SDK.Entities
         public string Feature
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace MbedCloud.SDK.Entities
         public bool? Inherited
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace MbedCloud.SDK.Entities
         public string Resource
         {
             get;
-            set;
+            internal set;
         }
     }
 }

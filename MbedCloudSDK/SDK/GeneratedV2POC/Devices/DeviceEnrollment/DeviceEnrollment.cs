@@ -28,7 +28,7 @@ namespace MbedCloud.SDK.Entities
         public string AccountId
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? ClaimedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? CreatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace MbedCloud.SDK.Entities
         public string EnrolledDeviceId
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? ExpiresAt
         {
             get;
-            set;
+            internal set;
         }
     }
 }

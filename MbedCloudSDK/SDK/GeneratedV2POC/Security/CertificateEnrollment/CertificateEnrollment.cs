@@ -29,7 +29,7 @@ namespace MbedCloud.SDK.Entities
         public string CertificateName
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? CreatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace MbedCloud.SDK.Entities
         public string DeviceId
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace MbedCloud.SDK.Entities
         public CertificateEnrollmentEnrollResultEnum? EnrollResult
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace MbedCloud.SDK.Entities
         public CertificateEnrollmentEnrollStatusEnum? EnrollStatus
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? UpdatedAt
         {
             get;
-            set;
+            internal set;
         }
     }
 }

@@ -29,7 +29,7 @@ namespace MbedCloud.SDK.Entities
         public string AccountId
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? CreatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace MbedCloud.SDK.Entities
         public long? CreationTime
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace MbedCloud.SDK.Entities
         public string Key
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace MbedCloud.SDK.Entities
         public long? LastLoginTime
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? UpdatedAt
         {
             get;
-            set;
+            internal set;
         }
     }
 }

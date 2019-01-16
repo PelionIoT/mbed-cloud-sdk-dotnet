@@ -47,7 +47,7 @@ namespace MbedCloud.SDK.Entities
         public string CertificateFingerprint
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? CreatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace MbedCloud.SDK.Entities
         public int? DeviceExecutionMode
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace MbedCloud.SDK.Entities
         public string Issuer
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace MbedCloud.SDK.Entities
         public string OwnerId
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace MbedCloud.SDK.Entities
         public string Subject
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? UpdatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? Validity
         {
             get;
-            set;
+            internal set;
         }
     }
 }

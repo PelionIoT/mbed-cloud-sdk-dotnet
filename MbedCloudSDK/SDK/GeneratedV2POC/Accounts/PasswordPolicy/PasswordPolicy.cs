@@ -27,7 +27,7 @@ namespace MbedCloud.SDK.Entities
         public string MinimumLength
         {
             get;
-            set;
+            internal set;
         }
     }
 }

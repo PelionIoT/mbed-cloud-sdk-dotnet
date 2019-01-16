@@ -67,7 +67,7 @@ namespace MbedCloud.SDK.Entities
         public string AdminId
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace MbedCloud.SDK.Entities
         public string AdminKey
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? CreatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -211,7 +211,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? Expiration
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -238,7 +238,7 @@ namespace MbedCloud.SDK.Entities
         public Dictionary<string, string> Limits
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -265,7 +265,7 @@ namespace MbedCloud.SDK.Entities
         public ParentAccount ParentAccount
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -274,7 +274,7 @@ namespace MbedCloud.SDK.Entities
         public string ParentId
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -301,7 +301,7 @@ namespace MbedCloud.SDK.Entities
         public List<Policy> Policies
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -319,7 +319,7 @@ namespace MbedCloud.SDK.Entities
         public string Reason
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -328,7 +328,7 @@ namespace MbedCloud.SDK.Entities
         public string ReferenceNote
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -355,7 +355,7 @@ namespace MbedCloud.SDK.Entities
         public AccountStatusEnum? Status
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -364,7 +364,7 @@ namespace MbedCloud.SDK.Entities
         public string TemplateId
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -373,7 +373,7 @@ namespace MbedCloud.SDK.Entities
         public string Tier
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -382,7 +382,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? UpdatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -391,7 +391,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? UpgradedAt
         {
             get;
-            set;
+            internal set;
         }
     }
 }

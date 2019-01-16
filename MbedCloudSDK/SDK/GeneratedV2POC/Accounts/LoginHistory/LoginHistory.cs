@@ -28,7 +28,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? Date
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace MbedCloud.SDK.Entities
         public string IpAddress
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace MbedCloud.SDK.Entities
         public bool? Success
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace MbedCloud.SDK.Entities
         public string UserAgent
         {
             get;
-            set;
+            internal set;
         }
     }
 }
