@@ -13,7 +13,7 @@ namespace MbedCloud.SDK.Common
     /// <typeparam name="TData">Data</typeparam>
     [JsonObject]
     public class PaginatedResponse<TOptions, TData> : IEnumerable<TData>
-        where TData : BaseEntity
+        // where TData : BaseEntity
         where TOptions : QueryOptions
     {
         private readonly List<TData> cache;
@@ -154,7 +154,7 @@ namespace MbedCloud.SDK.Common
         private ResponsePage<TData> GetPage()
         {
             var page = getDataFunc.Invoke(options);
-            options.After = page.Data.LastOrDefault()?.Id;
+            options.After = ((dynamic)page.Data.LastOrDefault())?.Id;
             return page;
         }
     }

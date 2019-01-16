@@ -29,25 +29,25 @@ namespace MbedCloud.SDK.Common
             self.IsDeveloperCertificate = value;
         }
 
-        public static Task<Stream> DownloadFullReportFile(DeviceEnrollmentBulkCreate self)
-        {
-            return StreamToFile(self.Config, self.FullReportFile);
-        }
+        // public static Task<Stream> DownloadFullReportFile(DeviceEnrollmentBulkCreate self)
+        // {
+        //     return StreamToFile(self.Config, self.FullReportFile);
+        // }
 
-        public static Task<Stream> DownloadFullReportFile(DeviceEnrollmentBulkDelete self)
-        {
-            return StreamToFile(self.Config, self.ErrorsReportFile);
-        }
+        // public static Task<Stream> DownloadFullReportFile(DeviceEnrollmentBulkDelete self)
+        // {
+        //     return StreamToFile(self.Config, self.ErrorsReportFile);
+        // }
 
-        public static Task<Stream> DownloadErrorsReportFile(DeviceEnrollmentBulkCreate self)
-        {
-            return StreamToFile(self.Config, self.FullReportFile, "error-report.csv");
-        }
+        // public static Task<Stream> DownloadErrorsReportFile(DeviceEnrollmentBulkCreate self)
+        // {
+        //     return StreamToFile(self.Config, self.FullReportFile, "error-report.csv");
+        // }
 
-        public static Task<Stream> DownloadErrorsReportFile(DeviceEnrollmentBulkDelete self)
-        {
-            return StreamToFile(self.Config, self.ErrorsReportFile, "error-report.csv");
-        }
+        // public static Task<Stream> DownloadErrorsReportFile(DeviceEnrollmentBulkDelete self)
+        // {
+        //     return StreamToFile(self.Config, self.ErrorsReportFile, "error-report.csv");
+        // }
 
         private static Task<Stream> StreamToFile(Config config, string url, string filePath = "report.csv")
         {
@@ -64,7 +64,7 @@ namespace MbedCloud.SDK.Common
                     client.Execute(request);
                 }
             }
-            
+
             return Task.FromResult<Stream>(File.OpenRead(filePath));
         }
     }
