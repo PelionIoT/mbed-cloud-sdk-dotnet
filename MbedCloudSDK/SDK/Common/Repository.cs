@@ -1,6 +1,7 @@
 using MbedCloud.SDK.Common;
+using MbedCloud.SDK.Client;
 
-namespace MbedCloudSDK.SDK.Common
+namespace MbedCloud.SDK.Common
 {
     public class Repository
     {
@@ -19,10 +20,10 @@ namespace MbedCloudSDK.SDK.Common
             get => _config;
         }
 
-        public Repository(Config config = null)
+        public Repository(Config config = null, Client.Client client = null)
         {
             _config = config ?? new Config();
-            Client = new MbedCloud.SDK.Client.Client(_config);
+            Client = client ?? new Client.Client(_config);
         }
     }
 }

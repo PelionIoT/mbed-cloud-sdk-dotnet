@@ -33,10 +33,20 @@ namespace Manhasset.Generator.src.CustomContainers
 
             BodyParams.Select(b =>
             {
-                return SyntaxFactory.AssignmentExpression(
-                        SyntaxKind.SimpleAssignmentExpression,
-                        SyntaxFactory.IdentifierName(b.Key),
-                        SyntaxFactory.IdentifierName(b.Key));
+                return b.CallContext != null ?
+                SyntaxFactory.AssignmentExpression(
+                SyntaxKind.SimpleAssignmentExpression,
+                SyntaxFactory.IdentifierName(b.Key),
+                SyntaxFactory.MemberAccessExpression(
+                    SyntaxKind.SimpleMemberAccessExpression,
+                    SyntaxFactory.IdentifierName(b.CallContext),
+                    SyntaxFactory.IdentifierName(b.Key)
+                ))
+                :
+                SyntaxFactory.AssignmentExpression(
+                SyntaxKind.SimpleAssignmentExpression,
+                SyntaxFactory.IdentifierName(b.Key),
+                SyntaxFactory.IdentifierName(b.Key));
             })
             .ToList()
             .ForEach(b =>

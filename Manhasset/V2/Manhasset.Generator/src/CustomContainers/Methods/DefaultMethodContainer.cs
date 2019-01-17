@@ -9,6 +9,8 @@ namespace Manhasset.Generator.src.CustomContainers
 {
     public class DefaultMethodContainer : BaseMethodContainer
     {
+        public bool HasRequest { get; set; }
+
         public override MethodDeclarationSyntax GetSyntax()
         {
             var syntax = base.GetSyntax();
@@ -26,6 +28,7 @@ namespace Manhasset.Generator.src.CustomContainers
                 HttpMethod = HttpMethod,
                 Returns = Returns,
                 EntityName = EntityName,
+                HasRequest = HasRequest,
             };
 
             methodBody.Add(returnStatement.GetSyntax());

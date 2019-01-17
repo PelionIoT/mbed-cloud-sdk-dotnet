@@ -6,6 +6,7 @@ namespace Manhasset.Generator.src.CustomContainers
 {
     public class QueryOptionsNullCheckContainer : BaseContainer
     {
+        public string ListOptionsName { get; set; }
         public virtual IfStatementSyntax GetSyntax()
         {
             return SyntaxFactory.IfStatement(
@@ -21,7 +22,7 @@ namespace Manhasset.Generator.src.CustomContainers
                                 SyntaxKind.SimpleAssignmentExpression,
                                 SyntaxFactory.IdentifierName("options"),
                                 SyntaxFactory.ObjectCreationExpression(
-                                    SyntaxFactory.IdentifierName("QueryOptions"))
+                                    SyntaxFactory.IdentifierName(ListOptionsName))
                                 .WithArgumentList(
                                     SyntaxFactory.ArgumentList()))))));
         }

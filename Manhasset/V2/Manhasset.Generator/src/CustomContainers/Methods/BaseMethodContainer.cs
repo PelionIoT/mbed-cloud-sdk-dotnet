@@ -93,7 +93,7 @@ namespace Manhasset.Generator.src.CustomContainers
             return default(StatementSyntax);
         }
 
-        protected MethodDeclarationSyntax GetPaginatedSignature()
+        protected MethodDeclarationSyntax GetPaginatedSignature(string listOptionsName = "QueryOptions")
         {
             return SyntaxFactory.MethodDeclaration(
                     SyntaxFactory.GenericName(
@@ -102,7 +102,7 @@ namespace Manhasset.Generator.src.CustomContainers
                         SyntaxFactory.TypeArgumentList(
                             SyntaxFactory.SeparatedList<TypeSyntax>(
                                 new SyntaxNodeOrToken[]{
-                                    SyntaxFactory.IdentifierName("QueryOptions"),
+                                    SyntaxFactory.IdentifierName(listOptionsName),
                                     SyntaxFactory.Token(SyntaxKind.CommaToken),
                                     SyntaxFactory.IdentifierName(Returns)}))),
                     SyntaxFactory.Identifier(Name))
@@ -116,7 +116,7 @@ namespace Manhasset.Generator.src.CustomContainers
                             SyntaxFactory.Parameter(
                                 SyntaxFactory.Identifier("options"))
                             .WithType(
-                                SyntaxFactory.IdentifierName("QueryOptions"))
+                                SyntaxFactory.IdentifierName(listOptionsName))
                             .WithDefault(
                                 SyntaxFactory.EqualsValueClause(
                                     SyntaxFactory.LiteralExpression(

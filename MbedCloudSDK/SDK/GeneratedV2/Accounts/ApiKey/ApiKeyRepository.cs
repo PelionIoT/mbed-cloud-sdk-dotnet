@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using MbedCloud.SDK.Client;
 using MbedCloud.SDK.Common;
 using MbedCloudSDK.Exceptions;
-using MbedCloudSDK.SDK.Common;
 
 namespace MbedCloud.SDK.GeneratedV2.Accounts.ApiKey
 {
