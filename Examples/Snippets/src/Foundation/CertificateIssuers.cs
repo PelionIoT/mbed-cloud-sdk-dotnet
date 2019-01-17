@@ -1,16 +1,17 @@
-// using MbedCloud.SDK.Entities;
-// using NUnit.Framework;
+using System.Threading.Tasks;
+using Mbed.Cloud.Foundation.Entities;
+using NUnit.Framework;
 
-// namespace Snippets.src.Foundation
-// {
-//     [TestFixture]
-//     public class CertificateIssuers
-//     {
-//         [Test]
-//         public async System.Threading.Tasks.Task GetDefaultCertificateIssuerConfig()
-//         {
-//             var defaultIssuer = await new CertificateIssuerConfig().GetDefault();
-//             Assert.IsInstanceOf(typeof(CertificateIssuerConfig), defaultIssuer);
-//         }
-//     }
-// }
+namespace Snippets.src.Foundation
+{
+    [TestFixture]
+    public class CertificateIssuers
+    {
+        [Test]
+        public async Task GetDefaultCertificateIssuerConfig()
+        {
+            var defaultIssuer = await new CertificateIssuerConfigRepository().GetDefault();
+            Assert.IsInstanceOf(typeof(CertificateIssuerConfig), defaultIssuer);
+        }
+    }
+}
