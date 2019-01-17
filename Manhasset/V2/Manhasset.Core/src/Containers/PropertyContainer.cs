@@ -13,9 +13,9 @@ namespace Manhasset.Core.src.Containers
         {
             get
             {
-                var a = SyntaxFactory.AccessorDeclaration(SyntaxKind.GetAccessorDeclaration)
+                var accessor = SyntaxFactory.AccessorDeclaration(SyntaxKind.GetAccessorDeclaration)
                                     .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken));
-                return GetAccessorModifier != Modifiers.PUBLIC ? a.WithModifiers(SyntaxFactory.TokenList(GetAccessorModifier)) : a;
+                return GetAccessorModifier != Modifiers.PUBLIC ? accessor.WithModifiers(SyntaxFactory.TokenList(GetAccessorModifier)) : accessor;
             }
         }
 
@@ -23,9 +23,9 @@ namespace Manhasset.Core.src.Containers
         {
             get
             {
-                var a = SyntaxFactory.AccessorDeclaration(SyntaxKind.SetAccessorDeclaration)
+                var accessor = SyntaxFactory.AccessorDeclaration(SyntaxKind.SetAccessorDeclaration)
                                     .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken));
-                return SetAccessorModifier != Modifiers.PUBLIC ? a.WithModifiers(SyntaxFactory.TokenList(SetAccessorModifier)) : a;
+                return SetAccessorModifier != Modifiers.PUBLIC ? accessor.WithModifiers(SyntaxFactory.TokenList(SetAccessorModifier)) : accessor;
             }
         }
 

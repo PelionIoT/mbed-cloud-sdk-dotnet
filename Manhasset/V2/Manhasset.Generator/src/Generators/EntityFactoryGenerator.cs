@@ -21,15 +21,6 @@ namespace Manhasset.Generator.src.Generators
                 DocString = "Entity Factory",
             };
 
-            // // entity factory constructor
-            // var entityFactoryConstructorContainer = new EntityFactoryConstructorContainer
-            // {
-            //     Name = "EntityFactory"
-            // };
-
-            // entityFactoryConstructorContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
-            // entityFactory.AddConstructor(nameof(entityFactoryConstructorContainer), entityFactoryConstructorContainer);
-
             entityFactory.AddUsing(nameof(UsingKeys.SDK_COMMON), UsingKeys.SDK_COMMON);
             entityFactory.AddUsing(nameof(UsingKeys.ENTITIES), UsingKeys.ENTITIES);
 
