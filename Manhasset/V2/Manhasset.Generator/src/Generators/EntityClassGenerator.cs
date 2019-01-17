@@ -16,7 +16,7 @@ namespace Manhasset.Generator.src.Generators
             var entityClass = new ClassContainer();
 
             // namespace
-            entityClass.Namespace = "MbedCloud.SDK.Entities";
+            entityClass.Namespace = UsingKeys.ENTITIES;
 
             // modifier (just public for now)
             entityClass.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
@@ -126,8 +126,7 @@ namespace Manhasset.Generator.src.Generators
                 if (foreignKey != null)
                 {
                     var foreignKeyName = foreignKey["entity"].GetStringValue().ToPascal();
-                    // entityClass.AddUsing(UsingKeys.ForeignKey(foreignKeyName), $"MbedCloud.SDK.Entities.{foreignKeyName}");
-                    entityClass.AddUsing("FOREIGN_KEY", $"MbedCloud.SDK.Entities");
+                    entityClass.AddUsing("FOREIGN_KEY", UsingKeys.ENTITIES);
                 }
 
                 // add usings for date time
@@ -145,8 +144,7 @@ namespace Manhasset.Generator.src.Generators
                 // check if property type is enum
                 if (propertyType.Contains("Enum"))
                 {
-                    // entityClass.AddUsing(UsingKeys.EnumKey(propertyType), $"MbedCloud.SDK.Enums.{propertyType}");
-                    entityClass.AddUsing("ENUM_KEY", $"MbedCloud.SDK.Enums");
+                    entityClass.AddUsing("ENUM_KEY", UsingKeys.ENUMS);
                 }
 
                 // add usings for custom functions

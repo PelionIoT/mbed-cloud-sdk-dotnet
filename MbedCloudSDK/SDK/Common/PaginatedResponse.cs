@@ -1,4 +1,4 @@
-namespace MbedCloud.SDK.Common
+namespace Mbed.Cloud.Foundation.Common
 {
     using System;
     using System.Collections;

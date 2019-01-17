@@ -5,23 +5,23 @@
 //   /\/\   __ _ _ __ | |__   __ _ ___ ___  ___| |_
 //  /    \ / _` | '_ \| '_ \ / _` / __/ __|/ _ \ __|
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
-// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
+// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
 // <copyright file="AccountRepository.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloud.SDK.Entities
+namespace Mbed.Cloud.Foundation.Entities
 {
-    using MbedCloud.SDK.Common;
-    using MbedCloud.SDK.Entities.ListOptions;
-    using MbedCloud.SDK.Entities;
+    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Foundation.ListOptions;
+    using Mbed.Cloud.Foundation.Entities;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
     using System;
-    using MbedCloud.SDK.Client;
+    using Mbed.Cloud.Foundation.RestClient;
 
     /// <summary>
     /// AccountRepository
@@ -44,7 +44,7 @@ namespace MbedCloud.SDK.Entities
                 var bodyParams = new Account { AddressLine1 = request.AddressLine1, AddressLine2 = request.AddressLine2, AdminEmail = request.AdminEmail, AdminFullName = request.AdminFullName, AdminName = request.AdminName, AdminPassword = request.AdminPassword, Aliases = request.Aliases, City = request.City, Company = request.Company, Contact = request.Contact, ContractNumber = request.ContractNumber, Country = request.Country, CustomerNumber = request.CustomerNumber, DisplayName = request.DisplayName, Email = request.Email, EndMarket = request.EndMarket, PhoneNumber = request.PhoneNumber, PostalCode = request.PostalCode, State = request.State, };
                 return await Client.CallApi<Account>(path: "/v3/accounts", queryParams: queryParams, bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: request);
             }
-            catch (MbedCloud.SDK.Client.ApiException e)
+            catch (ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -58,7 +58,7 @@ namespace MbedCloud.SDK.Entities
                 var queryParams = new Dictionary<string, object> { { "include", include }, { "properties", properties }, };
                 return await Client.CallApi<Account>(path: "/v3/accounts/{account_id}", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET);
             }
-            catch (MbedCloud.SDK.Client.ApiException e)
+            catch (ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -76,7 +76,7 @@ namespace MbedCloud.SDK.Entities
                 Func<AccountListOptions, ResponsePage<Account>> paginatedFunc = (AccountListOptions _options) => AsyncHelper.RunSync<ResponsePage<Account>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "format", _options.Format }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "properties", _options.Properties }, }; return Client.CallApi<ResponsePage<Account>>(path: "/v3/accounts", queryParams: queryParams, method: HttpMethods.GET); });
                 return new PaginatedResponse<AccountListOptions, Account>(paginatedFunc, options);
             }
-            catch (MbedCloud.SDK.Client.ApiException e)
+            catch (ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -89,7 +89,7 @@ namespace MbedCloud.SDK.Entities
                 var queryParams = new Dictionary<string, object> { { "include", include }, { "properties", properties }, };
                 return await Client.CallApi<Account>(path: "/v3/accounts/me", queryParams: queryParams, method: HttpMethods.GET);
             }
-            catch (MbedCloud.SDK.Client.ApiException e)
+            catch (ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -108,7 +108,7 @@ namespace MbedCloud.SDK.Entities
                 Func<SubtenantTrustedCertificateListOptions, ResponsePage<SubtenantTrustedCertificate>> paginatedFunc = (SubtenantTrustedCertificateListOptions _options) => AsyncHelper.RunSync<ResponsePage<SubtenantTrustedCertificate>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<SubtenantTrustedCertificate>>(path: "/v3/accounts/{account_id}/trusted-certificates", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); });
                 return new PaginatedResponse<SubtenantTrustedCertificateListOptions, SubtenantTrustedCertificate>(paginatedFunc, options);
             }
-            catch (MbedCloud.SDK.Client.ApiException e)
+            catch (ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -122,7 +122,7 @@ namespace MbedCloud.SDK.Entities
                 var bodyParams = new Account { AddressLine1 = request.AddressLine1, AddressLine2 = request.AddressLine2, Aliases = request.Aliases, City = request.City, Company = request.Company, Contact = request.Contact, ContractNumber = request.ContractNumber, Country = request.Country, CustomFields = request.CustomFields, CustomerNumber = request.CustomerNumber, DisplayName = request.DisplayName, Email = request.Email, EndMarket = request.EndMarket, ExpirationWarningThreshold = request.ExpirationWarningThreshold, IdleTimeout = request.IdleTimeout, MfaStatus = request.MfaStatus, NotificationEmails = request.NotificationEmails, PasswordPolicy = request.PasswordPolicy, PhoneNumber = request.PhoneNumber, PostalCode = request.PostalCode, SalesContact = request.SalesContact, State = request.State, };
                 return await Client.CallApi<Account>(path: "/v3/accounts/{account_id}", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: request);
             }
-            catch (MbedCloud.SDK.Client.ApiException e)
+            catch (ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -141,7 +141,7 @@ namespace MbedCloud.SDK.Entities
                 Func<SubtenantUserInvitationListOptions, ResponsePage<SubtenantUserInvitation>> paginatedFunc = (SubtenantUserInvitationListOptions _options) => AsyncHelper.RunSync<ResponsePage<SubtenantUserInvitation>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<SubtenantUserInvitation>>(path: "/v3/accounts/{account_id}/user-invitations", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); });
                 return new PaginatedResponse<SubtenantUserInvitationListOptions, SubtenantUserInvitation>(paginatedFunc, options);
             }
-            catch (MbedCloud.SDK.Client.ApiException e)
+            catch (ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -160,7 +160,7 @@ namespace MbedCloud.SDK.Entities
                 Func<SubtenantUserListOptions, ResponsePage<SubtenantUser>> paginatedFunc = (SubtenantUserListOptions _options) => AsyncHelper.RunSync<ResponsePage<SubtenantUser>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<SubtenantUser>>(path: "/v3/accounts/{account_id}/users", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); });
                 return new PaginatedResponse<SubtenantUserListOptions, SubtenantUser>(paginatedFunc, options);
             }
-            catch (MbedCloud.SDK.Client.ApiException e)
+            catch (ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }

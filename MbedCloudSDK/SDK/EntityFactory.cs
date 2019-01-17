@@ -2,17 +2,20 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-namespace MbedCloud.SDK
+using Mbed.Cloud.Foundation.Common;
+using Mbed.Cloud.Foundation.RestClient;
+
+namespace Mbed.Cloud
 {
-    using MbedCloud.SDK.Common;
-    
     public partial class EntityFactory
     {
-        public EntityFactory(Config config)
+        public EntityFactory(Config config, Client client)
         {
             this.config = config;
+            this.client = client;
         }
 
         private Config config;
+        private Client client;
     }
 }

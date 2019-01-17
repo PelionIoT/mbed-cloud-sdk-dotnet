@@ -1,18 +1,22 @@
+using System.Linq;
 using Manhasset.Core.src.Common;
 using Manhasset.Core.src.Compile;
 using Manhasset.Core.src.Containers;
 using Manhasset.Generator.src.common;
+using Manhasset.Generator.src.CustomContainers;
+using Manhasset.Generator.src.extensions;
+using Newtonsoft.Json.Linq;
 
 namespace Manhasset.Generator.src.Generators
 {
     public class EntityFactoryGenerator
     {
-        public static void GenerateEntityFactory(string rootFilePath, Compilation compilation)
+        public static void GenerateEntityFactory(JToken entities, string rootFilePath, Compilation compilation)
         {
             var entityFactory = new ClassContainer
             {
                 Name = "EntityFactory",
-                Namespace = "MbedCloud.SDK",
+                Namespace = UsingKeys.HOME,
                 FilePath = $"{rootFilePath}/EntityFactory.cs",
                 DocString = "Entity Factory",
             };
@@ -31,6 +35,18 @@ namespace Manhasset.Generator.src.Generators
 
             entityFactory.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
             entityFactory.AddModifier(nameof(Modifiers.PARTIAL), Modifiers.PARTIAL);
+
+            foreach (var entity in entities.Where(e => e["methods"].Any()))
+            {
+                var factoryMethod = new EntityFactoryMethodContainer
+                {
+                    Name = $"{entity["_key"].GetStringValue().ToPascal()}Repository",
+                    Returns = $"{entity["_key"].GetStringValue().ToPascal()}Repository",
+                    MethodParams = new MethodParameterContainer(),
+                };
+                factoryMethod.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
+                entityFactory.AddMethod(entity["_key"].GetStringValue(), factoryMethod);
+            }
 
             compilation.AddClass(nameof(entityFactory), entityFactory);
         }

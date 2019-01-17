@@ -1,17 +1,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using MbedCloud.SDK.Client;
-using MbedCloud.SDK.Common;
-using MbedCloud.SDK.Common.CustomSerializers;
+using Mbed.Cloud.Foundation.Common;
 using Newtonsoft.Json;
 using RestSharp;
 
-namespace MbedCloud.SDK.Client
+namespace Mbed.Cloud.Foundation.RestClient
 {
     public class Client
     {
-        private static MbedCloud.SDK.Client.ExceptionFactory exceptionFactory;
+        private static ExceptionFactory exceptionFactory;
 
         public Config Config { get; }
 
@@ -23,7 +21,7 @@ namespace MbedCloud.SDK.Client
             Config = config;
             serializationSettings = SerializationSettings.GetSerializationSettings();
             deserializationSettings = SerializationSettings.GetDeserializationSettings(config);
-            exceptionFactory = MbedCloud.SDK.Client.Configuration.DefaultExceptionFactory;
+            exceptionFactory = Configuration.DefaultExceptionFactory;
         }
 
         public async Task<T> CallApi<T>(
@@ -59,9 +57,9 @@ namespace MbedCloud.SDK.Client
                 accepts = new string[] { "application/json" };
             }
 
-            var localVarHttpContentType =  MbedCloud.SDK.Client.ApiClient.SelectHeaderContentType(contentTypes ?? new string[] { });
+            var localVarHttpContentType =  ApiClient.SelectHeaderContentType(contentTypes ?? new string[] { });
 
-            var localVarHttpHeaderAccept = MbedCloud.SDK.Client.ApiClient.SelectHeaderAccept(accepts ?? new string[] { });
+            var localVarHttpHeaderAccept = ApiClient.SelectHeaderAccept(accepts ?? new string[] { });
 
             localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
@@ -120,7 +118,7 @@ namespace MbedCloud.SDK.Client
                 {
                     if (item.Value != null)
                     {
-                        localVarFileParams.Add(item.Key, MbedCloud.SDK.Client.ApiClient.ParameterToFile(item.Key, item.Value));
+                        localVarFileParams.Add(item.Key, ApiClient.ParameterToFile(item.Key, item.Value));
                     }
                 }
             }

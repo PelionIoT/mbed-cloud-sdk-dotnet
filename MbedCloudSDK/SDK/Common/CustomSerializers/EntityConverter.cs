@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json;
 
-namespace MbedCloud.SDK.Common.CustomSerializers
+namespace Mbed.Cloud.Foundation.Common.CustomSerializers
 {
     public class EntityConverter : JsonConverter
     {
@@ -16,7 +16,7 @@ namespace MbedCloud.SDK.Common.CustomSerializers
 
         public override bool CanConvert(Type objectType)
         {
-            return objectType.IsSubclassOf(typeof(BaseEntity));
+            return objectType.IsSubclassOf(typeof(Entity));
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)

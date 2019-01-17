@@ -1,9 +1,9 @@
 using System.IO;
 using System.Threading.Tasks;
-using MbedCloud.SDK.Entities;
+using Mbed.Cloud.Foundation.Entities;
 using RestSharp;
 
-namespace MbedCloud.SDK.Common
+namespace Mbed.Cloud.Foundation.Common
 {
     public static class CustomFunctions
     {
@@ -55,7 +55,7 @@ namespace MbedCloud.SDK.Common
             {
                 if (!string.IsNullOrEmpty(url) && config != null)
                 {
-                    var client = new RestClient(config.Host);
+                    var client = new RestSharp.RestClient(config.Host);
                     var request = new RestRequest(url.Replace(config.Host, string.Empty))
                     {
                         ResponseWriter = (responseStream) => responseStream.CopyTo(writer)

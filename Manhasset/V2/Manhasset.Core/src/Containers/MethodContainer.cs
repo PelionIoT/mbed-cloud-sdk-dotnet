@@ -31,7 +31,7 @@ namespace Manhasset.Core.src.Containers
                  .WithBody(SyntaxFactory.Block());
             }
 
-            return SyntaxFactory.MethodDeclaration(SyntaxFactory.IdentifierName("User"), SyntaxFactory.Identifier(Name))
+            return SyntaxFactory.MethodDeclaration(SyntaxFactory.IdentifierName(Returns), SyntaxFactory.Identifier(Name))
                                 .AddModifiers(MyModifiers.Values.ToArray())
                                 .WithParameterList(MethodParams.GetSyntax())
                                 .WithBody(SyntaxFactory.Block());

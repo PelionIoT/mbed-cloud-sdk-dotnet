@@ -1,13 +1,12 @@
-using MbedCloud.SDK.Common;
-using MbedCloud.SDK.Client;
+using Mbed.Cloud.Foundation.RestClient;
 
-namespace MbedCloud.SDK.Common
+namespace Mbed.Cloud.Foundation.Common
 {
     public class Repository
     {
         private readonly Config _config;
 
-        protected readonly MbedCloud.SDK.Client.Client Client;
+        protected readonly Client Client;
 
         /// <summary>
         /// Gets or sets the configuration.
@@ -20,10 +19,10 @@ namespace MbedCloud.SDK.Common
             get => _config;
         }
 
-        public Repository(Config config = null, Client.Client client = null)
+        public Repository(Config config = null, Client client = null)
         {
             _config = config ?? new Config();
-            Client = client ?? new Client.Client(_config);
+            Client = client ?? new Client(_config);
         }
     }
 }

@@ -29,7 +29,7 @@ namespace Manhasset.Generator.src
 
             var entities = Config["entities"];
 
-            EntityFactoryGenerator.GenerateEntityFactory(rootFilePath, CompilationContainer);
+            EntityFactoryGenerator.GenerateEntityFactory(entities, rootFilePath, CompilationContainer);
 
             // generate entities
             foreach (var entity in entities)

@@ -5,16 +5,16 @@
 //   /\/\   __ _ _ __ | |__   __ _ ___ ___  ___| |_
 //  /    \ / _` | '_ \| '_ \ / _` / __/ __|/ _ \ __|
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
-// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
+// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
 // <copyright file="CertificateIssuerConfig.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloud.SDK.Entities
+namespace Mbed.Cloud.Foundation.Entities
 {
-    using MbedCloud.SDK.Common;
+    using Mbed.Cloud.Foundation.Common;
     using System.Collections.Generic;
     using System;
 

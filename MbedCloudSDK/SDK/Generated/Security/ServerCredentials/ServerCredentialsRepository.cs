@@ -5,21 +5,21 @@
 //   /\/\   __ _ _ __ | |__   __ _ ___ ___  ___| |_
 //  /    \ / _` | '_ \| '_ \ / _` / __/ __|/ _ \ __|
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
-// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
+// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
 // <copyright file="ServerCredentialsRepository.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloud.SDK.Entities
+namespace Mbed.Cloud.Foundation.Entities
 {
-    using MbedCloud.SDK.Common;
+    using Mbed.Cloud.Foundation.Common;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
     using System;
-    using MbedCloud.SDK.Client;
+    using Mbed.Cloud.Foundation.RestClient;
 
     /// <summary>
     /// ServerCredentialsRepository
@@ -40,7 +40,7 @@ namespace MbedCloud.SDK.Entities
             {
                 return await Client.CallApi<ServerCredentials>(path: "/v3/server-credentials/bootstrap", method: HttpMethods.GET);
             }
-            catch (MbedCloud.SDK.Client.ApiException e)
+            catch (ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -52,7 +52,7 @@ namespace MbedCloud.SDK.Entities
             {
                 return await Client.CallApi<ServerCredentials>(path: "/v3/server-credentials/lwm2m", method: HttpMethods.GET);
             }
-            catch (MbedCloud.SDK.Client.ApiException e)
+            catch (ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }

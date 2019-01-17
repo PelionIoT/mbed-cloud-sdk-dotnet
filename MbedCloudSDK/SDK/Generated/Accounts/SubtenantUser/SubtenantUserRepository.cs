@@ -5,21 +5,21 @@
 //   /\/\   __ _ _ __ | |__   __ _ ___ ___  ___| |_
 //  /    \ / _` | '_ \| '_ \ / _` / __/ __|/ _ \ __|
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
-// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
+// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
 // <copyright file="SubtenantUserRepository.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloud.SDK.Entities
+namespace Mbed.Cloud.Foundation.Entities
 {
-    using MbedCloud.SDK.Common;
+    using Mbed.Cloud.Foundation.Common;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
     using System;
-    using MbedCloud.SDK.Client;
+    using Mbed.Cloud.Foundation.RestClient;
 
     /// <summary>
     /// SubtenantUserRepository
@@ -43,7 +43,7 @@ namespace MbedCloud.SDK.Entities
                 var bodyParams = new SubtenantUser { Address = request.Address, Email = request.Email, FullName = request.FullName, LoginProfiles = request.LoginProfiles, MarketingAccepted = request.MarketingAccepted, Password = request.Password, PhoneNumber = request.PhoneNumber, TermsAccepted = request.TermsAccepted, Username = request.Username, };
                 return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{account_id}/users", pathParams: pathParams, queryParams: queryParams, bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: request);
             }
-            catch (MbedCloud.SDK.Client.ApiException e)
+            catch (ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -56,7 +56,7 @@ namespace MbedCloud.SDK.Entities
                 var pathParams = new Dictionary<string, object> { { "account_id", accountId }, { "user_id", id }, };
                 return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{account_id}/users/{user_id}", pathParams: pathParams, method: HttpMethods.DELETE);
             }
-            catch (MbedCloud.SDK.Client.ApiException e)
+            catch (ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -69,7 +69,7 @@ namespace MbedCloud.SDK.Entities
                 var pathParams = new Dictionary<string, object> { { "account_id", accountId }, { "user_id", id }, };
                 return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{account_id}/users/{user_id}", pathParams: pathParams, method: HttpMethods.GET);
             }
-            catch (MbedCloud.SDK.Client.ApiException e)
+            catch (ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -83,7 +83,7 @@ namespace MbedCloud.SDK.Entities
                 var bodyParams = new SubtenantUser { Address = request.Address, FullName = request.FullName, LoginProfiles = request.LoginProfiles, MarketingAccepted = request.MarketingAccepted, PhoneNumber = request.PhoneNumber, TermsAccepted = request.TermsAccepted, TwoFactorAuthentication = request.TwoFactorAuthentication, Username = request.Username, };
                 return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{account_id}/users/{user_id}", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: request);
             }
-            catch (MbedCloud.SDK.Client.ApiException e)
+            catch (ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -96,7 +96,7 @@ namespace MbedCloud.SDK.Entities
                 var pathParams = new Dictionary<string, object> { { "account_id", accountId }, { "user_id", id }, };
                 return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{account_id}/users/{user_id}/validate-email", pathParams: pathParams, method: HttpMethods.POST);
             }
-            catch (MbedCloud.SDK.Client.ApiException e)
+            catch (ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }

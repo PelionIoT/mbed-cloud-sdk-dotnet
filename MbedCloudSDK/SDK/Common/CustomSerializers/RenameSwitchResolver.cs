@@ -2,7 +2,7 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-namespace MbedCloud.SDK.Common.CustomSerializers
+namespace Mbed.Cloud.Foundation.Common.CustomSerializers
 {
     using System;
     using System.Collections.Generic;

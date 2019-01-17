@@ -13,13 +13,7 @@ namespace Manhasset.Core.src.Generators
                         SyntaxFactory.CatchClause()
                         .WithDeclaration(
                             SyntaxFactory.CatchDeclaration(
-                                SyntaxFactory.QualifiedName(
-                                    SyntaxFactory.QualifiedName(
-                                        SyntaxFactory.QualifiedName(
-                                            SyntaxFactory.IdentifierName("MbedCloud"),
-                                            SyntaxFactory.IdentifierName("SDK")),
-                                        SyntaxFactory.IdentifierName("Client")),
-                                    SyntaxFactory.IdentifierName("ApiException")))
+                                SyntaxFactory.IdentifierName("ApiException"))
                             .WithIdentifier(
                                 SyntaxFactory.Identifier("e")))
                         .WithBlock(

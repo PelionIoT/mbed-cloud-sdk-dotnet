@@ -27,7 +27,7 @@ namespace Manhasset.Generator.src.Generators
             var customQueryOptions = new ClassContainer();
 
             // namespace
-            customQueryOptions.Namespace = $"MbedCloud.SDK.Entities.ListOptions";
+            customQueryOptions.Namespace = UsingKeys.ListOptions;
 
             // modifier (just public for now)
             customQueryOptions.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);

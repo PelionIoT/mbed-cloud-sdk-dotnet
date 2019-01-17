@@ -1,4 +1,4 @@
-namespace MbedCloud.SDK.Client
+namespace Mbed.Cloud.Foundation.RestClient
 {
     public enum HttpMethods
     {

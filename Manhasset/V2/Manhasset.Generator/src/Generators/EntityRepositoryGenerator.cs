@@ -17,7 +17,7 @@ namespace Manhasset.Generator.src.Generators
             var entityRepository = new ClassContainer();
 
             // namespace
-            entityRepository.Namespace = "MbedCloud.SDK.Entities";
+            entityRepository.Namespace = UsingKeys.ENTITIES;
 
             // modifier
             entityRepository.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
@@ -89,7 +89,7 @@ namespace Manhasset.Generator.src.Generators
                 if (foreignKey)
                 {
                     // add using for foreign key
-                    entityRepository.AddUsing("FOREIGN_KEY", $"MbedCloud.SDK.Entities");
+                    entityRepository.AddUsing("FOREIGN_KEY", UsingKeys.ENTITIES);
                 }
 
                 var hasRequest = false;
@@ -200,7 +200,7 @@ namespace Manhasset.Generator.src.Generators
                 if (isPaginated == true)
                 {
                     var listOptionsName = CustomQueryOptionsGenerator.GenerateCustomQueryOptions(method, entityPascalName, returns, rootFilePath, entityGroup, compilation);
-                    entityRepository.AddUsing("LIST_OPTIONS", $"MbedCloud.SDK.Entities.ListOptions");
+                    entityRepository.AddUsing("LIST_OPTIONS", UsingKeys.ListOptions);
 
                     methodParams.Parameters.Insert(0, new MyParameterContainer
                     {

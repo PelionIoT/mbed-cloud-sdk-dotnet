@@ -3,6 +3,7 @@ using System.Linq;
 using Manhasset.Core.src.Common;
 using Manhasset.Core.src.Compile;
 using Manhasset.Core.src.Containers;
+using Manhasset.Generator.src.common;
 using Manhasset.Generator.src.extensions;
 using Newtonsoft.Json.Linq;
 
@@ -15,7 +16,7 @@ namespace Manhasset.Generator.src.Generators
             var enums = entity["fields"].Where(f => f["enum_reference"] != null);
 
             // namespace will be common to all enums
-            var enumNamespace = "MbedCloud.SDK.Enums";
+            var enumNamespace = UsingKeys.ENUMS;
 
             foreach (var anEnum in enums)
             {

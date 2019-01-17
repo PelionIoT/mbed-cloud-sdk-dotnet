@@ -24,7 +24,7 @@ namespace Manhasset.Core.src.Generators
                         SyntaxFactory.LineFeed,
                         SyntaxFactory.Comment("// / /\\/\\ \\ (_| | | | | | | | (_| \\__ \\__ \\  __/ |_"),
                         SyntaxFactory.LineFeed,
-                        SyntaxFactory.Comment("// \\/    \\/\\__,_|_| |_|_| |_|\\__,_|___/___/\\___|\\__| v 1.0.0"),
+                        SyntaxFactory.Comment("// \\/    \\/\\__,_|_| |_|_| |_|\\__,_|___/___/\\___|\\__| v 2.0.0"),
                         SyntaxFactory.LineFeed,
                         SyntaxFactory.Comment("//"),
                         SyntaxFactory.LineFeed,

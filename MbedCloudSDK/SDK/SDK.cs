@@ -2,11 +2,11 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-namespace MbedCloud.SDK
-{
-    using MbedCloud.SDK;
-    using MbedCloud.SDK.Common;
+using Mbed.Cloud.Foundation.Common;
+using Mbed.Cloud.Foundation.RestClient;
 
+namespace Mbed.Cloud
+{
     /// <summary>
     /// Client
     /// </summary>
@@ -16,18 +16,18 @@ namespace MbedCloud.SDK
 
         public EntityFactory Entities { get; }
 
-        public MbedCloud.SDK.Client.Client Client { get; }
+        public Client Client { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SDK"/> class.
         /// </summary>
         /// <param name="config">The configuration.</param>
-        public SDK(Config config = null)
+        public SDK(Config config = null, Client client = null)
         {
             _config = config ?? new Config();
+            Client = new Client(_config);
 
-            Entities = new EntityFactory(GetConfig());
-            Client = new MbedCloud.SDK.Client.Client(GetConfig());
+            Entities = new EntityFactory(_config, Client);
         }
 
         /// <summary>
@@ -42,15 +42,6 @@ namespace MbedCloud.SDK
             {
                 return _config;
             }
-        }
-
-        /// <summary>
-        /// Gets the configuration.
-        /// </summary>
-        /// <returns>The current SDK Config</returns>
-        public Config GetConfig()
-        {
-            return _config;
         }
     }
 }
