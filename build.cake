@@ -221,7 +221,6 @@ var publish = Task("_publish")
 var clean_generator = Task("_clean_generation")
     .Does(() => {
         CleanDirectory("./MbedCloudSDK/SDK/Generated");
-        CleanDirectory("./MbedCloudSDK/SDK/GeneratedV2POC");
     });
 
 var move_custom_files = Task("_move_custom_files")

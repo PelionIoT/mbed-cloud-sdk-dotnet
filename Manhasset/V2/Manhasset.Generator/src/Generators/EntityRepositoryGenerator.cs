@@ -201,6 +201,13 @@ namespace Manhasset.Generator.src.Generators
                 {
                     var listOptionsName = CustomQueryOptionsGenerator.GenerateCustomQueryOptions(method, entityPascalName, returns, rootFilePath, entityGroup, compilation);
                     entityRepository.AddUsing("LIST_OPTIONS", $"MbedCloud.SDK.Entities.ListOptions");
+
+                    methodParams.Parameters.Insert(0, new MyParameterContainer
+                    {
+                        Key = "options",
+                        ParamType = listOptionsName,
+                        Required = false,
+                    });
                     var paginatedMethodContainer = new PaginatedMethodContainer
                     {
                         EntityName = entityPascalName,

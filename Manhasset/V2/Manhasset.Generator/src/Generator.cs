@@ -25,42 +25,11 @@ namespace Manhasset.Generator.src
         public async System.Threading.Tasks.Task Run()
         {
             // root file path
-            var rootFilePath = "MbedCloudSDK/SDK/GeneratedV2POC";
+            var rootFilePath = "MbedCloudSDK/SDK/Generated";
 
             var entities = Config["entities"];
 
-            var entityFactory = new ClassContainer()
-            {
-                Name = "EntityFactory",
-                Namespace = "MbedCloud.SDK",
-                FilePath = $"{rootFilePath}/EntityFactory.cs",
-                DocString = "Entity Factory",
-            };
-
-            // var configField = new PrivateFieldContainer
-            // {
-            //     Name = "config",
-            //     FieldType = "Config",
-            // };
-
-            // configField.AddModifier(nameof(Modifiers.PRIVATE), Modifiers.PRIVATE);
-
-            // entityFactory.AddPrivateField(nameof(configField), configField);
-
-            // // entity factory constructor
-            // var entityFactoryConstructorContainer = new EntityFactoryConstructorContainer
-            // {
-            //     Name = "EntityFactory"
-            // };
-
-            // entityFactoryConstructorContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
-            // entityFactory.AddConstructor(nameof(entityFactoryConstructorContainer), entityFactoryConstructorContainer);
-
-            entityFactory.AddUsing(nameof(UsingKeys.SDK_COMMON), UsingKeys.SDK_COMMON);
-            entityFactory.AddUsing(nameof(UsingKeys.ENTITIES), UsingKeys.ENTITIES);
-
-            entityFactory.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
-            entityFactory.AddModifier(nameof(Modifiers.PARTIAL), Modifiers.PARTIAL);
+            EntityFactoryGenerator.GenerateEntityFactory(rootFilePath, CompilationContainer);
 
             // generate entities
             foreach (var entity in entities)
@@ -79,8 +48,6 @@ namespace Manhasset.Generator.src
                     EntityRepositoryGenerator.GenerateRepository(entity, entityNamePascal, rootFilePath, entityGroup, CompilationContainer);
                 }
             }
-
-            CompilationContainer.AddClass(nameof(entityFactory), entityFactory);
 
             await CompilationContainer.Compile();
             CompilationContainer.WriteFiles();

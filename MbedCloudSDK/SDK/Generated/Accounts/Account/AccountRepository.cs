@@ -64,7 +64,7 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public PaginatedResponse<AccountListOptions, Account> List(AccountListOptions options = null)
+        public PaginatedResponse<AccountListOptions, Account> List(AccountListOptions options = null, string format = null, string properties = null)
         {
             try
             {
@@ -95,7 +95,7 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public PaginatedResponse<SubtenantTrustedCertificateListOptions, SubtenantTrustedCertificate> TrustedCertificates(SubtenantTrustedCertificateListOptions options = null)
+        public PaginatedResponse<SubtenantTrustedCertificateListOptions, SubtenantTrustedCertificate> TrustedCertificates(string id, SubtenantTrustedCertificateListOptions options = null)
         {
             try
             {
@@ -128,7 +128,7 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public PaginatedResponse<SubtenantUserInvitationListOptions, SubtenantUserInvitation> UserInvitations(SubtenantUserInvitationListOptions options = null)
+        public PaginatedResponse<SubtenantUserInvitationListOptions, SubtenantUserInvitation> UserInvitations(string id, SubtenantUserInvitationListOptions options = null)
         {
             try
             {
@@ -147,7 +147,7 @@ namespace MbedCloud.SDK.Entities
             }
         }
 
-        public PaginatedResponse<SubtenantUserListOptions, SubtenantUser> Users(SubtenantUserListOptions options = null)
+        public PaginatedResponse<SubtenantUserListOptions, SubtenantUser> Users(string id, SubtenantUserListOptions options = null)
         {
             try
             {

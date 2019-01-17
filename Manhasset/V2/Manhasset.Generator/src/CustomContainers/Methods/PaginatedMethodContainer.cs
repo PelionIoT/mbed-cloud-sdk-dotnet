@@ -13,7 +13,7 @@ namespace Manhasset.Generator.src.CustomContainers
         public string ListOptionsName { get; set; }
         public override MethodDeclarationSyntax GetSyntax()
         {
-            var syntax = base.GetPaginatedSignature(ListOptionsName);
+            var syntax = base.GetPaginatedSignature(listOptionsName: ListOptionsName, methodParams: MethodParams);
 
             var tryCatch = MethodGenerators.GetTryCatchBlock();
 
