@@ -5,42 +5,31 @@
 //   /\/\   __ _ _ __ | |__   __ _ ___ ___  ___| |_
 //  /    \ / _` | '_ \| '_ \ / _` / __/ __|/ _ \ __|
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
-// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
+// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
 // <copyright file="DeviceEvents.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloud.SDK.Entities
+namespace Mbed.Cloud.Foundation.Entities
 {
-    using MbedCloud.SDK.Common;
-    using MbedCloud.SDK.Client;
-    using System;
-    using System.Threading.Tasks;
-    using MbedCloudSDK.Exceptions;
+    using Mbed.Cloud.Foundation.Common;
     using System.Collections.Generic;
+    using System;
 
     /// <summary>
     /// DeviceEvents
     /// </summary>
-    public class DeviceEvents : BaseEntity
+    public class DeviceEvents : Entity
     {
-        public DeviceEvents()
-        {
-        }
-
-        public DeviceEvents(Config config) : base(config)
-        {
-        }
-
         /// <summary>
         /// changes
         /// </summary>
         public Dictionary<string, string> Changes
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -49,7 +38,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? CreatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -58,7 +47,7 @@ namespace MbedCloud.SDK.Entities
         public Dictionary<string, string> Data
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -67,7 +56,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? DateTime
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -76,7 +65,7 @@ namespace MbedCloud.SDK.Entities
         public string Description
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -85,7 +74,7 @@ namespace MbedCloud.SDK.Entities
         public string DeviceId
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -94,7 +83,7 @@ namespace MbedCloud.SDK.Entities
         public string EventType
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -103,7 +92,7 @@ namespace MbedCloud.SDK.Entities
         public string EventTypeCategory
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -112,7 +101,7 @@ namespace MbedCloud.SDK.Entities
         public string EventTypeDescription
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -121,38 +110,7 @@ namespace MbedCloud.SDK.Entities
         public bool? StateChange
         {
             get;
-            set;
-        }
-
-        public async Task<DeviceEvents> Get()
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "device_event_id", Id }, };
-                return await Client.CallApi<DeviceEvents>(path: "/v3/device-events/{device_event_id}/", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public PaginatedResponse<QueryOptions, DeviceEvents> List(QueryOptions options = null)
-        {
-            try
-            {
-                if (options == null)
-                {
-                    options = new QueryOptions();
-                }
-
-                Func<QueryOptions, ResponsePage<DeviceEvents>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<DeviceEvents>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<DeviceEvents>>(path: "/v3/device-events/", queryParams: queryParams, method: HttpMethods.GET); });
-                return new PaginatedResponse<QueryOptions, DeviceEvents>(paginatedFunc, options);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
+            internal set;
         }
     }
 }

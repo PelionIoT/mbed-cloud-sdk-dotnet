@@ -1,6 +1,6 @@
 using MbedCloudSDK.Common.Filter;
 
-namespace MbedCloud.SDK.Common
+namespace Mbed.Cloud.Foundation.Common
 {
     /// <summary>
     /// Parameters send with list requests.

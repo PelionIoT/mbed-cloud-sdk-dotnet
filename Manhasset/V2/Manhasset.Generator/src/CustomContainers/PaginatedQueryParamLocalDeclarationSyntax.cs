@@ -14,7 +14,6 @@ namespace Manhasset.Generator.src.CustomContainers
             var dictObjs = new List<SyntaxNodeOrToken>();
 
             MyParams
-            .Where(p => p.Key == "after" || p.Key == "limit" || p.Key == "include" || p.Key == "order")
             .Select(p =>
             {
                 return SyntaxFactory.InitializerExpression(

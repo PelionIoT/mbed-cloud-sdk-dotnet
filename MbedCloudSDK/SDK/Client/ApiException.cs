@@ -2,7 +2,7 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-namespace MbedCloud.SDK.Client
+namespace Mbed.Cloud.Foundation.RestClient
 {
     using System;
 

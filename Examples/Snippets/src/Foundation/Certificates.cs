@@ -1,5 +1,5 @@
 using System.Linq;
-using MbedCloud.SDK.Entities;
+using Mbed.Cloud.Foundation.Entities;
 using NUnit.Framework;
 
 namespace Snippets.src.Foundation
@@ -10,11 +10,12 @@ namespace Snippets.src.Foundation
         [Test]
         public async System.Threading.Tasks.Task GetDeveloperInfoAsync()
         {
-            var certificate = new TrustedCertificate().List().All().FirstOrDefault(c => c.IsDeveloperCertificate == true);
+            var trustedCertificateRepo = new TrustedCertificateRepository();
+            var certificate = trustedCertificateRepo.List().All().FirstOrDefault(c => c.IsDeveloperCertificate == true);
 
             Assert.IsInstanceOf(typeof(TrustedCertificate), certificate);
 
-            var devInfo = await certificate.GetDeveloperCertificateInfo();
+            var devInfo = await trustedCertificateRepo.GetDeveloperCertificateInfo(certificate.Id);
 
             Assert.IsInstanceOf(typeof(DeveloperCertificate), devInfo);
         }
@@ -22,16 +23,15 @@ namespace Snippets.src.Foundation
         [Test]
         public async System.Threading.Tasks.Task GetTrustedInfoAsync()
         {
-            var certificate = new TrustedCertificate().List().All().FirstOrDefault(c => c.IsDeveloperCertificate == true);
+            var trustedCertificateRepo = new TrustedCertificateRepository();
+            var certificate = trustedCertificateRepo.List().All().FirstOrDefault(c => c.IsDeveloperCertificate == true);
 
-            var devCertificate = await new DeveloperCertificate
-            {
-                Id = certificate.Id
-            }.Get();
+            var devCertificateRepo = new DeveloperCertificateRepository();
+            var devCertificate = await devCertificateRepo.Get(certificate.Id);
 
             Assert.IsInstanceOf(typeof(DeveloperCertificate), devCertificate);
 
-            var trustedInfo = await devCertificate.GetTrustedCertificateInfo();
+            var trustedInfo = await devCertificateRepo.GetTrustedCertificateInfo(devCertificate.Id);
             Assert.IsInstanceOf(typeof(TrustedCertificate), trustedInfo);
         }
     }

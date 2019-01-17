@@ -5,42 +5,30 @@
 //   /\/\   __ _ _ __ | |__   __ _ ___ ___  ___| |_
 //  /    \ / _` | '_ \| '_ \ / _` / __/ __|/ _ \ __|
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
-// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
+// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
 // <copyright file="ServerCredentials.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloud.SDK.Entities
+namespace Mbed.Cloud.Foundation.Entities
 {
-    using MbedCloud.SDK.Common;
-    using MbedCloud.SDK.Client;
+    using Mbed.Cloud.Foundation.Common;
     using System;
-    using System.Threading.Tasks;
-    using MbedCloudSDK.Exceptions;
-    using System.Collections.Generic;
 
     /// <summary>
     /// ServerCredentials
     /// </summary>
-    public class ServerCredentials : BaseEntity
+    public class ServerCredentials : Entity
     {
-        public ServerCredentials()
-        {
-        }
-
-        public ServerCredentials(Config config) : base(config)
-        {
-        }
-
         /// <summary>
         /// created_at
         /// </summary>
         public DateTime? CreatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -49,7 +37,7 @@ namespace MbedCloud.SDK.Entities
         public string ServerCertificate
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -58,31 +46,7 @@ namespace MbedCloud.SDK.Entities
         public string ServerUri
         {
             get;
-            set;
-        }
-
-        public async Task<ServerCredentials> GetBootstrap()
-        {
-            try
-            {
-                return await Client.CallApi<ServerCredentials>(path: "/v3/server-credentials/bootstrap", method: HttpMethods.GET, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public async Task<ServerCredentials> GetLwm2m()
-        {
-            try
-            {
-                return await Client.CallApi<ServerCredentials>(path: "/v3/server-credentials/lwm2m", method: HttpMethods.GET, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
+            internal set;
         }
     }
 }

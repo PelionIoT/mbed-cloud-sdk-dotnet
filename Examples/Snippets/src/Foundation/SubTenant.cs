@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MbedCloud.SDK.Common;
-using MbedCloud.SDK.Entities;
+using Mbed.Cloud.Foundation.Entities;
 using MbedCloudSDK.Exceptions;
 using NUnit.Framework;
 
@@ -17,41 +16,43 @@ namespace Snippets.src.Foundation
         [Test]
         public async Task UpdateUserAsSubtenant()
         {
+            var accountRepo = new AccountRepository();
             Account myAccount = null;
             try
             {
-                myAccount = await new Account
+                myAccount = await accountRepo.Create(new Account
                 {
                     DisplayName = "new test account",
                     Aliases = new List<string>() { "alex_test_account" },
                     EndMarket = "IOT",
                     AdminFullName = "Alex Logan",
                     AdminEmail = "alexadmin@admin.com",
-                }.Create();
+                });
             }
             catch (CloudApiException e) when (e.ErrorCode == 403)
             {
-                myAccount = new Account().List().FirstOrDefault(a => a.DisplayName == "sdk_test_bob");
+                myAccount = accountRepo.List().FirstOrDefault(a => a.DisplayName == "sdk_test_bob");
             }
             finally
             {
                 Assert.IsInstanceOf(typeof(Account), myAccount);
+                var userRepo = new SubtenantUserRepository();
 
                 // get first subtenant user acociated with the account
-                var firstUser = myAccount.Users().FirstOrDefault();
+                var firstUser = accountRepo.Users(myAccount.Id).FirstOrDefault();
 
                 var phoneNumber = firstUser.PhoneNumber;
 
                 // update the user's phone number
                 firstUser.PhoneNumber = "117117";
-                await firstUser.Update();
+                await userRepo.Update(myAccount.Id, firstUser.Id, firstUser);
 
                 Assert.AreNotEqual(phoneNumber, firstUser.PhoneNumber);
                 Assert.AreEqual("117117", firstUser.PhoneNumber);
 
                 // change it back to the original
                 firstUser.PhoneNumber = phoneNumber;
-                await firstUser.Update();
+                await userRepo.Update(myAccount.Id, firstUser.Id, firstUser);
 
                 Assert.AreNotEqual("117117", firstUser.PhoneNumber);
             }
@@ -60,29 +61,30 @@ namespace Snippets.src.Foundation
         [Test]
         public async Task SubTenantFlow()
         {
+            var accountRepo = new AccountRepository();
             Account myAccount = null;
             try
             {
-                //  an example: creating and managing a subtenant account
-                myAccount = await new Account
+                myAccount = await accountRepo.Create(new Account
                 {
                     DisplayName = "new test account",
                     Aliases = new List<string>() { "alex_test_account" },
                     EndMarket = "IOT",
                     AdminFullName = "Alex Logan",
                     AdminEmail = "alexadmin@admin.com",
-                }.Create();
-                // cloak
+                });
             }
             catch (CloudApiException e) when (e.ErrorCode == 403)
             {
-                myAccount = new Account().List().FirstOrDefault(a => a.DisplayName == "sdk_test_bob");
+                myAccount = accountRepo.List().FirstOrDefault(a => a.DisplayName == "sdk_test_bob");
             }
             finally
             {
                 // uncloak
+                var userRepo = new SubtenantUserRepository();
                 // Populate the new user details
-                var user = new SubtenantUser
+                // create the user
+                var user = await userRepo.Create(myAccount.Id, new SubtenantUser
                 {
                     // Link this user to the account
                     AccountId = myAccount.Id,
@@ -90,44 +92,42 @@ namespace Snippets.src.Foundation
                     Username = $"tommi_{randomString()}",
                     PhoneNumber = "0800001066",
                     Email = $"tommi_{randomString()}@example.com",
-                };
-
-                // create the user
-                await user.Create();
+                });
 
                 // end of example
                 Assert.IsInstanceOf(typeof(SubtenantUser), user);
                 Assert.IsNotNull(user.CreatedAt);
 
                 // created user is now in account user list
-                var userInList = myAccount.Users().FirstOrDefault(u => u.Id == user.Id);
+                var userInList = accountRepo.Users(myAccount.Id).FirstOrDefault(u => u.Id == user.Id);
 
                 Assert.IsInstanceOf(typeof(SubtenantUser), userInList);
                 Assert.AreEqual(user.CreatedAt, userInList.CreatedAt);
 
                 // delete the user
-                await user.Delete();
+                await userRepo.Delete(myAccount.Id, user.Id);
             }
         }
 
         [Test]
         public async Task AccountLists()
         {
-            var myAccount = await new Account().Me();
+            var accountRepo = new AccountRepository();
+            var myAccount = await accountRepo.Me();
 
-            var user = myAccount.Users().First();
+            var user = accountRepo.Users(myAccount.Id).First();
             if (user != null)
             {
                 Assert.IsInstanceOf(typeof(SubtenantUser), user);
             }
 
-            var trustedCert = myAccount.TrustedCertificates().First();
+            var trustedCert = accountRepo.TrustedCertificates(myAccount.Id).First();
             if (trustedCert != null)
             {
                 Assert.IsInstanceOf(typeof(SubtenantTrustedCertificate), trustedCert);
             }
 
-            var invitation = myAccount.UserInvitations().First();
+            var invitation = accountRepo.UserInvitations(myAccount.Id).First();
             if (invitation != null)
             {
                 Assert.IsInstanceOf(typeof(SubtenantUserInvitation), invitation);
@@ -137,7 +137,7 @@ namespace Snippets.src.Foundation
         [Test]
         public void AccountPasswordPolicies()
         {
-            new Account().List().All().ForEach(a =>
+            new AccountRepository().List().All().ForEach(a =>
             {
                 if (a.PasswordPolicy != null)
                 {

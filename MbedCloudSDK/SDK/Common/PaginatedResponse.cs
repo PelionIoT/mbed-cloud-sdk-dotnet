@@ -1,4 +1,4 @@
-namespace MbedCloud.SDK.Common
+namespace Mbed.Cloud.Foundation.Common
 {
     using System;
     using System.Collections;
@@ -13,7 +13,7 @@ namespace MbedCloud.SDK.Common
     /// <typeparam name="TData">Data</typeparam>
     [JsonObject]
     public class PaginatedResponse<TOptions, TData> : IEnumerable<TData>
-        where TData : BaseEntity
+        where TData : Entity
         where TOptions : QueryOptions
     {
         private readonly List<TData> cache;

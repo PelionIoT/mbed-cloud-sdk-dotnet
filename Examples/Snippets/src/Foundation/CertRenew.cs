@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
-using MbedCloud.SDK.Entities;
-using MbedCloud.SDK.Enums;
+using Mbed.Cloud.Foundation.Entities;
+using Mbed.Cloud.Foundation.Enums;
 using MbedCloudSDK.Exceptions;
 using NUnit.Framework;
 
@@ -16,13 +16,13 @@ namespace Snippets.src.Foundation
             try
             {
                 // an example: certificate renew
-                var myConfig = new CertificateIssuerConfig().List().All().FirstOrDefault(c => c.CertificateReference == "LWM2M");
+                var myConfig = new CertificateIssuerConfigRepository().List().All().FirstOrDefault(c => c.CertificateReference == "LWM2M");
                 // cloak
                 Assert.AreEqual("LWM2M", myConfig.CertificateReference);
                 Assert.IsAssignableFrom(typeof(CertificateIssuerConfig), myConfig, "config should be instance of CertificateIssuerConfig");
                 // uncloak
 
-                var connectedDevices = new Device()
+                var connectedDevices = new DeviceRepository()
                     .List()
                     .All()
                     .Where(d => d.State == DeviceStateEnum.REGISTERED)
@@ -34,7 +34,7 @@ namespace Snippets.src.Foundation
 
                 foreach (var device in connectedDevices)
                 {
-                    await device.RenewCertificate(myConfig.CertificateReference);
+                    await new DeviceRepository().RenewCertificate(myConfig.CertificateReference, device.Id);
                 }
                 // end of example
             }

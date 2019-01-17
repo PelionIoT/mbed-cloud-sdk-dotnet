@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Manhasset.Core.src.Common;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -12,8 +13,9 @@ namespace Manhasset.Core.src.Containers
         {
             get
             {
-                return SyntaxFactory.AccessorDeclaration(SyntaxKind.GetAccessorDeclaration)
+                var accessor = SyntaxFactory.AccessorDeclaration(SyntaxKind.GetAccessorDeclaration)
                                     .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken));
+                return GetAccessorModifier != Modifiers.PUBLIC ? accessor.WithModifiers(SyntaxFactory.TokenList(GetAccessorModifier)) : accessor;
             }
         }
 
@@ -21,8 +23,9 @@ namespace Manhasset.Core.src.Containers
         {
             get
             {
-                return SyntaxFactory.AccessorDeclaration(SyntaxKind.SetAccessorDeclaration)
+                var accessor = SyntaxFactory.AccessorDeclaration(SyntaxKind.SetAccessorDeclaration)
                                     .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken));
+                return SetAccessorModifier != Modifiers.PUBLIC ? accessor.WithModifiers(SyntaxFactory.TokenList(SetAccessorModifier)) : accessor;
             }
         }
 
@@ -31,6 +34,9 @@ namespace Manhasset.Core.src.Containers
         public bool IsNullable { get; set; } = false;
 
         public bool SetAccessor { get; set; } = true;
+
+        public SyntaxToken SetAccessorModifier { get; set; } = Modifiers.PUBLIC;
+        public SyntaxToken GetAccessorModifier { get; set; } = Modifiers.PUBLIC;
 
         public bool GetAccessor { get; set; } = true;
 

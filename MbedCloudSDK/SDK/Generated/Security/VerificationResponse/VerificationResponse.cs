@@ -5,38 +5,29 @@
 //   /\/\   __ _ _ __ | |__   __ _ ___ ___  ___| |_
 //  /    \ / _` | '_ \| '_ \ / _` / __/ __|/ _ \ __|
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
-// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
+// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
 // <copyright file="VerificationResponse.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloud.SDK.Entities
+namespace Mbed.Cloud.Foundation.Entities
 {
-    using MbedCloud.SDK.Common;
-    using MbedCloud.SDK.Client;
+    using Mbed.Cloud.Foundation.Common;
 
     /// <summary>
     /// VerificationResponse
     /// </summary>
-    public class VerificationResponse : BaseEntity
+    public class VerificationResponse : Entity
     {
-        public VerificationResponse()
-        {
-        }
-
-        public VerificationResponse(Config config) : base(config)
-        {
-        }
-
         /// <summary>
         /// message
         /// </summary>
         public string Message
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -45,7 +36,7 @@ namespace MbedCloud.SDK.Entities
         public bool? Successful
         {
             get;
-            set;
+            internal set;
         }
     }
 }

@@ -10,14 +10,12 @@ namespace Manhasset.Generator.src.CustomContainers
 {
     public class MyMethodParameterContainer : MethodParameterContainer
     {
-        public MyMethodParameterContainer(List<MyParameterContainer> deferedParams,
-                                        List<MyParameterContainer> pathParams,
+        public MyMethodParameterContainer(List<MyParameterContainer> pathParams,
                                         List<MyParameterContainer> queryParams,
                                         List<MyParameterContainer> bodyParams,
                                         List<MyParameterContainer> fileParams)
         {
             Parameters = new List<MyParameterContainer>()
-                                .Concat(deferedParams)
                                 .Concat(pathParams)
                                 .Concat(queryParams)
                                 .Concat(bodyParams)
@@ -28,7 +26,7 @@ namespace Manhasset.Generator.src.CustomContainers
                                     p.Key = p.Key.PascalToCamel();
                                     return p;
                                 })
-                                .OrderBy(p => p.Required)
+                                .OrderBy(p => !p.Required)
                                 .Cast<ParameterContainer>()
                                 .ToList();
         }

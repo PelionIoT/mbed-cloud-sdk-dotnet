@@ -5,43 +5,31 @@
 //   /\/\   __ _ _ __ | |__   __ _ ___ ___  ___| |_
 //  /    \ / _` | '_ \| '_ \ / _` / __/ __|/ _ \ __|
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
-// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
+// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
 // <copyright file="CertificateEnrollment.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloud.SDK.Entities
+namespace Mbed.Cloud.Foundation.Entities
 {
-    using MbedCloud.SDK.Common;
-    using MbedCloud.SDK.Client;
+    using Mbed.Cloud.Foundation.Common;
     using System;
-    using MbedCloud.SDK.Enums;
-    using System.Threading.Tasks;
-    using MbedCloudSDK.Exceptions;
-    using System.Collections.Generic;
+    using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
     /// CertificateEnrollment
     /// </summary>
-    public class CertificateEnrollment : BaseEntity
+    public class CertificateEnrollment : Entity
     {
-        public CertificateEnrollment()
-        {
-        }
-
-        public CertificateEnrollment(Config config) : base(config)
-        {
-        }
-
         /// <summary>
         /// certificate_name
         /// </summary>
         public string CertificateName
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -50,7 +38,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? CreatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -59,7 +47,7 @@ namespace MbedCloud.SDK.Entities
         public string DeviceId
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -68,7 +56,7 @@ namespace MbedCloud.SDK.Entities
         public CertificateEnrollmentEnrollResultEnum? EnrollResult
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -77,7 +65,7 @@ namespace MbedCloud.SDK.Entities
         public CertificateEnrollmentEnrollStatusEnum? EnrollStatus
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -86,38 +74,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? UpdatedAt
         {
             get;
-            set;
-        }
-
-        public async Task<CertificateEnrollment> Get()
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "certificate-enrollment-id", Id }, };
-                return await Client.CallApi<CertificateEnrollment>(path: "/v3/certificate-enrollments/{certificate-enrollment-id}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public PaginatedResponse<QueryOptions, CertificateEnrollment> List(QueryOptions options = null)
-        {
-            try
-            {
-                if (options == null)
-                {
-                    options = new QueryOptions();
-                }
-
-                Func<QueryOptions, ResponsePage<CertificateEnrollment>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<CertificateEnrollment>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<CertificateEnrollment>>(path: "/v3/certificate-enrollments", queryParams: queryParams, method: HttpMethods.GET); });
-                return new PaginatedResponse<QueryOptions, CertificateEnrollment>(paginatedFunc, options);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
+            internal set;
         }
     }
 }

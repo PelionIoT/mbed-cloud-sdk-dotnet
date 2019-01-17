@@ -17,6 +17,7 @@ namespace Manhasset.Generator.src.CustomContainers
         public string HttpMethod { get; set; }
         public string Returns { get; set; }
         public string EntityName { get; set; }
+        public bool HasRequest { get; set; }
 
         public override ReturnStatementSyntax GetSyntax()
         {
@@ -51,11 +52,11 @@ namespace Manhasset.Generator.src.CustomContainers
 
             paramArgList.Add(GetMemberAccessArg("method", "HttpMethods", HttpMethod));
 
-            if (Returns == EntityName)
+            if (HasRequest)
             {
                 paramArgList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
 
-                paramArgList.Add(GetThisArg("objectToUnpack"));
+                paramArgList.Add(GetVariableArg("request", "objectToUnpack"));
             }
 
             return SyntaxFactory.ReturnStatement(

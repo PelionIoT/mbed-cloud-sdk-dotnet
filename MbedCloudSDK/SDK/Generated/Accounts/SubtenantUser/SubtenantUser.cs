@@ -5,37 +5,26 @@
 //   /\/\   __ _ _ __ | |__   __ _ ___ ___  ___| |_
 //  /    \ / _` | '_ \| '_ \ / _` / __/ __|/ _ \ __|
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
-// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
+// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
 // <copyright file="SubtenantUser.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloud.SDK.Entities
+namespace Mbed.Cloud.Foundation.Entities
 {
-    using MbedCloud.SDK.Common;
-    using MbedCloud.SDK.Client;
+    using Mbed.Cloud.Foundation.Common;
     using System.Collections.Generic;
     using System;
-    using MbedCloud.SDK.Entities;
-    using MbedCloud.SDK.Enums;
-    using System.Threading.Tasks;
-    using MbedCloudSDK.Exceptions;
+    using Mbed.Cloud.Foundation.Entities;
+    using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
     /// SubtenantUser
     /// </summary>
-    public class SubtenantUser : BaseEntity
+    public class SubtenantUser : Entity
     {
-        public SubtenantUser()
-        {
-        }
-
-        public SubtenantUser(Config config) : base(config)
-        {
-        }
-
         internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "MarketingAccepted", "is_marketing_accepted" }, { "TermsAccepted", "is_gtc_accepted" }, { "TwoFactorAuthentication", "is_totp_enabled" }, };
 
         /// <summary>
@@ -62,7 +51,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? CreatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -71,7 +60,7 @@ namespace MbedCloud.SDK.Entities
         public long? CreationTime
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -89,7 +78,7 @@ namespace MbedCloud.SDK.Entities
         public bool? EmailVerified
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -107,7 +96,7 @@ namespace MbedCloud.SDK.Entities
         public long? LastLoginTime
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -116,7 +105,7 @@ namespace MbedCloud.SDK.Entities
         public List<LoginHistory> LoginHistory
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -152,7 +141,7 @@ namespace MbedCloud.SDK.Entities
         public long? PasswordChangedTime
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -197,7 +186,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? UpdatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -207,74 +196,6 @@ namespace MbedCloud.SDK.Entities
         {
             get;
             set;
-        }
-
-        public async Task<SubtenantUser> Create(string action = null)
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "account_id", AccountId }, };
-                var queryParams = new Dictionary<string, object> { { "action", action }, };
-                var bodyParams = new SubtenantUser { Address = Address, Email = Email, FullName = FullName, LoginProfiles = LoginProfiles, MarketingAccepted = MarketingAccepted, Password = Password, PhoneNumber = PhoneNumber, TermsAccepted = TermsAccepted, Username = Username, };
-                return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{account_id}/users", pathParams: pathParams, queryParams: queryParams, bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public async Task<SubtenantUser> Delete()
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "account_id", AccountId }, { "user_id", Id }, };
-                return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{account_id}/users/{user_id}", pathParams: pathParams, method: HttpMethods.DELETE, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public async Task<SubtenantUser> Get()
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "account_id", AccountId }, { "user_id", Id }, };
-                return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{account_id}/users/{user_id}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public async Task<SubtenantUser> Update()
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "account_id", AccountId }, { "user_id", Id }, };
-                var bodyParams = new SubtenantUser { Address = Address, FullName = FullName, LoginProfiles = LoginProfiles, MarketingAccepted = MarketingAccepted, PhoneNumber = PhoneNumber, TermsAccepted = TermsAccepted, TwoFactorAuthentication = TwoFactorAuthentication, Username = Username, };
-                return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{account_id}/users/{user_id}", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public async Task<SubtenantUser> ValidateEmail()
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "account_id", AccountId }, { "user_id", Id }, };
-                return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{account_id}/users/{user_id}/validate-email", pathParams: pathParams, method: HttpMethods.POST, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
         }
     }
 }

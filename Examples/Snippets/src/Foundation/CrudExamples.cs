@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
-using MbedCloud.SDK.Entities;
 using NUnit.Framework;
 using MbedCloudSDK.Common.Extensions;
+using Mbed.Cloud.Foundation.Entities;
 
 namespace Snippets.src.Foundation
 {
@@ -14,15 +14,12 @@ namespace Snippets.src.Foundation
         {
             try
             {
-                var user = new User().List().FirstOrDefault();
+                var userRepo = new UserRepository();
+                var user = userRepo.List().FirstOrDefault();
 
                 Assert.IsInstanceOf(typeof(User), user);
 
-                var gotUser = await new User
-                {
-                    Id = user.Id,
-                    AccountId = user.AccountId,
-                }.Get();
+                var gotUser = await userRepo.Get(user.Id);
 
                 Assert.IsInstanceOf(typeof(User), gotUser);
                 Assert.AreEqual(gotUser.CreatedAt, user.CreatedAt);
@@ -41,7 +38,7 @@ namespace Snippets.src.Foundation
         {
             try
             {
-                var user = new User().List().FirstOrDefault();
+                var user = new UserRepository().List().FirstOrDefault();
                 Assert.IsInstanceOf(typeof(User), user);
             }
             catch (System.Exception)
@@ -55,21 +52,25 @@ namespace Snippets.src.Foundation
         {
             try
             {
-                var user = await new User
+                var userRepo = new UserRepository();
+
+                var user = new User
                 {
-                    Username = "alexcs",
-                    Email = "alex@alex.alex",
+                    Username = "alex_ole_ball",
+                    Email = "alex_ole_ball@alex.alex",
                     PhoneNumber = "01638742545",
                     FullName = "Alex Logan",
-                }.Create();
+                };
+
+                await userRepo.Create(user);
 
                 user.PhoneNumber = "118118";
 
-                await user.Update();
+                await userRepo.Update(user.Id, user);
 
                 Assert.AreEqual(user.PhoneNumber, "118118");
 
-                await user.Delete();
+                await userRepo.Delete(user.Id);
             }
             catch (System.Exception)
             {

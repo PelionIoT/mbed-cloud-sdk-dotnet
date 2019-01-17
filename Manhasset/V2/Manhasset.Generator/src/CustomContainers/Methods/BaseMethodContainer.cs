@@ -93,8 +93,9 @@ namespace Manhasset.Generator.src.CustomContainers
             return default(StatementSyntax);
         }
 
-        protected MethodDeclarationSyntax GetPaginatedSignature()
+        protected MethodDeclarationSyntax GetPaginatedSignature(string listOptionsName = "QueryOptions", MethodParameterContainer methodParams = null)
         {
+            methodParams.Parameters = methodParams.Parameters.Where(p => p.Key != "after" && p.Key != "order" && p.Key != "limit" && p.Key != "include").OrderBy(p => !p.Required).ToList();
             return SyntaxFactory.MethodDeclaration(
                     SyntaxFactory.GenericName(
                         SyntaxFactory.Identifier("PaginatedResponse"))
@@ -102,7 +103,7 @@ namespace Manhasset.Generator.src.CustomContainers
                         SyntaxFactory.TypeArgumentList(
                             SyntaxFactory.SeparatedList<TypeSyntax>(
                                 new SyntaxNodeOrToken[]{
-                                    SyntaxFactory.IdentifierName("QueryOptions"),
+                                    SyntaxFactory.IdentifierName(listOptionsName),
                                     SyntaxFactory.Token(SyntaxKind.CommaToken),
                                     SyntaxFactory.IdentifierName(Returns)}))),
                     SyntaxFactory.Identifier(Name))
@@ -111,16 +112,7 @@ namespace Manhasset.Generator.src.CustomContainers
                         SyntaxFactory.Token(SyntaxKind.PublicKeyword)))
                 .WithBody(
                     SyntaxFactory.Block())
-                .WithParameterList(SyntaxFactory.ParameterList(
-                        SyntaxFactory.SingletonSeparatedList<ParameterSyntax>(
-                            SyntaxFactory.Parameter(
-                                SyntaxFactory.Identifier("options"))
-                            .WithType(
-                                SyntaxFactory.IdentifierName("QueryOptions"))
-                            .WithDefault(
-                                SyntaxFactory.EqualsValueClause(
-                                    SyntaxFactory.LiteralExpression(
-                                        SyntaxKind.NullLiteralExpression))))));
+                .WithParameterList(methodParams.GetSyntax());
         }
     }
 }

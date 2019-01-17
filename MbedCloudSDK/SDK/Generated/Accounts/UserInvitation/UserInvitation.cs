@@ -5,43 +5,32 @@
 //   /\/\   __ _ _ __ | |__   __ _ ___ ___  ___| |_
 //  /    \ / _` | '_ \| '_ \ / _` / __/ __|/ _ \ __|
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
-// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
+// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
 // <copyright file="UserInvitation.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloud.SDK.Entities
+namespace Mbed.Cloud.Foundation.Entities
 {
-    using MbedCloud.SDK.Common;
-    using MbedCloud.SDK.Client;
+    using Mbed.Cloud.Foundation.Common;
     using System;
-    using MbedCloud.SDK.Entities;
+    using Mbed.Cloud.Foundation.Entities;
     using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using MbedCloudSDK.Exceptions;
 
     /// <summary>
     /// UserInvitation
     /// </summary>
-    public class UserInvitation : BaseEntity
+    public class UserInvitation : Entity
     {
-        public UserInvitation()
-        {
-        }
-
-        public UserInvitation(Config config) : base(config)
-        {
-        }
-
         /// <summary>
         /// account_id
         /// </summary>
         public string AccountId
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -50,7 +39,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? CreatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -68,7 +57,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? Expiration
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -86,7 +75,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? UpdatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -95,64 +84,7 @@ namespace MbedCloud.SDK.Entities
         public string UserId
         {
             get;
-            set;
-        }
-
-        public async Task<UserInvitation> Create(int validForDays = 25)
-        {
-            try
-            {
-                var bodyParams = new UserInvitation { Email = Email, LoginProfiles = LoginProfiles, };
-                return await Client.CallApi<UserInvitation>(path: "/v3/user-invitations", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public async Task<UserInvitation> Delete()
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "invitation_id", Id }, };
-                return await Client.CallApi<UserInvitation>(path: "/v3/user-invitations/{invitation_id}", pathParams: pathParams, method: HttpMethods.DELETE, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public async Task<UserInvitation> Get()
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "invitation_id", Id }, };
-                return await Client.CallApi<UserInvitation>(path: "/v3/user-invitations/{invitation_id}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public PaginatedResponse<QueryOptions, UserInvitation> List(QueryOptions options = null)
-        {
-            try
-            {
-                if (options == null)
-                {
-                    options = new QueryOptions();
-                }
-
-                Func<QueryOptions, ResponsePage<UserInvitation>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<UserInvitation>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<UserInvitation>>(path: "/v3/user-invitations", queryParams: queryParams, method: HttpMethods.GET); });
-                return new PaginatedResponse<QueryOptions, UserInvitation>(paginatedFunc, options);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
+            internal set;
         }
     }
 }

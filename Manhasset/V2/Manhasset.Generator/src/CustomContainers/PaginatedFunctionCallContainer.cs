@@ -16,6 +16,7 @@ namespace Manhasset.Generator.src.CustomContainers
         public List<MyParameterContainer> BodyParams { get; set; }
         public string HttpMethod { get; set; }
         public StatementSyntax QueryParamDict { get; set; }
+        public string ListOptionsName { get; set; }
 
         public override LocalDeclarationStatementSyntax GetSyntax()
         {
@@ -52,7 +53,7 @@ namespace Manhasset.Generator.src.CustomContainers
                         SyntaxFactory.TypeArgumentList(
                             SyntaxFactory.SeparatedList<TypeSyntax>(
                                 new SyntaxNodeOrToken[]{
-                                    SyntaxFactory.IdentifierName("QueryOptions"),
+                                    SyntaxFactory.IdentifierName(ListOptionsName),
                                     SyntaxFactory.Token(SyntaxKind.CommaToken),
                                     SyntaxFactory.GenericName(
                                         SyntaxFactory.Identifier("ResponsePage"))
@@ -95,7 +96,7 @@ namespace Manhasset.Generator.src.CustomContainers
                                             SyntaxFactory.Parameter(
                                                 SyntaxFactory.Identifier("_options"))
                                             .WithType(
-                                                SyntaxFactory.IdentifierName("QueryOptions"))))))))));
+                                                SyntaxFactory.IdentifierName(ListOptionsName))))))))));
         }
 
         private BlockSyntax getFunctionBlock(List<SyntaxNodeOrToken> paramArgList)

@@ -10,15 +10,19 @@ namespace Manhasset.Generator.src.CustomContainers
 {
     public class PaginatedMethodContainer : BaseMethodContainer
     {
+        public string ListOptionsName { get; set; }
         public override MethodDeclarationSyntax GetSyntax()
         {
-            var syntax = base.GetPaginatedSignature();
+            var syntax = base.GetPaginatedSignature(listOptionsName: ListOptionsName, methodParams: MethodParams);
 
             var tryCatch = MethodGenerators.GetTryCatchBlock();
 
             var methodBody = base.GetMethodBodyParams(ignoreQuery: true);
 
-            var queryOptionsNullCheck = new QueryOptionsNullCheckContainer().GetSyntax();
+            var queryOptionsNullCheck = new QueryOptionsNullCheckContainer
+            {
+                ListOptionsName = ListOptionsName,
+            }.GetSyntax();
             methodBody.Add(queryOptionsNullCheck);
 
             var queryParams = base.GetPaginatedQueryParams();
@@ -33,12 +37,14 @@ namespace Manhasset.Generator.src.CustomContainers
                 QueryParams = QueryParams,
                 BodyParams = BodyParams,
                 QueryParamDict = queryParams,
+                ListOptionsName = ListOptionsName,
             }.GetSyntax();
             methodBody.Add(paginatedFunctionCallContainer);
 
             // return a paginated response
             var paginatedResponseReturnStatementContainer = new PaginatedResponseReturnStatementContainer
             {
+                ListOptionsName = ListOptionsName,
                 Returns = Returns,
             }.GetSyntax();
             methodBody.Add(paginatedResponseReturnStatementContainer);

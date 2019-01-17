@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MbedCloud.SDK.Client;
-using MbedCloud.SDK.Common;
-using MbedCloud.SDK.Entities;
+using Mbed.Cloud.Foundation.Common;
+using Mbed.Cloud.Foundation.Entities;
+using Mbed.Cloud.Foundation.RestClient;
 using NUnit.Framework;
 
 namespace Snippets.src.Foundation
@@ -18,7 +18,7 @@ namespace Snippets.src.Foundation
             try
             {
                 // an example: custom api call
-                var client = new MbedCloud.SDK.Client.Client(new Config());
+                var client = new Client(new Config());
                 var res = await client.CallApi<ResponsePage<User>>(method: HttpMethods.GET, path: "/v3/users", queryParams: new Dictionary<string, object> { { "limit", 2 } });
                 // end of example
 

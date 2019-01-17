@@ -5,36 +5,25 @@
 //   /\/\   __ _ _ __ | |__   __ _ ___ ___  ___| |_
 //  /    \ / _` | '_ \| '_ \ / _` / __/ __|/ _ \ __|
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
-// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
+// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
 // <copyright file="SubtenantUserInvitation.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloud.SDK.Entities
+namespace Mbed.Cloud.Foundation.Entities
 {
-    using MbedCloud.SDK.Common;
-    using MbedCloud.SDK.Client;
+    using Mbed.Cloud.Foundation.Common;
     using System;
-    using MbedCloud.SDK.Entities;
+    using Mbed.Cloud.Foundation.Entities;
     using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using MbedCloudSDK.Exceptions;
 
     /// <summary>
     /// SubtenantUserInvitation
     /// </summary>
-    public class SubtenantUserInvitation : BaseEntity
+    public class SubtenantUserInvitation : Entity
     {
-        public SubtenantUserInvitation()
-        {
-        }
-
-        public SubtenantUserInvitation(Config config) : base(config)
-        {
-        }
-
         /// <summary>
         /// account_id
         /// </summary>
@@ -50,7 +39,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? CreatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -68,7 +57,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? Expiration
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -86,7 +75,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? UpdatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -95,47 +84,7 @@ namespace MbedCloud.SDK.Entities
         public string UserId
         {
             get;
-            set;
-        }
-
-        public async Task<SubtenantUserInvitation> Create(int validForDays = 25)
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "account_id", AccountId }, };
-                var bodyParams = new SubtenantUserInvitation { Email = Email, LoginProfiles = LoginProfiles, };
-                return await Client.CallApi<SubtenantUserInvitation>(path: "/v3/accounts/{account_id}/user-invitations", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public async Task<SubtenantUserInvitation> Delete()
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "account_id", AccountId }, { "invitation_id", Id }, };
-                return await Client.CallApi<SubtenantUserInvitation>(path: "/v3/accounts/{account_id}/user-invitations/{invitation_id}", pathParams: pathParams, method: HttpMethods.DELETE, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public async Task<SubtenantUserInvitation> Get()
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "account_id", AccountId }, { "invitation_id", Id }, };
-                return await Client.CallApi<SubtenantUserInvitation>(path: "/v3/accounts/{account_id}/user-invitations/{invitation_id}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
+            internal set;
         }
     }
 }

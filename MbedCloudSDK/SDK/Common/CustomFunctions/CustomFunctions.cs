@@ -1,9 +1,9 @@
 using System.IO;
 using System.Threading.Tasks;
-using MbedCloud.SDK.Entities;
+using Mbed.Cloud.Foundation.Entities;
 using RestSharp;
 
-namespace MbedCloud.SDK.Common
+namespace Mbed.Cloud.Foundation.Common
 {
     public static class CustomFunctions
     {
@@ -29,24 +29,24 @@ namespace MbedCloud.SDK.Common
             self.IsDeveloperCertificate = value;
         }
 
-        public static Task<Stream> DownloadFullReportFile(DeviceEnrollmentBulkCreate self)
+        public static Task<Stream> DownloadFullReportFile(DeviceEnrollmentBulkCreateRepository repo, DeviceEnrollmentBulkCreate model)
         {
-            return StreamToFile(self.Config, self.FullReportFile);
+            return StreamToFile(repo.Config, model.FullReportFile);
         }
 
-        public static Task<Stream> DownloadFullReportFile(DeviceEnrollmentBulkDelete self)
+        public static Task<Stream> DownloadFullReportFile(DeviceEnrollmentBulkDeleteRepository repo, DeviceEnrollmentBulkDelete model)
         {
-            return StreamToFile(self.Config, self.ErrorsReportFile);
+            return StreamToFile(repo.Config, model.ErrorsReportFile);
         }
 
-        public static Task<Stream> DownloadErrorsReportFile(DeviceEnrollmentBulkCreate self)
+        public static Task<Stream> DownloadErrorsReportFile(DeviceEnrollmentBulkCreateRepository repo, DeviceEnrollmentBulkCreate model)
         {
-            return StreamToFile(self.Config, self.FullReportFile, "error-report.csv");
+            return StreamToFile(repo.Config, model.FullReportFile, "error-report.csv");
         }
 
-        public static Task<Stream> DownloadErrorsReportFile(DeviceEnrollmentBulkDelete self)
+        public static Task<Stream> DownloadErrorsReportFile(DeviceEnrollmentBulkDeleteRepository repo, DeviceEnrollmentBulkDelete model)
         {
-            return StreamToFile(self.Config, self.ErrorsReportFile, "error-report.csv");
+            return StreamToFile(repo.Config, model.ErrorsReportFile, "error-report.csv");
         }
 
         private static Task<Stream> StreamToFile(Config config, string url, string filePath = "report.csv")
@@ -55,7 +55,7 @@ namespace MbedCloud.SDK.Common
             {
                 if (!string.IsNullOrEmpty(url) && config != null)
                 {
-                    var client = new RestClient(config.Host);
+                    var client = new RestSharp.RestClient(config.Host);
                     var request = new RestRequest(url.Replace(config.Host, string.Empty))
                     {
                         ResponseWriter = (responseStream) => responseStream.CopyTo(writer)
@@ -64,7 +64,7 @@ namespace MbedCloud.SDK.Common
                     client.Execute(request);
                 }
             }
-            
+
             return Task.FromResult<Stream>(File.OpenRead(filePath));
         }
     }

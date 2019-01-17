@@ -5,213 +5,111 @@
 //   /\/\   __ _ _ __ | |__   __ _ ___ ___  ___| |_
 //  /    \ / _` | '_ \| '_ \ / _` / __/ __|/ _ \ __|
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
-// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
+// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
 // <copyright file="EntityFactory.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloud.SDK
+namespace Mbed.Cloud
 {
-    using MbedCloud.SDK.Common;
-    using MbedCloud.SDK.Entities;
+    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Foundation.Entities;
 
     /// <summary>
     /// Entity Factory
     /// </summary>
     public partial class EntityFactory
     {
-        /// <summary>
-        /// Account
-        /// </summary>
-        public Account Account
+        public AccountRepository AccountRepository()
         {
-            get => new Account(config);
+            return new AccountRepository(config, client);
         }
 
-        /// <summary>
-        /// ApiKey
-        /// </summary>
-        public ApiKey ApiKey
+        public ApiKeyRepository ApiKeyRepository()
         {
-            get => new ApiKey(config);
+            return new ApiKeyRepository(config, client);
         }
 
-        /// <summary>
-        /// CertificateEnrollment
-        /// </summary>
-        public CertificateEnrollment CertificateEnrollment
+        public CertificateEnrollmentRepository CertificateEnrollmentRepository()
         {
-            get => new CertificateEnrollment(config);
+            return new CertificateEnrollmentRepository(config, client);
         }
 
-        /// <summary>
-        /// CertificateIssuer
-        /// </summary>
-        public CertificateIssuer CertificateIssuer
+        public CertificateIssuerRepository CertificateIssuerRepository()
         {
-            get => new CertificateIssuer(config);
+            return new CertificateIssuerRepository(config, client);
         }
 
-        /// <summary>
-        /// CertificateIssuerConfig
-        /// </summary>
-        public CertificateIssuerConfig CertificateIssuerConfig
+        public CertificateIssuerConfigRepository CertificateIssuerConfigRepository()
         {
-            get => new CertificateIssuerConfig(config);
+            return new CertificateIssuerConfigRepository(config, client);
         }
 
-        /// <summary>
-        /// DeveloperCertificate
-        /// </summary>
-        public DeveloperCertificate DeveloperCertificate
+        public DeveloperCertificateRepository DeveloperCertificateRepository()
         {
-            get => new DeveloperCertificate(config);
+            return new DeveloperCertificateRepository(config, client);
         }
 
-        /// <summary>
-        /// Device
-        /// </summary>
-        public Device Device
+        public DeviceRepository DeviceRepository()
         {
-            get => new Device(config);
+            return new DeviceRepository(config, client);
         }
 
-        /// <summary>
-        /// DeviceEnrollment
-        /// </summary>
-        public DeviceEnrollment DeviceEnrollment
+        public DeviceEnrollmentRepository DeviceEnrollmentRepository()
         {
-            get => new DeviceEnrollment(config);
+            return new DeviceEnrollmentRepository(config, client);
         }
 
-        /// <summary>
-        /// DeviceEnrollmentBulkCreate
-        /// </summary>
-        public DeviceEnrollmentBulkCreate DeviceEnrollmentBulkCreate
+        public DeviceEnrollmentBulkCreateRepository DeviceEnrollmentBulkCreateRepository()
         {
-            get => new DeviceEnrollmentBulkCreate(config);
+            return new DeviceEnrollmentBulkCreateRepository(config, client);
         }
 
-        /// <summary>
-        /// DeviceEnrollmentBulkDelete
-        /// </summary>
-        public DeviceEnrollmentBulkDelete DeviceEnrollmentBulkDelete
+        public DeviceEnrollmentBulkDeleteRepository DeviceEnrollmentBulkDeleteRepository()
         {
-            get => new DeviceEnrollmentBulkDelete(config);
+            return new DeviceEnrollmentBulkDeleteRepository(config, client);
         }
 
-        /// <summary>
-        /// DeviceEvents
-        /// </summary>
-        public DeviceEvents DeviceEvents
+        public DeviceEventsRepository DeviceEventsRepository()
         {
-            get => new DeviceEvents(config);
+            return new DeviceEventsRepository(config, client);
         }
 
-        /// <summary>
-        /// LoginHistory
-        /// </summary>
-        public LoginHistory LoginHistory
+        public ServerCredentialsRepository ServerCredentialsRepository()
         {
-            get => new LoginHistory(config);
+            return new ServerCredentialsRepository(config, client);
         }
 
-        /// <summary>
-        /// LoginProfile
-        /// </summary>
-        public LoginProfile LoginProfile
+        public SubtenantTrustedCertificateRepository SubtenantTrustedCertificateRepository()
         {
-            get => new LoginProfile(config);
+            return new SubtenantTrustedCertificateRepository(config, client);
         }
 
-        /// <summary>
-        /// ParentAccount
-        /// </summary>
-        public ParentAccount ParentAccount
+        public SubtenantUserRepository SubtenantUserRepository()
         {
-            get => new ParentAccount(config);
+            return new SubtenantUserRepository(config, client);
         }
 
-        /// <summary>
-        /// PasswordPolicy
-        /// </summary>
-        public PasswordPolicy PasswordPolicy
+        public SubtenantUserInvitationRepository SubtenantUserInvitationRepository()
         {
-            get => new PasswordPolicy(config);
+            return new SubtenantUserInvitationRepository(config, client);
         }
 
-        /// <summary>
-        /// Policy
-        /// </summary>
-        public Policy Policy
+        public TrustedCertificateRepository TrustedCertificateRepository()
         {
-            get => new Policy(config);
+            return new TrustedCertificateRepository(config, client);
         }
 
-        /// <summary>
-        /// ServerCredentials
-        /// </summary>
-        public ServerCredentials ServerCredentials
+        public UserRepository UserRepository()
         {
-            get => new ServerCredentials(config);
+            return new UserRepository(config, client);
         }
 
-        /// <summary>
-        /// SubtenantTrustedCertificate
-        /// </summary>
-        public SubtenantTrustedCertificate SubtenantTrustedCertificate
+        public UserInvitationRepository UserInvitationRepository()
         {
-            get => new SubtenantTrustedCertificate(config);
-        }
-
-        /// <summary>
-        /// SubtenantUser
-        /// </summary>
-        public SubtenantUser SubtenantUser
-        {
-            get => new SubtenantUser(config);
-        }
-
-        /// <summary>
-        /// SubtenantUserInvitation
-        /// </summary>
-        public SubtenantUserInvitation SubtenantUserInvitation
-        {
-            get => new SubtenantUserInvitation(config);
-        }
-
-        /// <summary>
-        /// TrustedCertificate
-        /// </summary>
-        public TrustedCertificate TrustedCertificate
-        {
-            get => new TrustedCertificate(config);
-        }
-
-        /// <summary>
-        /// User
-        /// </summary>
-        public User User
-        {
-            get => new User(config);
-        }
-
-        /// <summary>
-        /// UserInvitation
-        /// </summary>
-        public UserInvitation UserInvitation
-        {
-            get => new UserInvitation(config);
-        }
-
-        /// <summary>
-        /// VerificationResponse
-        /// </summary>
-        public VerificationResponse VerificationResponse
-        {
-            get => new VerificationResponse(config);
+            return new UserInvitationRepository(config, client);
         }
     }
 }

@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MbedCloud.SDK;
-using MbedCloud.SDK.Common;
-using MbedCloud.SDK.Entities;
-using MbedCloud.SDK.Enums;
+using Mbed.Cloud;
+using Mbed.Cloud.Foundation.Common;
+using Mbed.Cloud.Foundation.Entities;
+using Mbed.Cloud.Foundation.Enums;
 using MbedCloudSDK.Exceptions;
 using NUnit.Framework;
 
@@ -19,7 +19,7 @@ namespace Snippets.src.Foundation
             try
             {
                 // an example: checking account status
-                var myAccount = await new Account().Me();
+                var myAccount = await new AccountRepository().Me();
                 var isActive = myAccount.Status == AccountStatusEnum.ACTIVE;
                 // end of example
 
@@ -37,7 +37,7 @@ namespace Snippets.src.Foundation
             try
             {
                 // an example: listing api keys
-                var allKeys = new ApiKey().List();
+                var allKeys = new ApiKeyRepository().List();
                 var allKeyNames = allKeys.Select(k => k.Name);
                 // end of example
 
@@ -56,7 +56,7 @@ namespace Snippets.src.Foundation
             {
                 // an example: using multiple api keys
                 var allUsers = new List<User>();
-                new List<string> { "ak_1", "ak_2" }.ForEach(k => allUsers.AddRange(new SDK(new Config(k)).Entities.User.List()));
+                new List<string> { "ak_1", "ak_2" }.ForEach(k => allUsers.AddRange(new SDK(new Config(k)).Entities.UserRepository().List()));
                 // end of example
             }
             catch (CloudApiException e) when (e.ErrorCode == 401)
@@ -77,7 +77,7 @@ namespace Snippets.src.Foundation
             {
                 // an example: using custom hosts
                 var config = new Config(apiKey: "ak_1", host: "https://example");
-                var allUsers = new SDK(config).Entities.User.List();
+                var allUsers = new SDK(config).Entities.UserRepository().List();
                 // end of example
             }
             catch (CloudApiException)

@@ -5,44 +5,31 @@
 //   /\/\   __ _ _ __ | |__   __ _ ___ ___  ___| |_
 //  /    \ / _` | '_ \| '_ \ / _` / __/ __|/ _ \ __|
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
-// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
+// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
 // <copyright file="DeviceEnrollmentBulkDelete.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloud.SDK.Entities
+namespace Mbed.Cloud.Foundation.Entities
 {
-    using MbedCloud.SDK.Common;
-    using MbedCloud.SDK.Client;
+    using Mbed.Cloud.Foundation.Common;
     using System;
-    using MbedCloud.SDK.Enums;
-    using System.IO;
-    using System.Threading.Tasks;
-    using MbedCloudSDK.Exceptions;
-    using System.Collections.Generic;
+    using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
     /// DeviceEnrollmentBulkDelete
     /// </summary>
-    public class DeviceEnrollmentBulkDelete : BaseEntity
+    public class DeviceEnrollmentBulkDelete : Entity
     {
-        public DeviceEnrollmentBulkDelete()
-        {
-        }
-
-        public DeviceEnrollmentBulkDelete(Config config) : base(config)
-        {
-        }
-
         /// <summary>
         /// account_id
         /// </summary>
         public string AccountId
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -51,7 +38,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? CompletedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -60,7 +47,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? CreatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -69,7 +56,7 @@ namespace MbedCloud.SDK.Entities
         public int? ErrorsCount
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -78,7 +65,7 @@ namespace MbedCloud.SDK.Entities
         public string ErrorsReportFile
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -87,7 +74,7 @@ namespace MbedCloud.SDK.Entities
         public string FullReportFile
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -96,7 +83,7 @@ namespace MbedCloud.SDK.Entities
         public int? ProcessedCount
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -105,7 +92,7 @@ namespace MbedCloud.SDK.Entities
         public DeviceEnrollmentBulkDeleteStatusEnum? Status
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -114,43 +101,7 @@ namespace MbedCloud.SDK.Entities
         public int? TotalCount
         {
             get;
-            set;
-        }
-
-        public async Task<DeviceEnrollmentBulkDelete> Delete(Stream enrollmentIdentities)
-        {
-            try
-            {
-                var fileParams = new Dictionary<string, Stream> { { "enrollment_identities", enrollmentIdentities }, };
-                return await Client.CallApi<DeviceEnrollmentBulkDelete>(path: "/v3/device-enrollments-bulk-deletes", fileParams: fileParams, method: HttpMethods.POST, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public async Task<Stream> DownloadErrorsReportFile()
-        {
-            return await CustomFunctions.DownloadErrorsReportFile(this);
-        }
-
-        public async Task<Stream> DownloadFullReportFile()
-        {
-            return await CustomFunctions.DownloadFullReportFile(this);
-        }
-
-        public async Task<DeviceEnrollmentBulkDelete> Get()
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "id", Id }, };
-                return await Client.CallApi<DeviceEnrollmentBulkDelete>(path: "/v3/device-enrollments-bulk-deletes/{id}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
+            internal set;
         }
     }
 }

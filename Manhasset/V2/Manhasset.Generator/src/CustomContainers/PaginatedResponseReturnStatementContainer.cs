@@ -8,6 +8,7 @@ namespace Manhasset.Generator.src.CustomContainers
     public class PaginatedResponseReturnStatementContainer : ReturnStatementContainer
     {
         public string Returns { get; set; }
+        public string ListOptionsName { get; set; }
         public override ReturnStatementSyntax GetSyntax()
         {
             return SyntaxFactory.ReturnStatement(
@@ -18,7 +19,7 @@ namespace Manhasset.Generator.src.CustomContainers
                         SyntaxFactory.TypeArgumentList(
                             SyntaxFactory.SeparatedList<TypeSyntax>(
                                 new SyntaxNodeOrToken[]{
-                                    SyntaxFactory.IdentifierName("QueryOptions"),
+                                    SyntaxFactory.IdentifierName(ListOptionsName),
                                     SyntaxFactory.Token(SyntaxKind.CommaToken),
                                     SyntaxFactory.IdentifierName(Returns)}))))
                 .WithArgumentList(

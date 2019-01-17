@@ -1,7 +1,7 @@
 using System;
 using System.IO;
-using MbedCloud.SDK.Entities;
-using MbedCloud.SDK.Enums;
+using Mbed.Cloud.Foundation.Entities;
+using Mbed.Cloud.Foundation.Enums;
 using MbedCloudSDK.Exceptions;
 using NUnit.Framework;
 
@@ -16,16 +16,17 @@ namespace Snippets.src.Foundation
             try
             {
                 // an example: device enrollment single
+                var enrollmentRepo = new DeviceEnrollmentRepository();
                 var enrollment = new DeviceEnrollment
                 {
                     EnrollmentIdentity = "A-4E:63:2D:AE:14:BC:D1:09:77:21:95:44:ED:34:06:57:1E:03:B1:EF:0E:F2:59:44:71:93:23:22:15:43:23:12",
                 };
-                await enrollment.Create();
+                await enrollmentRepo.Create(enrollment);
                 // end of example
 
                 Assert.NotNull(enrollment.ClaimedAt);
 
-                await enrollment.Delete();
+                await enrollmentRepo.Delete(enrollment.Id);
             }
             catch (CloudApiException e) when (e.ErrorCode == 409)
             {
@@ -45,27 +46,29 @@ namespace Snippets.src.Foundation
             {
                 var pathToCsv = "/Users/alelog01/git/mbed-cloud-sdk-dotnet/Examples/Snippets/src/Foundation/test.csv";
                 // an example: device enrollment bulk
-                var bulk = new DeviceEnrollmentBulkCreate();
+                var bulkRepo = new DeviceEnrollmentBulkCreateRepository();
+
                 // use System.IO file open
+                var bulk = default(DeviceEnrollmentBulkCreate);
                 using (var file = File.Open(pathToCsv, FileMode.Open))
                 {
-                    await bulk.Create(file);
+                    bulk = await bulkRepo.Create(file);
                 }
 
                 // cloak
                 Assert.AreEqual(bulk.Status, DeviceEnrollmentBulkCreateStatusEnum.NEW);
                 // uncloak
 
-                await bulk.Get();
+                bulk = await bulkRepo.Get(bulk.Id);
                 // end of example
 
                 Assert.IsTrue(bulk.Status == DeviceEnrollmentBulkCreateStatusEnum.COMPLETED || bulk.Status == DeviceEnrollmentBulkCreateStatusEnum.PROCESSING);
 
-                var reportFile = await bulk.DownloadFullReportFile();
+                var reportFile = await bulkRepo.DownloadFullReportFile(bulk);
                 Assert.IsTrue(reportFile.CanRead);
                 reportFile.Close();
 
-                var errors = await bulk.DownloadErrorsReportFile();
+                var errors = await bulkRepo.DownloadErrorsReportFile(bulk);
                 Assert.IsTrue(errors.CanRead);
                 errors.Close();
             }
@@ -81,24 +84,25 @@ namespace Snippets.src.Foundation
             try
             {
                 var pathToCsv = "/Users/alelog01/git/mbed-cloud-sdk-dotnet/Examples/Snippets/src/Foundation/test.csv";
-                var bulk = new DeviceEnrollmentBulkDelete();
+                var bulkRepo = new DeviceEnrollmentBulkDeleteRepository();
                 // use System.IO file open
+                var bulk = default(DeviceEnrollmentBulkDelete);
                 using (var file = File.Open(pathToCsv, FileMode.Open))
                 {
-                    await bulk.Delete(file);
+                    bulk = await bulkRepo.Delete(file);
                 }
 
                 Assert.AreEqual(bulk.Status, DeviceEnrollmentBulkDeleteStatusEnum.NEW);
 
-                await bulk.Get();
+                bulk = await bulkRepo.Get(bulk.Id);
 
                 Assert.IsTrue(bulk.Status == DeviceEnrollmentBulkDeleteStatusEnum.COMPLETED || bulk.Status == DeviceEnrollmentBulkDeleteStatusEnum.PROCESSING);
 
-                var reportFile = await bulk.DownloadFullReportFile();
+                var reportFile = await bulkRepo.DownloadFullReportFile(bulk);
                 Assert.IsTrue(reportFile.CanRead);
                 reportFile.Close();
 
-                var errors = await bulk.DownloadErrorsReportFile();
+                var errors = await bulkRepo.DownloadErrorsReportFile(bulk);
                 Assert.IsTrue(errors.CanRead);
                 errors.Close();
             }

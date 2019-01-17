@@ -5,42 +5,30 @@
 //   /\/\   __ _ _ __ | |__   __ _ ___ ___  ___| |_
 //  /    \ / _` | '_ \| '_ \ / _` / __/ __|/ _ \ __|
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
-// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 1.0.0
+// \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
 // <copyright file="DeviceEnrollment.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
-namespace MbedCloud.SDK.Entities
+namespace Mbed.Cloud.Foundation.Entities
 {
-    using MbedCloud.SDK.Common;
-    using MbedCloud.SDK.Client;
+    using Mbed.Cloud.Foundation.Common;
     using System;
-    using System.Threading.Tasks;
-    using MbedCloudSDK.Exceptions;
-    using System.Collections.Generic;
 
     /// <summary>
     /// DeviceEnrollment
     /// </summary>
-    public class DeviceEnrollment : BaseEntity
+    public class DeviceEnrollment : Entity
     {
-        public DeviceEnrollment()
-        {
-        }
-
-        public DeviceEnrollment(Config config) : base(config)
-        {
-        }
-
         /// <summary>
         /// account_id
         /// </summary>
         public string AccountId
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -49,7 +37,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? ClaimedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -58,7 +46,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? CreatedAt
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -67,7 +55,7 @@ namespace MbedCloud.SDK.Entities
         public string EnrolledDeviceId
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -85,64 +73,7 @@ namespace MbedCloud.SDK.Entities
         public DateTime? ExpiresAt
         {
             get;
-            set;
-        }
-
-        public async Task<DeviceEnrollment> Create()
-        {
-            try
-            {
-                var bodyParams = new DeviceEnrollment { EnrollmentIdentity = EnrollmentIdentity, };
-                return await Client.CallApi<DeviceEnrollment>(path: "/v3/device-enrollments", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public async Task<DeviceEnrollment> Delete()
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "id", Id }, };
-                return await Client.CallApi<DeviceEnrollment>(path: "/v3/device-enrollments/{id}", pathParams: pathParams, method: HttpMethods.DELETE, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public async Task<DeviceEnrollment> Get()
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "id", Id }, };
-                return await Client.CallApi<DeviceEnrollment>(path: "/v3/device-enrollments/{id}", pathParams: pathParams, method: HttpMethods.GET, objectToUnpack: this);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public PaginatedResponse<QueryOptions, DeviceEnrollment> List(QueryOptions options = null)
-        {
-            try
-            {
-                if (options == null)
-                {
-                    options = new QueryOptions();
-                }
-
-                Func<QueryOptions, ResponsePage<DeviceEnrollment>> paginatedFunc = (QueryOptions _options) => AsyncHelper.RunSync<ResponsePage<DeviceEnrollment>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<DeviceEnrollment>>(path: "/v3/device-enrollments", queryParams: queryParams, method: HttpMethods.GET); });
-                return new PaginatedResponse<QueryOptions, DeviceEnrollment>(paginatedFunc, options);
-            }
-            catch (MbedCloud.SDK.Client.ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
+            internal set;
         }
     }
 }

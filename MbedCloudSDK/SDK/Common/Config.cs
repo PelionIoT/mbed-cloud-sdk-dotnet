@@ -1,10 +1,11 @@
-namespace MbedCloud.SDK.Common
+namespace Mbed.Cloud.Foundation.Common
 {
     using System;
     using System.IO;
     using System.Linq;
     using System.Net;
     using MbedCloudSDK.Exceptions;
+    using Mbed.Cloud.Foundation.RestClient;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -96,7 +97,7 @@ namespace MbedCloud.SDK.Common
                 ForceClear = forceClear;
                 AutostartNotifications = autostartNotifications;
 
-                var clientConfig = new MbedCloud.SDK.Client.Configuration
+                var clientConfig = new Configuration
                 {
                     BasePath = Host,
                     DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ",
@@ -133,7 +134,7 @@ namespace MbedCloud.SDK.Common
         /// The configuration.
         /// </value>
         [JsonIgnore]
-        public MbedCloud.SDK.Client.Configuration Configuration { get; internal set; }
+        public Configuration Configuration { get; internal set; }
 
         /// <summary>
         /// Gets a value indicating whether to clear any existing notification channels

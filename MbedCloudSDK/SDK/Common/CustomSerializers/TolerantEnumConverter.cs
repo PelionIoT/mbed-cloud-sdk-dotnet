@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace MbedCloud.SDK.Common.CustomSerializers
+namespace Mbed.Cloud.Foundation.Common.CustomSerializers
 {
     class TolerantEnumConverter : JsonConverter
     {
