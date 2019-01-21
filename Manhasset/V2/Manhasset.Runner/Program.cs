@@ -12,7 +12,7 @@ namespace Manhasset.Runner
     {
         static async System.Threading.Tasks.Task Main(string[] args)
         {
-            var pathToConfig = "api_specifications/public/pelion_dm_public_openapi.yaml";
+            var pathToConfig = "api_specifications/public/sdk_foundation_definition.json";
 
             var config = File.ReadAllText(pathToConfig);
             // parse to a JObject
