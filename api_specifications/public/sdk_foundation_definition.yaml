@@ -256,7 +256,7 @@ entities:
       example: '8'
       type: string
     readOnly: false
-    required: true
+    required: false
     type: object
   - _key: phone_number
     api_fieldname: phone_number
@@ -4273,6 +4273,7 @@ entities:
               example: 1
               format: int32
               private_field: true
+              readOnly: false
               type: integer
             - _key: enrollment_mode
               description: If true, signature is not required. Default value false.
@@ -4779,8 +4780,7 @@ entities:
         entity_fieldname: minimum_length
         example: '8'
         type: string
-      required:
-      - minimum_length
+      required: false
       type: object
     - _key: phone_number
       api_fieldname: phone_number
@@ -8515,7 +8515,12 @@ entities:
     api_fieldname: certificate_name
     description: The certificate name.
     example: customer.dlms
+    external_param: true
+    in: path
     maxLength: 50
+    name: certificate-name
+    parameter_fieldname: certificate-name
+    pattern: '[\w-]{1,10}\.[\w-.]{1,10}'
     readOnly: true
     required: false
     type: string
@@ -8558,6 +8563,8 @@ entities:
     api_fieldname: id
     description: The ID of the certificate enrollment.
     example: 01612df56f3b0a580a010fc700000000
+    in: path
+    parameter_fieldname: device-id
     readOnly: false
     required: true
     type: string
@@ -8634,7 +8641,13 @@ entities:
           description: The certificate name.
           entity_fieldname: certificate_name
           example: customer.dlms
+          external_param: true
+          in: path
           maxLength: 50
+          name: certificate-name
+          parameter_fieldname: certificate-name
+          pattern: '[\w-]{1,10}\.[\w-.]{1,10}'
+          required: true
           type: string
         - _key: created_at
           api_fieldname: created_at
@@ -8676,6 +8689,9 @@ entities:
           description: The ID of the certificate enrollment.
           entity_fieldname: id
           example: 01612df56f3b0a580a010fc700000000
+          in: path
+          parameter_fieldname: device-id
+          required: true
           type: string
         - _key: object
           api_fieldname: object
@@ -9010,20 +9026,34 @@ entities:
               group: Security
             properties:
             - _key: certificate_name
+              api_fieldname: certificate-name
               description: The certificate name.
+              entity_fieldname: certificate_name
               example: customer.dlms
+              external_param: true
+              in: path
               maxLength: 50
+              name: certificate-name
+              parameter_fieldname: certificate-name
+              pattern: '[\w-]{1,10}\.[\w-.]{1,10}'
+              required: true
               type: string
             - _key: created_at
+              api_fieldname: created_at
               description: Creation UTC time RFC3339.
+              entity_fieldname: created_at
               example: '2017-01-01T00:00:00Z'
               format: date-time
               type: string
             - _key: device_id
+              api_fieldname: device_id
               description: The device ID.
+              entity_fieldname: device_id
               example: 01625daa23230a580a0100bd00000000
               type: string
             - _key: enroll_result
+              api_fieldname: enroll_result
+              entity_fieldname: enroll_result
               enum:
               - success
               - not_found
@@ -9031,24 +9061,37 @@ entities:
               - failure
               type: string
             - _key: enroll_status
+              api_fieldname: enroll_status
+              entity_fieldname: enroll_status
               enum:
               - new
               - completed
               type: string
             - _key: etag
+              api_fieldname: etag
               description: Entity instance signature.
+              entity_fieldname: etag
               example: '1'
               type: string
             - _key: id
+              api_fieldname: id
               description: The ID of the certificate enrollment.
+              entity_fieldname: id
               example: 01612df56f3b0a580a010fc700000000
+              in: path
+              parameter_fieldname: device-id
+              required: true
               type: string
             - _key: object
+              api_fieldname: object
+              entity_fieldname: object
               enum:
               - certificate-enrollment
               type: string
             - _key: updated_at
+              api_fieldname: updated_at
               description: Update UTC time RFC3339.
+              entity_fieldname: updated_at
               example: '2017-01-01T00:00:00Z'
               format: date-time
               type: string
@@ -14248,6 +14291,7 @@ entities:
       example: 1
       format: int32
       private_field: true
+      readOnly: false
       type: integer
     - _key: id
       api_fieldname: id
@@ -14318,6 +14362,7 @@ entities:
           example: 1
           format: int32
           private_field: true
+          readOnly: false
           type: integer
         - _key: enrollment_mode
           api_fieldname: enrollment_mode
@@ -14628,16 +14673,10 @@ entities:
     type: string
   - _key: custom_attributes
     additionalProperties:
-      maxLength: 128
-      pattern: ^[A-Za-z].*
       type: string
     api_fieldname: custom_attributes
-    description: Up to five custom key-value attributes. Note that keys cannot begin
-      with a number. Both keys and values are limited to 128 characters. Updating
-      this field replaces existing contents.
-    example:
-      key: value
-    maxProperties: 5
+    description: Up to five custom key-value attributes.
+    example: '{ ''key'': ''value'' }'
     readOnly: false
     required: false
     type: object
@@ -14700,7 +14739,7 @@ entities:
     api_fieldname: endpoint_name
     description: The endpoint name given to the device.
     example: 00000000-0000-0000-0000-000000000000
-    readOnly: true
+    readOnly: false
     required: false
     type: string
   - _key: endpoint_type
@@ -14740,77 +14779,6 @@ entities:
     example: '00000000000000000000000000000000'
     readOnly: false
     required: true
-    type: string
-  - _key: issuer_fingerprint
-    api_fieldname: issuer_fingerprint
-    description: SHA256 fingerprint of the certificate used to validate the signature
-      of the device certificate.
-    example: C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322
-    pattern: '[A-Fa-f0-9]{64}'
-    readOnly: false
-    required: false
-    type: string
-  - _key: last_operator_suspended_category
-    api_fieldname: last_operator_suspended_category
-    description: The reference of the block category.
-    example: maintenance
-    pattern: '[a-f0-9_]{32}'
-    readOnly: true
-    required: false
-    type: string
-  - _key: last_operator_suspended_description
-    api_fieldname: last_operator_suspended_description
-    description: The most recent description why the device was suspended or returned
-      to service.
-    example: Suspended for maintenance.
-    maxLength: 2000
-    readOnly: true
-    required: false
-    type: string
-  - _key: last_operator_suspended_updated_at
-    api_fieldname: last_operator_suspended_updated_at
-    description: The timestamp of the most recent suspension activity.
-    example: '2017-05-22T12:37:55.576563Z'
-    format: date-time
-    readOnly: true
-    required: false
-    type: string
-  - _key: last_system_suspended_category
-    api_fieldname: last_system_suspended_category
-    description: The reference of the block category.
-    example: maintenance
-    pattern: '[a-f0-9_]{32}'
-    readOnly: true
-    required: false
-    type: string
-  - _key: last_system_suspended_description
-    api_fieldname: last_system_suspended_description
-    description: The most recent description of why the device was blocked or unblocked
-      by the system.
-    example: A certificate in the device's certificate chain was blacklisted by the
-      system.
-    maxLength: 2000
-    readOnly: true
-    required: false
-    type: string
-  - _key: last_system_suspended_updated_at
-    api_fieldname: last_system_suspended_updated_at
-    description: The timestamp of the most recent system block activity.
-    example: '2017-05-22T12:37:55.576563Z'
-    format: date-time
-    readOnly: true
-    required: false
-    type: string
-  - _key: lifecycle_status
-    api_fieldname: lifecycle_status
-    description: The lifecycle status of the device.
-    enum:
-    - enabled
-    - blocked
-    enum_reference: device_lifecycle_status_enum
-    example: enabled
-    readOnly: true
-    required: false
     type: string
   - _key: manifest
     api_fieldname: manifest
@@ -14852,12 +14820,6 @@ entities:
     readOnly: false
     required: false
     type: string
-  - _key: operator_suspended
-    api_fieldname: operator_suspended
-    description: Is the device suspended by the operator?
-    readOnly: true
-    required: false
-    type: boolean
   - _key: serial_number
     api_fieldname: serial_number
     description: The serial number of the device.
@@ -14878,12 +14840,6 @@ entities:
     readOnly: false
     required: false
     type: string
-  - _key: system_suspended
-    api_fieldname: system_suspended
-    description: Is the device suspended by the system?
-    readOnly: true
-    required: false
-    type: boolean
   - _key: updated_at
     api_fieldname: updated_at
     description: The time the object was updated.
@@ -14912,15 +14868,6 @@ entities:
     - is_custom
     - private_key
     - sub_accounts
-    - operator_suspended
-    - last_operator_suspended_category
-    - last_operator_suspended_description
-    - last_operator_suspended_updated_at
-    - system_suspended
-    - last_system_suspended_category
-    - last_system_suspended_description
-    - last_system_suspended_updated_at
-    - lifecycle_status
     - account_id
     - created_at
     - deployed_state
@@ -14980,18 +14927,12 @@ entities:
       type: string
     - _key: custom_attributes
       additionalProperties:
-        maxLength: 128
-        pattern: ^[A-Za-z].*
         type: string
       api_fieldname: custom_attributes
-      description: Up to five custom key-value attributes. Note that keys cannot begin
-        with a number. Both keys and values are limited to 128 characters. Updating
-        this field replaces existing contents.
+      description: Up to five custom key-value attributes.
       entity_fieldname: custom_attributes
-      example:
-        key: value
+      example: '{ ''key'': ''value'' }'
       in: body
-      maxProperties: 5
       parameter_fieldname: custom_attributes
       required: false
       type: object
@@ -15057,7 +14998,6 @@ entities:
       example: 00000000-0000-0000-0000-000000000000
       in: body
       parameter_fieldname: endpoint_name
-      readOnly: true
       required: false
       type: string
     - _key: endpoint_type
@@ -15086,17 +15026,6 @@ entities:
       example: ''
       in: body
       parameter_fieldname: host_gateway
-      required: false
-      type: string
-    - _key: issuer_fingerprint
-      api_fieldname: issuer_fingerprint
-      description: SHA256 fingerprint of the certificate used to validate the signature
-        of the device certificate.
-      entity_fieldname: issuer_fingerprint
-      example: C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322
-      in: body
-      parameter_fieldname: issuer_fingerprint
-      pattern: '[A-Fa-f0-9]{64}'
       required: false
       type: string
     - _key: manifest
@@ -15235,17 +15164,11 @@ entities:
           type: string
         custom_attributes:
           additionalProperties:
-            maxLength: 128
-            pattern: ^[A-Za-z].*
             type: string
           api_fieldname: custom_attributes
-          description: Up to five custom key-value attributes. Note that keys cannot
-            begin with a number. Both keys and values are limited to 128 characters.
-            Updating this field replaces existing contents.
+          description: Up to five custom key-value attributes.
           entity_fieldname: custom_attributes
-          example:
-            key: value
-          maxProperties: 5
+          example: '{ ''key'': ''value'' }'
           type: object
         deployed_state:
           api_fieldname: deployed_state
@@ -15300,7 +15223,6 @@ entities:
           description: The endpoint name given to the device.
           entity_fieldname: endpoint_name
           example: 00000000-0000-0000-0000-000000000000
-          readOnly: true
           type: string
         endpoint_type:
           api_fieldname: endpoint_type
@@ -15352,68 +15274,6 @@ entities:
           entity_fieldname: id
           example: '00000000000000000000000000000000'
           type: string
-        issuer_fingerprint:
-          api_fieldname: issuer_fingerprint
-          description: SHA256 fingerprint of the certificate used to validate the
-            signature of the device certificate.
-          entity_fieldname: issuer_fingerprint
-          example: C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322
-          pattern: '[A-Fa-f0-9]{64}'
-          type: string
-        last_operator_suspended_category:
-          api_fieldname: last_operator_suspended_category
-          description: The reference of the block category.
-          entity_fieldname: last_operator_suspended_category
-          example: maintenance
-          pattern: '[a-f0-9_]{32}'
-          type: string
-        last_operator_suspended_description:
-          api_fieldname: last_operator_suspended_description
-          description: The most recent description why the device was suspended or
-            returned to service.
-          entity_fieldname: last_operator_suspended_description
-          example: Suspended for maintenance.
-          maxLength: 2000
-          type: string
-        last_operator_suspended_updated_at:
-          api_fieldname: last_operator_suspended_updated_at
-          description: The timestamp of the most recent suspension activity.
-          entity_fieldname: last_operator_suspended_updated_at
-          example: '2017-05-22T12:37:55.576563Z'
-          format: date-time
-          type: string
-        last_system_suspended_category:
-          api_fieldname: last_system_suspended_category
-          description: The reference of the block category.
-          entity_fieldname: last_system_suspended_category
-          example: maintenance
-          pattern: '[a-f0-9_]{32}'
-          type: string
-        last_system_suspended_description:
-          api_fieldname: last_system_suspended_description
-          description: The most recent description of why the device was blocked or
-            unblocked by the system.
-          entity_fieldname: last_system_suspended_description
-          example: A certificate in the device's certificate chain was blacklisted
-            by the system.
-          maxLength: 2000
-          type: string
-        last_system_suspended_updated_at:
-          api_fieldname: last_system_suspended_updated_at
-          description: The timestamp of the most recent system block activity.
-          entity_fieldname: last_system_suspended_updated_at
-          example: '2017-05-22T12:37:55.576563Z'
-          format: date-time
-          type: string
-        lifecycle_status:
-          api_fieldname: lifecycle_status
-          description: The lifecycle status of the device.
-          entity_fieldname: lifecycle_status
-          enum:
-          - enabled
-          - blocked
-          example: enabled
-          type: string
         manifest:
           api_fieldname: manifest
           description: 'DEPRECATED: The URL for the current device manifest.'
@@ -15454,11 +15314,6 @@ entities:
           entity_fieldname: object
           example: device
           type: string
-        operator_suspended:
-          api_fieldname: operator_suspended
-          description: Is the device suspended by the operator?
-          entity_fieldname: operator_suspended
-          type: boolean
         serial_number:
           api_fieldname: serial_number
           description: The serial number of the device.
@@ -15476,11 +15331,6 @@ entities:
           - registered
           - deregistered
           type: string
-        system_suspended:
-          api_fieldname: system_suspended
-          description: Is the device suspended by the system?
-          entity_fieldname: system_suspended
-          type: boolean
         updated_at:
           api_fieldname: updated_at
           description: The time the object was updated.
@@ -15565,16 +15415,6 @@ entities:
     - is_custom
     - private_key
     - sub_accounts
-    - issuer_fingerprint
-    - operator_suspended
-    - last_operator_suspended_category
-    - last_operator_suspended_description
-    - last_operator_suspended_updated_at
-    - system_suspended
-    - last_system_suspended_category
-    - last_system_suspended_description
-    - last_system_suspended_updated_at
-    - lifecycle_status
     - account_id
     - device_execution_mode
     - auto_update
@@ -15678,17 +15518,11 @@ entities:
           type: string
         custom_attributes:
           additionalProperties:
-            maxLength: 128
-            pattern: ^[A-Za-z].*
             type: string
           api_fieldname: custom_attributes
-          description: Up to five custom key-value attributes. Note that keys cannot
-            begin with a number. Both keys and values are limited to 128 characters.
-            Updating this field replaces existing contents.
+          description: Up to five custom key-value attributes.
           entity_fieldname: custom_attributes
-          example:
-            key: value
-          maxProperties: 5
+          example: '{ ''key'': ''value'' }'
           type: object
         deployed_state:
           api_fieldname: deployed_state
@@ -15743,7 +15577,6 @@ entities:
           description: The endpoint name given to the device.
           entity_fieldname: endpoint_name
           example: 00000000-0000-0000-0000-000000000000
-          readOnly: true
           type: string
         endpoint_type:
           api_fieldname: endpoint_type
@@ -15795,68 +15628,6 @@ entities:
           entity_fieldname: id
           example: '00000000000000000000000000000000'
           type: string
-        issuer_fingerprint:
-          api_fieldname: issuer_fingerprint
-          description: SHA256 fingerprint of the certificate used to validate the
-            signature of the device certificate.
-          entity_fieldname: issuer_fingerprint
-          example: C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322
-          pattern: '[A-Fa-f0-9]{64}'
-          type: string
-        last_operator_suspended_category:
-          api_fieldname: last_operator_suspended_category
-          description: The reference of the block category.
-          entity_fieldname: last_operator_suspended_category
-          example: maintenance
-          pattern: '[a-f0-9_]{32}'
-          type: string
-        last_operator_suspended_description:
-          api_fieldname: last_operator_suspended_description
-          description: The most recent description why the device was suspended or
-            returned to service.
-          entity_fieldname: last_operator_suspended_description
-          example: Suspended for maintenance.
-          maxLength: 2000
-          type: string
-        last_operator_suspended_updated_at:
-          api_fieldname: last_operator_suspended_updated_at
-          description: The timestamp of the most recent suspension activity.
-          entity_fieldname: last_operator_suspended_updated_at
-          example: '2017-05-22T12:37:55.576563Z'
-          format: date-time
-          type: string
-        last_system_suspended_category:
-          api_fieldname: last_system_suspended_category
-          description: The reference of the block category.
-          entity_fieldname: last_system_suspended_category
-          example: maintenance
-          pattern: '[a-f0-9_]{32}'
-          type: string
-        last_system_suspended_description:
-          api_fieldname: last_system_suspended_description
-          description: The most recent description of why the device was blocked or
-            unblocked by the system.
-          entity_fieldname: last_system_suspended_description
-          example: A certificate in the device's certificate chain was blacklisted
-            by the system.
-          maxLength: 2000
-          type: string
-        last_system_suspended_updated_at:
-          api_fieldname: last_system_suspended_updated_at
-          description: The timestamp of the most recent system block activity.
-          entity_fieldname: last_system_suspended_updated_at
-          example: '2017-05-22T12:37:55.576563Z'
-          format: date-time
-          type: string
-        lifecycle_status:
-          api_fieldname: lifecycle_status
-          description: The lifecycle status of the device.
-          entity_fieldname: lifecycle_status
-          enum:
-          - enabled
-          - blocked
-          example: enabled
-          type: string
         manifest:
           api_fieldname: manifest
           description: 'DEPRECATED: The URL for the current device manifest.'
@@ -15897,11 +15668,6 @@ entities:
           entity_fieldname: object
           example: device
           type: string
-        operator_suspended:
-          api_fieldname: operator_suspended
-          description: Is the device suspended by the operator?
-          entity_fieldname: operator_suspended
-          type: boolean
         serial_number:
           api_fieldname: serial_number
           description: The serial number of the device.
@@ -15919,11 +15685,6 @@ entities:
           - registered
           - deregistered
           type: string
-        system_suspended:
-          api_fieldname: system_suspended
-          description: Is the device suspended by the system?
-          entity_fieldname: system_suspended
-          type: boolean
         updated_at:
           api_fieldname: updated_at
           description: The time the object was updated.
@@ -15969,7 +15730,7 @@ entities:
       api_fieldname: after
       description: The ID of The item after which to retrieve the next page.
       entity_fieldname: after
-      example: '01631667477600000000000100100374'
+      example: null
       external_param: true
       in: query
       name: after
@@ -15993,7 +15754,7 @@ entities:
         2 and the maximum is 1000. Limit values outside of this range are set to the
         closest limit.
       entity_fieldname: limit
-      example: 50
+      example: 1000
       external_param: true
       in: query
       maximum: 1000
@@ -16036,13 +15797,13 @@ entities:
         properties:
         - _key: after
           api_fieldname: after
-          description: An offset token for current page.
           entity_fieldname: after
-          example: '01631667477600000000000100100374'
+          example: null
           type: string
         - _key: data
           api_fieldname: data
           entity_fieldname: data
+          example: '[]'
           items:
           - _key: foreign_key
             entity: device
@@ -16083,15 +15844,9 @@ entities:
               type: string
             custom_attributes:
               additionalProperties:
-                maxLength: 128
-                pattern: ^[A-Za-z].*
                 type: string
-              description: Up to five custom key-value attributes. Note that keys
-                cannot begin with a number. Both keys and values are limited to 128
-                characters. Updating this field replaces existing contents.
-              example:
-                key: value
-              maxProperties: 5
+              description: Up to five custom key-value attributes.
+              example: '{ ''key'': ''value'' }'
               type: object
             deployed_state:
               description: 'DEPRECATED: The state of the device''s deployment.'
@@ -16133,7 +15888,6 @@ entities:
             endpoint_name:
               description: The endpoint name given to the device.
               example: 00000000-0000-0000-0000-000000000000
-              readOnly: true
               type: string
             endpoint_type:
               description: The endpoint type of the device. For example, the device
@@ -16171,52 +15925,6 @@ entities:
                 Device Management APIs.
               example: '00000000000000000000000000000000'
               type: string
-            issuer_fingerprint:
-              description: SHA256 fingerprint of the certificate used to validate
-                the signature of the device certificate.
-              example: C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322
-              pattern: '[A-Fa-f0-9]{64}'
-              type: string
-            last_operator_suspended_category:
-              description: The reference of the block category.
-              example: maintenance
-              pattern: '[a-f0-9_]{32}'
-              type: string
-            last_operator_suspended_description:
-              description: The most recent description why the device was suspended
-                or returned to service.
-              example: Suspended for maintenance.
-              maxLength: 2000
-              type: string
-            last_operator_suspended_updated_at:
-              description: The timestamp of the most recent suspension activity.
-              example: '2017-05-22T12:37:55.576563Z'
-              format: date-time
-              type: string
-            last_system_suspended_category:
-              description: The reference of the block category.
-              example: maintenance
-              pattern: '[a-f0-9_]{32}'
-              type: string
-            last_system_suspended_description:
-              description: The most recent description of why the device was blocked
-                or unblocked by the system.
-              example: A certificate in the device's certificate chain was blacklisted
-                by the system.
-              maxLength: 2000
-              type: string
-            last_system_suspended_updated_at:
-              description: The timestamp of the most recent system block activity.
-              example: '2017-05-22T12:37:55.576563Z'
-              format: date-time
-              type: string
-            lifecycle_status:
-              description: The lifecycle status of the device.
-              enum:
-              - enabled
-              - blocked
-              example: enabled
-              type: string
             manifest:
               description: 'DEPRECATED: The URL for the current device manifest.'
               example: ''
@@ -16245,9 +15953,6 @@ entities:
               description: The API resource entity.
               example: device
               type: string
-            operator_suspended:
-              description: Is the device suspended by the operator?
-              type: boolean
             serial_number:
               description: The serial number of the device.
               example: 00000000-0000-0000-0000-000000000000
@@ -16261,9 +15966,6 @@ entities:
               - registered
               - deregistered
               type: string
-            system_suspended:
-              description: Is the device suspended by the system?
-              type: boolean
             updated_at:
               description: The time the object was updated.
               example: '2017-05-22T12:37:55.576563Z'
@@ -16276,30 +15978,21 @@ entities:
           type: array
         - _key: has_more
           api_fieldname: has_more
-          description: Are there more results available.
           entity_fieldname: has_more
           example: false
           type: boolean
         - _key: limit
           api_fieldname: limit
-          description: How many objects to retrieve in the page. The minimum limit
-            is 2 and the maximum is 1000. Limit values outside of this range are set
-            to the closest limit.
           entity_fieldname: limit
-          example: 50
-          maximum: 1000
-          minimum: 2
+          example: 1000
           type: integer
         - _key: object
           api_fieldname: object
-          description: The type of this API object is a "list".
           entity_fieldname: object
           example: list
           type: string
         - _key: order
           api_fieldname: order
-          description: The order of the records based on creation time, `ASC` or `DESC`;
-            by default `ASC`.
           entity_fieldname: order
           example: DESC
           type: string
@@ -16307,7 +16000,6 @@ entities:
           api_fieldname: total_count
           entity_fieldname: total_count
           example: 1
-          format: integer
           type: integer
     - _key: '400'
       description: Bad Request.
@@ -16446,9 +16138,6 @@ entities:
           description: The ID of the certificate enrollment.
           entity_fieldname: id
           example: 01612df56f3b0a580a010fc700000000
-          in: path
-          parameter_fieldname: certificate-enrollment-id
-          required: true
           type: string
         - _key: object
           api_fieldname: object
@@ -16734,16 +16423,6 @@ entities:
     - is_custom
     - private_key
     - sub_accounts
-    - issuer_fingerprint
-    - operator_suspended
-    - last_operator_suspended_category
-    - last_operator_suspended_description
-    - last_operator_suspended_updated_at
-    - system_suspended
-    - last_system_suspended_category
-    - last_system_suspended_description
-    - last_system_suspended_updated_at
-    - lifecycle_status
     - account_id
     - device_execution_mode
     - bootstrap_expiration_date
@@ -16785,18 +16464,12 @@ entities:
       type: string
     - _key: custom_attributes
       additionalProperties:
-        maxLength: 128
-        pattern: ^[A-Za-z].*
         type: string
       api_fieldname: custom_attributes
-      description: Up to five custom key-value attributes. Note that keys cannot begin
-        with a number. Both keys and values are limited to 128 characters. Updating
-        this field replaces existing contents.
+      description: Up to five custom key-value attributes.
       entity_fieldname: custom_attributes
-      example:
-        key: value
+      example: '{ ''key'': ''value'' }'
       in: body
-      maxProperties: 5
       parameter_fieldname: custom_attributes
       required: false
       type: object
@@ -16827,7 +16500,6 @@ entities:
       example: 00000000-0000-0000-0000-000000000000
       in: body
       parameter_fieldname: endpoint_name
-      readOnly: true
       required: false
       type: string
     - _key: endpoint_type
@@ -16932,17 +16604,11 @@ entities:
           type: string
         custom_attributes:
           additionalProperties:
-            maxLength: 128
-            pattern: ^[A-Za-z].*
             type: string
           api_fieldname: custom_attributes
-          description: Up to five custom key-value attributes. Note that keys cannot
-            begin with a number. Both keys and values are limited to 128 characters.
-            Updating this field replaces existing contents.
+          description: Up to five custom key-value attributes.
           entity_fieldname: custom_attributes
-          example:
-            key: value
-          maxProperties: 5
+          example: '{ ''key'': ''value'' }'
           type: object
         deployed_state:
           api_fieldname: deployed_state
@@ -16997,7 +16663,6 @@ entities:
           description: The endpoint name given to the device.
           entity_fieldname: endpoint_name
           example: 00000000-0000-0000-0000-000000000000
-          readOnly: true
           type: string
         endpoint_type:
           api_fieldname: endpoint_type
@@ -17049,68 +16714,6 @@ entities:
           entity_fieldname: id
           example: '00000000000000000000000000000000'
           type: string
-        issuer_fingerprint:
-          api_fieldname: issuer_fingerprint
-          description: SHA256 fingerprint of the certificate used to validate the
-            signature of the device certificate.
-          entity_fieldname: issuer_fingerprint
-          example: C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322
-          pattern: '[A-Fa-f0-9]{64}'
-          type: string
-        last_operator_suspended_category:
-          api_fieldname: last_operator_suspended_category
-          description: The reference of the block category.
-          entity_fieldname: last_operator_suspended_category
-          example: maintenance
-          pattern: '[a-f0-9_]{32}'
-          type: string
-        last_operator_suspended_description:
-          api_fieldname: last_operator_suspended_description
-          description: The most recent description why the device was suspended or
-            returned to service.
-          entity_fieldname: last_operator_suspended_description
-          example: Suspended for maintenance.
-          maxLength: 2000
-          type: string
-        last_operator_suspended_updated_at:
-          api_fieldname: last_operator_suspended_updated_at
-          description: The timestamp of the most recent suspension activity.
-          entity_fieldname: last_operator_suspended_updated_at
-          example: '2017-05-22T12:37:55.576563Z'
-          format: date-time
-          type: string
-        last_system_suspended_category:
-          api_fieldname: last_system_suspended_category
-          description: The reference of the block category.
-          entity_fieldname: last_system_suspended_category
-          example: maintenance
-          pattern: '[a-f0-9_]{32}'
-          type: string
-        last_system_suspended_description:
-          api_fieldname: last_system_suspended_description
-          description: The most recent description of why the device was blocked or
-            unblocked by the system.
-          entity_fieldname: last_system_suspended_description
-          example: A certificate in the device's certificate chain was blacklisted
-            by the system.
-          maxLength: 2000
-          type: string
-        last_system_suspended_updated_at:
-          api_fieldname: last_system_suspended_updated_at
-          description: The timestamp of the most recent system block activity.
-          entity_fieldname: last_system_suspended_updated_at
-          example: '2017-05-22T12:37:55.576563Z'
-          format: date-time
-          type: string
-        lifecycle_status:
-          api_fieldname: lifecycle_status
-          description: The lifecycle status of the device.
-          entity_fieldname: lifecycle_status
-          enum:
-          - enabled
-          - blocked
-          example: enabled
-          type: string
         manifest:
           api_fieldname: manifest
           description: 'DEPRECATED: The URL for the current device manifest.'
@@ -17151,11 +16754,6 @@ entities:
           entity_fieldname: object
           example: device
           type: string
-        operator_suspended:
-          api_fieldname: operator_suspended
-          description: Is the device suspended by the operator?
-          entity_fieldname: operator_suspended
-          type: boolean
         serial_number:
           api_fieldname: serial_number
           description: The serial number of the device.
@@ -17173,11 +16771,6 @@ entities:
           - registered
           - deregistered
           type: string
-        system_suspended:
-          api_fieldname: system_suspended
-          description: Is the device suspended by the system?
-          entity_fieldname: system_suspended
-          type: boolean
         updated_at:
           api_fieldname: updated_at
           description: The time the object was updated.
@@ -17333,6 +16926,17 @@ entities:
     - _key: '201'
       description: Created. The enrollment claim has been created and is waiting for
         the device to connect.
+      examples:
+      - _key: Success
+        account_id: 015fee5d9b3538c98640fbfb00000000
+        claimed_at: '2017-12-13T14:35:10.000Z'
+        created_at: '2017-12-11T14:22:20.009Z'
+        enrolled_device_id: 00005a4e027f0a580a01081c00000000
+        enrollment_identity: A-35:e7:72:8a:07:50:3b:3d:75:96:57:52:72:41:0d:78:cc:c6:e5:53:48:c6:65:58:5b:fa:af:4d:2d:73:95:c5
+        etag: '1'
+        expires_at: '2018-01-11T14:22:20.009Z'
+        id: 015fee4431fd38c98640fbfb00000000
+        object: enrollment
       schema:
         foreign_key:
           entity: device_enrollment
@@ -17460,6 +17064,13 @@ entities:
         type: object
     - _key: '401'
       description: The provided access token is not valid.
+      examples:
+      - _key: Authentication Error
+        code: 401
+        message: Provided access token is not valid.
+        object: error
+        request_id: 015fee4431fd38c98640fbfb00000000
+        type: invalid_auth
       schema:
         properties:
         - _key: code
@@ -17507,8 +17118,27 @@ entities:
         - type
         type: object
     - _key: '409'
-      description: Conflict. The identity requested to be added already exists either
+      description: 'Conflict. The identity requested to be added already exists either
         on this or another account.
+
+        '
+      examples:
+      - _key: Already claimed
+        code: 409
+        fields:
+        - enrollment_identity: Enrollment identity already claimed
+        message: The requested enrollment identity has already been claimed.
+        object: error
+        request_id: 015fee4431fd38c98640fbfb00000000
+        type: duplicate
+      - _key: Conflict
+        code: 409
+        fields:
+        - enrollment_identity: Enrollment identity already exists
+        message: The requested enrollment identity already exists.
+        object: error
+        request_id: 015fee4431fd38c98640fbfb00000000
+        type: duplicate
       schema:
         properties:
         - _key: code
@@ -17662,6 +17292,14 @@ entities:
         type: object
     - _key: '404'
       description: Not found.
+      examples:
+      - _key: Not found
+        code: 404
+        fields: []
+        message: Enrollment identity not found
+        object: error
+        request_id: 73fb0bd3ec1d452383255dd9a336668c
+        type: not_found
       schema:
         properties:
         - _key: code
@@ -17894,6 +17532,14 @@ entities:
         type: object
     - _key: '404'
       description: Not found.
+      examples:
+      - _key: Not found
+        code: 404
+        fields: []
+        message: Enrollment identity not found
+        object: error
+        request_id: 73fb0bd3ec1d452383255dd9a336668c
+        type: not_found
       schema:
         properties:
         - _key: code
@@ -18053,6 +17699,32 @@ entities:
     responses:
     - _key: '200'
       description: OK.
+      examples:
+      - _key: Success
+        after: 2d238a89038b4ddb84699dd36a901063
+        data:
+        - account_id: 015fee5d9b3538c98640fbfb00000000
+          claimed_at: '2017-12-13T14:35:10.000Z'
+          created_at: '2017-12-11T14:35:20.009Z'
+          enrolled_device_id: 2d238a89038b4ddb84699dd36a901063
+          enrollment_identity: A-35:e7:72:8a:07:50:3b:3d:75:96:57:52:72:41:0d:78:cc:c6:e5:53:48:c6:65:58:5b:fa:af:4d:2d:73:95:c5
+          etag: '1'
+          expires_at: '2018-01-11T14:35:20.009Z'
+          id: sckv52bebji8dxnxuw3zvnon95u8gshm
+          object: enrollment
+        - account_id: 015fee5d9b3538c98640fbfb00000000
+          created_at: '2017-12-11T14:36:20.009Z'
+          enrolled_device_id: 2d238a89038b4ddb84699dd36a901063
+          enrollment_identity: A-35:e7:72:8a:07:50:3b:3d:75:96:57:52:72:41:0d:78:cc:c6:e5:53:48:c6:65:58:5b:fa:af:4d:2d:73:95:c5
+          etag: '1'
+          expires_at: '2018-01-11T14:35:20.009Z'
+          id: 000v52bebji8dxnxuw3zvnon95u8gshm
+          object: enrollment
+        has_more: true
+        limit: 2
+        object: list
+        order: ASC
+        total_count: 55
       schema:
         foreign_key:
           entity: device_enrollment
@@ -18176,6 +17848,12 @@ entities:
         type: object
     - _key: '400'
       description: Bad request. The access token could not be read.
+      examples:
+      - _key: Error
+        code: 400
+        message: JWT couldn't be read
+        object: error
+        type: validation_error
       schema:
         properties:
         - _key: code
@@ -18224,6 +17902,12 @@ entities:
         type: object
     - _key: '401'
       description: The provided access token is not valid.
+      examples:
+      - _key: Error
+        code: 401
+        message: The provided JWT was not valid
+        object: error
+        type: invalid_auth
       schema:
         properties:
         - _key: code
@@ -18297,8 +17981,6 @@ entities:
     api_fieldname: completed_at
     description: 'The time of completing the bulk creation task.
 
-      Null when creating bulk upload or delete.
-
       '
     format: date-time
     readOnly: true
@@ -18324,22 +18006,12 @@ entities:
     type: integer
   - _key: errors_report_file
     api_fieldname: errors_report_file
-    description: 'Link to error report file.
-
-      Null when creating bulk upload or delete.
-
-      '
     example: https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/errors_report.csv
     readOnly: true
     required: false
     type: string
   - _key: full_report_file
     api_fieldname: full_report_file
-    description: 'Link to full report file.
-
-      Null when creating bulk upload or delete.
-
-      '
     example: https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/full_report.csv
     readOnly: true
     required: false
@@ -18444,8 +18116,10 @@ entities:
     fields:
     - _key: enrollment_identities
       api_fieldname: enrollment_identities
-      description: The `CSV` file containing the enrollment IDs. The maximum file
+      description: 'The `CSV` file containing the enrollment IDs. The maximum file
         size is 10MB.
+
+        '
       entity_fieldname: enrollment_identities
       external_param: true
       in: stream
@@ -18461,8 +18135,24 @@ entities:
     path: /v3/device-enrollments-bulk-uploads
     responses:
     - _key: '201'
-      description: Bulk upload data has been received and asynchronous processing
+      description: 'Bulk upload data has been received and asynchronous processing
         has been started.
+
+        '
+      examples:
+      - _key: BulkResponse
+        account_id: 00005a4e027f0a580a01081c00000000
+        completed_at: null
+        created_at: '2018-06-26T09:12:21.308Z'
+        errors_count: 0
+        errors_report_file: null
+        etag: '1'
+        full_report_file: null
+        id: 00005a4e017f0a667a01081c00000000
+        object: enrollment-identity-bulk-uploads
+        processed_count: 0
+        status: new
+        total_count: 10
       schema:
         foreign_key:
           entity: device_enrollment_bulk_delete
@@ -18477,8 +18167,6 @@ entities:
         - _key: completed_at
           api_fieldname: completed_at
           description: 'The time of completing the bulk creation task.
-
-            Null when creating bulk upload or delete.
 
             '
           entity_fieldname: completed_at
@@ -18502,11 +18190,6 @@ entities:
           type: integer
         - _key: errors_report_file
           api_fieldname: errors_report_file
-          description: 'Link to error report file.
-
-            Null when creating bulk upload or delete.
-
-            '
           entity_fieldname: errors_report_file
           example: https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/errors_report.csv
           type: string
@@ -18519,11 +18202,6 @@ entities:
           type: string
         - _key: full_report_file
           api_fieldname: full_report_file
-          description: 'Link to full report file.
-
-            Null when creating bulk upload or delete.
-
-            '
           entity_fieldname: full_report_file
           example: https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/full_report.csv
           type: string
@@ -18581,12 +18259,16 @@ entities:
         - total_count
         - processed_count
         - errors_count
-        - completet_at
-        - full_report_file
-        - errors_report_file
         type: object
     - _key: '400'
       description: Bad request.
+      examples:
+      - _key: Bad request
+        code: 400
+        message: Invalid request. Check your request parameters and URL.
+        object: error
+        request_id: 73fb0bd3ec1d452383255dd9a336668c
+        type: bad_request
       schema:
         properties:
         - _key: code
@@ -18635,6 +18317,12 @@ entities:
         type: object
     - _key: '401'
       description: The provided access token is not valid.
+      examples:
+      - _key: Error
+        code: 401
+        message: The provided JWT was not valid
+        object: error
+        type: invalid_auth
       schema:
         properties:
         - _key: code
@@ -18837,6 +18525,20 @@ entities:
     responses:
     - _key: '200'
       description: Bulk upload entity found
+      examples:
+      - _key: BulkResponse
+        account_id: 00005a4e027f0a580a01081c00000000
+        completed_at: '2018-06-26T09:13:21.308Z'
+        created_at: '2018-06-26T09:12:21.308Z'
+        errors_count: 1
+        errors_report_file: https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/errors_report.csv
+        etag: '1'
+        full_report_file: https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/full_report.csv
+        id: 2d238a89038b4ddb84699dd36a901063
+        object: enrollment-identity-bulk-uploads
+        processed_count: 10
+        status: completed
+        total_count: 10
       schema:
         foreign_key:
           entity: device_enrollment_bulk_delete
@@ -18851,8 +18553,6 @@ entities:
         - _key: completed_at
           api_fieldname: completed_at
           description: 'The time of completing the bulk creation task.
-
-            Null when creating bulk upload or delete.
 
             '
           entity_fieldname: completed_at
@@ -18876,11 +18576,6 @@ entities:
           type: integer
         - _key: errors_report_file
           api_fieldname: errors_report_file
-          description: 'Link to error report file.
-
-            Null when creating bulk upload or delete.
-
-            '
           entity_fieldname: errors_report_file
           example: https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/errors_report.csv
           type: string
@@ -18893,11 +18588,6 @@ entities:
           type: string
         - _key: full_report_file
           api_fieldname: full_report_file
-          description: 'Link to full report file.
-
-            Null when creating bulk upload or delete.
-
-            '
           entity_fieldname: full_report_file
           example: https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/full_report.csv
           type: string
@@ -18955,12 +18645,18 @@ entities:
         - total_count
         - processed_count
         - errors_count
-        - completet_at
-        - full_report_file
-        - errors_report_file
         type: object
     - _key: '400'
       description: Bad request. The bulk identity is not valid.
+      examples:
+      - _key: Bad request
+        code: 400
+        fields:
+        - bulk_id: Invalid bulk identity
+        message: An error description.
+        object: error
+        request_id: 73fb0bd3ec1d452383255dd9a336668c
+        type: validation_error
       schema:
         properties:
         - _key: code
@@ -19009,6 +18705,12 @@ entities:
         type: object
     - _key: '401'
       description: The provided access token is not valid.
+      examples:
+      - _key: Error
+        code: 401
+        message: The provided JWT was not valid
+        object: error
+        type: invalid_auth
       schema:
         properties:
         - _key: code
@@ -19057,6 +18759,14 @@ entities:
         type: object
     - _key: '404'
       description: Not found.
+      examples:
+      - _key: Not found
+        code: 404
+        fields: []
+        message: The requested resource could not be found
+        object: error
+        request_id: 73fb0bd3ec1d452383255dd9a336668c
+        type: not_found
       schema:
         properties:
         - _key: code
@@ -19128,8 +18838,6 @@ entities:
     api_fieldname: completed_at
     description: 'The time of completing the bulk creation task.
 
-      Null when creating bulk upload or delete.
-
       '
     format: date-time
     readOnly: true
@@ -19155,22 +18863,12 @@ entities:
     type: integer
   - _key: errors_report_file
     api_fieldname: errors_report_file
-    description: 'Link to error report file.
-
-      Null when creating bulk upload or delete.
-
-      '
     example: https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/errors_report.csv
     readOnly: true
     required: false
     type: string
   - _key: full_report_file
     api_fieldname: full_report_file
-    description: 'Link to full report file.
-
-      Null when creating bulk upload or delete.
-
-      '
     example: https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/full_report.csv
     readOnly: true
     required: false
@@ -19277,8 +18975,10 @@ entities:
     fields:
     - _key: enrollment_identities
       api_fieldname: enrollment_identities
-      description: The `CSV` file containing the enrollment IDs. The maximum file
+      description: 'The `CSV` file containing the enrollment IDs. The maximum file
         size is 10MB.
+
+        '
       entity_fieldname: enrollment_identities
       external_param: true
       in: stream
@@ -19294,8 +18994,25 @@ entities:
     path: /v3/device-enrollments-bulk-deletes
     responses:
     - _key: '201'
-      description: Bulk delete data has been received and asynchronous processing
+      description: 'Bulk delete data has been received and asynchronous processing
         has been started.
+
+        '
+      examples:
+      - _key: BulkCreateResponse
+        properties:
+          account_id: 00005a4e027f0a580a01081c00000000
+          completed_at: null
+          created_at: '2018-06-26T07:41:47.217Z'
+          errors_count: 0
+          errors_report_file: null
+          etag: '1'
+          full_report_file: null
+          id: 00005a4e027f0a580a04567c00000000
+          object: enrollment-identity-bulk-deletes
+          processed_count: 0
+          status: new
+          total_count: 10
       schema:
         foreign_key:
           entity: device_enrollment_bulk_create
@@ -19310,8 +19027,6 @@ entities:
         - _key: completed_at
           api_fieldname: completed_at
           description: 'The time of completing the bulk creation task.
-
-            Null when creating bulk upload or delete.
 
             '
           entity_fieldname: completed_at
@@ -19335,11 +19050,6 @@ entities:
           type: integer
         - _key: errors_report_file
           api_fieldname: errors_report_file
-          description: 'Link to error report file.
-
-            Null when creating bulk upload or delete.
-
-            '
           entity_fieldname: errors_report_file
           example: https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/errors_report.csv
           type: string
@@ -19352,11 +19062,6 @@ entities:
           type: string
         - _key: full_report_file
           api_fieldname: full_report_file
-          description: 'Link to full report file.
-
-            Null when creating bulk upload or delete.
-
-            '
           entity_fieldname: full_report_file
           example: https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/full_report.csv
           type: string
@@ -19417,12 +19122,16 @@ entities:
         - total_count
         - processed_count
         - errors_count
-        - completet_at
-        - full_report_file
-        - errors_report_file
         type: object
     - _key: '400'
       description: Bad request.
+      examples:
+      - _key: Bad request
+        code: 400
+        message: Invalid request. Check your request parameters and URL.
+        object: error
+        request_id: 73fb0bd3ec1d452383255dd9a336668c
+        type: bad_request
       schema:
         properties:
         - _key: code
@@ -19471,6 +19180,12 @@ entities:
         type: object
     - _key: '401'
       description: The provided access token is not valid.
+      examples:
+      - _key: Error
+        code: 401
+        message: The provided JWT was not valid
+        object: error
+        type: invalid_auth
       schema:
         properties:
         - _key: code
@@ -19673,6 +19388,20 @@ entities:
     responses:
     - _key: '200'
       description: Bulk delete entity found
+      examples:
+      - _key: BulkResponse
+        account_id: 00005a4e027f0a580a01081c00000000
+        completed_at: '2018-06-26T09:13:21.308Z'
+        created_at: '2018-06-26T09:12:21.308Z'
+        errors_count: 1
+        errors_report_file: https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-deletes/2d238a89038b4ddb84699dd36a901063/errors_report.csv
+        etag: '1'
+        full_report_file: https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-deletes/2d238a89038b4ddb84699dd36a901063/full_report.csv
+        id: 2d238a89038b4ddb84699dd36a901063
+        object: enrollment-identity-bulk-deletes
+        processed_count: 10
+        status: completed
+        total_count: 10
       schema:
         foreign_key:
           entity: device_enrollment_bulk_create
@@ -19687,8 +19416,6 @@ entities:
         - _key: completed_at
           api_fieldname: completed_at
           description: 'The time of completing the bulk creation task.
-
-            Null when creating bulk upload or delete.
 
             '
           entity_fieldname: completed_at
@@ -19712,11 +19439,6 @@ entities:
           type: integer
         - _key: errors_report_file
           api_fieldname: errors_report_file
-          description: 'Link to error report file.
-
-            Null when creating bulk upload or delete.
-
-            '
           entity_fieldname: errors_report_file
           example: https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/errors_report.csv
           type: string
@@ -19729,11 +19451,6 @@ entities:
           type: string
         - _key: full_report_file
           api_fieldname: full_report_file
-          description: 'Link to full report file.
-
-            Null when creating bulk upload or delete.
-
-            '
           entity_fieldname: full_report_file
           example: https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/full_report.csv
           type: string
@@ -19794,12 +19511,18 @@ entities:
         - total_count
         - processed_count
         - errors_count
-        - completet_at
-        - full_report_file
-        - errors_report_file
         type: object
     - _key: '400'
       description: Bad request. The bulk identity is not valid.
+      examples:
+      - _key: Bad request
+        code: 400
+        fields:
+        - bulk_id: Invalid bulk identity
+        message: An error description.
+        object: error
+        request_id: 73fb0bd3ec1d452383255dd9a336668c
+        type: validation_error
       schema:
         properties:
         - _key: code
@@ -19848,6 +19571,12 @@ entities:
         type: object
     - _key: '401'
       description: The provided access token is not valid.
+      examples:
+      - _key: Error
+        code: 401
+        message: The provided JWT was not valid
+        object: error
+        type: invalid_auth
       schema:
         properties:
         - _key: code
@@ -19896,6 +19625,14 @@ entities:
         type: object
     - _key: '404'
       description: Not found.
+      examples:
+      - _key: Not found
+        code: 404
+        fields: []
+        message: The requested resource could not be found
+        object: error
+        request_id: 73fb0bd3ec1d452383255dd9a336668c
+        type: not_found
       schema:
         properties:
         - _key: code
@@ -21003,7 +20740,7 @@ entities:
     example: 1
     format: int32
     private_field: true
-    readOnly: true
+    readOnly: false
     required: false
     type: integer
   - _key: enrollment_mode
@@ -21030,7 +20767,7 @@ entities:
     description: Whether or not this certificate is a developer certificate.
     example: true
     getter_custom_method: is_developer_certificate_getter
-    readOnly: true
+    readOnly: false
     required: false
     setter_custom_method: is_developer_certificate_setter
     type: boolean
@@ -21172,6 +20909,7 @@ entities:
       example: 1
       format: int32
       private_field: true
+      readOnly: false
       type: integer
     - _key: enrollment_mode
       api_fieldname: enrollment_mode
@@ -21286,6 +21024,7 @@ entities:
           example: 1
           format: int32
           private_field: true
+          readOnly: false
           type: integer
         - _key: enrollment_mode
           api_fieldname: enrollment_mode
@@ -21630,6 +21369,7 @@ entities:
       api_fieldname: device_execution_mode
       entity_fieldname: device_execution_mode
       private_field: true
+      readOnly: false
       type: integer
     - _key: id
       api_fieldname: cert_id
@@ -21860,6 +21600,7 @@ entities:
       example: 1
       format: int32
       private_field: true
+      readOnly: false
       type: integer
     - _key: id
       api_fieldname: id
@@ -21941,6 +21682,7 @@ entities:
           example: 1
           format: int32
           private_field: true
+          readOnly: false
           type: integer
         - _key: enrollment_mode
           api_fieldname: enrollment_mode
@@ -22237,6 +21979,7 @@ entities:
       api_fieldname: device_execution_mode
       entity_fieldname: device_execution_mode
       private_field: true
+      readOnly: false
       type: integer
     - _key: id
       api_fieldname: id
@@ -22754,6 +22497,7 @@ entities:
       example: 1
       format: int32
       private_field: true
+      readOnly: false
       type: integer
     - _key: enrollment_mode
       api_fieldname: enrollment_mode
@@ -22875,6 +22619,7 @@ entities:
           example: 1
           format: int32
           private_field: true
+          readOnly: false
           type: integer
         - _key: enrollment_mode
           api_fieldname: enrollment_mode
@@ -26925,7 +26670,7 @@ entities:
     example: 1
     format: int32
     private_field: true
-    readOnly: true
+    readOnly: false
     required: false
     type: integer
   - _key: enrollment_mode
@@ -26948,7 +26693,7 @@ entities:
     description: Whether or not this certificate is a developer certificate.
     example: true
     getter_custom_method: is_developer_certificate_getter
-    readOnly: true
+    readOnly: false
     required: false
     setter_custom_method: is_developer_certificate_setter
     type: boolean
@@ -27076,6 +26821,7 @@ entities:
       example: 1
       format: int32
       private_field: true
+      readOnly: false
       type: integer
     - _key: enrollment_mode
       api_fieldname: enrollment_mode
@@ -27184,6 +26930,7 @@ entities:
           example: 1
           format: int32
           private_field: true
+          readOnly: false
           type: integer
         - _key: enrollment_mode
           api_fieldname: enrollment_mode
@@ -27500,6 +27247,7 @@ entities:
       api_fieldname: device_execution_mode
       entity_fieldname: device_execution_mode
       private_field: true
+      readOnly: false
       type: integer
     - _key: id
       api_fieldname: cert_id
@@ -27722,6 +27470,7 @@ entities:
       example: 1
       format: int32
       private_field: true
+      readOnly: false
       type: integer
     - _key: id
       api_fieldname: id
@@ -27797,6 +27546,7 @@ entities:
           example: 1
           format: int32
           private_field: true
+          readOnly: false
           type: integer
         - _key: enrollment_mode
           api_fieldname: enrollment_mode
@@ -28076,6 +27826,7 @@ entities:
       api_fieldname: device_execution_mode
       entity_fieldname: device_execution_mode
       private_field: true
+      readOnly: false
       type: integer
     - _key: id
       api_fieldname: id
@@ -28578,6 +28329,7 @@ entities:
       api_fieldname: device_execution_mode
       entity_fieldname: device_execution_mode
       private_field: true
+      readOnly: false
       type: integer
     - _key: include
       api_fieldname: include
@@ -28690,6 +28442,7 @@ entities:
               example: 1
               format: int32
               private_field: true
+              readOnly: false
               type: integer
             - _key: enrollment_mode
               description: If true, signature is not required. Default value false.
@@ -28963,6 +28716,7 @@ entities:
       example: 1
       format: int32
       private_field: true
+      readOnly: false
       type: integer
     - _key: enrollment_mode
       api_fieldname: enrollment_mode
@@ -29078,6 +28832,7 @@ entities:
           example: 1
           format: int32
           private_field: true
+          readOnly: false
           type: integer
         - _key: enrollment_mode
           api_fieldname: enrollment_mode
@@ -33563,14 +33318,6 @@ enums:
   values:
   - ASC
   - DESC
-- _key: device_lifecycle_status_enum
-  entity_name: device
-  enum_name: device_lifecycle_status_enum
-  field_name: lifecycle_status
-  group_id: Devices
-  values:
-  - blocked
-  - enabled
 - _key: device_mechanism_enum
   entity_name: device
   enum_name: device_mechanism_enum
@@ -33700,7 +33447,6 @@ groups:
   - device_enrollment_bulk_delete
   - device_enrollment
   enums:
-  - device_lifecycle_status_enum
   - device_deployed_state_enum
   - device_mechanism_enum
   - device_state_enum

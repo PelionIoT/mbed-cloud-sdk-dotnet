@@ -917,36 +917,6 @@ definitions:
     - url
     - filename
     type: object
-  BlackListedDeviceData:
-    properties:
-      account_id:
-        description: account id
-        example: 00005a4e027f0a580a01081c00000000
-        pattern: '[a-f0-9]{32}'
-        type: string
-      created_at:
-        description: date on which the failed bootstrap was attempted on
-        example: '2000-01-23T04:56:07.000+00:00'
-        format: date-time
-        type: string
-      endpoint_name:
-        description: endpoint name
-        example: Endpoint_1234
-        type: string
-      id:
-        description: id of the recorded failed bootstrap attempt
-        example: 00005a4e027f0a580a04567c00000000
-        pattern: '[a-f0-9]{32}'
-        type: string
-      object:
-        enum:
-        - denied_device
-        type: string
-      trusted_certificate_id:
-        description: Trusted certificate id
-        example: 00005a4e027f0a580a01081c00000000
-        pattern: '[a-f0-9]{32}'
-        type: string
   BrandingColor:
     properties:
       color:
@@ -961,7 +931,7 @@ definitions:
         type: string
       reference:
         description: Color name.
-        enum: &id016
+        enum: &id012
         - error_color
         - primary
         - secondary
@@ -1042,7 +1012,7 @@ definitions:
         type: string
       reference:
         description: Name of the image.
-        enum: &id017
+        enum: &id013
         - brand_logo_portrait
         - brand_logo_square
         - brand_logo_landscape
@@ -1149,8 +1119,6 @@ definitions:
       completed_at:
         description: 'The time of completing the bulk creation task.
 
-          Null when creating bulk upload or delete.
-
           '
         format: date-time
         type: string
@@ -1167,11 +1135,6 @@ definitions:
         example: 0
         type: integer
       errors_report_file:
-        description: 'Link to error report file.
-
-          Null when creating bulk upload or delete.
-
-          '
         example: https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/errors_report.csv
         type: string
       etag:
@@ -1180,11 +1143,6 @@ definitions:
         pattern: '[A-Za-z0-9]{0,256}'
         type: string
       full_report_file:
-        description: 'Link to full report file.
-
-          Null when creating bulk upload or delete.
-
-          '
         example: https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/full_report.csv
         type: string
       id:
@@ -1230,9 +1188,6 @@ definitions:
     - total_count
     - processed_count
     - errors_count
-    - completet_at
-    - full_report_file
-    - errors_report_file
     type: object
   CampaignDeviceMetadata:
     properties:
@@ -1311,12 +1266,9 @@ definitions:
         example: 'false'
         type: boolean
       limit:
-        description: How many objects to retrieve in the page. The minimum limit is
-          2 and the maximum is 1000. Limit values outside of this range are set to
-          the closest limit.
+        description: 'The number of results to return, (range: 2-1000), or equals
+          to total_count'
         example: '50'
-        maximum: 1000
-        minimum: 2
         type: integer
       object:
         description: 'The entity name: always ''list'''
@@ -1355,12 +1307,7 @@ definitions:
       pending_count:
         description: Running total of devices that have yet to receive an update or
           are applying an update.
-        example: '5'
-        format: int32
-        type: integer
-      skipped_count:
-        description: Running total of devices that were skipped.
-        example: '5'
+        example: '10'
         format: int32
         type: integer
       success_count:
@@ -1837,43 +1784,6 @@ definitions:
         description: Server URI to which the client needs to connect to.
         type: string
     type: object
-  DenialAttemptsResponse:
-    properties:
-      after:
-        description: An offset token for current page.
-        type: string
-      data:
-        items:
-          $ref: '#/definitions/BlackListedDeviceData'
-        type: array
-      has_more:
-        description: Are there more results available.
-        example: false
-        type: boolean
-      limit:
-        description: How many objects to retrieve in the page. The minimum limit is
-          2 and the maximum is 1000. Limit values outside of this range are set to
-          the closest limit.
-        example: 50
-        maximum: 1000
-        minimum: 2
-        type: integer
-      object:
-        description: The type of this API object is a "list".
-        example: list
-        type: string
-      order:
-        description: The creation time based order of the entries.
-        enum:
-        - ASC
-        - DESC
-        example: DESC
-        type: string
-      total_count:
-        example: 1
-        format: integer
-        type: integer
-    type: object
   DeveloperCertificateRequestData:
     properties:
       description:
@@ -1922,52 +1832,6 @@ definitions:
           device to provide the security credentials
         type: string
     type: object
-  DeviceBlockCategory:
-    properties:
-      created_at:
-        format: date-time
-        type: string
-      description:
-        example: Suspended for maintenance.
-        type: string
-      reference:
-        example: maintenance
-        type: string
-    type: object
-  DeviceBlockCategoryPage:
-    properties:
-      after:
-        description: An offset token for current page.
-        type: string
-      data:
-        items:
-          $ref: '#/definitions/DeviceBlockCategory'
-        type: array
-      has_more:
-        description: Are there more results available.
-        example: false
-        type: boolean
-      limit:
-        description: How many objects to retrieve in the page. The minimum limit is
-          2 and the maximum is 1000. Limit values outside of this range are set to
-          the closest limit.
-        example: 50
-        maximum: 1000
-        minimum: 2
-        type: integer
-      object:
-        description: The type of this API object is a "list".
-        example: list
-        type: string
-      order:
-        description: The creation time based order of the entries.
-        example: DESC
-        type: string
-      total_count:
-        example: 1
-        format: integer
-        type: integer
-    type: object
   DeviceData:
     properties:
       account_id:
@@ -2004,15 +1868,9 @@ definitions:
         type: string
       custom_attributes:
         additionalProperties:
-          maxLength: 128
-          pattern: ^[A-Za-z].*
           type: string
-        description: Up to five custom key-value attributes. Note that keys cannot
-          begin with a number. Both keys and values are limited to 128 characters.
-          Updating this field replaces existing contents.
-        example:
-          key: value
-        maxProperties: 5
+        description: Up to five custom key-value attributes.
+        example: '{ ''key'': ''value'' }'
         type: object
       deployed_state:
         description: 'DEPRECATED: The state of the device''s deployment.'
@@ -2053,7 +1911,6 @@ definitions:
       endpoint_name:
         description: The endpoint name given to the device.
         example: 00000000-0000-0000-0000-000000000000
-        readOnly: true
         type: string
       endpoint_type:
         description: The endpoint type of the device. For example, the device is a
@@ -2090,52 +1947,6 @@ definitions:
           Management APIs.
         example: '00000000000000000000000000000000'
         type: string
-      issuer_fingerprint: &id012
-        description: SHA256 fingerprint of the certificate used to validate the signature
-          of the device certificate.
-        example: C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322
-        pattern: '[A-Fa-f0-9]{64}'
-        type: string
-      last_operator_suspended_category:
-        description: The reference of the block category.
-        example: maintenance
-        pattern: '[a-f0-9_]{32}'
-        type: string
-      last_operator_suspended_description:
-        description: The most recent description why the device was suspended or returned
-          to service.
-        example: Suspended for maintenance.
-        maxLength: 2000
-        type: string
-      last_operator_suspended_updated_at:
-        description: The timestamp of the most recent suspension activity.
-        example: '2017-05-22T12:37:55.576563Z'
-        format: date-time
-        type: string
-      last_system_suspended_category:
-        description: The reference of the block category.
-        example: maintenance
-        pattern: '[a-f0-9_]{32}'
-        type: string
-      last_system_suspended_description:
-        description: The most recent description of why the device was blocked or
-          unblocked by the system.
-        example: A certificate in the device's certificate chain was blacklisted by
-          the system.
-        maxLength: 2000
-        type: string
-      last_system_suspended_updated_at:
-        description: The timestamp of the most recent system block activity.
-        example: '2017-05-22T12:37:55.576563Z'
-        format: date-time
-        type: string
-      lifecycle_status:
-        description: The lifecycle status of the device.
-        enum:
-        - enabled
-        - blocked
-        example: enabled
-        type: string
       manifest:
         description: 'DEPRECATED: The URL for the current device manifest.'
         example: ''
@@ -2164,9 +1975,6 @@ definitions:
         description: The API resource entity.
         example: device
         type: string
-      operator_suspended:
-        description: Is the device suspended by the operator?
-        type: boolean
       serial_number:
         description: The serial number of the device.
         example: 00000000-0000-0000-0000-000000000000
@@ -2180,9 +1988,6 @@ definitions:
         - registered
         - deregistered
         type: string
-      system_suspended:
-        description: Is the device suspended by the system?
-        type: boolean
       updated_at:
         description: The time the object was updated.
         example: '2017-05-22T12:37:55.576563Z'
@@ -2191,6 +1996,59 @@ definitions:
       vendor_id:
         description: The device vendor ID.
         example: 00000000-0000-0000-0000-000000000000
+        type: string
+  DeviceDataPatchRequest:
+    properties:
+      auto_update:
+        description: 'DEPRECATED: Mark this device for automatic firmware update.'
+        type: boolean
+      ca_id:
+        description: The certificate issuer's ID.
+        example: '00000000000000000000000000000000'
+        maxLength: 500
+        type: string
+      custom_attributes:
+        additionalProperties:
+          maxLength: 128
+          type: string
+        description: Up to five custom key-value attributes. Note that keys cannot
+          start with a number. Both keys and values are limited to 128 characters.
+        example: '{ ''key'': ''value'' }'
+        type: object
+      description:
+        description: The description of the device.
+        example: ''
+        maxLength: 2000
+        type: string
+      device_key:
+        description: The fingerprint of the device certificate.
+        example: 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00
+        maxLength: 512
+        type: string
+      endpoint_name:
+        description: The endpoint name given to the device.
+        example: 00000000-0000-0000-0000-000000000000
+        maxLength: 64
+        type: string
+      endpoint_type:
+        description: The endpoint type of the device. For example, the device is a
+          gateway.
+        example: ''
+        maxLength: 64
+        type: string
+      groups: *id011
+      host_gateway:
+        description: The `endpoint_name` of the host gateway, if appropriate.
+        example: ''
+        type: string
+      name:
+        description: The name of the device.
+        example: 00000000-0000-0000-0000-000000000000
+        maxLength: 128
+        type: string
+      object:
+        description: The API resource entity.
+        example: device
         type: string
   DeviceDataPostRequest:
     properties:
@@ -2222,14 +2080,10 @@ definitions:
       custom_attributes:
         additionalProperties:
           maxLength: 128
-          pattern: ^[A-Za-z].*
           type: string
         description: Up to five custom key-value attributes. Note that keys cannot
-          begin with a number. Both keys and values are limited to 128 characters.
-          Updating this field replaces existing contents.
-        example:
-          key: value
-        maxProperties: 5
+          start with a number. Both keys and values are limited to 128 characters.
+        example: '{ ''key'': ''value'' }'
         type: object
       deployment:
         description: 'DEPRECATED: The last deployment used on the device.'
@@ -2275,7 +2129,6 @@ definitions:
         description: The `endpoint_name` of the host gateway, if appropriate.
         example: ''
         type: string
-      issuer_fingerprint: *id012
       manifest:
         description: 'DEPRECATED: The URL for the current device manifest.'
         example: ''
@@ -2331,14 +2184,10 @@ definitions:
       custom_attributes:
         additionalProperties:
           maxLength: 128
-          pattern: ^[A-Za-z].*
           type: string
         description: Up to five custom key-value attributes. Note that keys cannot
-          begin with a number. Both keys and values are limited to 128 characters.
-          Updating this field replaces existing contents.
-        example:
-          key: value
-        maxProperties: 5
+          start with a number. Both keys and values are limited to 128 characters.
+        example: '{ ''key'': ''value'' }'
         type: object
       description:
         description: The description of the device.
@@ -2354,7 +2203,6 @@ definitions:
         description: The endpoint name given to the device.
         example: 00000000-0000-0000-0000-000000000000
         maxLength: 64
-        readOnly: true
         type: string
       endpoint_type:
         description: The endpoint type of the device. For example, the device is a
@@ -2584,19 +2432,14 @@ definitions:
         example: '2017-05-22T12:37:55.576563Z'
         format: date-time
         type: string
-      custom_attributes: &id022
+      custom_attributes: &id015
         additionalProperties:
-          maxLength: 128
-          pattern: ^[A-Za-z].*
           type: string
-        description: Up to ten custom key-value attributes. Note that keys cannot
-          begin with a number. Both keys and values are limited to 128 characters.
-          Updating this field replaces existing contents.
         example:
           key: value
         maxProperties: 10
         type: object
-      description: &id023
+      description: &id016
         description: The description of the group.
         example: Devices on the factory floor.
         maxLength: 2000
@@ -2613,7 +2456,7 @@ definitions:
         description: The group ID.
         example: 015c3029f6f7000000000001001000c3
         type: string
-      name: &id024
+      name: &id017
         description: Name of the group.
         example: My devices
         maxLength: 128
@@ -2788,37 +2631,27 @@ definitions:
   DevicePage:
     properties:
       after:
-        description: An offset token for current page.
-        example: '01631667477600000000000100100374'
+        example: null
         type: string
       data:
+        example: '[]'
         items:
           $ref: '#/definitions/DeviceData'
         type: array
       has_more:
-        description: Are there more results available.
         example: false
         type: boolean
       limit:
-        description: How many objects to retrieve in the page. The minimum limit is
-          2 and the maximum is 1000. Limit values outside of this range are set to
-          the closest limit.
-        example: 50
-        maximum: 1000
-        minimum: 2
+        example: 1000
         type: integer
       object:
-        description: The type of this API object is a "list".
         example: list
         type: string
       order:
-        description: The order of the records based on creation time, `ASC` or `DESC`;
-          by default `ASC`.
         example: DESC
         type: string
       total_count:
         example: 1
-        format: integer
         type: integer
   DeviceQuery:
     properties:
@@ -3258,136 +3091,6 @@ definitions:
     - object
     - request_id
     - type
-    type: object
-  EventType:
-    properties:
-      count:
-        example: 10
-        type: integer
-      created_at:
-        example: '2017-05-22T12:37:55.576563Z'
-        format: date-time
-        type: string
-      description:
-        example: Update error, nonspecific network error
-        type: string
-      event_type:
-        example: UPD4_FAIL_101
-        type: string
-      id:
-        example: upd_fail_101
-        type: string
-      object:
-        example: event-type
-        type: string
-      summary_status:
-        example: FAIL
-        type: string
-    type: object
-  EventTypeList:
-    properties:
-      after:
-        description: The entity ID to fetch after the given one
-        example: 'null'
-        type: string
-      data:
-        items:
-          $ref: '#/definitions/EventType'
-        type: array
-      has_more:
-        description: A flag indicating whether there are more results
-        example: 'false'
-        type: boolean
-      limit:
-        description: 'The number of results to return, (range: 2-1000), or equals
-          to total_count'
-        example: '50'
-        type: integer
-      object:
-        description: 'The entity name: always ''list'''
-        example: list
-        type: string
-      order:
-        description: 'The order of the records to return. Acceptable values: ASC,
-          DESC. Default: ASC'
-        enum:
-        - ASC
-        - DESC
-        example: ASC
-        type: string
-      total_count:
-        description: The total number or records, if requested. It may be returned
-          also for small lists.
-        example: '1'
-        type: integer
-    type: object
-  EventTypeSummary:
-    properties:
-      count:
-        example: 10
-        type: integer
-      created_at:
-        example: '2017-05-22T12:37:55.576563Z'
-        format: date-time
-        type: string
-      id:
-        description: ID of the event type description
-        enum:
-        - fail
-        - success
-        - info
-        - skipped
-        example: fail
-        type: string
-      object:
-        example: summary_status
-        type: string
-      summary_status:
-        description: The event type description.
-        enum:
-        - FAIL
-        - SUCCESS
-        - INFO
-        - SKIPPED
-        example: FAIL
-        type: string
-    type: object
-  EventTypeSummaryList:
-    properties:
-      after:
-        description: The entity ID to fetch after the given one
-        example: 'null'
-        type: string
-      data:
-        items:
-          $ref: '#/definitions/EventTypeSummary'
-        type: array
-      has_more:
-        description: A flag indicating whether there are more results
-        example: 'false'
-        type: boolean
-      limit:
-        description: 'The number of results to return, (range: 2-1000), or equals
-          to total_count'
-        example: '50'
-        type: integer
-      object:
-        description: 'The entity name: always ''list'''
-        example: list
-        type: string
-      order:
-        description: 'The order of the records to return. Acceptable values: ASC,
-          DESC. Default: ASC'
-        enum:
-        - ASC
-        - DESC
-        example: ASC
-        type: string
-      total_count:
-        description: The total number or records, if requested. It may be returned
-          also for small lists.
-        example: '1'
-        type: integer
     type: object
   FeaturePolicy:
     description: This object represents a feature policy. Either the feature or the
@@ -5510,14 +5213,6 @@ definitions:
         example: '2017-05-22T12:37:55.576563Z'
         format: date-time
         type: string
-      health_indicator:
-        description: An indication to the condition of the campaign.
-        enum:
-        - ok
-        - warning
-        - error
-        example: ok
-        type: string
       id:
         description: The campaign ID
         example: '00000000000000000000000000000000'
@@ -5857,131 +5552,6 @@ definitions:
     - request_id
     - type
     type: object
-  UploadChunkInfo:
-    properties:
-      created_at: &id013
-        description: The time the entity was created
-        example: '2017-05-22T12:37:55.576563Z'
-        format: date-time
-        type: string
-      etag: &id014
-        description: API resource entity version
-        example: '2017-05-22T12:37:58.753425Z'
-        type: string
-      hash:
-        description: The hash of the chunk. The default hash is MD5. If no Content-MD5
-          header is supplied as part of uploading the chunk then this will be empty.
-        type: string
-      id:
-        description: The chunk number
-        example: 1
-        type: integer
-      length:
-        description: The length of the chunk
-        example: 1234
-        type: integer
-      object:
-        description: 'Entity name: always ''upload-info'''
-        example: upload-info
-        type: string
-      updated_at: &id015
-        description: The time the entity was updated
-        example: '2017-05-22T12:37:55.576563Z'
-        format: date-time
-        type: string
-    type: object
-  UploadChunkInfoPage:
-    properties:
-      after:
-        example: null
-        type: string
-      data:
-        items:
-          $ref: '#/definitions/UploadChunkInfo'
-        type: array
-      has_more:
-        type: boolean
-      limit:
-        format: int32
-        type: integer
-      object:
-        example: list
-        type: string
-      order:
-        description: 'The order of the records to return. Acceptable values: ASC,
-          DESC. Default: ASC'
-        enum:
-        - ASC
-        - DESC
-        example: ASC
-        type: string
-      total_count:
-        format: int32
-        type: integer
-  UploadJob:
-    properties:
-      complete:
-        description: A flag that indicates job completion
-        example: false
-        type: boolean
-      created_at: *id013
-      description: &id026
-        description: Human-readable description
-        example: New Linux update for my devices
-        maxLength: 2000
-        type: string
-      etag: *id014
-      firmware_image_id:
-        description: ID of the firmware image - empty until the Upload Job is complete
-        example: '00000000000000000000000000000000'
-        type: string
-      id:
-        description: The upload job ID
-        example: '00000000000000000000000000000000'
-        type: string
-      name: &id027
-        description: Human-readable name
-        example: New Linux update
-        maxLength: 128
-        type: string
-      object:
-        description: 'Entity name: always ''upload-job'''
-        example: upload-job
-        type: string
-      status:
-        description: Status of the upload job
-        example: in_progress
-        type: string
-      updated_at: *id015
-    type: object
-  UploadJobPage:
-    properties:
-      after:
-        example: null
-        type: string
-      data:
-        items:
-          $ref: '#/definitions/UploadJob'
-        type: array
-      has_more:
-        type: boolean
-      limit:
-        format: int32
-        type: integer
-      object:
-        example: list
-        type: string
-      order:
-        description: 'The order of the records to return. Acceptable values: ASC,
-          DESC. Default: ASC'
-        enum:
-        - ASC
-        - DESC
-        example: ASC
-        type: string
-      total_count:
-        format: int32
-        type: integer
   UserInfoReq:
     description: This object represents a user in requests towards Device Management.
     properties:
@@ -6415,15 +5985,6 @@ definitions:
     required:
     - url
     type: object
-  WebsocketChannel:
-    properties:
-      status:
-        default: DISCONNECTED
-        enum:
-        - CONNECTED
-        - DISCONNECTED
-        type: string
-    type: object
   error-response:
     properties:
       code:
@@ -6671,7 +6232,7 @@ paths:
         required: true
         type: string
       - description: The name of the branding color.
-        enum: *id016
+        enum: *id012
         in: path
         name: reference
         required: true
@@ -6729,7 +6290,7 @@ paths:
         required: true
         type: string
       - description: The name of the branding color.
-        enum: *id016
+        enum: *id012
         in: path
         name: reference
         required: true
@@ -6788,7 +6349,7 @@ paths:
         required: true
         type: string
       - description: Name of the picture whose metadata to be fetched.
-        enum: *id017
+        enum: *id013
         in: path
         name: reference
         required: true
@@ -6847,7 +6408,7 @@ paths:
         required: true
         type: string
       - description: Name of the picture whose metadata to be fetched.
-        enum: *id017
+        enum: *id013
         in: path
         name: reference
         required: true
@@ -7617,14 +7178,14 @@ paths:
         \ Bearer {api-key}'\n"
       operationId: deregisterWebhook
       responses:
-        204: &id020
+        204:
           description: Successfully deleted.
-        401: &id018
+        401:
           description: Unauthorized.
-        403: &id019
+        403:
           description: Forbidden, the authorization token used is not an API key.
         404:
-          description: Callback URL does not exist.
+          description: Callback URL does not exists.
       summary: Delete callback URL
       tags:
       - Notifications
@@ -7640,8 +7201,10 @@ paths:
           description: URL found.
           schema:
             $ref: '#/definitions/Webhook'
-        401: *id018
-        403: *id019
+        401:
+          description: Unauthorized.
+        403:
+          description: Forbidden, the authorization token used is not an API key.
         404:
           description: The callback URL does not exist.
       summary: Check callback URL
@@ -7658,7 +7221,7 @@ paths:
         server message. The given URL should be accessible and respond to the PUT\
         \ request with response code of 200 or 204.\nDevice Management Connect tests\
         \ the callback URL with an empty payload when the URL is registered. For more\
-        \ information on\nnotification messages, see [NotificationMessage](#NotificationMessage).\n\
+        \ information on callback\nnotification, see [NotificationMessage](/docs/current/service-api-references/mbed-cloud-connect.html#models).\n\
         \n**Optional headers in a callback message:**\n\nYou can set optional headers\
         \ to a callback in a **Webhook** object.\nDevice Management Connect will include\
         \ the header and key pairs to the notification messages send them to callback\
@@ -7668,15 +7231,15 @@ paths:
         \ notification belongs to.\n\n**Note**: Only one callback URL per an API key\
         \ can be active. If you register a new URL while another one is already active,\n\
         it replaces the active one. There can be only one notification channel at\
-        \ a time. If another type of channel is already present,\nyou need to delete\
+        \ a time. If the Long Poll notification is already present,\nyou need to delete\
         \ it before setting the callback URL.\n\n**Expiration of a callback URL:**\n\
         \nA callback can expire when Device Management cannot deliver a notification\
         \ due to a connection timeout or an\nerror response (4xx or 5xx). After each\
         \ delivery failure, Device Management sets an exponential back off time and\
         \ makes a retry attempt\nafter that. The first retry delay is 1 second, then\
         \ 2s, 4s, 8s, ..., 2min, 2min. The maximum retry delay is 2 minutes.\nThe\
-        \ callback URL will be removed if all retries fail within 24 hours. More about\
-        \ [notification sending logic](/docs/current/integrate-web-app/event-notification.html#notification-sending-logic).\n\
+        \ callback URL will be removed if all retries fail withing 24 hours. More\
+        \ about [notification sending logic](/docs/current/integrate-web-app/event-notification.html#notification-sending-logic).\n\
         \n**Supported callback URL protocols:**\n\nCurrently, only HTTP and HTTPS\
         \ protocols are supported.\n\n**HTTPS callback URLs:**\n\nWhen delivering\
         \ a notification to an HTTPS based callback URL, Device Management Connect\
@@ -7706,10 +7269,12 @@ paths:
         204:
           description: Successfully subscribed.
         400:
-          description: Given URL is not accessible or other type of channel already
+          description: Given URL is not accessible or the Long Polling channel already
             exists.
-        401: *id018
-        403: *id019
+        401:
+          description: Unauthorized.
+        403:
+          description: Forbidden, the authorization token used is not an API key.
         415:
           description: Unsupported Media Type.
       summary: Register a callback URL
@@ -7719,8 +7284,8 @@ paths:
     delete:
       deprecated: true
       description: "To delete a notification Long Poll channel. This is required to\
-        \ change the channel from Long Poll to another type.\nYou should not make\
-        \ a GET `/v2/notification/pull` call for 2 minutes after channel was deleted,\
+        \ change the channel from Long Poll to a callback.\nYou should not make a\
+        \ GET `/v2/notification/pull` call for 2 minutes after channel was deleted,\
         \ because it can\nimplicitly recreate the pull channel. You can also have\
         \ some random responses with payload or 410 GONE with\n\"CHANNEL_DELETED\"\
         \ as a payload or 200/204 until the old channel is purged.\n\n**Example usage:**\n\
@@ -7732,7 +7297,8 @@ paths:
           description: Success. The body can contain "REMOVED" if it was deleted by
             this call or "ALREADY_DELETED" if it was deleted before and not purged
             yet.
-        401: *id018
+        401:
+          description: Unauthorized.
       summary: Delete notification Long Poll channel
       tags:
       - Notifications
@@ -7756,11 +7322,11 @@ paths:
         \ and will likely be\nreplaced in future. It is meant only for experimentation\
         \ and not for commercial usage. The proper method\nto receive notifications\
         \ is a **notification callback**.\nThere can only be one notification channel\
-        \ per API key at a time in Device Management Connect. If a notification channel\
-        \ \nof other type already exists for the API key, you need to delete it before\
-        \ creating a long poll notification channel.\n\n**Example usage:**\n\n   \
-        \ curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/pull -H\
-        \ 'authorization: Bearer {api-key}'\n"
+        \ per API key at a time in Device Management Connect. If a callback notification\n\
+        channel already exists, you need to delete it before creating a long poll\
+        \ notification channel, and vice-versa.\n\n**Example usage:**\n\n    curl\
+        \ -X GET https://api.us-east-1.mbedcloud.com/v2/notification/pull -H 'authorization:\
+        \ Bearer {api-key}'\n"
       operationId: longPollNotifications
       produces:
       - application/json
@@ -7772,8 +7338,9 @@ paths:
         204:
           description: No new notifications.
         400:
-          description: Other type of channel already exists.
-        401: *id018
+          description: Callback notification channel already exists.
+        401:
+          description: Unauthorized.
         410:
           description: 'Pull channnel was deleted and waiting to be purged. This code
             is a result of incorrect client behavior (delete channel and then pull),
@@ -7794,105 +7361,6 @@ paths:
       summary: Get notifications using Long Poll
       tags:
       - Notifications
-  /v2/notification/websocket:
-    delete:
-      description: "To delete a notification websocket channel bound to the API key.\
-        \ \nThis is required to change the channel from websocket to another type.\n\
-        \n**Example usage:**\n\n    curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/notification/websocket\
-        \ -H 'authorization: Bearer {api-key}'\n"
-      operationId: deleteWebsocket
-      responses:
-        204: *id020
-        401: *id018
-        403: *id019
-        404:
-          description: Websocket channel doesn't exist
-      summary: Delete websocket channel.
-      tags:
-      - Websocket
-    get:
-      description: "Returns 200 with websocket connection status if websocket channel\
-        \ exists.\n\n**Example usage:**\n\n    curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/websocket\
-        \ -H 'authorization: Bearer {api-key}'\n"
-      operationId: getWebsocket
-      produces:
-      - application/json
-      responses:
-        200:
-          description: Websocket found.
-          schema:
-            $ref: '#/definitions/WebsocketChannel'
-        401: *id018
-        403: *id019
-        404:
-          description: No channel has been registered.
-      summary: Get websocket channel information.
-      tags:
-      - Websocket
-    put:
-      consumes:
-      - application/json
-      description: "Register a channel which will use websocket connection to deliver\
-        \ notifications. The websocket channel should be opened\nby client using `/v2/notification/websocket-connect`\
-        \ endpoint. To get notifications pushed, you also need to place \nthe subscriptions.\
-        \ For more information on notification messages, see [NotificationMessage](#NotificationMessage).\n\
-        \nA websocket channel can have only one active websocket connection at a time.\
-        \ If a websocket connection for a channel exists and a new connection\nto\
-        \ the same channel is made the connection is accepted and the older connection\
-        \ will be closed. \n\n**Expiration of a websocket:**\n\nA websocket channel\
-        \ will be expired if the channel does not have an opened websocket connection\
-        \ for 24 hour period. Channel expiration\nmeans the channel will be deleted\
-        \ and any undelivered notifications stored in its internal queue will be removed.\n\
-        As long as the channel has an opened websocket connection or time between\
-        \ successive websocket connections is less than 24 hours,\nthe channel is\
-        \ considered active, notifications are stored in its internal queue and delivered\
-        \ when a websocket connection is active.\nA channel can be also deleted explicitly\
-        \ by a DELETE call.\n\nMore about [notification sending logic](/docs/current/integrate-web-app/event-notification.html#notification-sending-logic).\n\
-        \n**Example usage:**\n\n    curl -X PUT https://api.us-east-1.mbedcloud.com/v2/notification/websocket\
-        \ -H 'authorization: Bearer {api-key}'\n"
-      operationId: registerWebsocket
-      responses:
-        200:
-          description: Channel successfully registered.
-          schema:
-            $ref: '#/definitions/WebsocketChannel'
-        400:
-          description: Other type of channel already exists.
-        401: *id018
-        403: *id019
-      summary: Register a websocket channel
-      tags:
-      - Websocket
-  /v2/notification/websocket-connect:
-    get:
-      description: "Opens the websocket connection.\n\nA websocket channel can have\
-        \ only one active websocket connection at a time. If a websocket connection\
-        \ for a channel exists and a new connection\nto the same channel is made the\
-        \ connection is accepted and the older connection will be closed. \n"
-      operationId: connectWebsocket
-      parameters:
-      - default: Upgrade
-        in: header
-        name: Connection
-        required: true
-        type: string
-      - default: websocket
-        in: header
-        name: Upgrade
-        required: true
-        type: string
-      responses:
-        101:
-          description: Switching protocols
-        400:
-          description: Other type of channel already exists.
-        404:
-          description: Websocket channel has not been registered.
-        426:
-          description: Upgrade required. Connect and/or Upgrade headers missing.
-      summary: Open the websocket.
-      tags:
-      - Websocket
   /v2/subscriptions:
     delete:
       description: "Removes pre-subscriptions.\n\n**Example usage:**\n\n    curl -X\
@@ -9129,7 +8597,7 @@ paths:
         required: true
         type: string
       - description: The name of the branding color.
-        enum: *id016
+        enum: *id012
         in: path
         name: reference
         required: true
@@ -9168,7 +8636,7 @@ paths:
         required: true
         type: string
       - description: The name of the branding color.
-        enum: *id016
+        enum: *id012
         in: path
         name: reference
         required: true
@@ -9210,7 +8678,7 @@ paths:
         required: true
         type: string
       - description: The name of the branding color.
-        enum: *id016
+        enum: *id012
         in: path
         name: reference
         required: true
@@ -9340,7 +8808,7 @@ paths:
         required: true
         type: string
       - description: The name of the branding color.
-        enum: *id016
+        enum: *id012
         in: path
         name: reference
         required: true
@@ -9379,7 +8847,7 @@ paths:
         required: true
         type: string
       - description: The name of the branding color.
-        enum: *id016
+        enum: *id012
         in: path
         name: reference
         required: true
@@ -9421,7 +8889,7 @@ paths:
         required: true
         type: string
       - description: The name of the branding color.
-        enum: *id016
+        enum: *id012
         in: path
         name: reference
         required: true
@@ -9505,7 +8973,7 @@ paths:
         required: true
         type: string
       - description: Name of the branding images (icon or picture).
-        enum: *id017
+        enum: *id013
         in: path
         name: reference
         required: true
@@ -9545,7 +9013,7 @@ paths:
         required: true
         type: string
       - description: Name of the branding images (icon or picture).
-        enum: *id017
+        enum: *id013
         in: path
         name: reference
         required: true
@@ -9588,7 +9056,7 @@ paths:
         required: true
         type: string
       - description: Name of the branding images (icon or picture).
-        enum: *id017
+        enum: *id013
         in: path
         name: reference
         required: true
@@ -9679,7 +9147,7 @@ paths:
         required: true
         type: string
       - description: Name of the branding images (icon or picture).
-        enum: *id017
+        enum: *id013
         in: path
         name: reference
         required: true
@@ -9719,7 +9187,7 @@ paths:
         required: true
         type: string
       - description: Name of the branding images (icon or picture).
-        enum: *id017
+        enum: *id013
         in: path
         name: reference
         required: true
@@ -9762,7 +9230,7 @@ paths:
         required: true
         type: string
       - description: Name of the branding images (icon or picture).
-        enum: *id017
+        enum: *id013
         in: path
         name: reference
         required: true
@@ -12813,7 +12281,7 @@ paths:
       operationId: resetDarkColor
       parameters:
       - description: The name of the branding color.
-        enum: *id016
+        enum: *id012
         in: path
         name: reference
         required: true
@@ -12847,7 +12315,7 @@ paths:
       operationId: getDarkColor
       parameters:
       - description: The name of the branding color.
-        enum: *id016
+        enum: *id012
         in: path
         name: reference
         required: true
@@ -12884,7 +12352,7 @@ paths:
       operationId: setDarkColor
       parameters:
       - description: The name of the branding color.
-        enum: *id016
+        enum: *id012
         in: path
         name: reference
         required: true
@@ -12991,7 +12459,7 @@ paths:
       operationId: resetLightColor
       parameters:
       - description: The name of the branding color.
-        enum: *id016
+        enum: *id012
         in: path
         name: reference
         required: true
@@ -13025,7 +12493,7 @@ paths:
       operationId: getLightColor
       parameters:
       - description: The name of the branding color.
-        enum: *id016
+        enum: *id012
         in: path
         name: reference
         required: true
@@ -13062,7 +12530,7 @@ paths:
       operationId: setLightColor
       parameters:
       - description: The name of the branding color.
-        enum: *id016
+        enum: *id012
         in: path
         name: reference
         required: true
@@ -13132,7 +12600,7 @@ paths:
       operationId: getDarkImageData
       parameters:
       - description: Name of the branding images (icon or picture).
-        enum: *id017
+        enum: *id013
         in: path
         name: reference
         required: true
@@ -13167,7 +12635,7 @@ paths:
       operationId: clearDarkImage
       parameters:
       - description: Name of the branding images (icon or picture).
-        enum: *id017
+        enum: *id013
         in: path
         name: reference
         required: true
@@ -13205,7 +12673,7 @@ paths:
       operationId: uploadDarkImage
       parameters:
       - description: Name of the branding images (icon or picture).
-        enum: *id017
+        enum: *id013
         in: path
         name: reference
         required: true
@@ -13282,7 +12750,7 @@ paths:
       operationId: getLightImageData
       parameters:
       - description: Name of the branding images (icon or picture).
-        enum: *id017
+        enum: *id013
         in: path
         name: reference
         required: true
@@ -13317,7 +12785,7 @@ paths:
       operationId: clearLightImage
       parameters:
       - description: Name of the branding images (icon or picture).
-        enum: *id017
+        enum: *id013
         in: path
         name: reference
         required: true
@@ -13355,7 +12823,7 @@ paths:
       operationId: uploadLightImage
       parameters:
       - description: Name of the branding images (icon or picture).
-        enum: *id017
+        enum: *id013
         in: path
         name: reference
         required: true
@@ -13836,7 +13304,7 @@ paths:
         '
       operationId: deleteCertificateIssuerConfigByID
       parameters:
-      - &id021
+      - &id014
         description: 'The ID of the certificate issuer configuration.
 
           '
@@ -13872,7 +13340,7 @@ paths:
         '
       operationId: getCertificateIssuerConfigByID
       parameters:
-      - *id021
+      - *id014
       responses:
         '200':
           description: OK.
@@ -13909,7 +13377,7 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/CertificateIssuerConfigRequest'
-      - *id021
+      - *id014
       responses:
         '200':
           description: OK.
@@ -14858,214 +14326,6 @@ paths:
         server.
       tags:
       - Developer certificate
-  /v3/device-block-categories/:
-    get:
-      description: List all device block categories. A block category is a short description
-        of why a device was suspended or returned to service.
-      operationId: Block_Categories_list
-      parameters:
-      - description: How many objects to retrieve in the page. The minimum limit is
-          2 and the maximum is 1000. Limit values outside of this range are set to
-          the closest limit.
-        in: query
-        maximum: 1000
-        minimum: 2
-        name: limit
-        type: integer
-      - description: The order of the records based on creation time, `ASC` or `DESC`;
-          by default `ASC`.
-        in: query
-        name: order
-        type: string
-      - description: The ID of The item after which to retrieve the next page.
-        in: query
-        name: after
-        type: string
-      - description: 'Comma-separated list of data fields to return. Currently supported:
-          `total_count`'
-        in: query
-        name: include
-        type: string
-      - description: "URL encoded query string parameter to filter returned data.\n\
-          \n##### Filtering\n\n```?filter={URL encoded query string}```\n\nThe query\
-          \ string is made up of key/value pairs separated by ampersands. So for a\
-          \ query of\n```key1=value1&key2=value2&key3=value3``` this would be encoded\
-          \ as follows:\n```?filter=key1%3Dvalue1%26key2%3Dvalue2%26key3%3Dvalue3```\n\
-          \n###### Filterable fields:\n\nThe below table lists all the fields that\
-          \ can be filtered on with certain filters:\n\n<table>\n  <thead>\n    <tr>\n\
-          \      <th>Field</th>\n      <th>= / __eq / __neq</th>\n      <th>__in /\
-          \  __nin</th>\n      <th>__lte / __gte</th>\n    <tr>\n  <thead>\n  <tbody>\n\
-          \    <tr>\n      <td>id</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n\
-          \      <td>&nbsp;</td>\n    </tr>\n    <tr>\n      <td>created_at</td>\n\
-          \      <td>\u2713</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n \
-          \   </tr>\n  </tbody>\n</table>\n&nbsp;\n\nThe examples below show the queries\
-          \ in *unencoded* form.\n\n###### By id:\n\n```id={id}```\n\n###### On date-time\
-          \ fields:\n\nDate-time fields should be specified in UTC RFC3339 format\
-          \ ```YYYY-MM-DDThh:mm:ss.msZ```. There are three permitted\nvariations:\n\
-          \n* UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z\n* UTC\
-          \ RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z\n* UTC RFC3339\
-          \ shortened - without milliseconds and punctuation e.g. 20161130T162512Z\n\
-          \nDate-time filtering supports three operators:\n\n* equality\n* greater\
-          \ than or equal to &ndash; field name suffixed with ```__gte```\n* less\
-          \ than or equal to &ndash; field name suffixed with ```__lte```\nLower and\
-          \ upper limits to a date-time range may be specified by including both the\
-          \ ```__gte``` and ```__lte``` forms in\nthe filter.\n```{field name}[|__lte|__gte]={UTC\
-          \ RFC3339 date-time}```\n\n##### Multi-field example\n\n```id=maintenance&26created_at__gte=2016-11-30T16:25:12.1234Z```\n\
-          \nEncoded:\n\n```?filter=id%3Dmaintenance%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z```\n\
-          \n##### Filtering with filter operators\n\nString field filtering supports\
-          \ the following operators:\n\n* equality: `__eq`\n* non-equality: `__neq`\n\
-          * in : `__in`\n* not in: `__nin`\n\nFor `__in` and `__nin` filters list\
-          \ of parameters must be comma-separated:\n`id__in=maintenance,destroyed`"
-        in: query
-        name: filter
-        type: string
-      responses:
-        200:
-          description: Ok
-          schema:
-            $ref: '#/definitions/DeviceBlockCategoryPage'
-        400:
-          description: Bad request.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        401:
-          description: Unauthorized.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-      summary: List all device block categories
-  /v3/device-block-categories/{block_category_reference}:
-    get:
-      description: Get a device block category. A block category is a short description
-        of why a device was suspended or returned to service.
-      operationId: Block_Categories_retrieve
-      parameters:
-      - description: The reference of the block category
-        in: path
-        name: block_category_reference
-        required: true
-        type: string
-      responses:
-        200:
-          description: OK
-          schema:
-            $ref: '#/definitions/DeviceBlockCategory'
-        401:
-          description: Unauthorized.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        404:
-          description: Not Found.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-      summary: Get a device block category
-  /v3/device-enrollment-denials:
-    get:
-      description: 'This produces a list of failed attempts to bootstrap using a particular
-        certificate which is blacklisted (trusted_certificate).
-
-        Returned list can be filtered by endpoint name or trusted certificate.
-
-
-        **Example usage:**
-
-        ```
-
-        curl -X GET -H ''Authorization: Bearer <valid access token>'' \
-
-        https://api.us-east-1.mbedcloud.com/v3/device-enrollment-denials?trusted_certificate__eq={cert-id}&endpoint_name__eq={endpoint_name}
-
-        ```
-
-        '
-      operationId: listEnrollmentDenialAttempts
-      parameters:
-      - description: filtering based on trusted certificate id
-        in: query
-        name: trusted_certificate_id__eq
-        type: string
-      - description: filtering based on endpoint name
-        in: query
-        name: endpoint_name__eq
-        type: string
-      - description: Optional parameter for pagination.
-        in: query
-        name: after
-        required: false
-        type: string
-      - description: Optional parameter for pagination.
-        enum:
-        - ASC
-        - DESC
-        in: query
-        name: order
-        required: false
-        type: string
-      - description: Optional parameter for pagination.
-        in: query
-        name: limit
-        required: false
-        type: integer
-      produces:
-      - application/json
-      responses:
-        200:
-          description: Query Success. Responding with List of Devices.
-          schema:
-            $ref: '#/definitions/DenialAttemptsResponse'
-        401:
-          description: JWT validation failed.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        404:
-          description: Id not found.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-      summary: Return list of devices which were denied to bootstrap due to being
-        subjected to blacklisting.
-      tags:
-      - EnrollmentDenials
-  /v3/device-enrollment-denials/{device_enrollment_denial_id}:
-    get:
-      description: 'Query for a single attempt to bootstrap with a blacklisted certificate
-        by ID.
-
-
-        **Example usage:**
-
-        ```
-
-        curl -X GET -H ''Authorization: Bearer <valid access token>'' \
-
-        https://api.us-east-1.mbedcloud.com/v3/device-enrollment-denials/{device_enrollment_denial_id}
-
-        ```
-
-        '
-      operationId: getEnrollmentDenialAttempt
-      parameters:
-      - description: id of the recorded failed bootstrap attempt
-        in: path
-        name: device_enrollment_denial_id
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        200:
-          description: Query Success. Responding with List of Devices.
-          schema:
-            $ref: '#/definitions/BlackListedDeviceData'
-        401:
-          description: JWT validation failed.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        404:
-          description: Id not found.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-      summary: Query for a single device by ID
-      tags:
-      - EnrollmentDenials
   /v3/device-enrollments:
     get:
       description: 'Provides a list of pending and claimed enrollments.
@@ -15129,14 +14389,52 @@ paths:
       responses:
         200:
           description: OK.
+          examples:
+            Success:
+              after: 2d238a89038b4ddb84699dd36a901063
+              data:
+              - account_id: 015fee5d9b3538c98640fbfb00000000
+                claimed_at: '2017-12-13T14:35:10.000Z'
+                created_at: '2017-12-11T14:35:20.009Z'
+                enrolled_device_id: 2d238a89038b4ddb84699dd36a901063
+                enrollment_identity: A-35:e7:72:8a:07:50:3b:3d:75:96:57:52:72:41:0d:78:cc:c6:e5:53:48:c6:65:58:5b:fa:af:4d:2d:73:95:c5
+                etag: '1'
+                expires_at: '2018-01-11T14:35:20.009Z'
+                id: sckv52bebji8dxnxuw3zvnon95u8gshm
+                object: enrollment
+              - account_id: 015fee5d9b3538c98640fbfb00000000
+                created_at: '2017-12-11T14:36:20.009Z'
+                enrolled_device_id: 2d238a89038b4ddb84699dd36a901063
+                enrollment_identity: A-35:e7:72:8a:07:50:3b:3d:75:96:57:52:72:41:0d:78:cc:c6:e5:53:48:c6:65:58:5b:fa:af:4d:2d:73:95:c5
+                etag: '1'
+                expires_at: '2018-01-11T14:35:20.009Z'
+                id: 000v52bebji8dxnxuw3zvnon95u8gshm
+                object: enrollment
+              has_more: true
+              limit: 2
+              object: list
+              order: ASC
+              total_count: 55
           schema:
             $ref: '#/definitions/EnrollmentIdentities'
         400:
           description: Bad request. The access token could not be read.
+          examples:
+            Error:
+              code: 400
+              message: JWT couldn't be read
+              object: error
+              type: validation_error
           schema:
             $ref: '#/definitions/ErrorResponse'
         401:
           description: The provided access token is not valid.
+          examples:
+            Error:
+              code: 401
+              message: The provided JWT was not valid
+              object: error
+              type: invalid_auth
           schema:
             $ref: '#/definitions/ErrorResponse'
       summary: Get enrollment list.
@@ -15176,6 +14474,17 @@ paths:
         201:
           description: Created. The enrollment claim has been created and is waiting
             for the device to connect.
+          examples:
+            Success:
+              account_id: 015fee5d9b3538c98640fbfb00000000
+              claimed_at: '2017-12-13T14:35:10.000Z'
+              created_at: '2017-12-11T14:22:20.009Z'
+              enrolled_device_id: 00005a4e027f0a580a01081c00000000
+              enrollment_identity: A-35:e7:72:8a:07:50:3b:3d:75:96:57:52:72:41:0d:78:cc:c6:e5:53:48:c6:65:58:5b:fa:af:4d:2d:73:95:c5
+              etag: '1'
+              expires_at: '2018-01-11T14:22:20.009Z'
+              id: 015fee4431fd38c98640fbfb00000000
+              object: enrollment
           schema:
             $ref: '#/definitions/EnrollmentIdentity'
         400:
@@ -15184,11 +14493,37 @@ paths:
             $ref: '#/definitions/ErrorResponse'
         401:
           description: The provided access token is not valid.
+          examples:
+            Authentication Error:
+              code: 401
+              message: Provided access token is not valid.
+              object: error
+              request_id: 015fee4431fd38c98640fbfb00000000
+              type: invalid_auth
           schema:
             $ref: '#/definitions/ErrorResponse'
         409:
-          description: Conflict. The identity requested to be added already exists
+          description: 'Conflict. The identity requested to be added already exists
             either on this or another account.
+
+            '
+          examples:
+            Already claimed:
+              code: 409
+              fields:
+              - enrollment_identity: Enrollment identity already claimed
+              message: The requested enrollment identity has already been claimed.
+              object: error
+              request_id: 015fee4431fd38c98640fbfb00000000
+              type: duplicate
+            Conflict:
+              code: 409
+              fields:
+              - enrollment_identity: Enrollment identity already exists
+              message: The requested enrollment identity already exists.
+              object: error
+              request_id: 015fee4431fd38c98640fbfb00000000
+              type: duplicate
           schema:
             $ref: '#/definitions/ErrorResponse'
       summary: Place an enrollment claim for one or several devices.
@@ -15232,24 +14567,56 @@ paths:
         ,,\n, This is also considered to a blank line\n```\n"
       operationId: deleteBulkDeviceEnrollment
       parameters:
-      - description: The `CSV` file containing the enrollment IDs. The maximum file
+      - description: 'The `CSV` file containing the enrollment IDs. The maximum file
           size is 10MB.
+
+          '
         in: formData
         name: enrollment_identities
         required: true
         type: file
       responses:
         201:
-          description: Bulk delete data has been received and asynchronous processing
+          description: 'Bulk delete data has been received and asynchronous processing
             has been started.
+
+            '
+          examples:
+            BulkCreateResponse:
+              properties:
+                account_id: 00005a4e027f0a580a01081c00000000
+                completed_at: null
+                created_at: '2018-06-26T07:41:47.217Z'
+                errors_count: 0
+                errors_report_file: null
+                etag: '1'
+                full_report_file: null
+                id: 00005a4e027f0a580a04567c00000000
+                object: enrollment-identity-bulk-deletes
+                processed_count: 0
+                status: new
+                total_count: 10
           schema:
             $ref: '#/definitions/BulkResponse'
         400:
           description: Bad request.
+          examples:
+            Bad request:
+              code: 400
+              message: Invalid request. Check your request parameters and URL.
+              object: error
+              request_id: 73fb0bd3ec1d452383255dd9a336668c
+              type: bad_request
           schema:
             $ref: '#/definitions/ErrorResponse'
         401:
           description: The provided access token is not valid.
+          examples:
+            Error:
+              code: 401
+              message: The provided JWT was not valid
+              object: error
+              type: invalid_auth
           schema:
             $ref: '#/definitions/ErrorResponse'
       summary: Bulk delete
@@ -15319,18 +14686,55 @@ paths:
       responses:
         200:
           description: Bulk delete entity found
+          examples:
+            BulkResponse:
+              account_id: 00005a4e027f0a580a01081c00000000
+              completed_at: '2018-06-26T09:13:21.308Z'
+              created_at: '2018-06-26T09:12:21.308Z'
+              errors_count: 1
+              errors_report_file: https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-deletes/2d238a89038b4ddb84699dd36a901063/errors_report.csv
+              etag: '1'
+              full_report_file: https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-deletes/2d238a89038b4ddb84699dd36a901063/full_report.csv
+              id: 2d238a89038b4ddb84699dd36a901063
+              object: enrollment-identity-bulk-deletes
+              processed_count: 10
+              status: completed
+              total_count: 10
           schema:
             $ref: '#/definitions/BulkResponse'
         400:
           description: Bad request. The bulk identity is not valid.
+          examples:
+            Bad request:
+              code: 400
+              fields:
+              - bulk_id: Invalid bulk identity
+              message: An error description.
+              object: error
+              request_id: 73fb0bd3ec1d452383255dd9a336668c
+              type: validation_error
           schema:
             $ref: '#/definitions/ErrorResponse'
         401:
           description: The provided access token is not valid.
+          examples:
+            Error:
+              code: 401
+              message: The provided JWT was not valid
+              object: error
+              type: invalid_auth
           schema:
             $ref: '#/definitions/ErrorResponse'
         404:
           description: Not found.
+          examples:
+            Not found:
+              code: 404
+              fields: []
+              message: The requested resource could not be found
+              object: error
+              request_id: 73fb0bd3ec1d452383255dd9a336668c
+              type: not_found
           schema:
             $ref: '#/definitions/ErrorResponse'
       summary: Get bulk delete entity
@@ -15374,24 +14778,55 @@ paths:
         ,,\n, This is also considered to a blank line\n```\n"
       operationId: createBulkDeviceEnrollment
       parameters:
-      - description: The `CSV` file containing the enrollment IDs. The maximum file
+      - description: 'The `CSV` file containing the enrollment IDs. The maximum file
           size is 10MB.
+
+          '
         in: formData
         name: enrollment_identities
         required: true
         type: file
       responses:
         201:
-          description: Bulk upload data has been received and asynchronous processing
+          description: 'Bulk upload data has been received and asynchronous processing
             has been started.
+
+            '
+          examples:
+            BulkResponse:
+              account_id: 00005a4e027f0a580a01081c00000000
+              completed_at: null
+              created_at: '2018-06-26T09:12:21.308Z'
+              errors_count: 0
+              errors_report_file: null
+              etag: '1'
+              full_report_file: null
+              id: 00005a4e017f0a667a01081c00000000
+              object: enrollment-identity-bulk-uploads
+              processed_count: 0
+              status: new
+              total_count: 10
           schema:
             $ref: '#/definitions/BulkResponse'
         400:
           description: Bad request.
+          examples:
+            Bad request:
+              code: 400
+              message: Invalid request. Check your request parameters and URL.
+              object: error
+              request_id: 73fb0bd3ec1d452383255dd9a336668c
+              type: bad_request
           schema:
             $ref: '#/definitions/ErrorResponse'
         401:
           description: The provided access token is not valid.
+          examples:
+            Error:
+              code: 401
+              message: The provided JWT was not valid
+              object: error
+              type: invalid_auth
           schema:
             $ref: '#/definitions/ErrorResponse'
       summary: Bulk upload
@@ -15461,18 +14896,55 @@ paths:
       responses:
         200:
           description: Bulk upload entity found
+          examples:
+            BulkResponse:
+              account_id: 00005a4e027f0a580a01081c00000000
+              completed_at: '2018-06-26T09:13:21.308Z'
+              created_at: '2018-06-26T09:12:21.308Z'
+              errors_count: 1
+              errors_report_file: https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/errors_report.csv
+              etag: '1'
+              full_report_file: https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/full_report.csv
+              id: 2d238a89038b4ddb84699dd36a901063
+              object: enrollment-identity-bulk-uploads
+              processed_count: 10
+              status: completed
+              total_count: 10
           schema:
             $ref: '#/definitions/BulkResponse'
         400:
           description: Bad request. The bulk identity is not valid.
+          examples:
+            Bad request:
+              code: 400
+              fields:
+              - bulk_id: Invalid bulk identity
+              message: An error description.
+              object: error
+              request_id: 73fb0bd3ec1d452383255dd9a336668c
+              type: validation_error
           schema:
             $ref: '#/definitions/ErrorResponse'
         401:
           description: The provided access token is not valid.
+          examples:
+            Error:
+              code: 401
+              message: The provided JWT was not valid
+              object: error
+              type: invalid_auth
           schema:
             $ref: '#/definitions/ErrorResponse'
         404:
           description: Not found.
+          examples:
+            Not found:
+              code: 404
+              fields: []
+              message: The requested resource could not be found
+              object: error
+              request_id: 73fb0bd3ec1d452383255dd9a336668c
+              type: not_found
           schema:
             $ref: '#/definitions/ErrorResponse'
       summary: Get bulk upload entity
@@ -15516,6 +14988,14 @@ paths:
             $ref: '#/definitions/ErrorResponse'
         404:
           description: Not found.
+          examples:
+            Not found:
+              code: 404
+              fields: []
+              message: Enrollment identity not found
+              object: error
+              request_id: 73fb0bd3ec1d452383255dd9a336668c
+              type: not_found
           schema:
             $ref: '#/definitions/ErrorResponse'
       summary: Delete an enrollment by ID.
@@ -15556,6 +15036,14 @@ paths:
             $ref: '#/definitions/ErrorResponse'
         404:
           description: Not found.
+          examples:
+            Not found:
+              code: 404
+              fields: []
+              message: Enrollment identity not found
+              object: error
+              request_id: 73fb0bd3ec1d452383255dd9a336668c
+              type: not_found
           schema:
             $ref: '#/definitions/ErrorResponse'
       summary: Get details of an enrollment by ID.
@@ -15755,9 +15243,9 @@ paths:
         required: true
         schema:
           properties:
-            custom_attributes: *id022
-            description: *id023
-            name: *id024
+            custom_attributes: *id015
+            description: *id016
+            name: *id017
           type: object
       responses:
         '201':
@@ -15840,9 +15328,9 @@ paths:
         required: true
         schema:
           properties:
-            custom_attributes: *id022
-            description: *id023
-            name: *id024
+            custom_attributes: *id015
+            description: *id016
+            name: *id017
           type: object
       responses:
         '200':
@@ -15939,10 +15427,8 @@ paths:
         name: filter
         type: string
       responses:
-        200:
+        204:
           description: Ok.
-          schema:
-            $ref: '#/definitions/DevicePage'
         400:
           description: Bad Request.
           schema:
@@ -16336,85 +15822,69 @@ paths:
           \ can be filtered on with certain filters:\n\n<table>\n  <thead>\n    <tr>\n\
           \      <th>Field</th>\n      <th>= / __eq / __neq</th>\n      <th>__in /\
           \  __nin</th>\n      <th>__lte / __gte</th>\n    <tr>\n  <thead>\n  <tbody>\n\
-          \    <tr>\n      <td>lifecycle_status</td>\n      <td>\u2713</td>\n    \
-          \  <td>\u2713</td>\n      <td>&nbsp;</td>\n    </tr>\n    <tr>\n      <td>account_id</td>\n\
+          \    <tr>\n      <td>account_id</td>\n      <td>\u2713</td>\n      <td>\u2713\
+          </td>\n      <td>&nbsp;</td>\n    </tr>\n    <tr>\n      <td>auto_update</td>\n\
           \      <td>\u2713</td>\n      <td>\u2713</td>\n      <td>&nbsp;</td>\n \
-          \   </tr>\n    <tr>\n      <td>auto_update</td>\n      <td>\u2713</td>\n\
+          \   </tr>\n    <tr>\n      <td>bootstrap_expiration_date</td>\n      <td>\u2713\
+          </td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n    </tr>\n    <tr>\n\
+          \      <td>bootstrapped_timestamp</td>\n      <td>\u2713</td>\n      <td>\u2713\
+          </td>\n      <td>\u2713</td>\n    </tr>\n    <tr>\n      <td>ca_id</td>\n\
+          \      <td>\u2713</td>\n      <td>\u2713</td>\n      <td>&nbsp;</td>\n \
+          \   </tr>\n    <tr>\n      <td>connector_expiration_date</td>\n      <td>\u2713\
+          </td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n    </tr>\n    <tr>\n\
+          \      <td>created_at</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n\
+          \      <td>\u2713</td>\n    </tr>\n    <tr>\n      <td>custom_attributes</td>\n\
+          \      <td>\u2713</td>\n      <td>&nbsp;</td>\n      <td>&nbsp;</td>\n \
+          \   </tr>\n    <tr>\n      <td>deployed_state</td>\n      <td>\u2713</td>\n\
           \      <td>\u2713</td>\n      <td>&nbsp;</td>\n    </tr>\n    <tr>\n   \
-          \   <td>bootstrap_expiration_date</td>\n      <td>\u2713</td>\n      <td>\u2713\
-          </td>\n      <td>\u2713</td>\n    </tr>\n    <tr>\n      <td>bootstrapped_timestamp</td>\n\
-          \      <td>\u2713</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n \
-          \   </tr>\n    <tr>\n      <td>ca_id</td>\n      <td>\u2713</td>\n     \
-          \ <td>\u2713</td>\n      <td>&nbsp;</td>\n    </tr>\n    <tr>\n      <td>connector_expiration_date</td>\n\
-          \      <td>\u2713</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n \
-          \   </tr>\n    <tr>\n      <td>created_at</td>\n      <td>\u2713</td>\n\
-          \      <td>\u2713</td>\n      <td>\u2713</td>\n    </tr>\n    <tr>\n   \
-          \   <td>custom_attributes</td>\n      <td>\u2713</td>\n      <td>&nbsp;</td>\n\
-          \      <td>&nbsp;</td>\n    </tr>\n    <tr>\n      <td>deployed_state</td>\n\
+          \   <td>deployment</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n\
+          \      <td>&nbsp;</td>\n    </tr>\n    <tr>\n      <td>description</td>\n\
           \      <td>\u2713</td>\n      <td>\u2713</td>\n      <td>&nbsp;</td>\n \
-          \   </tr>\n    <tr>\n      <td>deployment</td>\n      <td>\u2713</td>\n\
+          \   </tr>\n    <tr>\n      <td>device_class</td>\n      <td>\u2713</td>\n\
           \      <td>\u2713</td>\n      <td>&nbsp;</td>\n    </tr>\n    <tr>\n   \
-          \   <td>description</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n\
-          \      <td>&nbsp;</td>\n    </tr>\n    <tr>\n      <td>device_class</td>\n\
+          \   <td>device_execution_mode</td>\n      <td>\u2713</td>\n      <td>\u2713\
+          </td>\n      <td>&nbsp;</td>\n    </tr>\n    <tr>\n      <td>device_key</td>\n\
           \      <td>\u2713</td>\n      <td>\u2713</td>\n      <td>&nbsp;</td>\n \
-          \   </tr>\n    <tr>\n      <td>device_execution_mode</td>\n      <td>\u2713\
-          </td>\n      <td>\u2713</td>\n      <td>&nbsp;</td>\n    </tr>\n    <tr>\n\
-          \      <td>device_key</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n\
-          \      <td>&nbsp;</td>\n    </tr>\n    <tr>\n      <td>endpoint_name</td>\n\
-          \      <td>\u2713</td>\n      <td>\u2713</td>\n      <td>&nbsp;</td>\n \
-          \   </tr>\n    <tr>\n      <td>endpoint_type</td>\n      <td>\u2713</td>\n\
+          \   </tr>\n    <tr>\n      <td>endpoint_name</td>\n      <td>\u2713</td>\n\
           \      <td>\u2713</td>\n      <td>&nbsp;</td>\n    </tr>\n    <tr>\n   \
-          \   <td>enrolment_list_timestamp</td>\n      <td>\u2713</td>\n      <td>\u2713\
-          </td>\n      <td>\u2713</td>\n    </tr>\n    <tr>\n      <td>etag</td>\n\
+          \   <td>endpoint_type</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n\
+          \      <td>&nbsp;</td>\n    </tr>\n    <tr>\n      <td>enrolment_list_timestamp</td>\n\
           \      <td>\u2713</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n \
-          \   </tr>\n    <tr>\n      <td>firmware_checksum</td>\n      <td>\u2713\
-          </td>\n      <td>\u2713</td>\n      <td>&nbsp;</td>\n    </tr>\n    <tr>\n\
-          \      <td>host_gateway</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n\
-          \      <td>&nbsp;</td>\n    </tr>\n    <tr>\n      <td>id</td>\n      <td>\u2713\
-          </td>\n      <td>\u2713</td>\n      <td>&nbsp;</td>\n    </tr>\n    <tr>\n\
-          \      <td>manifest</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n\
-          \      <td>&nbsp;</td>\n    </tr>\n    <tr>\n      <td>manifest_timestamp</td>\n\
-          \      <td>\u2713</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n \
-          \   </tr>\n    <tr>\n      <td>mechanism</td>\n      <td>\u2713</td>\n \
+          \   </tr>\n    <tr>\n      <td>etag</td>\n      <td>\u2713</td>\n      <td>\u2713\
+          </td>\n      <td>\u2713</td>\n    </tr>\n    <tr>\n      <td>firmware_checksum</td>\n\
+          \      <td>\u2713</td>\n      <td>\u2713</td>\n      <td>&nbsp;</td>\n \
+          \   </tr>\n    <tr>\n      <td>host_gateway</td>\n      <td>\u2713</td>\n\
+          \      <td>\u2713</td>\n      <td>&nbsp;</td>\n    </tr>\n    <tr>\n   \
+          \   <td>id</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n      <td>&nbsp;</td>\n\
+          \    </tr>\n    <tr>\n      <td>manifest</td>\n      <td>\u2713</td>\n \
           \     <td>\u2713</td>\n      <td>&nbsp;</td>\n    </tr>\n    <tr>\n    \
-          \  <td>mechanism_url</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n\
-          \      <td>&nbsp;</td>\n    </tr>\n    <tr>\n      <td>name</td>\n     \
-          \ <td>\u2713</td>\n      <td>\u2713</td>\n      <td>&nbsp;</td>\n    </tr>\n\
-          \    <tr>\n      <td>serial_number</td>\n      <td>\u2713</td>\n      <td>\u2713\
-          </td>\n      <td>&nbsp;</td>\n    </tr>\n    <tr>\n      <td>state</td>\n\
+          \  <td>manifest_timestamp</td>\n      <td>\u2713</td>\n      <td>\u2713\
+          </td>\n      <td>\u2713</td>\n    </tr>\n    <tr>\n      <td>mechanism</td>\n\
           \      <td>\u2713</td>\n      <td>\u2713</td>\n      <td>&nbsp;</td>\n \
-          \   </tr>\n    <tr>\n      <td>updated_at</td>\n      <td>\u2713</td>\n\
-          \      <td>\u2713</td>\n      <td>\u2713</td>\n    </tr>\n    <tr>\n   \
-          \   <td>vendor_id</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n \
-          \     <td>&nbsp;</td>\n    </tr>\n    <tr>\n      <td>issuer_fingerprint</td>\n\
-          \      <td>\u2713</td>\n      <td>\u2713</td>\n      <td>&nbsp;</td>\n \
-          \   </tr>\n    <tr>\n      <td>lifecycle_status</td>\n      <td>\u2713</td>\n\
+          \   </tr>\n    <tr>\n      <td>mechanism_url</td>\n      <td>\u2713</td>\n\
           \      <td>\u2713</td>\n      <td>&nbsp;</td>\n    </tr>\n    <tr>\n   \
-          \   <td>operator_suspended</td>\n      <td>\u2713</td>\n      <td>\u2713\
-          </td>\n      <td>&nbsp;</td>\n    </tr>\n    <tr>\n      <td>last_operator_suspension_category</td>\n\
-          \      <td>\u2713</td>\n      <td>\u2713</td>\n      <td>&nbsp;</td>\n \
-          \   </tr>\n    <tr>\n      <td>last_operator_suspension_updated_at</td>\n\
-          \      <td>\u2713</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n \
-          \   </tr>\n    <tr>\n      <td>system_suspended</td>\n      <td>\u2713</td>\n\
+          \   <td>name</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n      <td>&nbsp;</td>\n\
+          \    </tr>\n    <tr>\n      <td>serial_number</td>\n      <td>\u2713</td>\n\
           \      <td>\u2713</td>\n      <td>&nbsp;</td>\n    </tr>\n    <tr>\n   \
-          \   <td>last_system_suspension_category</td>\n      <td>\u2713</td>\n  \
-          \    <td>\u2713</td>\n      <td>&nbsp;</td>\n    </tr>\n    <tr>\n     \
-          \ <td>last_system_suspension_updated_at</td>\n      <td>\u2713</td>\n  \
-          \    <td>\u2713</td>\n      <td>\u2713</td>\n    </tr>                \n\
-          \  </tbody>\n</table>\n&nbsp;\n\nThe examples below show the queries in\
-          \ *unencoded* form.\n\n###### By device properties (all properties are filterable):\n\
-          \n```state=[unenrolled|cloud_enrolling|bootstrapped|registered]```\n```device_class={value}```\n\
-          \n###### On date-time fields:\n\nDate-time fields should be specified in\
-          \ UTC RFC3339 format ```YYYY-MM-DDThh:mm:ss.msZ```. There are three permitted\n\
-          variations:\n\n* UTC RFC3339 with milliseconds e.g. 2016-11-30T16:25:12.1234Z\n\
-          * UTC RFC3339 without milliseconds e.g. 2016-11-30T16:25:12Z\n* UTC RFC3339\
-          \ shortened - without milliseconds and punctuation e.g. 20161130T162512Z\n\
-          \nDate-time filtering supports three operators:\n\n* equality\n* greater\
-          \ than or equal to &ndash; field name suffixed with ```__gte```\n* less\
-          \ than or equal to &ndash; field name suffixed with ```__lte```\n\nLower\
-          \ and upper limits to a date-time range may be specified by including both\
-          \ the ```__gte``` and ```__lte``` forms in\nthe filter.\n```{field name}[|__lte|__gte]={UTC\
-          \ RFC3339 date-time}```\n\n###### On device custom attributes:\n\n```custom_attributes__{param}={value}```\n\
+          \   <td>state</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n     \
+          \ <td>&nbsp;</td>\n    </tr>\n    <tr>\n      <td>updated_at</td>\n    \
+          \  <td>\u2713</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n    </tr>\n\
+          \    <tr>\n      <td>vendor_id</td>\n      <td>\u2713</td>\n      <td>\u2713\
+          </td>\n      <td>&nbsp;</td>\n    </tr>\n  </tbody>\n</table>\n&nbsp;\n\n\
+          The examples below show the queries in *unencoded* form.\n\n###### By device\
+          \ properties (all properties are filterable):\n\n```state=[unenrolled|cloud_enrolling|bootstrapped|registered]```\n\
+          ```device_class={value}```\n\n###### On date-time fields:\n\nDate-time fields\
+          \ should be specified in UTC RFC3339 format ```YYYY-MM-DDThh:mm:ss.msZ```.\
+          \ There are three permitted\nvariations:\n\n* UTC RFC3339 with milliseconds\
+          \ e.g. 2016-11-30T16:25:12.1234Z\n* UTC RFC3339 without milliseconds e.g.\
+          \ 2016-11-30T16:25:12Z\n* UTC RFC3339 shortened - without milliseconds and\
+          \ punctuation e.g. 20161130T162512Z\n\nDate-time filtering supports three\
+          \ operators:\n\n* equality\n* greater than or equal to &ndash; field name\
+          \ suffixed with ```__gte```\n* less than or equal to &ndash; field name\
+          \ suffixed with ```__lte```\n\nLower and upper limits to a date-time range\
+          \ may be specified by including both the ```__gte``` and ```__lte``` forms\
+          \ in\nthe filter.\n```{field name}[|__lte|__gte]={UTC RFC3339 date-time}```\n\
+          \n###### On device custom attributes:\n\n```custom_attributes__{param}={value}```\n\
           ```custom_attributes__tag=TAG1```\n\n##### Multi-field example\n\n```state=bootstrapped&created_at__gte=2016-11-30T16:25:12.1234Z&created_at__lte=2016-12-30T00:00:00Z```\n\
           \nEncoded:\n\n```?filter=state%3Dbootstrapped%26created_at__gte%3D2016-11-30T16%3A25%3A12.1234Z%26created_at__lte%3D2016-11-30T00%3A00%3A00Z```\n\
           \n##### Filtering with filter operators\n\nString field filtering supports\
@@ -16605,79 +16075,13 @@ paths:
         '404':
           description: Unable to update device because it can't be found.
       summary: Update a device
-  /v3/devices/{id}/resume:
-    post:
-      description: Returning a device to service restores connectivity to the device.
-        All API functionality is restored.
-      operationId: Device_resume
-      parameters:
-      - in: path
-        name: id
-        required: true
-        type: string
-      - in: body
-        name: Block
-        required: true
-        schema: &id025
-          properties:
-            category:
-              description: The reference of the block category.
-              example: maintenance
-              pattern: '[a-f0-9]{32}'
-              type: string
-            description:
-              description: The most recent description why the device was suspended
-                or returned to service.
-              example: Suspended for maintenance.
-              maxLength: 2000
-              type: string
-          type: object
-      responses:
-        '204':
-          description: Ok - Device returned to service.
-        '400':
-          description: Bad Request.
-        '401':
-          description: Unauthorized.
-        '404':
-          description: Not Found - Could not find device.
-      summary: Return a device to service.
-  /v3/devices/{id}/suspend:
-    post:
-      description: Suspending a device prevents a device from connecting. If a device
-        is currently connected, it will be disconnected. Some API operations will
-        fail while a device is suspended.
-      operationId: Device_suspend
-      parameters:
-      - in: path
-        name: id
-        required: true
-        type: string
-      - in: body
-        name: Block
-        required: true
-        schema: *id025
-      responses:
-        '204':
-          description: Ok - Device suspended.
-        '400':
-          description: Bad Request.
-        '401':
-          description: Unauthorized.
-        '404':
-          description: Not Found - Could not find device.
-      summary: Suspend a device.
   /v3/firmware-images/:
     get:
       description: List all firmware images.
       operationId: Firmware_Image_list
       parameters:
-      - description: How many objects to retrieve in the page. The minimum limit is
-          2 and the maximum is 1000. Limit values outside of this range are set to
-          the closest limit.
+      - description: How many firmware images to retrieve
         in: query
-        maximum: 1000
-        minimum: 2
         name: limit
         type: integer
       - description: ASC or DESC
@@ -16778,385 +16182,15 @@ paths:
           schema:
             $ref: '#/definitions/FirmwareImage'
         '400':
-          description: Cannot validate the data used to create the firmware image.
+          description: 'Validation error: Cannot validate the data used to create
+            the firmware image
+
+            '
         '401':
           description: Not authenticated
         '403':
           description: Forbidden
-        413:
-          description: Firmware image too large.
       summary: Create an image
-  /v3/firmware-images/upload-jobs:
-    get:
-      description: Get all upload jobs
-      operationId: Upload_Job_List
-      parameters:
-      - description: How many objects to retrieve in the page. The minimum limit is
-          2 and the maximum is 1000. Limit values outside of this range are set to
-          the closest limit.
-        in: query
-        maximum: 1000
-        minimum: 2
-        name: limit
-        type: integer
-      - description: ASC or DESC
-        in: query
-        name: order
-        type: string
-      - description: The ID of the the item after which to retrieve the next page
-        in: query
-        name: after
-        type: string
-      - description: 'A comma-separated list of data fields to return. Currently supported:
-          total_count'
-        in: query
-        name: include
-        type: string
-      - description: "URL-encoded query string parameter to filter returned data\n\
-          \n`?filter={URL-encoded query string}`\n\n###### Filterable fields:\n\n\
-          The table lists all the fields that can be filtered on with certain filters:\n\
-          \n<table>\n  <thead>\n    <tr>\n      <th>Field</th>\n      <th>= / __eq\
-          \ / __neq</th>\n      <th>__in /  __nin</th>\n      <th>__lte / __gte</th>\n\
-          \    <tr>\n  <thead>\n  <tbody>\n    <tr>\n      <td>name</td>\n      <td>\u2713\
-          </td>\n      <td>\u2713</td>\n      <td>&nbsp;</td>\n    </tr>\n    <tr>\n\
-          \      <td>description</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n\
-          \      <td>&nbsp;</td>\n    </tr>\n    <tr>\n      <td>complete</td>\n \
-          \     <td>\u2713</td>\n      <td>\u2713</td>\n    </tr>\n    <tr>\n    \
-          \  <td>id</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n      <td>&nbsp;</td>\n\
-          \    </tr>\n    <tr>\n      <td>firmware_image_id</td>\n      <td>\u2713\
-          </td>\n      <td>\u2713</td>\n      <td>&nbsp;</td>\n    </tr>\n    <tr>\n\
-          \      <td>status</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n \
-          \     <td>&nbsp;</td>\n    </tr>\n    <tr>\n      <td>created_at</td>\n\
-          \      <td>\u2713</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n \
-          \   </tr>\n    <tr>\n      <td>etag</td>\n      <td>\u2713</td>\n      <td>\u2713\
-          </td>\n      <td>\u2713</td>\n    </tr>\n    <tr>\n      <td>updated_at</td>\n\
-          \      <td>\u2713</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n \
-          \   </tr>\n  </tbody>\n</table>\n&nbsp;\n\nThe query string is made up of\
-          \ key-value pairs separated by ampersands. For example, this query:\n`key1=value1&key2=value2&key3=value3`\n\
-          \nwould be URL-encoded as:\n`?filter=key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3`\n\
-          \n\n**Filtering by properties**\n`name__eq=myimage`\n\n**Filtering on date-time\
-          \ fields**\n\nDate-time fields should be specified in UTC RFC3339 format,\
-          \ `YYYY-MM-DDThh:mm:ss.msZ`. There are three permitted variations:\n\n*\
-          \ UTC RFC3339 with milliseconds. Example: `2016-11-30T16:25:12.1234Z`\n\
-          * UTC RFC3339 without milliseconds. Example: `2016-11-30T16:25:12Z`\n* UTC\
-          \ RFC3339 shortened without milliseconds and punctuation. Example: `20161130T162512Z`\n\
-          \nDate-time filtering supports three operators:\n\n* equality by appending\
-          \ `__eq` to the field name\n* greater than or equal to by appending `__gte`\
-          \ to the field name\n* less than or equal to by appending `__lte` to the\
-          \ field name\n\n`{field name}[|__eq|__lte|__gte]={UTC RFC3339 date-time}`\n\
-          \nTime ranges may be specified by including both the `__gte` and `__lte`\
-          \ forms in the filter. For example:\n\n`created_at__gte=2016-11-30T16:25:12.1234Z&created_at__lte=2016-12-30T00:00:00Z`\n\
-          \n**Filtering on multiple fields**\n\n`name__eq=myimage&created_at__gte=2016-11-30T16:25:12.1234Z&created_at__lte=2016-12-30T00:00:00Z`\n\
-          \n**Filtering with filter operators**\n\nString field filtering supports\
-          \ the following operators:\n\n* equality: `__eq`\n* non-equality: `__neq`\n\
-          * in : `__in`\n* not in: `__nin`\n\nFor `__in` and `__nin` filters list\
-          \ of parameters must be comma-separated:\n\n`name__in=fw-image1,fw-image2`"
-        in: query
-        name: filter
-        type: string
-      responses:
-        200:
-          description: Ok
-          schema:
-            $ref: '#/definitions/UploadJobPage'
-        400:
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        401:
-          description: Not Authenticated
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-      summary: Get all upload jobs
-    post:
-      description: Create a new upload job
-      operationId: Upload_Job_Create
-      parameters:
-      - description: Upload job
-        in: body
-        name: Upload job
-        required: true
-        schema:
-          properties:
-            description: *id026
-            name: *id027
-          type: object
-      responses:
-        201:
-          description: Success - New job created
-          headers:
-            Location:
-              description: URL of the metadata for the created Upload Job
-              type: string
-          schema:
-            $ref: '#/definitions/UploadJob'
-        400:
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        401:
-          description: Not Authenticated
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        409:
-          description: Conflict
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-      summary: Create a new upload job
-  /v3/firmware-images/upload-jobs/{upload_job_id}:
-    delete:
-      description: Delete an upload job
-      operationId: Upload_Job_Delete
-      parameters:
-      - description: Upload job
-        in: path
-        name: upload_job_id
-        required: true
-        type: string
-      responses:
-        204:
-          description: Job deleted - no content to show
-        400:
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        401:
-          description: Not Authenticated
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        404:
-          description: Not Found
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-      summary: Delete an upload job
-    get:
-      description: Get an upload job
-      operationId: Upload_Job_Retrieve
-      parameters:
-      - description: Upload job
-        in: path
-        name: upload_job_id
-        required: true
-        type: string
-      responses:
-        200:
-          description: Ok
-          schema:
-            $ref: '#/definitions/UploadJob'
-        401:
-          description: Not Authenticated
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        404:
-          description: Not Found
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-      summary: Get an upload job
-    put:
-      description: Update an upload job
-      operationId: Upload_Job_Update
-      parameters:
-      - description: Upload job id
-        in: path
-        name: upload_job_id
-        required: true
-        type: string
-      - description: Upload job
-        in: body
-        name: Upload job
-        required: true
-        schema:
-          properties:
-            description: *id026
-            name: *id027
-          type: object
-      responses:
-        200:
-          description: Ok
-          schema:
-            $ref: '#/definitions/UploadJob'
-        400:
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        401:
-          description: Not Authenticated
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        404:
-          description: Not Found
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-      summary: Update an upload job
-  /v3/firmware-images/upload-jobs/{upload_job_id}/chunks:
-    get:
-      description: List all metadata for uploaded chunks
-      operationId: Upload_Job_Chunk_List
-      parameters:
-      - description: Upload job
-        in: path
-        name: upload_job_id
-        required: true
-        type: string
-      - description: How many objects to retrieve in the page. The minimum limit is
-          2 and the maximum is 1000. Limit values outside of this range are set to
-          the closest limit.
-        in: query
-        maximum: 1000
-        minimum: 2
-        name: limit
-        type: integer
-      - description: ASC or DESC
-        in: query
-        name: order
-        type: string
-      - description: The ID of the the item after which to retrieve the next page
-        in: query
-        name: after
-        type: string
-      - description: 'A comma-separated list of data fields to return. Currently supported:
-          total_count'
-        in: query
-        name: include
-        type: string
-      - description: "URL-encoded query string parameter to filter returned data\n\
-          \n`?filter={URL-encoded query string}`\n\n###### Filterable fields:\n\n\
-          The table lists all the fields that can be filtered on with certain filters:\n\
-          \n<table>\n  <thead>\n    <tr>\n      <th>Field</th>\n      <th>= / __eq\
-          \ / __neq</th>\n      <th>__in /  __nin</th>\n      <th>__lte / __gte</th>\n\
-          \    <tr>\n  <thead>\n  <tbody>\n    <tr>\n      <td>created_at</td>\n \
-          \     <td>\u2713</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n  \
-          \  </tr>\n    <tr>\n      <td>etag</td>\n      <td>\u2713</td>\n      <td>\u2713\
-          </td>\n      <td>\u2713</td>\n    </tr>\n    <tr>\n      <td>id</td>\n \
-          \     <td>\u2713</td>\n      <td>\u2713</td>\n      <td>&nbsp;</td>\n  \
-          \  </tr>\n    <tr>\n      <td>updated_at</td>\n      <td>\u2713</td>\n \
-          \     <td>\u2713</td>\n      <td>\u2713</td>\n    </tr>\n    <tr>\n    \
-          \  <td>hash</td>\n      <td>\u2713</td>\n      <td>\u2713</td>\n    </tr>\n\
-          \    <tr>\n      <td>length</td>\n      <td>\u2713</td>\n      <td>\u2713\
-          </td>\n      <td>\u2713</td>\n    </tr>\n  </tbody>\n</table>\n&nbsp;\n\n\
-          The query string is made up of key-value pairs separated by ampersands.\
-          \ For example, this query:\n`key1=value1&key2=value2&key3=value3`\n\nwould\
-          \ be URL-encoded as:\n`?filter=key1__eq%3Dvalue1%26key2__eq%3Dvalue2%26key3__eq%3Dvalue3`\n\
-          \n\n**Filtering by properties**\n`hash__eq=8FS70vXrq5y1VxAAssUMAg==`\n\n\
-          **Filtering on date-time fields**\n\nDate-time fields should be specified\
-          \ in UTC RFC3339 format, `YYYY-MM-DDThh:mm:ss.msZ`. There are three permitted\
-          \ variations:\n\n* UTC RFC3339 with milliseconds. Example: `2016-11-30T16:25:12.1234Z`\n\
-          * UTC RFC3339 without milliseconds. Example: `2016-11-30T16:25:12Z`\n* UTC\
-          \ RFC3339 shortened without milliseconds and punctuation. Example: `20161130T162512Z`\n\
-          \nDate-time filtering supports three operators:\n\n* equality by appending\
-          \ `__eq` to the field name\n* greater than or equal to by appending `__gte`\
-          \ to the field name\n* less than or equal to by appending `__lte` to the\
-          \ field name\n\n`{field name}[|__eq|__lte|__gte]={UTC RFC3339 date-time}`\n\
-          \nTime ranges may be specified by including both the `__gte` and `__lte`\
-          \ forms in the filter. For example:\n\n`created_at__gte=2016-11-30T16:25:12.1234Z&created_at__lte=2016-12-30T00:00:00Z`\n\
-          \n**Filtering on multiple fields**\n\n`status__eq=in_progress&created_at__gte=2016-11-30T16:25:12.1234Z&created_at__lte=2016-12-30T00:00:00Z`\n\
-          \n**Filtering with filter operators**\n\nString field filtering supports\
-          \ the following operators:\n\n* equality: `__eq`\n* non-equality: `__neq`\n\
-          * in : `__in`\n* not in: `__nin`\n\nFor `__in` and `__nin` filters list\
-          \ of parameters must be comma-separated:\n\n`status__in=in_progress,success`"
-        in: query
-        name: filter
-        type: string
-      responses:
-        200:
-          description: Ok
-          schema:
-            $ref: '#/definitions/UploadChunkInfoPage'
-        400:
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        401:
-          description: Not Authenticated
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        404:
-          description: Not Found
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-      summary: List all metadata for uploaded chunks
-    post:
-      consumes:
-      - binary/octet-stream
-      description: Append a chunks to an upload job. To finish a job upload a zero-length
-        chunk.
-      operationId: Upload_Job_Chunk_Create
-      parameters:
-      - description: The base64-encoded binary digest of the body (chunk data).
-        in: header
-        name: Content-MD5
-        required: true
-        type: string
-      - in: header
-        name: Content-Length
-        required: true
-        type: integer
-      - description: Upload job ID
-        in: path
-        name: upload_job_id
-        required: true
-        type: string
-      - description: Chunk
-        in: body
-        name: chunk
-        required: false
-        schema:
-          format: byte
-          type: string
-      responses:
-        201:
-          description: Success - Chunk appended to the upload
-          headers:
-            Content-Location:
-              description: URL of the metadata for the uploaded chunk
-              type: string
-            Location:
-              description: URL of the metadata for the uploaded chunk
-              type: string
-          schema:
-            $ref: '#/definitions/UploadChunkInfo'
-        400:
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        401:
-          description: Not Authenticated
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        404:
-          description: Not Found
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-      summary: Append a chunks to an upload job
-  /v3/firmware-images/upload-jobs/{upload_job_id}/chunks/{chunk_id}:
-    get:
-      description: Get metadata about a chunk
-      operationId: Upload_Job_Chunk_retreive
-      parameters:
-      - description: Upload job
-        in: path
-        name: upload_job_id
-        required: true
-        type: string
-      - description: Chunk
-        in: path
-        name: chunk_id
-        required: true
-        type: string
-      responses:
-        200:
-          description: Ok
-          schema:
-            $ref: '#/definitions/UploadChunkInfo'
-        401:
-          description: Not Authenticated
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        404:
-          description: Not Found
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-      summary: Get metadata about a chunk
   /v3/firmware-images/{image_id}/:
     delete:
       description: Delete a firmware image.
@@ -17203,12 +16237,8 @@ paths:
       description: List firmware manifests.
       operationId: Firmware_Manifest_list
       parameters:
-      - description: How many objects to retrieve in the page. The minimum limit is
-          2 and the maximum is 1000. Limit values outside of this range are set to
-          the closest limit.
+      - description: How many firmware manifests to retrieve
         in: query
-        maximum: 1000
-        minimum: 2
         name: limit
         type: integer
       - description: ASC or DESC
@@ -18949,12 +17979,8 @@ paths:
       description: Get update campaigns for devices specified by a filter.
       operationId: Update_Campaign_list
       parameters:
-      - description: How many objects to retrieve in the page. The minimum limit is
-          2 and the maximum is 1000. Limit values outside of this range are set to
-          the closest limit.
+      - description: How many update campaigns to retrieve
         in: query
-        maximum: 1000
-        minimum: 2
         name: limit
         type: integer
       - description: 'The order of the records. Acceptable values: ASC, DESC. Default:
@@ -19080,11 +18106,6 @@ paths:
           description: Not authenticated
         '404':
           description: Update campaign can't be found
-        409:
-          description: Conflict - Cannot delete the campaign while in the current
-            phase.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
       summary: Delete a campaign
     get:
       description: Get an update campaign.
@@ -19174,12 +18195,8 @@ paths:
         name: campaign_id
         required: true
         type: string
-      - description: How many objects to retrieve in the page. The minimum limit is
-          2 and the maximum is 1000. Limit values outside of this range are set to
-          the closest limit.
+      - description: How many objects to retrieve in the page
         in: query
-        maximum: 1000
-        minimum: 2
         name: limit
         type: integer
       - description: ASC or DESC
@@ -19270,123 +18287,6 @@ paths:
         '409':
           description: Cannot start the campaign while in the current phase.
       summary: Start a campaign.
-  /v3/update-campaigns/{campaign_id}/statistics/:
-    get:
-      description: Get a list of statistics for a campaign
-      operationId: Update_Campaign_statistics_list
-      parameters:
-      - description: The campaign ID
-        in: path
-        name: campaign_id
-        required: true
-        type: string
-      responses:
-        200:
-          description: OK
-          schema:
-            $ref: '#/definitions/EventTypeSummaryList'
-        401:
-          description: Not Authenticated
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        404:
-          description: Not Found
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-      summary: Get a list of statistics for a campaign
-  /v3/update-campaigns/{campaign_id}/statistics/{summary_status_id}:
-    get:
-      description: Get a summary status
-      operationId: Update_Campaign_statistics_retrieve
-      parameters:
-      - description: The campaign ID
-        in: path
-        name: campaign_id
-        required: true
-        type: string
-      - description: The summary status. For example, fail
-        in: path
-        name: summary_status_id
-        required: true
-        type: string
-      responses:
-        200:
-          description: OK
-          schema:
-            $ref: '#/definitions/EventTypeSummary'
-        401:
-          description: Not Authenticated
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        404:
-          description: Not Found
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-      summary: Get a summary status
-  /v3/update-campaigns/{campaign_id}/statistics/{summary_status_id}/event_types/:
-    get:
-      description: Get a list of events grouped by summary
-      operationId: Update_Campaign_event_types_list
-      parameters:
-      - description: The campaign ID
-        in: path
-        name: campaign_id
-        required: true
-        type: string
-      - description: The summary status. For example, fail
-        in: path
-        name: summary_status_id
-        required: true
-        type: string
-      responses:
-        200:
-          description: OK
-          schema:
-            $ref: '#/definitions/EventTypeList'
-        401:
-          description: Not Authenticated
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        404:
-          description: Not Found
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-      summary: Get a list of events grouped by summary
-  /v3/update-campaigns/{campaign_id}/statistics/{summary_status_id}/event_types/{event_type_id}:
-    get:
-      description: Get an event type for a campaign
-      operationId: Update_Campaign_event_types_retrieve
-      parameters:
-      - description: The campaign ID
-        in: path
-        name: campaign_id
-        required: true
-        type: string
-      - description: The summary status. For example, fail
-        in: path
-        name: summary_status_id
-        required: true
-        type: string
-      - description: The event type parameter. For example, UPD4_FAIL_101
-        in: path
-        name: event_type_id
-        pattern: ^\w{1,16}$
-        required: true
-        type: string
-      responses:
-        200:
-          description: OK
-          schema:
-            $ref: '#/definitions/EventType'
-        401:
-          description: Not Authenticated
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-        404:
-          description: Not Found
-          schema:
-            $ref: '#/definitions/ErrorResponse'
-      summary: Get an event type for a campaign
   /v3/update-campaigns/{campaign_id}/stop:
     post:
       description: This command will begin the process of stopping a campaign.
