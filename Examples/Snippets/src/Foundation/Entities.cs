@@ -56,7 +56,7 @@ namespace Snippets.src.Foundation
             {
                 // an example: using multiple api keys
                 var allUsers = new List<User>();
-                new List<string> { "ak_1", "ak_2" }.ForEach(k => allUsers.AddRange(new SDK(new Config(k)).Entities.UserRepository().List()));
+                new List<string> { "ak_1", "ak_2" }.ForEach(k => allUsers.AddRange(new SDK(new Config(k)).Entities().UserRepository().List()));
                 // end of example
             }
             catch (CloudApiException e) when (e.ErrorCode == 401)
@@ -77,7 +77,7 @@ namespace Snippets.src.Foundation
             {
                 // an example: using custom hosts
                 var config = new Config(apiKey: "ak_1", host: "https://example");
-                var allUsers = new SDK(config).Entities.UserRepository().List();
+                var allUsers = new SDK(config).Entities().UserRepository().List();
                 // end of example
             }
             catch (CloudApiException)

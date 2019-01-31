@@ -14,8 +14,6 @@ namespace Mbed.Cloud
     {
         private readonly Config _config;
 
-        public EntityFactory Entities { get; }
-
         public Client Client { get; }
 
         /// <summary>
@@ -26,8 +24,6 @@ namespace Mbed.Cloud
         {
             _config = config ?? new Config();
             Client = new Client(_config);
-
-            Entities = new EntityFactory(_config, Client);
         }
 
         /// <summary>
@@ -42,6 +38,11 @@ namespace Mbed.Cloud
             {
                 return _config;
             }
+        }
+
+        public EntityFactory Entities()
+        {
+            return new EntityFactory(_config, Client);
         }
     }
 }
