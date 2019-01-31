@@ -43,8 +43,7 @@ namespace MbedCloudSDK.IntegrationTests.Controllers
         {
             try
             {
-                // TODO get config from initialParams
-                var sdkInstance = _foundationService.CreateSDKInstance(new Config());
+                var sdkInstance = _foundationService.CreateSDKInstance(new Config(initialParams));
                 Response.StatusCode = 201;
                 return Json(sdkInstance.ToJson());
             }

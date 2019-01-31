@@ -62,7 +62,7 @@ namespace MbedCloudSDK.IntegrationTests.Controllers
             try
             {
                 Response.StatusCode = 201;
-                return Json(_foundationService.CreateEntityInstance(entityId, new Config()).ToJson());
+                return Json(_foundationService.CreateEntityInstance(entityId, new Config(initialParams)).ToJson());
             }
             catch (TestServerException e)
             {

@@ -7,6 +7,7 @@ namespace Mbed.Cloud.Foundation.Common
     using MbedCloudSDK.Exceptions;
     using Mbed.Cloud.Foundation.RestClient;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Config for MbedCloud
@@ -108,6 +109,12 @@ namespace Mbed.Cloud.Foundation.Common
 
                 Configuration = clientConfig;
             }
+        }
+
+        internal Config(Dictionary<string, object> initialParams) :
+            this((string)initialParams.FirstOrDefault(p => p.Key == "api_key").Value, (string)initialParams.FirstOrDefault(p => p.Key == "host").Value)
+        {
+            // TODO assign other params from dict
         }
 
         /// <summary>
