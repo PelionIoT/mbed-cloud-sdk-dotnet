@@ -45,7 +45,7 @@ namespace MbedCloudSDK.UnitTests.Common
 
             try
             {
-                iam.ListApiKeys();
+                iam.GetAccount();
             }
             catch (Exception)
             {

@@ -11,7 +11,7 @@ namespace MbedCloudSDK.UnitTests.Common
     {
         private const string apiKey = "someApiKey";
 
-        private const string host = "https://api.us-east-1.mbedcloud.com";
+        private const string host = "https://api.us-west-1.mbedcloud.com";
 
         private const string envPath = ".env";
 
