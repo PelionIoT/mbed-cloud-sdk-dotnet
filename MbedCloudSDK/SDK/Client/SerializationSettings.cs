@@ -34,6 +34,11 @@ namespace Mbed.Cloud.Foundation.RestClient
             return settings;
         }
 
+        /// <summary>
+        /// Gets the deserialization settings.
+        /// </summary>
+        /// <param name="config">The configuration.</param>
+        /// <returns>Serializer Settings</returns>
         public static JsonSerializerSettings GetDeserializationSettings(Config config)
         {
             var settings = GetSerializationSettings();

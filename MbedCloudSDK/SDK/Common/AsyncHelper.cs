@@ -1,3 +1,7 @@
+// <copyright file="AsyncHelper.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
 namespace Mbed.Cloud.Foundation.Common
 {
     using System;
@@ -18,9 +22,9 @@ namespace Mbed.Cloud.Foundation.Common
         /// <summary>
         /// Useful for test server
         /// </summary>
-        /// <param name="task"></param>
-        /// <typeparam name="TResult"></typeparam>
-        /// <returns></returns>
+        /// <typeparam name="TResult">The type of the result.</typeparam>
+        /// <param name="task">The task.</param>
+        /// <returns>Result</returns>
         public static TResult RunSyncWrap<TResult>(Task<TResult> task)
         {
             return RunSync<TResult>(() => task);
@@ -29,8 +33,7 @@ namespace Mbed.Cloud.Foundation.Common
         /// <summary>
         /// Useful for test server
         /// </summary>
-        /// <param name="task"></param>
-        /// <returns></returns>
+        /// <param name="task">The task.</param>
         public static void RunSyncWrapVoid(Task task)
         {
             RunSync(() => task);

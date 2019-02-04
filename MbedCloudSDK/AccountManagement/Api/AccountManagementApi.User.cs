@@ -81,9 +81,9 @@ namespace MbedCloudSDK.AccountManagement.Api
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
-            catch(Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 

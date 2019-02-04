@@ -1,26 +1,66 @@
-using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
-using Mbed.Cloud.Foundation.Common;
-using Newtonsoft.Json;
-using RestSharp;
+// <copyright file="Client.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace Mbed.Cloud.Foundation.RestClient
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Mbed.Cloud.Foundation.Common;
+    using Newtonsoft.Json;
+    using RestSharp;
+
+    /// <summary>
+    /// Client
+    /// </summary>
     public class Client
     {
-        private string dateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
+        /// <summary>
+        /// Default creation of exceptions for a given method name and response object
+        /// </summary>
+        public static readonly ExceptionFactory ExceptionFactory = (methodName, response) =>
+        {
+            var status = (int)response.StatusCode;
+            if (status == 404)
+            {
+                // ignore 404s
+                return null;
+            }
 
-        public Config Config { get; }
+            if (status >= 400)
+            {
+                return new ApiException(
+                    status,
+                    $"Error calling {methodName}: {response.Content}",
+                    response.Content);
+            }
+
+            if (status == 0)
+            {
+                return new ApiException(
+                    status,
+                    $"Error calling {methodName}: {response.ErrorMessage}",
+                    response.ErrorMessage);
+            }
+
+            return null;
+        };
+
+        private readonly ApiClient apiClient;
+        private readonly string dateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
+        private readonly JsonSerializerSettings deserializationSettings;
 
         private readonly JsonSerializerSettings serializationSettings;
-        private readonly JsonSerializerSettings deserializationSettings;
-        private readonly ApiClient apiClient;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Client"/> class.
+        /// </summary>
+        /// <param name="config">The configuration.</param>
         public Client(Config config)
         {
             Config = config;
@@ -29,21 +69,44 @@ namespace Mbed.Cloud.Foundation.RestClient
             apiClient = new ApiClient(Config.Host);
         }
 
+        /// <summary>
+        /// Gets the configuration.
+        /// </summary>
+        /// <value>
+        /// The configuration.
+        /// </value>
+        public Config Config { get; }
+
+        /// <summary>
+        /// Calls the API.
+        /// </summary>
+        /// <typeparam name="T">Type to return</typeparam>
+        /// <param name="path">The path.</param>
+        /// <param name="pathParams">The path parameters.</param>
+        /// <param name="queryParams">The query parameters.</param>
+        /// <param name="headerParams">The header parameters.</param>
+        /// <param name="fileParams">The file parameters.</param>
+        /// <param name="formParams">The form parameters.</param>
+        /// <param name="contentTypes">The content types.</param>
+        /// <param name="accepts">The accepts.</param>
+        /// <param name="bodyParams">The body parameters.</param>
+        /// <param name="method">The method.</param>
+        /// <param name="objectToUnpack">The object to unpack.</param>
+        /// <returns>Task of T</returns>
         public async Task<T> CallApi<T>(
-                    string path,
-                    Dictionary<string, object> pathParams = null,
-                    Dictionary<string, object> queryParams = null,
-                    Dictionary<string, object> headerParams = null,
-                    Dictionary<string, Stream> fileParams = null,
-                    Dictionary<string, object> formParams = null,
-                    string[] contentTypes = null,
-                    string[] accepts = null,
-                    object bodyParams = null,
-                    HttpMethods method = default,
-                    T objectToUnpack = default)
-            where T : class, new()
+                            string path,
+                            Dictionary<string, object> pathParams = null,
+                            Dictionary<string, object> queryParams = null,
+                            Dictionary<string, object> headerParams = null,
+                            Dictionary<string, Stream> fileParams = null,
+                            Dictionary<string, object> formParams = null,
+                            string[] contentTypes = null,
+                            string[] accepts = null,
+                            object bodyParams = null,
+                            HttpMethods method = default,
+                            T objectToUnpack = default)
+                    where T : class, new()
         {
-            // var clientConfiguration = Config.Configuration;
             var localVarPath = path;
             var localVarHeaderParams = new Dictionary<string, string>();
             var localVarPathParams = new Dictionary<string, string>();
@@ -62,7 +125,7 @@ namespace Mbed.Cloud.Foundation.RestClient
                 accepts = new string[] { "application/json" };
             }
 
-            var localVarHttpContentType =  ApiClient.SelectHeaderContentType(contentTypes ?? new string[] { });
+            var localVarHttpContentType = ApiClient.SelectHeaderContentType(contentTypes ?? new string[] { });
 
             var localVarHttpHeaderAccept = ApiClient.SelectHeaderAccept(accepts ?? new string[] { });
 
@@ -138,7 +201,7 @@ namespace Mbed.Cloud.Foundation.RestClient
             // Console.WriteLine(localVarPostBody);
 
             // make the HTTP request
-            var localVarResponse = (IRestResponse) await apiClient.CallApiAsync(
+            var localVarResponse = (IRestResponse)await apiClient.CallApiAsync(
                 localVarPath,
                 (Method)((int)method),
                 localVarQueryParams,
@@ -181,6 +244,33 @@ namespace Mbed.Cloud.Foundation.RestClient
             }
 
             return JsonConvert.DeserializeObject<T>(localVarResponse.Content, deserializationSettings);
+        }
+
+        /// <summary>
+        /// Convert params to key/value pairs.
+        /// Use collectionFormat to properly format lists and collections.
+        /// </summary>
+        /// <param name="collectionFormat">The collection format.</param>
+        /// <param name="name">Key name.</param>
+        /// <param name="value">Value object.</param>
+        /// <returns>
+        /// A list of KeyValuePairs
+        /// </returns>
+        public IEnumerable<KeyValuePair<string, string>> ParameterToKeyValuePairs(string collectionFormat, string name, object value)
+        {
+            var parameters = new List<KeyValuePair<string, string>>();
+
+            if (IsCollection(value) && collectionFormat == "multi")
+            {
+                var valueCollection = value as IEnumerable;
+                parameters.AddRange(from object item in valueCollection select new KeyValuePair<string, string>(name, ParameterToString(item)));
+            }
+            else
+            {
+                parameters.Add(new KeyValuePair<string, string>(name, ParameterToString(value)));
+            }
+
+            return parameters;
         }
 
         /// <summary>
@@ -230,33 +320,6 @@ namespace Mbed.Cloud.Foundation.RestClient
         }
 
         /// <summary>
-        /// Convert params to key/value pairs.
-        /// Use collectionFormat to properly format lists and collections.
-        /// </summary>
-        /// <param name="collectionFormat">The collection format.</param>
-        /// <param name="name">Key name.</param>
-        /// <param name="value">Value object.</param>
-        /// <returns>
-        /// A list of KeyValuePairs
-        /// </returns>
-        public IEnumerable<KeyValuePair<string, string>> ParameterToKeyValuePairs(string collectionFormat, string name, object value)
-        {
-            var parameters = new List<KeyValuePair<string, string>>();
-
-            if (IsCollection(value) && collectionFormat == "multi")
-            {
-                var valueCollection = value as IEnumerable;
-                parameters.AddRange(from object item in valueCollection select new KeyValuePair<string, string>(name, ParameterToString(item)));
-            }
-            else
-            {
-                parameters.Add(new KeyValuePair<string, string>(name, ParameterToString(value)));
-            }
-
-            return parameters;
-        }
-
-        /// <summary>
         /// Serialize an input (model) into JSON string
         /// </summary>
         /// <param name="obj">object.</param>
@@ -274,37 +337,6 @@ namespace Mbed.Cloud.Foundation.RestClient
                 throw new ApiException(500, e.Message);
             }
         }
-
-        /// <summary>
-        /// Default creation of exceptions for a given method name and response object
-        /// </summary>
-        public static readonly ExceptionFactory ExceptionFactory = (methodName, response) =>
-        {
-            var status = (int)response.StatusCode;
-            if (status == 404)
-            {
-                // ignore 404s
-                return null;
-            }
-
-            if (status >= 400)
-            {
-                return new ApiException(
-                    status,
-                    $"Error calling {methodName}: {response.Content}",
-                    response.Content);
-            }
-
-            if (status == 0)
-            {
-                return new ApiException(
-                    status,
-                    $"Error calling {methodName}: {response.ErrorMessage}",
-                    response.ErrorMessage);
-            }
-
-            return null;
-        };
 
         /// <summary>
         /// Check if generic object is a collection.

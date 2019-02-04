@@ -1,3 +1,7 @@
+// <copyright file="PaginatedResponse.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
 namespace Mbed.Cloud.Foundation.Common
 {
     using System;
@@ -109,7 +113,6 @@ namespace Mbed.Cloud.Foundation.Common
                 }
 
                 AsyncHelper.RunSync(() => FetchNextPageAsync());
-
             }
         }
 
