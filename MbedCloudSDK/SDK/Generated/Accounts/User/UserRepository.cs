@@ -84,7 +84,7 @@ namespace Mbed.Cloud.Foundation.Entities
                     options = new UserListOptions();
                 }
 
-                Func<UserListOptions, ResponsePage<User>> paginatedFunc = (UserListOptions _options) => AsyncHelper.RunSync<ResponsePage<User>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<User>>(path: "/v3/users", queryParams: queryParams, method: HttpMethods.GET); });
+                Func<UserListOptions, Task<ResponsePage<User>>> paginatedFunc = async (UserListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<User>>(path: "/v3/users", queryParams: queryParams, method: HttpMethods.GET); };
                 return new PaginatedResponse<UserListOptions, User>(paginatedFunc, options);
             }
             catch (ApiException e)

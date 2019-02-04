@@ -46,14 +46,5 @@ namespace MbedCloudSDK.Exceptions
         /// </summary>
         /// <value>The content of the error.</value>
         public dynamic ErrorContent { get; private set; }
-
-        public object ToJson()
-        {
-            return new
-            {
-                message = Message,
-                traceback = this.InnerException.StackTrace
-            };
-        }
     }
 }

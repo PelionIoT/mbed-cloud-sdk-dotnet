@@ -6,7 +6,7 @@ namespace ConsoleExamples.Examples.Update
 {
     using System;
     using System.Collections.Generic;
-    using MbedCloudSDK.Common.Query;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Update.Model.FirmwareImage;
 
     /// <summary>

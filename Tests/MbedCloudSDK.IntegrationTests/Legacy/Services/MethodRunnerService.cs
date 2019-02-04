@@ -69,6 +69,14 @@ namespace MbedCloudSDK.IntegrationTests.Services
 
                         return tempJson;
                     }
+                    if (methodInfo.ReturnType.Name.StartsWith("PaginatedResponse"))
+                    {
+                        // if return type is a paginator, call all and return as data
+                        return new PaginatedResult
+                        {
+                            Data = methodInfo.ReturnType.GetMethod("All").Invoke(invokedMethod, null),
+                        };
+                    }
 
                 }
                 var result = JsonConvert.SerializeObject(invokedMethod, Formatting.Indented, GetSerializerSettings());

@@ -5,10 +5,12 @@
 namespace MbedCloudSDK.Update.Api
 {
     using System;
+    using System.Threading.Tasks;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
-    using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Exceptions;
     using MbedCloudSDK.Update.Model.Campaign;
+    using update_service.Model;
     using static MbedCloudSDK.Common.Utils;
 
     /// <summary>
@@ -60,7 +62,7 @@ namespace MbedCloudSDK.Update.Api
             }
         }
 
-        private ResponsePage<Campaign> ListCampaignsFunc(QueryOptions options = null)
+        private async Task<ResponsePage<Campaign>> ListCampaignsFunc(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -69,14 +71,10 @@ namespace MbedCloudSDK.Update.Api
 
             try
             {
-                var resp = Api.UpdateCampaignList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
-                var respDevices = new ResponsePage<Campaign>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
-                foreach (var device in resp.Data)
-                {
-                    respDevices.Data.Add(Campaign.Map(device));
-                }
-
-                return respDevices;
+                var resp = await Api.UpdateCampaignListAsync(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
+                var responsePage = new ResponsePage<Campaign>(after: resp.After, hasMore: resp.HasMore, totalCount: resp.TotalCount);
+                responsePage.MapData<UpdateCampaign>(resp.Data, Campaign.Map);
+                return responsePage;
             }
             catch (update_service.Client.ApiException e)
             {
@@ -131,7 +129,7 @@ namespace MbedCloudSDK.Update.Api
             }
         }
 
-        private ResponsePage<CampaignDeviceState> ListCampaignDeviceStatesFunc(QueryOptions options = null)
+        private async Task<ResponsePage<CampaignDeviceState>> ListCampaignDeviceStatesFunc(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -140,14 +138,10 @@ namespace MbedCloudSDK.Update.Api
 
             try
             {
-                var resp = Api.UpdateCampaignMetadataList(campaignId: options.Id, limit: options.Limit, order: options.Order, after: options.After, include: options.Include);
-                var respStates = new ResponsePage<CampaignDeviceState>(after: resp.After, hasMore: resp.HasMore, limit: resp.Limit, order: Convert.ToString(resp.Order), totalCount: resp.TotalCount);
-                foreach (var state in resp.Data)
-                {
-                    respStates.Data.Add(CampaignDeviceState.Map(state));
-                }
-
-                return respStates;
+                var resp = await Api.UpdateCampaignMetadataListAsync(campaignId: options.Id, limit: options.Limit, order: options.Order, after: options.After, include: options.Include);
+                var responsePage = new ResponsePage<CampaignDeviceState>(after: resp.After, hasMore: resp.HasMore, totalCount: resp.TotalCount);
+                responsePage.MapData<CampaignDeviceMetadata>(resp.Data, CampaignDeviceState.Map);
+                return responsePage;
             }
             catch (update_service.Client.ApiException e)
             {

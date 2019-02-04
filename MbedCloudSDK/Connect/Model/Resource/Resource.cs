@@ -8,6 +8,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
     using System.Collections.Generic;
     using System.Collections.Specialized;
     using System.Text;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Connect.Api;
@@ -18,7 +19,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
     /// <summary>
     /// Resource.
     /// </summary>
-    public class Resource : BaseModel
+    public class Resource : Entity
     {
         private Connect.Api.ConnectApi api;
 

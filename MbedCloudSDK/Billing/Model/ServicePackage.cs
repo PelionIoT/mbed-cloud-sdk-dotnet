@@ -5,14 +5,14 @@
 namespace MbedCloudSDK.Billing.Model
 {
     using System;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
     using Newtonsoft.Json;
 
     /// <summary>
     /// ServicePackage
     /// </summary>
-    /// <seealso cref="MbedCloudSDK.Common.BaseModel" />
-    public class ServicePackage : BaseModel
+    public class ServicePackage : Entity
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ServicePackage"/> class.

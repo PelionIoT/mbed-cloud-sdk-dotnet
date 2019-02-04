@@ -6,8 +6,8 @@ namespace ConsoleExamples.Examples.Certificates
 {
     using System;
     using System.Collections.Generic;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Certificates.Model;
-    using MbedCloudSDK.Common.Query;
 
     /// <summary>
     /// Certificate examples

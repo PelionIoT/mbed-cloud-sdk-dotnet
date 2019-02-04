@@ -6,6 +6,8 @@ using MbedCloudSDK.IntegrationTests.Exceptions;
 using MbedCloudSDK.IntegrationTests.ExtensionMethods;
 using MbedCloudSDK.IntegrationTests.Services;
 using Microsoft.AspNetCore.Mvc;
+using MbedCloudSDK.Common.Extensions;
+using MbedCloudSDK.IntegrationTests.Models.Responses;
 
 namespace MbedCloudSDK.IntegrationTests.Controllers
 {
@@ -102,7 +104,12 @@ namespace MbedCloudSDK.IntegrationTests.Controllers
         {
             try
             {
-                return Json(_foundationService.ExecuteMethod(instanceId, methodId, parameters));
+                var pascalMethodId = methodId.SnakeToCamel();
+                var result = _foundationService.ExecuteMethod(instanceId, pascalMethodId, parameters);
+                return Json(new MethodResultResponse
+                {
+                    Payload = result,
+                });
             }
             catch (CloudApiException e)
             {

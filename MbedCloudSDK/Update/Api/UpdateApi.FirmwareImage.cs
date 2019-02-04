@@ -5,8 +5,9 @@
 namespace MbedCloudSDK.Update.Api
 {
     using System.IO;
+    using System.Threading.Tasks;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
-    using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Exceptions;
     using MbedCloudSDK.Update.Model.FirmwareImage;
     using static MbedCloudSDK.Common.Utils;
@@ -60,7 +61,7 @@ namespace MbedCloudSDK.Update.Api
             }
         }
 
-        private ResponsePage<FirmwareImage> ListFirmwareImagesFun(QueryOptions options = null)
+        private async Task<ResponsePage<FirmwareImage>> ListFirmwareImagesFun(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -69,14 +70,10 @@ namespace MbedCloudSDK.Update.Api
 
             try
             {
-                var resp = Api.FirmwareImageList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
-                var respImages = new ResponsePage<FirmwareImage>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
-                foreach (var image in resp.Data)
-                {
-                    respImages.Data.Add(FirmwareImage.Map(image));
-                }
-
-                return respImages;
+                var resp = await Api.FirmwareImageListAsync(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
+                var responsePage = new ResponsePage<FirmwareImage>(after: resp.After, hasMore: resp.HasMore, totalCount: resp.TotalCount);
+                responsePage.MapData<update_service.Model.FirmwareImage>(resp.Data, FirmwareImage.Map);
+                return responsePage;
             }
             catch (update_service.Client.ApiException e)
             {

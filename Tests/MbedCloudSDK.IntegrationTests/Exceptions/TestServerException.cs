@@ -9,14 +9,5 @@ namespace MbedCloudSDK.IntegrationTests.Exceptions
         {
             ErrorCode = errorCode;
         }
-
-        public object ToJson()
-        {
-            return new
-            {
-                message = Message,
-                traceback = string.Empty,
-            };
-        }
     }
 }

@@ -84,7 +84,7 @@ namespace Mbed.Cloud.Foundation.Entities
                     options = new CertificateIssuerListOptions();
                 }
 
-                Func<CertificateIssuerListOptions, ResponsePage<CertificateIssuer>> paginatedFunc = (CertificateIssuerListOptions _options) => AsyncHelper.RunSync<ResponsePage<CertificateIssuer>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<CertificateIssuer>>(path: "/v3/certificate-issuers", queryParams: queryParams, method: HttpMethods.GET); });
+                Func<CertificateIssuerListOptions, Task<ResponsePage<CertificateIssuer>>> paginatedFunc = async (CertificateIssuerListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<CertificateIssuer>>(path: "/v3/certificate-issuers", queryParams: queryParams, method: HttpMethods.GET); };
                 return new PaginatedResponse<CertificateIssuerListOptions, CertificateIssuer>(paginatedFunc, options);
             }
             catch (ApiException e)

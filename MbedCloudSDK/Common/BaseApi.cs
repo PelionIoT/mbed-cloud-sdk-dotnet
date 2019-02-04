@@ -2,6 +2,8 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
+using Mbed.Cloud.Foundation.Common;
+
 namespace MbedCloudSDK.Common
 {
     /// <summary>

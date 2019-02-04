@@ -8,6 +8,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Logging
     using System.Collections.Generic;
     using System.Text;
     using device_directory.Model;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;
@@ -16,7 +17,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Logging
     /// <summary>
     /// Device Event object from Device Catalog API.
     /// </summary>
-    public class DeviceEvent : BaseModel
+    public class DeviceEvent : Entity
     {
         /// <summary>
         /// Gets EventType

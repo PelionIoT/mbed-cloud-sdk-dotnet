@@ -6,6 +6,7 @@ namespace MbedCloudSDK.Connect.Model.Metric
 {
     using System;
     using System.Text;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;
@@ -13,7 +14,7 @@ namespace MbedCloudSDK.Connect.Model.Metric
     /// <summary>
     /// Metric
     /// </summary>
-    public class Metric : BaseModel
+    public class Metric : Entity
     {
         /// <summary>
         /// Gets number of failed bootstraps account has used.

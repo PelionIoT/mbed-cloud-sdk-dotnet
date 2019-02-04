@@ -7,9 +7,9 @@ namespace MbedCloudSDK.AccountManagement.Api
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using iam.Model;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.AccountManagement.Model.ApiKey;
-    using MbedCloudSDK.Common;
-    using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Exceptions;
     using static MbedCloudSDK.Common.Utils;
 
@@ -55,7 +55,7 @@ namespace MbedCloudSDK.AccountManagement.Api
 
             try
             {
-                var pag = new PaginatedResponse<QueryOptions, ApiKey>(ListApiKeysFunc, options);
+                var pag = new PaginatedResponse<QueryOptions, ApiKey>(ListApiKeysFuncAsync, options);
                 return pag;
             }
             catch (CloudApiException)
@@ -64,7 +64,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             }
         }
 
-        private ResponsePage<ApiKey> ListApiKeysFunc(QueryOptions options = null)
+        private async Task<ResponsePage<ApiKey>> ListApiKeysFuncAsync(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -73,14 +73,10 @@ namespace MbedCloudSDK.AccountManagement.Api
 
             try
             {
-                var resp = DeveloperApi.GetAllApiKeys(limit: options.Limit, after: options.After, order: options.Order, include: options.Include, ownerEq: options.Filter.GetFirstValueByKey("owner_id"));
-                var respKeys = new ResponsePage<ApiKey>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
-                foreach (var key in resp.Data)
-                {
-                    respKeys.Data.Add(ApiKey.Map(key));
-                }
-
-                return respKeys;
+                var resp = await DeveloperApi.GetAllApiKeysAsync(limit: options.Limit, after: options.After, order: options.Order, include: options.Include, ownerEq: options.Filter.GetFirstValueByKey("owner_id"));
+                var responsePage = new ResponsePage<ApiKey>(after: resp.After, hasMore: resp.HasMore, resp.TotalCount);
+                responsePage.MapData<ApiKeyInfoResp>(resp.Data, ApiKey.Map);
+                return responsePage;
             }
             catch (iam.Client.ApiException e)
             {

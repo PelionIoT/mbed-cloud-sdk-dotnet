@@ -29,6 +29,17 @@ namespace Mbed.Cloud.Foundation.Common
                 .GetResult();
 
         /// <summary>
+        /// Useful for test server
+        /// </summary>
+        /// <param name="task"></param>
+        /// <typeparam name="TResult"></typeparam>
+        /// <returns></returns>
+        public static TResult RunSyncWrap<TResult>(Task<TResult> task)
+        {
+            return RunSync<TResult>(() => task);
+        }
+
+        /// <summary>
         /// Runs the synchronize.
         /// </summary>
         /// <param name="func">The function.</param>

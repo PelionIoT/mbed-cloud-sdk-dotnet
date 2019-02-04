@@ -4,6 +4,7 @@ namespace Mbed.Cloud.Foundation.Common
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using Newtonsoft.Json;
 
     /// <summary>
@@ -16,30 +17,31 @@ namespace Mbed.Cloud.Foundation.Common
         where TData : Entity
         where TOptions : QueryOptions
     {
-        private readonly List<TData> cache;
-        private readonly Func<TOptions, ResponsePage<TData>> getDataFunc;
+        private readonly List<TData> cache = new List<TData>();
+        private readonly Func<TOptions, Task<ResponsePage<TData>>> apiCallFunction;
         private readonly TOptions options;
         private readonly long pageLimit;
         private long pages;
         private long totalItems;
+        private bool hasMore = true;
         private IEnumerator<TData> iterator;
         private ResponsePage<TData> page;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PaginatedResponse{TOptions, TData}"/> class.
         /// </summary>
-        /// <param name="getDataFunc">The get data function.</param>
+        /// <param name="apiCallFunction">The get data function.</param>
         /// <param name="options">The options.</param>
-        public PaginatedResponse(Func<TOptions, ResponsePage<TData>> getDataFunc, TOptions options)
+        public PaginatedResponse(Func<TOptions, Task<ResponsePage<TData>>> apiCallFunction, TOptions options)
         {
-            this.getDataFunc = getDataFunc;
+            this.apiCallFunction = apiCallFunction;
             this.options = options;
-            page = GetPage();
-            iterator = page.Data.GetEnumerator();
+
             totalItems = 0;
-            pages = 1;
+            pages = 0;
             pageLimit = long.MaxValue;
 
+            // limit has been used instead of maxResults
             if (this.options.Limit.HasValue)
             {
                 this.options.MaxResults = this.options.Limit;
@@ -47,17 +49,15 @@ namespace Mbed.Cloud.Foundation.Common
 
             if (this.options.MaxResults.HasValue)
             {
+                this.options.Limit = this.options.MaxResults;
                 var pageSize = this.options.PageSize ?? this.options.Limit;
                 this.options.PageSize = pageSize;
                 pageLimit = (long)Math.Ceiling((double)this.options.MaxResults.Value / (pageSize ?? 1));
             }
-
-            cache = new List<TData>();
-            cache.AddRange(page.Data);
         }
 
-        [JsonProperty]
-        private List<TData> Data { get => page.Data; }
+        // [JsonProperty]
+        // private IEnumerable<TData> Data { get => All(); }
 
         /// <summary>
         /// Get all items
@@ -76,66 +76,55 @@ namespace Mbed.Cloud.Foundation.Common
         }
 
         /// <summary>
-        /// The first item
-        /// </summary>
-        /// <returns>If no caching, then first item from current page</returns>
-        public TData First()
-        {
-            return cache.FirstOrDefault();
-        }
-
-        /// <summary>
         /// Get Enumerator
         /// </summary>
         /// <returns>Data</returns>
         public IEnumerator<TData> GetEnumerator()
         {
-            if (page == null)
+            if (page == null && hasMore)
             {
+                // first run of paginator
+                AsyncHelper.RunSync(() => FetchNextPageAsync());
+            }
+            else if (page == null && !hasMore)
+            {
+                // data is in the cache so just return that
                 foreach (var item in cache)
                 {
                     yield return item;
                 }
             }
-            else
+
+            while (page != null)
             {
-                while (page != null)
+                while (iterator.MoveNext())
                 {
-                    iterator.Reset();
-                    while (iterator.MoveNext())
+                    if (options.PageSize != null && totalItems > options.MaxResults)
                     {
-                        if (options.PageSize != null && totalItems > options.MaxResults)
-                        {
-                            yield break;
-                        }
-
-                        totalItems++;
-                        yield return iterator.Current;
+                        yield break;
                     }
 
-                    if (page.HasMore)
-                    {
-                        FetchNextPage();
-                    }
-                    else
-                    {
-                        break;
-                    }
+                    totalItems++;
+                    yield return iterator.Current;
                 }
+
+                AsyncHelper.RunSync(() => FetchNextPageAsync());
+
             }
         }
 
-        private void FetchNextPage()
+        private async Task FetchNextPageAsync()
         {
-            if (!page.HasMore || pages >= pageLimit)
+            if (page != null && (!page.HasMore || pages >= pageLimit))
             {
                 page = null;
                 iterator = null;
+                hasMore = false;
                 return;
             }
 
             pages++;
-            page = GetPage();
+            page = await GetPageAsync();
             iterator = page.Data.GetEnumerator();
             cache.AddRange(page.Data);
         }
@@ -151,9 +140,9 @@ namespace Mbed.Cloud.Foundation.Common
             return GetEnumerator();
         }
 
-        private ResponsePage<TData> GetPage()
+        private async Task<ResponsePage<TData>> GetPageAsync()
         {
-            var page = getDataFunc.Invoke(options);
+            var page = await apiCallFunction.Invoke(options);
             options.After = page.Data.LastOrDefault()?.Id;
             return page;
         }

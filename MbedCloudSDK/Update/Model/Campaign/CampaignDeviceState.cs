@@ -6,6 +6,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
 {
     using System;
     using System.Text;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;
@@ -13,7 +14,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
     /// <summary>
     /// Contains information about Device in Update Campaign.
     /// </summary>
-    public class CampaignDeviceState : BaseModel
+    public class CampaignDeviceState : Entity
     {
         /// <summary>
         /// Gets or sets state of the Device in Update Campaign.

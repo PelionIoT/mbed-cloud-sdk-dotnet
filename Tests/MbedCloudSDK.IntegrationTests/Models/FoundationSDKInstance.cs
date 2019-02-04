@@ -31,14 +31,19 @@ namespace MbedCloudSDK.IntegrationTests.Models
             };
         }
 
-        public object ExecuteMethod(string methodId, Dictionary<string, object> parameters)
+        public object ExecuteMethod(string methodId, Dictionary<string, object> parameters = null)
         {
             if (!Methods.ContainsKey(methodId))
             {
                 throw new KeyNotFoundException("no such method");
             }
 
-            // TODO execute method
+            var method = Methods.FirstOrDefault(m => m.Key == methodId).Value;
+            if (method != null)
+            {
+                return method.Call(MyInstance, parameters);
+            }
+
             return null;
         }
     }

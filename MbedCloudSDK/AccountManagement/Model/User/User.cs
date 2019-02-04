@@ -8,6 +8,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;
@@ -16,7 +17,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
     /// <summary>
     /// This object represents a user in Mbed Cloud.
     /// </summary>
-    public class User : BaseModel
+    public class User : Entity
     {
         /// <summary>
         /// Gets the status of the user. INVITED means that the user has not accepted the invitation request. RESET means that the password must be changed immediately.

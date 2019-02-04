@@ -10,6 +10,7 @@ using MbedCloudSDK.Connect.Api.Subscribe.Observers;
 using System.Threading.Tasks;
 using MbedCloudSDK.Connect.Model.Subscription;
 using System.Linq;
+using Mbed.Cloud.Foundation.Common;
 
 namespace ConsoleExamples.Examples.Subscribe
 {

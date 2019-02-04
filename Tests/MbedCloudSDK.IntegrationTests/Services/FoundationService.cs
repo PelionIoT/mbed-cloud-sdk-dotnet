@@ -97,7 +97,7 @@ namespace MbedCloudSDK.IntegrationTests.Services
             }
         }
 
-        public object ExecuteMethod(string instanceId, string methodId, Dictionary<string, object> parameters)
+        public object ExecuteMethod(string instanceId, string methodId, Dictionary<string, object> parameters = null)
         {
             try
             {

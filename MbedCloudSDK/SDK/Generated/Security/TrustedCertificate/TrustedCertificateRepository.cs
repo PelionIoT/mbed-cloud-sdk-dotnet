@@ -97,7 +97,7 @@ namespace Mbed.Cloud.Foundation.Entities
                     options = new TrustedCertificateListOptions();
                 }
 
-                Func<TrustedCertificateListOptions, ResponsePage<TrustedCertificate>> paginatedFunc = (TrustedCertificateListOptions _options) => AsyncHelper.RunSync<ResponsePage<TrustedCertificate>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<TrustedCertificate>>(path: "/v3/trusted-certificates", queryParams: queryParams, method: HttpMethods.GET); });
+                Func<TrustedCertificateListOptions, Task<ResponsePage<TrustedCertificate>>> paginatedFunc = async (TrustedCertificateListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<TrustedCertificate>>(path: "/v3/trusted-certificates", queryParams: queryParams, method: HttpMethods.GET); };
                 return new PaginatedResponse<TrustedCertificateListOptions, TrustedCertificate>(paginatedFunc, options);
             }
             catch (ApiException e)

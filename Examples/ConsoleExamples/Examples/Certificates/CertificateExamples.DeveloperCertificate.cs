@@ -5,9 +5,9 @@
 namespace ConsoleExamples.Examples.Certificates
 {
     using System;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Certificates.Api;
     using MbedCloudSDK.Certificates.Model;
-    using MbedCloudSDK.Common;
 
     /// <summary>
     /// Certificate examples

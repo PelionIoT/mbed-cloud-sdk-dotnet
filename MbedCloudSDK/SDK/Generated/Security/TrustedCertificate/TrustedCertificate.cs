@@ -74,7 +74,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public int? DeviceExecutionMode
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>

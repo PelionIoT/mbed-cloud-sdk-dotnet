@@ -21,7 +21,7 @@ namespace MbedCloudSDK.IntegrationTests.ExtensionMethods
             return new ErrorResponse
             {
                 Message = exception.Message,
-                Traceback = exception.InnerException != null ? exception.InnerException.StackTrace : exception.StackTrace,
+                Traceback = exception.Message,
             };
         }
     }

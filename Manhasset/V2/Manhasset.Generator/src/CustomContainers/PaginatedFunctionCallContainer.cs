@@ -47,33 +47,16 @@ namespace Manhasset.Generator.src.CustomContainers
 
             return SyntaxFactory.LocalDeclarationStatement(
                 SyntaxFactory.VariableDeclaration(
-                    SyntaxFactory.GenericName(
-                        SyntaxFactory.Identifier("Func"))
-                    .WithTypeArgumentList(
-                        SyntaxFactory.TypeArgumentList(
-                            SyntaxFactory.SeparatedList<TypeSyntax>(
-                                new SyntaxNodeOrToken[]{
-                                    SyntaxFactory.IdentifierName(ListOptionsName),
-                                    SyntaxFactory.Token(SyntaxKind.CommaToken),
-                                    SyntaxFactory.GenericName(
-                                        SyntaxFactory.Identifier("ResponsePage"))
-                                    .WithTypeArgumentList(
-                                        SyntaxFactory.TypeArgumentList(
-                                            SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
-                                                SyntaxFactory.IdentifierName(Returns))))}))))
-                .WithVariables(
-                    SyntaxFactory.SingletonSeparatedList<VariableDeclaratorSyntax>(
-                        SyntaxFactory.VariableDeclarator(
-                            SyntaxFactory.Identifier("paginatedFunc"))
-                        .WithInitializer(
-                            SyntaxFactory.EqualsValueClause(
-                                SyntaxFactory.ParenthesizedLambdaExpression(
-                                    SyntaxFactory.InvocationExpression(
-                                        SyntaxFactory.MemberAccessExpression(
-                                            SyntaxKind.SimpleMemberAccessExpression,
-                                            SyntaxFactory.IdentifierName("AsyncHelper"),
+                            SyntaxFactory.GenericName(
+                                SyntaxFactory.Identifier("Func"))
+                            .WithTypeArgumentList(
+                                SyntaxFactory.TypeArgumentList(
+                                    SyntaxFactory.SeparatedList<TypeSyntax>(
+                                        new SyntaxNodeOrToken[]{
+                                            SyntaxFactory.IdentifierName(ListOptionsName),
+                                            SyntaxFactory.Token(SyntaxKind.CommaToken),
                                             SyntaxFactory.GenericName(
-                                                SyntaxFactory.Identifier("RunSync"))
+                                                SyntaxFactory.Identifier("Task"))
                                             .WithTypeArgumentList(
                                                 SyntaxFactory.TypeArgumentList(
                                                     SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
@@ -82,14 +65,18 @@ namespace Manhasset.Generator.src.CustomContainers
                                                         .WithTypeArgumentList(
                                                             SyntaxFactory.TypeArgumentList(
                                                                 SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
-                                                                    SyntaxFactory.IdentifierName(Returns)))))))))
-                                    .WithArgumentList(
-                                        SyntaxFactory.ArgumentList(
-                                            SyntaxFactory.SingletonSeparatedList<ArgumentSyntax>(
-                                                SyntaxFactory.Argument(
-                                                    SyntaxFactory.ParenthesizedLambdaExpression(
-                                                        getFunctionBlock(paramArgList)
-                                                    ))))))
+                                                                    SyntaxFactory.IdentifierName(Returns)))))))}))))
+                .WithVariables(
+                    SyntaxFactory.SingletonSeparatedList<VariableDeclaratorSyntax>(
+                        SyntaxFactory.VariableDeclarator(
+                            SyntaxFactory.Identifier("paginatedFunc"))
+                        .WithInitializer(
+                            SyntaxFactory.EqualsValueClause(
+                                SyntaxFactory.ParenthesizedLambdaExpression(
+                                    getFunctionBlock(paramArgList)
+                                )
+                                .WithAsyncKeyword(
+                                            SyntaxFactory.Token(SyntaxKind.AsyncKeyword))
                                 .WithParameterList(
                                     SyntaxFactory.ParameterList(
                                         SyntaxFactory.SingletonSeparatedList<ParameterSyntax>(
@@ -115,6 +102,7 @@ namespace Manhasset.Generator.src.CustomContainers
         private ReturnStatementSyntax GetPaginatedReturnStatement(List<SyntaxNodeOrToken> paramArgList)
         {
             return SyntaxFactory.ReturnStatement(
+                SyntaxFactory.AwaitExpression(
                 SyntaxFactory.InvocationExpression(
                     SyntaxFactory.MemberAccessExpression(
                         SyntaxKind.SimpleMemberAccessExpression,
@@ -134,7 +122,7 @@ namespace Manhasset.Generator.src.CustomContainers
                     SyntaxFactory.ArgumentList(
                         SyntaxFactory.SeparatedList<ArgumentSyntax>(
                             paramArgList.ToArray()
-                        ))));
+                        )))));
         }
     }
 }

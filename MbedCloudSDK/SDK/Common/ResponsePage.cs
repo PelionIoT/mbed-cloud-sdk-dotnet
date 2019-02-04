@@ -2,6 +2,8 @@ namespace Mbed.Cloud.Foundation.Common
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
+    using MbedCloudSDK.Common.Extensions;
 
     /// <summary>
     /// Used to access multiple pages of data, either through manually iterating pages or using iterators.
@@ -9,41 +11,32 @@ namespace Mbed.Cloud.Foundation.Common
     /// <typeparam name="T">Response page</typeparam>
     public class ResponsePage<T>
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ResponsePage{T}"/> class.
-        /// </summary>
         public ResponsePage()
         {
         }
+        
+        public ResponsePage(string after, bool? hasMore, int? totalCount)
+        {
+            After = after;
+            HasMore = hasMore ?? false;
+            TotalCount = totalCount;
+        }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ResponsePage{T}"/> class.
-        /// Create new instance of response page.
-        /// </summary>
-        /// <param name="data">data</param>
         public ResponsePage(List<T> data)
         {
             Data = data;
-            TotalCount = data.Count;
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ResponsePage{T}"/> class.
-        /// Create new instance of response page.
-        /// </summary>
-        /// <param name="after">after</param>
-        /// <param name="hasMore">has more</param>
-        /// <param name="limit">limit</param>
-        /// <param name="order">order</param>
-        /// <param name="totalCount">count</param>
-        public ResponsePage(string after, bool? hasMore, int? limit, string order, int? totalCount)
+        public void MapData<TResponseObject>(IEnumerable<TResponseObject> data, Func<TResponseObject, T> mappingFunction)
         {
-            Data = new List<T>();
-            After = after;
-            HasMore = hasMore.Value;
-            TotalCount = totalCount;
-            limit = 0;
-            order = string.Empty;
+            Data = data.Select(item => mappingFunction.Invoke(item));
+            TotalCount = data.Count();
+        }
+
+        public void Add(T item)
+        {
+            var newData = Data.Add(item);
+            Data = newData;
         }
 
         /// <summary>
@@ -69,6 +62,6 @@ namespace Mbed.Cloud.Foundation.Common
         /// <summary>
         /// Gets or sets gets or Sets Data
         /// </summary>
-        public List<T> Data { get; set; }
+        public IEnumerable<T> Data { get; set; } = new List<T>();
     }
 }

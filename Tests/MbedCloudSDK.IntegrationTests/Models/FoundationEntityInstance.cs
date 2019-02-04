@@ -39,7 +39,12 @@ namespace MbedCloudSDK.IntegrationTests.Models
                 throw new KeyNotFoundException("no such method");
             }
 
-            // TODO execute method
+            var method = Methods.FirstOrDefault(m => m.Key == methodId).Value;
+            if (method != null)
+            {
+                return method.Call(MyInstance, parameters);
+            }
+
             return null;
         }
     }
