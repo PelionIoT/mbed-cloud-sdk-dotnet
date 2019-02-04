@@ -101,7 +101,9 @@ namespace MbedCloudSDK.IntegrationTests.Models
                     if (methodInfo.ReturnType.Name.StartsWith("PaginatedResponse"))
                     {
                         // if return type is a paginator, return the data property which ca
-                        return methodInfo.ReturnType.GetMethod("All").Invoke(invokedMethod, null);
+                        var listResponse = methodInfo.ReturnType.GetMethod("All").Invoke(invokedMethod, null);
+                        var serializedResult = JsonConvert.SerializeObject(listResponse, Formatting.Indented, GetSerializerSettings());
+                        return JsonConvert.DeserializeObject(serializedResult);
                     }
                 }
                 var result = JsonConvert.SerializeObject(invokedMethod, Formatting.Indented, GetSerializerSettings());
