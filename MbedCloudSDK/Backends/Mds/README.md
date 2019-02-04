@@ -111,7 +111,7 @@ Class | Method | HTTP request | Description
 *ResourcesApi* | [**DeleteResourcePath**](docs/ResourcesApi.md#deleteresourcepath) | **DELETE** /v2/endpoints/{device-id}/{resourcePath} | Delete a resource path
 *ResourcesApi* | [**ExecuteOrCreateResource**](docs/ResourcesApi.md#executeorcreateresource) | **POST** /v2/endpoints/{device-id}/{resourcePath} | Execute a function on a Resource or create new Object instance
 *ResourcesApi* | [**GetResourceValue**](docs/ResourcesApi.md#getresourcevalue) | **GET** /v2/endpoints/{device-id}/{resourcePath} | Read from a resource
-*ResourcesApi* | [**UpdateResourceValue**](docs/ResourcesApi.md#updateresourcevalue) | **PUT** /v2/endpoints/{device-id}/{resourcePath} | Write to a resource or use write-attributes for a resource
+*ResourcesApi* | [**UpdateResourceValue**](docs/ResourcesApi.md#updateresourcevalue) | **PUT** /v2/endpoints/{device-id}/{resourcePath} | Write to a Resource or use write-attributes (notification rules) for a Resource
 *SubscriptionsApi* | [**AddResourceSubscription**](docs/SubscriptionsApi.md#addresourcesubscription) | **PUT** /v2/subscriptions/{device-id}/{resourcePath} | Subscribe to a resource path
 *SubscriptionsApi* | [**CheckResourceSubscription**](docs/SubscriptionsApi.md#checkresourcesubscription) | **GET** /v2/subscriptions/{device-id}/{resourcePath} | Read subscription status
 *SubscriptionsApi* | [**DeleteEndpointSubscriptions**](docs/SubscriptionsApi.md#deleteendpointsubscriptions) | **DELETE** /v2/subscriptions/{device-id} | Delete subscriptions from an endpoint
@@ -120,6 +120,10 @@ Class | Method | HTTP request | Description
 *SubscriptionsApi* | [**GetEndpointSubscriptions**](docs/SubscriptionsApi.md#getendpointsubscriptions) | **GET** /v2/subscriptions/{device-id} | Read endpoints subscriptions
 *SubscriptionsApi* | [**GetPreSubscriptions**](docs/SubscriptionsApi.md#getpresubscriptions) | **GET** /v2/subscriptions | Get pre-subscriptions
 *SubscriptionsApi* | [**UpdatePreSubscriptions**](docs/SubscriptionsApi.md#updatepresubscriptions) | **PUT** /v2/subscriptions | Set pre-subscriptions
+*WebsocketApi* | [**ConnectWebsocket**](docs/WebsocketApi.md#connectwebsocket) | **GET** /v2/notification/websocket-connect | Open the websocket.
+*WebsocketApi* | [**DeleteWebsocket**](docs/WebsocketApi.md#deletewebsocket) | **DELETE** /v2/notification/websocket | Delete websocket channel.
+*WebsocketApi* | [**GetWebsocket**](docs/WebsocketApi.md#getwebsocket) | **GET** /v2/notification/websocket | Get websocket channel information.
+*WebsocketApi* | [**RegisterWebsocket**](docs/WebsocketApi.md#registerwebsocket) | **PUT** /v2/notification/websocket | Register a websocket channel
 
 
 <a name="documentation-for-models"></a>
@@ -139,6 +143,7 @@ Class | Method | HTTP request | Description
  - [Model.ResourcesData](docs/ResourcesData.md)
  - [Model.SubscriptionsList](docs/SubscriptionsList.md)
  - [Model.Webhook](docs/Webhook.md)
+ - [Model.WebsocketChannel](docs/WebsocketChannel.md)
 
 
 <a name="documentation-for-authorization"></a>
