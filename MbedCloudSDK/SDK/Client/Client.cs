@@ -41,7 +41,7 @@ namespace Mbed.Cloud.Foundation.RestClient
                     object bodyParams = null,
                     HttpMethods method = default,
                     T objectToUnpack = default)
-            where T : new()
+            where T : class, new()
         {
             // var clientConfiguration = Config.Configuration;
             var localVarPath = path;
@@ -165,13 +165,19 @@ namespace Mbed.Cloud.Foundation.RestClient
                     return objectToUnpack;
                 }
 
-                return default(T);
+                return null;
             }
 
             if (objectToUnpack != null)
             {
                 JsonConvert.PopulateObject(localVarResponse.Content, objectToUnpack, deserializationSettings);
                 return objectToUnpack;
+            }
+
+            if ((int)localVarResponse.StatusCode == 404)
+            {
+                // don't return anything for 404
+                return null;
             }
 
             return JsonConvert.DeserializeObject<T>(localVarResponse.Content, deserializationSettings);
@@ -275,6 +281,12 @@ namespace Mbed.Cloud.Foundation.RestClient
         public static readonly ExceptionFactory ExceptionFactory = (methodName, response) =>
         {
             var status = (int)response.StatusCode;
+            if (status == 404)
+            {
+                // ignore 404s
+                return null;
+            }
+
             if (status >= 400)
             {
                 return new ApiException(

@@ -29,6 +29,7 @@ namespace Manhasset.Generator.src.CustomContainers
                 Returns = Returns,
                 EntityName = EntityName,
                 HasRequest = HasRequest,
+                IsVoidTask = IsVoidTask,
             };
 
             methodBody.Add(returnStatement.GetSyntax());

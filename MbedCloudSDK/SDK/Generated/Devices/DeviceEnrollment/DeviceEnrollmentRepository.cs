@@ -48,12 +48,12 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public async Task<DeviceEnrollment> Delete(string id)
+        public async Task Delete(string id)
         {
             try
             {
                 var pathParams = new Dictionary<string, object> { { "id", id }, };
-                return await Client.CallApi<DeviceEnrollment>(path: "/v3/device-enrollments/{id}", pathParams: pathParams, method: HttpMethods.DELETE);
+                await Client.CallApi<DeviceEnrollment>(path: "/v3/device-enrollments/{id}", pathParams: pathParams, method: HttpMethods.DELETE);
             }
             catch (ApiException e)
             {

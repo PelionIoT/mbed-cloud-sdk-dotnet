@@ -49,12 +49,12 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public async Task<TrustedCertificate> Delete(string id)
+        public async Task Delete(string id)
         {
             try
             {
                 var pathParams = new Dictionary<string, object> { { "cert_id", id }, };
-                return await Client.CallApi<TrustedCertificate>(path: "/v3/trusted-certificates/{cert_id}", pathParams: pathParams, method: HttpMethods.DELETE);
+                await Client.CallApi<TrustedCertificate>(path: "/v3/trusted-certificates/{cert_id}", pathParams: pathParams, method: HttpMethods.DELETE);
             }
             catch (ApiException e)
             {

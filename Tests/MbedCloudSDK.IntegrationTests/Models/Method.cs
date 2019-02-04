@@ -63,12 +63,23 @@ namespace MbedCloudSDK.IntegrationTests.Models
                 if (IsAsyncMethod(methodInfo))
                 {
                     var resultTask = methodInfo.Invoke(instance, @params.ToArray());
-                    var returnType = methodInfo.ReturnType.GenericTypeArguments.FirstOrDefault();
-                    var runSync = typeof(AsyncHelper).GetMethods()
-                                                     .FirstOrDefault(m => m.Name == "RunSyncWrap");
-                    var genericRunSync = runSync.MakeGenericMethod(returnType);
 
-                    invokedMethod = genericRunSync.Invoke(null, new[] { resultTask });
+                    if (methodInfo.ReturnType.Name == "Task")
+                    {
+                        // return type is void
+                        var runSyncVoid = typeof(AsyncHelper).GetMethods()
+                                                         .FirstOrDefault(m => m.Name == "RunSyncWrapVoid");
+                        invokedMethod = runSyncVoid.Invoke(null, new[] { resultTask });
+                    }
+                    else
+                    {
+                        var returnType = methodInfo.ReturnType.GenericTypeArguments.FirstOrDefault();
+                        var runSync = typeof(AsyncHelper).GetMethods()
+                                                         .FirstOrDefault(m => m.Name == "RunSyncWrap");
+                        var genericRunSync = runSync.MakeGenericMethod(returnType);
+
+                        invokedMethod = genericRunSync.Invoke(null, new[] { resultTask });
+                    }
                 }
                 else
                 {

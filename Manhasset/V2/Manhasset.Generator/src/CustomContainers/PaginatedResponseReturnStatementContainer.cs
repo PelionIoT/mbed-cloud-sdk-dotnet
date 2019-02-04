@@ -9,7 +9,7 @@ namespace Manhasset.Generator.src.CustomContainers
     {
         public string Returns { get; set; }
         public string ListOptionsName { get; set; }
-        public override ReturnStatementSyntax GetSyntax()
+        public override StatementSyntax GetSyntax()
         {
             return SyntaxFactory.ReturnStatement(
                 SyntaxFactory.ObjectCreationExpression(

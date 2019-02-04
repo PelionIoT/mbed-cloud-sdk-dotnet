@@ -11,7 +11,7 @@ namespace Manhasset.Generator.src.CustomContainers
     {
         public string CustomFunctionName { get; set; }
         public List<ParameterContainer> MethodParams { get; set; }
-        public override ReturnStatementSyntax GetSyntax()
+        public override StatementSyntax GetSyntax()
         {
             var paramList = new List<SyntaxNodeOrToken>();
 

@@ -48,12 +48,12 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public async Task<CertificateIssuerConfig> Delete(string id)
+        public async Task Delete(string id)
         {
             try
             {
                 var pathParams = new Dictionary<string, object> { { "certificate-issuer-configuration-id", id }, };
-                return await Client.CallApi<CertificateIssuerConfig>(path: "/v3/certificate-issuer-configurations/{certificate-issuer-configuration-id}", pathParams: pathParams, method: HttpMethods.DELETE);
+                await Client.CallApi<CertificateIssuerConfig>(path: "/v3/certificate-issuer-configurations/{certificate-issuer-configuration-id}", pathParams: pathParams, method: HttpMethods.DELETE);
             }
             catch (ApiException e)
             {

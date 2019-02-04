@@ -48,12 +48,12 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public async Task<ApiKey> Delete(string id)
+        public async Task Delete(string id)
         {
             try
             {
                 var pathParams = new Dictionary<string, object> { { "apikey_id", id }, };
-                return await Client.CallApi<ApiKey>(path: "/v3/api-keys/{apikey_id}", pathParams: pathParams, method: HttpMethods.DELETE);
+                await Client.CallApi<ApiKey>(path: "/v3/api-keys/{apikey_id}", pathParams: pathParams, method: HttpMethods.DELETE);
             }
             catch (ApiException e)
             {

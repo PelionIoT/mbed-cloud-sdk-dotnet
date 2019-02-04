@@ -18,8 +18,9 @@ namespace Manhasset.Generator.src.CustomContainers
         public string Returns { get; set; }
         public string EntityName { get; set; }
         public bool HasRequest { get; set; }
+        public bool IsVoidTask { get; set; }
 
-        public override ReturnStatementSyntax GetSyntax()
+    public override StatementSyntax GetSyntax()
         {
             var paramArgList = new List<SyntaxNodeOrToken>();
 
@@ -59,8 +60,7 @@ namespace Manhasset.Generator.src.CustomContainers
                 paramArgList.Add(GetVariableArg("request", "objectToUnpack"));
             }
 
-            return SyntaxFactory.ReturnStatement(
-                SyntaxFactory.AwaitExpression(
+            var statementBody = SyntaxFactory.AwaitExpression(
                     SyntaxFactory.InvocationExpression(
                         SyntaxFactory.MemberAccessExpression(
                             SyntaxKind.SimpleMemberAccessExpression,
@@ -75,7 +75,13 @@ namespace Manhasset.Generator.src.CustomContainers
                         SyntaxFactory.ArgumentList(
                             SyntaxFactory.SeparatedList<ArgumentSyntax>(
                                 paramArgList.ToArray()
-                            )))));
+                            ))));
+            if (IsVoidTask)
+            {
+                return SyntaxFactory.ExpressionStatement(statementBody);
+            }
+
+            return SyntaxFactory.ReturnStatement(statementBody);
         }
     }
 }
