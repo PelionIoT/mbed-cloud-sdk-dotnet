@@ -98,16 +98,16 @@ namespace Mbed.Cloud.Foundation.Common
                 ForceClear = forceClear;
                 AutostartNotifications = autostartNotifications;
 
-                var clientConfig = new Configuration
-                {
-                    BasePath = Host,
-                    DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ",
-                };
-                clientConfig.AddApiKey("Authorization", ApiKey);
-                clientConfig.AddApiKeyPrefix("Authorization", AuthorizationPrefix);
-                clientConfig.CreateApiClient();
+                // var clientConfig = new Configuration
+                // {
+                //     BasePath = Host,
+                //     DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ",
+                // };
+                // clientConfig.AddApiKey("Authorization", ApiKey);
+                // clientConfig.AddApiKeyPrefix("Authorization", AuthorizationPrefix);
+                // clientConfig.CreateApiClient();
 
-                Configuration = clientConfig;
+                // Configuration = clientConfig;
             }
         }
 
@@ -134,14 +134,14 @@ namespace Mbed.Cloud.Foundation.Common
         /// </summary>
         public bool AutostartNotifications { get; }
 
-        /// <summary>
-        /// Gets the configuration.
-        /// </summary>
-        /// <value>
-        /// The configuration.
-        /// </value>
-        [JsonIgnore]
-        public Configuration Configuration { get; internal set; }
+        // /// <summary>
+        // /// Gets the configuration.
+        // /// </summary>
+        // /// <value>
+        // /// The configuration.
+        // /// </value>
+        // [JsonIgnore]
+        // public Configuration Configuration { get; internal set; }
 
         /// <summary>
         /// Gets a value indicating whether to clear any existing notification channels
