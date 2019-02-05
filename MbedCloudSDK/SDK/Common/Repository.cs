@@ -1,28 +1,38 @@
-using Mbed.Cloud.Foundation.RestClient;
+// <copyright file="Repository.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace Mbed.Cloud.Foundation.Common
 {
+    using Mbed.Cloud.Foundation.RestClient;
+
+    /// <summary>
+    /// Repository
+    /// </summary>
     public class Repository
     {
-        private readonly Config _config;
-
+        /// <summary>
+        /// The client
+        /// </summary>
         protected readonly Client Client;
 
         /// <summary>
-        /// Gets or sets the configuration.
+        /// Initializes a new instance of the <see cref="Repository"/> class.
+        /// </summary>
+        /// <param name="config">The configuration.</param>
+        /// <param name="client">The client.</param>
+        public Repository(Config config = null, Client client = null)
+        {
+            Config = config ?? new Config();
+            Client = client ?? new Client(Config);
+        }
+
+        /// <summary>
+        /// Gets the configuration.
         /// </summary>
         /// <value>
         /// The configuration.
         /// </value>
-        public Config Config
-        {
-            get => _config;
-        }
-
-        public Repository(Config config = null, Client client = null)
-        {
-            _config = config ?? new Config();
-            Client = client ?? new Client(_config);
-        }
+        public Config Config { get; }
     }
 }

@@ -7,7 +7,7 @@ namespace ConsoleExamples.Examples.Connect
     using System;
     using System.Collections.Generic;
     using MbedCloudSDK.Common;
-    using MbedCloudSDK.Common.Query;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Connect.Api;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
 

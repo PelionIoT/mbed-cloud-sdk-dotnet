@@ -40,7 +40,7 @@ namespace Mbed.Cloud.Foundation.Entities
         {
             try
             {
-                var bodyParams = new Device { AutoUpdate = request.AutoUpdate, BootstrapExpirationDate = request.BootstrapExpirationDate, BootstrappedTimestamp = request.BootstrappedTimestamp, CaId = request.CaId, ConnectorExpirationDate = request.ConnectorExpirationDate, CustomAttributes = request.CustomAttributes, Deployment = request.Deployment, Description = request.Description, DeviceClass = request.DeviceClass, DeviceExecutionMode = request.DeviceExecutionMode, DeviceKey = request.DeviceKey, EndpointName = request.EndpointName, EndpointType = request.EndpointType, FirmwareChecksum = request.FirmwareChecksum, HostGateway = request.HostGateway, IssuerFingerprint = request.IssuerFingerprint, Manifest = request.Manifest, Mechanism = request.Mechanism, MechanismUrl = request.MechanismUrl, Name = request.Name, SerialNumber = request.SerialNumber, State = request.State, VendorId = request.VendorId, };
+                var bodyParams = new Device { AutoUpdate = request.AutoUpdate, BootstrapExpirationDate = request.BootstrapExpirationDate, BootstrappedTimestamp = request.BootstrappedTimestamp, CaId = request.CaId, ConnectorExpirationDate = request.ConnectorExpirationDate, CustomAttributes = request.CustomAttributes, Deployment = request.Deployment, Description = request.Description, DeviceClass = request.DeviceClass, DeviceExecutionMode = request.DeviceExecutionMode, DeviceKey = request.DeviceKey, EndpointName = request.EndpointName, EndpointType = request.EndpointType, FirmwareChecksum = request.FirmwareChecksum, HostGateway = request.HostGateway, Manifest = request.Manifest, Mechanism = request.Mechanism, MechanismUrl = request.MechanismUrl, Name = request.Name, SerialNumber = request.SerialNumber, State = request.State, VendorId = request.VendorId, };
                 return await Client.CallApi<Device>(path: "/v3/devices/", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: request);
             }
             catch (ApiException e)
@@ -49,12 +49,12 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public async Task<Device> Delete(string id)
+        public async Task Delete(string id)
         {
             try
             {
                 var pathParams = new Dictionary<string, object> { { "id", id }, };
-                return await Client.CallApi<Device>(path: "/v3/devices/{id}/", pathParams: pathParams, method: HttpMethods.DELETE);
+                await Client.CallApi<Device>(path: "/v3/devices/{id}/", pathParams: pathParams, method: HttpMethods.DELETE);
             }
             catch (ApiException e)
             {
@@ -84,7 +84,7 @@ namespace Mbed.Cloud.Foundation.Entities
                     options = new DeviceListOptions();
                 }
 
-                Func<DeviceListOptions, ResponsePage<Device>> paginatedFunc = (DeviceListOptions _options) => AsyncHelper.RunSync<ResponsePage<Device>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<Device>>(path: "/v3/devices/", queryParams: queryParams, method: HttpMethods.GET); });
+                Func<DeviceListOptions, Task<ResponsePage<Device>>> paginatedFunc = async (DeviceListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<Device>>(path: "/v3/devices/", queryParams: queryParams, method: HttpMethods.GET); };
                 return new PaginatedResponse<DeviceListOptions, Device>(paginatedFunc, options);
             }
             catch (ApiException e)

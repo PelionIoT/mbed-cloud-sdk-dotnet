@@ -5,14 +5,14 @@
 namespace MbedCloudSDK.Billing.Model
 {
     using System;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
     using Newtonsoft.Json;
 
     /// <summary>
     /// QuotaHistory
     /// </summary>
-    /// <seealso cref="MbedCloudSDK.Common.BaseModel" />
-    public class QuotaHistory : BaseModel
+    public class QuotaHistory : Entity
     {
         /// <summary>
         /// Gets the created at.

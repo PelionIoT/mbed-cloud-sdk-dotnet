@@ -6,8 +6,9 @@ namespace MbedCloudSDK.Update.Api
 {
     using System;
     using System.IO;
+    using System.Threading.Tasks;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
-    using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Exceptions;
     using MbedCloudSDK.Update.Model.FirmwareManifest;
     using static MbedCloudSDK.Common.Utils;
@@ -53,7 +54,7 @@ namespace MbedCloudSDK.Update.Api
 
             try
             {
-                return new PaginatedResponse<QueryOptions, FirmwareManifest>(ListFirmwareManifestsFun, options);
+                return new PaginatedResponse<QueryOptions, FirmwareManifest>(ListFirmwareManifestsFunc, options);
             }
             catch (CloudApiException)
             {
@@ -61,7 +62,7 @@ namespace MbedCloudSDK.Update.Api
             }
         }
 
-        private ResponsePage<FirmwareManifest> ListFirmwareManifestsFun(QueryOptions options = null)
+        private async Task<ResponsePage<FirmwareManifest>> ListFirmwareManifestsFunc(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -70,14 +71,10 @@ namespace MbedCloudSDK.Update.Api
 
             try
             {
-                var resp = Api.FirmwareManifestList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
-                var respManifests = new ResponsePage<FirmwareManifest>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
-                foreach (var manifest in resp.Data)
-                {
-                    respManifests.Data.Add(FirmwareManifest.Map(manifest));
-                }
-
-                return respManifests;
+                var resp = await Api.FirmwareManifestListAsync(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
+                var responsePage = new ResponsePage<FirmwareManifest>(resp.After, resp.HasMore, resp.TotalCount);
+                responsePage.MapData<update_service.Model.FirmwareManifest>(resp.Data, FirmwareManifest.Map);
+                return responsePage;
             }
             catch (update_service.Client.ApiException e)
             {

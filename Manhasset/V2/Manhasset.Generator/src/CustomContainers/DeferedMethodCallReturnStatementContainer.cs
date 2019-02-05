@@ -8,7 +8,7 @@ namespace Manhasset.Generator.src.CustomContainers
     {
         public string MethodName { get; set; }
         public string DeferedEntity { get; set; }
-        public override ReturnStatementSyntax GetSyntax()
+        public override StatementSyntax GetSyntax()
         {
             return SyntaxFactory.ReturnStatement(
                 SyntaxFactory.AwaitExpression(

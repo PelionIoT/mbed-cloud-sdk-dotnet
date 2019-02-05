@@ -5,6 +5,8 @@
 namespace MbedCloudSDK.Connect.Api
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Connect.Model.Metric;
     using MbedCloudSDK.Exceptions;
@@ -63,11 +65,11 @@ namespace MbedCloudSDK.Connect.Api
             }
         }
 
-        private ResponsePage<Metric> ListMetricsFunc(MetricQueryOptions options)
+        private async Task<ResponsePage<Metric>> ListMetricsFunc(MetricQueryOptions options)
         {
             try
             {
-                var resp = StatisticsApi.V3MetricsGet(
+                var resp = await StatisticsApi.V3MetricsGetAsync(
                     include: options.Include,
                         interval: options.Interval,
                         start: options.Start,
@@ -76,13 +78,9 @@ namespace MbedCloudSDK.Connect.Api
                         limit: options.Limit,
                         after: options.After,
                         order: options.Order);
-                var respMetrics = new ResponsePage<Metric>(after: resp.After, hasMore: resp.HasMore, limit: resp.Limit, order: null, totalCount: resp.TotalCount);
-                foreach (var metric in resp.Data)
-                {
-                    respMetrics.Data.Add(Metric.Map(metric));
-                }
-
-                return respMetrics;
+                var responsePage = new ResponsePage<Metric>(after: resp.After, hasMore: resp.HasMore, totalCount: resp.TotalCount);
+                responsePage.MapData<statistics.Model.Metric>(resp.Data, Metric.Map);
+                return responsePage;
             }
             catch (statistics.Client.ApiException e)
             {

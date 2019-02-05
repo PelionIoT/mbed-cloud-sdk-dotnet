@@ -52,7 +52,7 @@ namespace MbedCloudSDK.UnitTests.Foundation
 
             Assert.AreEqual("ak_1", sdk.Config.ApiKey);
 
-            var user = sdk.Entities.UserRepository();
+            var user = sdk.Entities().UserRepository();
             Assert.AreEqual("ak_1", user.Config.ApiKey);
 
             var sdk2 = new SDK(config);

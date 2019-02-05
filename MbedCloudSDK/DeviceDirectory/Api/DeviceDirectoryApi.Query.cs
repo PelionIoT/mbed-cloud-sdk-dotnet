@@ -4,9 +4,11 @@
 
 namespace MbedCloudSDK.DeviceDirectory.Api
 {
+    using System.Threading.Tasks;
+    using device_directory.Model;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
-    using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.DeviceDirectory.Model.Query;
     using MbedCloudSDK.Exceptions;
 
@@ -59,7 +61,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
             }
         }
 
-        private ResponsePage<Query> ListDeviceQueriesFunc(QueryOptions options = null)
+        private async Task<ResponsePage<Query>> ListDeviceQueriesFunc(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -68,14 +70,10 @@ namespace MbedCloudSDK.DeviceDirectory.Api
 
             try
             {
-                var resp = Api.DeviceQueryList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
-                var respDevices = new ResponsePage<Query>(resp.After, resp.HasMore, (int?)resp.Limit, resp.Order, (int?)resp.TotalCount);
-                foreach (var deviceQuery in resp.Data)
-                {
-                    respDevices.Data.Add(Query.Map(deviceQuery));
-                }
-
-                return respDevices;
+                var resp = await Api.DeviceQueryListAsync(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
+                var responsePage = new ResponsePage<Query>(after: resp.After, hasMore: resp.HasMore, totalCount: resp.TotalCount);
+                responsePage.MapData<DeviceQuery>(resp.Data, Query.Map);
+                return responsePage;
             }
             catch (device_directory.Client.ApiException e)
             {

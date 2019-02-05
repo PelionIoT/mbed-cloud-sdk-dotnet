@@ -1,14 +1,18 @@
 using System;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
-namespace MbedCloudSDK.IntegrationTests.Models
+namespace MbedCloudSDK.IntegrationTests.Foundation.Models
 {
-    public class Instance
+    public class Instance<T>
     {
         public string Id { get; set; }
-        [JsonConverter(typeof(ModuleEnumConverter))]
-        public ModuleEnum Module { get; set; }
         public DateTime CreatedAt { get; set; }
+        public T MyInstance { get; set; }
+
+        public Instance(T instance)
+        {
+            MyInstance = instance;
+            Id = Guid.NewGuid().ToString();
+            CreatedAt = DateTime.Now;
+        }
     }
 }

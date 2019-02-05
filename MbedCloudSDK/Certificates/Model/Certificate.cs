@@ -7,6 +7,7 @@ namespace MbedCloudSDK.Certificates.Model
     using System;
     using System.Text;
     using iam.Model;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Certificates.Api;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
@@ -15,7 +16,7 @@ namespace MbedCloudSDK.Certificates.Model
     /// <summary>
     /// Certificate
     /// </summary>
-    public class Certificate : BaseModel
+    public class Certificate : Entity
     {
         /// <summary>
         /// Gets type of Certificate

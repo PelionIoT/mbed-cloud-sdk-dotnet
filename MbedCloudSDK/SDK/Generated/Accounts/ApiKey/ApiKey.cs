@@ -89,7 +89,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// status
         /// </summary>
-        public ApiKeyStatusEnum? Status
+        public ApiKeyStatus? Status
         {
             get;
             set;

@@ -25,7 +25,7 @@ namespace Snippets.src.Foundation
                 var connectedDevices = new DeviceRepository()
                     .List()
                     .All()
-                    .Where(d => d.State == DeviceStateEnum.REGISTERED)
+                    .Where(d => d.State == DeviceState.REGISTERED)
                     .ToList();
 
                 // cloak

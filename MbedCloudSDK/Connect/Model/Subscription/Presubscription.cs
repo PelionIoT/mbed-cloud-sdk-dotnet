@@ -8,6 +8,7 @@ namespace MbedCloudSDK.Connect.Model.Subscription
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Connect.Model.Notifications;
@@ -15,7 +16,7 @@ namespace MbedCloudSDK.Connect.Model.Subscription
     /// <summary>
     /// Presubscription
     /// </summary>
-    public class Presubscription : BaseModel, IEquatable<Presubscription>
+    public class Presubscription : Entity, IEquatable<Presubscription>
     {
         /// <summary>
         /// Gets or sets the Device ID

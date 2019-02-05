@@ -6,8 +6,8 @@ namespace ConsoleExamples.Examples.AccountManagement
 {
     using System;
     using System.Collections.Generic;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.AccountManagement.Model.Group;
-    using MbedCloudSDK.Common.Query;
 
     /// <summary>
     /// Account management examples

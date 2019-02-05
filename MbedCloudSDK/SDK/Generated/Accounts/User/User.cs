@@ -156,7 +156,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// status
         /// </summary>
-        public UserStatusEnum? Status
+        public UserStatus? Status
         {
             get;
             set;

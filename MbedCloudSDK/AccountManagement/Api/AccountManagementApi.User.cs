@@ -6,10 +6,10 @@ namespace MbedCloudSDK.AccountManagement.Api
 {
     using System;
     using System.Threading.Tasks;
+    using iam.Model;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.AccountManagement.Model.User;
-    using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Filter;
-    using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Exceptions;
     using static MbedCloudSDK.Common.Utils;
 
@@ -63,7 +63,7 @@ namespace MbedCloudSDK.AccountManagement.Api
             }
         }
 
-        private ResponsePage<User> ListUsersFunc(QueryOptions options = null)
+        private async Task<ResponsePage<User>> ListUsersFunc(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -72,18 +72,18 @@ namespace MbedCloudSDK.AccountManagement.Api
 
             try
             {
-                var resp = adminApi.GetAllUsers(limit: options.Limit, order: options.Order, after: options.After, include: options.Include, statusEq: options.Filter.GetFirstValueByKey("status", FilterOperator.Equals), statusIn: options.Filter.GetFirstValueByKey("status", FilterOperator.In), statusNin: options.Filter.GetFirstValueByKey("status", FilterOperator.NotIn));
-                var respUsers = new ResponsePage<User>(resp.After, resp.HasMore, resp.Limit, null, resp.TotalCount);
-                foreach (var user in resp.Data)
-                {
-                    respUsers.Data.Add(User.Map(user));
-                }
-
-                return respUsers;
+                var resp = await adminApi.GetAllUsersAsync(limit: options.Limit, order: options.Order, after: options.After, include: options.Include, statusEq: options.Filter.GetFirstValueByKey("status", FilterOperator.Equals), statusIn: options.Filter.GetFirstValueByKey("status", FilterOperator.In), statusNin: options.Filter.GetFirstValueByKey("status", FilterOperator.NotIn));
+                var responsePage = new ResponsePage<User>(after: resp.After, hasMore: resp.HasMore, totalCount: resp.TotalCount);
+                responsePage.MapData<UserInfoResp>(resp.Data, User.Map);
+                return responsePage;
             }
             catch (device_directory.Client.ApiException e)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
 

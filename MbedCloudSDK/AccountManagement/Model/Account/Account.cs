@@ -9,6 +9,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
     using System.Linq;
     using System.Text;
     using iam.Model;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;
@@ -17,7 +18,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Account
     /// <summary>
     /// Account
     /// </summary>
-    public class Account : BaseModel
+    public class Account : Entity
     {
         /// <summary>
         /// Gets the status of the account.

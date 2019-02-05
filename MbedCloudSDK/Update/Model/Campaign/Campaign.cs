@@ -8,6 +8,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Text;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Common.Filter;
@@ -18,7 +19,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
     /// <summary>
     /// Update campaign object from Update API.
     /// </summary>
-    public class Campaign : BaseModel
+    public class Campaign : Entity
     {
         /// <summary>
         /// Gets or sets state of the update campaign.

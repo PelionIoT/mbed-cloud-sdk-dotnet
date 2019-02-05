@@ -8,6 +8,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
     using System.Linq;
     using device_directory.Api;
     using device_directory.Client;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
 
     /// <summary>

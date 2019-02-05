@@ -11,10 +11,10 @@ namespace MbedCloudSDK.Billing.Api
     using AutoMapper;
     using billing.Api;
     using billing.Model;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Billing.Model;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
-    using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Exceptions;
     using Newtonsoft.Json;
     using RestSharp;
@@ -239,14 +239,14 @@ namespace MbedCloudSDK.Billing.Api
             }
         }
 
-        private ResponsePage<QuotaHistory> ListQuotaHistoryFunc(QueryOptions options)
+        private async System.Threading.Tasks.Task<ResponsePage<QuotaHistory>> ListQuotaHistoryFunc(QueryOptions options)
         {
             try
             {
-                var resp = api.GetServicePackageQuotaHistory(limit: options.Limit, after: options.After);
-                var respQuota = new ResponsePage<QuotaHistory>(resp.After, resp.HasMore, resp.Limit, null, resp.TotalCount);
-                respQuota.Data.AddRange(resp.Data.Select(q => mapper.Map<ServicePackageQuotaHistoryItem, QuotaHistory>(q)));
-                return respQuota;
+                var resp = await api.GetServicePackageQuotaHistoryAsync(limit: options.Limit, after: options.After);
+                var responsePage = new ResponsePage<QuotaHistory>(after: resp.After, hasMore: resp.HasMore, totalCount: resp.TotalCount);
+                responsePage.MapData<ServicePackageQuotaHistoryItem>(resp.Data, mapper.Map<ServicePackageQuotaHistoryItem, QuotaHistory>);
+                return responsePage;
             }
             catch (billing.Client.ApiException e)
             {

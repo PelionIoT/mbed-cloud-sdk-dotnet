@@ -53,7 +53,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// enroll_result
         /// </summary>
-        public CertificateEnrollmentEnrollResultEnum? EnrollResult
+        public CertificateEnrollmentEnrollResult? EnrollResult
         {
             get;
             internal set;
@@ -62,7 +62,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// enroll_status
         /// </summary>
-        public CertificateEnrollmentEnrollStatusEnum? EnrollStatus
+        public CertificateEnrollmentEnrollStatus? EnrollStatus
         {
             get;
             internal set;

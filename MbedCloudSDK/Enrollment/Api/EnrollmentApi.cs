@@ -10,8 +10,8 @@ namespace MbedCloudSDK.Enrollment.Api
     using enrollment.Api;
     using enrollment.Model;
     using Enrollment.Model;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
-    using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.DeviceDirectory.Api;
     using MbedCloudSDK.Exceptions;
     using static MbedCloudSDK.Common.Utils;
@@ -201,14 +201,14 @@ namespace MbedCloudSDK.Enrollment.Api
             }
         }
 
-        private ResponsePage<Enrollment> ListEnrollmentClaimsFunc(QueryOptions options)
+        private async Task<ResponsePage<Enrollment>> ListEnrollmentClaimsFunc(QueryOptions options)
         {
             try
             {
-                var resp = Api.GetDeviceEnrollments(limit: options.Limit, after: options.After, order: options.Order, include: options.Include);
-                var respEnrollments = new ResponsePage<Enrollment>(resp.After, resp.HasMore, resp.Limit, Convert.ToString(resp.Order), resp.TotalCount);
-                resp.Data.ForEach(enrollment => respEnrollments.Data.Add(Enrollment.Map(enrollment)));
-                return respEnrollments;
+                var resp = await Api.GetDeviceEnrollmentsAsync(limit: options.Limit, after: options.After, order: options.Order, include: options.Include);
+                var responsePage = new ResponsePage<Enrollment>(after: resp.After, hasMore: resp.HasMore, totalCount: resp.TotalCount);
+                responsePage.MapData<EnrollmentIdentity>(resp.Data, Enrollment.Map);
+                return responsePage;
             }
             catch (enrollment.Client.ApiException e)
             {

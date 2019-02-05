@@ -11,10 +11,10 @@ namespace MbedCloudSDK.Certificates.Api
     using connector_ca.Client;
     using iam.Api;
     using iam.Model;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Certificates.Model;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
-    using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Exceptions;
     using static MbedCloudSDK.Common.Utils;
 
@@ -430,7 +430,7 @@ namespace MbedCloudSDK.Certificates.Api
             }
         }
 
-        private ResponsePage<Certificate> ListCertificatesFunc(QueryOptions options = null)
+        private async System.Threading.Tasks.Task<ResponsePage<Certificate>> ListCertificatesFunc(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -443,14 +443,15 @@ namespace MbedCloudSDK.Certificates.Api
                 var serviceEq = (type == "developer") ? "bootstrap" : type;
                 var executionMode = (type == "developer") ? new int?(1) : null;
                 var expiredParsed = int.TryParse(options.Filter.GetFirstValueByKey("expires"), NumberStyles.None, null, out int expires);
-                var resp = DeveloperApi.GetAllCertificates(limit: options.Limit, after: options.After, order: options.Order, include: options.Include, serviceEq: serviceEq, expireEq: expiredParsed ? new int?(expires) : null, deviceExecutionModeEq: executionMode, ownerEq: options.Filter.GetFirstValueByKey("owner_id"));
-                var respCertificates = new ResponsePage<Certificate>(resp.After, resp.HasMore, resp.Limit, resp.Order.ToString(), resp.TotalCount);
+
+                var resp = await DeveloperApi.GetAllCertificatesAsync(limit: options.Limit, after: options.After, order: options.Order, include: options.Include, serviceEq: serviceEq, expireEq: expiredParsed ? new int?(expires) : null, deviceExecutionModeEq: executionMode, ownerEq: options.Filter.GetFirstValueByKey("owner_id"));
+                var responsePage = new ResponsePage<Certificate>(after: resp.After, hasMore: resp.HasMore, totalCount: resp.TotalCount);
                 foreach (var certificate in resp.Data)
                 {
-                    respCertificates.Data.Add(Certificate.MapTrustedCert(certificate));
+                    responsePage.Add(Certificate.MapTrustedCert(certificate));
                 }
 
-                return respCertificates;
+                return responsePage;
             }
             catch (iam.Client.ApiException e)
             {

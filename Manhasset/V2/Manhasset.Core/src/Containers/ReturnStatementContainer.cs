@@ -5,7 +5,7 @@ namespace Manhasset.Core.src.Containers
 {
     public class ReturnStatementContainer : BaseContainer
     {
-        public virtual ReturnStatementSyntax GetSyntax()
+        public virtual StatementSyntax GetSyntax()
         {
             return SyntaxFactory.ReturnStatement();
         }

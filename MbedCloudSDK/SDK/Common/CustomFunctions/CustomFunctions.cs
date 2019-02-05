@@ -1,49 +1,104 @@
-using System.IO;
-using System.Threading.Tasks;
-using Mbed.Cloud.Foundation.Entities;
-using RestSharp;
+// <copyright file="CustomFunctions.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace Mbed.Cloud.Foundation.Common
 {
+    using System.IO;
+    using System.Threading.Tasks;
+    using Mbed.Cloud.Foundation.Entities;
+    using RestSharp;
+
+    /// <summary>
+    /// Custom Functions
+    /// </summary>
     public static class CustomFunctions
     {
+        /// <summary>
+        /// Determines whether [is developer certificate getter] [the specified self].
+        /// </summary>
+        /// <param name="self">The self.</param>
+        /// <returns>
+        ///   <c>true</c> if [is developer certificate getter] [the specified self]; otherwise, <c>false</c>.
+        /// </returns>
         public static bool IsDeveloperCertificateGetter(TrustedCertificate self)
         {
             return self.DeviceExecutionMode.HasValue ? (self.DeviceExecutionMode != 0) : false;
         }
 
+        /// <summary>
+        /// Determines whether [is developer certificate getter] [the specified self].
+        /// </summary>
+        /// <param name="self">The self.</param>
+        /// <returns>
+        ///   <c>true</c> if [is developer certificate getter] [the specified self]; otherwise, <c>false</c>.
+        /// </returns>
         public static bool IsDeveloperCertificateGetter(SubtenantTrustedCertificate self)
         {
             return self.DeviceExecutionMode.HasValue ? (self.DeviceExecutionMode != 0) : false;
         }
 
+        /// <summary>
+        /// Determines whether [is developer certificate setter] [the specified self].
+        /// </summary>
+        /// <param name="self">The self.</param>
+        /// <param name="value">The value.</param>
         public static void IsDeveloperCertificateSetter(TrustedCertificate self, bool? value)
         {
             self.DeviceExecutionMode = value.HasValue ? 1 : 0;
             self.IsDeveloperCertificate = value;
         }
 
+        /// <summary>
+        /// Determines whether [is developer certificate setter] [the specified self].
+        /// </summary>
+        /// <param name="self">The self.</param>
+        /// <param name="value">The value.</param>
         public static void IsDeveloperCertificateSetter(SubtenantTrustedCertificate self, bool? value)
         {
             self.DeviceExecutionMode = value.HasValue ? 1 : 0;
             self.IsDeveloperCertificate = value;
         }
 
+        /// <summary>
+        /// Downloads the full report file.
+        /// </summary>
+        /// <param name="repo">The repo.</param>
+        /// <param name="model">The model.</param>
+        /// <returns>File</returns>
         public static Task<Stream> DownloadFullReportFile(DeviceEnrollmentBulkCreateRepository repo, DeviceEnrollmentBulkCreate model)
         {
             return StreamToFile(repo.Config, model.FullReportFile);
         }
 
+        /// <summary>
+        /// Downloads the full report file.
+        /// </summary>
+        /// <param name="repo">The repo.</param>
+        /// <param name="model">The model.</param>
+        /// <returns>File</returns>
         public static Task<Stream> DownloadFullReportFile(DeviceEnrollmentBulkDeleteRepository repo, DeviceEnrollmentBulkDelete model)
         {
             return StreamToFile(repo.Config, model.ErrorsReportFile);
         }
 
+        /// <summary>
+        /// Downloads the errors report file.
+        /// </summary>
+        /// <param name="repo">The repo.</param>
+        /// <param name="model">The model.</param>
+        /// <returns>File</returns>
         public static Task<Stream> DownloadErrorsReportFile(DeviceEnrollmentBulkCreateRepository repo, DeviceEnrollmentBulkCreate model)
         {
             return StreamToFile(repo.Config, model.FullReportFile, "error-report.csv");
         }
 
+        /// <summary>
+        /// Downloads the errors report file.
+        /// </summary>
+        /// <param name="repo">The repo.</param>
+        /// <param name="model">The model.</param>
+        /// <returns>File</returns>
         public static Task<Stream> DownloadErrorsReportFile(DeviceEnrollmentBulkDeleteRepository repo, DeviceEnrollmentBulkDelete model)
         {
             return StreamToFile(repo.Config, model.ErrorsReportFile, "error-report.csv");

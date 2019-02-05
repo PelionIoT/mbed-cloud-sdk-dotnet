@@ -13,5 +13,5 @@ namespace Mbed.Cloud.Foundation.RestClient
     /// <param name="methodName">Method name</param>
     /// <param name="response">Response</param>
     /// <returns>Exceptions</returns>
-    public delegate Exception ExceptionFactory(string methodName, IRestResponse response);
+    public delegate Exception ExceptionFactory(string methodName, IRestResponse response, bool failOnNotFound);
 }

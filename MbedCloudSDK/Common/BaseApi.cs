@@ -4,6 +4,8 @@
 
 namespace MbedCloudSDK.Common
 {
+    using Mbed.Cloud.Foundation.Common;
+
     /// <summary>
     /// Base API.
     /// </summary>

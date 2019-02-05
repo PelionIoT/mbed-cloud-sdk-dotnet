@@ -89,7 +89,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// status
         /// </summary>
-        public DeviceEnrollmentBulkDeleteStatusEnum? Status
+        public DeviceEnrollmentBulkDeleteStatus? Status
         {
             get;
             internal set;

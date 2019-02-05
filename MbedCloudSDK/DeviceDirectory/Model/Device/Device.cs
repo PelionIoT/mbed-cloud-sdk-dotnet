@@ -8,6 +8,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
     using System.Collections.Generic;
     using System.Text;
     using device_directory.Model;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.DeviceDirectory.Api;
@@ -17,7 +18,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Device
     /// <summary>
     /// Device
     /// </summary>
-    public class Device : BaseModel
+    public class Device : Entity
     {
         private readonly DeviceDirectoryApi api;
 

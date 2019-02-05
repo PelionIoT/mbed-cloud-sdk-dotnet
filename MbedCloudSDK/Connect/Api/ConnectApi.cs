@@ -11,6 +11,7 @@ namespace MbedCloudSDK.Connect.Api
     using System.Threading.Tasks;
     using device_directory.Api;
     using device_directory.Client;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
     using MbedCloudSDK.Connect.Model.Notifications;

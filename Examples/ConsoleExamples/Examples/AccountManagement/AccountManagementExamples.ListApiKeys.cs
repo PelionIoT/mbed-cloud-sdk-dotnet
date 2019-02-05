@@ -7,8 +7,8 @@ namespace ConsoleExamples.Examples.AccountManagement
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.AccountManagement.Model.ApiKey;
-    using MbedCloudSDK.Common.Query;
 
     /// <summary>
     /// Account management examples

@@ -19,11 +19,6 @@ namespace Mbed.Cloud.Foundation.RestClient
     /// </summary>
     public class ApiClient
     {
-        private readonly JsonSerializerSettings serializerSettings = new JsonSerializerSettings
-        {
-            ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor
-        };
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class
         /// with default configuration.
@@ -39,12 +34,6 @@ namespace Mbed.Cloud.Foundation.RestClient
             RestClient = new RestClient(basePath ?? "https://api.us-east-1.mbedcloud.com");
             LastApiResponse = new List<IRestResponse>();
         }
-
-        /// <summary>
-        /// Gets or sets the Configuration.
-        /// </summary>
-        /// <value>An instance of the Configuration.</value>
-        public Configuration Configuration { get; set; }
 
         /// <summary>
         /// Gets or sets the LastApiResponse list.
@@ -179,23 +168,6 @@ namespace Mbed.Cloud.Foundation.RestClient
         }
 
         /// <summary>
-        /// Serialize an input (model) into JSON string
-        /// </summary>
-        /// <param name="obj">object.</param>
-        /// <returns>JSON string.</returns>
-        public static string Serialize(string obj)
-        {
-            try
-            {
-                return obj;
-            }
-            catch (Exception e)
-            {
-                throw new ApiException(500, e.Message);
-            }
-        }
-
-        /// <summary>
         /// URL encode a string
         /// Credit/Ref: https://github.com/restsharp/RestSharp/blob/master/RestSharp/Extensions/StringExtensions.cs#L50
         /// </summary>
@@ -270,171 +242,12 @@ namespace Mbed.Cloud.Foundation.RestClient
         }
 
         /// <summary>
-        /// Deserialize the JSON string into a proper object.
-        /// </summary>
-        /// <param name="response">The HTTP response.</param>
-        /// <param name="type">object type.</param>
-        /// <returns>object representation of the JSON string.</returns>
-        public object Deserialize(IRestResponse response, Type type)
-        {
-            var headers = response.Headers;
-            if (type == typeof(byte[]))
-            {
-                return response.RawBytes;
-            }
-
-            if (type == typeof(Stream))
-            {
-                if (headers != null)
-                {
-                    var filePath = Path.GetTempPath();
-                    var regex = new Regex(@"Content-Disposition=.*filename=['""]?([^'""\s]+)['""]?$");
-                    foreach (var header in headers)
-                    {
-                        var match = regex.Match(header.ToString());
-                        if (match.Success)
-                        {
-                            var fileName = filePath + SanitizeFilename(match.Groups[1].Value.Replace("\"", string.Empty).Replace("'", string.Empty));
-                            File.WriteAllBytes(fileName, response.RawBytes);
-                            return new FileStream(fileName, FileMode.Open);
-                        }
-                    }
-                }
-
-                var stream = new MemoryStream(response.RawBytes);
-                return stream;
-            }
-
-            if (type.Name.StartsWith("System.Nullable`1[[System.DateTime"))
-            {
-                return DateTime.Parse(response.Content, null, System.Globalization.DateTimeStyles.RoundtripKind);
-            }
-
-            if (type == typeof(string) || type.Name.StartsWith("System.Nullable"))
-            {
-                return ConvertType(response.Content, type);
-            }
-
-            // at this point, it must be a model (json)
-            try
-            {
-                return JsonConvert.DeserializeObject(response.Content, type, serializerSettings);
-            }
-            catch (Exception e)
-            {
-                throw new ApiException(500, e.Message);
-            }
-        }
-
-        /// <summary>
         /// Intercept the request and response objects during Api call
         /// </summary>
         /// <param name="response">The RestSharp response object</param>
         public void InterceptResponse(IRestResponse response)
         {
             LastApiResponse.Add(response);
-        }
-
-        /// <summary>
-        /// Convert params to key/value pairs.
-        /// Use collectionFormat to properly format lists and collections.
-        /// </summary>
-        /// <param name="collectionFormat">The collection format.</param>
-        /// <param name="name">Key name.</param>
-        /// <param name="value">Value object.</param>
-        /// <returns>
-        /// A list of KeyValuePairs
-        /// </returns>
-        public IEnumerable<KeyValuePair<string, string>> ParameterToKeyValuePairs(string collectionFormat, string name, object value)
-        {
-            var parameters = new List<KeyValuePair<string, string>>();
-
-            if (IsCollection(value) && collectionFormat == "multi")
-            {
-                var valueCollection = value as IEnumerable;
-                parameters.AddRange(from object item in valueCollection select new KeyValuePair<string, string>(name, ParameterToString(item)));
-            }
-            else
-            {
-                parameters.Add(new KeyValuePair<string, string>(name, ParameterToString(value)));
-            }
-
-            return parameters;
-        }
-
-        /// <summary>
-        /// If parameter is DateTime, output in a formatted string (default ISO 8601), customizable with Configuration.DateTime.
-        /// If parameter is a list, join the list with ",".
-        /// Otherwise just return the string.
-        /// </summary>
-        /// <param name="obj">The parameter (header, path, query, form).</param>
-        /// <returns>Formatted string.</returns>
-        public string ParameterToString(object obj)
-        {
-            if (obj is DateTime)
-            {
-                // Return a formatted date string - Can be customized with Configuration.DateTimeFormat
-                // Defaults to an ISO 8601, using the known as a Round-trip date/time pattern ("o")
-                // https://msdn.microsoft.com/en-us/library/az4se3k1(v=vs.110).aspx#Anchor_8
-                // For example: 2009-06-15T13:45:30.0000000
-                return ((DateTime)obj).ToString(Configuration.DateTimeFormat);
-            }
-            else if (obj is DateTimeOffset)
-            {
-                // Return a formatted date string - Can be customized with Configuration.DateTimeFormat
-                // Defaults to an ISO 8601, using the known as a Round-trip date/time pattern ("o")
-                // https://msdn.microsoft.com/en-us/library/az4se3k1(v=vs.110).aspx#Anchor_8
-                // For example: 2009-06-15T13:45:30.0000000
-                return ((DateTimeOffset)obj).ToString(Configuration.DateTimeFormat);
-            }
-            else if (obj is IList)
-            {
-                var flattenedString = new StringBuilder();
-                foreach (var param in (IList)obj)
-                {
-                    if (flattenedString.Length > 0)
-                    {
-                        flattenedString.Append(",");
-                    }
-
-                    flattenedString.Append(param);
-                }
-
-                return flattenedString.ToString();
-            }
-            else
-            {
-                return Convert.ToString(obj);
-            }
-        }
-
-        /// <summary>
-        /// Serialize an input (model) into JSON string
-        /// </summary>
-        /// <param name="obj">object.</param>
-        /// <param name="settings">todo: describe settings parameter on Serialize</param>
-        /// <returns>JSON string.</returns>
-        public string Serialize(object obj, JsonSerializerSettings settings)
-        {
-            try
-            {
-                settings.DateFormatString = Configuration.DateTimeFormat;
-                return obj != null ? JsonConvert.SerializeObject(obj, settings) : null;
-            }
-            catch (Exception e)
-            {
-                throw new ApiException(500, e.Message);
-            }
-        }
-
-        /// <summary>
-        /// Check if generic object is a collection.
-        /// </summary>
-        /// <param name="value">value</param>
-        /// <returns>True if object is a collection type</returns>
-        private static bool IsCollection(object value)
-        {
-            return value is IList || value is ICollection;
         }
 
         // Creates and sets up a RestRequest prior to a call.

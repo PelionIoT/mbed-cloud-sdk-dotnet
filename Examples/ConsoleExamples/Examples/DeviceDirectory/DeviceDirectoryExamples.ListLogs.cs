@@ -8,7 +8,7 @@ namespace ConsoleExamples.Examples.DeviceDirectory
     using System.Collections.Generic;
     using System.Linq;
     using MbedCloudSDK.Common.Filter;
-    using MbedCloudSDK.Common.Query;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.DeviceDirectory.Model.Logging;
 
     /// <summary>

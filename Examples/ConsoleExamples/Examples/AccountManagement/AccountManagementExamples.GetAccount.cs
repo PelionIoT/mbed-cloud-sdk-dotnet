@@ -6,9 +6,10 @@ namespace ConsoleExamples.Examples.AccountManagement
 {
     using System;
     using System.Threading.Tasks;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.AccountManagement.Api;
     using MbedCloudSDK.AccountManagement.Model.Account;
-    using MbedCloudSDK.Common;
+
 
     /// <summary>
     /// Account managment examples

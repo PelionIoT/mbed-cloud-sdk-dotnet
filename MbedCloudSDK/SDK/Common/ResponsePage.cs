@@ -1,7 +1,13 @@
+// <copyright file="ResponsePage.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
+
 namespace Mbed.Cloud.Foundation.Common
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
+    using MbedCloudSDK.Common.Extensions;
 
     /// <summary>
     /// Used to access multiple pages of data, either through manually iterating pages or using iterators.
@@ -18,33 +24,36 @@ namespace Mbed.Cloud.Foundation.Common
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponsePage{T}"/> class.
-        /// Create new instance of response page.
         /// </summary>
-        /// <param name="data">data</param>
-        public ResponsePage(List<T> data)
+        /// <param name="after">The after.</param>
+        /// <param name="hasMore">The has more.</param>
+        /// <param name="totalCount">The total count.</param>
+        public ResponsePage(string after, bool? hasMore, int? totalCount)
         {
-            Data = data;
-            TotalCount = data.Count;
+            After = after;
+            HasMore = hasMore ?? false;
+            TotalCount = totalCount;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponsePage{T}"/> class.
-        /// Create new instance of response page.
         /// </summary>
-        /// <param name="after">after</param>
-        /// <param name="hasMore">has more</param>
-        /// <param name="limit">limit</param>
-        /// <param name="order">order</param>
-        /// <param name="totalCount">count</param>
-        public ResponsePage(string after, bool? hasMore, int? limit, string order, int? totalCount)
+        /// <param name="data">The data.</param>
+        public ResponsePage(List<T> data)
         {
-            Data = new List<T>();
-            After = after;
-            HasMore = hasMore.Value;
-            TotalCount = totalCount;
-            limit = 0;
-            order = string.Empty;
+            Data = data;
         }
+
+        /// <summary>
+        /// Gets or sets entity id for fetch after it
+        /// </summary>
+        /// <value>Entity id for fetch after it</value>
+        public string After { get; set; }
+
+        /// <summary>
+        /// Gets or sets gets or Sets Data
+        /// </summary>
+        public IEnumerable<T> Data { get; set; } = new List<T>();
 
         /// <summary>
         /// Gets or sets a value indicating whether there are more results to display
@@ -61,14 +70,25 @@ namespace Mbed.Cloud.Foundation.Common
         public int? TotalCount { get; set; }
 
         /// <summary>
-        /// Gets or sets entity id for fetch after it
+        /// Adds the specified item.
         /// </summary>
-        /// <value>Entity id for fetch after it</value>
-        public string After { get; set; }
+        /// <param name="item">The item.</param>
+        public void Add(T item)
+        {
+            var newData = Data.Add(item);
+            Data = newData;
+        }
 
         /// <summary>
-        /// Gets or sets gets or Sets Data
+        /// Maps the data.
         /// </summary>
-        public List<T> Data { get; set; }
+        /// <typeparam name="TResponseObject">The type of the response object.</typeparam>
+        /// <param name="data">The data.</param>
+        /// <param name="mappingFunction">The mapping function.</param>
+        public void MapData<TResponseObject>(IEnumerable<TResponseObject> data, Func<TResponseObject, T> mappingFunction)
+        {
+            Data = data.Select(item => mappingFunction.Invoke(item));
+            TotalCount = data.Count();
+        }
     }
 }

@@ -2,33 +2,34 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-using Mbed.Cloud.Foundation.Common;
-using Mbed.Cloud.Foundation.RestClient;
-
 namespace Mbed.Cloud
 {
+    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Foundation.RestClient;
+
     /// <summary>
     /// Client
     /// </summary>
     public partial class SDK
     {
-        private readonly Config _config;
-
-        public EntityFactory Entities { get; }
-
-        public Client Client { get; }
-
         /// <summary>
-        /// Initializes a new instance of the <see cref="SDK"/> class.
+        /// Initializes a new instance of the <see cref="SDK" /> class.
         /// </summary>
         /// <param name="config">The configuration.</param>
+        /// <param name="client">The client.</param>
         public SDK(Config config = null, Client client = null)
         {
-            _config = config ?? new Config();
-            Client = new Client(_config);
-
-            Entities = new EntityFactory(_config, Client);
+            Config = config ?? new Config();
+            Client = client ?? new Client(Config);
         }
+
+        /// <summary>
+        /// Gets the client.
+        /// </summary>
+        /// <value>
+        /// The client.
+        /// </value>
+        public Client Client { get; }
 
         /// <summary>
         /// Gets the configuration.
@@ -36,12 +37,15 @@ namespace Mbed.Cloud
         /// <value>
         /// The configuration.
         /// </value>
-        public Config Config
+        public Config Config { get; }
+
+        /// <summary>
+        /// Entitieses this instance.
+        /// </summary>
+        /// <returns>Entity Factory</returns>
+        public EntityFactory Entities()
         {
-            get
-            {
-                return _config;
-            }
+            return new EntityFactory(Config, Client);
         }
     }
 }

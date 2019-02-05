@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Manhasset.Core.src.Common;
 using Manhasset.Core.src.Generators;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -11,7 +12,7 @@ namespace Manhasset.Core.src.Containers
     {
         public string FilePath { get; set; }
         public string Namespace { get; set; }
-        public List<string> Values { get; set; } = new List<string>();
+        public List<EnumItem> Values { get; set; } = new List<EnumItem>();
 
         public virtual EnumDeclarationSyntax GetSyntax()
         {
@@ -19,7 +20,23 @@ namespace Manhasset.Core.src.Containers
 
             Values.Select(v =>
             {
-                return SyntaxFactory.EnumMemberDeclaration(SyntaxFactory.Identifier(v.ToUpper()));
+                return SyntaxFactory.EnumMemberDeclaration(SyntaxFactory.Identifier(v.EnumValue))
+                .WithAttributeLists(
+                        SyntaxFactory.SingletonList<AttributeListSyntax>(
+                            SyntaxFactory.AttributeList(
+                                SyntaxFactory.SingletonSeparatedList<AttributeSyntax>(
+                                    SyntaxFactory.Attribute(
+                                        SyntaxFactory.IdentifierName("EnumMember"))
+                                    .WithArgumentList(
+                                        SyntaxFactory.AttributeArgumentList(
+                                            SyntaxFactory.SingletonSeparatedList<AttributeArgumentSyntax>(
+                                                SyntaxFactory.AttributeArgument(
+                                                    SyntaxFactory.LiteralExpression(
+                                                        SyntaxKind.StringLiteralExpression,
+                                                        SyntaxFactory.Literal(v.ApiValue ?? "UNKNOWN_ENUM_VALUE_RECEIVED")))
+                                                .WithNameEquals(
+                                                    SyntaxFactory.NameEquals(
+                                                        SyntaxFactory.IdentifierName("Value"))))))))));
             })
             .ToList()
             .ForEach(v => {
@@ -42,6 +59,13 @@ namespace Manhasset.Core.src.Containers
             namespaceSyntax = namespaceSyntax.AddFileHeader(Name, "Arm");
 
             namespaceSyntax = namespaceSyntax.AddMembers(enumSyntax);
+
+            namespaceSyntax = namespaceSyntax.AddUsings(SyntaxFactory.UsingDirective(
+                    SyntaxFactory.QualifiedName(
+                        SyntaxFactory.QualifiedName(
+                            SyntaxFactory.IdentifierName("System"),
+                            SyntaxFactory.IdentifierName("Runtime")),
+                        SyntaxFactory.IdentifierName("Serialization"))));
 
             return namespaceSyntax;
         }
