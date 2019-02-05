@@ -23,10 +23,10 @@ namespace Mbed.Cloud.Foundation.RestClient
         /// <summary>
         /// Default creation of exceptions for a given method name and response object
         /// </summary>
-        public static readonly ExceptionFactory ExceptionFactory = (methodName, response) =>
+        public static readonly ExceptionFactory ExceptionFactory = (methodName, response, failOnNotFound) =>
         {
             var status = (int)response.StatusCode;
-            if (status == 404)
+            if (!failOnNotFound && status == 404)
             {
                 // ignore 404s
                 return null;
@@ -92,6 +92,7 @@ namespace Mbed.Cloud.Foundation.RestClient
         /// <param name="bodyParams">The body parameters.</param>
         /// <param name="method">The method.</param>
         /// <param name="objectToUnpack">The object to unpack.</param>
+        /// <param name="failOnNotFound">If true, will throw exception if 404</param>
         /// <returns>Task of T</returns>
         public async Task<T> CallApi<T>(
                             string path,
@@ -104,7 +105,8 @@ namespace Mbed.Cloud.Foundation.RestClient
                             string[] accepts = null,
                             object bodyParams = null,
                             HttpMethods method = default,
-                            T objectToUnpack = default)
+                            T objectToUnpack = default,
+                            bool failOnNotFound = false)
                     where T : class, new()
         {
             var localVarPath = path;
@@ -214,7 +216,7 @@ namespace Mbed.Cloud.Foundation.RestClient
 
             var localVarStatusCode = (int)localVarResponse.StatusCode;
 
-            var exception = ExceptionFactory("AddApiKeyToGroups", localVarResponse);
+            var exception = ExceptionFactory("AddApiKeyToGroups", localVarResponse, failOnNotFound);
             if (exception != null)
             {
                 throw exception;
@@ -237,7 +239,7 @@ namespace Mbed.Cloud.Foundation.RestClient
                 return objectToUnpack;
             }
 
-            if ((int)localVarResponse.StatusCode == 404)
+            if (!failOnNotFound && (int)localVarResponse.StatusCode == 404)
             {
                 // don't return anything for 404
                 return null;
