@@ -8,6 +8,7 @@ using System.Net.WebSockets;
 using System.Threading;
 using MbedCloudSDK.Connect.Api;
 using MbedCloudSDK.Common;
+using System.Collections.Generic;
 
 namespace Playground
 {
@@ -22,7 +23,10 @@ namespace Playground
             try
             {
                 var connect = new ConnectApi(new Config(ApiKey, Host));
-                Console.WriteLine(connect.ListConnectedDevices().FirstOrDefault());
+                var myDevice = connect.ListConnectedDevices().FirstOrDefault();
+
+                connect.Subscribe.ResourceValues(myDevice.Id, new List<string> { "/3200/0/5501" });
+
                 // create new client
                 var ws = new ClientWebSocket();
 
@@ -33,13 +37,14 @@ namespace Playground
                 // connect to url
                 await ws.ConnectAsync(new Uri(Url), CancellationToken.None);
                 await Console.Out.WriteLineAsync("Connected to mds websocket");
-                Console.WriteLine(ws.State);
+                Console.WriteLine($"socket state - {ws.State}");
 
                 // receive message
                 await Task.WhenAll(Receive(ws));
             }
             catch (Exception e)
             {
+                Console.WriteLine("Exception...");
                 Console.WriteLine(e);
             }
         }
@@ -60,6 +65,7 @@ namespace Playground
                 else
                 {
                     var message = System.Text.Encoding.Default.GetString(buffer);
+                    Console.WriteLine("Incoming message...");
                     Console.WriteLine(message);
                 }
             }
