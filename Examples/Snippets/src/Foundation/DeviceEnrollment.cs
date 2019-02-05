@@ -56,13 +56,13 @@ namespace Snippets.src.Foundation
                 }
 
                 // cloak
-                Assert.AreEqual(bulk.Status, DeviceEnrollmentBulkCreateStatusEnum.NEW);
+                Assert.AreEqual(bulk.Status, DeviceEnrollmentBulkCreateStatus.NEW);
                 // uncloak
 
                 bulk = await bulkRepo.Get(bulk.Id);
                 // end of example
 
-                Assert.IsTrue(bulk.Status == DeviceEnrollmentBulkCreateStatusEnum.COMPLETED || bulk.Status == DeviceEnrollmentBulkCreateStatusEnum.PROCESSING);
+                Assert.IsTrue(bulk.Status == DeviceEnrollmentBulkCreateStatus.COMPLETED || bulk.Status == DeviceEnrollmentBulkCreateStatus.PROCESSING);
 
                 var reportFile = await bulkRepo.DownloadFullReportFile(bulk);
                 Assert.IsTrue(reportFile.CanRead);
@@ -92,11 +92,11 @@ namespace Snippets.src.Foundation
                     bulk = await bulkRepo.Delete(file);
                 }
 
-                Assert.AreEqual(bulk.Status, DeviceEnrollmentBulkDeleteStatusEnum.NEW);
+                Assert.AreEqual(bulk.Status, DeviceEnrollmentBulkDeleteStatus.NEW);
 
                 bulk = await bulkRepo.Get(bulk.Id);
 
-                Assert.IsTrue(bulk.Status == DeviceEnrollmentBulkDeleteStatusEnum.COMPLETED || bulk.Status == DeviceEnrollmentBulkDeleteStatusEnum.PROCESSING);
+                Assert.IsTrue(bulk.Status == DeviceEnrollmentBulkDeleteStatus.COMPLETED || bulk.Status == DeviceEnrollmentBulkDeleteStatus.PROCESSING);
 
                 var reportFile = await bulkRepo.DownloadFullReportFile(bulk);
                 Assert.IsTrue(reportFile.CanRead);

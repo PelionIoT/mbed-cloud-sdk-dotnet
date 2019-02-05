@@ -23,7 +23,7 @@ namespace Playground
 
                 var first = listPaginator.FirstOrDefault();
 
-                var some = listPaginator.Where(u => u.Status == UserStatus.RESET);
+                var some = listPaginator.Where(u => u.Status == MbedCloudSDK.AccountManagement.Model.User.UserStatus.RESET);
 
                 var limitedPaginator = user.ListUsers(new Mbed.Cloud.Foundation.Common.QueryOptions { MaxResults = 2 });
 

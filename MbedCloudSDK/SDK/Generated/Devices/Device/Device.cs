@@ -99,7 +99,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// deployed_state
         /// </summary>
-        public DeviceDeployedStateEnum? DeployedState
+        public DeviceDeployedState? DeployedState
         {
             get;
             internal set;
@@ -216,7 +216,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// mechanism
         /// </summary>
-        public DeviceMechanismEnum? Mechanism
+        public DeviceMechanism? Mechanism
         {
             get;
             set;
@@ -252,7 +252,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// state
         /// </summary>
-        public DeviceStateEnum? State
+        public DeviceState? State
         {
             get;
             set;

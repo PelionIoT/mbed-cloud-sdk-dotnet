@@ -7,17 +7,22 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="DeviceDeployedStateEnum.cs" company="Arm">
+// <copyright file="CertificateIssuerType.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
 namespace Mbed.Cloud.Foundation.Enums
 {
-    public enum DeviceDeployedStateEnum
+    using System.Runtime.Serialization;
+
+    public enum CertificateIssuerType
     {
+        [EnumMember(Value = "UNKNOWN_ENUM_VALUE_RECEIVED")]
         UNKNOWN_ENUM_VALUE_RECEIVED,
-        DEVELOPMENT,
-        PRODUCTION,
+        [EnumMember(Value = "GLOBAL_SIGN")]
+        GLOBAL_SIGN,
+        [EnumMember(Value = "CFSSL_AUTH")]
+        CFSSL_AUTH,
     }
 }

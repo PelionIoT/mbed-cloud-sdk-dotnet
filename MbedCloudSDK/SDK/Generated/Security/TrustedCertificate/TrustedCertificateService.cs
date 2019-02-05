@@ -7,17 +7,22 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="AccountMfaStatusEnum.cs" company="Arm">
+// <copyright file="TrustedCertificateService.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
 namespace Mbed.Cloud.Foundation.Enums
 {
-    public enum AccountMfaStatusEnum
+    using System.Runtime.Serialization;
+
+    public enum TrustedCertificateService
     {
+        [EnumMember(Value = "UNKNOWN_ENUM_VALUE_RECEIVED")]
         UNKNOWN_ENUM_VALUE_RECEIVED,
-        ENFORCED,
-        OPTIONAL,
+        [EnumMember(Value = "lwm2m")]
+        LWM2M,
+        [EnumMember(Value = "bootstrap")]
+        BOOTSTRAP,
     }
 }

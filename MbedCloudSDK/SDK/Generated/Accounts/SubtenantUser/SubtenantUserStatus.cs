@@ -7,20 +7,28 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="DeviceStateEnum.cs" company="Arm">
+// <copyright file="SubtenantUserStatus.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
 namespace Mbed.Cloud.Foundation.Enums
 {
-    public enum DeviceStateEnum
+    using System.Runtime.Serialization;
+
+    public enum SubtenantUserStatus
     {
+        [EnumMember(Value = "UNKNOWN_ENUM_VALUE_RECEIVED")]
         UNKNOWN_ENUM_VALUE_RECEIVED,
-        UNENROLLED,
-        CLOUD_ENROLLING,
-        BOOTSTRAPPED,
-        REGISTERED,
-        DEREGISTERED,
+        [EnumMember(Value = "ENROLLING")]
+        ENROLLING,
+        [EnumMember(Value = "INVITED")]
+        INVITED,
+        [EnumMember(Value = "ACTIVE")]
+        ACTIVE,
+        [EnumMember(Value = "RESET")]
+        RESET,
+        [EnumMember(Value = "INACTIVE")]
+        INACTIVE,
     }
 }

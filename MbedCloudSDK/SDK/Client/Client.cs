@@ -200,8 +200,6 @@ namespace Mbed.Cloud.Foundation.RestClient
 
             localVarHeaderParams["Authorization"] = $"{Config.AuthorizationPrefix} {Config.ApiKey}";
 
-            // Console.WriteLine(localVarPostBody);
-
             // make the HTTP request
             var localVarResponse = (IRestResponse)await apiClient.CallApiAsync(
                 localVarPath,

@@ -244,7 +244,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// mfa_status
         /// </summary>
-        public AccountMfaStatusEnum? MfaStatus
+        public AccountMfaStatus? MfaStatus
         {
             get;
             set;
@@ -352,7 +352,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// status
         /// </summary>
-        public AccountStatusEnum? Status
+        public AccountStatus? Status
         {
             get;
             internal set;

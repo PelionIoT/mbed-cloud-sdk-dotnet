@@ -7,20 +7,26 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="UserStatusEnum.cs" company="Arm">
+// <copyright file="CertificateEnrollmentEnrollResult.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
 namespace Mbed.Cloud.Foundation.Enums
 {
-    public enum UserStatusEnum
+    using System.Runtime.Serialization;
+
+    public enum CertificateEnrollmentEnrollResult
     {
+        [EnumMember(Value = "UNKNOWN_ENUM_VALUE_RECEIVED")]
         UNKNOWN_ENUM_VALUE_RECEIVED,
-        ENROLLING,
-        INVITED,
-        ACTIVE,
-        RESET,
-        INACTIVE,
+        [EnumMember(Value = "success")]
+        SUCCESS,
+        [EnumMember(Value = "not_found")]
+        NOT_FOUND,
+        [EnumMember(Value = "forbidden")]
+        FORBIDDEN,
+        [EnumMember(Value = "failure")]
+        FAILURE,
     }
 }

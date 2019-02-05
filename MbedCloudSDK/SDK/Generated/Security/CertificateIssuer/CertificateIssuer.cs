@@ -54,7 +54,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// issuer_type
         /// </summary>
-        public CertificateIssuerTypeEnum? IssuerType
+        public CertificateIssuerType? IssuerType
         {
             get;
             set;

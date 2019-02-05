@@ -7,19 +7,26 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="AccountStatusEnum.cs" company="Arm">
+// <copyright file="AccountStatus.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
 namespace Mbed.Cloud.Foundation.Enums
 {
-    public enum AccountStatusEnum
+    using System.Runtime.Serialization;
+
+    public enum AccountStatus
     {
+        [EnumMember(Value = "UNKNOWN_ENUM_VALUE_RECEIVED")]
         UNKNOWN_ENUM_VALUE_RECEIVED,
+        [EnumMember(Value = "ENROLLING")]
         ENROLLING,
+        [EnumMember(Value = "ACTIVE")]
         ACTIVE,
+        [EnumMember(Value = "RESTRICTED")]
         RESTRICTED,
+        [EnumMember(Value = "SUSPENDED")]
         SUSPENDED,
     }
 }
