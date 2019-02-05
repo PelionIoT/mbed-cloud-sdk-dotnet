@@ -29,14 +29,21 @@ namespace Mbed.Cloud.Foundation.RestClient
                 DateTimeZoneHandling = DateTimeZoneHandling.Utc,
             };
 
-            settings.Converters.Add(new TolerantEnumConverter());
+            settings.Converters.Add(new StringEnumConverter());
 
             return settings;
         }
 
+        /// <summary>
+        /// Gets the deserialization settings.
+        /// </summary>
+        /// <param name="config">The configuration.</param>
+        /// <returns>Serializer Settings</returns>
         public static JsonSerializerSettings GetDeserializationSettings(Config config)
         {
             var settings = GetSerializationSettings();
+            settings.Converters.Clear();
+            settings.Converters.Add(new TolerantEnumConverter());
             settings.Converters.Add(new EntityConverter(config));
             return settings;
         }

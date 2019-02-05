@@ -5,6 +5,7 @@
 namespace MbedCloudSDK.Bootstrap.Model
 {
     using System;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;
@@ -15,7 +16,7 @@ namespace MbedCloudSDK.Bootstrap.Model
     /// <para>
     /// For more information about such keys, have a look at <a href="https://cloud.mbed.com/docs/latest/connecting/mbed-client-lite-security-considerations.html"/>
     /// </para>
-    public class PreSharedKey : BaseModel
+    public class PreSharedKey : Entity
     {
         /// <summary>
         /// Gets or sets the EndpointName

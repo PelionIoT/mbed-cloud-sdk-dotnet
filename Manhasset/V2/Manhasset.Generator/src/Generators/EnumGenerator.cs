@@ -20,9 +20,24 @@ namespace Manhasset.Generator.src.Generators
 
             foreach (var anEnum in enums)
             {
-                var values = new List<string>() { "UNKNOWN_ENUM_VALUE_RECEIVED" };
-                var name = anEnum["enum_reference"].GetStringValue().ToPascal();
-                values.AddRange(anEnum["enum"].Values<string>().ToList());
+                var values = new List<EnumItem>()
+                {
+                    new EnumItem
+                    {
+                        EnumValue = "UNKNOWN_ENUM_VALUE_RECEIVED",
+                    },
+                };
+
+                var name = anEnum["enum_reference"].GetStringValue().ToPascal().Replace("Enum", "");
+                anEnum["enum"].Values<string>().ToList().ForEach(v =>
+                {
+                    values.Add(new EnumItem
+                    {
+                        EnumValue = v.ToUpper(),
+                        ApiValue = v,
+                    });
+                });
+
                 var filePath = $"{rootFilePath}/{group}/{entityName}/{name}.cs";
 
                 var enumContainer = new EnumContainer

@@ -7,6 +7,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Query
     using System;
     using System.Text;
     using device_directory.Model;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Common.Filter;
@@ -15,7 +16,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Query
     /// <summary>
     /// Represents Query from device catalog API.
     /// </summary>
-    public class Query : BaseModel
+    public class Query : Entity
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Query"/> class.

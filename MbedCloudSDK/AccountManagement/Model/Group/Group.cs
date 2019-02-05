@@ -7,6 +7,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;
@@ -14,7 +15,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
     /// <summary>
     /// Represents group from IAM.
     /// </summary>
-    public class Group : BaseModel
+    public class Group : Entity
     {
         /// <summary>
         /// Gets the ID of the account.

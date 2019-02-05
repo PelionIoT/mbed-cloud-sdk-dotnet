@@ -99,7 +99,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// deployed_state
         /// </summary>
-        public DeviceDeployedStateEnum? DeployedState
+        public DeviceDeployedState? DeployedState
         {
             get;
             internal set;
@@ -156,7 +156,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string EndpointName
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>
@@ -196,78 +196,6 @@ namespace Mbed.Cloud.Foundation.Entities
         }
 
         /// <summary>
-        /// issuer_fingerprint
-        /// </summary>
-        public string IssuerFingerprint
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// last_operator_suspended_category
-        /// </summary>
-        public string LastOperatorSuspendedCategory
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
-        /// last_operator_suspended_description
-        /// </summary>
-        public string LastOperatorSuspendedDescription
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
-        /// last_operator_suspended_updated_at
-        /// </summary>
-        public DateTime? LastOperatorSuspendedUpdatedAt
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
-        /// last_system_suspended_category
-        /// </summary>
-        public string LastSystemSuspendedCategory
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
-        /// last_system_suspended_description
-        /// </summary>
-        public string LastSystemSuspendedDescription
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
-        /// last_system_suspended_updated_at
-        /// </summary>
-        public DateTime? LastSystemSuspendedUpdatedAt
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
-        /// lifecycle_status
-        /// </summary>
-        public DeviceLifecycleStatusEnum? LifecycleStatus
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
         /// manifest
         /// </summary>
         public string Manifest
@@ -288,7 +216,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// mechanism
         /// </summary>
-        public DeviceMechanismEnum? Mechanism
+        public DeviceMechanism? Mechanism
         {
             get;
             set;
@@ -313,15 +241,6 @@ namespace Mbed.Cloud.Foundation.Entities
         }
 
         /// <summary>
-        /// operator_suspended
-        /// </summary>
-        public bool? OperatorSuspended
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
         /// serial_number
         /// </summary>
         public string SerialNumber
@@ -333,19 +252,10 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// state
         /// </summary>
-        public DeviceStateEnum? State
+        public DeviceState? State
         {
             get;
             set;
-        }
-
-        /// <summary>
-        /// system_suspended
-        /// </summary>
-        public bool? SystemSuspended
-        {
-            get;
-            internal set;
         }
 
         /// <summary>

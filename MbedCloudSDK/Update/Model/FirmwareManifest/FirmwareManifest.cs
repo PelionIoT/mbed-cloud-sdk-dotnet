@@ -5,6 +5,7 @@
 namespace MbedCloudSDK.Update.Model.FirmwareManifest
 {
     using System;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;
@@ -12,7 +13,7 @@ namespace MbedCloudSDK.Update.Model.FirmwareManifest
     /// <summary>
     /// Firmware manifest from Update Campaign.
     /// </summary>
-    public class FirmwareManifest : BaseModel
+    public class FirmwareManifest : Entity
     {
         /// <summary>
         /// Gets the URL of the firmware manifest binary.

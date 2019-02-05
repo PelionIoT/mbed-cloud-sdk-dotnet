@@ -12,11 +12,23 @@ namespace Manhasset.Core.src.Containers
 
         public bool IsAsync { get; set; }
 
+        public bool IsVoidTask { get; set; }
+
         public virtual MethodDeclarationSyntax GetSyntax()
         {
             if (IsAsync)
             {
-                // if async, wrap the return tyoe in task
+                if (IsVoidTask)
+                {
+                    return SyntaxFactory.MethodDeclaration(
+                    SyntaxFactory.IdentifierName("Task"),
+                    SyntaxFactory.Identifier(Name))
+                        .AddModifiers(MyModifiers.Values.ToArray())
+                        .AddModifiers(SyntaxFactory.Token(SyntaxKind.AsyncKeyword))
+                        .WithParameterList(MethodParams.GetSyntax())
+                        .WithBody(SyntaxFactory.Block());
+                }
+                // if async, wrap the return type in task
                 return SyntaxFactory.MethodDeclaration(
                     SyntaxFactory.GenericName(
                         SyntaxFactory.Identifier("Task"))

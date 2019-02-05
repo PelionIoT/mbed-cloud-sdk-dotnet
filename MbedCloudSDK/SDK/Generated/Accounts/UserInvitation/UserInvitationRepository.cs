@@ -48,12 +48,12 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public async Task<UserInvitation> Delete(string id)
+        public async Task Delete(string id)
         {
             try
             {
                 var pathParams = new Dictionary<string, object> { { "invitation_id", id }, };
-                return await Client.CallApi<UserInvitation>(path: "/v3/user-invitations/{invitation_id}", pathParams: pathParams, method: HttpMethods.DELETE);
+                await Client.CallApi<UserInvitation>(path: "/v3/user-invitations/{invitation_id}", pathParams: pathParams, method: HttpMethods.DELETE);
             }
             catch (ApiException e)
             {
@@ -83,7 +83,7 @@ namespace Mbed.Cloud.Foundation.Entities
                     options = new UserInvitationListOptions();
                 }
 
-                Func<UserInvitationListOptions, ResponsePage<UserInvitation>> paginatedFunc = (UserInvitationListOptions _options) => AsyncHelper.RunSync<ResponsePage<UserInvitation>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<UserInvitation>>(path: "/v3/user-invitations", queryParams: queryParams, method: HttpMethods.GET); });
+                Func<UserInvitationListOptions, Task<ResponsePage<UserInvitation>>> paginatedFunc = async (UserInvitationListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<UserInvitation>>(path: "/v3/user-invitations", queryParams: queryParams, method: HttpMethods.GET); };
                 return new PaginatedResponse<UserInvitationListOptions, UserInvitation>(paginatedFunc, options);
             }
             catch (ApiException e)

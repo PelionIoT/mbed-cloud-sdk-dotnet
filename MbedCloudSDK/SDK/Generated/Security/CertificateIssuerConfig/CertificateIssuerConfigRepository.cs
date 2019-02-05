@@ -48,12 +48,12 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public async Task<CertificateIssuerConfig> Delete(string id)
+        public async Task Delete(string id)
         {
             try
             {
                 var pathParams = new Dictionary<string, object> { { "certificate-issuer-configuration-id", id }, };
-                return await Client.CallApi<CertificateIssuerConfig>(path: "/v3/certificate-issuer-configurations/{certificate-issuer-configuration-id}", pathParams: pathParams, method: HttpMethods.DELETE);
+                await Client.CallApi<CertificateIssuerConfig>(path: "/v3/certificate-issuer-configurations/{certificate-issuer-configuration-id}", pathParams: pathParams, method: HttpMethods.DELETE);
             }
             catch (ApiException e)
             {
@@ -95,7 +95,7 @@ namespace Mbed.Cloud.Foundation.Entities
                     options = new CertificateIssuerConfigListOptions();
                 }
 
-                Func<CertificateIssuerConfigListOptions, ResponsePage<CertificateIssuerConfig>> paginatedFunc = (CertificateIssuerConfigListOptions _options) => AsyncHelper.RunSync<ResponsePage<CertificateIssuerConfig>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<CertificateIssuerConfig>>(path: "/v3/certificate-issuer-configurations", queryParams: queryParams, method: HttpMethods.GET); });
+                Func<CertificateIssuerConfigListOptions, Task<ResponsePage<CertificateIssuerConfig>>> paginatedFunc = async (CertificateIssuerConfigListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<CertificateIssuerConfig>>(path: "/v3/certificate-issuer-configurations", queryParams: queryParams, method: HttpMethods.GET); };
                 return new PaginatedResponse<CertificateIssuerConfigListOptions, CertificateIssuerConfig>(paginatedFunc, options);
             }
             catch (ApiException e)

@@ -5,6 +5,7 @@
 namespace MbedCloudSDK.Enrollment.Model
 {
     using System;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;
@@ -12,7 +13,7 @@ namespace MbedCloudSDK.Enrollment.Model
     /// <summary>
     /// Enrollment
     /// </summary>
-    public class Enrollment : BaseModel
+    public class Enrollment : Entity
     {
         /// <summary>
         /// Gets the id of the device in the device directory once it has been registered

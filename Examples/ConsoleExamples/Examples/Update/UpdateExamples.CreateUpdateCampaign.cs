@@ -9,7 +9,7 @@ namespace ConsoleExamples.Examples.Update
     using System.Threading;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Filter;
-    using MbedCloudSDK.Common.Query;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.DeviceDirectory.Api;
     using MbedCloudSDK.Exceptions;
     using MbedCloudSDK.Update.Api;

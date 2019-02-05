@@ -5,8 +5,9 @@
 namespace MbedCloudSDK.DeviceDirectory.Api
 {
     using System.Threading.Tasks;
+    using device_directory.Model;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
-    using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.DeviceDirectory.Model.Logging;
     using MbedCloudSDK.Exceptions;
 
@@ -70,7 +71,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
         /// <returns>The device logs.</returns>
         /// <exception cref="CloudApiException">CloudApiException</exception>
         /// <param name="options">Query options.</param>
-        private ResponsePage<DeviceEvent> ListDeviceEventsFunc(QueryOptions options = null)
+        private async Task<ResponsePage<DeviceEvent>> ListDeviceEventsFunc(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -79,14 +80,10 @@ namespace MbedCloudSDK.DeviceDirectory.Api
 
             try
             {
-                var resp = Api.DeviceLogList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
-                var respDeviceLogs = new ResponsePage<DeviceEvent>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
-                foreach (var deviceLog in resp.Data)
-                {
-                    respDeviceLogs.Data.Add(DeviceEvent.Map(deviceLog));
-                }
-
-                return respDeviceLogs;
+                var resp = await Api.DeviceLogListAsync(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
+                var responsePage = new ResponsePage<DeviceEvent>(after: resp.After, hasMore: resp.HasMore, totalCount: resp.TotalCount);
+                responsePage.MapData<DeviceEventData>(resp.Data, DeviceEvent.Map);
+                return responsePage;
             }
             catch (device_directory.Client.ApiException e)
             {

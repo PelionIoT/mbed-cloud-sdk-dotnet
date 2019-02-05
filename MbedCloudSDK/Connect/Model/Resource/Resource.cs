@@ -7,8 +7,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
     using System;
     using System.Collections.Generic;
     using System.Collections.Specialized;
-    using System.Text;
-    using MbedCloudSDK.Common;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Connect.Api;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
@@ -18,9 +17,9 @@ namespace MbedCloudSDK.Connect.Model.Resource
     /// <summary>
     /// Resource.
     /// </summary>
-    public class Resource : BaseModel
+    public class Resource : Entity
     {
-        private Connect.Api.ConnectApi api;
+        private readonly ConnectApi api;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Resource"/> class.
@@ -174,10 +173,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
                 var res = NotificationQueue.Take().Result;
-                if (NotificationHandler != null)
-                {
-                    NotificationHandler(res);
-                }
+                NotificationHandler?.Invoke(res);
             }
         }
 
@@ -186,10 +182,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
                 var res = RegistrationQueue.Take().Result;
-                if (RegistrationHandler != null)
-                {
-                    RegistrationHandler(res);
-                }
+                RegistrationHandler?.Invoke(res);
             }
         }
 
@@ -198,10 +191,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
                 var res = RegistrationUpdateQueue.Take().Result;
-                if (RegistrationUpdateHandler != null)
-                {
-                    RegistrationUpdateHandler(res);
-                }
+                RegistrationUpdateHandler?.Invoke(res);
             }
         }
 
@@ -210,10 +200,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
                 var res = DeRegistrationQueue.Take().Result;
-                if (DeRegistrationHandler != null)
-                {
-                    DeRegistrationHandler(res);
-                }
+                DeRegistrationHandler?.Invoke(res);
             }
         }
 
@@ -222,10 +209,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
                 var res = RegistrationExpiredQueue.Take().Result;
-                if (RegistrationExpiredHandler != null)
-                {
-                    RegistrationExpiredHandler(res);
-                }
+                RegistrationExpiredHandler?.Invoke(res);
             }
         }
 
@@ -257,11 +241,10 @@ namespace MbedCloudSDK.Connect.Model.Resource
         /// Set value of the resource.
         /// </summary>
         /// <param name="resourceValue">Value to set.</param>
-        /// <param name="noResponse">Don't get a response.</param>
         /// <returns>Async consumer with string</returns>
-        public string SetResourceValue(string resourceValue, bool? noResponse = null)
+        public string SetResourceValue(string resourceValue)
         {
-            return api.SetResourceValue(DeviceId, Path, resourceValue, noResponse);
+            return api.SetResourceValue(DeviceId, Path, resourceValue);
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
 using System;
+using Mbed.Cloud.Foundation.Common;
 using MbedCloudSDK.AccountManagement.Api;
 using MbedCloudSDK.Certificates.Api;
 using MbedCloudSDK.Common;
@@ -40,11 +41,11 @@ namespace MbedCloudSDK.UnitTests.Common
 
             iamConfig.ApiClient.RestClient = restClient.Object;
 
-            var iam = new AccountManagementApi(new MbedCloudSDK.Common.Config("apiKey"), iamConfig);
+            var iam = new AccountManagementApi(new Config("apiKey"), iamConfig);
 
             try
             {
-                iam.ListApiKeys();
+                iam.GetAccount();
             }
             catch (Exception)
             {
@@ -56,63 +57,63 @@ namespace MbedCloudSDK.UnitTests.Common
         [Test]
         public void TestAccountManagementDeveloperApi()
         {
-            var accountManagement = new AccountManagementApi(new MbedCloudSDK.Common.Config("apiKey"));
+            var accountManagement = new AccountManagementApi(new Config("apiKey"));
             TestUserAgent(accountManagement.DeveloperApi.Configuration.UserAgent);
         }
 
         [Test]
         public void TestCertificatesDeveloperApi()
         {
-            var certificates = new CertificatesApi(new MbedCloudSDK.Common.Config("apiKey"), null, null, false);
+            var certificates = new CertificatesApi(new Config("apiKey"), null, null, false);
             TestUserAgent(certificates.DeveloperApi.Configuration.UserAgent);
         }
 
         [Test]
         public void TestCertificatesDeveloperCertificatesApi()
         {
-            var certificates = new CertificatesApi(new MbedCloudSDK.Common.Config("apiKey"), null, null, false);
+            var certificates = new CertificatesApi(new Config("apiKey"), null, null, false);
             TestUserAgent(certificates.DeveloperCertificateApi.Configuration.UserAgent);
         }
 
         [Test]
         public void TestConnectStatisticsApi()
         {
-            var connect = new ConnectApi(new MbedCloudSDK.Common.Config("apiKey"));
+            var connect = new ConnectApi(new Config("apiKey"));
             TestUserAgent(connect.StatisticsApi.Configuration.UserAgent);
         }
 
         [Test]
         public void TestConnectResourcesApi()
         {
-            var connect = new ConnectApi(new MbedCloudSDK.Common.Config("apiKey"));
+            var connect = new ConnectApi(new Config("apiKey"));
             TestUserAgent(connect.ResourcesApi.Configuration.UserAgent);
         }
 
         [Test]
         public void TestConnectDeviceDirectoryApi()
         {
-            var connect = new ConnectApi(new MbedCloudSDK.Common.Config("apiKey"));
+            var connect = new ConnectApi(new Config("apiKey"));
             TestUserAgent(connect.DeviceDirectoryApi.Configuration.UserAgent);
         }
 
         [Test]
         public void TestDeviceDirectoryApi()
         {
-            var deviceDirectory = new DeviceDirectoryApi(new MbedCloudSDK.Common.Config("apiKey"));
+            var deviceDirectory = new DeviceDirectoryApi(new Config("apiKey"));
             TestUserAgent(deviceDirectory.Api.Configuration.UserAgent);
         }
 
         [Test]
         public void TestEnrollmentApi()
         {
-            var enrollment = new EnrollmentApi(new MbedCloudSDK.Common.Config("apiKey"));
+            var enrollment = new EnrollmentApi(new Config("apiKey"));
             TestUserAgent(enrollment.Api.Configuration.UserAgent);
         }
 
         [Test]
         public void TestUpdateApi()
         {
-            var update = new UpdateApi(new MbedCloudSDK.Common.Config("apiKey"));
+            var update = new UpdateApi(new Config("apiKey"));
             TestUserAgent(update.Api.Configuration.UserAgent);
         }
 

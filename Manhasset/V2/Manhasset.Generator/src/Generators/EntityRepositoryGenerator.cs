@@ -60,6 +60,9 @@ namespace Manhasset.Generator.src.Generators
                 // the http method
                 var httpMethod = method["method"].GetStringValue()?.ToUpper() ?? "GET";
 
+                // if method return type is void
+                var isVoid = httpMethod == "DELETE" ? true : false;
+
                 // the path
                 var path = method["path"].GetStringValue();
 
@@ -282,7 +285,8 @@ namespace Manhasset.Generator.src.Generators
                         privateMethod = isPrivateMethod,
                         IsAsync = true,
                         HasRequest = hasRequest,
-                    };
+                        IsVoidTask = isVoid,
+                };
 
                     if (isPrivateMethod)
                     {

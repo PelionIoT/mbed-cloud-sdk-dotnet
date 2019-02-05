@@ -1,7 +1,11 @@
-using MbedCloudSDK.Common.Filter;
+// <copyright file="QueryOptions.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace Mbed.Cloud.Foundation.Common
 {
+    using MbedCloudSDK.Common.Filter;
+
     /// <summary>
     /// Parameters send with list requests.
     /// </summary>

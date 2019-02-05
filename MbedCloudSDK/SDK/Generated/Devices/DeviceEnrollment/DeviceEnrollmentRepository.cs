@@ -48,12 +48,12 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public async Task<DeviceEnrollment> Delete(string id)
+        public async Task Delete(string id)
         {
             try
             {
                 var pathParams = new Dictionary<string, object> { { "id", id }, };
-                return await Client.CallApi<DeviceEnrollment>(path: "/v3/device-enrollments/{id}", pathParams: pathParams, method: HttpMethods.DELETE);
+                await Client.CallApi<DeviceEnrollment>(path: "/v3/device-enrollments/{id}", pathParams: pathParams, method: HttpMethods.DELETE);
             }
             catch (ApiException e)
             {
@@ -83,7 +83,7 @@ namespace Mbed.Cloud.Foundation.Entities
                     options = new DeviceEnrollmentListOptions();
                 }
 
-                Func<DeviceEnrollmentListOptions, ResponsePage<DeviceEnrollment>> paginatedFunc = (DeviceEnrollmentListOptions _options) => AsyncHelper.RunSync<ResponsePage<DeviceEnrollment>>(() => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return Client.CallApi<ResponsePage<DeviceEnrollment>>(path: "/v3/device-enrollments", queryParams: queryParams, method: HttpMethods.GET); });
+                Func<DeviceEnrollmentListOptions, Task<ResponsePage<DeviceEnrollment>>> paginatedFunc = async (DeviceEnrollmentListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<DeviceEnrollment>>(path: "/v3/device-enrollments", queryParams: queryParams, method: HttpMethods.GET); };
                 return new PaginatedResponse<DeviceEnrollmentListOptions, DeviceEnrollment>(paginatedFunc, options);
             }
             catch (ApiException e)

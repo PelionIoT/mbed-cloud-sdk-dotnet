@@ -123,7 +123,8 @@ namespace MbedCloudSDK.Connect.Api
         {
             while (!cancellationToken.IsCancellationRequested)
             {
-                retryPolicy.Execute(() => {
+                retryPolicy.Execute(() =>
+                {
                     var resp = NotificationsApi.LongPollNotifications();
                     if (resp != null)
                     {
@@ -152,16 +153,16 @@ namespace MbedCloudSDK.Connect.Api
         {
             // policy handler for retries. Uses Polly (https://github.com/App-vNext/Polly#wait-and-retry)
             // it will increase the time between retries progressively until it will stop ~2 minutes
-            if(retryPolicy == null)
+            if (retryPolicy == null)
             {
                 retryPolicy = Policy.Handle<Exception>().WaitAndRetry(
                     8,
                     retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
-                    (exception, TimeSpan, retryCount, context) =>
+                    (exception, timeSpan, retryCount, context) =>
                         {
                             // check that is really an ApiException before doing the retry logic
                             var apiException = exception as ApiException;
-                            if(apiException == null || apiException.ErrorCode != 500)
+                            if (apiException == null || apiException.ErrorCode != 500)
                             {
                                 StopNotifications();
                             }

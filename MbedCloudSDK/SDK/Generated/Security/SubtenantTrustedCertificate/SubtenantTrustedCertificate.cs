@@ -74,7 +74,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public int? DeviceExecutionMode
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// service
         /// </summary>
-        public SubtenantTrustedCertificateServiceEnum? Service
+        public SubtenantTrustedCertificateService? Service
         {
             get;
             set;
@@ -141,7 +141,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// status
         /// </summary>
-        public SubtenantTrustedCertificateStatusEnum? Status
+        public SubtenantTrustedCertificateStatus? Status
         {
             get;
             set;

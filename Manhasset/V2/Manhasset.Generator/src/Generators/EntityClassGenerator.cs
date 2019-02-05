@@ -80,6 +80,14 @@ namespace Manhasset.Generator.src.Generators
                     SwaggerTypeHelper.GetAdditionalProperties(property) ??
                     SwaggerTypeHelper.MapType(swaggerType, innerValues);
 
+                // check if property type is enum
+                if (propertyType.Contains("Enum"))
+                {
+                    // hacky but remove enum name from type
+                    propertyType = propertyType.Replace("Enum", "");
+                    entityClass.AddUsing("ENUM_KEY", UsingKeys.ENUMS);
+                }
+
                 // check if property has custom getters and setters
                 var overrideProperty = property["_override"] != null && !property["private_field"].GetBoolValue();
                 var customGetter = property["getter_custom_method"] != null;
@@ -139,12 +147,6 @@ namespace Manhasset.Generator.src.Generators
                 if (propertyType.Contains("List<") || propertyType.Contains("Dictionary<"))
                 {
                     entityClass.AddUsing(nameof(UsingKeys.GENERIC_COLLECTIONS), UsingKeys.GENERIC_COLLECTIONS);
-                }
-
-                // check if property type is enum
-                if (propertyType.Contains("Enum"))
-                {
-                    entityClass.AddUsing("ENUM_KEY", UsingKeys.ENUMS);
                 }
 
                 // add usings for custom functions

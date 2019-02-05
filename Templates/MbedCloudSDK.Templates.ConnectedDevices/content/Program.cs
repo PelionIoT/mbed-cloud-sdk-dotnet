@@ -1,6 +1,5 @@
 ﻿using System;
 using MbedCloudSDK.Common;
-using MbedCloudSDK.Common.Query;
 using MbedCloudSDK.Connect.Api;
 
 namespace ConnectedDevicesTemplate
@@ -20,11 +19,7 @@ namespace ConnectedDevicesTemplate
                 var config = new Config(key);
                 var connect = new ConnectApi(config);
 
-                var options = new QueryOptions
-                {
-                    Limit = 5,
-                };
-                var connectedDevices = connect.ListConnectedDevices(options);
+                var connectedDevices = connect.ListConnectedDevices();
                 //Console.WriteLine($"You have {connectedDevices.Count()} connected devices!");
                 Console.WriteLine();
                 //connectedDevices.ForEach(c => Console.WriteLine($"Device {c.Id}: name: {c.Name}, createdAt: {c.CreatedAt.ToString()} state: {c.State}"));

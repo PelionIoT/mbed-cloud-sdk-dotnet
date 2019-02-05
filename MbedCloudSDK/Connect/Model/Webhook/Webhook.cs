@@ -5,6 +5,7 @@
 namespace MbedCloudSDK.Connect.Model.Webhook
 {
     using System.Collections.Generic;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;
@@ -12,7 +13,7 @@ namespace MbedCloudSDK.Connect.Model.Webhook
     /// <summary>
     /// Webhook
     /// </summary>
-    public class Webhook : BaseModel
+    public class Webhook : Entity
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Webhook"/> class.

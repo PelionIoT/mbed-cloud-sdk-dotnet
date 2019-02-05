@@ -9,6 +9,7 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
     using System.Linq;
     using System.Text;
     using iam.Model;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;
@@ -17,7 +18,7 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
     /// <summary>
     /// This object represents an API key in Mbed Cloud.
     /// </summary>
-    public class ApiKey : BaseModel
+    public class ApiKey : Entity
     {
         /// <summary>
         /// Gets or sets the status of the API key.

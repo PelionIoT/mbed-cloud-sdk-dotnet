@@ -1,6 +1,6 @@
 using System;
 using System.Threading;
-using MbedCloudSDK.Common;
+using Mbed.Cloud.Foundation.Common;
 using MbedCloudSDK.Connect.Api;
 using MbedCloudSDK.Connect.Api.Subscribe.Models;
 

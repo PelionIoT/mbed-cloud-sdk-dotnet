@@ -6,9 +6,9 @@ namespace MbedCloudSDK.Bootstrap.Api
 {
     using System.Threading.Tasks;
     using connector_bootstrap.Api;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Bootstrap.Model;
     using MbedCloudSDK.Common;
-    using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Exceptions;
     using static MbedCloudSDK.Common.Utils;
 
@@ -70,14 +70,14 @@ namespace MbedCloudSDK.Bootstrap.Api
             }
         }
 
-        private ResponsePage<PreSharedKey> ListPreSharedKeysFunc(QueryOptions options)
+        private async Task<ResponsePage<PreSharedKey>> ListPreSharedKeysFunc(QueryOptions options)
         {
             try
             {
-                var resp = api.ListPreSharedKeys(limit: options.Limit, after: options.After);
-                var psks = new ResponsePage<PreSharedKey>(resp.ContinuationMarker, resp.HasMore, resp.Limit, resp.Order, null);
-                resp.Data.ForEach(psk => psks.Data.Add(PreSharedKey.Map(psk)));
-                return psks;
+                var resp = await api.ListPreSharedKeysAsync(limit: options.Limit, after: options.After);
+                var responsePage = new ResponsePage<PreSharedKey>(after: resp.ContinuationMarker, hasMore: resp.HasMore, totalCount: null);
+                responsePage.MapData<connector_bootstrap.Model.PreSharedKeyWithoutSecret>(resp.Data, PreSharedKey.Map);
+                return responsePage;
             }
             catch (connector_bootstrap.Client.ApiException e)
             {

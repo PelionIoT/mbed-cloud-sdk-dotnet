@@ -4,6 +4,7 @@ using ConsoleExamples.Examples.Connect;
 using ConsoleExamples.Examples.DeviceDirectory;
 using ConsoleExamples.Examples.Subscribe;
 using ConsoleExamples.Examples.Update;
+using Mbed.Cloud.Foundation.Common;
 using MbedCloudSDK.Common;
 using System;
 

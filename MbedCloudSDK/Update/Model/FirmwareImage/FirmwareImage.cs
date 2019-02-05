@@ -6,6 +6,7 @@ namespace MbedCloudSDK.Update.Model.FirmwareImage
 {
     using System;
     using System.Text;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;
@@ -13,7 +14,7 @@ namespace MbedCloudSDK.Update.Model.FirmwareImage
     /// <summary>
     /// Firmware Image from Update API.
     /// </summary>
-    public class FirmwareImage : BaseModel
+    public class FirmwareImage : Entity
     {
         /// <summary>
         /// Gets the path to the firmware image

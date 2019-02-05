@@ -5,7 +5,7 @@
 namespace ConsoleExamples.Examples.DeviceDirectory
 {
     using System;
-    using MbedCloudSDK.Common;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.DeviceDirectory.Api;
     using MbedCloudSDK.DeviceDirectory.Model.Device;
 

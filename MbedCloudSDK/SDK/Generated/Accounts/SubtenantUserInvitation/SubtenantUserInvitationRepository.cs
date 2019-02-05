@@ -48,12 +48,12 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public async Task<SubtenantUserInvitation> Delete(string accountId, string id)
+        public async Task Delete(string accountId, string id)
         {
             try
             {
                 var pathParams = new Dictionary<string, object> { { "account_id", accountId }, { "invitation_id", id }, };
-                return await Client.CallApi<SubtenantUserInvitation>(path: "/v3/accounts/{account_id}/user-invitations/{invitation_id}", pathParams: pathParams, method: HttpMethods.DELETE);
+                await Client.CallApi<SubtenantUserInvitation>(path: "/v3/accounts/{account_id}/user-invitations/{invitation_id}", pathParams: pathParams, method: HttpMethods.DELETE);
             }
             catch (ApiException e)
             {

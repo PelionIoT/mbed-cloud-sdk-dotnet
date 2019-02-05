@@ -4,10 +4,11 @@
 
 namespace MbedCloudSDK.DeviceDirectory.Api
 {
+    using System.Linq;
+    using System.Threading.Tasks;
     using device_directory.Model;
-    using MbedCloudSDK.Common;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common.Extensions;
-    using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.DeviceDirectory.Model.Device;
     using MbedCloudSDK.Exceptions;
 
@@ -60,7 +61,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
             }
         }
 
-        private ResponsePage<Device> ListDevicesFunc(QueryOptions options = null)
+        private async Task<ResponsePage<Device>> ListDevicesFunc(QueryOptions options = null)
         {
             if (options == null)
             {
@@ -69,11 +70,11 @@ namespace MbedCloudSDK.DeviceDirectory.Api
 
             try
             {
-                var resp = Api.DeviceList(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
-                var respDevices = new ResponsePage<Device>(resp.After, resp.HasMore, resp.Limit, resp.Order, resp.TotalCount);
+                var resp = await Api.DeviceListAsync(limit: options.Limit, order: options.Order, after: options.After, filter: options.Filter?.FilterString, include: options.Include);
+                var respDevices = new ResponsePage<Device>(resp.After, resp.HasMore, resp.TotalCount);
                 foreach (var device in resp.Data)
                 {
-                    respDevices.Data.Add(Device.Map(device, this));
+                    respDevices.Add(Device.Map(device, this));
                 }
 
                 return respDevices;
