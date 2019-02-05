@@ -60,9 +60,6 @@ namespace Mbed.Cloud.Foundation.Common
             }
         }
 
-        // [JsonProperty]
-        // private IEnumerable<TData> Data { get => All(); }
-
         /// <summary>
         /// Get all items
         /// </summary>

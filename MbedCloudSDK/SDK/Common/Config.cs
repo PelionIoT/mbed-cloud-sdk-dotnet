@@ -98,17 +98,6 @@ namespace Mbed.Cloud.Foundation.Common
                 Host = host ?? DotNetEnv.Env.GetString(HOST, Environment.GetEnvironmentVariable(HOST) ?? "https://api.us-east-1.mbedcloud.com");
                 ForceClear = forceClear;
                 AutostartNotifications = autostartNotifications;
-
-                // var clientConfig = new Configuration
-                // {
-                //     BasePath = Host,
-                //     DateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ",
-                // };
-                // clientConfig.AddApiKey("Authorization", ApiKey);
-                // clientConfig.AddApiKeyPrefix("Authorization", AuthorizationPrefix);
-                // clientConfig.CreateApiClient();
-
-                // Configuration = clientConfig;
             }
         }
 
