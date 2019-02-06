@@ -30,7 +30,7 @@ namespace MbedCloudSDK.Connect.Api
     /// </summary>
     public partial class ConnectApi
     {
-        private static string WebsocketUrl = "";
+        private static string WebsocketUrl = "wss://api-ns-websocket.mbedcloudintegration.net/v2/notification/websocket-connect";
         private Task notificationTask;
         private CancellationTokenSource cancellationToken;
         private ClientWebSocket webSocketClient;
@@ -152,30 +152,38 @@ namespace MbedCloudSDK.Connect.Api
                 log.Info($"Received message - {message.DebugDump()}");
 
                 if (message.MessageType == WebSocketMessageType.Close) {
-                    if (message.CloseStatus == WebSocketCloseStatus.InternalServerError)
+                    if (message.CloseStatus == WebSocketCloseStatus.InternalServerError || message.CloseStatus == WebSocketCloseStatus.EndpointUnavailable)
                     {
-                        // 1011 no channel
+                        // 1011 no channel or 1001 going away
                         // first re-register the websocket
                         await RegisterWebhook();
                         // then re initiate the websocket
                         await InitiateWebsocket();
                     }
-                    // websocket was closed, why?
-                    if (message.CloseStatus == WebSocketCloseStatus.NormalClosure) {
-                        // websocket was closed normally
+                    else if (message.CloseStatus == WebSocketCloseStatus.NormalClosure)
+                    {
+                        if (isClosing)
+                        {
+                            log.Info("Closing so this as on close is expected");
+                        }
+                        else
+                        {
+                            log.Info("Attempting to restart websocket");
+                            await StartWebsocket();
+                        }
                     }
-
-                    if (message.CloseStatus == WebSocketCloseStatus.EndpointUnavailable) {
-                        // 1001 going away
-                    }
-
-                    if (message.CloseStatus == WebSocketCloseStatus.PolicyViolation) {
+                    else if (message.CloseStatus == WebSocketCloseStatus.PolicyViolation)
+                    {
                         // 1008 policy violation so invalid api key
+                        log.Error("1008 policy violation, stopping notifications");
+                        await StopNotificationsAsync();
                     }
-
-                    
-
-                    // some other error
+                    else
+                    {
+                        // some other error
+                        log.Error($"Some other error - {message.CloseStatus}");
+                        await StopNotificationsAsync();
+                    }
                 } else {
                     // we recieved a message
                     // decode to notification message
@@ -375,16 +383,15 @@ namespace MbedCloudSDK.Connect.Api
             if (webSocketClient == null)
             {
                 webSocketClient = new ClientWebSocket();
+                // set subprotocals e.g. pelion_ak_123, wss
+                webSocketClient.Options.AddSubProtocol($"pelion_{Config.ApiKey}");
+                webSocketClient.Options.AddSubProtocol("wss");
             }
 
             if (buffer == null)
             {
                 buffer = new byte[bufferLength];
             }
-
-            // set subprotocals e.g. pelion_ak_123, wss
-            webSocketClient.Options.AddSubProtocol($"pelion_{Config.ApiKey}");
-            webSocketClient.Options.AddSubProtocol("wss");
 
             // connect to url
             await webSocketClient.ConnectAsync(new Uri(WebsocketUrl), CancellationToken.None);
