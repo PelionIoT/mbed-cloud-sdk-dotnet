@@ -76,7 +76,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
             {
                 if (!ConnectApi.IsNotificationsStarted())
                 {
-                    ConnectApi.StartNotifications();
+                    ConnectApi.StartNotificationsAsync();
                 }
             }
         }

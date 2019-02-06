@@ -24,7 +24,7 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
         /// </summary>
         /// <param name="options">Dictionary containing properties.</param>
         /// <param name="api">Connect Api.</param>
-        public ConnectedDevice(IDictionary<string, object> options = null, Api.ConnectApi api = null)
+        public ConnectedDevice(IDictionary<string, object> options = null, Connect.Api.ConnectApi api = null)
         {
             this.api = api;
             if (options != null)

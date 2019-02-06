@@ -42,7 +42,7 @@ namespace MbedCloudSDK.Connect.Api
             Console.WriteLine($"Adding subscription for {deviceId} at path {resourcePath}");
             try
             {
-                StartNotifications();
+                StartNotificationsAsync();
                 var fixedPath = RemoveLeadingSlash(resourcePath);
                 SubscriptionsApi.AddResourceSubscription(deviceId, fixedPath);
                 var subscribePath = deviceId + resourcePath;

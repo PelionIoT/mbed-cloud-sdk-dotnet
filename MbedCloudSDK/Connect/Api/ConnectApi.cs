@@ -13,6 +13,7 @@ namespace MbedCloudSDK.Connect.Api
     using device_directory.Client;
     using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Connect.Model;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
     using MbedCloudSDK.Connect.Model.Notifications;
     using MbedCloudSDK.Connect.Model.Resource;
@@ -38,20 +39,19 @@ namespace MbedCloudSDK.Connect.Api
     /// </code>
     /// </example>
     /// </summary>
-    public partial class ConnectApi : BaseApi, IDisposable
+    public partial class ConnectApi : Api, IDisposable
     {
-        private statistics.Api.AccountApi accountApi;
-        private string auth;
-        private CancellationTokenSource cancellationToken;
-        private device_directory.Api.DefaultApi deviceDirectoryApi;
-        private DeviceRequestsApi deviceRequestsApi;
         private bool disposed;
-        private EndpointsApi endpointsApi;
-        private NotificationsApi notificationsApi;
-        private Task notificationTask;
-        private ResourcesApi resourcesApi;
-        private statistics.Api.StatisticsApi statisticsApi;
-        private SubscriptionsApi subscriptionsApi;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConnectApi"/> class.
+        /// </summary>
+        /// <param name="config"><see cref="Config"/></param>
+        public ConnectApi(ConnectApiConfig config)
+            : this(config as Config)
+        {
+            DeliveryMethod = config.DeliveryMethod;
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectApi"/> class.
@@ -60,7 +60,6 @@ namespace MbedCloudSDK.Connect.Api
         public ConnectApi(Config config)
             : base(config)
         {
-            ResourceSubscribtions = new Dictionary<string, Resource>();
             SetUpApi(config);
             Subscribe = new Subscribe.Subscribe(this);
         }
@@ -99,13 +98,15 @@ namespace MbedCloudSDK.Connect.Api
         /// </summary>
         public MbedCloudSDK.Connect.Api.Subscribe.Subscribe Subscribe { get; set; }
 
+        public DeliveryMethod DeliveryMethod { get; }
+
         /// <summary>
         /// Gets or sets the account API.
         /// </summary>
         /// <value>
         /// The account API.
         /// </value>
-        internal AccountApi AccountApi { get => accountApi; set => accountApi = value; }
+        internal AccountApi AccountApi { get; set; }
 
         /// <summary>
         /// Gets or sets the device directory API.
@@ -113,7 +114,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <value>
         /// The device directory API.
         /// </value>
-        internal DefaultApi DeviceDirectoryApi { get => deviceDirectoryApi; set => deviceDirectoryApi = value; }
+        internal DefaultApi DeviceDirectoryApi { get; set; }
 
         /// <summary>
         /// Gets or sets the device requests API.
@@ -121,7 +122,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <value>
         /// The device requests API.
         /// </value>
-        internal DeviceRequestsApi DeviceRequestsApi { get => deviceRequestsApi; set => deviceRequestsApi = value; }
+        internal DeviceRequestsApi DeviceRequestsApi { get; set; }
 
         /// <summary>
         /// Gets or sets the endpoints API.
@@ -129,7 +130,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <value>
         /// The endpoints API.
         /// </value>
-        internal EndpointsApi EndpointsApi { get => endpointsApi; set => endpointsApi = value; }
+        internal EndpointsApi EndpointsApi { get; set; }
 
         /// <summary>
         /// Gets or sets the notifications API.
@@ -137,7 +138,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <value>
         /// The notifications API.
         /// </value>
-        internal NotificationsApi NotificationsApi { get => notificationsApi; set => notificationsApi = value; }
+        internal NotificationsApi NotificationsApi { get; set; }
 
         /// <summary>
         /// Gets or sets the resources API.
@@ -145,7 +146,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <value>
         /// The resources API.
         /// </value>
-        internal ResourcesApi ResourcesApi { get => resourcesApi; set => resourcesApi = value; }
+        internal ResourcesApi ResourcesApi { get; set; }
 
         /// <summary>
         /// Gets or sets the statistics API.
@@ -153,7 +154,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <value>
         /// The statistics API.
         /// </value>
-        internal StatisticsApi StatisticsApi { get => statisticsApi; set => statisticsApi = value; }
+        internal StatisticsApi StatisticsApi { get; set; }
 
         /// <summary>
         /// Gets or sets the subscriptions API.
@@ -161,7 +162,9 @@ namespace MbedCloudSDK.Connect.Api
         /// <value>
         /// The subscriptions API.
         /// </value>
-        internal SubscriptionsApi SubscriptionsApi { get => subscriptionsApi; set => subscriptionsApi = value; }
+        internal SubscriptionsApi SubscriptionsApi { get; set; }
+
+        internal WebsocketApi WebsocketApi { get; set; }
 
         /// <summary>
         /// Get meta data for the last Mbed Cloud API call
@@ -235,7 +238,7 @@ namespace MbedCloudSDK.Connect.Api
         private void SetUpApi(Config config, statistics.Client.Configuration statsConfig = null, mds.Client.Configuration mdsConfig = null, Configuration deviceConfig = null)
         {
             const string dateFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
-            auth = $"{config.AuthorizationPrefix} {config.ApiKey}";
+            var auth = $"{config.AuthorizationPrefix} {config.ApiKey}";
 
             if (statsConfig == null)
             {
@@ -284,6 +287,7 @@ namespace MbedCloudSDK.Connect.Api
             AccountApi = new statistics.Api.AccountApi(statsConfig);
             NotificationsApi = new NotificationsApi(mdsConfig);
             DeviceRequestsApi = new DeviceRequestsApi(mdsConfig);
+            WebsocketApi = new WebsocketApi(mdsConfig);
         }
     }
 }

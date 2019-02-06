@@ -40,7 +40,7 @@ namespace TestServer
         public void StopNotifications()
         {
             var connect = apis["Connect"] as ConnectApi;
-            connect.StopNotifications();
+            connect.StopNotificationsAsync();
         }
 
         public static ModuleRepository Instance

@@ -58,7 +58,7 @@ namespace ConsoleExamples
                 }
             }
 
-            connectExamples.api.StopNotifications();
+            connectExamples.api.StopNotificationsAsync();
             Console.WriteLine(" Closing application");
         }
 

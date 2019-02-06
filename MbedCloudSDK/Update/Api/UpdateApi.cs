@@ -14,7 +14,7 @@ namespace MbedCloudSDK.Update.Api
     /// <summary>
     /// Exposing functionality from: Update service, Update campaigns and Manifest management
     /// </summary>
-    public partial class UpdateApi : BaseApi
+    public partial class UpdateApi : Api
     {
         private DefaultApi api;
 

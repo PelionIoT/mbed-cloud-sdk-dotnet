@@ -15,7 +15,7 @@ namespace MbedCloudSDK.Bootstrap.Api
     /// <summary>
     /// Bootstrap Api
     /// </summary>
-    public class BootstrapApi : BaseApi
+    public class BootstrapApi : Api
     {
         private readonly PreSharedKeysApi api;
 

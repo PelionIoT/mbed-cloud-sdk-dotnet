@@ -696,10 +696,10 @@ namespace MbedCloudSDK.Connect.Api
 
             if (Config.AutostartNotifications)
             {
-                StartNotifications();
+                StartNotificationsAsync();
             }
 
-            if (!handleNotifications)
+            if (!websocketRunning)
             {
                 throw new CloudApiException(400, "StartNotifications() needs to be called before creating an async request.");
             }

@@ -4,12 +4,13 @@
 
 namespace MbedCloudSDK.Common
 {
+    using log4net;
     using Mbed.Cloud.Foundation.Common;
 
     /// <summary>
     /// Base API.
     /// </summary>
-    public class BaseApi
+    public abstract class Api
     {
         /// <summary>
         /// Gets UserAgent
@@ -18,17 +19,14 @@ namespace MbedCloudSDK.Common
         private static string userAgent = $"mbed-cloud-sdk-dotnet/{Version.VersionValue}";
 
         /// <summary>
-        /// Config used to initialize APIs. It stores host and API key information.
-        /// </summary>
-        private Config config;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BaseApi"/> class.
+        /// Initializes a new instance of the <see cref="Api"/> class.
         /// </summary>
         /// <param name="config">Config.</param>
-        public BaseApi(Config config)
+        public Api(Config config)
         {
-            this.config = config;
+            Config = config;
+
+            Logger.Setup();
         }
 
         /// <summary>
@@ -40,8 +38,10 @@ namespace MbedCloudSDK.Common
         public static string UserAgent { get => userAgent; set => userAgent = value; }
 
         /// <summary>
-        /// Gets or sets config
+        /// Gets config
         /// </summary>
-        public Config Config { get => config; set => config = value; }
+        public Config Config { get; }
+
+        protected static readonly ILog log = LogManager.GetLogger(typeof(Api));
     }
 }

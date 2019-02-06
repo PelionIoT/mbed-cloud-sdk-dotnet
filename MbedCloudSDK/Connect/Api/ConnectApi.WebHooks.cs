@@ -76,7 +76,7 @@ namespace MbedCloudSDK.Connect.Api
             {
                 if (Config.ForceClear)
                 {
-                    StopNotifications();
+                    StopNotificationsAsync();
                 }
 
                 NotificationsApi.RegisterWebhook(Webhook.MapToApiWebook(webhook));

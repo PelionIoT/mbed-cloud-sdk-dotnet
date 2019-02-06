@@ -47,7 +47,7 @@ namespace ConsoleExamples.Examples.Connect
             }
 
             api.DeleteDeviceSubscriptions(devices[0].Id);
-            api.StopNotifications();
+            api.StopNotificationsAsync();
             return resource;
         }
 
