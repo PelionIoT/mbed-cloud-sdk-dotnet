@@ -26,8 +26,6 @@ namespace MbedCloudSDK.Common
         public Api(Config config)
         {
             Config = config;
-
-            Console.WriteLine(config.LogLevel);
             Logger.Setup(config.LogLevel);
         }
 
