@@ -155,10 +155,17 @@ namespace MbedCloudSDK.Connect.Api
             {
                 try
                 {
-                    // can't have an async method in a task action because it will return immediatley
-                    var message = AsyncHelper.RunSync(() => webSocketClient.ReceiveAsync(receivedBuffer, CancellationToken.None));
-                    log.Debug($"websocket message - {message.DebugDump()}");
-                    AsyncHelper.RunSync(() => handleMessageAsync(message));
+                    if (webSocketClient.State == WebSocketState.Open || webSocketClient.State == WebSocketState.CloseSent)
+                    {
+                        // can't have an async method in a task action because it will return immediatley
+                        var message = AsyncHelper.RunSync(() => webSocketClient.ReceiveAsync(receivedBuffer, CancellationToken.None));
+                        log.Debug($"websocket message - {message.DebugDump()}");
+                        AsyncHelper.RunSync(() => handleMessageAsync(message));
+                    }
+                    else
+                    {
+                        log.Warn($"websocket is in an invalid state to receive - {webSocketClient.State}");
+                    }
                 }
                 catch (WebSocketException e)
                 {
@@ -298,7 +305,7 @@ namespace MbedCloudSDK.Connect.Api
             catch (mds.Client.ApiException getException) when (getException.ErrorCode == 404)
             {
                 log.Debug("no channel found so need to register a websocket");
-                await RegisterWebhook();
+                await RegisterWebSocket();
             }
             catch (mds.Client.ApiException e)
             {
@@ -312,7 +319,7 @@ namespace MbedCloudSDK.Connect.Api
             }
         }
 
-        private async Task RegisterWebhook()
+        private async Task RegisterWebSocket()
         {
             try
             {
@@ -320,9 +327,9 @@ namespace MbedCloudSDK.Connect.Api
             }
             catch (mds.Client.ApiException putException) when (putException.ErrorCode == 400)
             {
-                log.Debug("another channel already exists so force clear and re-register webhook");
+                log.Debug("another channel already exists so force clear and re-register websocket");
                 ForceClear();
-                await RegisterWebhook();
+                await RegisterWebSocket();
             }
             catch (mds.Client.ApiException e)
             {
@@ -404,8 +411,11 @@ namespace MbedCloudSDK.Connect.Api
                 {
                     log.Debug("1011 or 1001 - re-register and restart webhook");
                     // 1011 no channel or 1001 going away
-                    // re-register the websocket
-                    await RegisterWebhook();
+
+                    // once websocket goes into close state it can't be restarted without tearing down, therefore do whole setup/teardown
+                    await StopWebsocketAsync();
+                    await RegisterWebSocket();
+                    await StartWebsocketAsync();
                 }
                 else if (message.CloseStatus == WebSocketCloseStatus.NormalClosure)
                 {
@@ -416,6 +426,7 @@ namespace MbedCloudSDK.Connect.Api
                     else
                     {
                         log.Warn("received close message - attempting to restart websocket");
+                        await StopWebsocketAsync();
                         await StartWebsocketAsync();
                     }
                 }

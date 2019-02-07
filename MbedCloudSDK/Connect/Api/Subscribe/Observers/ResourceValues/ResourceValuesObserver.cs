@@ -65,8 +65,6 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         {
             deviceIds.ToList().ForEach(r =>
             {
-                deviceIds.Print();
-                resourcePaths.Print();
                 var sub = new ResourceValuesFilter { DeviceId = r, ResourcePaths = resourcePaths };
                 ResourceValueSubscriptions.Add(sub);
             });

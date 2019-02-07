@@ -149,7 +149,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
             return local.Union(server, new PresubscriptionComparer()).ToArray();
         }
 
-        private void ConstructPresubArray(string id)
+        private void ConstructPresubscriptionArray(string id)
         {
             // get the union of all the local subscriptions
             var presubs = new HashSet<ResourceValuesFilter>();
@@ -181,6 +181,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
                                 .ForEach(m =>
                                 {
                                     m.ListResources()
+                                        .ToList()
                                         .ForEach(async r =>
                                         {
                                             if (!s.ResourcePaths.Any() || s.ResourcePaths.Any(p => p.MatchWithWildcard(r.Path)))
@@ -197,10 +198,10 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         protected virtual async Task<ResourceValuesObserver> ResourceValuesCoreAsync(ResourceValuesObserver observer, FirstValueImmediacy immediacy)
         {
             Immediacy = immediacy;
-            observer.OnSubAdded += (id) => ConstructPresubArray(id);
+            observer.OnSubAdded += (id) => ConstructPresubscriptionArray(id);
             observer.OnUnsubscribed += (id) => UnsubscribeSubscriptions(id);
             ResourceValueObservers.Add(observer);
-            ConstructPresubArray(observer.Id);
+            ConstructPresubscriptionArray(observer.Id);
             await StartNotificationsAsync();
             return observer;
         }
@@ -208,7 +209,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         private void UnsubscribeSubscriptions(string id)
         {
             ResourceValueObservers.RemoveAll(d => d.Id == id);
-            ConstructPresubArray(id);
+            ConstructPresubscriptionArray(id);
         }
     }
 }

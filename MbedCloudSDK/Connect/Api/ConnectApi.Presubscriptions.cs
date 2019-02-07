@@ -42,7 +42,7 @@ namespace MbedCloudSDK.Connect.Api
         /// </code>
         /// </example>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public void UpdatePresubscriptions(Presubscription[] presubscriptions)
+        public void UpdatePresubscriptions(IEnumerable<Presubscription> presubscriptions)
         {
             var presubscriptionArray = new mds.Model.PresubscriptionArray();
             foreach (var presubscription in presubscriptions)
@@ -154,7 +154,7 @@ namespace MbedCloudSDK.Connect.Api
                     }
                     catch (CloudApiException)
                     {
-                        Console.WriteLine("No subscriptions found for this device");
+                        log.Debug("no subscriptions found for this device");
                     }
                 }
 

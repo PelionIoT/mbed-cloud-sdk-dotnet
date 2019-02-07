@@ -21,6 +21,7 @@ namespace MbedCloudSDK.Connect.Api
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
     using MbedCloudSDK.Exceptions;
     using mds.Model;
+    using static MbedCloudSDK.Common.Utils;
 
     /// <summary>
     /// Connect Api
@@ -118,7 +119,7 @@ namespace MbedCloudSDK.Connect.Api
         /// </code>
         /// </example>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public string[] ListDeviceSubscriptions(string deviceId)
+        public IEnumerable<string> ListDeviceSubscriptions(string deviceId)
         {
             string subscriptionsString;
             try
@@ -170,7 +171,7 @@ namespace MbedCloudSDK.Connect.Api
                     .ToList()
                     .ForEach(d => ResourceSubscribtions.Remove(d));
             }
-            catch (mds.Client.ApiException e)
+            catch (mds.Client.ApiException e) when (e.ErrorCode != 404)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -199,17 +200,16 @@ namespace MbedCloudSDK.Connect.Api
         /// </code>
         /// </example>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public List<Model.Resource.Resource> ListResources(string deviceId)
+        public IEnumerable<Model.Resource.Resource> ListResources(string deviceId)
         {
             try
             {
                 return EndpointsApi.GetEndpointResources(deviceId)
-                .Select(r => Model.Resource.Resource.Map(deviceId, r, this))
-                .ToList();
+                    ?.Select(r => Model.Resource.Resource.Map(deviceId, r, this));
             }
             catch (mds.Client.ApiException e)
             {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+                return HandleNotFound<IEnumerable<Model.Resource.Resource>, mds.Client.ApiException>(e);
             }
         }
 
