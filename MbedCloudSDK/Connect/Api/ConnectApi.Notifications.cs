@@ -470,5 +470,15 @@ namespace MbedCloudSDK.Connect.Api
         {
             return notificationTask?.Status == TaskStatus.Running;
         }
+
+        public void StopNotifications()
+        {
+            AsyncHelper.RunSync(() => StopNotificationsAsync());
+        }
+
+        public void StartNotifications()
+        {
+            AsyncHelper.RunSync(() => StopNotificationsAsync());
+        }
     }
 }
