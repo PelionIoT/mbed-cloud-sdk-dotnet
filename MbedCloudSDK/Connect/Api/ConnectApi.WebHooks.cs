@@ -5,7 +5,9 @@
 namespace MbedCloudSDK.Connect.Api
 {
     using System;
+    using System.ComponentModel;
     using System.Threading.Tasks;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Connect.Model.Webhook;
     using MbedCloudSDK.Exceptions;
 
@@ -71,7 +73,7 @@ namespace MbedCloudSDK.Connect.Api
         /// </code>
         /// </example>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public async Task UpdateWebhook(Webhook webhook)
+        public async Task UpdateWebhookAsync(Webhook webhook)
         {
             try
             {
@@ -80,12 +82,20 @@ namespace MbedCloudSDK.Connect.Api
                     await StopNotificationsAsync();
                 }
 
-                NotificationsApi.RegisterWebhook(Webhook.MapToApiWebook(webhook));
+                await NotificationsApi.RegisterWebhookAsync(Webhook.MapToApiWebook(webhook));
             }
             catch (mds.Client.ApiException ex)
             {
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
+        }
+
+        /// <summary>Obsolote, do not use.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Please us async version AddResourceSubscriptionAsync")]
+        public void UpdateWebhook(Webhook webhook)
+        {
+            AsyncHelper.RunSync(() => UpdateWebhookAsync(webhook));
         }
 
         /// <summary>

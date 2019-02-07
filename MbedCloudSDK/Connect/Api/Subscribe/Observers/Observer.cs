@@ -60,7 +60,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
         /// <value>
         /// The identifier.
         /// </value>
-        public string Id { get; set; }
+        public string Id { get; }
 
         /// <summary>
         /// Gets the collection.

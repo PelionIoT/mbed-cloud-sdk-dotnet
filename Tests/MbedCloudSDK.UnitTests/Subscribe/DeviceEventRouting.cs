@@ -62,7 +62,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<DeviceEventData>();
-            var observer = (await subscribe.DeviceEventsAsync()).Where(f => f.Id == "1");
+            var observer = (await subscribe.DeviceEventsAsync()).Filter(f => f.Id == "1");
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);
@@ -77,7 +77,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<DeviceEventData>();
-            var observer = (await subscribe.DeviceEventsAsync()).Where(f => f.Id == "1" || f.Id == "2");
+            var observer = (await subscribe.DeviceEventsAsync()).Filter(f => f.Id == "1" || f.Id == "2");
 
             observer.OnNotify += res => items.Add(res);
 
@@ -93,7 +93,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<DeviceEventData>();
-            var observer = (await subscribe.DeviceEventsAsync()).Where(f => f.Event == DeviceEventEnum.Registration);
+            var observer = (await subscribe.DeviceEventsAsync()).Filter(f => f.Event == DeviceEvent.Registration);
 
             observer.OnNotify += res => items.Add(res);
 
@@ -101,7 +101,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
             MockNotification(subscribe);
 
             Assert.AreEqual(18, items.Count);
-            Assert.AreEqual(18, items.Where(d => d.State == DeviceEventEnum.Registration).ToList().Count);
+            Assert.AreEqual(18, items.Where(d => d.State == DeviceEvent.Registration).ToList().Count);
         }
 
         [Test]
@@ -109,7 +109,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<DeviceEventData>();
-            var observer = (await subscribe.DeviceEventsAsync()).Where(f => f.Event == DeviceEventEnum.Registration || f.Event == DeviceEventEnum.DeRegistration);
+            var observer = (await subscribe.DeviceEventsAsync()).Filter(f => f.Event == DeviceEvent.Registration || f.Event == DeviceEvent.DeRegistration);
 
             observer.OnNotify += res => items.Add(res);
 
@@ -117,7 +117,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
             MockNotification(subscribe);
 
             Assert.AreEqual(36, items.Count);
-            Assert.AreEqual(36, items.Where(d => d.State == DeviceEventEnum.Registration || d.State == DeviceEventEnum.DeRegistration).ToList().Count);
+            Assert.AreEqual(36, items.Where(d => d.State == DeviceEvent.Registration || d.State == DeviceEvent.DeRegistration).ToList().Count);
         }
 
         [Test]
@@ -125,7 +125,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<DeviceEventData>();
-            var observer = (await subscribe.DeviceEventsAsync()).Where(f => f.Id == "1" && f.Event == DeviceEventEnum.Registration);
+            var observer = (await subscribe.DeviceEventsAsync()).Filter(f => f.Id == "1" && f.Event == DeviceEvent.Registration);
 
             observer.OnNotify += res => items.Add(res);
 
@@ -133,7 +133,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
             MockNotification(subscribe);
 
             Assert.AreEqual(4, items.Count);
-            Assert.AreEqual(4, items.Where(d => d.State == DeviceEventEnum.Registration && d.DeviceId == "1").ToList().Count);
+            Assert.AreEqual(4, items.Where(d => d.State == DeviceEvent.Registration && d.DeviceId == "1").ToList().Count);
         }
 
         [Test]
@@ -141,7 +141,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<DeviceEventData>();
-            var observer = (await subscribe.DeviceEventsAsync()).Where(f => (f.Id == "1" || f.Id == "2") && (f.Event == DeviceEventEnum.Registration || f.Event == DeviceEventEnum.DeRegistration));
+            var observer = (await subscribe.DeviceEventsAsync()).Filter(f => (f.Id == "1" || f.Id == "2") && (f.Event == DeviceEvent.Registration || f.Event == DeviceEvent.DeRegistration));
 
             observer.OnNotify += res => items.Add(res);
 
@@ -156,8 +156,8 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<DeviceEventData>();
-            var observer = (await subscribe.DeviceEventsAsync()).Where(f => f.Event == DeviceEventEnum.Registration || f.Event == DeviceEventEnum.DeRegistration)
-                                                   .Where(f => f.Id == "1" || f.Id == "2");
+            var observer = (await subscribe.DeviceEventsAsync()).Filter(f => f.Event == DeviceEvent.Registration || f.Event == DeviceEvent.DeRegistration)
+                                                   .Filter(f => f.Id == "1" || f.Id == "2");
 
             observer.OnNotify += res => items.Add(res);
 
@@ -171,42 +171,42 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         {
             var regList = new List<DeviceEventData>()
             {
-                new DeviceEventData() { DeviceId = "1", State = DeviceEventEnum.Registration },
-                new DeviceEventData() { DeviceId = "1", State = DeviceEventEnum.Registration },
-                new DeviceEventData() { DeviceId = "2", State = DeviceEventEnum.Registration },
-                new DeviceEventData() { DeviceId = "2", State = DeviceEventEnum.Registration },
-                new DeviceEventData() { DeviceId = "3", State = DeviceEventEnum.Registration },
-                new DeviceEventData() { DeviceId = "3", State = DeviceEventEnum.Registration },
-                new DeviceEventData() { DeviceId = "4", State = DeviceEventEnum.Registration },
-                new DeviceEventData() { DeviceId = "4", State = DeviceEventEnum.Registration },
-                new DeviceEventData() { DeviceId = "5", State = DeviceEventEnum.Registration },
-                new DeviceEventData() { DeviceId = "1", State = DeviceEventEnum.DeRegistration },
-                new DeviceEventData() { DeviceId = "1", State = DeviceEventEnum.DeRegistration },
-                new DeviceEventData() { DeviceId = "2", State = DeviceEventEnum.DeRegistration },
-                new DeviceEventData() { DeviceId = "2", State = DeviceEventEnum.DeRegistration },
-                new DeviceEventData() { DeviceId = "3", State = DeviceEventEnum.DeRegistration },
-                new DeviceEventData() { DeviceId = "3", State = DeviceEventEnum.DeRegistration },
-                new DeviceEventData() { DeviceId = "4", State = DeviceEventEnum.DeRegistration },
-                new DeviceEventData() { DeviceId = "4", State = DeviceEventEnum.DeRegistration },
-                new DeviceEventData() { DeviceId = "5", State = DeviceEventEnum.DeRegistration },
-                new DeviceEventData() { DeviceId = "1", State = DeviceEventEnum.RegistrationUpdate },
-                new DeviceEventData() { DeviceId = "1", State = DeviceEventEnum.RegistrationUpdate },
-                new DeviceEventData() { DeviceId = "2", State = DeviceEventEnum.RegistrationUpdate },
-                new DeviceEventData() { DeviceId = "2", State = DeviceEventEnum.RegistrationUpdate },
-                new DeviceEventData() { DeviceId = "3", State = DeviceEventEnum.RegistrationUpdate },
-                new DeviceEventData() { DeviceId = "3", State = DeviceEventEnum.RegistrationUpdate },
-                new DeviceEventData() { DeviceId = "4", State = DeviceEventEnum.RegistrationUpdate },
-                new DeviceEventData() { DeviceId = "4", State = DeviceEventEnum.RegistrationUpdate },
-                new DeviceEventData() { DeviceId = "5", State = DeviceEventEnum.RegistrationUpdate },
-                new DeviceEventData() { DeviceId = "1", State = DeviceEventEnum.ExpiredRegistration },
-                new DeviceEventData() { DeviceId = "1", State = DeviceEventEnum.ExpiredRegistration },
-                new DeviceEventData() { DeviceId = "2", State = DeviceEventEnum.ExpiredRegistration },
-                new DeviceEventData() { DeviceId = "2", State = DeviceEventEnum.ExpiredRegistration },
-                new DeviceEventData() { DeviceId = "3", State = DeviceEventEnum.ExpiredRegistration },
-                new DeviceEventData() { DeviceId = "3", State = DeviceEventEnum.ExpiredRegistration },
-                new DeviceEventData() { DeviceId = "4", State = DeviceEventEnum.ExpiredRegistration },
-                new DeviceEventData() { DeviceId = "4", State = DeviceEventEnum.ExpiredRegistration },
-                new DeviceEventData() { DeviceId = "5", State = DeviceEventEnum.ExpiredRegistration },
+                new DeviceEventData() { DeviceId = "1", State = DeviceEvent.Registration },
+                new DeviceEventData() { DeviceId = "1", State = DeviceEvent.Registration },
+                new DeviceEventData() { DeviceId = "2", State = DeviceEvent.Registration },
+                new DeviceEventData() { DeviceId = "2", State = DeviceEvent.Registration },
+                new DeviceEventData() { DeviceId = "3", State = DeviceEvent.Registration },
+                new DeviceEventData() { DeviceId = "3", State = DeviceEvent.Registration },
+                new DeviceEventData() { DeviceId = "4", State = DeviceEvent.Registration },
+                new DeviceEventData() { DeviceId = "4", State = DeviceEvent.Registration },
+                new DeviceEventData() { DeviceId = "5", State = DeviceEvent.Registration },
+                new DeviceEventData() { DeviceId = "1", State = DeviceEvent.DeRegistration },
+                new DeviceEventData() { DeviceId = "1", State = DeviceEvent.DeRegistration },
+                new DeviceEventData() { DeviceId = "2", State = DeviceEvent.DeRegistration },
+                new DeviceEventData() { DeviceId = "2", State = DeviceEvent.DeRegistration },
+                new DeviceEventData() { DeviceId = "3", State = DeviceEvent.DeRegistration },
+                new DeviceEventData() { DeviceId = "3", State = DeviceEvent.DeRegistration },
+                new DeviceEventData() { DeviceId = "4", State = DeviceEvent.DeRegistration },
+                new DeviceEventData() { DeviceId = "4", State = DeviceEvent.DeRegistration },
+                new DeviceEventData() { DeviceId = "5", State = DeviceEvent.DeRegistration },
+                new DeviceEventData() { DeviceId = "1", State = DeviceEvent.RegistrationUpdate },
+                new DeviceEventData() { DeviceId = "1", State = DeviceEvent.RegistrationUpdate },
+                new DeviceEventData() { DeviceId = "2", State = DeviceEvent.RegistrationUpdate },
+                new DeviceEventData() { DeviceId = "2", State = DeviceEvent.RegistrationUpdate },
+                new DeviceEventData() { DeviceId = "3", State = DeviceEvent.RegistrationUpdate },
+                new DeviceEventData() { DeviceId = "3", State = DeviceEvent.RegistrationUpdate },
+                new DeviceEventData() { DeviceId = "4", State = DeviceEvent.RegistrationUpdate },
+                new DeviceEventData() { DeviceId = "4", State = DeviceEvent.RegistrationUpdate },
+                new DeviceEventData() { DeviceId = "5", State = DeviceEvent.RegistrationUpdate },
+                new DeviceEventData() { DeviceId = "1", State = DeviceEvent.ExpiredRegistration },
+                new DeviceEventData() { DeviceId = "1", State = DeviceEvent.ExpiredRegistration },
+                new DeviceEventData() { DeviceId = "2", State = DeviceEvent.ExpiredRegistration },
+                new DeviceEventData() { DeviceId = "2", State = DeviceEvent.ExpiredRegistration },
+                new DeviceEventData() { DeviceId = "3", State = DeviceEvent.ExpiredRegistration },
+                new DeviceEventData() { DeviceId = "3", State = DeviceEvent.ExpiredRegistration },
+                new DeviceEventData() { DeviceId = "4", State = DeviceEvent.ExpiredRegistration },
+                new DeviceEventData() { DeviceId = "4", State = DeviceEvent.ExpiredRegistration },
+                new DeviceEventData() { DeviceId = "5", State = DeviceEvent.ExpiredRegistration },
             };
 
             foreach (var item in regList)

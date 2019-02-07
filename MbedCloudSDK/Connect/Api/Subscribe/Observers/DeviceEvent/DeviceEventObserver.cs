@@ -60,7 +60,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.DeviceEvent
         /// </summary>
         /// <param name="filterFunc">Function to be run on the device events</param>
         /// <returns>The device event observer so Where calls can be chained</returns>
-        public DeviceEventObserver Where(Func<DeviceEventFilter, bool> filterFunc)
+        public DeviceEventObserver Filter(Func<DeviceEventFilter, bool> filterFunc)
         {
             FilterFuncs.Add(filterFunc);
             return this;

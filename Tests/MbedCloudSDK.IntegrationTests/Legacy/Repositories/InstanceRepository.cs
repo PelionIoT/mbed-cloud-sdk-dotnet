@@ -41,9 +41,11 @@ namespace MbedCloudSDK.IntegrationTests.Repositories
             var additionalProperties = instanceConfiguration.GetHashtable();
             var config = new Config(
                 apiKey: instanceConfiguration.ApiKey,
-                host: instanceConfiguration.Host,
-                autostartNotifications: instanceConfiguration.AutostartDaemon,
-                forceClear: true); // Convert.ToBoolean(additionalProperties["force_clear"] ?? false));
+                host: instanceConfiguration.Host)
+                {
+                    AutostartNotifications = instanceConfiguration.AutostartDaemon,
+                    ForceClear = true,
+                };
 
             var instance = new Instance { Id = Guid.NewGuid().ToString(), Module = module, CreatedAt = DateTime.Now };
             switch (module)

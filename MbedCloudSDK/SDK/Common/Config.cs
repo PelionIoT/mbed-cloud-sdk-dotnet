@@ -34,7 +34,7 @@ namespace Mbed.Cloud.Foundation.Common
         /// Initializes a new instance of the <see cref="Config"/> class.
         /// </summary>
         public Config()
-        : this(null, null, false, false)
+        : this(null, null)
         {
         }
 
@@ -43,53 +43,12 @@ namespace Mbed.Cloud.Foundation.Common
         /// </summary>
         /// <param name="apiKey">The API key.</param>
         public Config(string apiKey)
-        : this(apiKey, null, false, false)
+        : this(apiKey, null)
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Config"/> class.
-        /// </summary>
-        /// <param name="apiKey">The API key.</param>
         public Config(string apiKey, string host)
-        : this(apiKey, host, false, false)
         {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Config"/> class.
-        /// </summary>
-        /// <param name="apiKey">The API key.</param>
-        public Config(string apiKey, string host, bool forceClear)
-        : this(apiKey, host, forceClear, false)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Config"/> class.
-        /// </summary>
-        /// <param name="forceClear">if set to <c>true</c> [force clear].</param>
-        public Config(bool forceClear)
-        : this(null, null, forceClear, false)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Config"/> class.
-        /// </summary>
-        /// <param name="forceClear">if set to <c>true</c> [force clear].</param>
-        /// <param name="autostartNotifications">if set to <c>true</c> [autostart notifications].</param>
-        public Config(bool forceClear, bool autostartNotifications)
-        : this(null, null, forceClear, autostartNotifications)
-        {
-        }
-
-        public Config(string apiKey, string host, bool forceClear, bool autostartNotifications)
-        {
-            // these can only be set via constructor so set at start
-            ForceClear = forceClear;
-            AutostartNotifications = autostartNotifications;
-
             // check if key and host were set in constructor or environment variables
             var setkey = apiKey ?? Environment.GetEnvironmentVariable(API_KEY);
             var setHost = host ?? Environment.GetEnvironmentVariable(HOST);
@@ -165,19 +124,21 @@ namespace Mbed.Cloud.Foundation.Common
         /// <summary>
         /// Gets a value indicating whether to auto start notifications
         /// </summary>
-        public bool AutostartNotifications { get; } = false;
+        public bool AutostartNotifications { get; set; } = false;
 
         /// <summary>
         /// Gets a value indicating whether to clear any existing notification channels
         /// </summary>
         /// <value>If true, notifications will start automaticaly</value>
-        public bool ForceClear { get; } = false;
+        public bool ForceClear { get; set; } = false;
 
         /// <summary>
         /// Gets the host.
         /// </summary>
         /// <value>The host.</value>
         public string Host { get; } = "https://api.us-east-1.mbedcloud.com";
+
+        public LogLevel LogLevel { get; set; } = LogLevel.OFF;
 
         private string FindDotEnv(string currentDirectory)
         {

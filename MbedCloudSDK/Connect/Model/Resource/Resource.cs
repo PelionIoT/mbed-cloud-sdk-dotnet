@@ -254,7 +254,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
         /// <returns>Async consumer with string</returns>
         public async Task<Resource> Subscribe()
         {
-            return await api.AddResourceSubscription(DeviceId, Path);
+            return await api.AddResourceSubscriptionAsync(DeviceId, Path);
         }
 
         /// <summary>

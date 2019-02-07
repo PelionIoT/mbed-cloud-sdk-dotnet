@@ -8,35 +8,24 @@ namespace MbedCloudSDK.Connect.Api
         public DeliveryMethod DeliveryMethod { get; } = DeliveryMethod.CLIENT_INITIATED;
 
         public ConnectApiConfig() :
-            base(null, null, false, false)
+            base(null, null)
         {
         }
 
         public ConnectApiConfig(string apiKey) :
-            base(apiKey, null, false, false)
+            base(apiKey, null)
         {
         }
 
         public ConnectApiConfig(string apiKey, string host) :
-            base(apiKey, host, false, false)
+            base(apiKey, host)
         {
         }
 
         public ConnectApiConfig(string apiKey, string host, DeliveryMethod deliveryMethod) :
-            base(apiKey, host, false, false)
+            base(apiKey, host)
         {
             DeliveryMethod = deliveryMethod;
-        }
-
-        public ConnectApiConfig(string apiKey, string host, DeliveryMethod deliveryMethod, bool forceClear) :
-            base(apiKey, host, forceClear, false)
-        {
-            DeliveryMethod = deliveryMethod;
-        }
-
-        public ConnectApiConfig(string apiKey, string host, bool forceClear) :
-            base(apiKey, host, forceClear, false)
-        {
         }
     }
 }

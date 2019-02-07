@@ -272,9 +272,8 @@ namespace MbedCloudSDK.Connect.Api
         /// <exception cref="CloudApiException">
         /// If an error occurred while communicating with the server or if the server responsed with an error.
         /// </exception>
-        [EditorBrowsable(EditorBrowsableState.Advanced)]
         public string ExecuteResource(string deviceId, string resourcePath, string functionName = null)
-            => UnsafeExecuteSynchronously(ExecuteResourceAsync(deviceId, resourcePath, functionName));
+            => ExecuteSynchronously(ExecuteResourceAsync(deviceId, resourcePath, functionName));
 
         /// <summary>
         /// Execute a function on a resource asynchronously
@@ -341,9 +340,8 @@ namespace MbedCloudSDK.Connect.Api
         /// <exception cref="CloudApiException">
         /// If an error occurred while communicating with the server or if the server responsed with an error.
         /// </exception>
-        [EditorBrowsable(EditorBrowsableState.Advanced)]
         public string GetResourceValue(string deviceId, string resourcePath)
-            => UnsafeExecuteSynchronously(GetResourceValueAsync(deviceId, resourcePath));
+            => ExecuteSynchronously(GetResourceValueAsync(deviceId, resourcePath));
 
         /// <summary>
         /// Gets the value of the resource asynchronously
@@ -398,9 +396,8 @@ namespace MbedCloudSDK.Connect.Api
         /// <exception cref="CloudApiException">
         /// If an error occurred while communicating with the server or if the server responsed with an error.
         /// </exception>
-        [EditorBrowsable(EditorBrowsableState.Advanced)]
         public string SetResourceValue(string deviceId, string resourcePath, string resourceValue)
-            => UnsafeExecuteSynchronously(SetResourceValueAsync(deviceId, resourcePath, resourceValue));
+            => ExecuteSynchronously(SetResourceValueAsync(deviceId, resourcePath, resourceValue));
 
         /// <overloads>
         /// Sets the value for the specified resource.
@@ -652,10 +649,8 @@ namespace MbedCloudSDK.Connect.Api
             }
         }
 
-        private string UnsafeExecuteSynchronously(Task<AsyncConsumer<string>> task)
+        private string ExecuteSynchronously(Task<AsyncConsumer<string>> task)
         {
-            Debug.Assert(task != null, "Task to wait cannot be null");
-
             var consumer = task
                 .GetAwaiter()
                 .GetResult();
@@ -699,7 +694,7 @@ namespace MbedCloudSDK.Connect.Api
                 await StartNotificationsAsync();
             }
 
-            if (!websocketRunning)
+            if (!IsNotificationsStarted())
             {
                 throw new CloudApiException(400, "StartNotifications() needs to be called before creating an async request.");
             }

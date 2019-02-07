@@ -10,7 +10,7 @@ namespace Mbed.Cloud.Foundation.Common
 {
     public class Logger
     {
-        public static void Setup()
+        public static void Setup(LogLevel level)
         {
             var loggerRepo = LogManager.GetRepository(Assembly.GetCallingAssembly());
 
@@ -18,8 +18,31 @@ namespace Mbed.Cloud.Foundation.Common
 
             Hierarchy hierarchy = (Hierarchy)loggerRepo;
 
-            hierarchy.Root.Level = Level.Info;
+            hierarchy.Root.Level = getLogLevel(level);
             hierarchy.Configured = true;
+        }
+
+        private static Level getLogLevel(LogLevel level)
+        {
+            switch (level)
+            {
+                case LogLevel.ALL:
+                    return Level.All;
+                case LogLevel.DEBUG:
+                    return Level.Debug;
+                case LogLevel.ERROR:
+                    return Level.Error;
+                case LogLevel.FATAL:
+                    return Level.Fatal;
+                case LogLevel.INFO:
+                    return Level.Info;
+                case LogLevel.OFF:
+                    return Level.Off;
+                case LogLevel.WARN:
+                    return Level.Warn;
+                default:
+                    return Level.Off;
+            }
         }
     }
 }

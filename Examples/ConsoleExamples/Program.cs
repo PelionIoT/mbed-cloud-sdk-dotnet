@@ -36,7 +36,11 @@ namespace ConsoleExamples
                 host = "https://api.us-east-1.mbedcloud.com";
             }
 
-            var config = new Config(apiKey: apiKey, host: host, forceClear: true, autostartNotifications: true);
+            var config = new Config(apiKey: apiKey, host: host)
+            {
+                ForceClear = true,
+                AutostartNotifications = true,
+            };
 
             accountManagementExamples = new AccountManagementExamples(config);
             certificateExamples = new CertificateExamples(config);

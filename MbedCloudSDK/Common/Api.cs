@@ -4,6 +4,7 @@
 
 namespace MbedCloudSDK.Common
 {
+    using System;
     using log4net;
     using Mbed.Cloud.Foundation.Common;
 
@@ -26,7 +27,8 @@ namespace MbedCloudSDK.Common
         {
             Config = config;
 
-            Logger.Setup();
+            Console.WriteLine(config.LogLevel);
+            Logger.Setup(config.LogLevel);
         }
 
         /// <summary>

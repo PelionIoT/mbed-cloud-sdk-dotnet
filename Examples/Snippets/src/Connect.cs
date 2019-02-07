@@ -16,7 +16,7 @@ namespace Snippets.src
 
             using (var connect = new ConnectApi(config))
             {
-                var observer = (await connect.Subscribe.DeviceEventsAsync()).Where(d => d.Event == DeviceEventEnum.Registration);
+                var observer = (await connect.Subscribe.DeviceEventsAsync()).Filter(d => d.Event == DeviceEvent.Registration);
 
                 observer.OnNotify += (res) => Console.WriteLine(res);
 

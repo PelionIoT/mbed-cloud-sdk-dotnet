@@ -54,7 +54,7 @@ namespace MbedCloudSDK.Connect.Model.Notifications
         /// Gets or sets the state
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        public DeviceEventEnum State { get; set; }
+        public DeviceEvent State { get; set; }
 
         /// <summary>
         /// Maps to EndpointData
@@ -62,7 +62,7 @@ namespace MbedCloudSDK.Connect.Model.Notifications
         /// <param name="data">Mds Endpoint Data</param>
         /// <param name="state">The device state</param>
         /// <returns>The EndpointData</returns>
-        public static DeviceEventData Map(mds.Model.EndpointData data, DeviceEventEnum state)
+        public static DeviceEventData Map(mds.Model.EndpointData data, DeviceEvent state)
         {
             var endpointData = new DeviceEventData
             {

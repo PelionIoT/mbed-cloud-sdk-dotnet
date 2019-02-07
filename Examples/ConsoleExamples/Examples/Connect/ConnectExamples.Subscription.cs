@@ -33,7 +33,7 @@ namespace ConsoleExamples.Examples.Connect
 
             // Subscribe to the resource
             Console.WriteLine($"subscribing to {buttonResource} on device {devices[0].Id}");
-            var resource = await api.AddResourceSubscription(devices[0].Id, buttonResource);
+            var resource = await api.AddResourceSubscriptionAsync(devices[0].Id, buttonResource);
             var counter = 0;
             while (true)
             {
@@ -72,7 +72,7 @@ namespace ConsoleExamples.Examples.Connect
 
             Action<string> notificationCallback = (res) => { Console.WriteLine("Got value " + res); };
 
-            var resource = await api.AddResourceSubscription(endpoints[0].Id, buttonResource);
+            var resource = await api.AddResourceSubscriptionAsync(endpoints[0].Id, buttonResource);
 
             resource.NotificationHandler = notificationCallback;
         }
@@ -104,22 +104,22 @@ namespace ConsoleExamples.Examples.Connect
             // add subscription if resource is subscribed to
             if (resources.Any(r => r.Path == incrementalResource))
             {
-                incrementSubscription = await api.AddResourceSubscription(deviceId, incrementalResource);
+                incrementSubscription = await api.AddResourceSubscriptionAsync(deviceId, incrementalResource);
             }
 
             if (resources.Any(r => r.Path == voltageResource))
             {
-                voltageSubscription = await api.AddResourceSubscription(deviceId, voltageResource);
+                voltageSubscription = await api.AddResourceSubscriptionAsync(deviceId, voltageResource);
             }
 
             if (resources.Any(r => r.Path == currentResource))
             {
-                currentSubscription = await api.AddResourceSubscription(deviceId, currentResource);
+                currentSubscription = await api.AddResourceSubscriptionAsync(deviceId, currentResource);
             }
 
             if (resources.Any(r => r.Path == powerResource))
             {
-                powerSubscription = await api.AddResourceSubscription(deviceId, powerResource);
+                powerSubscription = await api.AddResourceSubscriptionAsync(deviceId, powerResource);
             }
 
             while (true)
