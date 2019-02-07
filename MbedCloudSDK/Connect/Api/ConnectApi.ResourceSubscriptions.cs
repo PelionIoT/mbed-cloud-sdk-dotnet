@@ -5,6 +5,7 @@
 namespace MbedCloudSDK.Connect.Api
 {
     using System;
+    using System.Threading.Tasks;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
     using MbedCloudSDK.Connect.Model.Resource;
     using MbedCloudSDK.Exceptions;
@@ -37,12 +38,12 @@ namespace MbedCloudSDK.Connect.Api
         /// </code>
         /// </example>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public Resource AddResourceSubscription(string deviceId, string resourcePath)
+        public async Task<Resource> AddResourceSubscription(string deviceId, string resourcePath)
         {
             Console.WriteLine($"Adding subscription for {deviceId} at path {resourcePath}");
             try
             {
-                StartNotificationsAsync();
+                await StartNotificationsAsync();
                 var fixedPath = RemoveLeadingSlash(resourcePath);
                 SubscriptionsApi.AddResourceSubscription(deviceId, fixedPath);
                 var subscribePath = deviceId + resourcePath;

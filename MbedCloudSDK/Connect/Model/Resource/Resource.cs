@@ -7,6 +7,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
     using System;
     using System.Collections.Generic;
     using System.Collections.Specialized;
+    using System.Threading.Tasks;
     using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Connect.Api;
@@ -251,9 +252,9 @@ namespace MbedCloudSDK.Connect.Model.Resource
         /// Subscribe to this resource.
         /// </summary>
         /// <returns>Async consumer with string</returns>
-        public Resource Subscribe()
+        public async Task<Resource> Subscribe()
         {
-            return api.AddResourceSubscription(DeviceId, Path);
+            return await api.AddResourceSubscription(DeviceId, Path);
         }
 
         /// <summary>

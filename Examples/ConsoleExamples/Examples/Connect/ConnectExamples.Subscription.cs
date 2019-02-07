@@ -6,6 +6,7 @@ namespace ConsoleExamples.Examples.Connect
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
     using MbedCloudSDK.Connect.Model.Resource;
 
@@ -18,7 +19,7 @@ namespace ConsoleExamples.Examples.Connect
         /// Subscribe Resources.
         /// </summary>
         /// <returns>Task with resource</returns>
-        public async System.Threading.Tasks.Task<Resource> SubscribeAsync()
+        public async Task<Resource> SubscribeAsync()
         {
             // Resource path
             const string buttonResource = "/5002/0/1";
@@ -32,7 +33,7 @@ namespace ConsoleExamples.Examples.Connect
 
             // Subscribe to the resource
             Console.WriteLine($"subscribing to {buttonResource} on device {devices[0].Id}");
-            var resource = api.AddResourceSubscription(devices[0].Id, buttonResource);
+            var resource = await api.AddResourceSubscription(devices[0].Id, buttonResource);
             var counter = 0;
             while (true)
             {
@@ -47,14 +48,14 @@ namespace ConsoleExamples.Examples.Connect
             }
 
             api.DeleteDeviceSubscriptions(devices[0].Id);
-            api.StopNotificationsAsync();
+            await api.StopNotificationsAsync();
             return resource;
         }
 
         /// <summary>
         /// Callback
         /// </summary>
-        public void SubscribeCallback()
+        public async Task SubscribeCallbackAsync()
         {
             // Resource path
             const string buttonResource = "/5002/0/1";
@@ -71,7 +72,7 @@ namespace ConsoleExamples.Examples.Connect
 
             Action<string> notificationCallback = (res) => { Console.WriteLine("Got value " + res); };
 
-            var resource = api.AddResourceSubscription(endpoints[0].Id, buttonResource);
+            var resource = await api.AddResourceSubscription(endpoints[0].Id, buttonResource);
 
             resource.NotificationHandler = notificationCallback;
         }
@@ -103,22 +104,22 @@ namespace ConsoleExamples.Examples.Connect
             // add subscription if resource is subscribed to
             if (resources.Any(r => r.Path == incrementalResource))
             {
-                incrementSubscription = api.AddResourceSubscription(deviceId, incrementalResource);
+                incrementSubscription = await api.AddResourceSubscription(deviceId, incrementalResource);
             }
 
             if (resources.Any(r => r.Path == voltageResource))
             {
-                voltageSubscription = api.AddResourceSubscription(deviceId, voltageResource);
+                voltageSubscription = await api.AddResourceSubscription(deviceId, voltageResource);
             }
 
             if (resources.Any(r => r.Path == currentResource))
             {
-                currentSubscription = api.AddResourceSubscription(deviceId, currentResource);
+                currentSubscription = await api.AddResourceSubscription(deviceId, currentResource);
             }
 
             if (resources.Any(r => r.Path == powerResource))
             {
-                powerSubscription = api.AddResourceSubscription(deviceId, powerResource);
+                powerSubscription = await api.AddResourceSubscription(deviceId, powerResource);
             }
 
             while (true)

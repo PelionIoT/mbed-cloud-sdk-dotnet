@@ -17,7 +17,7 @@ namespace ConsoleExamples.Examples.Connect
         /// Create a webhook for the resouce.
         /// </summary>
         /// <returns>Webhook</returns>
-        public MbedCloudSDK.Connect.Model.Webhook.Webhook RegisterWebhook()
+        public async System.Threading.Tasks.Task<MbedCloudSDK.Connect.Model.Webhook.Webhook> RegisterWebhookAsync()
         {
             // Resource path
             const string buttonResource = "/5002/0/1";
@@ -32,11 +32,11 @@ namespace ConsoleExamples.Examples.Connect
             var device = connectedDevices.FirstOrDefault();
             api.DeleteDeviceSubscriptions(device.Id);
 
-            api.AddResourceSubscription(device.Id, buttonResource);
+            await api.AddResourceSubscription(device.Id, buttonResource);
 
             // webhook address
             var webhook = new MbedCloudSDK.Connect.Model.Webhook.Webhook("http://mbed-cloud-dotnet.requestcatcher.com/test");
-            api.UpdateWebhook(webhook);
+            await api.UpdateWebhook(webhook);
             Thread.Sleep(2000);
 
             // Subscribe to the resource

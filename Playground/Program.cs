@@ -25,13 +25,41 @@ namespace Playground
             {
                 var connect = new ConnectApi(new Config(ApiKey, Host));
 
+                // Console.WriteLine("----------------- start -----------------------");
+
+                // await connect.StartNotificationsAsync();
+
+                // Console.WriteLine("------------------ start ----------------------");
+
+                // await connect.StartNotificationsAsync();
+
+                // Console.WriteLine("------------------ start ----------------------");
+
+                // await connect.StartNotificationsAsync();
+
+                // Console.WriteLine("------------------ stop ----------------------");
+
+                // await connect.StopNotificationsAsync();
+
+                // Console.WriteLine("------------------- stop ---------------------");
+
+                // await connect.StopNotificationsAsync();
+
+                // Console.WriteLine("-------------------- start --------------------");
+
+                // await connect.StartNotificationsAsync();
+
+                Console.WriteLine("-------------------- start --------------------");
+
                 await connect.StartNotificationsAsync();
 
-                await connect.StopNotificationsAsync();
+                Console.WriteLine("-------------------- subscribe --------------------");
 
-                // var myDevice = connect.ListConnectedDevices().FirstOrDefault();
+                var myDevice = connect.ListConnectedDevices().FirstOrDefault();
 
-                // connect.Subscribe.ResourceValues(myDevice.Id, new List<string> { "/3200/0/5501" });
+                var obs = await connect.Subscribe.ResourceValuesAsync(myDevice.Id, new List<string> { "/3200/0/5501" });
+
+                obs.OnNotify += message => Console.WriteLine(message);
 
                 Console.ReadLine();
             }

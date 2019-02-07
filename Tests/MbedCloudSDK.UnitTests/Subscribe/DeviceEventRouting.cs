@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using MbedCloudSDK.Common;
 using MbedCloudSDK.Connect.Api;
 using MbedCloudSDK.Connect.Api.Subscribe.Models;
@@ -13,11 +14,11 @@ namespace MbedCloudSDK.UnitTests.Subscribe
     public class DeviceEventRouting
     {
         [Test]
-        public void TestAllEvents()
+        public async Task TestAllEventsAsync()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<DeviceEventData>();
-            var observer = subscribe.DeviceEvents();
+            var observer = await subscribe.DeviceEventsAsync();
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);
@@ -27,15 +28,15 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         }
 
         [Test]
-        public void TestUnsubscribe()
+        public async Task TestUnsubscribeAsync()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<DeviceEventData>();
-            var observer1 = subscribe.DeviceEvents();
+            var observer1 = await subscribe.DeviceEventsAsync();
             observer1.OnNotify += res => items.Add(res);
-            var observer2 = subscribe.DeviceEvents();
+            var observer2 = await subscribe.DeviceEventsAsync();
             observer2.OnNotify += res => items.Add(res);
-            var observer3 = subscribe.DeviceEvents();
+            var observer3 = await subscribe.DeviceEventsAsync();
             observer3.OnNotify += res => items.Add(res);
             MockNotification(subscribe);
             MockNotification(subscribe);
@@ -57,11 +58,11 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         }
 
         [Test]
-        public void TestOneDeviceId()
+        public async Task TestOneDeviceIdAsync()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<DeviceEventData>();
-            var observer = subscribe.DeviceEvents().Where(f => f.Id == "1");
+            var observer = (await subscribe.DeviceEventsAsync()).Where(f => f.Id == "1");
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);
@@ -72,11 +73,11 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         }
 
         [Test]
-        public void TestMultipleDeviceId()
+        public async Task TestMultipleDeviceIdAsync()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<DeviceEventData>();
-            var observer = subscribe.DeviceEvents().Where(f => f.Id == "1" || f.Id == "2");
+            var observer = (await subscribe.DeviceEventsAsync()).Where(f => f.Id == "1" || f.Id == "2");
 
             observer.OnNotify += res => items.Add(res);
 
@@ -88,11 +89,11 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         }
 
         [Test]
-        public void TestOneState()
+        public async Task TestOneStateAsync()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<DeviceEventData>();
-            var observer = subscribe.DeviceEvents().Where(f => f.Event == DeviceEventEnum.Registration);
+            var observer = (await subscribe.DeviceEventsAsync()).Where(f => f.Event == DeviceEventEnum.Registration);
 
             observer.OnNotify += res => items.Add(res);
 
@@ -104,11 +105,11 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         }
 
         [Test]
-        public void TestMultipleStates()
+        public async Task TestMultipleStatesAsync()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<DeviceEventData>();
-            var observer = subscribe.DeviceEvents().Where(f => f.Event == DeviceEventEnum.Registration || f.Event == DeviceEventEnum.DeRegistration);
+            var observer = (await subscribe.DeviceEventsAsync()).Where(f => f.Event == DeviceEventEnum.Registration || f.Event == DeviceEventEnum.DeRegistration);
 
             observer.OnNotify += res => items.Add(res);
 
@@ -120,11 +121,11 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         }
 
         [Test]
-        public void TestSpecific()
+        public async Task TestSpecificAsync()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<DeviceEventData>();
-            var observer = subscribe.DeviceEvents().Where(f => f.Id == "1" && f.Event == DeviceEventEnum.Registration);
+            var observer = (await subscribe.DeviceEventsAsync()).Where(f => f.Id == "1" && f.Event == DeviceEventEnum.Registration);
 
             observer.OnNotify += res => items.Add(res);
 
@@ -136,11 +137,11 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         }
 
         [Test]
-        public void TestMultipleSpecific()
+        public async Task TestMultipleSpecificAsync()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<DeviceEventData>();
-            var observer = subscribe.DeviceEvents().Where(f => (f.Id == "1" || f.Id == "2") && (f.Event == DeviceEventEnum.Registration || f.Event == DeviceEventEnum.DeRegistration));
+            var observer = (await subscribe.DeviceEventsAsync()).Where(f => (f.Id == "1" || f.Id == "2") && (f.Event == DeviceEventEnum.Registration || f.Event == DeviceEventEnum.DeRegistration));
 
             observer.OnNotify += res => items.Add(res);
 
@@ -151,11 +152,11 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         }
 
         [Test]
-        public void TestMultipleSpecificWithTwoFilters()
+        public async Task TestMultipleSpecificWithTwoFiltersAsync()
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<DeviceEventData>();
-            var observer = subscribe.DeviceEvents().Where(f => f.Event == DeviceEventEnum.Registration || f.Event == DeviceEventEnum.DeRegistration)
+            var observer = (await subscribe.DeviceEventsAsync()).Where(f => f.Event == DeviceEventEnum.Registration || f.Event == DeviceEventEnum.DeRegistration)
                                                    .Where(f => f.Id == "1" || f.Id == "2");
 
             observer.OnNotify += res => items.Add(res);

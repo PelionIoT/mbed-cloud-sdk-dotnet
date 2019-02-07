@@ -5,6 +5,7 @@
 namespace MbedCloudSDK.Connect.Api
 {
     using System;
+    using System.Threading.Tasks;
     using MbedCloudSDK.Connect.Model.Webhook;
     using MbedCloudSDK.Exceptions;
 
@@ -70,13 +71,13 @@ namespace MbedCloudSDK.Connect.Api
         /// </code>
         /// </example>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public void UpdateWebhook(Webhook webhook)
+        public async Task UpdateWebhook(Webhook webhook)
         {
             try
             {
                 if (Config.ForceClear)
                 {
-                    StopNotificationsAsync();
+                    await StopNotificationsAsync();
                 }
 
                 NotificationsApi.RegisterWebhook(Webhook.MapToApiWebook(webhook));

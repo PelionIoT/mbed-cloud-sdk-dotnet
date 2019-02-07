@@ -7,6 +7,7 @@ using ConsoleExamples.Examples.Update;
 using Mbed.Cloud.Foundation.Common;
 using MbedCloudSDK.Common;
 using System;
+using System.Threading.Tasks;
 
 namespace ConsoleExamples
 {
@@ -19,7 +20,7 @@ namespace ConsoleExamples
         private static UpdateExamples updateExamples;
         private static SubscribeExamples subscribeExamples;
 
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var apiKey = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
             if (string.IsNullOrEmpty(apiKey))
@@ -58,7 +59,7 @@ namespace ConsoleExamples
                 }
             }
 
-            connectExamples.api.StopNotificationsAsync();
+            await connectExamples.api.StopNotificationsAsync();
             Console.WriteLine(" Closing application");
         }
 
@@ -201,10 +202,10 @@ namespace ConsoleExamples
                     await connectExamples.SubscribeAsync();
                     break;
                 case 26:
-                    connectExamples.SubscribeCallback();
+                    await connectExamples.SubscribeCallbackAsync();
                     break;
                 case 27:
-                    connectExamples.RegisterWebhook();
+                    await connectExamples.RegisterWebhookAsync();
                     break;
                 case 28:
                     deviceDirectoryExamples.CreateDevice();
@@ -252,7 +253,7 @@ namespace ConsoleExamples
                     subscribeExamples.SubscribeToDeviceIdAndDeviceEvent().Wait();
                     break;
                 case 43:
-                    subscribeExamples.SubscribeWithMultipleObservers();
+                    await subscribeExamples.SubscribeWithMultipleObserversAsync();
                     break;
                 case 44:
                     await subscribeExamples.ResourceValues();

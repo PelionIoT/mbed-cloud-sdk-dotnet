@@ -5,6 +5,7 @@
 namespace MbedCloudSDK.Connect.Api.Subscribe
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using MbedCloudSDK.Connect.Api;
     using MbedCloudSDK.Connect.Api.Subscribe.Observers.DeviceEvent;
     using MbedCloudSDK.Connect.Model.Notifications;
@@ -43,12 +44,12 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         /// Devices the state.
         /// </summary>
         /// <returns>An observer</returns>
-        public DeviceEventObserver DeviceEvents()
+        public async Task<DeviceEventObserver> DeviceEventsAsync()
         {
             var observer = new DeviceEventObserver();
             DeviceEventObservers.Add(observer);
             observer.OnUnsubscribed += (id) => UnsubscribeDeviceEvents(id);
-            StartNotifications();
+            await StartNotificationsAsync();
 
             return observer;
         }
@@ -70,13 +71,13 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
             DeviceEventObservers.RemoveAll(d => d.Id == id);
         }
 
-        private void StartNotifications()
+        private async Task StartNotificationsAsync()
         {
             if (ConnectApi != null)
             {
                 if (!ConnectApi.IsNotificationsStarted())
                 {
-                    ConnectApi.StartNotificationsAsync();
+                    await ConnectApi.StartNotificationsAsync();
                 }
             }
         }

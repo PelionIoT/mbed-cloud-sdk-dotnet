@@ -696,7 +696,7 @@ namespace MbedCloudSDK.Connect.Api
 
             if (Config.AutostartNotifications)
             {
-                StartNotificationsAsync();
+                await StartNotificationsAsync();
             }
 
             if (!websocketRunning)

@@ -37,10 +37,10 @@ namespace TestServer
             return apis;
         }
 
-        public void StopNotifications()
+        public async System.Threading.Tasks.Task StopNotificationsAsync()
         {
             var connect = apis["Connect"] as ConnectApi;
-            connect.StopNotificationsAsync();
+            await connect.StopNotificationsAsync();
         }
 
         public static ModuleRepository Instance
