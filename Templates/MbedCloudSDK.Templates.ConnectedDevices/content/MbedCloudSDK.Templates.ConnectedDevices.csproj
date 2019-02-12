@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Mbed.Cloud.SDK" Version="2.0.0" />
+    <PackageReference Include="Mbed.Cloud.SDK" Version="2.0.2" />
   </ItemGroup>
 
   <PropertyGroup>
