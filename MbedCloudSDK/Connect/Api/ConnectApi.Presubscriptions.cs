@@ -42,7 +42,7 @@ namespace MbedCloudSDK.Connect.Api
         /// </code>
         /// </example>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public void UpdatePresubscriptions(IEnumerable<Presubscription> presubscriptions)
+        public void UpdatePresubscriptions(Presubscription[] presubscriptions)
         {
             var presubscriptionArray = new mds.Model.PresubscriptionArray();
             foreach (var presubscription in presubscriptions)

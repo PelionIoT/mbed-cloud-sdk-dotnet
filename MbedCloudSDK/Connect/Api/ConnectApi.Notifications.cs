@@ -20,6 +20,7 @@ namespace MbedCloudSDK.Connect.Api
     using MbedCloudSDK.Connect.Api.Subscribe.Models;
     using MbedCloudSDK.Connect.Model.Notifications;
     using MbedCloudSDK.Connect.Model.Webhook;
+    using NotificationDeliveryMethod = MbedCloudSDK.Connect.Model.Enums;
     using MbedCloudSDK.Exceptions;
     using MbedCloudSDK.Connect.Model;
     using Newtonsoft.Json;
@@ -192,44 +193,51 @@ namespace MbedCloudSDK.Connect.Api
         /// </example>
         public async Task StartNotificationsAsync()
         {
-            if (DeliveryMethod == DeliveryMethod.SERVER_INITIATED)
+            if (DeliveryMethod == null)
             {
-                // don't call start notifications because i'm server initiated
-                log.Warn("cannot call StartNotificationsAsync when delivery method is Server Initiated");
+                DeliveryMethod = NotificationDeliveryMethod.DeliveryMethod.CLIENT_INITIATED;
             }
-            else
+
+            if (DeliveryMethod == NotificationDeliveryMethod.DeliveryMethod.SERVER_INITIATED)
             {
-                try
+                throw new CloudApiException(400, "cannot call StartNotificationsAsync when delivery method is Server Initiated");
+            }
+
+            if (GetWebhook() != null && !forceClear)
+            {
+                throw new CloudApiException(400, "cannot start notifications as a webhook is already in use");
+            }
+
+            try
+            {
+                if (notificationTask?.Status != TaskStatus.Running)
                 {
-                    if (notificationTask?.Status != TaskStatus.Running)
+                    if (forceClear)
                     {
-                        if (Config.ForceClear)
-                        {
-                            ForceClear();
-                        }
-
-                        log.Info("starting notifications...");
-
-                        // dispose of old cancellation token if instance hasn't been torn down
-                        cancellationToken?.Dispose();
-                        cancellationToken = new CancellationTokenSource();
-
-                        await InitiateWebsocket();
-
-                        // start a new task
-                        notificationTask = new Task(Notifications, cancellationToken.Token, TaskCreationOptions.LongRunning);
-                        notificationTask.Start();
+                        ForceClear();
                     }
-                    else
-                    {
-                        log.Debug("notifications already started");
-                    }
+
+                    log.Info("starting notifications...");
+
+                    // dispose of old cancellation token if instance hasn't been torn down
+                    cancellationToken?.Dispose();
+                    cancellationToken = new CancellationTokenSource();
+
+                    await InitiateWebsocket();
+
+                    // start a new task
+                    notificationTask = new Task(Notifications, cancellationToken.Token, TaskCreationOptions.LongRunning);
+                    notificationTask.Start();
                 }
-                catch (InvalidOperationException e)
+                else
                 {
-                    log.Error(e.Message, e);
-                    throw;
+                    log.Debug("notifications already started");
                 }
+            }
+            catch (InvalidOperationException e)
+            {
+                log.Error(e.Message, e);
+                throw;
             }
         }
 
@@ -250,7 +258,7 @@ namespace MbedCloudSDK.Connect.Api
         /// </example>
         public async Task StopNotificationsAsync()
         {
-            if (DeliveryMethod == DeliveryMethod.SERVER_INITIATED)
+            if (DeliveryMethod == NotificationDeliveryMethod.DeliveryMethod.SERVER_INITIATED)
             {
                 // don't call stop notifications because i'm server initiated
                 log.Warn("cannot call StopNotificationsAsync when delivery method is Server Initiated");
@@ -291,6 +299,11 @@ namespace MbedCloudSDK.Connect.Api
                         {
                             notificationTask.Dispose();
                         }
+                    }
+
+                    if (forceClear)
+                    {
+                        // TODO tear down channels and subscriptions
                     }
                 }
             }
@@ -468,6 +481,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <returns>True if started</returns>
         public bool IsNotificationsStarted()
         {
+            Console.WriteLine(notificationTask?.Status);
             return notificationTask?.Status == TaskStatus.Running;
         }
 
@@ -478,7 +492,7 @@ namespace MbedCloudSDK.Connect.Api
 
         public void StartNotifications()
         {
-            AsyncHelper.RunSync(() => StopNotificationsAsync());
+            AsyncHelper.RunSync(() => StartNotificationsAsync());
         }
     }
 }

@@ -41,7 +41,7 @@ namespace Mbed.Cloud.Foundation.Common
                 case LogLevel.WARN:
                     return Level.Warn;
                 default:
-                    return Level.Off;
+                    return Level.All;
             }
         }
     }

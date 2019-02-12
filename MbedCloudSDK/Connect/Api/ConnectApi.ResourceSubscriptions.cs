@@ -49,16 +49,8 @@ namespace MbedCloudSDK.Connect.Api
                 var fixedPath = RemoveLeadingSlash(resourcePath);
                 await SubscriptionsApi.AddResourceSubscriptionAsync(deviceId, fixedPath);
                 var subscribePath = deviceId + resourcePath;
-                var resource = new Resource(deviceId, null, this);
-                if (!ResourceSubscribtions.ContainsKey(subscribePath))
-                {
-                    ResourceSubscribtions.Add(subscribePath, resource);
-                }
-                else
-                {
-                    ResourceSubscribtions.Remove(subscribePath);
-                    ResourceSubscribtions.Add(subscribePath, resource);
-                }
+                var resource = new Resource(deviceId, this);
+                ResourceSubscribtions.AddOrUpdate(subscribePath, resource, (key, _) => resource);
 
                 return resource;
             }
@@ -126,7 +118,7 @@ namespace MbedCloudSDK.Connect.Api
                 var fixedPath = RemoveLeadingSlash(resourcePath);
                 SubscriptionsApi.DeleteResourceSubscription(deviceId, fixedPath);
                 var subscribePath = deviceId + resourcePath;
-                ResourceSubscribtions.Remove(subscribePath);
+                ResourceSubscribtions.TryRemove(subscribePath, out var removedItem);
             }
             catch (mds.Client.ApiException ex)
             {

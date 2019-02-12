@@ -7,6 +7,7 @@ using MbedCloudSDK.Common;
 using MbedCloudSDK.Common.Filter;
 using MbedCloudSDK.Connect.Model.ConnectedDevice;
 using MbedCloudSDK.Connect.Model.Subscription;
+using MbedCloudSDK.Exceptions;
 using MbedCloudSDK.IntegrationTests.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -89,7 +90,12 @@ namespace MbedCloudSDK.IntegrationTests.Services
             }
             catch (TargetInvocationException e)
             {
-                throw e;
+                if (e.InnerException.GetType() == typeof(CloudApiException))
+                {
+                    throw e.InnerException as CloudApiException;
+                }
+
+                throw;
             }
             catch (Exception e)
             {

@@ -1,4 +1,4 @@
-namespace MbedCloudSDK.Connect.Model
+namespace MbedCloudSDK.Connect.Model.Enums
 {
     public enum DeliveryMethod
     {

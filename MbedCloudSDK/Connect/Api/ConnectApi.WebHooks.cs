@@ -9,6 +9,7 @@ namespace MbedCloudSDK.Connect.Api
     using System.Threading.Tasks;
     using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Connect.Model.Webhook;
+    using NotificationDeliveryMethod = MbedCloudSDK.Connect.Model.Enums;
     using MbedCloudSDK.Exceptions;
 
     /// <summary>
@@ -75,14 +76,29 @@ namespace MbedCloudSDK.Connect.Api
         /// <exception cref="CloudApiException">CloudApiException</exception>
         public async Task UpdateWebhookAsync(Webhook webhook)
         {
+            if (DeliveryMethod == null)
+            {
+                DeliveryMethod = NotificationDeliveryMethod.DeliveryMethod.SERVER_INITIATED;
+            }
+
+            if (DeliveryMethod == NotificationDeliveryMethod.DeliveryMethod.CLIENT_INITIATED)
+            {
+                throw new CloudApiException(400, "cannot update webhook when delivery method is Client Initiated");
+            }
+
             try
             {
-                if (Config.ForceClear)
+                if (forceClear)
                 {
                     await StopNotificationsAsync();
                 }
 
-                await NotificationsApi.RegisterWebhookAsync(Webhook.MapToApiWebook(webhook));
+                var currentWebhook = GetWebhook();
+
+                if (currentWebhook.Url != webhook.Url)
+                {
+                    await NotificationsApi.RegisterWebhookAsync(Webhook.MapToApiWebook(webhook));
+                }
             }
             catch (mds.Client.ApiException ex)
             {

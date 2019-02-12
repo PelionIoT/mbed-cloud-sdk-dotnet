@@ -169,7 +169,7 @@ namespace MbedCloudSDK.Connect.Api
                 ResourceSubscribtions.Keys
                     .Where(k => k.Contains(deviceId))
                     .ToList()
-                    .ForEach(d => ResourceSubscribtions.Remove(d));
+                    .ForEach(d => ResourceSubscribtions.TryRemove(d, out var removedItem));
             }
             catch (mds.Client.ApiException e) when (e.ErrorCode != 404)
             {
@@ -669,11 +669,6 @@ namespace MbedCloudSDK.Connect.Api
 
         private async Task<AsyncConsumer<string>> SetResourceValueAsync(string deviceId, string resourcePath, byte[] resourceValue, string resourceValueMimeType)
         {
-            Debug.Assert(!string.IsNullOrWhiteSpace(deviceId), "Device ID cannot be a blank string");
-            Debug.Assert(!string.IsNullOrWhiteSpace(resourcePath), "Resource path cannot be a blank string");
-            Debug.Assert(resourceValue != null, "Resource value cannot be null");
-            Debug.Assert(resourceValueMimeType != null, "MIME type cannot be null");
-
             var deviceRequest = new DeviceRequest(Method: HttpMethod.Put.Method, Uri: AddLeadingSlash(resourcePath))
             {
                 ContentType = resourceValueMimeType,
@@ -685,11 +680,7 @@ namespace MbedCloudSDK.Connect.Api
 
         private async Task<AsyncConsumer<string>> CreateAsyncRequestAsync(string deviceId, DeviceRequest request)
         {
-            Debug.Assert(!string.IsNullOrWhiteSpace(deviceId), "Device ID cannot be a blank string");
-            Debug.Assert(request != null, "Request object cannot be null");
-            Debug.Assert(DeviceRequestsApi != null, "Device requests API is required");
-
-            if (Config.AutostartNotifications)
+            if (autostartNotifications)
             {
                 await StartNotificationsAsync();
             }
@@ -711,7 +702,7 @@ namespace MbedCloudSDK.Connect.Api
             }
 
             var collection = new AsyncProducerConsumerCollection<string>();
-            AsyncResponses.Add(asyncId, collection);
+            AsyncResponses.TryAdd(asyncId, collection);
 
             return new AsyncConsumer<string>(asyncId, collection);
         }

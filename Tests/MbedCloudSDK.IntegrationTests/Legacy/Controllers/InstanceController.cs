@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MbedCloudSDK.Exceptions;
+using MbedCloudSDK.IntegrationTests.ExtensionMethods;
 using MbedCloudSDK.IntegrationTests.Models;
 using MbedCloudSDK.IntegrationTests.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -121,6 +123,11 @@ namespace MbedCloudSDK.IntegrationTests.Controllers
                 var result = _methodRunnerService.TestModuleMethod(instance, instanceObject, methodId, parameters);
 
                 return Json(new ApiResult { Payload = result});
+            }
+            catch (CloudApiException e)
+            {
+                Response.StatusCode = 500;
+                return Json(e.ToJson());
             }
             catch (Exception e)
             {

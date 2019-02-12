@@ -15,10 +15,12 @@ namespace MbedCloudSDK.Connect.Api
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Connect.Model;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
+    using NotificationDeliveryMethod = MbedCloudSDK.Connect.Model.Enums;
     using MbedCloudSDK.Connect.Model.Notifications;
     using MbedCloudSDK.Connect.Model.Resource;
     using mds.Api;
     using statistics.Api;
+    using System.Collections.Concurrent;
 
     /// <summary>
     /// Connect Api
@@ -50,7 +52,7 @@ namespace MbedCloudSDK.Connect.Api
         public ConnectApi(ConnectApiConfig config)
             : this(config as Config)
         {
-            DeliveryMethod = config.DeliveryMethod;
+            skipCleanup = config.SkipCleanup;
         }
 
         /// <summary>
@@ -74,31 +76,41 @@ namespace MbedCloudSDK.Connect.Api
         internal ConnectApi(Config config, statistics.Client.Configuration statsConfig = null, mds.Client.Configuration mdsConfig = null, device_directory.Client.Configuration deviceConfig = null)
             : base(config)
         {
-            ResourceSubscribtions = new Dictionary<string, Resource>();
+            forceClear = config.ForceClear == true;
+            autostartNotifications = config.AutostartNotifications != false;
+            if (this.autostartNotifications == true)
+            {
+                DeliveryMethod = NotificationDeliveryMethod.DeliveryMethod.CLIENT_INITIATED;
+            }
+            ResourceSubscribtions = new ConcurrentDictionary<string, Resource>();
             SetUpApi(config, statsConfig, mdsConfig, deviceConfig);
         }
 
         /// <summary>
         /// Gets async responses
         /// </summary>
-        public Dictionary<string, AsyncProducerConsumerCollection<string>> AsyncResponses { get; } = new Dictionary<string, AsyncProducerConsumerCollection<string>>();
+        public ConcurrentDictionary<string, AsyncProducerConsumerCollection<string>> AsyncResponses { get; } = new ConcurrentDictionary<string, AsyncProducerConsumerCollection<string>>();
 
         /// <summary>
         /// Gets NotificationQueue
         /// </summary>
-        public Dictionary<string, AsyncProducerConsumerCollection<string>> NotificationQueue { get; } = new Dictionary<string, AsyncProducerConsumerCollection<string>>();
+        public ConcurrentDictionary<string, AsyncProducerConsumerCollection<string>> NotificationQueue { get; } = new ConcurrentDictionary<string, AsyncProducerConsumerCollection<string>>();
 
         /// <summary>
         /// Gets resource Subscriptions
         /// </summary>
-        public Dictionary<string, Resource> ResourceSubscribtions { get; } = new Dictionary<string, Resource>();
+        public ConcurrentDictionary<string, Resource> ResourceSubscribtions { get; } = new ConcurrentDictionary<string, Resource>();
 
         /// <summary>
         /// Gets or sets the SubscribeManager
         /// </summary>
         public MbedCloudSDK.Connect.Api.Subscribe.Subscribe Subscribe { get; set; }
 
-        public DeliveryMethod DeliveryMethod { get; }
+        public NotificationDeliveryMethod.DeliveryMethod? DeliveryMethod { get; private set; }
+
+        private readonly bool forceClear;
+        private readonly bool autostartNotifications;
+        private readonly bool skipCleanup;
 
         /// <summary>
         /// Gets or sets the account API.
