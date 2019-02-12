@@ -14,6 +14,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
     using MbedCloudSDK.Connect.Model.Notifications;
     using Newtonsoft.Json;
+    using Nito.AsyncEx;
 
     /// <summary>
     /// Resource.
@@ -28,19 +29,11 @@ namespace MbedCloudSDK.Connect.Model.Resource
         /// </summary>
         /// <param name="deviceId">Id of the device that the resource belongs to.</param>
         /// <param name="api">DeviceDirectory API.</param>
-        /// <param name="notificationHandler">Handler</param>
-        public Resource(
-            string deviceId,
-            ConnectApi api = null,
-            Action<string> notificationHandler = null)
+        public Resource(string deviceId, ConnectApi api = null)
         {
             this.api = api;
             DeviceId = deviceId;
-
-            NotificationHandler = notificationHandler;
-
-            NotificationQueue = new AsyncProducerConsumerCollection<string>();
-            NotificationQueue.AddHandler(NotificationEventHandler);
+            NotificationQueue = new AsyncCollection<string>();
         }
 
         /// <summary>
@@ -77,12 +70,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
         /// <summary>
         /// Gets or sets the NotificationQueue values.
         /// </summary>
-        public AsyncProducerConsumerCollection<string> NotificationQueue { get; set; }
-
-        /// <summary>
-        /// Gets or sets the NotificationHandler
-        /// </summary>
-        public Action<string> NotificationHandler { get; set; }
+        public AsyncCollection<string> NotificationQueue { get; set; }
 
         /// <summary>
         /// Map to Resource object.
@@ -101,15 +89,6 @@ namespace MbedCloudSDK.Connect.Model.Resource
                 Observable = res.Obs,
             };
             return resource;
-        }
-
-        private void NotificationEventHandler(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.Action == NotifyCollectionChangedAction.Add)
-            {
-                var res = NotificationQueue.Take().Result;
-                NotificationHandler?.Invoke(res);
-            }
         }
 
         /// <summary>

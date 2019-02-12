@@ -38,7 +38,7 @@ namespace ConsoleExamples.Examples.Connect
             while (true)
             {
                 // Get the value of the resource and print it
-                var t = await resource.NotificationQueue.Take();
+                var t = await resource.NotificationQueue.TakeAsync();
                 Console.WriteLine(t);
                 counter++;
                 if (counter >= 20)
@@ -50,31 +50,6 @@ namespace ConsoleExamples.Examples.Connect
             api.DeleteDeviceSubscriptions(devices[0].Id);
             await api.StopNotificationsAsync();
             return resource;
-        }
-
-        /// <summary>
-        /// Callback
-        /// </summary>
-        public async Task SubscribeCallbackAsync()
-        {
-            // Resource path
-            const string buttonResource = "/5002/0/1";
-
-            // List all connected endpoints
-            var endpoints = api.ListConnectedDevices().All();
-            if (endpoints == null)
-            {
-                throw new Exception("No endpoints registered. Aborting.");
-            }
-
-            // Subscribe to the resource
-            Console.WriteLine($"subscribing to {buttonResource} on device {endpoints[0].Id}");
-
-            Action<string> notificationCallback = (res) => { Console.WriteLine("Got value " + res); };
-
-            var resource = await api.AddResourceSubscriptionAsync(endpoints[0].Id, buttonResource);
-
-            resource.NotificationHandler = notificationCallback;
         }
 
         /// <summary>
@@ -127,25 +102,25 @@ namespace ConsoleExamples.Examples.Connect
                 // print values when resources change
                 if (incrementSubscription != null)
                 {
-                    var i = await incrementSubscription?.NotificationQueue?.Take();
+                    var i = await incrementSubscription?.NotificationQueue?.TakeAsync();
                     Console.WriteLine($"Current value of increment - {i}");
                 }
 
                 if (voltageSubscription != null)
                 {
-                    var v = await voltageSubscription?.NotificationQueue?.Take();
+                    var v = await voltageSubscription?.NotificationQueue?.TakeAsync();
                     Console.WriteLine($"Current value of voltage - {v}");
                 }
 
                 if (currentSubscription != null)
                 {
-                    var c = await currentSubscription?.NotificationQueue?.Take();
+                    var c = await currentSubscription?.NotificationQueue?.TakeAsync();
                     Console.WriteLine($"Current value of current - {c}");
                 }
 
                 if (powerSubscription != null)
                 {
-                    var p = await powerSubscription?.NotificationQueue?.Take();
+                    var p = await powerSubscription?.NotificationQueue?.TakeAsync();
                     Console.WriteLine($"Current value of power - {p}");
                 }
             }

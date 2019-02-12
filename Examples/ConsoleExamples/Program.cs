@@ -205,9 +205,6 @@ namespace ConsoleExamples
                 case 25:
                     await connectExamples.SubscribeAsync();
                     break;
-                case 26:
-                    await connectExamples.SubscribeCallbackAsync();
-                    break;
                 case 27:
                     await connectExamples.RegisterWebhookAsync();
                     break;

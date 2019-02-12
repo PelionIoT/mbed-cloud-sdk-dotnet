@@ -21,6 +21,7 @@ namespace MbedCloudSDK.Connect.Api
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
     using MbedCloudSDK.Exceptions;
     using mds.Model;
+    using Nito.AsyncEx;
     using static MbedCloudSDK.Common.Utils;
 
     /// <summary>
@@ -661,7 +662,7 @@ namespace MbedCloudSDK.Connect.Api
             }
 
             return AsyncResponses[consumer.AsyncId]
-                .Take()
+                .TakeAsync()
                 .ConfigureAwait(false)
                 .GetAwaiter()
                 .GetResult();
@@ -701,7 +702,7 @@ namespace MbedCloudSDK.Connect.Api
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
 
-            var collection = new AsyncProducerConsumerCollection<string>();
+            var collection = new AsyncCollection<string>();
             AsyncResponses.TryAdd(asyncId, collection);
 
             return new AsyncConsumer<string>(asyncId, collection);

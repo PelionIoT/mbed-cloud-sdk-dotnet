@@ -108,7 +108,7 @@ namespace MbedCloudSDK.Connect.Api
 
         /// <summary>Obsolote, do not use.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [Obsolete("Please us async version AddResourceSubscriptionAsync")]
+        [Obsolete("Please use async version Update webhook async")]
         public void UpdateWebhook(Webhook webhook)
         {
             AsyncHelper.RunSync(() => UpdateWebhookAsync(webhook));

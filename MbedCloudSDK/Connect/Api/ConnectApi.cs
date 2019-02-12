@@ -21,6 +21,7 @@ namespace MbedCloudSDK.Connect.Api
     using mds.Api;
     using statistics.Api;
     using System.Collections.Concurrent;
+    using Nito.AsyncEx;
 
     /// <summary>
     /// Connect Api
@@ -89,12 +90,12 @@ namespace MbedCloudSDK.Connect.Api
         /// <summary>
         /// Gets async responses
         /// </summary>
-        public ConcurrentDictionary<string, AsyncProducerConsumerCollection<string>> AsyncResponses { get; } = new ConcurrentDictionary<string, AsyncProducerConsumerCollection<string>>();
+        public ConcurrentDictionary<string, AsyncCollection<string>> AsyncResponses { get; } = new ConcurrentDictionary<string, AsyncCollection<string>>();
 
         /// <summary>
         /// Gets NotificationQueue
         /// </summary>
-        public ConcurrentDictionary<string, AsyncProducerConsumerCollection<string>> NotificationQueue { get; } = new ConcurrentDictionary<string, AsyncProducerConsumerCollection<string>>();
+        public ConcurrentDictionary<string, AsyncCollection<string>> NotificationQueue { get; } = new ConcurrentDictionary<string, AsyncCollection<string>>();
 
         /// <summary>
         /// Gets resource Subscriptions
