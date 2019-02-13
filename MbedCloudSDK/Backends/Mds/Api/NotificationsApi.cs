@@ -26,6 +26,31 @@ namespace mds.Api
     {
         #region Synchronous Operations
         /// <summary>
+        /// Open the websocket.
+        /// </summary>
+        /// <remarks>
+        ///  A websocket channel can have only one active websocket connection at a time. If a websocket connection for a channel exists and a new connection to the same channel is made the connection is accepted and the older connection will be closed.&lt;br/&gt; Once the socket has been opened, it may be closed with one of the following status codes&lt;br/&gt; **1000**: Socket closed by the client. **1001**: Going away. set when another socket was opened on the used channel, or if the channel was deleted with a REST call, or if the server is shutting down. **1006**: Abnormal loss of connection. This code is never set by the service. **1008**: Policy violation. Set when the API key is missing or invalid. **1011**: Unexpected condition. Socket will be closed with this status at an attempt to open a socket to an unexisting channel (without a prior REST PUT). This code is also used to indicate closing socket for any other unexpected condition in the server. 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connection"></param>
+        /// <param name="upgrade"></param>
+        /// <param name="secWebSocketProtocol">ApiKey must be present in the &#x60;Sec-WebSocket-Protocol&#x60; header &#x60;\&quot;Sec-WebSocket-Protocol\&quot;:\&quot;wss,pelion_ak_{api_key}\&quot;&#x60; Refer to the notification service documentation for examples of usage. </param>
+        /// <returns></returns>
+        void ConnectWebsocket (string connection, string upgrade, string secWebSocketProtocol);
+
+        /// <summary>
+        /// Open the websocket.
+        /// </summary>
+        /// <remarks>
+        ///  A websocket channel can have only one active websocket connection at a time. If a websocket connection for a channel exists and a new connection to the same channel is made the connection is accepted and the older connection will be closed.&lt;br/&gt; Once the socket has been opened, it may be closed with one of the following status codes&lt;br/&gt; **1000**: Socket closed by the client. **1001**: Going away. set when another socket was opened on the used channel, or if the channel was deleted with a REST call, or if the server is shutting down. **1006**: Abnormal loss of connection. This code is never set by the service. **1008**: Policy violation. Set when the API key is missing or invalid. **1011**: Unexpected condition. Socket will be closed with this status at an attempt to open a socket to an unexisting channel (without a prior REST PUT). This code is also used to indicate closing socket for any other unexpected condition in the server. 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connection"></param>
+        /// <param name="upgrade"></param>
+        /// <param name="secWebSocketProtocol">ApiKey must be present in the &#x60;Sec-WebSocket-Protocol&#x60; header &#x60;\&quot;Sec-WebSocket-Protocol\&quot;:\&quot;wss,pelion_ak_{api_key}\&quot;&#x60; Refer to the notification service documentation for examples of usage. </param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> ConnectWebsocketWithHttpInfo (string connection, string upgrade, string secWebSocketProtocol);
+        /// <summary>
         /// Delete notification Long Poll channel
         /// </summary>
         /// <remarks>
@@ -44,6 +69,25 @@ namespace mds.Api
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> DeleteLongPollChannelWithHttpInfo ();
+        /// <summary>
+        /// Delete websocket channel.
+        /// </summary>
+        /// <remarks>
+        /// To delete a notification websocket channel bound to the API key. This is required to change the channel from websocket to another type.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/notification/websocket -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        void DeleteWebsocket ();
+
+        /// <summary>
+        /// Delete websocket channel.
+        /// </summary>
+        /// <remarks>
+        /// To delete a notification websocket channel bound to the API key. This is required to change the channel from websocket to another type.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/notification/websocket -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> DeleteWebsocketWithHttpInfo ();
         /// <summary>
         /// Delete callback URL
         /// </summary>
@@ -83,10 +127,29 @@ namespace mds.Api
         /// <returns>ApiResponse of Webhook</returns>
         ApiResponse<Webhook> GetWebhookWithHttpInfo ();
         /// <summary>
+        /// Get websocket channel information.
+        /// </summary>
+        /// <remarks>
+        /// Returns 200 with websocket connection status if websocket channel exists.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/websocket -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>WebsocketChannel</returns>
+        WebsocketChannel GetWebsocket ();
+
+        /// <summary>
+        /// Get websocket channel information.
+        /// </summary>
+        /// <remarks>
+        /// Returns 200 with websocket connection status if websocket channel exists.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/websocket -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of WebsocketChannel</returns>
+        ApiResponse<WebsocketChannel> GetWebsocketWithHttpInfo ();
+        /// <summary>
         /// Get notifications using Long Poll
         /// </summary>
         /// <remarks>
-        /// In this case, notifications are delivered through HTTP long poll requests. The HTTP request is kept open until an event notification or a batch of event notifications are delivered to the client or the request times out (response code 204). In both cases, the client should open a new polling connection after the previous one closes. Only a single long polling connection per API key can be ongoing at any given time. You must have a persistent connection (Connection keep-alive header in the request) to avoid excess TLS handshakes.  The pull channel is implicitly created by the first GET call to &#x60;/v2/notification/pull&#x60;. It is refreshed on each GET call. If the channel is not polled for a long time (10 minutes) - it expires and will be deleted. This means that no notifications will stay in the queue between polls. A channel can be also deleted explicitly by a DELETE call.  **Note:** If you cannot have a public facing callback URL, for example when developing on your local machine, you can use long polling to check for new messages. However, **long polling is deprecated** and will likely be replaced in future. It is meant only for experimentation and not for commercial usage. The proper method to receive notifications is a **notification callback**. There can only be one notification channel per API key at a time in Device Management Connect. If a notification channel  of other type already exists for the API key, you need to delete it before creating a long poll notification channel.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/pull -H &#39;authorization: Bearer {api-key}&#39; 
+        /// In this case, notifications are delivered through HTTP long poll requests. The HTTP request is kept open until an event notification or a batch of event notifications are delivered to the client or the request times out (response code 204). In both cases, the client should open a new polling connection after the previous one closes. Only a single long polling connection per API key can be ongoing at any given time. You must have a persistent connection (Connection keep-alive header in the request) to avoid excess TLS handshakes.  The pull channel is implicitly created by the first GET call to &#x60;/v2/notification/pull&#x60;. It is refreshed on each GET call. If the channel is not polled for a long time (10 minutes) - it expires and will be deleted. This means that no notifications will stay in the queue between polls. A channel can be also deleted explicitly by a DELETE call.  **Note:** If you cannot have a public facing callback URL, for example when developing on your local machine, you can use long polling to check for new messages. However, **long polling is deprecated** and will likely be replaced in future. It is meant only for experimentation and not for commercial usage. The proper method to receive notifications is a **notification callback**. There can only be one notification channel per API key at a time in Device Management Connect. If a notification channel of other type already exists for the API key, you need to delete it before creating a long poll notification channel.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/pull -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>NotificationMessage</returns>
@@ -96,7 +159,7 @@ namespace mds.Api
         /// Get notifications using Long Poll
         /// </summary>
         /// <remarks>
-        /// In this case, notifications are delivered through HTTP long poll requests. The HTTP request is kept open until an event notification or a batch of event notifications are delivered to the client or the request times out (response code 204). In both cases, the client should open a new polling connection after the previous one closes. Only a single long polling connection per API key can be ongoing at any given time. You must have a persistent connection (Connection keep-alive header in the request) to avoid excess TLS handshakes.  The pull channel is implicitly created by the first GET call to &#x60;/v2/notification/pull&#x60;. It is refreshed on each GET call. If the channel is not polled for a long time (10 minutes) - it expires and will be deleted. This means that no notifications will stay in the queue between polls. A channel can be also deleted explicitly by a DELETE call.  **Note:** If you cannot have a public facing callback URL, for example when developing on your local machine, you can use long polling to check for new messages. However, **long polling is deprecated** and will likely be replaced in future. It is meant only for experimentation and not for commercial usage. The proper method to receive notifications is a **notification callback**. There can only be one notification channel per API key at a time in Device Management Connect. If a notification channel  of other type already exists for the API key, you need to delete it before creating a long poll notification channel.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/pull -H &#39;authorization: Bearer {api-key}&#39; 
+        /// In this case, notifications are delivered through HTTP long poll requests. The HTTP request is kept open until an event notification or a batch of event notifications are delivered to the client or the request times out (response code 204). In both cases, the client should open a new polling connection after the previous one closes. Only a single long polling connection per API key can be ongoing at any given time. You must have a persistent connection (Connection keep-alive header in the request) to avoid excess TLS handshakes.  The pull channel is implicitly created by the first GET call to &#x60;/v2/notification/pull&#x60;. It is refreshed on each GET call. If the channel is not polled for a long time (10 minutes) - it expires and will be deleted. This means that no notifications will stay in the queue between polls. A channel can be also deleted explicitly by a DELETE call.  **Note:** If you cannot have a public facing callback URL, for example when developing on your local machine, you can use long polling to check for new messages. However, **long polling is deprecated** and will likely be replaced in future. It is meant only for experimentation and not for commercial usage. The proper method to receive notifications is a **notification callback**. There can only be one notification channel per API key at a time in Device Management Connect. If a notification channel of other type already exists for the API key, you need to delete it before creating a long poll notification channel.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/pull -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of NotificationMessage</returns>
@@ -122,8 +185,52 @@ namespace mds.Api
         /// <param name="webhook">A json object that contains the optional headers and the URL to which the notifications need to be sent. </param>
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> RegisterWebhookWithHttpInfo (Webhook webhook);
+        /// <summary>
+        /// Register a websocket channel
+        /// </summary>
+        /// <remarks>
+        /// Register (or update) a channel which will use websocket connection to deliver notifications. The websocket channel should be opened by client using &#x60;/v2/notification/websocket-connect&#x60; endpoint. To get notifications pushed, you also need to place the subscriptions. For more information on notification messages, see [NotificationMessage](#NotificationMessage).  A websocket channel can have only one active websocket connection at a time. If a websocket connection for a channel exists and a new connection to the same channel is made the connection is accepted and the older connection will be closed.  **Expiration of a websocket:**  A websocket channel will be expired if the channel does not have an opened websocket connection for 24 hour period. Channel expiration means the channel will be deleted and any undelivered notifications stored in its internal queue will be removed. As long as the channel has an opened websocket connection or time between successive websocket connections is less than 24 hours, the channel is considered active, notifications are stored in its internal queue and delivered when a websocket connection is active. A channel can be also deleted explicitly by a DELETE call.  More about [notification sending logic](/docs/current/integrate-web-app/event-notification.html#notification-sending-logic).  **Example usage:**      curl -X PUT https://api.us-east-1.mbedcloud.com/v2/notification/websocket -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>WebsocketChannel</returns>
+        WebsocketChannel RegisterWebsocket ();
+
+        /// <summary>
+        /// Register a websocket channel
+        /// </summary>
+        /// <remarks>
+        /// Register (or update) a channel which will use websocket connection to deliver notifications. The websocket channel should be opened by client using &#x60;/v2/notification/websocket-connect&#x60; endpoint. To get notifications pushed, you also need to place the subscriptions. For more information on notification messages, see [NotificationMessage](#NotificationMessage).  A websocket channel can have only one active websocket connection at a time. If a websocket connection for a channel exists and a new connection to the same channel is made the connection is accepted and the older connection will be closed.  **Expiration of a websocket:**  A websocket channel will be expired if the channel does not have an opened websocket connection for 24 hour period. Channel expiration means the channel will be deleted and any undelivered notifications stored in its internal queue will be removed. As long as the channel has an opened websocket connection or time between successive websocket connections is less than 24 hours, the channel is considered active, notifications are stored in its internal queue and delivered when a websocket connection is active. A channel can be also deleted explicitly by a DELETE call.  More about [notification sending logic](/docs/current/integrate-web-app/event-notification.html#notification-sending-logic).  **Example usage:**      curl -X PUT https://api.us-east-1.mbedcloud.com/v2/notification/websocket -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of WebsocketChannel</returns>
+        ApiResponse<WebsocketChannel> RegisterWebsocketWithHttpInfo ();
         #endregion Synchronous Operations
         #region Asynchronous Operations
+        /// <summary>
+        /// Open the websocket.
+        /// </summary>
+        /// <remarks>
+        ///  A websocket channel can have only one active websocket connection at a time. If a websocket connection for a channel exists and a new connection to the same channel is made the connection is accepted and the older connection will be closed.&lt;br/&gt; Once the socket has been opened, it may be closed with one of the following status codes&lt;br/&gt; **1000**: Socket closed by the client. **1001**: Going away. set when another socket was opened on the used channel, or if the channel was deleted with a REST call, or if the server is shutting down. **1006**: Abnormal loss of connection. This code is never set by the service. **1008**: Policy violation. Set when the API key is missing or invalid. **1011**: Unexpected condition. Socket will be closed with this status at an attempt to open a socket to an unexisting channel (without a prior REST PUT). This code is also used to indicate closing socket for any other unexpected condition in the server. 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connection"></param>
+        /// <param name="upgrade"></param>
+        /// <param name="secWebSocketProtocol">ApiKey must be present in the &#x60;Sec-WebSocket-Protocol&#x60; header &#x60;\&quot;Sec-WebSocket-Protocol\&quot;:\&quot;wss,pelion_ak_{api_key}\&quot;&#x60; Refer to the notification service documentation for examples of usage. </param>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task ConnectWebsocketAsync (string connection, string upgrade, string secWebSocketProtocol);
+
+        /// <summary>
+        /// Open the websocket.
+        /// </summary>
+        /// <remarks>
+        ///  A websocket channel can have only one active websocket connection at a time. If a websocket connection for a channel exists and a new connection to the same channel is made the connection is accepted and the older connection will be closed.&lt;br/&gt; Once the socket has been opened, it may be closed with one of the following status codes&lt;br/&gt; **1000**: Socket closed by the client. **1001**: Going away. set when another socket was opened on the used channel, or if the channel was deleted with a REST call, or if the server is shutting down. **1006**: Abnormal loss of connection. This code is never set by the service. **1008**: Policy violation. Set when the API key is missing or invalid. **1011**: Unexpected condition. Socket will be closed with this status at an attempt to open a socket to an unexisting channel (without a prior REST PUT). This code is also used to indicate closing socket for any other unexpected condition in the server. 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connection"></param>
+        /// <param name="upgrade"></param>
+        /// <param name="secWebSocketProtocol">ApiKey must be present in the &#x60;Sec-WebSocket-Protocol&#x60; header &#x60;\&quot;Sec-WebSocket-Protocol\&quot;:\&quot;wss,pelion_ak_{api_key}\&quot;&#x60; Refer to the notification service documentation for examples of usage. </param>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> ConnectWebsocketAsyncWithHttpInfo (string connection, string upgrade, string secWebSocketProtocol);
         /// <summary>
         /// Delete notification Long Poll channel
         /// </summary>
@@ -143,6 +250,25 @@ namespace mds.Api
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> DeleteLongPollChannelAsyncWithHttpInfo ();
+        /// <summary>
+        /// Delete websocket channel.
+        /// </summary>
+        /// <remarks>
+        /// To delete a notification websocket channel bound to the API key. This is required to change the channel from websocket to another type.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/notification/websocket -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task DeleteWebsocketAsync ();
+
+        /// <summary>
+        /// Delete websocket channel.
+        /// </summary>
+        /// <remarks>
+        /// To delete a notification websocket channel bound to the API key. This is required to change the channel from websocket to another type.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/notification/websocket -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteWebsocketAsyncWithHttpInfo ();
         /// <summary>
         /// Delete callback URL
         /// </summary>
@@ -182,10 +308,29 @@ namespace mds.Api
         /// <returns>Task of ApiResponse (Webhook)</returns>
         System.Threading.Tasks.Task<ApiResponse<Webhook>> GetWebhookAsyncWithHttpInfo ();
         /// <summary>
+        /// Get websocket channel information.
+        /// </summary>
+        /// <remarks>
+        /// Returns 200 with websocket connection status if websocket channel exists.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/websocket -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of WebsocketChannel</returns>
+        System.Threading.Tasks.Task<WebsocketChannel> GetWebsocketAsync ();
+
+        /// <summary>
+        /// Get websocket channel information.
+        /// </summary>
+        /// <remarks>
+        /// Returns 200 with websocket connection status if websocket channel exists.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/websocket -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (WebsocketChannel)</returns>
+        System.Threading.Tasks.Task<ApiResponse<WebsocketChannel>> GetWebsocketAsyncWithHttpInfo ();
+        /// <summary>
         /// Get notifications using Long Poll
         /// </summary>
         /// <remarks>
-        /// In this case, notifications are delivered through HTTP long poll requests. The HTTP request is kept open until an event notification or a batch of event notifications are delivered to the client or the request times out (response code 204). In both cases, the client should open a new polling connection after the previous one closes. Only a single long polling connection per API key can be ongoing at any given time. You must have a persistent connection (Connection keep-alive header in the request) to avoid excess TLS handshakes.  The pull channel is implicitly created by the first GET call to &#x60;/v2/notification/pull&#x60;. It is refreshed on each GET call. If the channel is not polled for a long time (10 minutes) - it expires and will be deleted. This means that no notifications will stay in the queue between polls. A channel can be also deleted explicitly by a DELETE call.  **Note:** If you cannot have a public facing callback URL, for example when developing on your local machine, you can use long polling to check for new messages. However, **long polling is deprecated** and will likely be replaced in future. It is meant only for experimentation and not for commercial usage. The proper method to receive notifications is a **notification callback**. There can only be one notification channel per API key at a time in Device Management Connect. If a notification channel  of other type already exists for the API key, you need to delete it before creating a long poll notification channel.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/pull -H &#39;authorization: Bearer {api-key}&#39; 
+        /// In this case, notifications are delivered through HTTP long poll requests. The HTTP request is kept open until an event notification or a batch of event notifications are delivered to the client or the request times out (response code 204). In both cases, the client should open a new polling connection after the previous one closes. Only a single long polling connection per API key can be ongoing at any given time. You must have a persistent connection (Connection keep-alive header in the request) to avoid excess TLS handshakes.  The pull channel is implicitly created by the first GET call to &#x60;/v2/notification/pull&#x60;. It is refreshed on each GET call. If the channel is not polled for a long time (10 minutes) - it expires and will be deleted. This means that no notifications will stay in the queue between polls. A channel can be also deleted explicitly by a DELETE call.  **Note:** If you cannot have a public facing callback URL, for example when developing on your local machine, you can use long polling to check for new messages. However, **long polling is deprecated** and will likely be replaced in future. It is meant only for experimentation and not for commercial usage. The proper method to receive notifications is a **notification callback**. There can only be one notification channel per API key at a time in Device Management Connect. If a notification channel of other type already exists for the API key, you need to delete it before creating a long poll notification channel.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/pull -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of NotificationMessage</returns>
@@ -195,7 +340,7 @@ namespace mds.Api
         /// Get notifications using Long Poll
         /// </summary>
         /// <remarks>
-        /// In this case, notifications are delivered through HTTP long poll requests. The HTTP request is kept open until an event notification or a batch of event notifications are delivered to the client or the request times out (response code 204). In both cases, the client should open a new polling connection after the previous one closes. Only a single long polling connection per API key can be ongoing at any given time. You must have a persistent connection (Connection keep-alive header in the request) to avoid excess TLS handshakes.  The pull channel is implicitly created by the first GET call to &#x60;/v2/notification/pull&#x60;. It is refreshed on each GET call. If the channel is not polled for a long time (10 minutes) - it expires and will be deleted. This means that no notifications will stay in the queue between polls. A channel can be also deleted explicitly by a DELETE call.  **Note:** If you cannot have a public facing callback URL, for example when developing on your local machine, you can use long polling to check for new messages. However, **long polling is deprecated** and will likely be replaced in future. It is meant only for experimentation and not for commercial usage. The proper method to receive notifications is a **notification callback**. There can only be one notification channel per API key at a time in Device Management Connect. If a notification channel  of other type already exists for the API key, you need to delete it before creating a long poll notification channel.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/pull -H &#39;authorization: Bearer {api-key}&#39; 
+        /// In this case, notifications are delivered through HTTP long poll requests. The HTTP request is kept open until an event notification or a batch of event notifications are delivered to the client or the request times out (response code 204). In both cases, the client should open a new polling connection after the previous one closes. Only a single long polling connection per API key can be ongoing at any given time. You must have a persistent connection (Connection keep-alive header in the request) to avoid excess TLS handshakes.  The pull channel is implicitly created by the first GET call to &#x60;/v2/notification/pull&#x60;. It is refreshed on each GET call. If the channel is not polled for a long time (10 minutes) - it expires and will be deleted. This means that no notifications will stay in the queue between polls. A channel can be also deleted explicitly by a DELETE call.  **Note:** If you cannot have a public facing callback URL, for example when developing on your local machine, you can use long polling to check for new messages. However, **long polling is deprecated** and will likely be replaced in future. It is meant only for experimentation and not for commercial usage. The proper method to receive notifications is a **notification callback**. There can only be one notification channel per API key at a time in Device Management Connect. If a notification channel of other type already exists for the API key, you need to delete it before creating a long poll notification channel.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/pull -H &#39;authorization: Bearer {api-key}&#39; 
         /// </remarks>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of ApiResponse (NotificationMessage)</returns>
@@ -221,6 +366,25 @@ namespace mds.Api
         /// <param name="webhook">A json object that contains the optional headers and the URL to which the notifications need to be sent. </param>
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> RegisterWebhookAsyncWithHttpInfo (Webhook webhook);
+        /// <summary>
+        /// Register a websocket channel
+        /// </summary>
+        /// <remarks>
+        /// Register (or update) a channel which will use websocket connection to deliver notifications. The websocket channel should be opened by client using &#x60;/v2/notification/websocket-connect&#x60; endpoint. To get notifications pushed, you also need to place the subscriptions. For more information on notification messages, see [NotificationMessage](#NotificationMessage).  A websocket channel can have only one active websocket connection at a time. If a websocket connection for a channel exists and a new connection to the same channel is made the connection is accepted and the older connection will be closed.  **Expiration of a websocket:**  A websocket channel will be expired if the channel does not have an opened websocket connection for 24 hour period. Channel expiration means the channel will be deleted and any undelivered notifications stored in its internal queue will be removed. As long as the channel has an opened websocket connection or time between successive websocket connections is less than 24 hours, the channel is considered active, notifications are stored in its internal queue and delivered when a websocket connection is active. A channel can be also deleted explicitly by a DELETE call.  More about [notification sending logic](/docs/current/integrate-web-app/event-notification.html#notification-sending-logic).  **Example usage:**      curl -X PUT https://api.us-east-1.mbedcloud.com/v2/notification/websocket -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of WebsocketChannel</returns>
+        System.Threading.Tasks.Task<WebsocketChannel> RegisterWebsocketAsync ();
+
+        /// <summary>
+        /// Register a websocket channel
+        /// </summary>
+        /// <remarks>
+        /// Register (or update) a channel which will use websocket connection to deliver notifications. The websocket channel should be opened by client using &#x60;/v2/notification/websocket-connect&#x60; endpoint. To get notifications pushed, you also need to place the subscriptions. For more information on notification messages, see [NotificationMessage](#NotificationMessage).  A websocket channel can have only one active websocket connection at a time. If a websocket connection for a channel exists and a new connection to the same channel is made the connection is accepted and the older connection will be closed.  **Expiration of a websocket:**  A websocket channel will be expired if the channel does not have an opened websocket connection for 24 hour period. Channel expiration means the channel will be deleted and any undelivered notifications stored in its internal queue will be removed. As long as the channel has an opened websocket connection or time between successive websocket connections is less than 24 hours, the channel is considered active, notifications are stored in its internal queue and delivered when a websocket connection is active. A channel can be also deleted explicitly by a DELETE call.  More about [notification sending logic](/docs/current/integrate-web-app/event-notification.html#notification-sending-logic).  **Example usage:**      curl -X PUT https://api.us-east-1.mbedcloud.com/v2/notification/websocket -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </remarks>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (WebsocketChannel)</returns>
+        System.Threading.Tasks.Task<ApiResponse<WebsocketChannel>> RegisterWebsocketAsyncWithHttpInfo ();
         #endregion Asynchronous Operations
     }
 
@@ -319,6 +483,169 @@ namespace mds.Api
         public void AddDefaultHeader(string key, string value)
         {
             this.Configuration.AddDefaultHeader(key, value);
+        }
+
+        /// <summary>
+        /// Open the websocket.  A websocket channel can have only one active websocket connection at a time. If a websocket connection for a channel exists and a new connection to the same channel is made the connection is accepted and the older connection will be closed.&lt;br/&gt; Once the socket has been opened, it may be closed with one of the following status codes&lt;br/&gt; **1000**: Socket closed by the client. **1001**: Going away. set when another socket was opened on the used channel, or if the channel was deleted with a REST call, or if the server is shutting down. **1006**: Abnormal loss of connection. This code is never set by the service. **1008**: Policy violation. Set when the API key is missing or invalid. **1011**: Unexpected condition. Socket will be closed with this status at an attempt to open a socket to an unexisting channel (without a prior REST PUT). This code is also used to indicate closing socket for any other unexpected condition in the server. 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connection"></param>
+        /// <param name="upgrade"></param>
+        /// <param name="secWebSocketProtocol">ApiKey must be present in the &#x60;Sec-WebSocket-Protocol&#x60; header &#x60;\&quot;Sec-WebSocket-Protocol\&quot;:\&quot;wss,pelion_ak_{api_key}\&quot;&#x60; Refer to the notification service documentation for examples of usage. </param>
+        /// <returns></returns>
+        public void ConnectWebsocket (string connection, string upgrade, string secWebSocketProtocol)
+        {
+             ConnectWebsocketWithHttpInfo(connection, upgrade, secWebSocketProtocol);
+        }
+
+        /// <summary>
+        /// Open the websocket.  A websocket channel can have only one active websocket connection at a time. If a websocket connection for a channel exists and a new connection to the same channel is made the connection is accepted and the older connection will be closed.&lt;br/&gt; Once the socket has been opened, it may be closed with one of the following status codes&lt;br/&gt; **1000**: Socket closed by the client. **1001**: Going away. set when another socket was opened on the used channel, or if the channel was deleted with a REST call, or if the server is shutting down. **1006**: Abnormal loss of connection. This code is never set by the service. **1008**: Policy violation. Set when the API key is missing or invalid. **1011**: Unexpected condition. Socket will be closed with this status at an attempt to open a socket to an unexisting channel (without a prior REST PUT). This code is also used to indicate closing socket for any other unexpected condition in the server. 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connection"></param>
+        /// <param name="upgrade"></param>
+        /// <param name="secWebSocketProtocol">ApiKey must be present in the &#x60;Sec-WebSocket-Protocol&#x60; header &#x60;\&quot;Sec-WebSocket-Protocol\&quot;:\&quot;wss,pelion_ak_{api_key}\&quot;&#x60; Refer to the notification service documentation for examples of usage. </param>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> ConnectWebsocketWithHttpInfo (string connection, string upgrade, string secWebSocketProtocol)
+        {
+            // verify the required parameter 'connection' is set
+            if (connection == null)
+                throw new ApiException(400, "Missing required parameter 'connection' when calling NotificationsApi->ConnectWebsocket");
+            // verify the required parameter 'upgrade' is set
+            if (upgrade == null)
+                throw new ApiException(400, "Missing required parameter 'upgrade' when calling NotificationsApi->ConnectWebsocket");
+            // verify the required parameter 'secWebSocketProtocol' is set
+            if (secWebSocketProtocol == null)
+                throw new ApiException(400, "Missing required parameter 'secWebSocketProtocol' when calling NotificationsApi->ConnectWebsocket");
+
+            var localVarPath = "/v2/notification/websocket-connect";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (connection != null) localVarHeaderParams.Add("Connection", Configuration.ApiClient.ParameterToString(connection)); // header parameter
+            if (upgrade != null) localVarHeaderParams.Add("Upgrade", Configuration.ApiClient.ParameterToString(upgrade)); // header parameter
+            if (secWebSocketProtocol != null) localVarHeaderParams.Add("Sec-WebSocket-Protocol", Configuration.ApiClient.ParameterToString(secWebSocketProtocol)); // header parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ConnectWebsocket", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Open the websocket.  A websocket channel can have only one active websocket connection at a time. If a websocket connection for a channel exists and a new connection to the same channel is made the connection is accepted and the older connection will be closed.&lt;br/&gt; Once the socket has been opened, it may be closed with one of the following status codes&lt;br/&gt; **1000**: Socket closed by the client. **1001**: Going away. set when another socket was opened on the used channel, or if the channel was deleted with a REST call, or if the server is shutting down. **1006**: Abnormal loss of connection. This code is never set by the service. **1008**: Policy violation. Set when the API key is missing or invalid. **1011**: Unexpected condition. Socket will be closed with this status at an attempt to open a socket to an unexisting channel (without a prior REST PUT). This code is also used to indicate closing socket for any other unexpected condition in the server. 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connection"></param>
+        /// <param name="upgrade"></param>
+        /// <param name="secWebSocketProtocol">ApiKey must be present in the &#x60;Sec-WebSocket-Protocol&#x60; header &#x60;\&quot;Sec-WebSocket-Protocol\&quot;:\&quot;wss,pelion_ak_{api_key}\&quot;&#x60; Refer to the notification service documentation for examples of usage. </param>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task ConnectWebsocketAsync (string connection, string upgrade, string secWebSocketProtocol)
+        {
+             await ConnectWebsocketAsyncWithHttpInfo(connection, upgrade, secWebSocketProtocol);
+
+        }
+
+        /// <summary>
+        /// Open the websocket.  A websocket channel can have only one active websocket connection at a time. If a websocket connection for a channel exists and a new connection to the same channel is made the connection is accepted and the older connection will be closed.&lt;br/&gt; Once the socket has been opened, it may be closed with one of the following status codes&lt;br/&gt; **1000**: Socket closed by the client. **1001**: Going away. set when another socket was opened on the used channel, or if the channel was deleted with a REST call, or if the server is shutting down. **1006**: Abnormal loss of connection. This code is never set by the service. **1008**: Policy violation. Set when the API key is missing or invalid. **1011**: Unexpected condition. Socket will be closed with this status at an attempt to open a socket to an unexisting channel (without a prior REST PUT). This code is also used to indicate closing socket for any other unexpected condition in the server. 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="connection"></param>
+        /// <param name="upgrade"></param>
+        /// <param name="secWebSocketProtocol">ApiKey must be present in the &#x60;Sec-WebSocket-Protocol&#x60; header &#x60;\&quot;Sec-WebSocket-Protocol\&quot;:\&quot;wss,pelion_ak_{api_key}\&quot;&#x60; Refer to the notification service documentation for examples of usage. </param>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> ConnectWebsocketAsyncWithHttpInfo (string connection, string upgrade, string secWebSocketProtocol)
+        {
+            // verify the required parameter 'connection' is set
+            if (connection == null)
+                throw new ApiException(400, "Missing required parameter 'connection' when calling NotificationsApi->ConnectWebsocket");
+            // verify the required parameter 'upgrade' is set
+            if (upgrade == null)
+                throw new ApiException(400, "Missing required parameter 'upgrade' when calling NotificationsApi->ConnectWebsocket");
+            // verify the required parameter 'secWebSocketProtocol' is set
+            if (secWebSocketProtocol == null)
+                throw new ApiException(400, "Missing required parameter 'secWebSocketProtocol' when calling NotificationsApi->ConnectWebsocket");
+
+            var localVarPath = "/v2/notification/websocket-connect";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (connection != null) localVarHeaderParams.Add("Connection", Configuration.ApiClient.ParameterToString(connection)); // header parameter
+            if (upgrade != null) localVarHeaderParams.Add("Upgrade", Configuration.ApiClient.ParameterToString(upgrade)); // header parameter
+            if (secWebSocketProtocol != null) localVarHeaderParams.Add("Sec-WebSocket-Protocol", Configuration.ApiClient.ParameterToString(secWebSocketProtocol)); // header parameter
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ConnectWebsocket", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
         }
 
         /// <summary>
@@ -440,6 +767,133 @@ namespace mds.Api
             if (ExceptionFactory != null)
             {
                 Exception exception = ExceptionFactory("DeleteLongPollChannel", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Delete websocket channel. To delete a notification websocket channel bound to the API key. This is required to change the channel from websocket to another type.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/notification/websocket -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns></returns>
+        public void DeleteWebsocket ()
+        {
+             DeleteWebsocketWithHttpInfo();
+        }
+
+        /// <summary>
+        /// Delete websocket channel. To delete a notification websocket channel bound to the API key. This is required to change the channel from websocket to another type.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/notification/websocket -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> DeleteWebsocketWithHttpInfo ()
+        {
+
+            var localVarPath = "/v2/notification/websocket";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeleteWebsocket", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
+        }
+
+        /// <summary>
+        /// Delete websocket channel. To delete a notification websocket channel bound to the API key. This is required to change the channel from websocket to another type.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/notification/websocket -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task DeleteWebsocketAsync ()
+        {
+             await DeleteWebsocketAsyncWithHttpInfo();
+
+        }
+
+        /// <summary>
+        /// Delete websocket channel. To delete a notification websocket channel bound to the API key. This is required to change the channel from websocket to another type.  **Example usage:**      curl -X DELETE https://api.us-east-1.mbedcloud.com/v2/notification/websocket -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteWebsocketAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "/v2/notification/websocket";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.DELETE, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("DeleteWebsocket", localVarResponse);
                 if (exception != null) throw exception;
             }
 
@@ -707,7 +1161,138 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Get notifications using Long Poll In this case, notifications are delivered through HTTP long poll requests. The HTTP request is kept open until an event notification or a batch of event notifications are delivered to the client or the request times out (response code 204). In both cases, the client should open a new polling connection after the previous one closes. Only a single long polling connection per API key can be ongoing at any given time. You must have a persistent connection (Connection keep-alive header in the request) to avoid excess TLS handshakes.  The pull channel is implicitly created by the first GET call to &#x60;/v2/notification/pull&#x60;. It is refreshed on each GET call. If the channel is not polled for a long time (10 minutes) - it expires and will be deleted. This means that no notifications will stay in the queue between polls. A channel can be also deleted explicitly by a DELETE call.  **Note:** If you cannot have a public facing callback URL, for example when developing on your local machine, you can use long polling to check for new messages. However, **long polling is deprecated** and will likely be replaced in future. It is meant only for experimentation and not for commercial usage. The proper method to receive notifications is a **notification callback**. There can only be one notification channel per API key at a time in Device Management Connect. If a notification channel  of other type already exists for the API key, you need to delete it before creating a long poll notification channel.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/pull -H &#39;authorization: Bearer {api-key}&#39; 
+        /// Get websocket channel information. Returns 200 with websocket connection status if websocket channel exists.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/websocket -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>WebsocketChannel</returns>
+        public WebsocketChannel GetWebsocket ()
+        {
+             ApiResponse<WebsocketChannel> localVarResponse = GetWebsocketWithHttpInfo();
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get websocket channel information. Returns 200 with websocket connection status if websocket channel exists.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/websocket -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of WebsocketChannel</returns>
+        public ApiResponse< WebsocketChannel > GetWebsocketWithHttpInfo ()
+        {
+
+            var localVarPath = "/v2/notification/websocket";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetWebsocket", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<WebsocketChannel>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (WebsocketChannel) Configuration.ApiClient.Deserialize(localVarResponse, typeof(WebsocketChannel)));
+        }
+
+        /// <summary>
+        /// Get websocket channel information. Returns 200 with websocket connection status if websocket channel exists.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/websocket -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of WebsocketChannel</returns>
+        public async System.Threading.Tasks.Task<WebsocketChannel> GetWebsocketAsync ()
+        {
+             ApiResponse<WebsocketChannel> localVarResponse = await GetWebsocketAsyncWithHttpInfo();
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Get websocket channel information. Returns 200 with websocket connection status if websocket channel exists.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/websocket -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (WebsocketChannel)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<WebsocketChannel>> GetWebsocketAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "/v2/notification/websocket";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetWebsocket", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<WebsocketChannel>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (WebsocketChannel) Configuration.ApiClient.Deserialize(localVarResponse, typeof(WebsocketChannel)));
+        }
+
+        /// <summary>
+        /// Get notifications using Long Poll In this case, notifications are delivered through HTTP long poll requests. The HTTP request is kept open until an event notification or a batch of event notifications are delivered to the client or the request times out (response code 204). In both cases, the client should open a new polling connection after the previous one closes. Only a single long polling connection per API key can be ongoing at any given time. You must have a persistent connection (Connection keep-alive header in the request) to avoid excess TLS handshakes.  The pull channel is implicitly created by the first GET call to &#x60;/v2/notification/pull&#x60;. It is refreshed on each GET call. If the channel is not polled for a long time (10 minutes) - it expires and will be deleted. This means that no notifications will stay in the queue between polls. A channel can be also deleted explicitly by a DELETE call.  **Note:** If you cannot have a public facing callback URL, for example when developing on your local machine, you can use long polling to check for new messages. However, **long polling is deprecated** and will likely be replaced in future. It is meant only for experimentation and not for commercial usage. The proper method to receive notifications is a **notification callback**. There can only be one notification channel per API key at a time in Device Management Connect. If a notification channel of other type already exists for the API key, you need to delete it before creating a long poll notification channel.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/pull -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>NotificationMessage</returns>
@@ -718,7 +1303,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Get notifications using Long Poll In this case, notifications are delivered through HTTP long poll requests. The HTTP request is kept open until an event notification or a batch of event notifications are delivered to the client or the request times out (response code 204). In both cases, the client should open a new polling connection after the previous one closes. Only a single long polling connection per API key can be ongoing at any given time. You must have a persistent connection (Connection keep-alive header in the request) to avoid excess TLS handshakes.  The pull channel is implicitly created by the first GET call to &#x60;/v2/notification/pull&#x60;. It is refreshed on each GET call. If the channel is not polled for a long time (10 minutes) - it expires and will be deleted. This means that no notifications will stay in the queue between polls. A channel can be also deleted explicitly by a DELETE call.  **Note:** If you cannot have a public facing callback URL, for example when developing on your local machine, you can use long polling to check for new messages. However, **long polling is deprecated** and will likely be replaced in future. It is meant only for experimentation and not for commercial usage. The proper method to receive notifications is a **notification callback**. There can only be one notification channel per API key at a time in Device Management Connect. If a notification channel  of other type already exists for the API key, you need to delete it before creating a long poll notification channel.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/pull -H &#39;authorization: Bearer {api-key}&#39; 
+        /// Get notifications using Long Poll In this case, notifications are delivered through HTTP long poll requests. The HTTP request is kept open until an event notification or a batch of event notifications are delivered to the client or the request times out (response code 204). In both cases, the client should open a new polling connection after the previous one closes. Only a single long polling connection per API key can be ongoing at any given time. You must have a persistent connection (Connection keep-alive header in the request) to avoid excess TLS handshakes.  The pull channel is implicitly created by the first GET call to &#x60;/v2/notification/pull&#x60;. It is refreshed on each GET call. If the channel is not polled for a long time (10 minutes) - it expires and will be deleted. This means that no notifications will stay in the queue between polls. A channel can be also deleted explicitly by a DELETE call.  **Note:** If you cannot have a public facing callback URL, for example when developing on your local machine, you can use long polling to check for new messages. However, **long polling is deprecated** and will likely be replaced in future. It is meant only for experimentation and not for commercial usage. The proper method to receive notifications is a **notification callback**. There can only be one notification channel per API key at a time in Device Management Connect. If a notification channel of other type already exists for the API key, you need to delete it before creating a long poll notification channel.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/pull -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of NotificationMessage</returns>
@@ -772,7 +1357,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Get notifications using Long Poll In this case, notifications are delivered through HTTP long poll requests. The HTTP request is kept open until an event notification or a batch of event notifications are delivered to the client or the request times out (response code 204). In both cases, the client should open a new polling connection after the previous one closes. Only a single long polling connection per API key can be ongoing at any given time. You must have a persistent connection (Connection keep-alive header in the request) to avoid excess TLS handshakes.  The pull channel is implicitly created by the first GET call to &#x60;/v2/notification/pull&#x60;. It is refreshed on each GET call. If the channel is not polled for a long time (10 minutes) - it expires and will be deleted. This means that no notifications will stay in the queue between polls. A channel can be also deleted explicitly by a DELETE call.  **Note:** If you cannot have a public facing callback URL, for example when developing on your local machine, you can use long polling to check for new messages. However, **long polling is deprecated** and will likely be replaced in future. It is meant only for experimentation and not for commercial usage. The proper method to receive notifications is a **notification callback**. There can only be one notification channel per API key at a time in Device Management Connect. If a notification channel  of other type already exists for the API key, you need to delete it before creating a long poll notification channel.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/pull -H &#39;authorization: Bearer {api-key}&#39; 
+        /// Get notifications using Long Poll In this case, notifications are delivered through HTTP long poll requests. The HTTP request is kept open until an event notification or a batch of event notifications are delivered to the client or the request times out (response code 204). In both cases, the client should open a new polling connection after the previous one closes. Only a single long polling connection per API key can be ongoing at any given time. You must have a persistent connection (Connection keep-alive header in the request) to avoid excess TLS handshakes.  The pull channel is implicitly created by the first GET call to &#x60;/v2/notification/pull&#x60;. It is refreshed on each GET call. If the channel is not polled for a long time (10 minutes) - it expires and will be deleted. This means that no notifications will stay in the queue between polls. A channel can be also deleted explicitly by a DELETE call.  **Note:** If you cannot have a public facing callback URL, for example when developing on your local machine, you can use long polling to check for new messages. However, **long polling is deprecated** and will likely be replaced in future. It is meant only for experimentation and not for commercial usage. The proper method to receive notifications is a **notification callback**. There can only be one notification channel per API key at a time in Device Management Connect. If a notification channel of other type already exists for the API key, you need to delete it before creating a long poll notification channel.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/pull -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of NotificationMessage</returns>
@@ -784,7 +1369,7 @@ namespace mds.Api
         }
 
         /// <summary>
-        /// Get notifications using Long Poll In this case, notifications are delivered through HTTP long poll requests. The HTTP request is kept open until an event notification or a batch of event notifications are delivered to the client or the request times out (response code 204). In both cases, the client should open a new polling connection after the previous one closes. Only a single long polling connection per API key can be ongoing at any given time. You must have a persistent connection (Connection keep-alive header in the request) to avoid excess TLS handshakes.  The pull channel is implicitly created by the first GET call to &#x60;/v2/notification/pull&#x60;. It is refreshed on each GET call. If the channel is not polled for a long time (10 minutes) - it expires and will be deleted. This means that no notifications will stay in the queue between polls. A channel can be also deleted explicitly by a DELETE call.  **Note:** If you cannot have a public facing callback URL, for example when developing on your local machine, you can use long polling to check for new messages. However, **long polling is deprecated** and will likely be replaced in future. It is meant only for experimentation and not for commercial usage. The proper method to receive notifications is a **notification callback**. There can only be one notification channel per API key at a time in Device Management Connect. If a notification channel  of other type already exists for the API key, you need to delete it before creating a long poll notification channel.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/pull -H &#39;authorization: Bearer {api-key}&#39; 
+        /// Get notifications using Long Poll In this case, notifications are delivered through HTTP long poll requests. The HTTP request is kept open until an event notification or a batch of event notifications are delivered to the client or the request times out (response code 204). In both cases, the client should open a new polling connection after the previous one closes. Only a single long polling connection per API key can be ongoing at any given time. You must have a persistent connection (Connection keep-alive header in the request) to avoid excess TLS handshakes.  The pull channel is implicitly created by the first GET call to &#x60;/v2/notification/pull&#x60;. It is refreshed on each GET call. If the channel is not polled for a long time (10 minutes) - it expires and will be deleted. This means that no notifications will stay in the queue between polls. A channel can be also deleted explicitly by a DELETE call.  **Note:** If you cannot have a public facing callback URL, for example when developing on your local machine, you can use long polling to check for new messages. However, **long polling is deprecated** and will likely be replaced in future. It is meant only for experimentation and not for commercial usage. The proper method to receive notifications is a **notification callback**. There can only be one notification channel per API key at a time in Device Management Connect. If a notification channel of other type already exists for the API key, you need to delete it before creating a long poll notification channel.  **Example usage:**      curl -X GET https://api.us-east-1.mbedcloud.com/v2/notification/pull -H &#39;authorization: Bearer {api-key}&#39; 
         /// </summary>
         /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of ApiResponse (NotificationMessage)</returns>
@@ -990,6 +1575,137 @@ namespace mds.Api
             return new ApiResponse<Object>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
+        }
+
+        /// <summary>
+        /// Register a websocket channel Register (or update) a channel which will use websocket connection to deliver notifications. The websocket channel should be opened by client using &#x60;/v2/notification/websocket-connect&#x60; endpoint. To get notifications pushed, you also need to place the subscriptions. For more information on notification messages, see [NotificationMessage](#NotificationMessage).  A websocket channel can have only one active websocket connection at a time. If a websocket connection for a channel exists and a new connection to the same channel is made the connection is accepted and the older connection will be closed.  **Expiration of a websocket:**  A websocket channel will be expired if the channel does not have an opened websocket connection for 24 hour period. Channel expiration means the channel will be deleted and any undelivered notifications stored in its internal queue will be removed. As long as the channel has an opened websocket connection or time between successive websocket connections is less than 24 hours, the channel is considered active, notifications are stored in its internal queue and delivered when a websocket connection is active. A channel can be also deleted explicitly by a DELETE call.  More about [notification sending logic](/docs/current/integrate-web-app/event-notification.html#notification-sending-logic).  **Example usage:**      curl -X PUT https://api.us-east-1.mbedcloud.com/v2/notification/websocket -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>WebsocketChannel</returns>
+        public WebsocketChannel RegisterWebsocket ()
+        {
+             ApiResponse<WebsocketChannel> localVarResponse = RegisterWebsocketWithHttpInfo();
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Register a websocket channel Register (or update) a channel which will use websocket connection to deliver notifications. The websocket channel should be opened by client using &#x60;/v2/notification/websocket-connect&#x60; endpoint. To get notifications pushed, you also need to place the subscriptions. For more information on notification messages, see [NotificationMessage](#NotificationMessage).  A websocket channel can have only one active websocket connection at a time. If a websocket connection for a channel exists and a new connection to the same channel is made the connection is accepted and the older connection will be closed.  **Expiration of a websocket:**  A websocket channel will be expired if the channel does not have an opened websocket connection for 24 hour period. Channel expiration means the channel will be deleted and any undelivered notifications stored in its internal queue will be removed. As long as the channel has an opened websocket connection or time between successive websocket connections is less than 24 hours, the channel is considered active, notifications are stored in its internal queue and delivered when a websocket connection is active. A channel can be also deleted explicitly by a DELETE call.  More about [notification sending logic](/docs/current/integrate-web-app/event-notification.html#notification-sending-logic).  **Example usage:**      curl -X PUT https://api.us-east-1.mbedcloud.com/v2/notification/websocket -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of WebsocketChannel</returns>
+        public ApiResponse< WebsocketChannel > RegisterWebsocketWithHttpInfo ()
+        {
+
+            var localVarPath = "/v2/notification/websocket";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("RegisterWebsocket", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<WebsocketChannel>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (WebsocketChannel) Configuration.ApiClient.Deserialize(localVarResponse, typeof(WebsocketChannel)));
+        }
+
+        /// <summary>
+        /// Register a websocket channel Register (or update) a channel which will use websocket connection to deliver notifications. The websocket channel should be opened by client using &#x60;/v2/notification/websocket-connect&#x60; endpoint. To get notifications pushed, you also need to place the subscriptions. For more information on notification messages, see [NotificationMessage](#NotificationMessage).  A websocket channel can have only one active websocket connection at a time. If a websocket connection for a channel exists and a new connection to the same channel is made the connection is accepted and the older connection will be closed.  **Expiration of a websocket:**  A websocket channel will be expired if the channel does not have an opened websocket connection for 24 hour period. Channel expiration means the channel will be deleted and any undelivered notifications stored in its internal queue will be removed. As long as the channel has an opened websocket connection or time between successive websocket connections is less than 24 hours, the channel is considered active, notifications are stored in its internal queue and delivered when a websocket connection is active. A channel can be also deleted explicitly by a DELETE call.  More about [notification sending logic](/docs/current/integrate-web-app/event-notification.html#notification-sending-logic).  **Example usage:**      curl -X PUT https://api.us-east-1.mbedcloud.com/v2/notification/websocket -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of WebsocketChannel</returns>
+        public async System.Threading.Tasks.Task<WebsocketChannel> RegisterWebsocketAsync ()
+        {
+             ApiResponse<WebsocketChannel> localVarResponse = await RegisterWebsocketAsyncWithHttpInfo();
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Register a websocket channel Register (or update) a channel which will use websocket connection to deliver notifications. The websocket channel should be opened by client using &#x60;/v2/notification/websocket-connect&#x60; endpoint. To get notifications pushed, you also need to place the subscriptions. For more information on notification messages, see [NotificationMessage](#NotificationMessage).  A websocket channel can have only one active websocket connection at a time. If a websocket connection for a channel exists and a new connection to the same channel is made the connection is accepted and the older connection will be closed.  **Expiration of a websocket:**  A websocket channel will be expired if the channel does not have an opened websocket connection for 24 hour period. Channel expiration means the channel will be deleted and any undelivered notifications stored in its internal queue will be removed. As long as the channel has an opened websocket connection or time between successive websocket connections is less than 24 hours, the channel is considered active, notifications are stored in its internal queue and delivered when a websocket connection is active. A channel can be also deleted explicitly by a DELETE call.  More about [notification sending logic](/docs/current/integrate-web-app/event-notification.html#notification-sending-logic).  **Example usage:**      curl -X PUT https://api.us-east-1.mbedcloud.com/v2/notification/websocket -H &#39;authorization: Bearer {api-key}&#39; 
+        /// </summary>
+        /// <exception cref="mds.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (WebsocketChannel)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<WebsocketChannel>> RegisterWebsocketAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "/v2/notification/websocket";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+
+            // authentication (Bearer) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("Authorization")))
+            {
+                localVarHeaderParams["Authorization"] = Configuration.GetApiKeyWithPrefix("Authorization");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("RegisterWebsocket", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<WebsocketChannel>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                (WebsocketChannel) Configuration.ApiClient.Deserialize(localVarResponse, typeof(WebsocketChannel)));
         }
 
     }

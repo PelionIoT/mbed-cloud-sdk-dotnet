@@ -32,40 +32,46 @@ namespace mds.Model
     public partial class WebsocketChannel :  IEquatable<WebsocketChannel>, IValidatableObject
     {
         /// <summary>
-        /// Gets or Sets Status
+        /// Channel status will be &#39;connected&#39; when the channel has an active WebSocket bound to it. The state will be &#39;disconnected&#39; when either the channel or the WebSocket bound to it is closed. 
         /// </summary>
+        /// <value>Channel status will be &#39;connected&#39; when the channel has an active WebSocket bound to it. The state will be &#39;disconnected&#39; when either the channel or the WebSocket bound to it is closed. </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
             
             /// <summary>
-            /// Enum CONNECTED for "CONNECTED"
+            /// Enum Connected for "connected"
             /// </summary>
-            [EnumMember(Value = "CONNECTED")]
-            CONNECTED,
+            [EnumMember(Value = "connected")]
+            Connected,
             
             /// <summary>
-            /// Enum DISCONNECTED for "DISCONNECTED"
+            /// Enum Disconnected for "disconnected"
             /// </summary>
-            [EnumMember(Value = "DISCONNECTED")]
-            DISCONNECTED
+            [EnumMember(Value = "disconnected")]
+            Disconnected
         }
 
         /// <summary>
-        /// Gets or Sets Status
+        /// Channel status will be &#39;connected&#39; when the channel has an active WebSocket bound to it. The state will be &#39;disconnected&#39; when either the channel or the WebSocket bound to it is closed. 
         /// </summary>
+        /// <value>Channel status will be &#39;connected&#39; when the channel has an active WebSocket bound to it. The state will be &#39;disconnected&#39; when either the channel or the WebSocket bound to it is closed. </value>
         [DataMember(Name="status", EmitDefaultValue=false)]
         public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="WebsocketChannel" /> class.
         /// </summary>
-        /// <param name="Status">Status (default to StatusEnum.DISCONNECTED).</param>
-        public WebsocketChannel(StatusEnum? Status = StatusEnum.DISCONNECTED)
+        /// <param name="ChannelId">Unique identifier of the channel.</param>
+        /// <param name="QueueSize">Number of events in the channel&#39;s event queue waiting to be delivered..</param>
+        /// <param name="Status">Channel status will be &#39;connected&#39; when the channel has an active WebSocket bound to it. The state will be &#39;disconnected&#39; when either the channel or the WebSocket bound to it is closed.  (default to StatusEnum.Disconnected).</param>
+        public WebsocketChannel(string ChannelId = default(string), int? QueueSize = default(int?), StatusEnum? Status = StatusEnum.Disconnected)
         {
+            this.ChannelId = ChannelId;
+            this.QueueSize = QueueSize;
             // use default value if no "Status" provided
             if (Status == null)
             {
-                this.Status = StatusEnum.DISCONNECTED;
+                this.Status = StatusEnum.Disconnected;
             }
             else
             {
@@ -73,6 +79,20 @@ namespace mds.Model
             }
         }
         
+        /// <summary>
+        /// Unique identifier of the channel
+        /// </summary>
+        /// <value>Unique identifier of the channel</value>
+        [DataMember(Name="channelId", EmitDefaultValue=false)]
+        public string ChannelId { get; set; }
+
+        /// <summary>
+        /// Number of events in the channel&#39;s event queue waiting to be delivered.
+        /// </summary>
+        /// <value>Number of events in the channel&#39;s event queue waiting to be delivered.</value>
+        [DataMember(Name="queueSize", EmitDefaultValue=false)]
+        public int? QueueSize { get; set; }
+
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -82,6 +102,8 @@ namespace mds.Model
         {
             var sb = new StringBuilder();
             sb.Append("class WebsocketChannel {\n");
+            sb.Append("  ChannelId: ").Append(ChannelId).Append("\n");
+            sb.Append("  QueueSize: ").Append(QueueSize).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -118,6 +140,16 @@ namespace mds.Model
 
             return 
                 (
+                    this.ChannelId == input.ChannelId ||
+                    (this.ChannelId != null &&
+                    this.ChannelId.Equals(input.ChannelId))
+                ) && 
+                (
+                    this.QueueSize == input.QueueSize ||
+                    (this.QueueSize != null &&
+                    this.QueueSize.Equals(input.QueueSize))
+                ) && 
+                (
                     this.Status == input.Status ||
                     (this.Status != null &&
                     this.Status.Equals(input.Status))
@@ -133,6 +165,10 @@ namespace mds.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.ChannelId != null)
+                    hashCode = hashCode * 59 + this.ChannelId.GetHashCode();
+                if (this.QueueSize != null)
+                    hashCode = hashCode * 59 + this.QueueSize.GetHashCode();
                 if (this.Status != null)
                     hashCode = hashCode * 59 + this.Status.GetHashCode();
                 return hashCode;
