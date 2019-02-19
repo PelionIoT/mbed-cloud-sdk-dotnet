@@ -59,9 +59,9 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             Assert.IsEmpty(subscribe.AllLocalSubscriptions);
-            var observer1 = (await subscribe.ResourceValuesAsync()).Where(new ResourceValuesFilter { DeviceId = "1", ResourcePaths = new List<string>() { "3/0/0", "3/0/1"}});
-            var observer2 = (await subscribe.ResourceValuesAsync()).Where(new ResourceValuesFilter { DeviceId = "2", ResourcePaths = new List<string>() { "3/0/0", "3/0/1" } })
-                                                      .Where(new ResourceValuesFilter { DeviceId = "3", ResourcePaths = new List<string>() { "3/0/0", "3/0/1" } });
+            var observer1 = (await subscribe.ResourceValuesAsync()).Filter(new ResourceValuesFilter { DeviceId = "1", ResourcePaths = new List<string>() { "3/0/0", "3/0/1"}});
+            var observer2 = (await subscribe.ResourceValuesAsync()).Filter(new ResourceValuesFilter { DeviceId = "2", ResourcePaths = new List<string>() { "3/0/0", "3/0/1" } })
+                                                      .Filter(new ResourceValuesFilter { DeviceId = "3", ResourcePaths = new List<string>() { "3/0/0", "3/0/1" } });
 
             Assert.AreEqual(3, subscribe.AllLocalSubscriptions.Count);
 
@@ -75,7 +75,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<ResourceValueChange>();
-            var observer = (await subscribe.ResourceValuesAsync()).Where(new ResourceValuesFilter { DeviceId = "1" });
+            var observer = (await subscribe.ResourceValuesAsync()).Filter(new ResourceValuesFilter { DeviceId = "1" });
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);
@@ -89,8 +89,8 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<ResourceValueChange>();
-            var observer = (await subscribe.ResourceValuesAsync()).Where(new ResourceValuesFilter { DeviceId = "1" })
-                                                           .Where(new ResourceValuesFilter { DeviceId = "2" });
+            var observer = (await subscribe.ResourceValuesAsync()).Filter(new ResourceValuesFilter { DeviceId = "1" })
+                                                           .Filter(new ResourceValuesFilter { DeviceId = "2" });
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);
@@ -104,7 +104,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<ResourceValueChange>();
-            var observer = (await subscribe.ResourceValuesAsync()).Where(new ResourceValuesFilter { ResourcePaths = new List<string>() { "/3/0/0" } });
+            var observer = (await subscribe.ResourceValuesAsync()).Filter(new ResourceValuesFilter { ResourcePaths = new List<string>() { "/3/0/0" } });
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);
@@ -118,8 +118,8 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<ResourceValueChange>();
-            var observer = (await subscribe.ResourceValuesAsync()).Where(new ResourceValuesFilter { ResourcePaths = new List<string>() { "/3/0/0", "/3/0/1" } })
-                                                           .Where(new ResourceValuesFilter { ResourcePaths = new List<string>() { "/3/0/2" } });
+            var observer = (await subscribe.ResourceValuesAsync()).Filter(new ResourceValuesFilter { ResourcePaths = new List<string>() { "/3/0/0", "/3/0/1" } })
+                                                           .Filter(new ResourceValuesFilter { ResourcePaths = new List<string>() { "/3/0/2" } });
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);
@@ -133,8 +133,8 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<ResourceValueChange>();
-            var observer = (await subscribe.ResourceValuesAsync()).Where(new ResourceValuesFilter { ResourcePaths = new List<string>() { "/3/0/0", "/3/0/1" } })
-                                                           .Where(new ResourceValuesFilter { ResourcePaths = new List<string>() { "/3/0/1" } });
+            var observer = (await subscribe.ResourceValuesAsync()).Filter(new ResourceValuesFilter { ResourcePaths = new List<string>() { "/3/0/0", "/3/0/1" } })
+                                                           .Filter(new ResourceValuesFilter { ResourcePaths = new List<string>() { "/3/0/1" } });
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);
@@ -148,7 +148,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<ResourceValueChange>();
-            var observer = (await subscribe.ResourceValuesAsync()).Where(new ResourceValuesFilter { DeviceId = "2", ResourcePaths = new List<string>() { "/3/0/0" } });
+            var observer = (await subscribe.ResourceValuesAsync()).Filter(new ResourceValuesFilter { DeviceId = "2", ResourcePaths = new List<string>() { "/3/0/0" } });
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);
@@ -162,7 +162,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<ResourceValueChange>();
-            var observer = (await subscribe.ResourceValuesAsync()).Where(new ResourceValuesFilter { DeviceId = "2", ResourcePaths = new List<string>() { "/3/0/0", "/3/0/1" } });
+            var observer = (await subscribe.ResourceValuesAsync()).Filter(new ResourceValuesFilter { DeviceId = "2", ResourcePaths = new List<string>() { "/3/0/0", "/3/0/1" } });
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);
@@ -176,8 +176,8 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<ResourceValueChange>();
-            var observer = (await subscribe.ResourceValuesAsync()).Where(new ResourceValuesFilter { DeviceId = "2", ResourcePaths = new List<string>() { "/3/0/0" } })
-                                                           .Where(new ResourceValuesFilter { DeviceId = "3", ResourcePaths = new List<string>() { "/3/0/0" } });
+            var observer = (await subscribe.ResourceValuesAsync()).Filter(new ResourceValuesFilter { DeviceId = "2", ResourcePaths = new List<string>() { "/3/0/0" } })
+                                                           .Filter(new ResourceValuesFilter { DeviceId = "3", ResourcePaths = new List<string>() { "/3/0/0" } });
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);
@@ -191,8 +191,8 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<ResourceValueChange>();
-            var observer = (await subscribe.ResourceValuesAsync()).Where(new ResourceValuesFilter { DeviceId = "2", ResourcePaths = new List<string>() { "/3/0/0", "/3/0/2" } })
-                                                           .Where(new ResourceValuesFilter { DeviceId = "3", ResourcePaths = new List<string>() { "/3/0/0", "/3/0/1" } });
+            var observer = (await subscribe.ResourceValuesAsync()).Filter(new ResourceValuesFilter { DeviceId = "2", ResourcePaths = new List<string>() { "/3/0/0", "/3/0/2" } })
+                                                           .Filter(new ResourceValuesFilter { DeviceId = "3", ResourcePaths = new List<string>() { "/3/0/0", "/3/0/1" } });
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);
@@ -206,7 +206,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<ResourceValueChange>();
-            var observer = (await subscribe.ResourceValuesAsync()).Where(new ResourceValuesFilter { DeviceId = "*" });
+            var observer = (await subscribe.ResourceValuesAsync()).Filter(new ResourceValuesFilter { DeviceId = "*" });
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);
@@ -220,7 +220,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             var items = new List<ResourceValueChange>();
-            var observer = (await subscribe.ResourceValuesAsync()).Where(new ResourceValuesFilter { DeviceId = "2", ResourcePaths = new List<string>() { "/3/*" } });
+            var observer = (await subscribe.ResourceValuesAsync()).Filter(new ResourceValuesFilter { DeviceId = "2", ResourcePaths = new List<string>() { "/3/*" } });
             observer.OnNotify += res => items.Add(res);
 
             MockNotification(subscribe);

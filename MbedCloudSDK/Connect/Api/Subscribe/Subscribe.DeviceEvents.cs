@@ -62,7 +62,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         {
             DeviceEventObservers.ForEach(o =>
             {
-                o.Notify(data);
+                o.NotifyAsync(data);
             });
         }
 

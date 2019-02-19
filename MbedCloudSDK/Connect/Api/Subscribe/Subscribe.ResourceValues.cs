@@ -51,7 +51,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         {
             ResourceValueObservers.ForEach(o =>
             {
-                o.Notify(data);
+                o.NotifyAsync(data);
             });
         }
 
@@ -198,7 +198,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         protected virtual async Task<ResourceValuesObserver> ResourceValuesCoreAsync(ResourceValuesObserver observer, FirstValueImmediacy immediacy)
         {
             Immediacy = immediacy;
-            observer.OnSubAdded += (id) => ConstructPresubscriptionArray(id);
+            observer.OnFilterAdded += (id) => ConstructPresubscriptionArray(id);
             observer.OnUnsubscribed += (id) => UnsubscribeSubscriptions(id);
             ResourceValueObservers.Add(observer);
             ConstructPresubscriptionArray(observer.Id);

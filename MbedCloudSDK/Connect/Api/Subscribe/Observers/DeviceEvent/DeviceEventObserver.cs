@@ -7,6 +7,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.DeviceEvent
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using MbedCloudSDK.Connect.Api.Subscribe.Models;
     using MbedCloudSDK.Connect.Model.Notifications;
 
@@ -40,17 +41,17 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.DeviceEvent
         /// Notify this observer
         /// </summary>
         /// <param name="data">The device event data</param>
-        public new void Notify(DeviceEventData data)
+        public override async Task NotifyAsync(DeviceEventData data)
         {
             if (!FilterFuncs.Any())
             {
-                base.Notify(data);
+                await base.NotifyAsync(data);
             }
             else
             {
                 if (FilterFuncs.TrueForAll(f => f.Invoke(new DeviceEventFilter { Id = data.DeviceId, Event = data.State })))
                 {
-                    base.Notify(data);
+                    await base.NotifyAsync(data);
                 }
             }
         }

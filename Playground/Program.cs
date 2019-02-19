@@ -10,6 +10,7 @@ using MbedCloudSDK.Connect.Api;
 using MbedCloudSDK.Common;
 using System.Collections.Generic;
 using Mbed.Cloud.Foundation.Common;
+using MbedCloudSDK.Connect.Api.Subscribe.Observers;
 
 namespace Playground
 {
@@ -29,47 +30,63 @@ namespace Playground
                     LogLevel = LogLevel.ALL,
                 });
 
-                Console.WriteLine("----------------- start -----------------------");
+                // Console.WriteLine("----------------- start -----------------------");
 
-                await connect.StartNotificationsAsync();
+                // await connect.StartNotificationsAsync();
 
-                Console.WriteLine("------------------ start ----------------------");
+                // Console.WriteLine("------------------ start ----------------------");
 
-                await connect.StartNotificationsAsync();
+                // await connect.StartNotificationsAsync();
 
-                Console.WriteLine("------------------ start ----------------------");
+                // Console.WriteLine("------------------ start ----------------------");
 
-                await connect.StartNotificationsAsync();
+                // await connect.StartNotificationsAsync();
 
-                Console.WriteLine("------------------ stop ----------------------");
+                // Console.WriteLine("------------------ stop ----------------------");
 
-                await connect.StopNotificationsAsync();
+                // await connect.StopNotificationsAsync();
 
-                Console.WriteLine("------------------- stop ---------------------");
+                // Console.WriteLine("------------------- stop ---------------------");
 
-                await connect.StopNotificationsAsync();
+                // await connect.StopNotificationsAsync();
 
-                Console.WriteLine("-------------------- start --------------------");
+                // Console.WriteLine("-------------------- start --------------------");
 
-                await connect.StartNotificationsAsync();
+                // await connect.StartNotificationsAsync();
 
-                Console.WriteLine("-------------------- start --------------------");
+                // Console.WriteLine("-------------------- start --------------------");
 
-                await connect.StartNotificationsAsync();
+                // await connect.StartNotificationsAsync();
 
-                Console.WriteLine("-------------------- subscribe --------------------");
+                // Console.WriteLine("-------------------- subscribe --------------------");
 
-                var myDevice = connect.ListConnectedDevices().FirstOrDefault();
+                // var myDevice = connect.ListConnectedDevices().FirstOrDefault();
 
-                var obs = await connect.Subscribe.ResourceValuesAsync(myDevice.Id, new List<string> { "/3200/0/5501" });
+                // var obs = await connect.Subscribe.ResourceValuesAsync(myDevice.Id, new List<string> { "/3200/0/5501" });
 
-                var regUpdates = await connect.Subscribe.DeviceEventsAsync();
+                // var regUpdates = await connect.Subscribe.DeviceEventsAsync();
 
-                regUpdates.OnNotify += message => Console.WriteLine(message);
+                // regUpdates.OnNotify += message => Console.WriteLine(message);
 
-                obs.OnNotify += message => Console.WriteLine(message);
+                // obs.OnNotify += message => Console.WriteLine(message);
 
-                Console.ReadLine();
+                // Console.ReadLine();
+                var observer = new TestObserver<string, string>();
+                observer.Notify("a");
+                var a = observer.NextAsync();
+                var b = observer.NextAsync();
+                var c = observer.NextAsync();
+                observer.Notify("b");
+                var d = observer.NextAsync();
+                observer.Notify("c");
+                observer.Notify("d");
+                observer.Notify("e");
+                var e = observer.NextAsync();
+                Console.WriteLine($"a - {a.Result}");
+                Console.WriteLine($"b - {b.Result}");
+                Console.WriteLine($"c - {c.Result}");
+                Console.WriteLine($"d - {d.Result}");
+                Console.WriteLine($"e - {e.Result}");
             }
             catch (Exception e)
             {
@@ -77,5 +94,9 @@ namespace Playground
                 Console.WriteLine(e);
             }
         }
+    }
+
+    public class TestObserver<T, F> : Observer<T, F>
+    {
     }
 }

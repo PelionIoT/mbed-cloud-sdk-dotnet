@@ -41,14 +41,14 @@ namespace ConsoleExamples.Examples.Subscribe
             var deviceIdSub3 = await connect.Subscribe.ResourceValuesAsync("1", "3/0/*");
 
             // can add further filters
-            deviceIdSub3.Where("1", "4/0/1");
+            deviceIdSub3.Filter("1", "4/0/1");
 
             // add a local filter on the data notified
-            var deviceIdSub4 = (await connect.Subscribe.ResourceValuesAsync("1")).Where(f => int.Parse(f.Payload) > 5);
+            var deviceIdSub4 = (await connect.Subscribe.ResourceValuesAsync("1")).Filter(f => int.Parse(f.Payload) > 5);
 
             blankSub.OnNotify += (res) => Console.WriteLine(res);
 
-            var nextValue = await blankSub.Next();
+            var nextValue = await blankSub.NextAsync();
 
             Console.WriteLine(nextValue);
         }
@@ -61,8 +61,8 @@ namespace ConsoleExamples.Examples.Subscribe
             subscription.OnNotify += (res) => { Console.WriteLine(res); };
 
             // take two values
-            var firstValue = subscription.Next();
-            var secondValue = subscription.Next();
+            var firstValue = subscription.NextAsync();
+            var secondValue = subscription.NextAsync();
 
             // mock some notification messages
             MockNotification(connect.Subscribe);
@@ -82,8 +82,8 @@ namespace ConsoleExamples.Examples.Subscribe
             subscription.OnNotify += (res) => Console.WriteLine(res);
 
             // take two values
-            var firstValue = subscription.Next();
-            var secondValue = subscription.Next();
+            var firstValue = subscription.NextAsync();
+            var secondValue = subscription.NextAsync();
 
             // mock some notification messages
             MockNotification(connect.Subscribe);
@@ -103,8 +103,8 @@ namespace ConsoleExamples.Examples.Subscribe
             subscription.OnNotify += (res) => Console.WriteLine(res);
 
             // take two values
-            var firstValue = subscription.Next();
-            var secondValue = subscription.Next();
+            var firstValue = subscription.NextAsync();
+            var secondValue = subscription.NextAsync();
 
             // mock some notification messages
             MockNotification(connect.Subscribe);
@@ -124,8 +124,8 @@ namespace ConsoleExamples.Examples.Subscribe
             subscription.OnNotify += (res) => Console.WriteLine(res);
 
             // take two values
-            var firstValue = subscription.Next();
-            var secondValue = subscription.Next();
+            var firstValue = subscription.NextAsync();
+            var secondValue = subscription.NextAsync();
 
             // mock some notification messages
             MockNotification(connect.Subscribe);

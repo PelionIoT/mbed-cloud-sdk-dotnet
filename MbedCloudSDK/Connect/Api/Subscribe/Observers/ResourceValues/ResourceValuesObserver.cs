@@ -7,6 +7,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Connect.Api.Subscribe.Models;
@@ -23,7 +24,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         /// </summary>
         public ResourceValuesObserver()
         {
-            OnSubAdded?.Invoke(Id);
+            OnFilterAdded?.Invoke(Id);
         }
 
         /// <summary>
@@ -65,23 +66,23 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         {
             deviceIds.ToList().ForEach(r =>
             {
-                var sub = new ResourceValuesFilter { DeviceId = r, ResourcePaths = resourcePaths };
-                ResourceValueSubscriptions.Add(sub);
+                var resourceValueFilter = new ResourceValuesFilter { DeviceId = r, ResourcePaths = resourcePaths };
+                ResourceValueSubscriptions.Add(resourceValueFilter);
             });
 
-            OnSubAdded?.Invoke(Id);
+            OnFilterAdded?.Invoke(Id);
         }
 
         /// <summary>
         /// SubAddedRaiser
         /// </summary>
         /// <param name="id">The identifier.</param>
-        public delegate void SubAddedRaiser(string id);
+        public delegate void FilterAddedRaiser(string id);
 
         /// <summary>
         /// Occurs when [on sub added].
         /// </summary>
-        public event SubAddedRaiser OnSubAdded;
+        public event FilterAddedRaiser OnFilterAdded;
 
         /// <summary>
         /// Gets the resource value subscriptions.
@@ -95,13 +96,13 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         /// Notifies the specified data.
         /// </summary>
         /// <param name="data">The data.</param>
-        public void Notify(NotificationData data)
+        public async Task NotifyAsync(NotificationData data)
         {
             if (!ResourceValueSubscriptions.Any() || ResourceValueSubscriptions.FirstOrDefault(p => p.Equals(data)) != null)
             {
                 if (RunLocalFilters(data))
                 {
-                    base.Notify(ResourceValueChange.Map(data));
+                    await base.NotifyAsync(ResourceValueChange.Map(data));
                 }
             }
         }
@@ -111,10 +112,10 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         /// </summary>
         /// <param name="subscription">The subscription.</param>
         /// <returns>ResourceValueObserver</returns>
-        public ResourceValuesObserver Where(ResourceValuesFilter subscription)
+        public ResourceValuesObserver Filter(ResourceValuesFilter subscription)
         {
             ResourceValueSubscriptions.Add(subscription);
-            OnSubAdded?.Invoke(Id);
+            OnFilterAdded?.Invoke(Id);
             return this;
         }
 
@@ -124,11 +125,11 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         /// <param name="deviceId">The device identifier.</param>
         /// <param name="resourcePaths">The resource paths.</param>
         /// <returns>ResourceValueObserver</returns>
-        public ResourceValuesObserver Where(string deviceId, params string[] resourcePaths)
+        public ResourceValuesObserver Filter(string deviceId, params string[] resourcePaths)
         {
             var sub = new ResourceValuesFilter { DeviceId = deviceId, ResourcePaths = resourcePaths.ToList() };
             ResourceValueSubscriptions.Add(sub);
-            OnSubAdded?.Invoke(Id);
+            OnFilterAdded?.Invoke(Id);
             return this;
         }
 
@@ -137,7 +138,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         /// </summary>
         /// <param name="predicate">The predicate.</param>
         /// <returns>ResourceValueObserver</returns>
-        public ResourceValuesObserver Where(Func<ResourceValueChange, bool> predicate)
+        public ResourceValuesObserver Filter(Func<ResourceValueChange, bool> predicate)
         {
             FilterFuncs.Add(predicate);
             return this;

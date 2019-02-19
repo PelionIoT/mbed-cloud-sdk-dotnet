@@ -481,7 +481,6 @@ namespace MbedCloudSDK.Connect.Api
         /// <returns>True if started</returns>
         public bool IsNotificationsStarted()
         {
-            Console.WriteLine(notificationTask?.Status);
             return notificationTask?.Status == TaskStatus.Running;
         }
 
