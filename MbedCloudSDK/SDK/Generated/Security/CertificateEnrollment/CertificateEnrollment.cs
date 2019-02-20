@@ -60,15 +60,6 @@ namespace Mbed.Cloud.Foundation.Entities
         }
 
         /// <summary>
-        /// enroll_result_detail
-        /// </summary>
-        public string EnrollResultDetail
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
         /// enroll_status
         /// </summary>
         public CertificateEnrollmentEnrollStatus? EnrollStatus
