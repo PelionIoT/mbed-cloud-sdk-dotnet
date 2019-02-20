@@ -27,7 +27,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string Name
         {
             get;
-            internal set;
+            set;
         }
     }
 }

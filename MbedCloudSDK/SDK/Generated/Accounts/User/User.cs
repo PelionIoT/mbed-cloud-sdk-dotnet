@@ -16,8 +16,8 @@ namespace Mbed.Cloud.Foundation.Entities
 {
     using Mbed.Cloud.Foundation.Common;
     using System.Collections.Generic;
-    using System;
     using Mbed.Cloud.Foundation.Entities;
+    using System;
     using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
@@ -31,6 +31,15 @@ namespace Mbed.Cloud.Foundation.Entities
         /// account_id
         /// </summary>
         public string AccountId
+        {
+            get;
+            internal set;
+        }
+
+        /// <summary>
+        /// active_sessions
+        /// </summary>
+        public List<ActiveSession> ActiveSessions
         {
             get;
             internal set;
@@ -58,6 +67,15 @@ namespace Mbed.Cloud.Foundation.Entities
         /// creation_time
         /// </summary>
         public long? CreationTime
+        {
+            get;
+            internal set;
+        }
+
+        /// <summary>
+        /// custom_fields
+        /// </summary>
+        public Dictionary<string, string> CustomFields
         {
             get;
             internal set;
@@ -169,6 +187,15 @@ namespace Mbed.Cloud.Foundation.Entities
         {
             get;
             set;
+        }
+
+        /// <summary>
+        /// totp_scratch_codes
+        /// </summary>
+        public List<string> TotpScratchCodes
+        {
+            get;
+            internal set;
         }
 
         /// <summary>

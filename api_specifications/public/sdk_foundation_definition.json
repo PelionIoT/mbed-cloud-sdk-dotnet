@@ -7,6 +7,7 @@
         "parent_account",
         "policy",
         "login_profile",
+        "active_session",
         "user",
         "subtenant_user",
         "user_invitation",
@@ -936,6 +937,16 @@
                     "_key": "password_policy"
                   },
                   {
+                    "type": "integer",
+                    "format": "int32",
+                    "minimum": 1,
+                    "maximum": 45,
+                    "description": "Indicates how many minutes a password recovery email for users of this account is valid for. Valid range is: 1-45.",
+                    "api_fieldname": "password_recovery_expiration",
+                    "entity_fieldname": "password_recovery_expiration",
+                    "_key": "password_recovery_expiration"
+                  },
+                  {
                     "type": "string",
                     "example": "+44 (1223) 400 400",
                     "description": "The phone number of a representative of the company.",
@@ -1318,6 +1329,14 @@
                             "entity": "password_policy"
                           },
                           "_key": "password_policy"
+                        },
+                        {
+                          "type": "integer",
+                          "format": "int32",
+                          "minimum": 1,
+                          "maximum": 45,
+                          "description": "Indicates how many minutes a password recovery email for users of this account is valid for. Valid range is: 1-45.",
+                          "_key": "password_recovery_expiration"
                         },
                         {
                           "type": "string",
@@ -1759,7 +1778,8 @@
             "parent_account",
             "expiration",
             "admin_id",
-            "admin_key"
+            "admin_key",
+            "password_recovery_expiration"
           ],
           "group_id": "Accounts",
           "parameter_map": {
@@ -2139,6 +2159,16 @@
                     "api_fieldname": "password_policy",
                     "entity_fieldname": "password_policy",
                     "_key": "password_policy"
+                  },
+                  {
+                    "type": "integer",
+                    "format": "int32",
+                    "minimum": 1,
+                    "maximum": 45,
+                    "description": "Indicates how many minutes a password recovery email for users of this account is valid for. Valid range is: 1-45.",
+                    "api_fieldname": "password_recovery_expiration",
+                    "entity_fieldname": "password_recovery_expiration",
+                    "_key": "password_recovery_expiration"
                   },
                   {
                     "type": "string",
@@ -2523,6 +2553,14 @@
                             "entity": "password_policy"
                           },
                           "_key": "password_policy"
+                        },
+                        {
+                          "type": "integer",
+                          "format": "int32",
+                          "minimum": 1,
+                          "maximum": 45,
+                          "description": "Indicates how many minutes a password recovery email for users of this account is valid for. Valid range is: 1-45.",
+                          "_key": "password_recovery_expiration"
                         },
                         {
                           "type": "string",
@@ -2982,7 +3020,8 @@
             "admin_email",
             "admin_key",
             "admin_password",
-            "admin_full_name"
+            "admin_full_name",
+            "password_recovery_expiration"
           ],
           "group_id": "Accounts",
           "parameter_map": {
@@ -3368,6 +3407,14 @@
                           "_key": "password_policy"
                         },
                         {
+                          "type": "integer",
+                          "format": "int32",
+                          "minimum": 1,
+                          "maximum": 45,
+                          "description": "Indicates how many minutes a password recovery email for users of this account is valid for. Valid range is: 1-45.",
+                          "_key": "password_recovery_expiration"
+                        },
+                        {
                           "type": "string",
                           "example": "+44 (1223) 400 400",
                           "description": "The phone number of a representative of the company.",
@@ -3734,6 +3781,14 @@
                                   "entity": "password_policy"
                                 },
                                 "_key": "password_policy"
+                              },
+                              {
+                                "type": "integer",
+                                "format": "int32",
+                                "minimum": 1,
+                                "maximum": 45,
+                                "description": "Indicates how many minutes a password recovery email for users of this account is valid for. Valid range is: 1-45.",
+                                "_key": "password_recovery_expiration"
                               },
                               {
                                 "type": "string",
@@ -4509,6 +4564,16 @@
                     "_key": "password_policy"
                   },
                   {
+                    "type": "integer",
+                    "format": "int32",
+                    "minimum": 1,
+                    "maximum": 45,
+                    "description": "Indicates how many minutes a password recovery email for users of this account is valid for. Valid range is: 1-45.",
+                    "api_fieldname": "password_recovery_expiration",
+                    "entity_fieldname": "password_recovery_expiration",
+                    "_key": "password_recovery_expiration"
+                  },
+                  {
                     "type": "string",
                     "example": "+44 (1223) 400 400",
                     "description": "The phone number of a representative of the company.",
@@ -4891,6 +4956,14 @@
                             "entity": "password_policy"
                           },
                           "_key": "password_policy"
+                        },
+                        {
+                          "type": "integer",
+                          "format": "int32",
+                          "minimum": 1,
+                          "maximum": 45,
+                          "description": "Indicates how many minutes a password recovery email for users of this account is valid for. Valid range is: 1-45.",
+                          "_key": "password_recovery_expiration"
                         },
                         {
                           "type": "string",
@@ -5278,7 +5351,8 @@
             "admin_email",
             "admin_key",
             "admin_password",
-            "admin_full_name"
+            "admin_full_name",
+            "password_recovery_expiration"
           ],
           "group_id": "Accounts",
           "parameter_map": {
@@ -5527,6 +5601,13 @@
                           "example": "2018-02-14T15:24:14Z",
                           "description": "Last update UTC time RFC3339.",
                           "_key": "updated_at"
+                        },
+                        {
+                          "type": "boolean",
+                          "example": true,
+                          "description": "This read-only flag indicates whether the certificate is valid or not.",
+                          "readOnly": true,
+                          "_key": "valid"
                         },
                         {
                           "type": "string",
@@ -5864,7 +5945,8 @@
             "enrollment_mode__eq",
             "status__eq",
             "issuer__like",
-            "subject__like"
+            "subject__like",
+            "valid__eq"
           ],
           "group_id": "Accounts",
           "parameter_map": {
@@ -6112,6 +6194,19 @@
               "parameter_fieldname": "password_policy",
               "in": "body",
               "_key": "password_policy"
+            },
+            {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 1,
+              "maximum": 45,
+              "description": "Indicates how many minutes a password recovery email for users of this account is valid for. Valid range is: 1-45.",
+              "api_fieldname": "password_recovery_expiration",
+              "entity_fieldname": "password_recovery_expiration",
+              "parameter_fieldname": "password_recovery_expiration",
+              "in": "body",
+              "required": false,
+              "_key": "password_recovery_expiration"
             },
             {
               "type": "string",
@@ -6488,6 +6583,16 @@
                     "api_fieldname": "password_policy",
                     "entity_fieldname": "password_policy",
                     "_key": "password_policy"
+                  },
+                  {
+                    "type": "integer",
+                    "format": "int32",
+                    "minimum": 1,
+                    "maximum": 45,
+                    "description": "Indicates how many minutes a password recovery email for users of this account is valid for. Valid range is: 1-45.",
+                    "api_fieldname": "password_recovery_expiration",
+                    "entity_fieldname": "password_recovery_expiration",
+                    "_key": "password_recovery_expiration"
                   },
                   {
                     "type": "string",
@@ -6872,6 +6977,14 @@
                             "entity": "password_policy"
                           },
                           "_key": "password_policy"
+                        },
+                        {
+                          "type": "integer",
+                          "format": "int32",
+                          "minimum": 1,
+                          "maximum": 45,
+                          "description": "Indicates how many minutes a password recovery email for users of this account is valid for. Valid range is: 1-45.",
+                          "_key": "password_recovery_expiration"
                         },
                         {
                           "type": "string",
@@ -7561,14 +7674,17 @@
                               {
                                 "type": "string",
                                 "description": "ID of the identity provider.",
+                                "readOnly": false,
+                                "_override": true,
                                 "api_fieldname": "id",
                                 "entity_fieldname": "id",
                                 "_key": "id"
                               },
                               {
                                 "type": "string",
-                                "readOnly": true,
+                                "readOnly": false,
                                 "description": "Name of the identity provider.",
+                                "_override": true,
                                 "api_fieldname": "name",
                                 "entity_fieldname": "name",
                                 "_key": "name"
@@ -8075,6 +8191,80 @@
                           "_key": "account_id"
                         },
                         {
+                          "type": "array",
+                          "description": "List of active user sessions.",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "account_id",
+                              "ip_address",
+                              "login_time",
+                              "object",
+                              "reference_token",
+                              "user_agent"
+                            ],
+                            "properties": [
+                              {
+                                "type": "string",
+                                "example": "01619571e2e90242ac12000600000000",
+                                "description": "The UUID of the account.",
+                                "api_fieldname": "account_id",
+                                "entity_fieldname": "account_id",
+                                "_key": "account_id"
+                              },
+                              {
+                                "type": "string",
+                                "example": "127.0.0.1",
+                                "description": "IP address of the client.",
+                                "api_fieldname": "ip_address",
+                                "entity_fieldname": "ip_address",
+                                "_key": "ip_address"
+                              },
+                              {
+                                "type": "string",
+                                "format": "date-time",
+                                "example": "2018-02-14T17:52:07Z",
+                                "description": "The login time of the user.",
+                                "api_fieldname": "login_time",
+                                "entity_fieldname": "login_time",
+                                "_key": "login_time"
+                              },
+                              {
+                                "type": "string",
+                                "description": "Entity name: always 'user-session'",
+                                "enum": [
+                                  "user-session"
+                                ],
+                                "api_fieldname": "object",
+                                "entity_fieldname": "object",
+                                "_key": "object"
+                              },
+                              {
+                                "type": "string",
+                                "example": "rt_CI6+5hS8p9DrCmkRyS6u4doUdiXr71dX7MqD+g0327hYQthEkYTxMMnCwHyf1rDdk",
+                                "description": "The reference token.",
+                                "api_fieldname": "reference_token",
+                                "entity_fieldname": "reference_token",
+                                "_key": "reference_token"
+                              },
+                              {
+                                "type": "string",
+                                "example": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36",
+                                "description": "User Agent header from the login request.",
+                                "api_fieldname": "user_agent",
+                                "entity_fieldname": "user_agent",
+                                "_key": "user_agent"
+                              }
+                            ],
+                            "description": "This object represents an active user session.",
+                            "foreign_key": {
+                              "group": "Accounts",
+                              "entity": "active_session"
+                            }
+                          },
+                          "_key": "active_sessions"
+                        },
+                        {
                           "type": "string",
                           "example": "110 Fulbourn Rd, Cambridge, United Kingdom",
                           "description": "Address.",
@@ -8093,6 +8283,14 @@
                           "example": 1518630727683,
                           "description": "A timestamp of the user creation in the storage, in milliseconds.",
                           "_key": "creation_time"
+                        },
+                        {
+                          "type": "object",
+                          "description": "User's account specific custom properties. The value is a string.",
+                          "additionalProperties": {
+                            "type": "string"
+                          },
+                          "_key": "custom_fields"
                         },
                         {
                           "type": "string",
@@ -8223,14 +8421,17 @@
                               {
                                 "type": "string",
                                 "description": "ID of the identity provider.",
+                                "readOnly": false,
+                                "_override": true,
                                 "api_fieldname": "id",
                                 "entity_fieldname": "id",
                                 "_key": "id"
                               },
                               {
                                 "type": "string",
-                                "readOnly": true,
+                                "readOnly": false,
                                 "description": "Name of the identity provider.",
+                                "_override": true,
                                 "api_fieldname": "name",
                                 "entity_fieldname": "name",
                                 "_key": "name"
@@ -8297,6 +8498,14 @@
                             "INACTIVE"
                           ],
                           "_key": "status"
+                        },
+                        {
+                          "type": "array",
+                          "description": "A list of scratch codes for the 2-factor authentication. Visible only when 2FA is requested to be enabled or the codes regenerated.",
+                          "items": {
+                            "type": "string"
+                          },
+                          "_key": "totp_scratch_codes"
                         },
                         {
                           "type": "string",
@@ -8976,6 +9185,17 @@
           "_key": "password_policy"
         },
         {
+          "type": "integer",
+          "format": "int32",
+          "minimum": 1,
+          "maximum": 45,
+          "description": "Indicates how many minutes a password recovery email for users of this account is valid for. Valid range is: 1-45.",
+          "api_fieldname": "password_recovery_expiration",
+          "readOnly": false,
+          "required": false,
+          "_key": "password_recovery_expiration"
+        },
+        {
           "type": "string",
           "example": "+44 (1223) 400 400",
           "description": "The phone number of a representative of the company.",
@@ -9149,6 +9369,65 @@
       ],
       "group_id": "Accounts",
       "_key": "account"
+    },
+    {
+      "swagger_models": [
+        "ActiveSession"
+      ],
+      "primary_key_field": null,
+      "methods": [],
+      "fields": [
+        {
+          "type": "string",
+          "example": "01619571e2e90242ac12000600000000",
+          "description": "The UUID of the account.",
+          "api_fieldname": "account_id",
+          "readOnly": true,
+          "required": false,
+          "_key": "account_id"
+        },
+        {
+          "type": "string",
+          "example": "127.0.0.1",
+          "description": "IP address of the client.",
+          "api_fieldname": "ip_address",
+          "readOnly": true,
+          "required": false,
+          "_key": "ip_address"
+        },
+        {
+          "type": "string",
+          "format": "date-time",
+          "example": "2018-02-14T17:52:07Z",
+          "description": "The login time of the user.",
+          "api_fieldname": "login_time",
+          "readOnly": true,
+          "required": false,
+          "_key": "login_time"
+        },
+        {
+          "type": "string",
+          "example": "rt_CI6+5hS8p9DrCmkRyS6u4doUdiXr71dX7MqD+g0327hYQthEkYTxMMnCwHyf1rDdk",
+          "description": "The reference token.",
+          "api_fieldname": "reference_token",
+          "readOnly": true,
+          "required": false,
+          "_key": "reference_token"
+        },
+        {
+          "type": "string",
+          "example": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36",
+          "description": "User Agent header from the login request.",
+          "api_fieldname": "user_agent",
+          "readOnly": true,
+          "required": false,
+          "_key": "user_agent"
+        }
+      ],
+      "field_renames": [],
+      "tags": [],
+      "group_id": "Accounts",
+      "_key": "active_session"
     },
     {
       "swagger_models": [
@@ -19030,6 +19309,15 @@
                     "_key": "updated_at"
                   },
                   {
+                    "type": "boolean",
+                    "example": true,
+                    "description": "This read-only flag indicates whether the certificate is valid or not.",
+                    "readOnly": true,
+                    "api_fieldname": "valid",
+                    "entity_fieldname": "valid",
+                    "_key": "valid"
+                  },
+                  {
                     "type": "string",
                     "format": "date-time",
                     "example": "2038-02-14T15:24:14Z",
@@ -19297,7 +19585,8 @@
             "validity",
             "status",
             "enrollment_mode",
-            "certificate_fingerprint"
+            "certificate_fingerprint",
+            "valid"
           ],
           "group_id": "Security",
           "parameter_map": {
@@ -22217,20 +22506,6 @@
                   "entity": "device_enrollment"
                 }
               },
-              "examples": [
-                {
-                  "object": "enrollment",
-                  "id": "015fee4431fd38c98640fbfb00000000",
-                  "etag": "1",
-                  "enrollment_identity": "A-35:e7:72:8a:07:50:3b:3d:75:96:57:52:72:41:0d:78:cc:c6:e5:53:48:c6:65:58:5b:fa:af:4d:2d:73:95:c5",
-                  "claimed_at": "2017-12-13T14:35:10.000Z",
-                  "account_id": "015fee5d9b3538c98640fbfb00000000",
-                  "expires_at": "2018-01-11T14:22:20.009Z",
-                  "created_at": "2017-12-11T14:22:20.009Z",
-                  "enrolled_device_id": "00005a4e027f0a580a01081c00000000",
-                  "_key": "Success"
-                }
-              ],
               "_key": "201"
             },
             {
@@ -22377,20 +22652,10 @@
                   }
                 ]
               },
-              "examples": [
-                {
-                  "object": "error",
-                  "code": 401,
-                  "type": "invalid_auth",
-                  "message": "Provided access token is not valid.",
-                  "request_id": "015fee4431fd38c98640fbfb00000000",
-                  "_key": "Authentication Error"
-                }
-              ],
               "_key": "401"
             },
             {
-              "description": "Conflict. The identity requested to be added already exists either on this or another account.\n",
+              "description": "Conflict. The identity requested to be added already exists either on this or another account.",
               "schema": {
                 "type": "object",
                 "required": [
@@ -22460,34 +22725,6 @@
                   }
                 ]
               },
-              "examples": [
-                {
-                  "object": "error",
-                  "code": 409,
-                  "type": "duplicate",
-                  "message": "The requested enrollment identity has already been claimed.",
-                  "request_id": "015fee4431fd38c98640fbfb00000000",
-                  "fields": [
-                    {
-                      "enrollment_identity": "Enrollment identity already claimed"
-                    }
-                  ],
-                  "_key": "Already claimed"
-                },
-                {
-                  "object": "error",
-                  "code": 409,
-                  "type": "duplicate",
-                  "message": "The requested enrollment identity already exists.",
-                  "request_id": "015fee4431fd38c98640fbfb00000000",
-                  "fields": [
-                    {
-                      "enrollment_identity": "Enrollment identity already exists"
-                    }
-                  ],
-                  "_key": "Conflict"
-                }
-              ],
               "_key": "409"
             }
           ],
@@ -22688,17 +22925,6 @@
                   }
                 ]
               },
-              "examples": [
-                {
-                  "object": "error",
-                  "code": 404,
-                  "type": "not_found",
-                  "message": "Enrollment identity not found",
-                  "request_id": "73fb0bd3ec1d452383255dd9a336668c",
-                  "fields": [],
-                  "_key": "Not found"
-                }
-              ],
               "_key": "404"
             }
           ],
@@ -22990,17 +23216,6 @@
                   }
                 ]
               },
-              "examples": [
-                {
-                  "object": "error",
-                  "code": 404,
-                  "type": "not_found",
-                  "message": "Enrollment identity not found",
-                  "request_id": "73fb0bd3ec1d452383255dd9a336668c",
-                  "fields": [],
-                  "_key": "Not found"
-                }
-              ],
               "_key": "404"
             }
           ],
@@ -23264,40 +23479,6 @@
                   "entity": "device_enrollment"
                 }
               },
-              "examples": [
-                {
-                  "object": "list",
-                  "limit": 2,
-                  "after": "2d238a89038b4ddb84699dd36a901063",
-                  "order": "ASC",
-                  "has_more": true,
-                  "total_count": 55,
-                  "data": [
-                    {
-                      "object": "enrollment",
-                      "id": "sckv52bebji8dxnxuw3zvnon95u8gshm",
-                      "etag": "1",
-                      "created_at": "2017-12-11T14:35:20.009Z",
-                      "claimed_at": "2017-12-13T14:35:10.000Z",
-                      "enrollment_identity": "A-35:e7:72:8a:07:50:3b:3d:75:96:57:52:72:41:0d:78:cc:c6:e5:53:48:c6:65:58:5b:fa:af:4d:2d:73:95:c5",
-                      "account_id": "015fee5d9b3538c98640fbfb00000000",
-                      "expires_at": "2018-01-11T14:35:20.009Z",
-                      "enrolled_device_id": "2d238a89038b4ddb84699dd36a901063"
-                    },
-                    {
-                      "object": "enrollment",
-                      "id": "000v52bebji8dxnxuw3zvnon95u8gshm",
-                      "etag": "1",
-                      "created_at": "2017-12-11T14:36:20.009Z",
-                      "enrollment_identity": "A-35:e7:72:8a:07:50:3b:3d:75:96:57:52:72:41:0d:78:cc:c6:e5:53:48:c6:65:58:5b:fa:af:4d:2d:73:95:c5",
-                      "account_id": "015fee5d9b3538c98640fbfb00000000",
-                      "expires_at": "2018-01-11T14:35:20.009Z",
-                      "enrolled_device_id": "2d238a89038b4ddb84699dd36a901063"
-                    }
-                  ],
-                  "_key": "Success"
-                }
-              ],
               "_key": "200"
             },
             {
@@ -23371,15 +23552,6 @@
                   }
                 ]
               },
-              "examples": [
-                {
-                  "object": "error",
-                  "code": 400,
-                  "type": "validation_error",
-                  "message": "JWT couldn't be read",
-                  "_key": "Error"
-                }
-              ],
               "_key": "400"
             },
             {
@@ -23453,15 +23625,6 @@
                   }
                 ]
               },
-              "examples": [
-                {
-                  "object": "error",
-                  "code": 401,
-                  "type": "invalid_auth",
-                  "message": "The provided JWT was not valid",
-                  "_key": "Error"
-                }
-              ],
               "_key": "401"
             }
           ],
@@ -23587,7 +23750,7 @@
               "name": "enrollment_identities",
               "type": "file",
               "required": true,
-              "description": "The `CSV` file containing the enrollment IDs. The maximum file size is 10MB.\n",
+              "description": "The `CSV` file containing the enrollment IDs. The maximum file size is 10MB.",
               "entity_fieldname": "enrollment_identities",
               "api_fieldname": "enrollment_identities",
               "external_param": true,
@@ -23599,7 +23762,7 @@
           "mode": "create",
           "responses": [
             {
-              "description": "Bulk upload data has been received and asynchronous processing has been started.\n",
+              "description": "Bulk upload data has been received and asynchronous processing has been started.",
               "schema": {
                 "type": "object",
                 "required": [
@@ -23611,7 +23774,10 @@
                   "status",
                   "total_count",
                   "processed_count",
-                  "errors_count"
+                  "errors_count",
+                  "completet_at",
+                  "full_report_file",
+                  "errors_report_file"
                 ],
                 "properties": [
                   {
@@ -23624,7 +23790,7 @@
                   },
                   {
                     "type": "string",
-                    "description": "The time of completing the bulk creation task.\n",
+                    "description": "The time of completing the bulk creation task.\nNull when creating bulk upload or delete.\n",
                     "format": "date-time",
                     "api_fieldname": "completed_at",
                     "entity_fieldname": "completed_at",
@@ -23648,6 +23814,7 @@
                   },
                   {
                     "type": "string",
+                    "description": "Link to error report file.\nNull when creating bulk upload or delete.\n",
                     "example": "https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/errors_report.csv",
                     "api_fieldname": "errors_report_file",
                     "entity_fieldname": "errors_report_file",
@@ -23664,6 +23831,7 @@
                   },
                   {
                     "type": "string",
+                    "description": "Link to full report file.\nNull when creating bulk upload or delete.\n",
                     "example": "https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/full_report.csv",
                     "api_fieldname": "full_report_file",
                     "entity_fieldname": "full_report_file",
@@ -23723,23 +23891,6 @@
                   "entity": "device_enrollment_bulk_delete"
                 }
               },
-              "examples": [
-                {
-                  "object": "enrollment-identity-bulk-uploads",
-                  "id": "00005a4e017f0a667a01081c00000000",
-                  "account_id": "00005a4e027f0a580a01081c00000000",
-                  "etag": "1",
-                  "created_at": "2018-06-26T09:12:21.308Z",
-                  "status": "new",
-                  "total_count": 10,
-                  "processed_count": 0,
-                  "errors_count": 0,
-                  "completed_at": null,
-                  "full_report_file": null,
-                  "errors_report_file": null,
-                  "_key": "BulkResponse"
-                }
-              ],
               "_key": "201"
             },
             {
@@ -23813,16 +23964,6 @@
                   }
                 ]
               },
-              "examples": [
-                {
-                  "object": "error",
-                  "code": 400,
-                  "type": "bad_request",
-                  "message": "Invalid request. Check your request parameters and URL.",
-                  "request_id": "73fb0bd3ec1d452383255dd9a336668c",
-                  "_key": "Bad request"
-                }
-              ],
               "_key": "400"
             },
             {
@@ -23896,15 +24037,6 @@
                   }
                 ]
               },
-              "examples": [
-                {
-                  "object": "error",
-                  "code": 401,
-                  "type": "invalid_auth",
-                  "message": "The provided JWT was not valid",
-                  "_key": "Error"
-                }
-              ],
               "_key": "401"
             }
           ],
@@ -24041,7 +24173,10 @@
                   "status",
                   "total_count",
                   "processed_count",
-                  "errors_count"
+                  "errors_count",
+                  "completet_at",
+                  "full_report_file",
+                  "errors_report_file"
                 ],
                 "properties": [
                   {
@@ -24054,7 +24189,7 @@
                   },
                   {
                     "type": "string",
-                    "description": "The time of completing the bulk creation task.\n",
+                    "description": "The time of completing the bulk creation task.\nNull when creating bulk upload or delete.\n",
                     "format": "date-time",
                     "api_fieldname": "completed_at",
                     "entity_fieldname": "completed_at",
@@ -24078,6 +24213,7 @@
                   },
                   {
                     "type": "string",
+                    "description": "Link to error report file.\nNull when creating bulk upload or delete.\n",
                     "example": "https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/errors_report.csv",
                     "api_fieldname": "errors_report_file",
                     "entity_fieldname": "errors_report_file",
@@ -24094,6 +24230,7 @@
                   },
                   {
                     "type": "string",
+                    "description": "Link to full report file.\nNull when creating bulk upload or delete.\n",
                     "example": "https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/full_report.csv",
                     "api_fieldname": "full_report_file",
                     "entity_fieldname": "full_report_file",
@@ -24153,23 +24290,6 @@
                   "entity": "device_enrollment_bulk_delete"
                 }
               },
-              "examples": [
-                {
-                  "object": "enrollment-identity-bulk-uploads",
-                  "id": "2d238a89038b4ddb84699dd36a901063",
-                  "account_id": "00005a4e027f0a580a01081c00000000",
-                  "etag": "1",
-                  "created_at": "2018-06-26T09:12:21.308Z",
-                  "status": "completed",
-                  "total_count": 10,
-                  "processed_count": 10,
-                  "errors_count": 1,
-                  "completed_at": "2018-06-26T09:13:21.308Z",
-                  "full_report_file": "https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/full_report.csv",
-                  "errors_report_file": "https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/errors_report.csv",
-                  "_key": "BulkResponse"
-                }
-              ],
               "_key": "200"
             },
             {
@@ -24243,21 +24363,6 @@
                   }
                 ]
               },
-              "examples": [
-                {
-                  "object": "error",
-                  "code": 400,
-                  "type": "validation_error",
-                  "message": "An error description.",
-                  "request_id": "73fb0bd3ec1d452383255dd9a336668c",
-                  "fields": [
-                    {
-                      "bulk_id": "Invalid bulk identity"
-                    }
-                  ],
-                  "_key": "Bad request"
-                }
-              ],
               "_key": "400"
             },
             {
@@ -24331,15 +24436,6 @@
                   }
                 ]
               },
-              "examples": [
-                {
-                  "object": "error",
-                  "code": 401,
-                  "type": "invalid_auth",
-                  "message": "The provided JWT was not valid",
-                  "_key": "Error"
-                }
-              ],
               "_key": "401"
             },
             {
@@ -24413,17 +24509,6 @@
                   }
                 ]
               },
-              "examples": [
-                {
-                  "object": "error",
-                  "code": 404,
-                  "type": "not_found",
-                  "message": "The requested resource could not be found",
-                  "request_id": "73fb0bd3ec1d452383255dd9a336668c",
-                  "fields": [],
-                  "_key": "Not found"
-                }
-              ],
               "_key": "404"
             }
           ],
@@ -24472,7 +24557,7 @@
         },
         {
           "type": "string",
-          "description": "The time of completing the bulk creation task.\n",
+          "description": "The time of completing the bulk creation task.\nNull when creating bulk upload or delete.\n",
           "format": "date-time",
           "api_fieldname": "completed_at",
           "readOnly": true,
@@ -24499,6 +24584,7 @@
         },
         {
           "type": "string",
+          "description": "Link to error report file.\nNull when creating bulk upload or delete.\n",
           "example": "https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/errors_report.csv",
           "api_fieldname": "errors_report_file",
           "readOnly": true,
@@ -24507,6 +24593,7 @@
         },
         {
           "type": "string",
+          "description": "Link to full report file.\nNull when creating bulk upload or delete.\n",
           "example": "https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/full_report.csv",
           "api_fieldname": "full_report_file",
           "readOnly": true,
@@ -24579,7 +24666,7 @@
               "name": "enrollment_identities",
               "type": "file",
               "required": true,
-              "description": "The `CSV` file containing the enrollment IDs. The maximum file size is 10MB.\n",
+              "description": "The `CSV` file containing the enrollment IDs. The maximum file size is 10MB.",
               "entity_fieldname": "enrollment_identities",
               "api_fieldname": "enrollment_identities",
               "external_param": true,
@@ -24591,7 +24678,7 @@
           "mode": "delete",
           "responses": [
             {
-              "description": "Bulk delete data has been received and asynchronous processing has been started.\n",
+              "description": "Bulk delete data has been received and asynchronous processing has been started.",
               "schema": {
                 "type": "object",
                 "required": [
@@ -24603,7 +24690,10 @@
                   "status",
                   "total_count",
                   "processed_count",
-                  "errors_count"
+                  "errors_count",
+                  "completet_at",
+                  "full_report_file",
+                  "errors_report_file"
                 ],
                 "properties": [
                   {
@@ -24616,7 +24706,7 @@
                   },
                   {
                     "type": "string",
-                    "description": "The time of completing the bulk creation task.\n",
+                    "description": "The time of completing the bulk creation task.\nNull when creating bulk upload or delete.\n",
                     "format": "date-time",
                     "api_fieldname": "completed_at",
                     "entity_fieldname": "completed_at",
@@ -24640,6 +24730,7 @@
                   },
                   {
                     "type": "string",
+                    "description": "Link to error report file.\nNull when creating bulk upload or delete.\n",
                     "example": "https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/errors_report.csv",
                     "api_fieldname": "errors_report_file",
                     "entity_fieldname": "errors_report_file",
@@ -24656,6 +24747,7 @@
                   },
                   {
                     "type": "string",
+                    "description": "Link to full report file.\nNull when creating bulk upload or delete.\n",
                     "example": "https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/full_report.csv",
                     "api_fieldname": "full_report_file",
                     "entity_fieldname": "full_report_file",
@@ -24718,25 +24810,6 @@
                   "entity": "device_enrollment_bulk_create"
                 }
               },
-              "examples": [
-                {
-                  "properties": {
-                    "object": "enrollment-identity-bulk-deletes",
-                    "id": "00005a4e027f0a580a04567c00000000",
-                    "account_id": "00005a4e027f0a580a01081c00000000",
-                    "etag": "1",
-                    "created_at": "2018-06-26T07:41:47.217Z",
-                    "status": "new",
-                    "total_count": 10,
-                    "processed_count": 0,
-                    "errors_count": 0,
-                    "completed_at": null,
-                    "full_report_file": null,
-                    "errors_report_file": null
-                  },
-                  "_key": "BulkCreateResponse"
-                }
-              ],
               "_key": "201"
             },
             {
@@ -24810,16 +24883,6 @@
                   }
                 ]
               },
-              "examples": [
-                {
-                  "object": "error",
-                  "code": 400,
-                  "type": "bad_request",
-                  "message": "Invalid request. Check your request parameters and URL.",
-                  "request_id": "73fb0bd3ec1d452383255dd9a336668c",
-                  "_key": "Bad request"
-                }
-              ],
               "_key": "400"
             },
             {
@@ -24893,15 +24956,6 @@
                   }
                 ]
               },
-              "examples": [
-                {
-                  "object": "error",
-                  "code": 401,
-                  "type": "invalid_auth",
-                  "message": "The provided JWT was not valid",
-                  "_key": "Error"
-                }
-              ],
               "_key": "401"
             }
           ],
@@ -25038,7 +25092,10 @@
                   "status",
                   "total_count",
                   "processed_count",
-                  "errors_count"
+                  "errors_count",
+                  "completet_at",
+                  "full_report_file",
+                  "errors_report_file"
                 ],
                 "properties": [
                   {
@@ -25051,7 +25108,7 @@
                   },
                   {
                     "type": "string",
-                    "description": "The time of completing the bulk creation task.\n",
+                    "description": "The time of completing the bulk creation task.\nNull when creating bulk upload or delete.\n",
                     "format": "date-time",
                     "api_fieldname": "completed_at",
                     "entity_fieldname": "completed_at",
@@ -25075,6 +25132,7 @@
                   },
                   {
                     "type": "string",
+                    "description": "Link to error report file.\nNull when creating bulk upload or delete.\n",
                     "example": "https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/errors_report.csv",
                     "api_fieldname": "errors_report_file",
                     "entity_fieldname": "errors_report_file",
@@ -25091,6 +25149,7 @@
                   },
                   {
                     "type": "string",
+                    "description": "Link to full report file.\nNull when creating bulk upload or delete.\n",
                     "example": "https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/full_report.csv",
                     "api_fieldname": "full_report_file",
                     "entity_fieldname": "full_report_file",
@@ -25153,23 +25212,6 @@
                   "entity": "device_enrollment_bulk_create"
                 }
               },
-              "examples": [
-                {
-                  "object": "enrollment-identity-bulk-deletes",
-                  "id": "2d238a89038b4ddb84699dd36a901063",
-                  "account_id": "00005a4e027f0a580a01081c00000000",
-                  "etag": "1",
-                  "created_at": "2018-06-26T09:12:21.308Z",
-                  "status": "completed",
-                  "total_count": 10,
-                  "processed_count": 10,
-                  "errors_count": 1,
-                  "completed_at": "2018-06-26T09:13:21.308Z",
-                  "full_report_file": "https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-deletes/2d238a89038b4ddb84699dd36a901063/full_report.csv",
-                  "errors_report_file": "https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-deletes/2d238a89038b4ddb84699dd36a901063/errors_report.csv",
-                  "_key": "BulkResponse"
-                }
-              ],
               "_key": "200"
             },
             {
@@ -25243,21 +25285,6 @@
                   }
                 ]
               },
-              "examples": [
-                {
-                  "object": "error",
-                  "code": 400,
-                  "type": "validation_error",
-                  "message": "An error description.",
-                  "request_id": "73fb0bd3ec1d452383255dd9a336668c",
-                  "fields": [
-                    {
-                      "bulk_id": "Invalid bulk identity"
-                    }
-                  ],
-                  "_key": "Bad request"
-                }
-              ],
               "_key": "400"
             },
             {
@@ -25331,15 +25358,6 @@
                   }
                 ]
               },
-              "examples": [
-                {
-                  "object": "error",
-                  "code": 401,
-                  "type": "invalid_auth",
-                  "message": "The provided JWT was not valid",
-                  "_key": "Error"
-                }
-              ],
               "_key": "401"
             },
             {
@@ -25413,17 +25431,6 @@
                   }
                 ]
               },
-              "examples": [
-                {
-                  "object": "error",
-                  "code": 404,
-                  "type": "not_found",
-                  "message": "The requested resource could not be found",
-                  "request_id": "73fb0bd3ec1d452383255dd9a336668c",
-                  "fields": [],
-                  "_key": "Not found"
-                }
-              ],
               "_key": "404"
             }
           ],
@@ -25472,7 +25479,7 @@
         },
         {
           "type": "string",
-          "description": "The time of completing the bulk creation task.\n",
+          "description": "The time of completing the bulk creation task.\nNull when creating bulk upload or delete.\n",
           "format": "date-time",
           "api_fieldname": "completed_at",
           "readOnly": true,
@@ -25499,6 +25506,7 @@
         },
         {
           "type": "string",
+          "description": "Link to error report file.\nNull when creating bulk upload or delete.\n",
           "example": "https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/errors_report.csv",
           "api_fieldname": "errors_report_file",
           "readOnly": true,
@@ -25507,6 +25515,7 @@
         },
         {
           "type": "string",
+          "description": "Link to full report file.\nNull when creating bulk upload or delete.\n",
           "example": "https://api.us-east-1.mbedcloud.com/v3/device-enrollments-bulk-uploads/2d238a89038b4ddb84699dd36a901063/full_report.csv",
           "api_fieldname": "full_report_file",
           "readOnly": true,
@@ -26193,15 +26202,17 @@
         {
           "type": "string",
           "description": "ID of the identity provider.",
+          "readOnly": false,
+          "_override": true,
           "api_fieldname": "id",
-          "readOnly": true,
           "required": false,
           "_key": "id"
         },
         {
           "type": "string",
-          "readOnly": true,
+          "readOnly": false,
           "description": "Name of the identity provider.",
+          "_override": true,
           "api_fieldname": "name",
           "required": false,
           "_key": "name"
@@ -27228,6 +27239,15 @@
                     "_key": "updated_at"
                   },
                   {
+                    "type": "boolean",
+                    "example": true,
+                    "description": "This read-only flag indicates whether the certificate is valid or not.",
+                    "readOnly": true,
+                    "api_fieldname": "valid",
+                    "entity_fieldname": "valid",
+                    "_key": "valid"
+                  },
+                  {
                     "type": "string",
                     "format": "date-time",
                     "example": "2038-02-14T15:24:14Z",
@@ -27563,7 +27583,8 @@
             "issuer",
             "subject",
             "validity",
-            "certificate_fingerprint"
+            "certificate_fingerprint",
+            "valid"
           ],
           "group_id": "Security",
           "operation_id": "addAccountCertificate",
@@ -28119,6 +28140,15 @@
                     "_key": "updated_at"
                   },
                   {
+                    "type": "boolean",
+                    "example": true,
+                    "description": "This read-only flag indicates whether the certificate is valid or not.",
+                    "readOnly": true,
+                    "api_fieldname": "valid",
+                    "entity_fieldname": "valid",
+                    "_key": "valid"
+                  },
+                  {
                     "type": "string",
                     "format": "date-time",
                     "example": "2038-02-14T15:24:14Z",
@@ -28385,7 +28415,8 @@
             "validity",
             "status",
             "enrollment_mode",
-            "certificate_fingerprint"
+            "certificate_fingerprint",
+            "valid"
           ],
           "group_id": "Security",
           "operation_id": "getAccountCertificate",
@@ -29131,6 +29162,15 @@
                     "_key": "updated_at"
                   },
                   {
+                    "type": "boolean",
+                    "example": true,
+                    "description": "This read-only flag indicates whether the certificate is valid or not.",
+                    "readOnly": true,
+                    "api_fieldname": "valid",
+                    "entity_fieldname": "valid",
+                    "_key": "valid"
+                  },
+                  {
                     "type": "string",
                     "format": "date-time",
                     "example": "2038-02-14T15:24:14Z",
@@ -29465,7 +29505,8 @@
             "issuer",
             "subject",
             "validity",
-            "certificate_fingerprint"
+            "certificate_fingerprint",
+            "valid"
           ],
           "group_id": "Security",
           "operation_id": "updateAccountCertificate",
@@ -29654,6 +29695,15 @@
           "_key": "updated_at"
         },
         {
+          "type": "boolean",
+          "example": true,
+          "description": "This read-only flag indicates whether the certificate is valid or not.",
+          "readOnly": true,
+          "api_fieldname": "valid",
+          "required": false,
+          "_key": "valid"
+        },
+        {
           "type": "string",
           "format": "date-time",
           "example": "2038-02-14T15:24:14Z",
@@ -29766,14 +29816,17 @@
                   {
                     "type": "string",
                     "description": "ID of the identity provider.",
+                    "readOnly": false,
+                    "_override": true,
                     "api_fieldname": "id",
                     "entity_fieldname": "id",
                     "_key": "id"
                   },
                   {
                     "type": "string",
-                    "readOnly": true,
+                    "readOnly": false,
                     "description": "Name of the identity provider.",
+                    "_override": true,
                     "api_fieldname": "name",
                     "entity_fieldname": "name",
                     "_key": "name"
@@ -29887,6 +29940,82 @@
                     "_key": "account_id"
                   },
                   {
+                    "type": "array",
+                    "description": "List of active user sessions.",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "account_id",
+                        "ip_address",
+                        "login_time",
+                        "object",
+                        "reference_token",
+                        "user_agent"
+                      ],
+                      "properties": [
+                        {
+                          "type": "string",
+                          "example": "01619571e2e90242ac12000600000000",
+                          "description": "The UUID of the account.",
+                          "api_fieldname": "account_id",
+                          "entity_fieldname": "account_id",
+                          "_key": "account_id"
+                        },
+                        {
+                          "type": "string",
+                          "example": "127.0.0.1",
+                          "description": "IP address of the client.",
+                          "api_fieldname": "ip_address",
+                          "entity_fieldname": "ip_address",
+                          "_key": "ip_address"
+                        },
+                        {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2018-02-14T17:52:07Z",
+                          "description": "The login time of the user.",
+                          "api_fieldname": "login_time",
+                          "entity_fieldname": "login_time",
+                          "_key": "login_time"
+                        },
+                        {
+                          "type": "string",
+                          "description": "Entity name: always 'user-session'",
+                          "enum": [
+                            "user-session"
+                          ],
+                          "api_fieldname": "object",
+                          "entity_fieldname": "object",
+                          "_key": "object"
+                        },
+                        {
+                          "type": "string",
+                          "example": "rt_CI6+5hS8p9DrCmkRyS6u4doUdiXr71dX7MqD+g0327hYQthEkYTxMMnCwHyf1rDdk",
+                          "description": "The reference token.",
+                          "api_fieldname": "reference_token",
+                          "entity_fieldname": "reference_token",
+                          "_key": "reference_token"
+                        },
+                        {
+                          "type": "string",
+                          "example": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36",
+                          "description": "User Agent header from the login request.",
+                          "api_fieldname": "user_agent",
+                          "entity_fieldname": "user_agent",
+                          "_key": "user_agent"
+                        }
+                      ],
+                      "description": "This object represents an active user session.",
+                      "foreign_key": {
+                        "group": "Accounts",
+                        "entity": "active_session"
+                      }
+                    },
+                    "api_fieldname": "active_sessions",
+                    "entity_fieldname": "active_sessions",
+                    "_key": "active_sessions"
+                  },
+                  {
                     "type": "string",
                     "example": "110 Fulbourn Rd, Cambridge, United Kingdom",
                     "description": "Address.",
@@ -29914,6 +30043,16 @@
                     "api_fieldname": "creation_time",
                     "entity_fieldname": "creation_time",
                     "_key": "creation_time"
+                  },
+                  {
+                    "type": "object",
+                    "description": "User's account specific custom properties. The value is a string.",
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "api_fieldname": "custom_fields",
+                    "entity_fieldname": "custom_fields",
+                    "_key": "custom_fields"
                   },
                   {
                     "type": "string",
@@ -30090,14 +30229,17 @@
                         {
                           "type": "string",
                           "description": "ID of the identity provider.",
+                          "readOnly": false,
+                          "_override": true,
                           "api_fieldname": "id",
                           "entity_fieldname": "id",
                           "_key": "id"
                         },
                         {
                           "type": "string",
-                          "readOnly": true,
+                          "readOnly": false,
                           "description": "Name of the identity provider.",
+                          "_override": true,
                           "api_fieldname": "name",
                           "entity_fieldname": "name",
                           "_key": "name"
@@ -30188,6 +30330,16 @@
                     "in": "body",
                     "required": false,
                     "_key": "status"
+                  },
+                  {
+                    "type": "array",
+                    "description": "A list of scratch codes for the 2-factor authentication. Visible only when 2FA is requested to be enabled or the codes regenerated.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "api_fieldname": "totp_scratch_codes",
+                    "entity_fieldname": "totp_scratch_codes",
+                    "_key": "totp_scratch_codes"
                   },
                   {
                     "type": "string",
@@ -30610,6 +30762,9 @@
             "last_login_time",
             "password_changed_time",
             "login_history",
+            "totp_scratch_codes",
+            "custom_fields",
+            "active_sessions",
             "two_factor_authentication"
           ],
           "group_id": "Accounts",
@@ -31053,6 +31208,82 @@
                     "_key": "account_id"
                   },
                   {
+                    "type": "array",
+                    "description": "List of active user sessions.",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "account_id",
+                        "ip_address",
+                        "login_time",
+                        "object",
+                        "reference_token",
+                        "user_agent"
+                      ],
+                      "properties": [
+                        {
+                          "type": "string",
+                          "example": "01619571e2e90242ac12000600000000",
+                          "description": "The UUID of the account.",
+                          "api_fieldname": "account_id",
+                          "entity_fieldname": "account_id",
+                          "_key": "account_id"
+                        },
+                        {
+                          "type": "string",
+                          "example": "127.0.0.1",
+                          "description": "IP address of the client.",
+                          "api_fieldname": "ip_address",
+                          "entity_fieldname": "ip_address",
+                          "_key": "ip_address"
+                        },
+                        {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2018-02-14T17:52:07Z",
+                          "description": "The login time of the user.",
+                          "api_fieldname": "login_time",
+                          "entity_fieldname": "login_time",
+                          "_key": "login_time"
+                        },
+                        {
+                          "type": "string",
+                          "description": "Entity name: always 'user-session'",
+                          "enum": [
+                            "user-session"
+                          ],
+                          "api_fieldname": "object",
+                          "entity_fieldname": "object",
+                          "_key": "object"
+                        },
+                        {
+                          "type": "string",
+                          "example": "rt_CI6+5hS8p9DrCmkRyS6u4doUdiXr71dX7MqD+g0327hYQthEkYTxMMnCwHyf1rDdk",
+                          "description": "The reference token.",
+                          "api_fieldname": "reference_token",
+                          "entity_fieldname": "reference_token",
+                          "_key": "reference_token"
+                        },
+                        {
+                          "type": "string",
+                          "example": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36",
+                          "description": "User Agent header from the login request.",
+                          "api_fieldname": "user_agent",
+                          "entity_fieldname": "user_agent",
+                          "_key": "user_agent"
+                        }
+                      ],
+                      "description": "This object represents an active user session.",
+                      "foreign_key": {
+                        "group": "Accounts",
+                        "entity": "active_session"
+                      }
+                    },
+                    "api_fieldname": "active_sessions",
+                    "entity_fieldname": "active_sessions",
+                    "_key": "active_sessions"
+                  },
+                  {
                     "type": "string",
                     "example": "110 Fulbourn Rd, Cambridge, United Kingdom",
                     "description": "Address.",
@@ -31080,6 +31311,16 @@
                     "api_fieldname": "creation_time",
                     "entity_fieldname": "creation_time",
                     "_key": "creation_time"
+                  },
+                  {
+                    "type": "object",
+                    "description": "User's account specific custom properties. The value is a string.",
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "api_fieldname": "custom_fields",
+                    "entity_fieldname": "custom_fields",
+                    "_key": "custom_fields"
                   },
                   {
                     "type": "string",
@@ -31256,14 +31497,17 @@
                         {
                           "type": "string",
                           "description": "ID of the identity provider.",
+                          "readOnly": false,
+                          "_override": true,
                           "api_fieldname": "id",
                           "entity_fieldname": "id",
                           "_key": "id"
                         },
                         {
                           "type": "string",
-                          "readOnly": true,
+                          "readOnly": false,
                           "description": "Name of the identity provider.",
+                          "_override": true,
                           "api_fieldname": "name",
                           "entity_fieldname": "name",
                           "_key": "name"
@@ -31354,6 +31598,16 @@
                     "in": "body",
                     "required": false,
                     "_key": "status"
+                  },
+                  {
+                    "type": "array",
+                    "description": "A list of scratch codes for the 2-factor authentication. Visible only when 2FA is requested to be enabled or the codes regenerated.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "api_fieldname": "totp_scratch_codes",
+                    "entity_fieldname": "totp_scratch_codes",
+                    "_key": "totp_scratch_codes"
                   },
                   {
                     "type": "string",
@@ -31636,6 +31890,9 @@
             "password_changed_time",
             "login_history",
             "login_profiles",
+            "totp_scratch_codes",
+            "custom_fields",
+            "active_sessions",
             "two_factor_authentication",
             "terms_accepted",
             "marketing_accepted"
@@ -31721,14 +31978,17 @@
                   {
                     "type": "string",
                     "description": "ID of the identity provider.",
+                    "readOnly": false,
+                    "_override": true,
                     "api_fieldname": "id",
                     "entity_fieldname": "id",
                     "_key": "id"
                   },
                   {
                     "type": "string",
-                    "readOnly": true,
+                    "readOnly": false,
                     "description": "Name of the identity provider.",
+                    "_override": true,
                     "api_fieldname": "name",
                     "entity_fieldname": "name",
                     "_key": "name"
@@ -31842,6 +32102,82 @@
                     "_key": "account_id"
                   },
                   {
+                    "type": "array",
+                    "description": "List of active user sessions.",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "account_id",
+                        "ip_address",
+                        "login_time",
+                        "object",
+                        "reference_token",
+                        "user_agent"
+                      ],
+                      "properties": [
+                        {
+                          "type": "string",
+                          "example": "01619571e2e90242ac12000600000000",
+                          "description": "The UUID of the account.",
+                          "api_fieldname": "account_id",
+                          "entity_fieldname": "account_id",
+                          "_key": "account_id"
+                        },
+                        {
+                          "type": "string",
+                          "example": "127.0.0.1",
+                          "description": "IP address of the client.",
+                          "api_fieldname": "ip_address",
+                          "entity_fieldname": "ip_address",
+                          "_key": "ip_address"
+                        },
+                        {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2018-02-14T17:52:07Z",
+                          "description": "The login time of the user.",
+                          "api_fieldname": "login_time",
+                          "entity_fieldname": "login_time",
+                          "_key": "login_time"
+                        },
+                        {
+                          "type": "string",
+                          "description": "Entity name: always 'user-session'",
+                          "enum": [
+                            "user-session"
+                          ],
+                          "api_fieldname": "object",
+                          "entity_fieldname": "object",
+                          "_key": "object"
+                        },
+                        {
+                          "type": "string",
+                          "example": "rt_CI6+5hS8p9DrCmkRyS6u4doUdiXr71dX7MqD+g0327hYQthEkYTxMMnCwHyf1rDdk",
+                          "description": "The reference token.",
+                          "api_fieldname": "reference_token",
+                          "entity_fieldname": "reference_token",
+                          "_key": "reference_token"
+                        },
+                        {
+                          "type": "string",
+                          "example": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36",
+                          "description": "User Agent header from the login request.",
+                          "api_fieldname": "user_agent",
+                          "entity_fieldname": "user_agent",
+                          "_key": "user_agent"
+                        }
+                      ],
+                      "description": "This object represents an active user session.",
+                      "foreign_key": {
+                        "group": "Accounts",
+                        "entity": "active_session"
+                      }
+                    },
+                    "api_fieldname": "active_sessions",
+                    "entity_fieldname": "active_sessions",
+                    "_key": "active_sessions"
+                  },
+                  {
                     "type": "string",
                     "example": "110 Fulbourn Rd, Cambridge, United Kingdom",
                     "description": "Address.",
@@ -31869,6 +32205,16 @@
                     "api_fieldname": "creation_time",
                     "entity_fieldname": "creation_time",
                     "_key": "creation_time"
+                  },
+                  {
+                    "type": "object",
+                    "description": "User's account specific custom properties. The value is a string.",
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "api_fieldname": "custom_fields",
+                    "entity_fieldname": "custom_fields",
+                    "_key": "custom_fields"
                   },
                   {
                     "type": "string",
@@ -32045,14 +32391,17 @@
                         {
                           "type": "string",
                           "description": "ID of the identity provider.",
+                          "readOnly": false,
+                          "_override": true,
                           "api_fieldname": "id",
                           "entity_fieldname": "id",
                           "_key": "id"
                         },
                         {
                           "type": "string",
-                          "readOnly": true,
+                          "readOnly": false,
                           "description": "Name of the identity provider.",
+                          "_override": true,
                           "api_fieldname": "name",
                           "entity_fieldname": "name",
                           "_key": "name"
@@ -32143,6 +32492,16 @@
                     "in": "body",
                     "required": false,
                     "_key": "status"
+                  },
+                  {
+                    "type": "array",
+                    "description": "A list of scratch codes for the 2-factor authentication. Visible only when 2FA is requested to be enabled or the codes regenerated.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "api_fieldname": "totp_scratch_codes",
+                    "entity_fieldname": "totp_scratch_codes",
+                    "_key": "totp_scratch_codes"
                   },
                   {
                     "type": "string",
@@ -32566,7 +32925,10 @@
             "creation_time",
             "last_login_time",
             "password_changed_time",
-            "login_history"
+            "login_history",
+            "totp_scratch_codes",
+            "custom_fields",
+            "active_sessions"
           ],
           "group_id": "Accounts",
           "parameter_map": {
@@ -32883,6 +33245,83 @@
           "_key": "account_id"
         },
         {
+          "type": "array",
+          "description": "List of active user sessions.",
+          "items": {
+            "type": "object",
+            "required": [
+              "account_id",
+              "ip_address",
+              "login_time",
+              "object",
+              "reference_token",
+              "user_agent"
+            ],
+            "properties": [
+              {
+                "type": "string",
+                "example": "01619571e2e90242ac12000600000000",
+                "description": "The UUID of the account.",
+                "api_fieldname": "account_id",
+                "entity_fieldname": "account_id",
+                "_key": "account_id"
+              },
+              {
+                "type": "string",
+                "example": "127.0.0.1",
+                "description": "IP address of the client.",
+                "api_fieldname": "ip_address",
+                "entity_fieldname": "ip_address",
+                "_key": "ip_address"
+              },
+              {
+                "type": "string",
+                "format": "date-time",
+                "example": "2018-02-14T17:52:07Z",
+                "description": "The login time of the user.",
+                "api_fieldname": "login_time",
+                "entity_fieldname": "login_time",
+                "_key": "login_time"
+              },
+              {
+                "type": "string",
+                "description": "Entity name: always 'user-session'",
+                "enum": [
+                  "user-session"
+                ],
+                "api_fieldname": "object",
+                "entity_fieldname": "object",
+                "_key": "object"
+              },
+              {
+                "type": "string",
+                "example": "rt_CI6+5hS8p9DrCmkRyS6u4doUdiXr71dX7MqD+g0327hYQthEkYTxMMnCwHyf1rDdk",
+                "description": "The reference token.",
+                "api_fieldname": "reference_token",
+                "entity_fieldname": "reference_token",
+                "_key": "reference_token"
+              },
+              {
+                "type": "string",
+                "example": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36",
+                "description": "User Agent header from the login request.",
+                "api_fieldname": "user_agent",
+                "entity_fieldname": "user_agent",
+                "_key": "user_agent"
+              }
+            ],
+            "description": "This object represents an active user session.",
+            "foreign_key": {
+              "group": "Accounts",
+              "entity": "active_session"
+            }
+          },
+          "api_fieldname": "active_sessions",
+          "readOnly": true,
+          "required": false,
+          "_key": "active_sessions"
+        },
+        {
           "type": "string",
           "example": "110 Fulbourn Rd, Cambridge, United Kingdom",
           "description": "Address.",
@@ -32912,6 +33351,17 @@
           "readOnly": true,
           "required": false,
           "_key": "creation_time"
+        },
+        {
+          "type": "object",
+          "description": "User's account specific custom properties. The value is a string.",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "api_fieldname": "custom_fields",
+          "readOnly": true,
+          "required": false,
+          "_key": "custom_fields"
         },
         {
           "type": "string",
@@ -33034,14 +33484,17 @@
               {
                 "type": "string",
                 "description": "ID of the identity provider.",
+                "readOnly": false,
+                "_override": true,
                 "api_fieldname": "id",
                 "entity_fieldname": "id",
                 "_key": "id"
               },
               {
                 "type": "string",
-                "readOnly": true,
+                "readOnly": false,
                 "description": "Name of the identity provider.",
+                "_override": true,
                 "api_fieldname": "name",
                 "entity_fieldname": "name",
                 "_key": "name"
@@ -33148,6 +33601,17 @@
           "_key": "terms_accepted"
         },
         {
+          "type": "array",
+          "description": "A list of scratch codes for the 2-factor authentication. Visible only when 2FA is requested to be enabled or the codes regenerated.",
+          "items": {
+            "type": "string"
+          },
+          "api_fieldname": "totp_scratch_codes",
+          "readOnly": true,
+          "required": false,
+          "_key": "totp_scratch_codes"
+        },
+        {
           "type": "boolean",
           "example": true,
           "description": "A flag indicating whether 2-factor authentication (TOTP) has been enabled.",
@@ -33245,14 +33709,17 @@
                   {
                     "type": "string",
                     "description": "ID of the identity provider.",
+                    "readOnly": false,
+                    "_override": true,
                     "api_fieldname": "id",
                     "entity_fieldname": "id",
                     "_key": "id"
                   },
                   {
                     "type": "string",
-                    "readOnly": true,
+                    "readOnly": false,
                     "description": "Name of the identity provider.",
+                    "_override": true,
                     "api_fieldname": "name",
                     "entity_fieldname": "name",
                     "_key": "name"
@@ -33400,14 +33867,17 @@
                         {
                           "type": "string",
                           "description": "ID of the identity provider.",
+                          "readOnly": false,
+                          "_override": true,
                           "api_fieldname": "id",
                           "entity_fieldname": "id",
                           "_key": "id"
                         },
                         {
                           "type": "string",
-                          "readOnly": true,
+                          "readOnly": false,
                           "description": "Name of the identity provider.",
+                          "_override": true,
                           "api_fieldname": "name",
                           "entity_fieldname": "name",
                           "_key": "name"
@@ -34136,14 +34606,17 @@
                         {
                           "type": "string",
                           "description": "ID of the identity provider.",
+                          "readOnly": false,
+                          "_override": true,
                           "api_fieldname": "id",
                           "entity_fieldname": "id",
                           "_key": "id"
                         },
                         {
                           "type": "string",
-                          "readOnly": true,
+                          "readOnly": false,
                           "description": "Name of the identity provider.",
+                          "_override": true,
                           "api_fieldname": "name",
                           "entity_fieldname": "name",
                           "_key": "name"
@@ -34529,14 +35002,17 @@
               {
                 "type": "string",
                 "description": "ID of the identity provider.",
+                "readOnly": false,
+                "_override": true,
                 "api_fieldname": "id",
                 "entity_fieldname": "id",
                 "_key": "id"
               },
               {
                 "type": "string",
-                "readOnly": true,
+                "readOnly": false,
                 "description": "Name of the identity provider.",
+                "_override": true,
                 "api_fieldname": "name",
                 "entity_fieldname": "name",
                 "_key": "name"
@@ -34882,6 +35358,15 @@
                     "_key": "updated_at"
                   },
                   {
+                    "type": "boolean",
+                    "example": true,
+                    "description": "This read-only flag indicates whether the certificate is valid or not.",
+                    "readOnly": true,
+                    "api_fieldname": "valid",
+                    "entity_fieldname": "valid",
+                    "_key": "valid"
+                  },
+                  {
                     "type": "string",
                     "format": "date-time",
                     "example": "2038-02-14T15:24:14Z",
@@ -35218,7 +35703,8 @@
             "issuer",
             "subject",
             "validity",
-            "certificate_fingerprint"
+            "certificate_fingerprint",
+            "valid"
           ],
           "group_id": "Security",
           "operation_id": "addCertificate",
@@ -35728,6 +36214,15 @@
                     "_key": "updated_at"
                   },
                   {
+                    "type": "boolean",
+                    "example": true,
+                    "description": "This read-only flag indicates whether the certificate is valid or not.",
+                    "readOnly": true,
+                    "api_fieldname": "valid",
+                    "entity_fieldname": "valid",
+                    "_key": "valid"
+                  },
+                  {
                     "type": "string",
                     "format": "date-time",
                     "example": "2038-02-14T15:24:14Z",
@@ -35995,7 +36490,8 @@
             "validity",
             "status",
             "enrollment_mode",
-            "certificate_fingerprint"
+            "certificate_fingerprint",
+            "valid"
           ],
           "group_id": "Security",
           "operation_id": "getCertificate",
@@ -36663,6 +37159,13 @@
                           "_key": "updated_at"
                         },
                         {
+                          "type": "boolean",
+                          "example": true,
+                          "description": "This read-only flag indicates whether the certificate is valid or not.",
+                          "readOnly": true,
+                          "_key": "valid"
+                        },
+                        {
                           "type": "string",
                           "format": "date-time",
                           "example": "2038-02-14T15:24:14Z",
@@ -36912,7 +37415,8 @@
             "enrollment_mode__eq",
             "status__eq",
             "issuer__like",
-            "subject__like"
+            "subject__like",
+            "valid__eq"
           ],
           "foreign_key_priority": "self",
           "group_id": "Security",
@@ -37209,6 +37713,15 @@
                     "api_fieldname": "updated_at",
                     "entity_fieldname": "updated_at",
                     "_key": "updated_at"
+                  },
+                  {
+                    "type": "boolean",
+                    "example": true,
+                    "description": "This read-only flag indicates whether the certificate is valid or not.",
+                    "readOnly": true,
+                    "api_fieldname": "valid",
+                    "entity_fieldname": "valid",
+                    "_key": "valid"
                   },
                   {
                     "type": "string",
@@ -37619,7 +38132,8 @@
             "issuer",
             "subject",
             "validity",
-            "certificate_fingerprint"
+            "certificate_fingerprint",
+            "valid"
           ],
           "group_id": "Security",
           "operation_id": "updateCertificate",
@@ -37794,6 +38308,15 @@
           "_key": "updated_at"
         },
         {
+          "type": "boolean",
+          "example": true,
+          "description": "This read-only flag indicates whether the certificate is valid or not.",
+          "readOnly": true,
+          "api_fieldname": "valid",
+          "required": false,
+          "_key": "valid"
+        },
+        {
           "type": "string",
           "format": "date-time",
           "example": "2038-02-14T15:24:14Z",
@@ -37897,14 +38420,17 @@
                   {
                     "type": "string",
                     "description": "ID of the identity provider.",
+                    "readOnly": false,
+                    "_override": true,
                     "api_fieldname": "id",
                     "entity_fieldname": "id",
                     "_key": "id"
                   },
                   {
                     "type": "string",
-                    "readOnly": true,
+                    "readOnly": false,
                     "description": "Name of the identity provider.",
+                    "_override": true,
                     "api_fieldname": "name",
                     "entity_fieldname": "name",
                     "_key": "name"
@@ -38018,6 +38544,82 @@
                     "_key": "account_id"
                   },
                   {
+                    "type": "array",
+                    "description": "List of active user sessions.",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "account_id",
+                        "ip_address",
+                        "login_time",
+                        "object",
+                        "reference_token",
+                        "user_agent"
+                      ],
+                      "properties": [
+                        {
+                          "type": "string",
+                          "example": "01619571e2e90242ac12000600000000",
+                          "description": "The UUID of the account.",
+                          "api_fieldname": "account_id",
+                          "entity_fieldname": "account_id",
+                          "_key": "account_id"
+                        },
+                        {
+                          "type": "string",
+                          "example": "127.0.0.1",
+                          "description": "IP address of the client.",
+                          "api_fieldname": "ip_address",
+                          "entity_fieldname": "ip_address",
+                          "_key": "ip_address"
+                        },
+                        {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2018-02-14T17:52:07Z",
+                          "description": "The login time of the user.",
+                          "api_fieldname": "login_time",
+                          "entity_fieldname": "login_time",
+                          "_key": "login_time"
+                        },
+                        {
+                          "type": "string",
+                          "description": "Entity name: always 'user-session'",
+                          "enum": [
+                            "user-session"
+                          ],
+                          "api_fieldname": "object",
+                          "entity_fieldname": "object",
+                          "_key": "object"
+                        },
+                        {
+                          "type": "string",
+                          "example": "rt_CI6+5hS8p9DrCmkRyS6u4doUdiXr71dX7MqD+g0327hYQthEkYTxMMnCwHyf1rDdk",
+                          "description": "The reference token.",
+                          "api_fieldname": "reference_token",
+                          "entity_fieldname": "reference_token",
+                          "_key": "reference_token"
+                        },
+                        {
+                          "type": "string",
+                          "example": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36",
+                          "description": "User Agent header from the login request.",
+                          "api_fieldname": "user_agent",
+                          "entity_fieldname": "user_agent",
+                          "_key": "user_agent"
+                        }
+                      ],
+                      "description": "This object represents an active user session.",
+                      "foreign_key": {
+                        "group": "Accounts",
+                        "entity": "active_session"
+                      }
+                    },
+                    "api_fieldname": "active_sessions",
+                    "entity_fieldname": "active_sessions",
+                    "_key": "active_sessions"
+                  },
+                  {
                     "type": "string",
                     "example": "110 Fulbourn Rd, Cambridge, United Kingdom",
                     "description": "Address.",
@@ -38042,6 +38644,16 @@
                     "api_fieldname": "creation_time",
                     "entity_fieldname": "creation_time",
                     "_key": "creation_time"
+                  },
+                  {
+                    "type": "object",
+                    "description": "User's account specific custom properties. The value is a string.",
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "api_fieldname": "custom_fields",
+                    "entity_fieldname": "custom_fields",
+                    "_key": "custom_fields"
                   },
                   {
                     "type": "string",
@@ -38194,14 +38806,17 @@
                         {
                           "type": "string",
                           "description": "ID of the identity provider.",
+                          "readOnly": false,
+                          "_override": true,
                           "api_fieldname": "id",
                           "entity_fieldname": "id",
                           "_key": "id"
                         },
                         {
                           "type": "string",
-                          "readOnly": true,
+                          "readOnly": false,
                           "description": "Name of the identity provider.",
+                          "_override": true,
                           "api_fieldname": "name",
                           "entity_fieldname": "name",
                           "_key": "name"
@@ -38280,6 +38895,16 @@
                     "api_fieldname": "status",
                     "entity_fieldname": "status",
                     "_key": "status"
+                  },
+                  {
+                    "type": "array",
+                    "description": "A list of scratch codes for the 2-factor authentication. Visible only when 2FA is requested to be enabled or the codes regenerated.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "api_fieldname": "totp_scratch_codes",
+                    "entity_fieldname": "totp_scratch_codes",
+                    "_key": "totp_scratch_codes"
                   },
                   {
                     "type": "string",
@@ -38627,6 +39252,9 @@
             "password_changed_time",
             "account_id",
             "login_history",
+            "totp_scratch_codes",
+            "custom_fields",
+            "active_sessions",
             "two_factor_authentication"
           ],
           "group_id": "Accounts",
@@ -39047,6 +39675,82 @@
                     "_key": "account_id"
                   },
                   {
+                    "type": "array",
+                    "description": "List of active user sessions.",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "account_id",
+                        "ip_address",
+                        "login_time",
+                        "object",
+                        "reference_token",
+                        "user_agent"
+                      ],
+                      "properties": [
+                        {
+                          "type": "string",
+                          "example": "01619571e2e90242ac12000600000000",
+                          "description": "The UUID of the account.",
+                          "api_fieldname": "account_id",
+                          "entity_fieldname": "account_id",
+                          "_key": "account_id"
+                        },
+                        {
+                          "type": "string",
+                          "example": "127.0.0.1",
+                          "description": "IP address of the client.",
+                          "api_fieldname": "ip_address",
+                          "entity_fieldname": "ip_address",
+                          "_key": "ip_address"
+                        },
+                        {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2018-02-14T17:52:07Z",
+                          "description": "The login time of the user.",
+                          "api_fieldname": "login_time",
+                          "entity_fieldname": "login_time",
+                          "_key": "login_time"
+                        },
+                        {
+                          "type": "string",
+                          "description": "Entity name: always 'user-session'",
+                          "enum": [
+                            "user-session"
+                          ],
+                          "api_fieldname": "object",
+                          "entity_fieldname": "object",
+                          "_key": "object"
+                        },
+                        {
+                          "type": "string",
+                          "example": "rt_CI6+5hS8p9DrCmkRyS6u4doUdiXr71dX7MqD+g0327hYQthEkYTxMMnCwHyf1rDdk",
+                          "description": "The reference token.",
+                          "api_fieldname": "reference_token",
+                          "entity_fieldname": "reference_token",
+                          "_key": "reference_token"
+                        },
+                        {
+                          "type": "string",
+                          "example": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36",
+                          "description": "User Agent header from the login request.",
+                          "api_fieldname": "user_agent",
+                          "entity_fieldname": "user_agent",
+                          "_key": "user_agent"
+                        }
+                      ],
+                      "description": "This object represents an active user session.",
+                      "foreign_key": {
+                        "group": "Accounts",
+                        "entity": "active_session"
+                      }
+                    },
+                    "api_fieldname": "active_sessions",
+                    "entity_fieldname": "active_sessions",
+                    "_key": "active_sessions"
+                  },
+                  {
                     "type": "string",
                     "example": "110 Fulbourn Rd, Cambridge, United Kingdom",
                     "description": "Address.",
@@ -39071,6 +39775,16 @@
                     "api_fieldname": "creation_time",
                     "entity_fieldname": "creation_time",
                     "_key": "creation_time"
+                  },
+                  {
+                    "type": "object",
+                    "description": "User's account specific custom properties. The value is a string.",
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "api_fieldname": "custom_fields",
+                    "entity_fieldname": "custom_fields",
+                    "_key": "custom_fields"
                   },
                   {
                     "type": "string",
@@ -39223,14 +39937,17 @@
                         {
                           "type": "string",
                           "description": "ID of the identity provider.",
+                          "readOnly": false,
+                          "_override": true,
                           "api_fieldname": "id",
                           "entity_fieldname": "id",
                           "_key": "id"
                         },
                         {
                           "type": "string",
-                          "readOnly": true,
+                          "readOnly": false,
                           "description": "Name of the identity provider.",
+                          "_override": true,
                           "api_fieldname": "name",
                           "entity_fieldname": "name",
                           "_key": "name"
@@ -39309,6 +40026,16 @@
                     "api_fieldname": "status",
                     "entity_fieldname": "status",
                     "_key": "status"
+                  },
+                  {
+                    "type": "array",
+                    "description": "A list of scratch codes for the 2-factor authentication. Visible only when 2FA is requested to be enabled or the codes regenerated.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "api_fieldname": "totp_scratch_codes",
+                    "entity_fieldname": "totp_scratch_codes",
+                    "_key": "totp_scratch_codes"
                   },
                   {
                     "type": "string",
@@ -39589,6 +40316,9 @@
             "account_id",
             "login_history",
             "login_profiles",
+            "totp_scratch_codes",
+            "custom_fields",
+            "active_sessions",
             "two_factor_authentication",
             "terms_accepted",
             "marketing_accepted"
@@ -39721,6 +40451,80 @@
                           "_key": "account_id"
                         },
                         {
+                          "type": "array",
+                          "description": "List of active user sessions.",
+                          "items": {
+                            "type": "object",
+                            "required": [
+                              "account_id",
+                              "ip_address",
+                              "login_time",
+                              "object",
+                              "reference_token",
+                              "user_agent"
+                            ],
+                            "properties": [
+                              {
+                                "type": "string",
+                                "example": "01619571e2e90242ac12000600000000",
+                                "description": "The UUID of the account.",
+                                "api_fieldname": "account_id",
+                                "entity_fieldname": "account_id",
+                                "_key": "account_id"
+                              },
+                              {
+                                "type": "string",
+                                "example": "127.0.0.1",
+                                "description": "IP address of the client.",
+                                "api_fieldname": "ip_address",
+                                "entity_fieldname": "ip_address",
+                                "_key": "ip_address"
+                              },
+                              {
+                                "type": "string",
+                                "format": "date-time",
+                                "example": "2018-02-14T17:52:07Z",
+                                "description": "The login time of the user.",
+                                "api_fieldname": "login_time",
+                                "entity_fieldname": "login_time",
+                                "_key": "login_time"
+                              },
+                              {
+                                "type": "string",
+                                "description": "Entity name: always 'user-session'",
+                                "enum": [
+                                  "user-session"
+                                ],
+                                "api_fieldname": "object",
+                                "entity_fieldname": "object",
+                                "_key": "object"
+                              },
+                              {
+                                "type": "string",
+                                "example": "rt_CI6+5hS8p9DrCmkRyS6u4doUdiXr71dX7MqD+g0327hYQthEkYTxMMnCwHyf1rDdk",
+                                "description": "The reference token.",
+                                "api_fieldname": "reference_token",
+                                "entity_fieldname": "reference_token",
+                                "_key": "reference_token"
+                              },
+                              {
+                                "type": "string",
+                                "example": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36",
+                                "description": "User Agent header from the login request.",
+                                "api_fieldname": "user_agent",
+                                "entity_fieldname": "user_agent",
+                                "_key": "user_agent"
+                              }
+                            ],
+                            "description": "This object represents an active user session.",
+                            "foreign_key": {
+                              "group": "Accounts",
+                              "entity": "active_session"
+                            }
+                          },
+                          "_key": "active_sessions"
+                        },
+                        {
                           "type": "string",
                           "example": "110 Fulbourn Rd, Cambridge, United Kingdom",
                           "description": "Address.",
@@ -39739,6 +40543,14 @@
                           "example": 1518630727683,
                           "description": "A timestamp of the user creation in the storage, in milliseconds.",
                           "_key": "creation_time"
+                        },
+                        {
+                          "type": "object",
+                          "description": "User's account specific custom properties. The value is a string.",
+                          "additionalProperties": {
+                            "type": "string"
+                          },
+                          "_key": "custom_fields"
                         },
                         {
                           "type": "string",
@@ -39869,14 +40681,17 @@
                               {
                                 "type": "string",
                                 "description": "ID of the identity provider.",
+                                "readOnly": false,
+                                "_override": true,
                                 "api_fieldname": "id",
                                 "entity_fieldname": "id",
                                 "_key": "id"
                               },
                               {
                                 "type": "string",
-                                "readOnly": true,
+                                "readOnly": false,
                                 "description": "Name of the identity provider.",
+                                "_override": true,
                                 "api_fieldname": "name",
                                 "entity_fieldname": "name",
                                 "_key": "name"
@@ -39943,6 +40758,14 @@
                             "INACTIVE"
                           ],
                           "_key": "status"
+                        },
+                        {
+                          "type": "array",
+                          "description": "A list of scratch codes for the 2-factor authentication. Visible only when 2FA is requested to be enabled or the codes regenerated.",
+                          "items": {
+                            "type": "string"
+                          },
+                          "_key": "totp_scratch_codes"
                         },
                         {
                           "type": "string",
@@ -40272,14 +41095,17 @@
                   {
                     "type": "string",
                     "description": "ID of the identity provider.",
+                    "readOnly": false,
+                    "_override": true,
                     "api_fieldname": "id",
                     "entity_fieldname": "id",
                     "_key": "id"
                   },
                   {
                     "type": "string",
-                    "readOnly": true,
+                    "readOnly": false,
                     "description": "Name of the identity provider.",
+                    "_override": true,
                     "api_fieldname": "name",
                     "entity_fieldname": "name",
                     "_key": "name"
@@ -40393,6 +41219,82 @@
                     "_key": "account_id"
                   },
                   {
+                    "type": "array",
+                    "description": "List of active user sessions.",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "account_id",
+                        "ip_address",
+                        "login_time",
+                        "object",
+                        "reference_token",
+                        "user_agent"
+                      ],
+                      "properties": [
+                        {
+                          "type": "string",
+                          "example": "01619571e2e90242ac12000600000000",
+                          "description": "The UUID of the account.",
+                          "api_fieldname": "account_id",
+                          "entity_fieldname": "account_id",
+                          "_key": "account_id"
+                        },
+                        {
+                          "type": "string",
+                          "example": "127.0.0.1",
+                          "description": "IP address of the client.",
+                          "api_fieldname": "ip_address",
+                          "entity_fieldname": "ip_address",
+                          "_key": "ip_address"
+                        },
+                        {
+                          "type": "string",
+                          "format": "date-time",
+                          "example": "2018-02-14T17:52:07Z",
+                          "description": "The login time of the user.",
+                          "api_fieldname": "login_time",
+                          "entity_fieldname": "login_time",
+                          "_key": "login_time"
+                        },
+                        {
+                          "type": "string",
+                          "description": "Entity name: always 'user-session'",
+                          "enum": [
+                            "user-session"
+                          ],
+                          "api_fieldname": "object",
+                          "entity_fieldname": "object",
+                          "_key": "object"
+                        },
+                        {
+                          "type": "string",
+                          "example": "rt_CI6+5hS8p9DrCmkRyS6u4doUdiXr71dX7MqD+g0327hYQthEkYTxMMnCwHyf1rDdk",
+                          "description": "The reference token.",
+                          "api_fieldname": "reference_token",
+                          "entity_fieldname": "reference_token",
+                          "_key": "reference_token"
+                        },
+                        {
+                          "type": "string",
+                          "example": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36",
+                          "description": "User Agent header from the login request.",
+                          "api_fieldname": "user_agent",
+                          "entity_fieldname": "user_agent",
+                          "_key": "user_agent"
+                        }
+                      ],
+                      "description": "This object represents an active user session.",
+                      "foreign_key": {
+                        "group": "Accounts",
+                        "entity": "active_session"
+                      }
+                    },
+                    "api_fieldname": "active_sessions",
+                    "entity_fieldname": "active_sessions",
+                    "_key": "active_sessions"
+                  },
+                  {
                     "type": "string",
                     "example": "110 Fulbourn Rd, Cambridge, United Kingdom",
                     "description": "Address.",
@@ -40417,6 +41319,16 @@
                     "api_fieldname": "creation_time",
                     "entity_fieldname": "creation_time",
                     "_key": "creation_time"
+                  },
+                  {
+                    "type": "object",
+                    "description": "User's account specific custom properties. The value is a string.",
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "api_fieldname": "custom_fields",
+                    "entity_fieldname": "custom_fields",
+                    "_key": "custom_fields"
                   },
                   {
                     "type": "string",
@@ -40569,14 +41481,17 @@
                         {
                           "type": "string",
                           "description": "ID of the identity provider.",
+                          "readOnly": false,
+                          "_override": true,
                           "api_fieldname": "id",
                           "entity_fieldname": "id",
                           "_key": "id"
                         },
                         {
                           "type": "string",
-                          "readOnly": true,
+                          "readOnly": false,
                           "description": "Name of the identity provider.",
+                          "_override": true,
                           "api_fieldname": "name",
                           "entity_fieldname": "name",
                           "_key": "name"
@@ -40655,6 +41570,16 @@
                     "api_fieldname": "status",
                     "entity_fieldname": "status",
                     "_key": "status"
+                  },
+                  {
+                    "type": "array",
+                    "description": "A list of scratch codes for the 2-factor authentication. Visible only when 2FA is requested to be enabled or the codes regenerated.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "api_fieldname": "totp_scratch_codes",
+                    "entity_fieldname": "totp_scratch_codes",
+                    "_key": "totp_scratch_codes"
                   },
                   {
                     "type": "string",
@@ -41076,7 +42001,10 @@
             "last_login_time",
             "password_changed_time",
             "account_id",
-            "login_history"
+            "login_history",
+            "totp_scratch_codes",
+            "custom_fields",
+            "active_sessions"
           ],
           "group_id": "Accounts",
           "parameter_map": {
@@ -41096,6 +42024,83 @@
           "readOnly": true,
           "required": false,
           "_key": "account_id"
+        },
+        {
+          "type": "array",
+          "description": "List of active user sessions.",
+          "items": {
+            "type": "object",
+            "required": [
+              "account_id",
+              "ip_address",
+              "login_time",
+              "object",
+              "reference_token",
+              "user_agent"
+            ],
+            "properties": [
+              {
+                "type": "string",
+                "example": "01619571e2e90242ac12000600000000",
+                "description": "The UUID of the account.",
+                "api_fieldname": "account_id",
+                "entity_fieldname": "account_id",
+                "_key": "account_id"
+              },
+              {
+                "type": "string",
+                "example": "127.0.0.1",
+                "description": "IP address of the client.",
+                "api_fieldname": "ip_address",
+                "entity_fieldname": "ip_address",
+                "_key": "ip_address"
+              },
+              {
+                "type": "string",
+                "format": "date-time",
+                "example": "2018-02-14T17:52:07Z",
+                "description": "The login time of the user.",
+                "api_fieldname": "login_time",
+                "entity_fieldname": "login_time",
+                "_key": "login_time"
+              },
+              {
+                "type": "string",
+                "description": "Entity name: always 'user-session'",
+                "enum": [
+                  "user-session"
+                ],
+                "api_fieldname": "object",
+                "entity_fieldname": "object",
+                "_key": "object"
+              },
+              {
+                "type": "string",
+                "example": "rt_CI6+5hS8p9DrCmkRyS6u4doUdiXr71dX7MqD+g0327hYQthEkYTxMMnCwHyf1rDdk",
+                "description": "The reference token.",
+                "api_fieldname": "reference_token",
+                "entity_fieldname": "reference_token",
+                "_key": "reference_token"
+              },
+              {
+                "type": "string",
+                "example": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.1 Safari/537.36",
+                "description": "User Agent header from the login request.",
+                "api_fieldname": "user_agent",
+                "entity_fieldname": "user_agent",
+                "_key": "user_agent"
+              }
+            ],
+            "description": "This object represents an active user session.",
+            "foreign_key": {
+              "group": "Accounts",
+              "entity": "active_session"
+            }
+          },
+          "api_fieldname": "active_sessions",
+          "readOnly": true,
+          "required": false,
+          "_key": "active_sessions"
         },
         {
           "type": "string",
@@ -41125,6 +42130,17 @@
           "readOnly": true,
           "required": false,
           "_key": "creation_time"
+        },
+        {
+          "type": "object",
+          "description": "User's account specific custom properties. The value is a string.",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "api_fieldname": "custom_fields",
+          "readOnly": true,
+          "required": false,
+          "_key": "custom_fields"
         },
         {
           "type": "string",
@@ -41241,14 +42257,17 @@
               {
                 "type": "string",
                 "description": "ID of the identity provider.",
+                "readOnly": false,
+                "_override": true,
                 "api_fieldname": "id",
                 "entity_fieldname": "id",
                 "_key": "id"
               },
               {
                 "type": "string",
-                "readOnly": true,
+                "readOnly": false,
                 "description": "Name of the identity provider.",
+                "_override": true,
                 "api_fieldname": "name",
                 "entity_fieldname": "name",
                 "_key": "name"
@@ -41343,6 +42362,17 @@
           "_key": "terms_accepted"
         },
         {
+          "type": "array",
+          "description": "A list of scratch codes for the 2-factor authentication. Visible only when 2FA is requested to be enabled or the codes regenerated.",
+          "items": {
+            "type": "string"
+          },
+          "api_fieldname": "totp_scratch_codes",
+          "readOnly": true,
+          "required": false,
+          "_key": "totp_scratch_codes"
+        },
+        {
           "type": "boolean",
           "example": true,
           "description": "A flag indicating whether 2-factor authentication (TOTP) has been enabled.",
@@ -41426,14 +42456,17 @@
                   {
                     "type": "string",
                     "description": "ID of the identity provider.",
+                    "readOnly": false,
+                    "_override": true,
                     "api_fieldname": "id",
                     "entity_fieldname": "id",
                     "_key": "id"
                   },
                   {
                     "type": "string",
-                    "readOnly": true,
+                    "readOnly": false,
                     "description": "Name of the identity provider.",
+                    "_override": true,
                     "api_fieldname": "name",
                     "entity_fieldname": "name",
                     "_key": "name"
@@ -41569,14 +42602,17 @@
                         {
                           "type": "string",
                           "description": "ID of the identity provider.",
+                          "readOnly": false,
+                          "_override": true,
                           "api_fieldname": "id",
                           "entity_fieldname": "id",
                           "_key": "id"
                         },
                         {
                           "type": "string",
-                          "readOnly": true,
+                          "readOnly": false,
                           "description": "Name of the identity provider.",
+                          "_override": true,
                           "api_fieldname": "name",
                           "entity_fieldname": "name",
                           "_key": "name"
@@ -42268,14 +43304,17 @@
                         {
                           "type": "string",
                           "description": "ID of the identity provider.",
+                          "readOnly": false,
+                          "_override": true,
                           "api_fieldname": "id",
                           "entity_fieldname": "id",
                           "_key": "id"
                         },
                         {
                           "type": "string",
-                          "readOnly": true,
+                          "readOnly": false,
                           "description": "Name of the identity provider.",
+                          "_override": true,
                           "api_fieldname": "name",
                           "entity_fieldname": "name",
                           "_key": "name"
@@ -42740,14 +43779,17 @@
                               {
                                 "type": "string",
                                 "description": "ID of the identity provider.",
+                                "readOnly": false,
+                                "_override": true,
                                 "api_fieldname": "id",
                                 "entity_fieldname": "id",
                                 "_key": "id"
                               },
                               {
                                 "type": "string",
-                                "readOnly": true,
+                                "readOnly": false,
                                 "description": "Name of the identity provider.",
+                                "_override": true,
                                 "api_fieldname": "name",
                                 "entity_fieldname": "name",
                                 "_key": "name"
@@ -43106,14 +44148,17 @@
               {
                 "type": "string",
                 "description": "ID of the identity provider.",
+                "readOnly": false,
+                "_override": true,
                 "api_fieldname": "id",
                 "entity_fieldname": "id",
                 "_key": "id"
               },
               {
                 "type": "string",
-                "readOnly": true,
+                "readOnly": false,
                 "description": "Name of the identity provider.",
+                "_override": true,
                 "api_fieldname": "name",
                 "entity_fieldname": "name",
                 "_key": "name"
