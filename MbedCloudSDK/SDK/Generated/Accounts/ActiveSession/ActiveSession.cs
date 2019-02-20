@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="CertificateEnrollment.cs" company="Arm">
+// <copyright file="ActiveSession.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -16,71 +16,52 @@ namespace Mbed.Cloud.Foundation.Entities
 {
     using Mbed.Cloud.Foundation.Common;
     using System;
-    using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
-    /// CertificateEnrollment
+    /// ActiveSession
     /// </summary>
-    public class CertificateEnrollment : Entity
+    public class ActiveSession : Entity
     {
         /// <summary>
-        /// certificate_name
+        /// account_id
         /// </summary>
-        public string CertificateName
+        public string AccountId
         {
             get;
             internal set;
         }
 
         /// <summary>
-        /// created_at
+        /// ip_address
         /// </summary>
-        public DateTime? CreatedAt
+        public string IpAddress
         {
             get;
             internal set;
         }
 
         /// <summary>
-        /// device_id
+        /// login_time
         /// </summary>
-        public string DeviceId
+        public DateTime? LoginTime
         {
             get;
             internal set;
         }
 
         /// <summary>
-        /// enroll_result
+        /// reference_token
         /// </summary>
-        public CertificateEnrollmentEnrollResult? EnrollResult
+        public string ReferenceToken
         {
             get;
             internal set;
         }
 
         /// <summary>
-        /// enroll_result_detail
+        /// user_agent
         /// </summary>
-        public string EnrollResultDetail
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
-        /// enroll_status
-        /// </summary>
-        public CertificateEnrollmentEnrollStatus? EnrollStatus
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
-        /// updated_at
-        /// </summary>
-        public DateTime? UpdatedAt
+        public string UserAgent
         {
             get;
             internal set;

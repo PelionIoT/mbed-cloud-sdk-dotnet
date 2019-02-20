@@ -287,6 +287,15 @@ namespace Mbed.Cloud.Foundation.Entities
         }
 
         /// <summary>
+        /// password_recovery_expiration
+        /// </summary>
+        public int? PasswordRecoveryExpiration
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// phone_number
         /// </summary>
         public string PhoneNumber

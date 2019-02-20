@@ -166,6 +166,15 @@ namespace Mbed.Cloud.Foundation.Entities
         }
 
         /// <summary>
+        /// valid
+        /// </summary>
+        public bool? Valid
+        {
+            get;
+            internal set;
+        }
+
+        /// <summary>
         /// validity
         /// </summary>
         public DateTime? Validity

@@ -88,14 +88,12 @@ namespace Manhasset.Generator.src.Generators
                     entityClass.AddUsing("ENUM_KEY", UsingKeys.ENUMS);
                 }
 
-                // check if property has custom getters and setters
-                var overrideProperty = property["_override"] != null && !property["private_field"].GetBoolValue();
                 var customGetter = property["getter_custom_method"] != null;
                 var customSetter = property["setter_custom_method"] != null;
 
                 var isNullable = !propertyType.Contains("List<") && !propertyType.Contains("Dictionary<") && !propertyType.Contains("string") && !propertyType.Contains("object") && !(SwaggerTypeHelper.GetForeignKeyType(property) != null);
 
-                if (overrideProperty)
+                if (customGetter || customSetter)
                 {
                     var overridePropContainer = new PropertyWithCustomGetterAndSetter
                     {
@@ -113,6 +111,8 @@ namespace Manhasset.Generator.src.Generators
                     overridePropContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
 
                     entityClass.AddProperty(name, overridePropContainer);
+                    // need common for custom functions
+                    entityClass.AddUsing(nameof(UsingKeys.SDK_COMMON), UsingKeys.SDK_COMMON);
                 }
                 else
                 {
@@ -147,12 +147,6 @@ namespace Manhasset.Generator.src.Generators
                 if (propertyType.Contains("List<") || propertyType.Contains("Dictionary<"))
                 {
                     entityClass.AddUsing(nameof(UsingKeys.GENERIC_COLLECTIONS), UsingKeys.GENERIC_COLLECTIONS);
-                }
-
-                // add usings for custom functions
-                if (overrideProperty)
-                {
-                    entityClass.AddUsing(nameof(UsingKeys.SDK_COMMON), UsingKeys.SDK_COMMON);
                 }
             }
 

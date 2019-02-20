@@ -5,6 +5,7 @@ using Mbed.Cloud.Foundation.Common;
 using Microsoft.CodeAnalysis;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Runtime.Serialization;
 
 namespace Manhasset.Runner
 {
@@ -21,6 +22,7 @@ namespace Manhasset.Runner
             var generator = new Manhasset.Generator.src.Generator(jobj);
             // add ref to SDK
             generator.CompilationContainer.AddMetadataReference(typeof(Entity));
+            generator.CompilationContainer.AddMetadataReference(typeof(EnumMemberAttribute));
 
             await generator.Run();
         }
