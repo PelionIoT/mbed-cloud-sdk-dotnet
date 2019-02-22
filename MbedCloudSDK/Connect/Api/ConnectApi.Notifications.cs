@@ -169,6 +169,21 @@ namespace MbedCloudSDK.Connect.Api
             }
         }
 
+        private void Notifications()
+        {
+            while (!cancellationToken.IsCancellationRequested)
+            {
+                retryPolicy.Execute(() =>
+                {
+                    var resp = NotificationsApi.LongPollNotifications();
+                    if (resp != null)
+                    {
+                        Notify(NotificationMessage.Map(resp));
+                    }
+                });
+            }
+        }
+
         /// <summary>
         /// Starts the notifications task.
         /// </summary>
@@ -203,6 +218,24 @@ namespace MbedCloudSDK.Connect.Api
                     throw new CloudApiException(400, "cannot start notifications as a webhook is already in use");
                 }
 
+                // policy handler for retries. Uses Polly (https://github.com/App-vNext/Polly#wait-and-retry)
+                // it will increase the time between retries progressively until it will stop ~2 minutes
+                if (retryPolicy == null)
+                {
+                    retryPolicy = Policy.Handle<Exception>().WaitAndRetry(
+                        8,
+                        retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
+                        (exception, timeSpan, retryCount, context) =>
+                            {
+                            // check that is really an ApiException before doing the retry logic
+                            var apiException = exception as ApiException;
+                                if (apiException == null || apiException.ErrorCode != 500)
+                                {
+                                    StopNotifications();
+                                }
+                            });
+                }
+
                 try
                 {
                     NotificationsStarted = true;
@@ -219,57 +252,10 @@ namespace MbedCloudSDK.Connect.Api
                         cancellationToken?.Dispose();
                         cancellationToken = new CancellationTokenSource();
 
-                        await InitiateWebsocket();
-
                         // start a new task
                         notificationTask = Task.Factory.StartNew(_ =>
                         {
-                            var dynamicBuffer = new List<byte>();
-                            while (!cancellationToken.IsCancellationRequested)
-                            {
-                                try
-                                {
-                                    if (webSocketClient.State == WebSocketState.Open || webSocketClient.State == WebSocketState.CloseSent)
-                                    {
-                                        // can't have an async method in a task action because it will return immediatley
-                                        var message = AsyncHelper.RunSync(() => webSocketClient.ReceiveAsync(receivedBuffer, CancellationToken.None));
-                                        if (message.EndOfMessage)
-                                        {
-                                            if (dynamicBuffer.Any())
-                                            {
-                                                // add end of message first
-                                                dynamicBuffer.AddRange(receivedBuffer.Skip(receivedBuffer.Offset).Take(message.Count));
-                                                // we got a big message
-                                                AsyncHelper.RunSync(() => handleMessageAsync(message, dynamicBuffer));
-                                                dynamicBuffer.Clear();
-                                            }
-                                            else
-                                            {
-                                                // can decode straight
-                                                AsyncHelper.RunSync(() => handleMessageAsync(message));
-                                            }
-                                        }
-                                        else
-                                        {
-                                            dynamicBuffer.AddRange(receivedBuffer.Skip(receivedBuffer.Offset).Take(message.Count));
-                                        }
-
-                                    }
-                                    else if (webSocketClient.State == WebSocketState.Connecting)
-                                    {
-                                        continue;
-                                    }
-                                    else
-                                    {
-                                        log.Warn($"websocket is in an invalid state to receive - {webSocketClient.State}");
-                                    }
-                                }
-                                catch (WebSocketException e)
-                                {
-                                    log.Error(e.Message, e);
-                                    throw;
-                                }
-                            }
+                            Notifications();
                         }, null, cancellationToken.Token, TaskCreationOptions.LongRunning, TaskScheduler.Default);
                     }
                     else
@@ -336,7 +322,7 @@ namespace MbedCloudSDK.Connect.Api
                         }
                     }
 
-                    await StopWebsocketAsync();
+                    // await StopWebsocketAsync();
 
                     if (notificationTask != null)
                     {
