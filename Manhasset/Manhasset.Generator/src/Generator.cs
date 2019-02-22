@@ -25,7 +25,7 @@ namespace Manhasset.Generator.src
         public async System.Threading.Tasks.Task Run()
         {
             // root file path
-            var rootFilePath = "MbedCloudSDK/SDK/Generated";
+            var rootFilePath = "src/SDK/Generated";
 
             var entities = Config["entities"];
 

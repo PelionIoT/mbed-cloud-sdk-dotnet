@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MbedCloudSDK", "MbedCloudSDK\MbedCloudSDK.csproj", "{A4DB4320-78B2-498E-9087-919EC6259454}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MbedCloudSDK", "src\MbedCloudSDK.csproj", "{A4DB4320-78B2-498E-9087-919EC6259454}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{28E4D94D-24CB-4400-9363-9655C065BFE4}"
 EndProject

@@ -153,7 +153,7 @@ def write_csv_file(output_filename, tpip_pkgs):
 def main():
     target = os.path.join(
         os.path.dirname(os.path.dirname(__file__)
-                        ), 'MbedCloudSDK', 'MbedCloudSDK.csproj'
+                        ), 'src', 'MbedCloudSDK.csproj'
     )
     tree = ElementTree.parse(target)
     pkgs = []

@@ -4,7 +4,7 @@ CONFIG_NAME = "CSHARP"
 VERSION_LOCK_VALUE = "true"
 VERSION_UNLOCK_VALUE = "false"
 RELEASED_VALUE = true
-targets = [ "./MbedCloudSDK/MbedCloudSDK.csproj", "./MbedCloudSDK/Common/Version.cs" ]
+targets = [ "./src/MbedCloudSDK.csproj", "./src/Common/Version.cs" ]
 
 [AutoVersionConfig.key_aliases]
 #major = "SDK_MAJOR"
