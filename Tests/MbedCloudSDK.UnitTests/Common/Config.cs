@@ -35,7 +35,11 @@ namespace MbedCloudSDK.UnitTests.Common
             string[] env = { $"{Config.API_KEY}={apiKey}", $"{Config.HOST}={host}" };
             System.IO.File.WriteAllLines(envPath, env);
 
-            var config = new Config(true, true);
+            var config = new Config
+            {
+                ForceClear = true,
+                AutostartNotifications = true,
+            };
 
             Assert.AreEqual(config.ApiKey, apiKey);
             Assert.AreEqual(config.Host, host);
@@ -64,7 +68,11 @@ namespace MbedCloudSDK.UnitTests.Common
             Environment.SetEnvironmentVariable(Config.API_KEY, apiKey);
             Environment.SetEnvironmentVariable(Config.HOST, host);
 
-            var config = new Config(true, true);
+            var config = new Config
+            {
+                ForceClear = true,
+                AutostartNotifications = true,
+            };
 
             Assert.AreEqual(config.ApiKey, apiKey);
             Assert.AreEqual(config.Host, host);
@@ -98,7 +106,11 @@ namespace MbedCloudSDK.UnitTests.Common
         [Test]
         public void AllParamsSet()
         {
-            var config = new Config(apiKey, host, true, true);
+            var config = new Config(apiKey, host)
+            {
+                ForceClear = true,
+                AutostartNotifications = true,
+            };
 
             Assert.AreEqual(config.ApiKey, apiKey);
             Assert.AreEqual(config.Host, host);

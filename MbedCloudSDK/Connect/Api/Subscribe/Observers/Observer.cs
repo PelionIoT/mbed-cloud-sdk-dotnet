@@ -9,14 +9,15 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
+    using MbedCloudSDK.Connect.Api.Subscribe.Collections;
+    using Nito.AsyncEx;
 
     /// <summary>
     /// Observer
     /// </summary>
     /// <typeparam name="T">Type stored in observer</typeparam>
     /// <typeparam name="F">The type passed into the filter function</typeparam>
-    /// <seealso cref="MbedCloudSDK.Connect.Api.Subscribe.Observers.IObserver{T, F}" />
-    public abstract class Observer<T, F> : IObserver<T, F>
+    public abstract class Observer<T, F>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Observer{T, F}"/> class.
@@ -52,7 +53,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
         /// Gets the list containing the functions used for filtering
         /// </summary>
         /// <returns>List of filter functions</returns>
-        public List<Func<F, bool>> FilterFuncs { get; } = new List<Func<F, bool>>();
+        public FilterFunctionCollection<F> FilterFuncs { get; } = new FilterFunctionCollection<F>();
 
         /// <summary>
         /// Gets or sets the identifier.
@@ -60,7 +61,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
         /// <value>
         /// The identifier.
         /// </value>
-        public string Id { get; set; }
+        public string Id { get; }
 
         /// <summary>
         /// Gets the collection.
@@ -68,7 +69,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
         /// <value>
         /// The collection.
         /// </value>
-        public ObservableCollection<T> NotificationQueue { get; } = new ObservableCollection<T>();
+        public AsyncCollection<T> NotificationQueue { get; } = new AsyncCollection<T>();
 
         /// <summary>
         /// Gets a value indicating whether the observer is subscribed
@@ -76,33 +77,29 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
         public bool Subscribed { get; private set; } = true;
 
         /// <summary>
-        /// Gets the waiting
-        /// </summary>
-        /// <value>
-        /// The waiting
-        /// </value>
-        public Queue<TaskCompletionSource<T>> Waiting { get; } = new Queue<TaskCompletionSource<T>>();
-
-        /// <summary>
         /// Take this instance.
         /// </summary>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
-        public Task<T> Next()
+        public Task<T> NextAsync()
         {
-            lock (NotificationQueue)
+            return NotificationQueue.TakeAsync();
+        }
+
+        public T Next()
+        {
+            return NotificationQueue.Take();
+        }
+
+        /// <summary>
+        /// Notifies the specified data.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        public virtual async Task NotifyAsync(T data)
+        {
+            if (Subscribed)
             {
-                if (NotificationQueue.Count > 0)
-                {
-                    var first = NotificationQueue.FirstOrDefault();
-                    NotificationQueue.Remove(first);
-                    return Task.FromResult(first);
-                }
-                else
-                {
-                    var tcs = new TaskCompletionSource<T>();
-                    Waiting.Enqueue(tcs);
-                    return tcs.Task;
-                }
+                OnNotify?.Invoke(data);
+                await NotificationQueue.AddAsync(data);
             }
         }
 
@@ -110,29 +107,12 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
         /// Notifies the specified data.
         /// </summary>
         /// <param name="data">The data.</param>
-        public void Notify(T data)
+        public virtual void Notify(T data)
         {
             if (Subscribed)
             {
                 OnNotify?.Invoke(data);
-
-                TaskCompletionSource<T> tcs = null;
-                lock (NotificationQueue)
-                {
-                    if (Waiting.Count > 0)
-                    {
-                        tcs = Waiting.Dequeue();
-                    }
-                    else
-                    {
-                        NotificationQueue.Add(data);
-                    }
-                }
-
-                if (tcs != null)
-                {
-                    tcs.TrySetResult(data);
-                }
+                NotificationQueue.Add(data);
             }
         }
 

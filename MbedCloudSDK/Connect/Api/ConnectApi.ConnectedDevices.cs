@@ -21,6 +21,8 @@ namespace MbedCloudSDK.Connect.Api
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
     using MbedCloudSDK.Exceptions;
     using mds.Model;
+    using Nito.AsyncEx;
+    using static MbedCloudSDK.Common.Utils;
 
     /// <summary>
     /// Connect Api
@@ -118,7 +120,7 @@ namespace MbedCloudSDK.Connect.Api
         /// </code>
         /// </example>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public string[] ListDeviceSubscriptions(string deviceId)
+        public IEnumerable<string> ListDeviceSubscriptions(string deviceId)
         {
             string subscriptionsString;
             try
@@ -168,9 +170,9 @@ namespace MbedCloudSDK.Connect.Api
                 ResourceSubscribtions.Keys
                     .Where(k => k.Contains(deviceId))
                     .ToList()
-                    .ForEach(d => ResourceSubscribtions.Remove(d));
+                    .ForEach(d => ResourceSubscribtions.TryRemove(d, out var removedItem));
             }
-            catch (mds.Client.ApiException e)
+            catch (mds.Client.ApiException e) when (e.ErrorCode != 404)
             {
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
@@ -199,17 +201,16 @@ namespace MbedCloudSDK.Connect.Api
         /// </code>
         /// </example>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public List<Model.Resource.Resource> ListResources(string deviceId)
+        public IEnumerable<Model.Resource.Resource> ListResources(string deviceId)
         {
             try
             {
                 return EndpointsApi.GetEndpointResources(deviceId)
-                .Select(r => Model.Resource.Resource.Map(deviceId, r, this))
-                .ToList();
+                    ?.Select(r => Model.Resource.Resource.Map(deviceId, r, this));
             }
             catch (mds.Client.ApiException e)
             {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+                return HandleNotFound<IEnumerable<Model.Resource.Resource>, mds.Client.ApiException>(e);
             }
         }
 
@@ -272,9 +273,8 @@ namespace MbedCloudSDK.Connect.Api
         /// <exception cref="CloudApiException">
         /// If an error occurred while communicating with the server or if the server responsed with an error.
         /// </exception>
-        [EditorBrowsable(EditorBrowsableState.Advanced)]
         public string ExecuteResource(string deviceId, string resourcePath, string functionName = null)
-            => UnsafeExecuteSynchronously(ExecuteResourceAsync(deviceId, resourcePath, functionName));
+            => ExecuteSynchronously(ExecuteResourceAsync(deviceId, resourcePath, functionName));
 
         /// <summary>
         /// Execute a function on a resource asynchronously
@@ -341,9 +341,8 @@ namespace MbedCloudSDK.Connect.Api
         /// <exception cref="CloudApiException">
         /// If an error occurred while communicating with the server or if the server responsed with an error.
         /// </exception>
-        [EditorBrowsable(EditorBrowsableState.Advanced)]
         public string GetResourceValue(string deviceId, string resourcePath)
-            => UnsafeExecuteSynchronously(GetResourceValueAsync(deviceId, resourcePath));
+            => ExecuteSynchronously(GetResourceValueAsync(deviceId, resourcePath));
 
         /// <summary>
         /// Gets the value of the resource asynchronously
@@ -398,9 +397,8 @@ namespace MbedCloudSDK.Connect.Api
         /// <exception cref="CloudApiException">
         /// If an error occurred while communicating with the server or if the server responsed with an error.
         /// </exception>
-        [EditorBrowsable(EditorBrowsableState.Advanced)]
         public string SetResourceValue(string deviceId, string resourcePath, string resourceValue)
-            => UnsafeExecuteSynchronously(SetResourceValueAsync(deviceId, resourcePath, resourceValue));
+            => ExecuteSynchronously(SetResourceValueAsync(deviceId, resourcePath, resourceValue));
 
         /// <overloads>
         /// Sets the value for the specified resource.
@@ -652,10 +650,8 @@ namespace MbedCloudSDK.Connect.Api
             }
         }
 
-        private string UnsafeExecuteSynchronously(Task<AsyncConsumer<string>> task)
+        private string ExecuteSynchronously(Task<AsyncConsumer<string>> task)
         {
-            Debug.Assert(task != null, "Task to wait cannot be null");
-
             var consumer = task
                 .GetAwaiter()
                 .GetResult();
@@ -666,7 +662,7 @@ namespace MbedCloudSDK.Connect.Api
             }
 
             return AsyncResponses[consumer.AsyncId]
-                .Take()
+                .TakeAsync()
                 .ConfigureAwait(false)
                 .GetAwaiter()
                 .GetResult();
@@ -674,11 +670,6 @@ namespace MbedCloudSDK.Connect.Api
 
         private async Task<AsyncConsumer<string>> SetResourceValueAsync(string deviceId, string resourcePath, byte[] resourceValue, string resourceValueMimeType)
         {
-            Debug.Assert(!string.IsNullOrWhiteSpace(deviceId), "Device ID cannot be a blank string");
-            Debug.Assert(!string.IsNullOrWhiteSpace(resourcePath), "Resource path cannot be a blank string");
-            Debug.Assert(resourceValue != null, "Resource value cannot be null");
-            Debug.Assert(resourceValueMimeType != null, "MIME type cannot be null");
-
             var deviceRequest = new DeviceRequest(Method: HttpMethod.Put.Method, Uri: AddLeadingSlash(resourcePath))
             {
                 ContentType = resourceValueMimeType,
@@ -690,16 +681,12 @@ namespace MbedCloudSDK.Connect.Api
 
         private async Task<AsyncConsumer<string>> CreateAsyncRequestAsync(string deviceId, DeviceRequest request)
         {
-            Debug.Assert(!string.IsNullOrWhiteSpace(deviceId), "Device ID cannot be a blank string");
-            Debug.Assert(request != null, "Request object cannot be null");
-            Debug.Assert(DeviceRequestsApi != null, "Device requests API is required");
-
-            if (Config.AutostartNotifications)
+            if (autostartNotifications)
             {
-                StartNotifications();
+                await StartNotificationsAsync();
             }
 
-            if (!handleNotifications)
+            if (!NotificationsStarted)
             {
                 throw new CloudApiException(400, "StartNotifications() needs to be called before creating an async request.");
             }
@@ -715,8 +702,8 @@ namespace MbedCloudSDK.Connect.Api
                 throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
             }
 
-            var collection = new AsyncProducerConsumerCollection<string>();
-            AsyncResponses.Add(asyncId, collection);
+            var collection = new AsyncCollection<string>();
+            AsyncResponses.TryAdd(asyncId, collection);
 
             return new AsyncConsumer<string>(asyncId, collection);
         }

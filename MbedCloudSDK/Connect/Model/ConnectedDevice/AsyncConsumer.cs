@@ -5,6 +5,7 @@
 namespace MbedCloudSDK.Connect.Model.ConnectedDevice
 {
     using System.Threading.Tasks;
+    using Nito.AsyncEx;
 
     /// <summary>
     /// Async consumer.
@@ -17,7 +18,7 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
         /// </summary>
         /// <param name="asyncId">AsyncId</param>
         /// <param name="collection">Collection.</param>
-        public AsyncConsumer(string asyncId, AsyncProducerConsumerCollection<T> collection)
+        public AsyncConsumer(string asyncId, AsyncCollection<T> collection)
         {
             AsyncId = asyncId;
             Collection = collection;
@@ -27,13 +28,13 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
         /// Gets or sets the AsyncId
         /// </summary>
         /// <returns>The Async Id</returns>
-        public string AsyncId { get; set; }
+        public string AsyncId { get; }
 
         /// <summary>
         /// Gets or sets the AsyncProducerConsumerCollection
         /// </summary>
         /// <returns>The AsyncProducerConsumercollection</returns>
-        public AsyncProducerConsumerCollection<T> Collection { get; set; }
+        public AsyncCollection<T> Collection { get; }
 
         /// <summary>
         /// Gets the value.
@@ -41,8 +42,7 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
         /// <returns>The value.</returns>
         public async Task<T> GetValue()
         {
-            var t = await Collection.Take();
-            return t;
+            return await Collection.TakeAsync();
         }
 
         /// <summary>

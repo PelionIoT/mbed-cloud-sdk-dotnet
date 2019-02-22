@@ -1,13 +1,13 @@
-// <copyright file="ImmediacyEnum.cs" company="Arm">
+// <copyright file="FirstValueEnum.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
 namespace MbedCloudSDK.Connect.Api.Subscribe.Models
 {
     /// <summary>
-    /// ImmediacyEnum
+    /// FirstValueEnum
     /// </summary>
-    public enum ImmediacyEnum
+    public enum FirstValueImmediacy
     {
         /// <summary>
         /// The on registration

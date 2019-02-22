@@ -7,7 +7,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Models
     /// <summary>
     /// Enum describing the device states
     /// </summary>
-    public enum DeviceEventEnum
+    public enum DeviceEvent
     {
         /// <summary>
         /// Registration

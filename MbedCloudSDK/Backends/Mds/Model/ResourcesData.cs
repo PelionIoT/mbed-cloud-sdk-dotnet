@@ -38,7 +38,7 @@ namespace mds.Model
         /// <param name="_If">Interface description that defines a name or URI that indicates how to interact with the target resource. It describes a generic interface type, such as a \&quot;sensor\&quot;..</param>
         /// <param name="Obs">Whether the resource is observable or not (true/false)..</param>
         /// <param name="Path">Resource&#39;s URI path..</param>
-        /// <param name="Rt">Application-specific resource type that describes this resource. [It is created by the client side application](/docs/current/connecting/resource-setup-in-mbed-cloud-client.html). Not meant to be a human-readable name for the resource. Multiple resource types may be included, they are separated by a space..</param>
+        /// <param name="Rt">Application-specific resource type that describes this resource. [It is created by the client side application](/docs/current/connecting/resource-setup-in-device-management-client.html). Not meant to be a human-readable name for the resource. Multiple resource types may be included, they are separated by a space..</param>
         public ResourcesData(string Ct = default(string), string _If = default(string), bool? Obs = default(bool?), string Path = default(string), string Rt = default(string))
         {
             this.Ct = Ct;
@@ -77,9 +77,9 @@ namespace mds.Model
         public string Path { get; set; }
 
         /// <summary>
-        /// Application-specific resource type that describes this resource. [It is created by the client side application](/docs/current/connecting/resource-setup-in-mbed-cloud-client.html). Not meant to be a human-readable name for the resource. Multiple resource types may be included, they are separated by a space.
+        /// Application-specific resource type that describes this resource. [It is created by the client side application](/docs/current/connecting/resource-setup-in-device-management-client.html). Not meant to be a human-readable name for the resource. Multiple resource types may be included, they are separated by a space.
         /// </summary>
-        /// <value>Application-specific resource type that describes this resource. [It is created by the client side application](/docs/current/connecting/resource-setup-in-mbed-cloud-client.html). Not meant to be a human-readable name for the resource. Multiple resource types may be included, they are separated by a space.</value>
+        /// <value>Application-specific resource type that describes this resource. [It is created by the client side application](/docs/current/connecting/resource-setup-in-device-management-client.html). Not meant to be a human-readable name for the resource. Multiple resource types may be included, they are separated by a space.</value>
         [DataMember(Name="rt", EmitDefaultValue=false)]
         public string Rt { get; set; }
 

@@ -37,10 +37,10 @@ namespace TestServer
             return apis;
         }
 
-        public void StopNotifications()
+        public async System.Threading.Tasks.Task StopNotificationsAsync()
         {
             var connect = apis["Connect"] as ConnectApi;
-            connect.StopNotifications();
+            await connect.StopNotificationsAsync();
         }
 
         public static ModuleRepository Instance
@@ -61,7 +61,11 @@ namespace TestServer
         {
             var apiKey = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
             var host = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_HOST");
-            var config = new Config(apiKey: apiKey, host: host, forceClear: true, autostartNotifications: false);
+            var config = new Config(apiKey: apiKey, host: host)
+            {
+                ForceClear = true,
+                AutostartNotifications = true,
+            };
 
             var dict = new Dictionary<string, object>();
             dict.Add("AccountManagement", Activator.CreateInstance(typeof(AccountManagementApi), config));

@@ -21,6 +21,6 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.DeviceEvent
         /// Gets or sets the Device Event Type to filter on
         /// </summary>
         /// <returns>The Event</returns>
-        public DeviceEventEnum Event { get; set; }
+        public DeviceEvent Event { get; set; }
     }
 }

@@ -5,6 +5,9 @@
 namespace MbedCloudSDK.Connect.Api
 {
     using System;
+    using System.ComponentModel;
+    using System.Threading.Tasks;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
     using MbedCloudSDK.Connect.Model.Resource;
     using MbedCloudSDK.Exceptions;
@@ -22,7 +25,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <returns>Async Consumer with String</returns>
         /// <example>
         /// <code>
-        /// var consumer = api.AddResourceSubscription("015bb66a92a30000000000010010006d", "3200/0/5500");
+        /// var consumer = await api.AddResourceSubscriptionAsync("015bb66a92a30000000000010010006d", "3200/0/5500");
         /// var counter = 0;
         /// while (true)
         /// {
@@ -37,25 +40,17 @@ namespace MbedCloudSDK.Connect.Api
         /// </code>
         /// </example>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public Resource AddResourceSubscription(string deviceId, string resourcePath)
+        public async Task<Resource> AddResourceSubscriptionAsync(string deviceId, string resourcePath)
         {
-            Console.WriteLine($"Adding subscription for {deviceId} at path {resourcePath}");
+            log.Info($"adding subscription for {deviceId} at path {resourcePath}");
             try
             {
-                StartNotifications();
+                await StartNotificationsAsync();
                 var fixedPath = RemoveLeadingSlash(resourcePath);
-                SubscriptionsApi.AddResourceSubscription(deviceId, fixedPath);
+                await SubscriptionsApi.AddResourceSubscriptionAsync(deviceId, fixedPath);
                 var subscribePath = deviceId + resourcePath;
-                var resource = new Resource(deviceId, null, this);
-                if (!ResourceSubscribtions.ContainsKey(subscribePath))
-                {
-                    ResourceSubscribtions.Add(subscribePath, resource);
-                }
-                else
-                {
-                    ResourceSubscribtions.Remove(subscribePath);
-                    ResourceSubscribtions.Add(subscribePath, resource);
-                }
+                var resource = new Resource(deviceId, this);
+                ResourceSubscribtions.AddOrUpdate(subscribePath, resource, (key, _) => resource);
 
                 return resource;
             }
@@ -63,6 +58,14 @@ namespace MbedCloudSDK.Connect.Api
             {
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
+        }
+
+        /// <summary>Obsolote, do not use.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Please us async version AddResourceSubscriptionAsync")]
+        public Resource AddResourceSubscription(string deviceId, string resourcePath)
+        {
+            return AsyncHelper.RunSync<Resource>(() => AddResourceSubscriptionAsync(deviceId, resourcePath));
         }
 
         /// <summary>
@@ -115,7 +118,7 @@ namespace MbedCloudSDK.Connect.Api
                 var fixedPath = RemoveLeadingSlash(resourcePath);
                 SubscriptionsApi.DeleteResourceSubscription(deviceId, fixedPath);
                 var subscribePath = deviceId + resourcePath;
-                ResourceSubscribtions.Remove(subscribePath);
+                ResourceSubscribtions.TryRemove(subscribePath, out var removedItem);
             }
             catch (mds.Client.ApiException ex)
             {

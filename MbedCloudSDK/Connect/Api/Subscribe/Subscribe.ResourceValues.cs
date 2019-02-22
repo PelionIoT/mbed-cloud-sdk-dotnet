@@ -6,6 +6,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Connect.Api.Subscribe.Models;
@@ -32,7 +33,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         /// <value>
         /// The immediacy.
         /// </value>
-        public FirstValueEnum Immediacy { get; private set; }
+        public FirstValueImmediacy Immediacy { get; private set; }
 
         /// <summary>
         /// Gets the resource value observers.
@@ -50,7 +51,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         {
             ResourceValueObservers.ForEach(o =>
             {
-                o.Notify(data);
+                o.NotifyAsync(data);
             });
         }
 
@@ -59,10 +60,10 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         /// </summary>
         /// <param name="immediacy">The immediacy.</param>
         /// <returns>ResourceValueObserver</returns>
-        public ResourceValuesObserver ResourceValues(FirstValueEnum immediacy = FirstValueEnum.OnValueUpdate)
+        public async Task<ResourceValuesObserver> ResourceValuesAsync(FirstValueImmediacy immediacy = FirstValueImmediacy.OnValueUpdate)
         {
             var observer = new ResourceValuesObserver();
-            return ResourceValues(observer, immediacy);
+            return await ResourceValuesCoreAsync(observer, immediacy);
         }
 
         /// <summary>
@@ -71,10 +72,10 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         /// <param name="deviceId">The device identifier.</param>
         /// <param name="immediacy">The immediacy.</param>
         /// <returns>ResourceValueObserver</returns>
-        public ResourceValuesObserver ResourceValues(string deviceId, FirstValueEnum immediacy = FirstValueEnum.OnValueUpdate)
+        public async Task<ResourceValuesObserver> ResourceValuesAsync(string deviceId, FirstValueImmediacy immediacy = FirstValueImmediacy.OnValueUpdate)
         {
             var observer = new ResourceValuesObserver(deviceId, Enumerable.Empty<string>());
-            return ResourceValues(observer, immediacy);
+            return await ResourceValuesCoreAsync(observer, immediacy);
         }
 
         /// <summary>
@@ -83,10 +84,10 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         /// <param name="resourcePaths">The resource paths.</param>
         /// <param name="immediacy">The immediacy.</param>
         /// <returns>ResourceValueObserver</returns>
-        public ResourceValuesObserver ResourceValues(List<string> resourcePaths, FirstValueEnum immediacy = FirstValueEnum.OnValueUpdate)
+        public async Task<ResourceValuesObserver> ResourceValuesAsync(List<string> resourcePaths, FirstValueImmediacy immediacy = FirstValueImmediacy.OnValueUpdate)
         {
             var observer = new ResourceValuesObserver("*", resourcePaths);
-            return ResourceValues(observer, immediacy);
+            return await ResourceValuesCoreAsync(observer, immediacy);
         }
 
         /// <summary>
@@ -98,10 +99,10 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         /// <returns>
         /// A ResourceValueObserver
         /// </returns>
-        public ResourceValuesObserver ResourceValues(List<string> deviceIds, List<string> resourcePaths, FirstValueEnum immediacy = FirstValueEnum.OnValueUpdate)
+        public async Task<ResourceValuesObserver> ResourceValuesAsync(List<string> deviceIds, List<string> resourcePaths, FirstValueImmediacy immediacy = FirstValueImmediacy.OnValueUpdate)
         {
             var observer = new ResourceValuesObserver(deviceIds, resourcePaths);
-            return ResourceValues(observer, immediacy);
+            return await ResourceValuesCoreAsync(observer, immediacy);
         }
 
         /// <summary>
@@ -111,10 +112,10 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         /// <param name="resourcePaths">The resource paths.</param>
         /// <param name="immediacy">The immediacy.</param>
         /// <returns>ResourceValueObserver</returns>
-        public ResourceValuesObserver ResourceValues(string deviceId, List<string> resourcePaths, FirstValueEnum immediacy = FirstValueEnum.OnValueUpdate)
+        public async Task<ResourceValuesObserver> ResourceValuesAsync(string deviceId, List<string> resourcePaths, FirstValueImmediacy immediacy = FirstValueImmediacy.OnValueUpdate)
         {
             var observer = new ResourceValuesObserver(deviceId, resourcePaths);
-            return ResourceValues(observer, immediacy);
+            return await ResourceValuesCoreAsync(observer, immediacy);
         }
 
         /// <summary>
@@ -124,10 +125,10 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         /// <param name="resourcePath">The resource path.</param>
         /// <param name="immediacy">The immediacy.</param>
         /// <returns>ResourceValueObserver</returns>
-        public ResourceValuesObserver ResourceValues(List<string> deviceIds, string resourcePath, FirstValueEnum immediacy = FirstValueEnum.OnValueUpdate)
+        public async Task<ResourceValuesObserver> ResourceValuesAsync(List<string> deviceIds, string resourcePath, FirstValueImmediacy immediacy = FirstValueImmediacy.OnValueUpdate)
         {
             var observer = new ResourceValuesObserver(deviceIds, resourcePath);
-            return ResourceValues(observer, immediacy);
+            return await ResourceValuesCoreAsync(observer, immediacy);
         }
 
         /// <summary>
@@ -137,10 +138,10 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
         /// <param name="resourcePath">The resource path.</param>
         /// <param name="immediacy">The immediacy.</param>
         /// <returns>ResourceValueObserver</returns>
-        public ResourceValuesObserver ResourceValues(string deviceId, string resourcePath, FirstValueEnum immediacy = FirstValueEnum.OnValueUpdate)
+        public async Task<ResourceValuesObserver> ResourceValuesAsync(string deviceId, string resourcePath, FirstValueImmediacy immediacy = FirstValueImmediacy.OnValueUpdate)
         {
             var observer = new ResourceValuesObserver(deviceId, resourcePath);
-            return ResourceValues(observer, immediacy);
+            return await ResourceValuesCoreAsync(observer, immediacy);
         }
 
         private static Presubscription[] MergeLocalAndServerLists(IEnumerable<Presubscription> local, IEnumerable<Presubscription> server)
@@ -148,7 +149,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
             return local.Union(server, new PresubscriptionComparer()).ToArray();
         }
 
-        private void ConstructPresubArray(string id)
+        private void ConstructPresubscriptionArray(string id)
         {
             // get the union of all the local subscriptions
             var presubs = new HashSet<ResourceValuesFilter>();
@@ -168,7 +169,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
 
                 ConnectApi.UpdatePresubscriptions(merged);
 
-                if (Immediacy == FirstValueEnum.OnValueUpdate)
+                if (Immediacy == FirstValueImmediacy.OnValueUpdate)
                 {
                     var connectedDevices = ConnectApi.ListConnectedDevices();
                     ResourceValueObservers.Where(v => v.Id == id).ToList().ForEach(v => v.ResourceValueSubscriptions.ToList().ForEach(s =>
@@ -180,11 +181,12 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
                                 .ForEach(m =>
                                 {
                                     m.ListResources()
-                                        .ForEach(r =>
+                                        .ToList()
+                                        .ForEach(async r =>
                                         {
                                             if (!s.ResourcePaths.Any() || s.ResourcePaths.Any(p => p.MatchWithWildcard(r.Path)))
                                             {
-                                                ConnectApi.AddResourceSubscription(r.DeviceId, r.Path);
+                                                await ConnectApi.AddResourceSubscriptionAsync(r.DeviceId, r.Path);
                                             }
                                         });
                                 });
@@ -193,21 +195,21 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
             }
         }
 
-        private ResourceValuesObserver ResourceValues(ResourceValuesObserver observer, FirstValueEnum immediacy)
+        protected virtual async Task<ResourceValuesObserver> ResourceValuesCoreAsync(ResourceValuesObserver observer, FirstValueImmediacy immediacy)
         {
             Immediacy = immediacy;
-            observer.OnSubAdded += (id) => ConstructPresubArray(id);
+            observer.OnFilterAdded += (id) => ConstructPresubscriptionArray(id);
             observer.OnUnsubscribed += (id) => UnsubscribeSubscriptions(id);
             ResourceValueObservers.Add(observer);
-            ConstructPresubArray(observer.Id);
-            StartNotifications();
+            ConstructPresubscriptionArray(observer.Id);
+            await StartNotificationsAsync();
             return observer;
         }
 
         private void UnsubscribeSubscriptions(string id)
         {
             ResourceValueObservers.RemoveAll(d => d.Id == id);
-            ConstructPresubArray(id);
+            ConstructPresubscriptionArray(id);
         }
     }
 }

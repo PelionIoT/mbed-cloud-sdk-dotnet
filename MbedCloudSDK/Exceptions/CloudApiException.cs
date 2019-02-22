@@ -17,7 +17,7 @@ namespace MbedCloudSDK.Exceptions
         /// <param name="errorCode">Error code.</param>
         /// <param name="message">Message.</param>
         public CloudApiException(int errorCode, string message)
-            : base(message)
+            : base($"{errorCode} - {message}")
         {
             ErrorCode = errorCode;
         }
@@ -29,7 +29,7 @@ namespace MbedCloudSDK.Exceptions
         /// <param name="message">Message.</param>
         /// <param name="errorContent">Error content.</param>
         public CloudApiException(int errorCode, string message, dynamic errorContent = null)
-            : base(message)
+            : base($"{errorCode} - {message}")
         {
             ErrorCode = errorCode;
             ErrorContent = errorContent;
