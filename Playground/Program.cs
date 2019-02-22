@@ -16,77 +16,58 @@ namespace Playground
 {
     class Program
     {
-        private const string Url = "wss://api-ns-websocket.mbedcloudintegration.net/v2/notification/websocket-connect";
-        private const string ApiKey = "ak_1MDE2ODVjNzVjOTdjMjJjMTFjMDQ0ZDUzMDAwMDAwMDA0168b97683d6f65f42b0f3e100000000lt4PeToNqJ3ZvguwsxoxH7tadJci8qYv";
-        private const string Host = "https://api-ns-websocket.mbedcloudintegration.net";
-
         static async Task Main(string[] args)
         {
             try
             {
-                var connect = new ConnectApi(new Config(ApiKey, Host)
+                using (var connect = new ConnectApi(new Config()
                 {
                     ForceClear = true,
                     LogLevel = LogLevel.ALL,
-                });
+                }))
+                {
 
-                // Console.WriteLine("----------------- start -----------------------");
+                    // Console.WriteLine("----------------- start -----------------------");
 
-                // await connect.StartNotificationsAsync();
+                    // await connect.StartNotificationsAsync();
 
-                // Console.WriteLine("------------------ start ----------------------");
+                    // Console.WriteLine("------------------ start ----------------------");
 
-                // await connect.StartNotificationsAsync();
+                    // await connect.StartNotificationsAsync();
 
-                // Console.WriteLine("------------------ start ----------------------");
+                    // Console.WriteLine("------------------ start ----------------------");
 
-                // await connect.StartNotificationsAsync();
+                    // await connect.StartNotificationsAsync();
 
-                // Console.WriteLine("------------------ stop ----------------------");
+                    // Console.WriteLine("------------------ stop ----------------------");
 
-                // await connect.StopNotificationsAsync();
+                    // await connect.StopNotificationsAsync();
 
-                // Console.WriteLine("------------------- stop ---------------------");
+                    // Console.WriteLine("------------------- stop ---------------------");
 
-                // await connect.StopNotificationsAsync();
+                    // await connect.StopNotificationsAsync();
 
-                // Console.WriteLine("-------------------- start --------------------");
+                    // Console.WriteLine("-------------------- start --------------------");
 
-                // await connect.StartNotificationsAsync();
+                    // await connect.StartNotificationsAsync();
 
-                // Console.WriteLine("-------------------- start --------------------");
+                    // Console.WriteLine("-------------------- start --------------------");
 
-                // await connect.StartNotificationsAsync();
+                    // await connect.StartNotificationsAsync();
 
-                // Console.WriteLine("-------------------- subscribe --------------------");
+                    Console.WriteLine("-------------------- subscribe --------------------");
 
-                // var myDevice = connect.ListConnectedDevices().FirstOrDefault();
+                    var myDevice = connect.ListConnectedDevices().FirstOrDefault();
 
-                // var obs = await connect.Subscribe.ResourceValuesAsync(myDevice.Id, new List<string> { "/3200/0/5501" });
+                    var obs = await connect.Subscribe.ResourceValuesAsync(myDevice.Id, new List<string> { "/3202/0/5600" });
 
-                // var regUpdates = await connect.Subscribe.DeviceEventsAsync();
-
-                // regUpdates.OnNotify += message => Console.WriteLine(message);
-
-                // obs.OnNotify += message => Console.WriteLine(message);
-
-                // Console.ReadLine();
-                var observer = new TestObserver<string, string>();
-                observer.Notify("a");
-                var a = observer.NextAsync();
-                var b = observer.NextAsync();
-                var c = observer.NextAsync();
-                observer.Notify("b");
-                var d = observer.NextAsync();
-                observer.Notify("c");
-                observer.Notify("d");
-                observer.Notify("e");
-                var e = observer.NextAsync();
-                Console.WriteLine($"a - {a.Result}");
-                Console.WriteLine($"b - {b.Result}");
-                Console.WriteLine($"c - {c.Result}");
-                Console.WriteLine($"d - {d.Result}");
-                Console.WriteLine($"e - {e.Result}");
+                    for (int i = 0; i < 10; i++)
+                    {
+                        Console.WriteLine("looping...");
+                        Console.WriteLine(await obs.NextAsync());
+                        Console.WriteLine(i);
+                    }
+                }
             }
             catch (Exception e)
             {
