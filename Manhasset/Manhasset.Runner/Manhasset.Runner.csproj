@@ -17,7 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Manhasset.Generator\Manhasset.Generator.csproj" />
     <ProjectReference Include="..\Manhasset.Core\Manhasset.Core.csproj" />
-    <ProjectReference Include="..\..\..\src\MbedCloudSDK.csproj" />
+    <ProjectReference Include="..\..\src\MbedCloudSDK.csproj" />
   </ItemGroup>
 
 </Project>
