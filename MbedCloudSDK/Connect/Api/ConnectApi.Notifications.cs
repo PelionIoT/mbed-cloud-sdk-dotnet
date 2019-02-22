@@ -33,7 +33,6 @@ namespace MbedCloudSDK.Connect.Api
     /// </summary>
     public partial class ConnectApi
     {
-        private static string WebsocketUrl = "wss://api-ns-websocket.mbedcloudintegration.net/v2/notification/websocket-connect";
         private Task notificationTask;
         private CancellationTokenSource cancellationToken;
         private ClientWebSocket webSocketClient;
@@ -60,7 +59,27 @@ namespace MbedCloudSDK.Connect.Api
                 }
             }
         }
-        private int bufferLength = 2048;
+        private int _notificationsStarted = 0;
+        public bool NotificationsStarted
+        {
+            get
+            {
+                return (Interlocked.CompareExchange(ref _notificationsStarted, 1, 1)) == 1;
+            }
+            set
+            {
+                if (value)
+                {
+                    Interlocked.CompareExchange(ref _notificationsStarted, 1, 0);
+                }
+                else
+                {
+                    Interlocked.CompareExchange(ref _notificationsStarted, 0, 1);
+                }
+            }
+        }
+        private int bufferLength = 1024;
+        private int count = 0;
 
         /// <summary>
         /// Notify
@@ -150,32 +169,6 @@ namespace MbedCloudSDK.Connect.Api
             }
         }
 
-        private void Notifications()
-        {
-            while (!cancellationToken.IsCancellationRequested)
-            {
-                try
-                {
-                    if (webSocketClient.State == WebSocketState.Open || webSocketClient.State == WebSocketState.CloseSent)
-                    {
-                        // can't have an async method in a task action because it will return immediatley
-                        var message = AsyncHelper.RunSync(() => webSocketClient.ReceiveAsync(receivedBuffer, CancellationToken.None));
-                        log.Debug($"websocket message - {message.DebugDump()}");
-                        AsyncHelper.RunSync(() => handleMessageAsync(message));
-                    }
-                    else
-                    {
-                        log.Warn($"websocket is in an invalid state to receive - {webSocketClient.State}");
-                    }
-                }
-                catch (WebSocketException e)
-                {
-                    log.Error(e.Message, e);
-                    throw;
-                }
-            }
-        }
-
         /// <summary>
         /// Starts the notifications task.
         /// </summary>
@@ -193,51 +186,103 @@ namespace MbedCloudSDK.Connect.Api
         /// </example>
         public async Task StartNotificationsAsync()
         {
-            if (DeliveryMethod == null)
+            if (!NotificationsStarted)
             {
-                DeliveryMethod = NotificationDeliveryMethod.DeliveryMethod.CLIENT_INITIATED;
-            }
-
-            if (DeliveryMethod == NotificationDeliveryMethod.DeliveryMethod.SERVER_INITIATED)
-            {
-                throw new CloudApiException(400, "cannot call StartNotificationsAsync when delivery method is Server Initiated");
-            }
-
-            if (GetWebhook() != null && !forceClear)
-            {
-                throw new CloudApiException(400, "cannot start notifications as a webhook is already in use");
-            }
-
-            try
-            {
-                if (notificationTask?.Status != TaskStatus.Running)
+                if (DeliveryMethod == null)
                 {
-                    if (forceClear)
+                    DeliveryMethod = NotificationDeliveryMethod.DeliveryMethod.CLIENT_INITIATED;
+                }
+
+                if (DeliveryMethod == NotificationDeliveryMethod.DeliveryMethod.SERVER_INITIATED)
+                {
+                    throw new CloudApiException(400, "cannot call StartNotificationsAsync when delivery method is Server Initiated");
+                }
+
+                if (GetWebhook() != null && !forceClear)
+                {
+                    throw new CloudApiException(400, "cannot start notifications as a webhook is already in use");
+                }
+
+                try
+                {
+                    NotificationsStarted = true;
+                    if (notificationTask?.Status != TaskStatus.Running || notificationTask?.Status != TaskStatus.WaitingToRun)
                     {
-                        ForceClear();
+                        if (forceClear)
+                        {
+                            ForceClear();
+                        }
+
+                        log.Info("starting notifications...");
+
+                        // dispose of old cancellation token if instance hasn't been torn down
+                        cancellationToken?.Dispose();
+                        cancellationToken = new CancellationTokenSource();
+
+                        await InitiateWebsocket();
+
+                        // start a new task
+                        notificationTask = Task.Factory.StartNew(_ =>
+                        {
+                            var dynamicBuffer = new List<byte>();
+                            while (!cancellationToken.IsCancellationRequested)
+                            {
+                                try
+                                {
+                                    if (webSocketClient.State == WebSocketState.Open || webSocketClient.State == WebSocketState.CloseSent)
+                                    {
+                                        // can't have an async method in a task action because it will return immediatley
+                                        var message = AsyncHelper.RunSync(() => webSocketClient.ReceiveAsync(receivedBuffer, CancellationToken.None));
+                                        if (message.EndOfMessage)
+                                        {
+                                            if (dynamicBuffer.Any())
+                                            {
+                                                // add end of message first
+                                                dynamicBuffer.AddRange(receivedBuffer.Skip(receivedBuffer.Offset).Take(message.Count));
+                                                // we got a big message
+                                                AsyncHelper.RunSync(() => handleMessageAsync(message, dynamicBuffer));
+                                                dynamicBuffer.Clear();
+                                            }
+                                            else
+                                            {
+                                                // can decode straight
+                                                AsyncHelper.RunSync(() => handleMessageAsync(message));
+                                            }
+                                        }
+                                        else
+                                        {
+                                            dynamicBuffer.AddRange(receivedBuffer.Skip(receivedBuffer.Offset).Take(message.Count));
+                                        }
+
+                                    }
+                                    else if (webSocketClient.State == WebSocketState.Connecting)
+                                    {
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        log.Warn($"websocket is in an invalid state to receive - {webSocketClient.State}");
+                                    }
+                                }
+                                catch (WebSocketException e)
+                                {
+                                    log.Error(e.Message, e);
+                                    throw;
+                                }
+                            }
+                        }, null, cancellationToken.Token, TaskCreationOptions.LongRunning, TaskScheduler.Default);
                     }
-
-                    log.Info("starting notifications...");
-
-                    // dispose of old cancellation token if instance hasn't been torn down
-                    cancellationToken?.Dispose();
-                    cancellationToken = new CancellationTokenSource();
-
-                    await InitiateWebsocket();
-
-                    // start a new task
-                    notificationTask = new Task(Notifications, cancellationToken.Token, TaskCreationOptions.LongRunning);
-                    notificationTask.Start();
+                    else
+                    {
+                        log.Debug("notifications already started");
+                    }
                 }
-                else
+                catch (InvalidOperationException e)
                 {
-                    log.Debug("notifications already started");
+                    NotificationsStarted = false;
+                    log.Error(e.Message, e);
+                    throw;
                 }
-            }
-            catch (InvalidOperationException e)
-            {
-                log.Error(e.Message, e);
-                throw;
             }
         }
 
@@ -301,10 +346,12 @@ namespace MbedCloudSDK.Connect.Api
                         }
                     }
 
-                    if (forceClear)
+                    if (!skipCleanup)
                     {
-                        // TODO tear down channels and subscriptions
+                        CleanUp();
                     }
+
+                    NotificationsStarted = false;
                 }
             }
         }
@@ -313,7 +360,7 @@ namespace MbedCloudSDK.Connect.Api
         {
             try
             {
-                await WebsocketApi.GetWebsocketAsync();
+                await NotificationsApi.GetWebsocketAsync();
             }
             catch (mds.Client.ApiException getException) when (getException.ErrorCode == 404)
             {
@@ -325,18 +372,16 @@ namespace MbedCloudSDK.Connect.Api
                 log.Error(e.Message, e);
                 throw;
             }
-            finally
-            {
-                log.Debug("websocket channel exists so connect websocket");
-                await StartWebsocketAsync();
-            }
+
+            log.Debug("websocket channel exists so connect websocket");
+            await StartWebsocketAsync();
         }
 
         private async Task RegisterWebSocket()
         {
             try
             {
-                await WebsocketApi.RegisterWebsocketAsync();
+                await NotificationsApi.RegisterWebsocketAsync();
             }
             catch (mds.Client.ApiException putException) when (putException.ErrorCode == 400)
             {
@@ -382,7 +427,7 @@ namespace MbedCloudSDK.Connect.Api
             // connect to url
             if (webSocketClient.State != WebSocketState.Open && webSocketClient.State != WebSocketState.CloseReceived)
             {
-                await webSocketClient.ConnectAsync(new Uri(WebsocketUrl), CancellationToken.None);
+                await webSocketClient.ConnectAsync(new Uri(websocketUrl), CancellationToken.None);
             }
         }
 
@@ -393,7 +438,15 @@ namespace MbedCloudSDK.Connect.Api
             // close the websocket
             if (webSocketClient.State == WebSocketState.Open || webSocketClient.State == WebSocketState.CloseReceived || webSocketClient.State == WebSocketState.CloseSent)
             {
-                await webSocketClient.CloseAsync(WebSocketCloseStatus.NormalClosure, "", CancellationToken.None);
+                try
+                {
+                    await webSocketClient.CloseAsync(WebSocketCloseStatus.NormalClosure, "", CancellationToken.None);
+                }
+                catch (WebSocketException e)
+                {
+                    // connection was closed without completing handshake
+                    log.Error(e);
+                }
             }
 
             webSocketClient.Dispose();
@@ -401,7 +454,7 @@ namespace MbedCloudSDK.Connect.Api
             // delete the channel
             try
             {
-                await WebsocketApi.DeleteWebsocketAsync();
+                await NotificationsApi.DeleteWebsocketAsync();
             }
             catch(mds.Client.ApiException e)
             {
@@ -416,7 +469,7 @@ namespace MbedCloudSDK.Connect.Api
             IsClosing = false;
         }
 
-        private async Task handleMessageAsync(WebSocketReceiveResult message)
+        private async Task handleMessageAsync(WebSocketReceiveResult message, List<byte> dynamicBuffer = null)
         {
             if (message.MessageType == WebSocketMessageType.Close)
             {
@@ -461,7 +514,7 @@ namespace MbedCloudSDK.Connect.Api
                 // we recieved a message
                 try
                 {
-                    var messageBytes = receivedBuffer.Skip(receivedBuffer.Offset).Take(message.Count).ToArray();
+                    var messageBytes = dynamicBuffer?.ToArray() ?? receivedBuffer.Skip(receivedBuffer.Offset).Take(message.Count).ToArray();
                     var messageString = Encoding.UTF8.GetString(messageBytes);
                     var notification = NotificationMessage.Map(JsonConvert.DeserializeObject<mds.Model.NotificationMessage>(messageString));
                     NotifyCore(notification);
@@ -475,13 +528,17 @@ namespace MbedCloudSDK.Connect.Api
             }
         }
 
-        /// <summary>
-        /// Check if  notifications have been started
-        /// </summary>
-        /// <returns>True if started</returns>
-        public bool IsNotificationsStarted()
+        private void CleanUp()
         {
-            return notificationTask?.Status == TaskStatus.Running;
+            try
+            {
+                DeleteSubscriptions();
+            }
+            catch (CloudApiException e)
+            {
+                // don't care about api exceptions here, so just log them
+                log.Error(e);
+            }
         }
 
         public void StopNotifications()

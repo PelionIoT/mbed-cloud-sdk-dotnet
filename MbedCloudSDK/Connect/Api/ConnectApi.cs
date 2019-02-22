@@ -46,6 +46,8 @@ namespace MbedCloudSDK.Connect.Api
     {
         private bool disposed;
 
+        private static string websocketUrl;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectApi"/> class.
         /// </summary>
@@ -65,6 +67,7 @@ namespace MbedCloudSDK.Connect.Api
         {
             SetUpApi(config);
             Subscribe = new Subscribe.Subscribe(this);
+            websocketUrl = $"wss://{config.Host.Replace("https://", "")}/v2/notification/websocket-connect";
         }
 
         /// <summary>
@@ -177,8 +180,6 @@ namespace MbedCloudSDK.Connect.Api
         /// </value>
         internal SubscriptionsApi SubscriptionsApi { get; set; }
 
-        internal WebsocketApi WebsocketApi { get; set; }
-
         /// <summary>
         /// Get meta data for the last Mbed Cloud API call
         /// </summary>
@@ -213,7 +214,7 @@ namespace MbedCloudSDK.Connect.Api
             disposed = true;
             if (disposing)
             {
-                cancellationToken?.Dispose();
+                StopNotifications();
             }
         }
 
@@ -300,7 +301,6 @@ namespace MbedCloudSDK.Connect.Api
             AccountApi = new statistics.Api.AccountApi(statsConfig);
             NotificationsApi = new NotificationsApi(mdsConfig);
             DeviceRequestsApi = new DeviceRequestsApi(mdsConfig);
-            WebsocketApi = new WebsocketApi(mdsConfig);
         }
     }
 }
