@@ -5,7 +5,11 @@
 namespace MbedCloudSDK.Connect.Api
 {
     using System;
+    using System.ComponentModel;
+    using System.Threading.Tasks;
+    using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Connect.Model.Webhook;
+    using NotificationDeliveryMethod = MbedCloudSDK.Connect.Model.Enums;
     using MbedCloudSDK.Exceptions;
 
     /// <summary>
@@ -70,21 +74,44 @@ namespace MbedCloudSDK.Connect.Api
         /// </code>
         /// </example>
         /// <exception cref="CloudApiException">CloudApiException</exception>
-        public void UpdateWebhook(Webhook webhook)
+        public async Task UpdateWebhookAsync(Webhook webhook)
         {
+            if (DeliveryMethod == null)
+            {
+                DeliveryMethod = NotificationDeliveryMethod.DeliveryMethod.SERVER_INITIATED;
+            }
+
+            if (DeliveryMethod == NotificationDeliveryMethod.DeliveryMethod.CLIENT_INITIATED)
+            {
+                throw new CloudApiException(400, "cannot update webhook when delivery method is Client Initiated");
+            }
+
             try
             {
-                if (Config.ForceClear)
+                if (forceClear)
                 {
-                    StopNotifications();
+                    await StopNotificationsAsync();
                 }
 
-                NotificationsApi.RegisterWebhook(Webhook.MapToApiWebook(webhook));
+                var currentWebhook = GetWebhook();
+
+                if (currentWebhook.Url != webhook.Url)
+                {
+                    await NotificationsApi.RegisterWebhookAsync(Webhook.MapToApiWebook(webhook));
+                }
             }
             catch (mds.Client.ApiException ex)
             {
                 throw new CloudApiException(ex.ErrorCode, ex.Message, ex.ErrorContent);
             }
+        }
+
+        /// <summary>Obsolote, do not use.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Please use async version Update webhook async")]
+        public void UpdateWebhook(Webhook webhook)
+        {
+            AsyncHelper.RunSync(() => UpdateWebhookAsync(webhook));
         }
 
         /// <summary>

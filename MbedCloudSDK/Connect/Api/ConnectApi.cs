@@ -13,11 +13,15 @@ namespace MbedCloudSDK.Connect.Api
     using device_directory.Client;
     using Mbed.Cloud.Foundation.Common;
     using MbedCloudSDK.Common;
+    using MbedCloudSDK.Connect.Model;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
+    using NotificationDeliveryMethod = MbedCloudSDK.Connect.Model.Enums;
     using MbedCloudSDK.Connect.Model.Notifications;
     using MbedCloudSDK.Connect.Model.Resource;
     using mds.Api;
     using statistics.Api;
+    using System.Collections.Concurrent;
+    using Nito.AsyncEx;
 
     /// <summary>
     /// Connect Api
@@ -38,20 +42,21 @@ namespace MbedCloudSDK.Connect.Api
     /// </code>
     /// </example>
     /// </summary>
-    public partial class ConnectApi : BaseApi, IDisposable
+    public partial class ConnectApi : Api, IDisposable
     {
-        private statistics.Api.AccountApi accountApi;
-        private string auth;
-        private CancellationTokenSource cancellationToken;
-        private device_directory.Api.DefaultApi deviceDirectoryApi;
-        private DeviceRequestsApi deviceRequestsApi;
         private bool disposed;
-        private EndpointsApi endpointsApi;
-        private NotificationsApi notificationsApi;
-        private Task notificationTask;
-        private ResourcesApi resourcesApi;
-        private statistics.Api.StatisticsApi statisticsApi;
-        private SubscriptionsApi subscriptionsApi;
+
+        private static string websocketUrl;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConnectApi"/> class.
+        /// </summary>
+        /// <param name="config"><see cref="Config"/></param>
+        public ConnectApi(ConnectApiConfig config)
+            : this(config as Config)
+        {
+            skipCleanup = config.SkipCleanup;
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectApi"/> class.
@@ -60,9 +65,9 @@ namespace MbedCloudSDK.Connect.Api
         public ConnectApi(Config config)
             : base(config)
         {
-            ResourceSubscribtions = new Dictionary<string, Resource>();
             SetUpApi(config);
             Subscribe = new Subscribe.Subscribe(this);
+            websocketUrl = $"wss://{config.Host.Replace("https://", "")}/v2/notification/websocket-connect";
         }
 
         /// <summary>
@@ -75,29 +80,41 @@ namespace MbedCloudSDK.Connect.Api
         internal ConnectApi(Config config, statistics.Client.Configuration statsConfig = null, mds.Client.Configuration mdsConfig = null, device_directory.Client.Configuration deviceConfig = null)
             : base(config)
         {
-            ResourceSubscribtions = new Dictionary<string, Resource>();
+            forceClear = config.ForceClear == true;
+            autostartNotifications = config.AutostartNotifications != false;
+            if (this.autostartNotifications == true)
+            {
+                DeliveryMethod = NotificationDeliveryMethod.DeliveryMethod.CLIENT_INITIATED;
+            }
+            ResourceSubscribtions = new ConcurrentDictionary<string, Resource>();
             SetUpApi(config, statsConfig, mdsConfig, deviceConfig);
         }
 
         /// <summary>
         /// Gets async responses
         /// </summary>
-        public Dictionary<string, AsyncProducerConsumerCollection<string>> AsyncResponses { get; } = new Dictionary<string, AsyncProducerConsumerCollection<string>>();
+        public ConcurrentDictionary<string, AsyncCollection<string>> AsyncResponses { get; } = new ConcurrentDictionary<string, AsyncCollection<string>>();
 
         /// <summary>
         /// Gets NotificationQueue
         /// </summary>
-        public Dictionary<string, AsyncProducerConsumerCollection<string>> NotificationQueue { get; } = new Dictionary<string, AsyncProducerConsumerCollection<string>>();
+        public ConcurrentDictionary<string, AsyncCollection<string>> NotificationQueue { get; } = new ConcurrentDictionary<string, AsyncCollection<string>>();
 
         /// <summary>
         /// Gets resource Subscriptions
         /// </summary>
-        public Dictionary<string, Resource> ResourceSubscribtions { get; } = new Dictionary<string, Resource>();
+        public ConcurrentDictionary<string, Resource> ResourceSubscribtions { get; } = new ConcurrentDictionary<string, Resource>();
 
         /// <summary>
         /// Gets or sets the SubscribeManager
         /// </summary>
         public MbedCloudSDK.Connect.Api.Subscribe.Subscribe Subscribe { get; set; }
+
+        public NotificationDeliveryMethod.DeliveryMethod? DeliveryMethod { get; private set; }
+
+        private readonly bool forceClear;
+        private readonly bool autostartNotifications;
+        private readonly bool skipCleanup;
 
         /// <summary>
         /// Gets or sets the account API.
@@ -105,7 +122,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <value>
         /// The account API.
         /// </value>
-        internal AccountApi AccountApi { get => accountApi; set => accountApi = value; }
+        internal AccountApi AccountApi { get; set; }
 
         /// <summary>
         /// Gets or sets the device directory API.
@@ -113,7 +130,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <value>
         /// The device directory API.
         /// </value>
-        internal DefaultApi DeviceDirectoryApi { get => deviceDirectoryApi; set => deviceDirectoryApi = value; }
+        internal DefaultApi DeviceDirectoryApi { get; set; }
 
         /// <summary>
         /// Gets or sets the device requests API.
@@ -121,7 +138,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <value>
         /// The device requests API.
         /// </value>
-        internal DeviceRequestsApi DeviceRequestsApi { get => deviceRequestsApi; set => deviceRequestsApi = value; }
+        internal DeviceRequestsApi DeviceRequestsApi { get; set; }
 
         /// <summary>
         /// Gets or sets the endpoints API.
@@ -129,7 +146,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <value>
         /// The endpoints API.
         /// </value>
-        internal EndpointsApi EndpointsApi { get => endpointsApi; set => endpointsApi = value; }
+        internal EndpointsApi EndpointsApi { get; set; }
 
         /// <summary>
         /// Gets or sets the notifications API.
@@ -137,7 +154,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <value>
         /// The notifications API.
         /// </value>
-        internal NotificationsApi NotificationsApi { get => notificationsApi; set => notificationsApi = value; }
+        internal NotificationsApi NotificationsApi { get; set; }
 
         /// <summary>
         /// Gets or sets the resources API.
@@ -145,7 +162,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <value>
         /// The resources API.
         /// </value>
-        internal ResourcesApi ResourcesApi { get => resourcesApi; set => resourcesApi = value; }
+        internal ResourcesApi ResourcesApi { get; set; }
 
         /// <summary>
         /// Gets or sets the statistics API.
@@ -153,7 +170,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <value>
         /// The statistics API.
         /// </value>
-        internal StatisticsApi StatisticsApi { get => statisticsApi; set => statisticsApi = value; }
+        internal StatisticsApi StatisticsApi { get; set; }
 
         /// <summary>
         /// Gets or sets the subscriptions API.
@@ -161,7 +178,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <value>
         /// The subscriptions API.
         /// </value>
-        internal SubscriptionsApi SubscriptionsApi { get => subscriptionsApi; set => subscriptionsApi = value; }
+        internal SubscriptionsApi SubscriptionsApi { get; set; }
 
         /// <summary>
         /// Get meta data for the last Mbed Cloud API call
@@ -197,7 +214,7 @@ namespace MbedCloudSDK.Connect.Api
             disposed = true;
             if (disposing)
             {
-                cancellationToken?.Dispose();
+                StopNotifications();
             }
         }
 
@@ -235,7 +252,7 @@ namespace MbedCloudSDK.Connect.Api
         private void SetUpApi(Config config, statistics.Client.Configuration statsConfig = null, mds.Client.Configuration mdsConfig = null, Configuration deviceConfig = null)
         {
             const string dateFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
-            auth = $"{config.AuthorizationPrefix} {config.ApiKey}";
+            var auth = $"{config.AuthorizationPrefix} {config.ApiKey}";
 
             if (statsConfig == null)
             {

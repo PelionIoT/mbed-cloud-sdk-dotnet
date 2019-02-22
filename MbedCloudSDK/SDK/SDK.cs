@@ -15,12 +15,31 @@ namespace Mbed.Cloud
         /// <summary>
         /// Initializes a new instance of the <see cref="SDK" /> class.
         /// </summary>
+        public SDK()
+        {
+            Config = new Config();
+            Client = new Client(Config);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SDK" /> class.
+        /// </summary>
+        /// <param name="config">The configuration.</param>
+        public SDK(Config config)
+        {
+            Config = config;
+            Client = new Client(Config);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SDK" /> class.
+        /// </summary>
         /// <param name="config">The configuration.</param>
         /// <param name="client">The client.</param>
-        public SDK(Config config = null, Client client = null)
+        public SDK(Config config, Client client)
         {
-            Config = config ?? new Config();
-            Client = client ?? new Client(Config);
+            Config = config;
+            Client = client;
         }
 
         /// <summary>

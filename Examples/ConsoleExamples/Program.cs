@@ -7,6 +7,7 @@ using ConsoleExamples.Examples.Update;
 using Mbed.Cloud.Foundation.Common;
 using MbedCloudSDK.Common;
 using System;
+using System.Threading.Tasks;
 
 namespace ConsoleExamples
 {
@@ -19,7 +20,7 @@ namespace ConsoleExamples
         private static UpdateExamples updateExamples;
         private static SubscribeExamples subscribeExamples;
 
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var apiKey = Environment.GetEnvironmentVariable("MBED_CLOUD_SDK_API_KEY");
             if (string.IsNullOrEmpty(apiKey))
@@ -35,7 +36,11 @@ namespace ConsoleExamples
                 host = "https://api.us-east-1.mbedcloud.com";
             }
 
-            var config = new Config(apiKey: apiKey, host: host, forceClear: true, autostartNotifications: true);
+            var config = new Config(apiKey: apiKey, host: host)
+            {
+                ForceClear = true,
+                AutostartNotifications = true,
+            };
 
             accountManagementExamples = new AccountManagementExamples(config);
             certificateExamples = new CertificateExamples(config);
@@ -58,7 +63,7 @@ namespace ConsoleExamples
                 }
             }
 
-            connectExamples.api.StopNotifications();
+            await connectExamples.api.StopNotificationsAsync();
             Console.WriteLine(" Closing application");
         }
 
@@ -200,11 +205,8 @@ namespace ConsoleExamples
                 case 25:
                     await connectExamples.SubscribeAsync();
                     break;
-                case 26:
-                    connectExamples.SubscribeCallback();
-                    break;
                 case 27:
-                    connectExamples.RegisterWebhook();
+                    await connectExamples.RegisterWebhookAsync();
                     break;
                 case 28:
                     deviceDirectoryExamples.CreateDevice();
@@ -252,7 +254,7 @@ namespace ConsoleExamples
                     subscribeExamples.SubscribeToDeviceIdAndDeviceEvent().Wait();
                     break;
                 case 43:
-                    subscribeExamples.SubscribeWithMultipleObservers();
+                    await subscribeExamples.SubscribeWithMultipleObserversAsync();
                     break;
                 case 44:
                     await subscribeExamples.ResourceValues();

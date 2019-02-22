@@ -29,7 +29,7 @@ namespace MbedCloudSDK.Certificates.Api
     /// var connectApi = new CertificatesApi(config);
     /// </code>
     /// </example>
-    public class CertificatesApi : BaseApi
+    public class CertificatesApi : Api
     {
         private string auth;
         private DeveloperApi developerApi;

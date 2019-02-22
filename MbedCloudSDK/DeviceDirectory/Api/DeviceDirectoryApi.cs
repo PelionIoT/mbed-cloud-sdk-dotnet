@@ -25,7 +25,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
     /// var deviceApi = new DeviceDirectoryApi(config);
     /// </code>
     /// </example>
-    public partial class DeviceDirectoryApi : BaseApi
+    public partial class DeviceDirectoryApi : Api
     {
         private DefaultApi api;
 

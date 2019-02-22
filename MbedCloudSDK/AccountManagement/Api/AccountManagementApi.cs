@@ -22,7 +22,7 @@ namespace MbedCloudSDK.AccountManagement.Api
     /// var accountApi = new AccountManagementApi(config);
     /// </code>
     /// </example>
-    public partial class AccountManagementApi : BaseApi
+    public partial class AccountManagementApi : Api
     {
         /// <summary>
         /// The admin API

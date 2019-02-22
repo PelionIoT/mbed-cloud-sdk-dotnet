@@ -28,7 +28,7 @@ namespace MbedCloudSDK.Enrollment.Api
     /// var enrollmentApi = new EnrollmentApi(config);
     /// </code>
     /// </example>
-    public partial class EnrollmentApi : BaseApi
+    public partial class EnrollmentApi : Api
     {
         private PublicAPIApi api;
 

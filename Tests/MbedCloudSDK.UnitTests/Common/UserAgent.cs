@@ -19,7 +19,7 @@ namespace MbedCloudSDK.UnitTests.Common
         [Test]
         public void TestUserAgent()
         {
-            TestUserAgent(BaseApi.UserAgent);
+            TestUserAgent(Api.UserAgent);
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace MbedCloudSDK.UnitTests.Common
             var iamConfig = new iam.Client.Configuration
             {
                 BasePath = "/",
-                UserAgent = BaseApi.UserAgent,
+                UserAgent = Api.UserAgent,
             };
 
             var client = iamConfig.CreateApiClient();

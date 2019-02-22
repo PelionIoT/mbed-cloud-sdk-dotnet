@@ -103,15 +103,19 @@ Class | Method | HTTP request | Description
 *DeviceRequestsApi* | [**CreateAsyncRequest**](docs/DeviceRequestsApi.md#createasyncrequest) | **POST** /v2/device-requests/{device-id} | Send an async request to device
 *EndpointsApi* | [**GetConnectedEndpoints**](docs/EndpointsApi.md#getconnectedendpoints) | **GET** /v2/endpoints | (DEPRECATED) List registered endpoints. The number of returned endpoints is currently limited to 200.
 *EndpointsApi* | [**GetEndpointResources**](docs/EndpointsApi.md#getendpointresources) | **GET** /v2/endpoints/{device-id} | List the resources on an endpoint
+*NotificationsApi* | [**ConnectWebsocket**](docs/NotificationsApi.md#connectwebsocket) | **GET** /v2/notification/websocket-connect | Open the websocket.
 *NotificationsApi* | [**DeleteLongPollChannel**](docs/NotificationsApi.md#deletelongpollchannel) | **DELETE** /v2/notification/pull | Delete notification Long Poll channel
+*NotificationsApi* | [**DeleteWebsocket**](docs/NotificationsApi.md#deletewebsocket) | **DELETE** /v2/notification/websocket | Delete websocket channel.
 *NotificationsApi* | [**DeregisterWebhook**](docs/NotificationsApi.md#deregisterwebhook) | **DELETE** /v2/notification/callback | Delete callback URL
 *NotificationsApi* | [**GetWebhook**](docs/NotificationsApi.md#getwebhook) | **GET** /v2/notification/callback | Check callback URL
+*NotificationsApi* | [**GetWebsocket**](docs/NotificationsApi.md#getwebsocket) | **GET** /v2/notification/websocket | Get websocket channel information.
 *NotificationsApi* | [**LongPollNotifications**](docs/NotificationsApi.md#longpollnotifications) | **GET** /v2/notification/pull | Get notifications using Long Poll
 *NotificationsApi* | [**RegisterWebhook**](docs/NotificationsApi.md#registerwebhook) | **PUT** /v2/notification/callback | Register a callback URL
+*NotificationsApi* | [**RegisterWebsocket**](docs/NotificationsApi.md#registerwebsocket) | **PUT** /v2/notification/websocket | Register a websocket channel
 *ResourcesApi* | [**DeleteResourcePath**](docs/ResourcesApi.md#deleteresourcepath) | **DELETE** /v2/endpoints/{device-id}/{resourcePath} | Delete a resource path
 *ResourcesApi* | [**ExecuteOrCreateResource**](docs/ResourcesApi.md#executeorcreateresource) | **POST** /v2/endpoints/{device-id}/{resourcePath} | Execute a function on a Resource or create new Object instance
 *ResourcesApi* | [**GetResourceValue**](docs/ResourcesApi.md#getresourcevalue) | **GET** /v2/endpoints/{device-id}/{resourcePath} | Read from a resource
-*ResourcesApi* | [**UpdateResourceValue**](docs/ResourcesApi.md#updateresourcevalue) | **PUT** /v2/endpoints/{device-id}/{resourcePath} | Write to a resource or use write-attributes for a resource
+*ResourcesApi* | [**UpdateResourceValue**](docs/ResourcesApi.md#updateresourcevalue) | **PUT** /v2/endpoints/{device-id}/{resourcePath} | Write to a Resource or use write-attributes (notification rules) for a Resource
 *SubscriptionsApi* | [**AddResourceSubscription**](docs/SubscriptionsApi.md#addresourcesubscription) | **PUT** /v2/subscriptions/{device-id}/{resourcePath} | Subscribe to a resource path
 *SubscriptionsApi* | [**CheckResourceSubscription**](docs/SubscriptionsApi.md#checkresourcesubscription) | **GET** /v2/subscriptions/{device-id}/{resourcePath} | Read subscription status
 *SubscriptionsApi* | [**DeleteEndpointSubscriptions**](docs/SubscriptionsApi.md#deleteendpointsubscriptions) | **DELETE** /v2/subscriptions/{device-id} | Delete subscriptions from an endpoint
@@ -139,6 +143,7 @@ Class | Method | HTTP request | Description
  - [Model.ResourcesData](docs/ResourcesData.md)
  - [Model.SubscriptionsList](docs/SubscriptionsList.md)
  - [Model.Webhook](docs/Webhook.md)
+ - [Model.WebsocketChannel](docs/WebsocketChannel.md)
 
 
 <a name="documentation-for-authorization"></a>

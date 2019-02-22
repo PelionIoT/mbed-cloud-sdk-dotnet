@@ -22,8 +22,8 @@ namespace MbedCloudSDK.Billing.Api
     /// <summary>
     /// Billing
     /// </summary>
-    /// <seealso cref="MbedCloudSDK.Common.BaseApi" />
-    public class BillingApi : BaseApi
+    /// <seealso cref="MbedCloudSDK.Common.Api" />
+    public class BillingApi : Api
     {
         private readonly DefaultApi api;
         private readonly IMapper mapper;
