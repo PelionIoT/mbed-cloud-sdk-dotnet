@@ -239,7 +239,7 @@ jobs:
          paths:
            - project/Deploy.Dockerfile
            - project/docs
-           - project/MbedCloudSDK
+           - project/src
            - project/scripts
            - project/Tests/MbedCloudSDK.UnitTests
            - project/build.cake
@@ -261,8 +261,8 @@ jobs:
          paths:
            - project/tools
            - project/packages
-           - project/MbedCloudSDK/obj
-           - project/MbedCloudSDK/bin/Release
+           - project/src/obj
+           - project/src/bin/Release
            - project/Tests/MbedCloudSDK.UnitTests/obj
            - project/Tests/MbedCloudSDK.UnitTests/bin
   build_documentation:
@@ -420,8 +420,8 @@ jobs:
       - run:
           name: commit changes
           command: |
-              git add MbedCloudSDK/SDK/Generated
-              git commit --message "Generated code" || true
+              git add src/SDK/Foundation
+              git commit --message "New Foundation interface changes" || true
               git push -q https://${GITHUB_TOKEN}@github.com/ARMmbed/${CIRCLE_PROJECT_REPONAME}.git ${CIRCLE_BRANCH}
   #############################################################################################
   #                                Common Release Jobs                                        #
@@ -458,7 +458,7 @@ jobs:
       - persist_to_workspace:
           root: ~/repo
           paths:
-            - project/MbedCloudSDK
+            - project/src
             - project/build.cake
             - project/build.sh
   commit_news_and_version:
@@ -526,7 +526,7 @@ jobs:
       - persist_to_workspace:
           root: ~/repo
           paths:
-            - project/MbedCloudSDK
+            - project/src
             - project/build.cake
             - project/build.sh
 version: 2

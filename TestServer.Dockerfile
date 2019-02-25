@@ -8,7 +8,7 @@ COPY ./tools ./tools
 RUN ./build.sh -Target=_clean_integration
 
 COPY ./Tests/MbedCloudSDK.IntegrationTests ./Tests/MbedCloudSDK.IntegrationTests
-COPY ./MbedCloudSDK ./MbedCloudSDK
+COPY ./src ./src
 
 RUN ./build.sh -Target=_restore_integration && ./build.sh -Target=_build_integration && ./build.sh -Target=_publish_integration
 

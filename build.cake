@@ -11,7 +11,7 @@ var configuration = Argument("configuration", "Release");
 //////////////////////////////////////////////////////////////////////
 // PARAMETERS
 //////////////////////////////////////////////////////////////////////
-var ciBuildProjects = new string[]{"./MbedCloudSDK/MbedCloudSDK.csproj", "./Tests/MbedCloudSDK.UnitTests/MbedCloudSDK.UnitTests.csproj"};
+var ciBuildProjects = new string[]{"./src/MbedCloudSDK.csproj", "./Tests/MbedCloudSDK.UnitTests/MbedCloudSDK.UnitTests.csproj"};
 var distDirectory = MakeAbsolute(new DirectoryPath("./dist")).FullPath;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -63,7 +63,7 @@ var run_unit_tests = Task("_run_unit_tests")
             NoBuild = true,
             NoRestore = true,
             Configuration = configuration,
-            ArgumentCustomization = args => args.Append("/p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutputFormat=lcov /p:CoverletOutput=./lcov.info /p:ExcludeByFile=\"../../MbedCloudSDK/Backends/**/*.cs\""),
+            ArgumentCustomization = args => args.Append("/p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutputFormat=lcov /p:CoverletOutput=./lcov.info /p:ExcludeByFile=\"../../src/Legacy/Backends/**/*.cs\""),
         });
     });
 
@@ -171,7 +171,7 @@ var Publish_integration = Task("Publish_Integration")
 
 var restore_sdk = Task("_restore_sdk")
     .Does(() => {
-        var path = MakeAbsolute(new DirectoryPath("./MbedCloudSDK/MbedCloudSDK.csproj"));
+        var path = MakeAbsolute(new DirectoryPath("./src/MbedCloudSDK.csproj"));
         DotNetCoreRestore(path.FullPath, new DotNetCoreRestoreSettings
         {
             Verbosity = DotNetCoreVerbosity.Minimal
@@ -180,7 +180,7 @@ var restore_sdk = Task("_restore_sdk")
 
 var build_sdk = Task("_build_sdk")
     .Does(() => {
-        var path = MakeAbsolute(new DirectoryPath("./MbedCloudSDK/MbedCloudSDK.csproj"));
+        var path = MakeAbsolute(new DirectoryPath("./src/MbedCloudSDK.csproj"));
         DotNetCoreBuild(path.FullPath, new DotNetCoreBuildSettings
         {
             NoRestore = true,
@@ -191,7 +191,7 @@ var build_sdk = Task("_build_sdk")
 
 var Create_Nuget_Package = Task("Create-NuGet-Package")
     .Does(() => {
-        var path = MakeAbsolute(new DirectoryPath("./MbedCloudSDK/MbedCloudSDK.csproj"));
+        var path = MakeAbsolute(new DirectoryPath("./src/MbedCloudSDK.csproj"));
         DotNetCorePack(path.FullPath, new DotNetCorePackSettings
         {
             Configuration = configuration,
@@ -204,7 +204,7 @@ var publish = Task("_publish")
     .Does(() => {
         var nugetApiKey = Argument("nuget_api_key", EnvironmentVariable("NUGET_KEY"));
         var source = Argument("nuget_source", "https://api.nuget.org/v3/index.json");
-        var packages = GetFiles("./MbedCloudSDK/bin/Release/*.nupkg");
+        var packages = GetFiles("./src/bin/Release/*.nupkg");
         foreach(var file in packages)
         {
             Information(file);
@@ -220,25 +220,25 @@ var publish = Task("_publish")
 
 var clean_generator = Task("_clean_generation")
     .Does(() => {
-        CleanDirectory("./MbedCloudSDK/SDK/Generated");
+        CleanDirectory("./src/SDK/Foundation");
     });
 
 var move_custom_files = Task("_move_custom_files")
     .Does(() => {
         CreateDirectory("./tmp");
-        MoveDirectory("./MbedCloudSDK/SDK/Common/CustomFunctions", "./tmp/CustomFunctions");
+        MoveDirectory("./src/SDK/Common/CustomFunctions", "./tmp/CustomFunctions");
     });
 
 var restore_generator = Task("_restore_generator")
     .Does(() => {
-        DotNetCoreRestore("./Manhasset/V2/Manhasset.Runner", new DotNetCoreRestoreSettings {
+        DotNetCoreRestore("./Manhasset/Manhasset.Runner", new DotNetCoreRestoreSettings {
             Verbosity = DotNetCoreVerbosity.Minimal,
         });
     });
 
 var build_generator = Task("_build_generator")
     .Does(() => {
-        DotNetCoreBuild("./Manhasset/V2/Manhasset.Runner", new DotNetCoreBuildSettings {
+        DotNetCoreBuild("./Manhasset/Manhasset.Runner", new DotNetCoreBuildSettings {
             NoRestore = true,
             Configuration = configuration,
         });
@@ -246,7 +246,7 @@ var build_generator = Task("_build_generator")
 
 var generate_and_compile = Task("_generate_and_compile")
     .Does(() => {
-        DotNetCoreRun("./Manhasset/V2/Manhasset.Runner", null,
+        DotNetCoreRun("./Manhasset/Manhasset.Runner", null,
             new DotNetCoreRunSettings {
                 NoBuild = true,
                 NoRestore = true,
@@ -256,7 +256,7 @@ var generate_and_compile = Task("_generate_and_compile")
 
 var move_Files_back = Task("_move_files_back")
     .Does(() => {
-        MoveDirectory("./tmp/CustomFunctions", "./MbedCloudSDK/SDK/Common/CustomFunctions");
+        MoveDirectory("./tmp/CustomFunctions", "./src/SDK/Common/CustomFunctions");
         DeleteDirectory("./tmp");
     });
 

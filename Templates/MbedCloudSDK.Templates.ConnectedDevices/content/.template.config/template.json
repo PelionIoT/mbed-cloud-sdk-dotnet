@@ -1,8 +1,0 @@
-﻿{
-  "$schema": "http://json.schemastore.org/template",
-  "author": "Alex Logan",
-  "classifications": [ "Mbed", "Cloud", "MbedCloud" ],
-  "identity": "MbedCloudSDK.Templates.ConnectedDevices",
-  "name": "MbedCloudSDK Connected Devices Example Template",
-  "shortName": "mbedcloudconnecteddevices"
-}

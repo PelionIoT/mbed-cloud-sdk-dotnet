@@ -2,7 +2,7 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-namespace MbedCloudSDK.Common
+namespace Mbed.Cloud
 {
     /// <summary>
     /// Version
