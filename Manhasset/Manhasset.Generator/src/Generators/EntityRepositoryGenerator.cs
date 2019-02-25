@@ -1,11 +1,14 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Manhasset.Core.src.Common;
 using Manhasset.Core.src.Compile;
 using Manhasset.Core.src.Containers;
+using Manhasset.Core.src.Extensions;
 using Manhasset.Generator.src.common;
 using Manhasset.Generator.src.CustomContainers;
 using Manhasset.Generator.src.extensions;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Manhasset.Generator.src.Generators
@@ -33,13 +36,15 @@ namespace Manhasset.Generator.src.Generators
             entityRepository.DocString = entityRepository.Name;
 
             // set the filepath root/groupId/Class/Class.cs
-            entityRepository.FilePath = $"{rootFilePath}/{entityGroup}/{entityPascalName}/{entityRepository.Name}.cs";
+            entityRepository.FilePath = $"{rootFilePath}/{entityGroup}/{entityPascalName}/";
+            entityRepository.FileName = $"{entityRepository.Name}.cs";
 
             //default constructor
             var defaultConstructor = new ConstructorContainer
             {
-                Name = entityRepository.Name
+                Name = entityRepository.Name,
             };
+            defaultConstructor.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
             entityRepository.AddConstructor("DEFAULT", defaultConstructor);
 
             // config constructor
@@ -311,6 +316,15 @@ namespace Manhasset.Generator.src.Generators
             }
 
             compilation.AddClass(entityRepository.Name, entityRepository);
+
+            var entityRepositoryInterface = entityRepository.CloneJson<ClassContainer>();
+            entityRepositoryInterface.Name = $"I{entityRepository.Name}";
+            entityRepositoryInterface.FileName = $"I{entityRepository.FileName}";
+            entityRepositoryInterface.IsInterface = true;
+
+            // Console.WriteLine(JsonConvert.SerializeObject(entityRepositoryInterface));
+
+            compilation.AddClass(entityRepositoryInterface.Name, entityRepositoryInterface);
         }
     }
 }

@@ -10,7 +10,20 @@ namespace Manhasset.Core.src.Containers
 {
     public class ClassContainer : BaseContainer
     {
-        public string FilePath { get; set; }
+        private string filePath;
+        public string FileName { get; set; } = "";
+        public string FilePath {
+            get
+            {
+                return filePath + FileName;
+            }
+            set
+            {
+                filePath = value;
+            }
+        }
+
+        public bool IsInterface { get; set; }
 
         public string Namespace { get; set; }
 
@@ -56,7 +69,17 @@ namespace Manhasset.Core.src.Containers
             Methods.SafeAdd<string, MethodContainer>(key, container);
         }
 
-        public virtual ClassDeclarationSyntax GetSyntax()
+        public virtual MemberDeclarationSyntax GetSyntax()
+        {
+            if (IsInterface)
+            {
+                return GetInterfaceSyntax();
+            }
+
+            return GetClassSyntax();
+        }
+
+        private ClassDeclarationSyntax GetClassSyntax()
         {
             // create class
             var classSyntax = SyntaxFactory.ClassDeclaration(Name)
@@ -67,7 +90,7 @@ namespace Manhasset.Core.src.Containers
             {
                 classSyntax = classSyntax.AddBaseListTypes(BaseTypes.Values.Select(b => SyntaxFactory.SimpleBaseType(SyntaxFactory.IdentifierName(b))).ToArray());
             }
-            
+
             // add doc
             classSyntax = classSyntax.AddSummary(DocString) as ClassDeclarationSyntax;
 
@@ -90,10 +113,50 @@ namespace Manhasset.Core.src.Containers
             return classSyntax;
         }
 
+        private InterfaceDeclarationSyntax GetInterfaceSyntax()
+        {
+            // create interface
+            var interfaceSyntax = SyntaxFactory.InterfaceDeclaration(Name);// .AddModifiers(MyModifiers?.Values?.ToArray());
+
+            // add doc
+            interfaceSyntax = interfaceSyntax.AddSummary(DocString) as InterfaceDeclarationSyntax;
+
+            // add any private fields
+            var privateFields = PrivateFields.Values.Select(c =>
+            {
+                c.MyModifiers.Clear();
+                return c;
+            }).Select(p => p.GetSyntax()).ToArray();
+            interfaceSyntax = interfaceSyntax.AddMembers(privateFields);
+
+            // add properties
+            var properties = Properties.Values.Select(c =>
+            {
+                c.MyModifiers.Clear();
+                return c;
+            }).Select(p => p.GetSyntax()).ToArray();
+            interfaceSyntax = interfaceSyntax.AddMembers(properties);
+
+            // add methods
+            var methods = Methods.Values.Select(c =>
+            {
+                c.MyModifiers.Clear();
+                c.IsInterface = true;
+                return c;
+            }).Select(m => m.GetSyntax()).ToArray();
+            interfaceSyntax = interfaceSyntax.AddMembers(methods);
+
+            return interfaceSyntax;
+        }
+
         public NamespaceDeclarationSyntax GetSyntaxWithNamespace()
         {
             var classSyntax = GetSyntax();
+            return GetSyntaxWithNamespaceCore(classSyntax);
+        }
 
+        private NamespaceDeclarationSyntax GetSyntaxWithNamespaceCore(MemberDeclarationSyntax syntax)
+        {
             var namespaceSyntax = SyntaxFactory.NamespaceDeclaration(SyntaxFactory.ParseName(Namespace));
 
             var usingsSyntax = Usings.Values.Select(u => SyntaxFactory.UsingDirective(SyntaxFactory.ParseName(u))).ToArray();
@@ -101,7 +164,7 @@ namespace Manhasset.Core.src.Containers
 
             namespaceSyntax = namespaceSyntax.AddFileHeader(Name, "Arm");
 
-            namespaceSyntax = namespaceSyntax.AddMembers(classSyntax);
+            namespaceSyntax = namespaceSyntax.AddMembers(syntax);
 
             return namespaceSyntax;
         }

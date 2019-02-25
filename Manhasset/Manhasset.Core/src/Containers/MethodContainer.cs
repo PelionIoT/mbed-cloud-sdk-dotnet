@@ -1,4 +1,7 @@
+using System.Collections.Generic;
 using System.Linq;
+using Manhasset.Core.src.Common;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -14,39 +17,52 @@ namespace Manhasset.Core.src.Containers
 
         public bool IsVoidTask { get; set; }
 
+        public bool IsInterface { get; set; } = false;
+
         public virtual MethodDeclarationSyntax GetSyntax()
         {
+            MethodDeclarationSyntax method = null;
             if (IsAsync)
             {
+                // if method is async and not an interface, add the async modifier to end of modifiers list
+                IEnumerable<SyntaxToken> modifiers = MyModifiers.Values.ToArray();
+                if (!IsInterface)
+                {
+                    modifiers = modifiers.Concat(new[] { Modifiers.ASYNC });
+                }
+
                 if (IsVoidTask)
                 {
-                    return SyntaxFactory.MethodDeclaration(
+                    method = SyntaxFactory.MethodDeclaration(
                     SyntaxFactory.IdentifierName("Task"),
                     SyntaxFactory.Identifier(Name))
-                        .AddModifiers(MyModifiers.Values.ToArray())
-                        .AddModifiers(SyntaxFactory.Token(SyntaxKind.AsyncKeyword))
-                        .WithParameterList(MethodParams.GetSyntax())
-                        .WithBody(SyntaxFactory.Block());
+                        .AddModifiers(modifiers.ToArray())
+                        .WithParameterList(MethodParams.GetSyntax());
                 }
-                // if async, wrap the return type in task
-                return SyntaxFactory.MethodDeclaration(
-                    SyntaxFactory.GenericName(
-                        SyntaxFactory.Identifier("Task"))
-                    .WithTypeArgumentList(
-                        SyntaxFactory.TypeArgumentList(
-                            SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
-                                SyntaxFactory.IdentifierName(Returns)))),
-                    SyntaxFactory.Identifier(Name)
-                ).AddModifiers(MyModifiers.Values.ToArray())
-                 .AddModifiers(SyntaxFactory.Token(SyntaxKind.AsyncKeyword))
-                 .WithParameterList(MethodParams.GetSyntax())
-                 .WithBody(SyntaxFactory.Block());
+                else
+                {
+                    // if async, wrap the return type in task
+                    method = SyntaxFactory.MethodDeclaration(
+                        SyntaxFactory.GenericName(
+                            SyntaxFactory.Identifier("Task"))
+                        .WithTypeArgumentList(
+                            SyntaxFactory.TypeArgumentList(
+                                SyntaxFactory.SingletonSeparatedList<TypeSyntax>(
+                                    SyntaxFactory.IdentifierName(Returns)))),
+                        SyntaxFactory.Identifier(Name)
+                    ).AddModifiers(modifiers.ToArray())
+                     .WithParameterList(MethodParams.GetSyntax());
+                }
+            }
+            else
+            {
+                method = SyntaxFactory.MethodDeclaration(SyntaxFactory.IdentifierName(Returns), SyntaxFactory.Identifier(Name))
+                                    .AddModifiers(MyModifiers.Values.ToArray())
+                                    .WithParameterList(MethodParams.GetSyntax());
             }
 
-            return SyntaxFactory.MethodDeclaration(SyntaxFactory.IdentifierName(Returns), SyntaxFactory.Identifier(Name))
-                                .AddModifiers(MyModifiers.Values.ToArray())
-                                .WithParameterList(MethodParams.GetSyntax())
-                                .WithBody(SyntaxFactory.Block());
+            // if method is on an interface, don't return an empty method body
+            return IsInterface ? method.WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken)) : method.WithBody(SyntaxFactory.Block());
         }
     }
 }
