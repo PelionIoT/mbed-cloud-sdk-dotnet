@@ -64,7 +64,7 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public PaginatedResponse<AccountListOptions, Account> List(AccountListOptions options = null, string format = null, string properties = null)
+        public PaginatedResponse<AccountListOptions, Account> List(AccountListOptions options = null)
         {
             try
             {

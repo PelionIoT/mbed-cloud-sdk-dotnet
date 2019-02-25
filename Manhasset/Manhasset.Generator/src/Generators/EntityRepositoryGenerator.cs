@@ -197,7 +197,7 @@ namespace Manhasset.Generator.src.Generators
                     }
                 }
 
-                var methodParams = new MyMethodParameterContainer(pathParams, queryParams, bodyParams, fileParams);
+                var methodParams = new MyMethodParameterContainer(pathParams, isPaginated ? new List<MyParameterContainer>() : queryParams, bodyParams, fileParams);
 
                 // method is paginated, so create paginatedMethodContainer
                 if (isPaginated == true)
