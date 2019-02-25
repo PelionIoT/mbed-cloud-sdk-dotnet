@@ -420,8 +420,8 @@ jobs:
       - run:
           name: commit changes
           command: |
-              git add src/SDK/Generated
-              git commit --message "Generated code" || true
+              git add src/SDK/Foundation
+              git commit --message "New Foundation interface changes" || true
               git push -q https://${GITHUB_TOKEN}@github.com/ARMmbed/${CIRCLE_PROJECT_REPONAME}.git ${CIRCLE_BRANCH}
   #############################################################################################
   #                                Common Release Jobs                                        #

@@ -220,7 +220,7 @@ var publish = Task("_publish")
 
 var clean_generator = Task("_clean_generation")
     .Does(() => {
-        CleanDirectory("./src/SDK/Generated");
+        CleanDirectory("./src/SDK/Foundation");
     });
 
 var move_custom_files = Task("_move_custom_files")
@@ -231,14 +231,14 @@ var move_custom_files = Task("_move_custom_files")
 
 var restore_generator = Task("_restore_generator")
     .Does(() => {
-        DotNetCoreRestore("./Manhasset/V2/Manhasset.Runner", new DotNetCoreRestoreSettings {
+        DotNetCoreRestore("./Manhasset/Manhasset.Runner", new DotNetCoreRestoreSettings {
             Verbosity = DotNetCoreVerbosity.Minimal,
         });
     });
 
 var build_generator = Task("_build_generator")
     .Does(() => {
-        DotNetCoreBuild("./Manhasset/V2/Manhasset.Runner", new DotNetCoreBuildSettings {
+        DotNetCoreBuild("./Manhasset/Manhasset.Runner", new DotNetCoreBuildSettings {
             NoRestore = true,
             Configuration = configuration,
         });
@@ -246,7 +246,7 @@ var build_generator = Task("_build_generator")
 
 var generate_and_compile = Task("_generate_and_compile")
     .Does(() => {
-        DotNetCoreRun("./Manhasset/V2/Manhasset.Runner", null,
+        DotNetCoreRun("./Manhasset/Manhasset.Runner", null,
             new DotNetCoreRunSettings {
                 NoBuild = true,
                 NoRestore = true,
