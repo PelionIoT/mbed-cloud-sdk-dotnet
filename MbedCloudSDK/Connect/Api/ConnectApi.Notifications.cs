@@ -419,6 +419,7 @@ namespace MbedCloudSDK.Connect.Api
             // set subprotocals e.g. pelion_ak_123, wss
             webSocketClient.Options.AddSubProtocol($"pelion_{Config.ApiKey}");
             webSocketClient.Options.AddSubProtocol("wss");
+            webSocketClient.Options.KeepAliveInterval = new TimeSpan(24, 0, 0);
 
             // create clean buffers
             receivedBytes = new byte[bufferLength];
