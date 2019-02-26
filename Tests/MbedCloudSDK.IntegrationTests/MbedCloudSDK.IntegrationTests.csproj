@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MbedCloudSDK\MbedCloudSDK.csproj" />
+    <ProjectReference Include="..\..\src\MbedCloudSDK.csproj" />
   </ItemGroup>
 
 </Project>

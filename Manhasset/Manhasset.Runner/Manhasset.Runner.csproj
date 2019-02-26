@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
+  </ItemGroup>
+
+  <PropertyGroup>
+   <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Manhasset.Generator\Manhasset.Generator.csproj" />
+    <ProjectReference Include="..\Manhasset.Core\Manhasset.Core.csproj" />
+    <ProjectReference Include="..\..\src\MbedCloudSDK.csproj" />
+  </ItemGroup>
+
+</Project>
