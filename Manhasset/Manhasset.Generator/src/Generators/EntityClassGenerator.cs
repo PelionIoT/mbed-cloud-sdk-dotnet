@@ -162,6 +162,7 @@ namespace Manhasset.Generator.src.Generators
             entityClassInterface.Name = $"I{entityClass.Name}";
             entityClassInterface.FilePath = $"{rootFilePath}/{entityGroup}/{entityPascalName}/";
             entityClassInterface.FileName = $"I{entityClass.FileName}";
+            entityClassInterface.BaseTypes.Clear();
             entityClassInterface.IsInterface = true;
 
             compilation.AddClass(entityClassInterface.Name, entityClassInterface);

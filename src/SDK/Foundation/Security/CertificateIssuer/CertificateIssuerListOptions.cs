@@ -19,7 +19,7 @@ namespace Mbed.Cloud.Foundation.ListOptions
     /// <summary>
     /// CertificateIssuerListOptions
     /// </summary>
-    public class CertificateIssuerListOptions : QueryOptions
+    public class CertificateIssuerListOptions : QueryOptions, ICertificateIssuerListOptions
     {
     }
 }

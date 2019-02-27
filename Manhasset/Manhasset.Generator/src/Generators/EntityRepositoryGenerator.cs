@@ -219,7 +219,7 @@ namespace Manhasset.Generator.src.Generators
                     methodParams.Parameters.Insert(0, new MyParameterContainer
                     {
                         Key = "options",
-                        ParamType = listOptionsName,
+                        ParamType = $"I{listOptionsName}",
                         Required = false,
                     });
                     var paginatedMethodContainer = new PaginatedMethodContainer
@@ -238,7 +238,7 @@ namespace Manhasset.Generator.src.Generators
                         CustomMethodCall = isCustomMethodCall,
                         CustomMethodName = customMethodName,
                         privateMethod = isPrivateMethod,
-                        ListOptionsName = listOptionsName,
+                        ListOptionsName = $"I{listOptionsName}",
                     };
 
                     paginatedMethodContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
@@ -328,6 +328,7 @@ namespace Manhasset.Generator.src.Generators
             entityRepositoryInterface.Name = $"I{entityRepository.Name}";
             entityRepositoryInterface.FilePath = $"{rootFilePath}/{entityGroup}/{entityPascalName}/";
             entityRepositoryInterface.FileName = $"I{entityRepository.FileName}";
+            entityRepositoryInterface.BaseTypes.Clear();
             entityRepositoryInterface.IsInterface = true;
 
             compilation.AddClass(entityRepositoryInterface.Name, entityRepositoryInterface);

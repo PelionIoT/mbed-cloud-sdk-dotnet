@@ -74,7 +74,7 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public PaginatedResponse<ApiKeyListOptions, ApiKey> List(ApiKeyListOptions options = null)
+        public PaginatedResponse<IApiKeyListOptions, ApiKey> List(IApiKeyListOptions options = null)
         {
             try
             {
@@ -83,8 +83,8 @@ namespace Mbed.Cloud.Foundation.Entities
                     options = new ApiKeyListOptions();
                 }
 
-                Func<ApiKeyListOptions, Task<ResponsePage<ApiKey>>> paginatedFunc = async (ApiKeyListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<ApiKey>>(path: "/v3/api-keys", queryParams: queryParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<ApiKeyListOptions, ApiKey>(paginatedFunc, options);
+                Func<IApiKeyListOptions, Task<ResponsePage<ApiKey>>> paginatedFunc = async (IApiKeyListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<ApiKey>>(path: "/v3/api-keys", queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<IApiKeyListOptions, ApiKey>(paginatedFunc, options);
             }
             catch (ApiException e)
             {

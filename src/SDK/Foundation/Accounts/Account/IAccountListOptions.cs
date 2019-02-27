@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="AccountListOptions.cs" company="Arm">
+// <copyright file="IAccountListOptions.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -19,12 +19,12 @@ namespace Mbed.Cloud.Foundation.ListOptions
     /// <summary>
     /// AccountListOptions
     /// </summary>
-    public class AccountListOptions : QueryOptions, IAccountListOptions
+    public interface IAccountListOptions : IQueryOptions
     {
         /// <summary>
         /// 
         /// </summary>
-        public string Format
+        string Format
         {
             get;
             set;
@@ -33,7 +33,7 @@ namespace Mbed.Cloud.Foundation.ListOptions
         /// <summary>
         /// 
         /// </summary>
-        public string Properties
+        string Properties
         {
             get;
             set;

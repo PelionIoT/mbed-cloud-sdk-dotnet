@@ -19,7 +19,7 @@ namespace Mbed.Cloud.Foundation.ListOptions
     /// <summary>
     /// DeviceListOptions
     /// </summary>
-    public class DeviceListOptions : QueryOptions
+    public class DeviceListOptions : QueryOptions, IDeviceListOptions
     {
     }
 }

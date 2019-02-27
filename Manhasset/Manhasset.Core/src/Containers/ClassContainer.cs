@@ -122,6 +122,12 @@ namespace Manhasset.Core.src.Containers
             // add doc
             interfaceSyntax = interfaceSyntax.AddSummary(DocString) as InterfaceDeclarationSyntax;
 
+            // add base types
+            if (BaseTypes.Any())
+            {
+                interfaceSyntax = interfaceSyntax.AddBaseListTypes(BaseTypes.Values.Select(b => SyntaxFactory.SimpleBaseType(SyntaxFactory.IdentifierName(b))).ToArray());
+            }
+
             // add properties
             var properties = Properties.Values.Select(c =>
             {

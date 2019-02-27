@@ -19,7 +19,7 @@ namespace Mbed.Cloud.Foundation.Common
     [JsonObject]
     public class PaginatedResponse<TOptions, TData> : IEnumerable<TData>
         where TData : Entity
-        where TOptions : QueryOptions
+        where TOptions : IQueryOptions
     {
         private readonly List<TData> cache = new List<TData>();
         private readonly Func<TOptions, Task<ResponsePage<TData>>> apiCallFunction;

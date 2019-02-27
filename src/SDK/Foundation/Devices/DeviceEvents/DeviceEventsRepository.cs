@@ -48,7 +48,7 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public PaginatedResponse<DeviceEventsListOptions, DeviceEvents> List(DeviceEventsListOptions options = null)
+        public PaginatedResponse<IDeviceEventsListOptions, DeviceEvents> List(IDeviceEventsListOptions options = null)
         {
             try
             {
@@ -57,8 +57,8 @@ namespace Mbed.Cloud.Foundation.Entities
                     options = new DeviceEventsListOptions();
                 }
 
-                Func<DeviceEventsListOptions, Task<ResponsePage<DeviceEvents>>> paginatedFunc = async (DeviceEventsListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<DeviceEvents>>(path: "/v3/device-events/", queryParams: queryParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<DeviceEventsListOptions, DeviceEvents>(paginatedFunc, options);
+                Func<IDeviceEventsListOptions, Task<ResponsePage<DeviceEvents>>> paginatedFunc = async (IDeviceEventsListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<DeviceEvents>>(path: "/v3/device-events/", queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<IDeviceEventsListOptions, DeviceEvents>(paginatedFunc, options);
             }
             catch (ApiException e)
             {

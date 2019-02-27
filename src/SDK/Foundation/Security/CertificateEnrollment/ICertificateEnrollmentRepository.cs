@@ -28,6 +28,6 @@ namespace Mbed.Cloud.Foundation.Entities
     public interface ICertificateEnrollmentRepository
     {
         Task<CertificateEnrollment> Get(string id);
-        PaginatedResponse<CertificateEnrollmentListOptions, CertificateEnrollment> List(CertificateEnrollmentListOptions options = null);
+        PaginatedResponse<ICertificateEnrollmentListOptions, CertificateEnrollment> List(ICertificateEnrollmentListOptions options = null);
     }
 }

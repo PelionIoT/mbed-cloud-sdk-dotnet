@@ -30,6 +30,6 @@ namespace Mbed.Cloud.Foundation.Entities
         Task<UserInvitation> Create(UserInvitation request, int validForDays = 25);
         Task Delete(string id);
         Task<UserInvitation> Get(string id);
-        PaginatedResponse<UserInvitationListOptions, UserInvitation> List(UserInvitationListOptions options = null);
+        PaginatedResponse<IUserInvitationListOptions, UserInvitation> List(IUserInvitationListOptions options = null);
     }
 }

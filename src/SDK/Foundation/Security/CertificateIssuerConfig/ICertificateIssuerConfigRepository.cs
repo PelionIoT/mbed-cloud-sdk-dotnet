@@ -31,7 +31,7 @@ namespace Mbed.Cloud.Foundation.Entities
         Task Delete(string id);
         Task<CertificateIssuerConfig> Get(string id);
         Task<CertificateIssuerConfig> GetDefault();
-        PaginatedResponse<CertificateIssuerConfigListOptions, CertificateIssuerConfig> List(CertificateIssuerConfigListOptions options = null);
+        PaginatedResponse<ICertificateIssuerConfigListOptions, CertificateIssuerConfig> List(ICertificateIssuerConfigListOptions options = null);
         Task<CertificateIssuerConfig> Update(string id, CertificateIssuerConfig request);
     }
 }

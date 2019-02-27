@@ -31,7 +31,7 @@ namespace Mbed.Cloud.Foundation.Entities
         Task<CertificateIssuer> Create(CertificateIssuer request, Dictionary<string, string> issuerCredentials = null);
         Task Delete(string id);
         Task<CertificateIssuer> Get(string id);
-        PaginatedResponse<CertificateIssuerListOptions, CertificateIssuer> List(CertificateIssuerListOptions options = null);
+        PaginatedResponse<ICertificateIssuerListOptions, CertificateIssuer> List(ICertificateIssuerListOptions options = null);
         Task<CertificateIssuer> Update(string id, CertificateIssuer request, Dictionary<string, string> issuerCredentials = null);
         Task<VerificationResponse> Verify(string id);
     }

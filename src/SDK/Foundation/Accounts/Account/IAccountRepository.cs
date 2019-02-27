@@ -30,11 +30,11 @@ namespace Mbed.Cloud.Foundation.Entities
     {
         Task<Account> Create(Account request, string action = null);
         Task<Account> Get(string id, string include = null, string properties = null);
-        PaginatedResponse<AccountListOptions, Account> List(AccountListOptions options = null);
+        PaginatedResponse<IAccountListOptions, Account> List(IAccountListOptions options = null);
         Task<Account> Me(string include = null, string properties = null);
-        PaginatedResponse<SubtenantTrustedCertificateListOptions, SubtenantTrustedCertificate> TrustedCertificates(string id, SubtenantTrustedCertificateListOptions options = null);
+        PaginatedResponse<ISubtenantTrustedCertificateListOptions, SubtenantTrustedCertificate> TrustedCertificates(string id, ISubtenantTrustedCertificateListOptions options = null);
         Task<Account> Update(string id, Account request);
-        PaginatedResponse<SubtenantUserInvitationListOptions, SubtenantUserInvitation> UserInvitations(string id, SubtenantUserInvitationListOptions options = null);
-        PaginatedResponse<SubtenantUserListOptions, SubtenantUser> Users(string id, SubtenantUserListOptions options = null);
+        PaginatedResponse<ISubtenantUserInvitationListOptions, SubtenantUserInvitation> UserInvitations(string id, ISubtenantUserInvitationListOptions options = null);
+        PaginatedResponse<ISubtenantUserListOptions, SubtenantUser> Users(string id, ISubtenantUserListOptions options = null);
     }
 }

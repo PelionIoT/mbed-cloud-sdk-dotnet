@@ -28,6 +28,6 @@ namespace Mbed.Cloud.Foundation.Entities
     public interface IDeviceEventsRepository
     {
         Task<DeviceEvents> Get(string id);
-        PaginatedResponse<DeviceEventsListOptions, DeviceEvents> List(DeviceEventsListOptions options = null);
+        PaginatedResponse<IDeviceEventsListOptions, DeviceEvents> List(IDeviceEventsListOptions options = null);
     }
 }

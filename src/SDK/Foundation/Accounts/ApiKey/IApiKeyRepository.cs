@@ -30,7 +30,7 @@ namespace Mbed.Cloud.Foundation.Entities
         Task<ApiKey> Create(ApiKey request);
         Task Delete(string id);
         Task<ApiKey> Get(string id);
-        PaginatedResponse<ApiKeyListOptions, ApiKey> List(ApiKeyListOptions options = null);
+        PaginatedResponse<IApiKeyListOptions, ApiKey> List(IApiKeyListOptions options = null);
         Task<ApiKey> Me();
         Task<ApiKey> Update(string id, ApiKey request);
     }

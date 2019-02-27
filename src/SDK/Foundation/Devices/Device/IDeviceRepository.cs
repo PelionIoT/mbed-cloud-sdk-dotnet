@@ -31,7 +31,7 @@ namespace Mbed.Cloud.Foundation.Entities
         Task<Device> Create(Device request);
         Task Delete(string id);
         Task<Device> Get(string id);
-        PaginatedResponse<DeviceListOptions, Device> List(DeviceListOptions options = null);
+        PaginatedResponse<IDeviceListOptions, Device> List(IDeviceListOptions options = null);
         Task<CertificateEnrollment> RenewCertificate(string certificateName, string id);
         Task<Device> Update(string id, Device request);
     }

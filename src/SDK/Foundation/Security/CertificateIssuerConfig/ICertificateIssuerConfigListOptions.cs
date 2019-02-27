@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="AccountListOptions.cs" company="Arm">
+// <copyright file="ICertificateIssuerConfigListOptions.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -17,26 +17,9 @@ namespace Mbed.Cloud.Foundation.ListOptions
     using Mbed.Cloud.Foundation.Common;
 
     /// <summary>
-    /// AccountListOptions
+    /// CertificateIssuerConfigListOptions
     /// </summary>
-    public class AccountListOptions : QueryOptions, IAccountListOptions
+    public interface ICertificateIssuerConfigListOptions : IQueryOptions
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Format
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Properties
-        {
-            get;
-            set;
-        }
     }
 }

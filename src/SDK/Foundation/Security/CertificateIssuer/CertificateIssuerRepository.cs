@@ -75,7 +75,7 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public PaginatedResponse<CertificateIssuerListOptions, CertificateIssuer> List(CertificateIssuerListOptions options = null)
+        public PaginatedResponse<ICertificateIssuerListOptions, CertificateIssuer> List(ICertificateIssuerListOptions options = null)
         {
             try
             {
@@ -84,8 +84,8 @@ namespace Mbed.Cloud.Foundation.Entities
                     options = new CertificateIssuerListOptions();
                 }
 
-                Func<CertificateIssuerListOptions, Task<ResponsePage<CertificateIssuer>>> paginatedFunc = async (CertificateIssuerListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<CertificateIssuer>>(path: "/v3/certificate-issuers", queryParams: queryParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<CertificateIssuerListOptions, CertificateIssuer>(paginatedFunc, options);
+                Func<ICertificateIssuerListOptions, Task<ResponsePage<CertificateIssuer>>> paginatedFunc = async (ICertificateIssuerListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<CertificateIssuer>>(path: "/v3/certificate-issuers", queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<ICertificateIssuerListOptions, CertificateIssuer>(paginatedFunc, options);
             }
             catch (ApiException e)
             {
