@@ -21,7 +21,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// DeviceEnrollmentBulkCreate
     /// </summary>
-    public class DeviceEnrollmentBulkCreate : Entity
+    public class DeviceEnrollmentBulkCreate : Entity, IDeviceEnrollmentBulkCreate
     {
         /// <summary>
         /// account_id
@@ -29,7 +29,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string AccountId
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? CompletedAt
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? CreatedAt
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public int? ErrorsCount
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string ErrorsReportFile
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string FullReportFile
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public int? ProcessedCount
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DeviceEnrollmentBulkCreateStatus? Status
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public int? TotalCount
         {
             get;
-            internal set;
+            private set;
         }
     }
 }

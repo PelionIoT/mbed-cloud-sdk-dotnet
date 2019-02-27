@@ -25,8 +25,6 @@ namespace Manhasset.Core.src.Containers
             }
         }
 
-        public bool IsInterface { get; set; }
-
         public string Namespace { get; set; }
 
         public Dictionary<string, string> Usings { get; set; } = new Dictionary<string, string>();
@@ -124,27 +122,27 @@ namespace Manhasset.Core.src.Containers
             // add doc
             interfaceSyntax = interfaceSyntax.AddSummary(DocString) as InterfaceDeclarationSyntax;
 
-            // add any private fields
-            var privateFields = PrivateFields.Values.Select(c =>
-            {
-                c.MyModifiers.Clear();
-                return c;
-            }).Select(p => p.GetSyntax()).ToArray();
-            interfaceSyntax = interfaceSyntax.AddMembers(privateFields);
-
             // add properties
             var properties = Properties.Values.Select(c =>
             {
                 c.MyModifiers.Clear();
-                return c;
-            }).Select(p => p.GetSyntax()).ToArray();
+                c.GetAccessorModifier = default(SyntaxToken);
+                if (c.SetAccessorModifier.ToString() == "public")
+                {
+                    c.SetAccessorModifier = default(SyntaxToken);
+                }
+                else if (c.SetAccessorModifier.ToString() == "private")
+                {
+                    c.SetAccessor = false;
+                }
+                c.IsInterface = true;
+                return c.GetSyntax();
+            }).ToArray();
+
             interfaceSyntax = interfaceSyntax.AddMembers(properties);
 
             // add methods
-            var copyMethods = new List<MethodContainer>();
-            var methodsArray = Methods.Values.ToArray();
-            copyMethods.AddRange(methodsArray);
-            var methods = copyMethods.Select(c =>
+            var methods = Methods.Values.Select(c =>
             {
                 c.MyModifiers.Clear();
                 c.IsInterface = true;

@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="TrustedCertificate.cs" company="Arm">
+// <copyright file="ISubtenantUser.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -15,124 +15,147 @@
 namespace Mbed.Cloud.Foundation.Entities
 {
     using Mbed.Cloud.Foundation.Common;
+    using System.Collections.Generic;
+    using Mbed.Cloud.Foundation.Entities;
     using System;
     using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
-    /// TrustedCertificate
+    /// SubtenantUser
     /// </summary>
-    public class TrustedCertificate : Entity, ITrustedCertificate
+    public interface ISubtenantUser
     {
         /// <summary>
         /// account_id
         /// </summary>
-        public string AccountId
-        {
-            get;
-            private set;
-        }
-
-        /// <summary>
-        /// certificate
-        /// </summary>
-        public string Certificate
+        string AccountId
         {
             get;
             set;
         }
 
         /// <summary>
-        /// certificate_fingerprint
+        /// active_sessions
         /// </summary>
-        public string CertificateFingerprint
+        List<ActiveSession> ActiveSessions
         {
             get;
-            private set;
+        }
+
+        /// <summary>
+        /// address
+        /// </summary>
+        string Address
+        {
+            get;
+            set;
         }
 
         /// <summary>
         /// created_at
         /// </summary>
-        public DateTime? CreatedAt
+        DateTime? CreatedAt
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// description
+        /// creation_time
         /// </summary>
-        public string Description
+        long? CreationTime
         {
             get;
-            set;
         }
 
         /// <summary>
-        /// device_execution_mode
+        /// custom_fields
         /// </summary>
-        public int? DeviceExecutionMode
+        Dictionary<string, string> CustomFields
         {
             get;
-            set;
         }
 
         /// <summary>
-        /// enrollment_mode
+        /// email
         /// </summary>
-        public bool? EnrollmentMode
+        string Email
         {
             get;
             set;
         }
 
         /// <summary>
-        /// is_developer_certificate
+        /// email_verified
         /// </summary>
-        public bool? IsDeveloperCertificate
-        {
-            get
-            {
-                return CustomFunctions.IsDeveloperCertificateGetter(this);
-            }
-
-            set
-            {
-                CustomFunctions.IsDeveloperCertificateSetter(this, value);
-            }
-        }
-
-        /// <summary>
-        /// issuer
-        /// </summary>
-        public string Issuer
+        bool? EmailVerified
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// name
+        /// full_name
         /// </summary>
-        public string Name
+        string FullName
         {
             get;
             set;
         }
 
         /// <summary>
-        /// owner_id
+        /// last_login_time
         /// </summary>
-        public string OwnerId
+        long? LastLoginTime
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// service
+        /// login_history
         /// </summary>
-        public TrustedCertificateService? Service
+        List<LoginHistory> LoginHistory
+        {
+            get;
+        }
+
+        /// <summary>
+        /// login_profiles
+        /// </summary>
+        List<LoginProfile> LoginProfiles
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// marketing_accepted
+        /// </summary>
+        bool? MarketingAccepted
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// password
+        /// </summary>
+        string Password
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// password_changed_time
+        /// </summary>
+        long? PasswordChangedTime
+        {
+            get;
+        }
+
+        /// <summary>
+        /// phone_number
+        /// </summary>
+        string PhoneNumber
         {
             get;
             set;
@@ -141,46 +164,53 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// status
         /// </summary>
-        public TrustedCertificateStatus? Status
+        SubtenantUserStatus? Status
         {
             get;
             set;
         }
 
         /// <summary>
-        /// subject
+        /// terms_accepted
         /// </summary>
-        public string Subject
+        bool? TermsAccepted
         {
             get;
-            private set;
+            set;
+        }
+
+        /// <summary>
+        /// totp_scratch_codes
+        /// </summary>
+        List<string> TotpScratchCodes
+        {
+            get;
+        }
+
+        /// <summary>
+        /// two_factor_authentication
+        /// </summary>
+        bool? TwoFactorAuthentication
+        {
+            get;
+            set;
         }
 
         /// <summary>
         /// updated_at
         /// </summary>
-        public DateTime? UpdatedAt
+        DateTime? UpdatedAt
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// valid
+        /// username
         /// </summary>
-        public bool? Valid
+        string Username
         {
             get;
-            private set;
-        }
-
-        /// <summary>
-        /// validity
-        /// </summary>
-        public DateTime? Validity
-        {
-            get;
-            private set;
+            set;
         }
     }
 }

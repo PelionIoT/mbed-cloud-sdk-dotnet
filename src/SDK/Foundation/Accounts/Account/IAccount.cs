@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="Account.cs" company="Arm">
+// <copyright file="IAccount.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -23,12 +23,12 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// Account
     /// </summary>
-    public class Account : Entity, IAccount
+    public interface IAccount
     {
         /// <summary>
         /// address_line1
         /// </summary>
-        public string AddressLine1
+        string AddressLine1
         {
             get;
             set;
@@ -37,7 +37,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// address_line2
         /// </summary>
-        public string AddressLine2
+        string AddressLine2
         {
             get;
             set;
@@ -46,7 +46,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// admin_email
         /// </summary>
-        public string AdminEmail
+        string AdminEmail
         {
             get;
             set;
@@ -55,7 +55,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// admin_full_name
         /// </summary>
-        public string AdminFullName
+        string AdminFullName
         {
             get;
             set;
@@ -64,25 +64,23 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// admin_id
         /// </summary>
-        public string AdminId
+        string AdminId
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// admin_key
         /// </summary>
-        public string AdminKey
+        string AdminKey
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// admin_name
         /// </summary>
-        public string AdminName
+        string AdminName
         {
             get;
             set;
@@ -91,7 +89,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// admin_password
         /// </summary>
-        public string AdminPassword
+        string AdminPassword
         {
             get;
             set;
@@ -100,7 +98,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// aliases
         /// </summary>
-        public List<string> Aliases
+        List<string> Aliases
         {
             get;
             set;
@@ -109,7 +107,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// city
         /// </summary>
-        public string City
+        string City
         {
             get;
             set;
@@ -118,7 +116,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// company
         /// </summary>
-        public string Company
+        string Company
         {
             get;
             set;
@@ -127,7 +125,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// contact
         /// </summary>
-        public string Contact
+        string Contact
         {
             get;
             set;
@@ -136,7 +134,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// contract_number
         /// </summary>
-        public string ContractNumber
+        string ContractNumber
         {
             get;
             set;
@@ -145,7 +143,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// country
         /// </summary>
-        public string Country
+        string Country
         {
             get;
             set;
@@ -154,16 +152,15 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// created_at
         /// </summary>
-        public DateTime? CreatedAt
+        DateTime? CreatedAt
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// custom_fields
         /// </summary>
-        public Dictionary<string, string> CustomFields
+        Dictionary<string, string> CustomFields
         {
             get;
             set;
@@ -172,7 +169,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// customer_number
         /// </summary>
-        public string CustomerNumber
+        string CustomerNumber
         {
             get;
             set;
@@ -181,7 +178,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// display_name
         /// </summary>
-        public string DisplayName
+        string DisplayName
         {
             get;
             set;
@@ -190,7 +187,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// email
         /// </summary>
-        public string Email
+        string Email
         {
             get;
             set;
@@ -199,7 +196,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// end_market
         /// </summary>
-        public string EndMarket
+        string EndMarket
         {
             get;
             set;
@@ -208,16 +205,15 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// expiration
         /// </summary>
-        public DateTime? Expiration
+        DateTime? Expiration
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// expiration_warning_threshold
         /// </summary>
-        public string ExpirationWarningThreshold
+        string ExpirationWarningThreshold
         {
             get;
             set;
@@ -226,7 +222,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// idle_timeout
         /// </summary>
-        public string IdleTimeout
+        string IdleTimeout
         {
             get;
             set;
@@ -235,16 +231,15 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// limits
         /// </summary>
-        public Dictionary<string, string> Limits
+        Dictionary<string, string> Limits
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// mfa_status
         /// </summary>
-        public AccountMfaStatus? MfaStatus
+        AccountMfaStatus? MfaStatus
         {
             get;
             set;
@@ -253,7 +248,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// notification_emails
         /// </summary>
-        public List<string> NotificationEmails
+        List<string> NotificationEmails
         {
             get;
             set;
@@ -262,25 +257,23 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// parent_account
         /// </summary>
-        public ParentAccount ParentAccount
+        ParentAccount ParentAccount
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// parent_id
         /// </summary>
-        public string ParentId
+        string ParentId
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// password_policy
         /// </summary>
-        public PasswordPolicy PasswordPolicy
+        PasswordPolicy PasswordPolicy
         {
             get;
             set;
@@ -289,7 +282,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// password_recovery_expiration
         /// </summary>
-        public int? PasswordRecoveryExpiration
+        int? PasswordRecoveryExpiration
         {
             get;
             set;
@@ -298,7 +291,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// phone_number
         /// </summary>
-        public string PhoneNumber
+        string PhoneNumber
         {
             get;
             set;
@@ -307,16 +300,15 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// policies
         /// </summary>
-        public List<Policy> Policies
+        List<Policy> Policies
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// postal_code
         /// </summary>
-        public string PostalCode
+        string PostalCode
         {
             get;
             set;
@@ -325,25 +317,23 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// reason
         /// </summary>
-        public string Reason
+        string Reason
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// reference_note
         /// </summary>
-        public string ReferenceNote
+        string ReferenceNote
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// sales_contact
         /// </summary>
-        public string SalesContact
+        string SalesContact
         {
             get;
             set;
@@ -352,7 +342,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// state
         /// </summary>
-        public string State
+        string State
         {
             get;
             set;
@@ -361,46 +351,41 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// status
         /// </summary>
-        public AccountStatus? Status
+        AccountStatus? Status
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// template_id
         /// </summary>
-        public string TemplateId
+        string TemplateId
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// tier
         /// </summary>
-        public string Tier
+        string Tier
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// updated_at
         /// </summary>
-        public DateTime? UpdatedAt
+        DateTime? UpdatedAt
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// upgraded_at
         /// </summary>
-        public DateTime? UpgradedAt
+        DateTime? UpgradedAt
         {
             get;
-            private set;
         }
     }
 }

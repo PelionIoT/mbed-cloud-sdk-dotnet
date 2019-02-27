@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="CertificateEnrollment.cs" company="Arm">
+// <copyright file="IDeviceEnrollmentBulkCreate.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -19,62 +19,80 @@ namespace Mbed.Cloud.Foundation.Entities
     using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
-    /// CertificateEnrollment
+    /// DeviceEnrollmentBulkCreate
     /// </summary>
-    public class CertificateEnrollment : Entity, ICertificateEnrollment
+    public interface IDeviceEnrollmentBulkCreate
     {
         /// <summary>
-        /// certificate_name
+        /// account_id
         /// </summary>
-        public string CertificateName
+        string AccountId
         {
             get;
-            private set;
+        }
+
+        /// <summary>
+        /// completed_at
+        /// </summary>
+        DateTime? CompletedAt
+        {
+            get;
         }
 
         /// <summary>
         /// created_at
         /// </summary>
-        public DateTime? CreatedAt
+        DateTime? CreatedAt
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// device_id
+        /// errors_count
         /// </summary>
-        public string DeviceId
+        int? ErrorsCount
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// enroll_result
+        /// errors_report_file
         /// </summary>
-        public CertificateEnrollmentEnrollResult? EnrollResult
+        string ErrorsReportFile
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// enroll_status
+        /// full_report_file
         /// </summary>
-        public CertificateEnrollmentEnrollStatus? EnrollStatus
+        string FullReportFile
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// updated_at
+        /// processed_count
         /// </summary>
-        public DateTime? UpdatedAt
+        int? ProcessedCount
         {
             get;
-            private set;
+        }
+
+        /// <summary>
+        /// status
+        /// </summary>
+        DeviceEnrollmentBulkCreateStatus? Status
+        {
+            get;
+        }
+
+        /// <summary>
+        /// total_count
+        /// </summary>
+        int? TotalCount
+        {
+            get;
         }
     }
 }

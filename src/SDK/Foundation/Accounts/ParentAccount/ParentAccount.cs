@@ -19,7 +19,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// ParentAccount
     /// </summary>
-    public class ParentAccount : Entity
+    public class ParentAccount : Entity, IParentAccount
     {
         /// <summary>
         /// admin_email
@@ -27,7 +27,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string AdminEmail
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string AdminName
         {
             get;
-            internal set;
+            private set;
         }
     }
 }

@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="Device.cs" company="Arm">
+// <copyright file="IDevice.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -22,21 +22,20 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// Device
     /// </summary>
-    public class Device : Entity, IDevice
+    public interface IDevice
     {
         /// <summary>
         /// account_id
         /// </summary>
-        public string AccountId
+        string AccountId
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// auto_update
         /// </summary>
-        public bool? AutoUpdate
+        bool? AutoUpdate
         {
             get;
             set;
@@ -45,7 +44,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// bootstrap_expiration_date
         /// </summary>
-        public DateTime? BootstrapExpirationDate
+        DateTime? BootstrapExpirationDate
         {
             get;
             set;
@@ -54,7 +53,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// bootstrapped_timestamp
         /// </summary>
-        public DateTime? BootstrappedTimestamp
+        DateTime? BootstrappedTimestamp
         {
             get;
             set;
@@ -63,7 +62,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// ca_id
         /// </summary>
-        public string CaId
+        string CaId
         {
             get;
             set;
@@ -72,7 +71,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// connector_expiration_date
         /// </summary>
-        public DateTime? ConnectorExpirationDate
+        DateTime? ConnectorExpirationDate
         {
             get;
             set;
@@ -81,16 +80,15 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// created_at
         /// </summary>
-        public DateTime? CreatedAt
+        DateTime? CreatedAt
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// custom_attributes
         /// </summary>
-        public Dictionary<string, string> CustomAttributes
+        Dictionary<string, string> CustomAttributes
         {
             get;
             set;
@@ -99,16 +97,15 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// deployed_state
         /// </summary>
-        public DeviceDeployedState? DeployedState
+        DeviceDeployedState? DeployedState
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// deployment
         /// </summary>
-        public string Deployment
+        string Deployment
         {
             get;
             set;
@@ -117,7 +114,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// description
         /// </summary>
-        public string Description
+        string Description
         {
             get;
             set;
@@ -126,7 +123,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// device_class
         /// </summary>
-        public string DeviceClass
+        string DeviceClass
         {
             get;
             set;
@@ -135,7 +132,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// device_execution_mode
         /// </summary>
-        public int? DeviceExecutionMode
+        int? DeviceExecutionMode
         {
             get;
             set;
@@ -144,7 +141,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// device_key
         /// </summary>
-        public string DeviceKey
+        string DeviceKey
         {
             get;
             set;
@@ -153,7 +150,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// endpoint_name
         /// </summary>
-        public string EndpointName
+        string EndpointName
         {
             get;
             set;
@@ -162,7 +159,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// endpoint_type
         /// </summary>
-        public string EndpointType
+        string EndpointType
         {
             get;
             set;
@@ -171,16 +168,15 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// enrolment_list_timestamp
         /// </summary>
-        public DateTime? EnrolmentListTimestamp
+        DateTime? EnrolmentListTimestamp
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// firmware_checksum
         /// </summary>
-        public string FirmwareChecksum
+        string FirmwareChecksum
         {
             get;
             set;
@@ -189,7 +185,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// host_gateway
         /// </summary>
-        public string HostGateway
+        string HostGateway
         {
             get;
             set;
@@ -198,7 +194,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// manifest
         /// </summary>
-        public string Manifest
+        string Manifest
         {
             get;
             set;
@@ -207,16 +203,15 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// manifest_timestamp
         /// </summary>
-        public DateTime? ManifestTimestamp
+        DateTime? ManifestTimestamp
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// mechanism
         /// </summary>
-        public DeviceMechanism? Mechanism
+        DeviceMechanism? Mechanism
         {
             get;
             set;
@@ -225,7 +220,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// mechanism_url
         /// </summary>
-        public string MechanismUrl
+        string MechanismUrl
         {
             get;
             set;
@@ -234,7 +229,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// name
         /// </summary>
-        public string Name
+        string Name
         {
             get;
             set;
@@ -243,7 +238,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// serial_number
         /// </summary>
-        public string SerialNumber
+        string SerialNumber
         {
             get;
             set;
@@ -252,7 +247,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// state
         /// </summary>
-        public DeviceState? State
+        DeviceState? State
         {
             get;
             set;
@@ -261,16 +256,15 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// updated_at
         /// </summary>
-        public DateTime? UpdatedAt
+        DateTime? UpdatedAt
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// vendor_id
         /// </summary>
-        public string VendorId
+        string VendorId
         {
             get;
             set;

@@ -19,7 +19,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// PasswordPolicy
     /// </summary>
-    public class PasswordPolicy : Entity
+    public class PasswordPolicy : Entity, IPasswordPolicy
     {
         /// <summary>
         /// minimum_length
@@ -27,7 +27,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string MinimumLength
         {
             get;
-            internal set;
+            private set;
         }
     }
 }

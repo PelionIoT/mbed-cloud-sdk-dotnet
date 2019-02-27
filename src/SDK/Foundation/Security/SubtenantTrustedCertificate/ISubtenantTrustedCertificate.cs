@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="TrustedCertificate.cs" company="Arm">
+// <copyright file="ISubtenantTrustedCertificate.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -19,23 +19,23 @@ namespace Mbed.Cloud.Foundation.Entities
     using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
-    /// TrustedCertificate
+    /// SubtenantTrustedCertificate
     /// </summary>
-    public class TrustedCertificate : Entity, ITrustedCertificate
+    public interface ISubtenantTrustedCertificate
     {
         /// <summary>
         /// account_id
         /// </summary>
-        public string AccountId
+        string AccountId
         {
             get;
-            private set;
+            set;
         }
 
         /// <summary>
         /// certificate
         /// </summary>
-        public string Certificate
+        string Certificate
         {
             get;
             set;
@@ -44,25 +44,23 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// certificate_fingerprint
         /// </summary>
-        public string CertificateFingerprint
+        string CertificateFingerprint
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// created_at
         /// </summary>
-        public DateTime? CreatedAt
+        DateTime? CreatedAt
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// description
         /// </summary>
-        public string Description
+        string Description
         {
             get;
             set;
@@ -71,7 +69,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// device_execution_mode
         /// </summary>
-        public int? DeviceExecutionMode
+        int? DeviceExecutionMode
         {
             get;
             set;
@@ -80,7 +78,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// enrollment_mode
         /// </summary>
-        public bool? EnrollmentMode
+        bool? EnrollmentMode
         {
             get;
             set;
@@ -89,32 +87,24 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// is_developer_certificate
         /// </summary>
-        public bool? IsDeveloperCertificate
+        bool? IsDeveloperCertificate
         {
-            get
-            {
-                return CustomFunctions.IsDeveloperCertificateGetter(this);
-            }
-
-            set
-            {
-                CustomFunctions.IsDeveloperCertificateSetter(this, value);
-            }
+            get;
+            set;
         }
 
         /// <summary>
         /// issuer
         /// </summary>
-        public string Issuer
+        string Issuer
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// name
         /// </summary>
-        public string Name
+        string Name
         {
             get;
             set;
@@ -123,16 +113,15 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// owner_id
         /// </summary>
-        public string OwnerId
+        string OwnerId
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// service
         /// </summary>
-        public TrustedCertificateService? Service
+        SubtenantTrustedCertificateService? Service
         {
             get;
             set;
@@ -141,7 +130,7 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// status
         /// </summary>
-        public TrustedCertificateStatus? Status
+        SubtenantTrustedCertificateStatus? Status
         {
             get;
             set;
@@ -150,37 +139,33 @@ namespace Mbed.Cloud.Foundation.Entities
         /// <summary>
         /// subject
         /// </summary>
-        public string Subject
+        string Subject
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// updated_at
         /// </summary>
-        public DateTime? UpdatedAt
+        DateTime? UpdatedAt
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// valid
         /// </summary>
-        public bool? Valid
+        bool? Valid
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// validity
         /// </summary>
-        public DateTime? Validity
+        DateTime? Validity
         {
             get;
-            private set;
         }
     }
 }

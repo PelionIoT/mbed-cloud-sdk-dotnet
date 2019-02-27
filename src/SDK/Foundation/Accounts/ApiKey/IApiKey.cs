@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="CertificateEnrollment.cs" company="Arm">
+// <copyright file="IApiKey.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -19,62 +19,83 @@ namespace Mbed.Cloud.Foundation.Entities
     using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
-    /// CertificateEnrollment
+    /// ApiKey
     /// </summary>
-    public class CertificateEnrollment : Entity, ICertificateEnrollment
+    public interface IApiKey
     {
         /// <summary>
-        /// certificate_name
+        /// account_id
         /// </summary>
-        public string CertificateName
+        string AccountId
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// created_at
         /// </summary>
-        public DateTime? CreatedAt
+        DateTime? CreatedAt
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// device_id
+        /// creation_time
         /// </summary>
-        public string DeviceId
+        long? CreationTime
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// enroll_result
+        /// key
         /// </summary>
-        public CertificateEnrollmentEnrollResult? EnrollResult
+        string Key
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// enroll_status
+        /// last_login_time
         /// </summary>
-        public CertificateEnrollmentEnrollStatus? EnrollStatus
+        long? LastLoginTime
         {
             get;
-            private set;
+        }
+
+        /// <summary>
+        /// name
+        /// </summary>
+        string Name
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// owner
+        /// </summary>
+        string Owner
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// status
+        /// </summary>
+        ApiKeyStatus? Status
+        {
+            get;
+            set;
         }
 
         /// <summary>
         /// updated_at
         /// </summary>
-        public DateTime? UpdatedAt
+        DateTime? UpdatedAt
         {
             get;
-            private set;
         }
     }
 }

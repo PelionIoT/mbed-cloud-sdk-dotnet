@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="LoginHistory.cs" company="Arm">
+// <copyright file="IActiveSession.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -18,44 +18,48 @@ namespace Mbed.Cloud.Foundation.Entities
     using System;
 
     /// <summary>
-    /// LoginHistory
+    /// ActiveSession
     /// </summary>
-    public class LoginHistory : Entity, ILoginHistory
+    public interface IActiveSession
     {
         /// <summary>
-        /// date
+        /// account_id
         /// </summary>
-        public DateTime? Date
+        string AccountId
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// ip_address
         /// </summary>
-        public string IpAddress
+        string IpAddress
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// success
+        /// login_time
         /// </summary>
-        public bool? Success
+        DateTime? LoginTime
         {
             get;
-            private set;
+        }
+
+        /// <summary>
+        /// reference_token
+        /// </summary>
+        string ReferenceToken
+        {
+            get;
         }
 
         /// <summary>
         /// user_agent
         /// </summary>
-        public string UserAgent
+        string UserAgent
         {
             get;
-            private set;
         }
     }
 }

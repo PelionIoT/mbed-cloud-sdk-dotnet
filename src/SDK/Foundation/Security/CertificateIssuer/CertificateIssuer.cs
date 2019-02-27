@@ -22,7 +22,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// CertificateIssuer
     /// </summary>
-    public class CertificateIssuer : Entity
+    public class CertificateIssuer : Entity, ICertificateIssuer
     {
         /// <summary>
         /// created_at
@@ -30,7 +30,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? CreatedAt
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>

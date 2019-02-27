@@ -21,7 +21,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// DeviceEvents
     /// </summary>
-    public class DeviceEvents : Entity
+    public class DeviceEvents : Entity, IDeviceEvents
     {
         /// <summary>
         /// changes
@@ -29,7 +29,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public Dictionary<string, string> Changes
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? CreatedAt
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public Dictionary<string, string> Data
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? DateTime
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string Description
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string DeviceId
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string EventType
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string EventTypeCategory
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string EventTypeDescription
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public bool? StateChange
         {
             get;
-            internal set;
+            private set;
         }
     }
 }

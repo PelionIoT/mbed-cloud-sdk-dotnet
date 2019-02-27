@@ -20,7 +20,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// ServerCredentials
     /// </summary>
-    public class ServerCredentials : Entity
+    public class ServerCredentials : Entity, IServerCredentials
     {
         /// <summary>
         /// created_at
@@ -28,7 +28,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? CreatedAt
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string ServerCertificate
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string ServerUri
         {
             get;
-            internal set;
+            private set;
         }
     }
 }

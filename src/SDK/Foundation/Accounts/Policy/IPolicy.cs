@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="LoginHistory.cs" company="Arm">
+// <copyright file="IPolicy.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -15,47 +15,50 @@
 namespace Mbed.Cloud.Foundation.Entities
 {
     using Mbed.Cloud.Foundation.Common;
-    using System;
 
     /// <summary>
-    /// LoginHistory
+    /// Policy
     /// </summary>
-    public class LoginHistory : Entity, ILoginHistory
+    public interface IPolicy
     {
         /// <summary>
-        /// date
+        /// action
         /// </summary>
-        public DateTime? Date
+        string Action
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// ip_address
+        /// allow
         /// </summary>
-        public string IpAddress
+        bool? Allow
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// success
+        /// feature
         /// </summary>
-        public bool? Success
+        string Feature
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// user_agent
+        /// inherited
         /// </summary>
-        public string UserAgent
+        bool? Inherited
         {
             get;
-            private set;
+        }
+
+        /// <summary>
+        /// resource
+        /// </summary>
+        string Resource
+        {
+            get;
         }
     }
 }

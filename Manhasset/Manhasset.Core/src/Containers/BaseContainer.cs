@@ -16,6 +16,8 @@ namespace Manhasset.Core.src.Containers
 
         public string DocString { get; set; }
 
+        public bool IsInterface { get; set; } = false;
+
         public void AddModifier(string key, SyntaxToken modifier)
         {
             MyModifiers.SafeAdd<string, SyntaxToken>(key, modifier);

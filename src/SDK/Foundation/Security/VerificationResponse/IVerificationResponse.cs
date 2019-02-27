@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="LoginHistory.cs" company="Arm">
+// <copyright file="IVerificationResponse.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -15,47 +15,26 @@
 namespace Mbed.Cloud.Foundation.Entities
 {
     using Mbed.Cloud.Foundation.Common;
-    using System;
 
     /// <summary>
-    /// LoginHistory
+    /// VerificationResponse
     /// </summary>
-    public class LoginHistory : Entity, ILoginHistory
+    public interface IVerificationResponse
     {
         /// <summary>
-        /// date
+        /// message
         /// </summary>
-        public DateTime? Date
+        string Message
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// ip_address
+        /// successful
         /// </summary>
-        public string IpAddress
+        bool? Successful
         {
             get;
-            private set;
-        }
-
-        /// <summary>
-        /// success
-        /// </summary>
-        public bool? Success
-        {
-            get;
-            private set;
-        }
-
-        /// <summary>
-        /// user_agent
-        /// </summary>
-        public string UserAgent
-        {
-            get;
-            private set;
         }
     }
 }

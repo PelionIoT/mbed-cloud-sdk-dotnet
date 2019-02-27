@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="LoginProfile.cs" company="Arm">
+// <copyright file="ILoginProfile.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -19,12 +19,12 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// LoginProfile
     /// </summary>
-    public class LoginProfile : Entity, ILoginProfile
+    public interface ILoginProfile
     {
         /// <summary>
         /// name
         /// </summary>
-        public string Name
+        string Name
         {
             get;
             set;

@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="LoginHistory.cs" company="Arm">
+// <copyright file="IDeviceEnrollment.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -18,44 +18,57 @@ namespace Mbed.Cloud.Foundation.Entities
     using System;
 
     /// <summary>
-    /// LoginHistory
+    /// DeviceEnrollment
     /// </summary>
-    public class LoginHistory : Entity, ILoginHistory
+    public interface IDeviceEnrollment
     {
         /// <summary>
-        /// date
+        /// account_id
         /// </summary>
-        public DateTime? Date
+        string AccountId
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// ip_address
+        /// claimed_at
         /// </summary>
-        public string IpAddress
+        DateTime? ClaimedAt
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// success
+        /// created_at
         /// </summary>
-        public bool? Success
+        DateTime? CreatedAt
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// user_agent
+        /// enrolled_device_id
         /// </summary>
-        public string UserAgent
+        string EnrolledDeviceId
         {
             get;
-            private set;
+        }
+
+        /// <summary>
+        /// enrollment_identity
+        /// </summary>
+        string EnrollmentIdentity
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// expires_at
+        /// </summary>
+        DateTime? ExpiresAt
+        {
+            get;
         }
     }
 }

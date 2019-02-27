@@ -20,7 +20,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// ActiveSession
     /// </summary>
-    public class ActiveSession : Entity
+    public class ActiveSession : Entity, IActiveSession
     {
         /// <summary>
         /// account_id
@@ -28,7 +28,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string AccountId
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string IpAddress
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? LoginTime
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string ReferenceToken
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string UserAgent
         {
             get;
-            internal set;
+            private set;
         }
     }
 }

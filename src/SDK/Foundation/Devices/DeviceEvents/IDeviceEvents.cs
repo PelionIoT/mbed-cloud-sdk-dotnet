@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="CertificateEnrollment.cs" company="Arm">
+// <copyright file="IDeviceEvents.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -15,66 +15,92 @@
 namespace Mbed.Cloud.Foundation.Entities
 {
     using Mbed.Cloud.Foundation.Common;
+    using System.Collections.Generic;
     using System;
-    using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
-    /// CertificateEnrollment
+    /// DeviceEvents
     /// </summary>
-    public class CertificateEnrollment : Entity, ICertificateEnrollment
+    public interface IDeviceEvents
     {
         /// <summary>
-        /// certificate_name
+        /// changes
         /// </summary>
-        public string CertificateName
+        Dictionary<string, string> Changes
         {
             get;
-            private set;
         }
 
         /// <summary>
         /// created_at
         /// </summary>
-        public DateTime? CreatedAt
+        DateTime? CreatedAt
         {
             get;
-            private set;
+        }
+
+        /// <summary>
+        /// data
+        /// </summary>
+        Dictionary<string, string> Data
+        {
+            get;
+        }
+
+        /// <summary>
+        /// date_time
+        /// </summary>
+        DateTime? DateTime
+        {
+            get;
+        }
+
+        /// <summary>
+        /// description
+        /// </summary>
+        string Description
+        {
+            get;
         }
 
         /// <summary>
         /// device_id
         /// </summary>
-        public string DeviceId
+        string DeviceId
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// enroll_result
+        /// event_type
         /// </summary>
-        public CertificateEnrollmentEnrollResult? EnrollResult
+        string EventType
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// enroll_status
+        /// event_type_category
         /// </summary>
-        public CertificateEnrollmentEnrollStatus? EnrollStatus
+        string EventTypeCategory
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// updated_at
+        /// event_type_description
         /// </summary>
-        public DateTime? UpdatedAt
+        string EventTypeDescription
         {
             get;
-            private set;
+        }
+
+        /// <summary>
+        /// state_change
+        /// </summary>
+        bool? StateChange
+        {
+            get;
         }
     }
 }

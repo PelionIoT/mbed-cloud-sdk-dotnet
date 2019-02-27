@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="LoginHistory.cs" company="Arm">
+// <copyright file="ICertificateIssuerConfig.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -15,47 +15,46 @@
 namespace Mbed.Cloud.Foundation.Entities
 {
     using Mbed.Cloud.Foundation.Common;
+    using System.Collections.Generic;
     using System;
 
     /// <summary>
-    /// LoginHistory
+    /// CertificateIssuerConfig
     /// </summary>
-    public class LoginHistory : Entity, ILoginHistory
+    public interface ICertificateIssuerConfig
     {
         /// <summary>
-        /// date
+        /// certificate_issuer_id
         /// </summary>
-        public DateTime? Date
+        string CertificateIssuerId
         {
             get;
-            private set;
+            set;
         }
 
         /// <summary>
-        /// ip_address
+        /// certificate_reference
         /// </summary>
-        public string IpAddress
+        string CertificateReference
         {
             get;
-            private set;
+            set;
         }
 
         /// <summary>
-        /// success
+        /// created_at
         /// </summary>
-        public bool? Success
+        DateTime? CreatedAt
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// user_agent
+        /// updated_at
         /// </summary>
-        public string UserAgent
+        DateTime? UpdatedAt
         {
             get;
-            private set;
         }
     }
 }

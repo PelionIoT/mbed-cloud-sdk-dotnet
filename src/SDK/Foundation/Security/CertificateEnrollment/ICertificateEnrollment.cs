@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="LoginHistory.cs" company="Arm">
+// <copyright file="ICertificateEnrollment.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -16,46 +16,59 @@ namespace Mbed.Cloud.Foundation.Entities
 {
     using Mbed.Cloud.Foundation.Common;
     using System;
+    using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
-    /// LoginHistory
+    /// CertificateEnrollment
     /// </summary>
-    public class LoginHistory : Entity, ILoginHistory
+    public interface ICertificateEnrollment
     {
         /// <summary>
-        /// date
+        /// certificate_name
         /// </summary>
-        public DateTime? Date
+        string CertificateName
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// ip_address
+        /// created_at
         /// </summary>
-        public string IpAddress
+        DateTime? CreatedAt
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// success
+        /// device_id
         /// </summary>
-        public bool? Success
+        string DeviceId
         {
             get;
-            private set;
         }
 
         /// <summary>
-        /// user_agent
+        /// enroll_result
         /// </summary>
-        public string UserAgent
+        CertificateEnrollmentEnrollResult? EnrollResult
         {
             get;
-            private set;
+        }
+
+        /// <summary>
+        /// enroll_status
+        /// </summary>
+        CertificateEnrollmentEnrollStatus? EnrollStatus
+        {
+            get;
+        }
+
+        /// <summary>
+        /// updated_at
+        /// </summary>
+        DateTime? UpdatedAt
+        {
+            get;
         }
     }
 }
