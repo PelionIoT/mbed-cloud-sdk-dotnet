@@ -26,15 +26,15 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// AccountRepository
     /// </summary>
-    interface IAccountRepository
+    public interface IAccountRepository
     {
-        Task<Account> Create(Account request, string action);
-        Task<Account> Get(string id, string include, string properties);
-        Account List(AccountListOptions options);
-        Task<Account> Me(string include, string properties);
-        SubtenantTrustedCertificate TrustedCertificates(SubtenantTrustedCertificateListOptions options, string id);
+        Task<Account> Create(Account request, string action = null);
+        Task<Account> Get(string id, string include = null, string properties = null);
+        PaginatedResponse<AccountListOptions, Account> List(AccountListOptions options = null);
+        Task<Account> Me(string include = null, string properties = null);
+        PaginatedResponse<SubtenantTrustedCertificateListOptions, SubtenantTrustedCertificate> TrustedCertificates(string id, SubtenantTrustedCertificateListOptions options = null);
         Task<Account> Update(string id, Account request);
-        SubtenantUserInvitation UserInvitations(SubtenantUserInvitationListOptions options, string id);
-        SubtenantUser Users(SubtenantUserListOptions options, string id);
+        PaginatedResponse<SubtenantUserInvitationListOptions, SubtenantUserInvitation> UserInvitations(string id, SubtenantUserInvitationListOptions options = null);
+        PaginatedResponse<SubtenantUserListOptions, SubtenantUser> Users(string id, SubtenantUserListOptions options = null);
     }
 }

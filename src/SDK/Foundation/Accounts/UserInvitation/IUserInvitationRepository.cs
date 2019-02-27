@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="IDeviceEnrollmentBulkDeleteRepository.cs" company="Arm">
+// <copyright file="IUserInvitationRepository.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -15,7 +15,7 @@
 namespace Mbed.Cloud.Foundation.Entities
 {
     using Mbed.Cloud.Foundation.Common;
-    using System.IO;
+    using Mbed.Cloud.Foundation.ListOptions;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
@@ -23,13 +23,13 @@ namespace Mbed.Cloud.Foundation.Entities
     using Mbed.Cloud.Foundation.RestClient;
 
     /// <summary>
-    /// DeviceEnrollmentBulkDeleteRepository
+    /// UserInvitationRepository
     /// </summary>
-    interface IDeviceEnrollmentBulkDeleteRepository
+    public interface IUserInvitationRepository
     {
-        Task<DeviceEnrollmentBulkDelete> Delete(Stream enrollmentIdentities);
-        Task<Stream> DownloadErrorsReportFile(DeviceEnrollmentBulkDelete model);
-        Task<Stream> DownloadFullReportFile(DeviceEnrollmentBulkDelete model);
-        Task<DeviceEnrollmentBulkDelete> Get(string id);
+        Task<UserInvitation> Create(UserInvitation request, int validForDays = 25);
+        Task Delete(string id);
+        Task<UserInvitation> Get(string id);
+        PaginatedResponse<UserInvitationListOptions, UserInvitation> List(UserInvitationListOptions options = null);
     }
 }

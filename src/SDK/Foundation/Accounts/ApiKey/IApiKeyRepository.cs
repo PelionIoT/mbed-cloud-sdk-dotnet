@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="IServerCredentialsRepository.cs" company="Arm">
+// <copyright file="IApiKeyRepository.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -15,6 +15,7 @@
 namespace Mbed.Cloud.Foundation.Entities
 {
     using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Foundation.ListOptions;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
@@ -22,11 +23,15 @@ namespace Mbed.Cloud.Foundation.Entities
     using Mbed.Cloud.Foundation.RestClient;
 
     /// <summary>
-    /// ServerCredentialsRepository
+    /// ApiKeyRepository
     /// </summary>
-    interface IServerCredentialsRepository
+    public interface IApiKeyRepository
     {
-        Task<ServerCredentials> GetBootstrap();
-        Task<ServerCredentials> GetLwm2m();
+        Task<ApiKey> Create(ApiKey request);
+        Task Delete(string id);
+        Task<ApiKey> Get(string id);
+        PaginatedResponse<ApiKeyListOptions, ApiKey> List(ApiKeyListOptions options = null);
+        Task<ApiKey> Me();
+        Task<ApiKey> Update(string id, ApiKey request);
     }
 }

@@ -25,7 +25,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// UserInvitationRepository
     /// </summary>
-    public class UserInvitationRepository : Repository
+    public class UserInvitationRepository : Repository, IUserInvitationRepository
     {
         public UserInvitationRepository()
         {

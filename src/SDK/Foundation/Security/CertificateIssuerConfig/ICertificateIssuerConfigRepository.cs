@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="IUserRepository.cs" company="Arm">
+// <copyright file="ICertificateIssuerConfigRepository.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -23,14 +23,15 @@ namespace Mbed.Cloud.Foundation.Entities
     using Mbed.Cloud.Foundation.RestClient;
 
     /// <summary>
-    /// UserRepository
+    /// CertificateIssuerConfigRepository
     /// </summary>
-    interface IUserRepository
+    public interface ICertificateIssuerConfigRepository
     {
-        Task<User> Create(User request, string action);
+        Task<CertificateIssuerConfig> Create(CertificateIssuerConfig request);
         Task Delete(string id);
-        Task<User> Get(string id);
-        User List(UserListOptions options);
-        Task<User> Update(string id, User request);
+        Task<CertificateIssuerConfig> Get(string id);
+        Task<CertificateIssuerConfig> GetDefault();
+        PaginatedResponse<CertificateIssuerConfigListOptions, CertificateIssuerConfig> List(CertificateIssuerConfigListOptions options = null);
+        Task<CertificateIssuerConfig> Update(string id, CertificateIssuerConfig request);
     }
 }

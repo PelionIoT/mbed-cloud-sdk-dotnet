@@ -25,7 +25,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// DeviceEnrollmentBulkCreateRepository
     /// </summary>
-    public class DeviceEnrollmentBulkCreateRepository : Repository
+    public class DeviceEnrollmentBulkCreateRepository : Repository, IDeviceEnrollmentBulkCreateRepository
     {
         public DeviceEnrollmentBulkCreateRepository()
         {

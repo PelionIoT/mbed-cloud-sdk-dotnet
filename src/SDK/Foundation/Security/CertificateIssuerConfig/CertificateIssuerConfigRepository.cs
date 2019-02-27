@@ -25,7 +25,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// CertificateIssuerConfigRepository
     /// </summary>
-    public class CertificateIssuerConfigRepository : Repository
+    public class CertificateIssuerConfigRepository : Repository, ICertificateIssuerConfigRepository
     {
         public CertificateIssuerConfigRepository()
         {

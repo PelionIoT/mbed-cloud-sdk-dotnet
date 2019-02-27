@@ -26,7 +26,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// AccountRepository
     /// </summary>
-    public class AccountRepository : Repository
+    public class AccountRepository : Repository, IAccountRepository
     {
         public AccountRepository()
         {

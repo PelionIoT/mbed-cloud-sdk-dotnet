@@ -25,7 +25,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// DeviceEventsRepository
     /// </summary>
-    public class DeviceEventsRepository : Repository
+    public class DeviceEventsRepository : Repository, IDeviceEventsRepository
     {
         public DeviceEventsRepository()
         {

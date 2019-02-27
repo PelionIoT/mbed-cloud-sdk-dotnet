@@ -32,12 +32,18 @@ namespace Manhasset.Generator.src.Generators
             entityRepository.AddBaseType("BASE_ENTITY", "Repository");
             entityRepository.AddUsing(nameof(UsingKeys.SDK_COMMON), UsingKeys.SDK_COMMON);
 
+            // add interface
+            entityRepository.AddBaseType("INTERFACE", $"I{entityRepository.Name}");
+
             // doc (just use the name for now)
             entityRepository.DocString = entityRepository.Name;
 
             // set the filepath root/groupId/Class/Class.cs
             entityRepository.FilePath = $"{rootFilePath}/{entityGroup}/{entityPascalName}/";
+            Console.WriteLine(entityRepository.FilePath);
             entityRepository.FileName = $"{entityRepository.Name}.cs";
+            Console.WriteLine(entityRepository.FilePath);
+            Console.WriteLine(entityRepository.FilePath);
 
             //default constructor
             var defaultConstructor = new ConstructorContainer
@@ -317,12 +323,12 @@ namespace Manhasset.Generator.src.Generators
 
             compilation.AddClass(entityRepository.Name, entityRepository);
 
-            var entityRepositoryInterface = entityRepository.CloneJson<ClassContainer>();
+            var entityRepositoryInterface = entityRepository.Copy();
+            // entityRepositoryInterface.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
             entityRepositoryInterface.Name = $"I{entityRepository.Name}";
+            entityRepositoryInterface.FilePath = $"{rootFilePath}/{entityGroup}/{entityPascalName}/";
             entityRepositoryInterface.FileName = $"I{entityRepository.FileName}";
             entityRepositoryInterface.IsInterface = true;
-
-            // Console.WriteLine(JsonConvert.SerializeObject(entityRepositoryInterface));
 
             compilation.AddClass(entityRepositoryInterface.Name, entityRepositoryInterface);
         }

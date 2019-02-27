@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="ISubtenantUserInvitationRepository.cs" company="Arm">
+// <copyright file="IDeviceEnrollmentBulkCreateRepository.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -15,6 +15,7 @@
 namespace Mbed.Cloud.Foundation.Entities
 {
     using Mbed.Cloud.Foundation.Common;
+    using System.IO;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
@@ -22,12 +23,13 @@ namespace Mbed.Cloud.Foundation.Entities
     using Mbed.Cloud.Foundation.RestClient;
 
     /// <summary>
-    /// SubtenantUserInvitationRepository
+    /// DeviceEnrollmentBulkCreateRepository
     /// </summary>
-    interface ISubtenantUserInvitationRepository
+    public interface IDeviceEnrollmentBulkCreateRepository
     {
-        Task<SubtenantUserInvitation> Create(string accountId, SubtenantUserInvitation request, int validForDays);
-        Task Delete(string accountId, string id);
-        Task<SubtenantUserInvitation> Get(string accountId, string id);
+        Task<DeviceEnrollmentBulkCreate> Create(Stream enrollmentIdentities);
+        Task<Stream> DownloadErrorsReportFile(DeviceEnrollmentBulkCreate model);
+        Task<Stream> DownloadFullReportFile(DeviceEnrollmentBulkCreate model);
+        Task<DeviceEnrollmentBulkCreate> Get(string id);
     }
 }

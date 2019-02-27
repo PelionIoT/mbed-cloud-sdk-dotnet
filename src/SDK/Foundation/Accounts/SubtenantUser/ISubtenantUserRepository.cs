@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="IDeveloperCertificateRepository.cs" company="Arm">
+// <copyright file="ISubtenantUserRepository.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -15,7 +15,6 @@
 namespace Mbed.Cloud.Foundation.Entities
 {
     using Mbed.Cloud.Foundation.Common;
-    using Mbed.Cloud.Foundation.Entities;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
@@ -23,13 +22,14 @@ namespace Mbed.Cloud.Foundation.Entities
     using Mbed.Cloud.Foundation.RestClient;
 
     /// <summary>
-    /// DeveloperCertificateRepository
+    /// SubtenantUserRepository
     /// </summary>
-    interface IDeveloperCertificateRepository
+    public interface ISubtenantUserRepository
     {
-        Task<DeveloperCertificate> Create(DeveloperCertificate request);
-        Task Delete(string id);
-        Task<DeveloperCertificate> Get(string id);
-        Task<TrustedCertificate> GetTrustedCertificateInfo(string id);
+        Task<SubtenantUser> Create(string accountId, SubtenantUser request, string action = null);
+        Task Delete(string accountId, string id);
+        Task<SubtenantUser> Get(string accountId, string id);
+        Task<SubtenantUser> Update(string accountId, string id, SubtenantUser request);
+        Task<SubtenantUser> ValidateEmail(string accountId, string id);
     }
 }

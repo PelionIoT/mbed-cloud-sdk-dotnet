@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Manhasset.Core.src.Common;
 using Manhasset.Core.src.Extensions;
 using Manhasset.Core.src.Generators;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -115,8 +117,9 @@ namespace Manhasset.Core.src.Containers
 
         private InterfaceDeclarationSyntax GetInterfaceSyntax()
         {
+            // TODO for some reason my modifiers seems to be null for the interface. Needs further investigation
             // create interface
-            var interfaceSyntax = SyntaxFactory.InterfaceDeclaration(Name);// .AddModifiers(MyModifiers?.Values?.ToArray());
+            var interfaceSyntax = SyntaxFactory.InterfaceDeclaration(Name).AddModifiers(new [] { Modifiers.PUBLIC });
 
             // add doc
             interfaceSyntax = interfaceSyntax.AddSummary(DocString) as InterfaceDeclarationSyntax;
@@ -138,12 +141,19 @@ namespace Manhasset.Core.src.Containers
             interfaceSyntax = interfaceSyntax.AddMembers(properties);
 
             // add methods
-            var methods = Methods.Values.Select(c =>
+            var copyMethods = new List<MethodContainer>();
+            var methodsArray = Methods.Values.ToArray();
+            copyMethods.AddRange(methodsArray);
+            var methods = copyMethods.Select(c =>
             {
                 c.MyModifiers.Clear();
                 c.IsInterface = true;
-                return c;
-            }).Select(m => m.GetSyntax()).ToArray();
+                return c.GetSyntax();
+            })
+            .Select(s => {
+                s = s.WithBody(null);
+                return s;
+            }).ToArray();
             interfaceSyntax = interfaceSyntax.AddMembers(methods);
 
             return interfaceSyntax;

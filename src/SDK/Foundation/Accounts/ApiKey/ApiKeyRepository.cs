@@ -25,7 +25,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// ApiKeyRepository
     /// </summary>
-    public class ApiKeyRepository : Repository
+    public class ApiKeyRepository : Repository, IApiKeyRepository
     {
         public ApiKeyRepository()
         {

@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="IDeviceEventsRepository.cs" company="Arm">
+// <copyright file="IDeviceEnrollmentRepository.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -23,11 +23,13 @@ namespace Mbed.Cloud.Foundation.Entities
     using Mbed.Cloud.Foundation.RestClient;
 
     /// <summary>
-    /// DeviceEventsRepository
+    /// DeviceEnrollmentRepository
     /// </summary>
-    interface IDeviceEventsRepository
+    public interface IDeviceEnrollmentRepository
     {
-        Task<DeviceEvents> Get(string id);
-        DeviceEvents List(DeviceEventsListOptions options);
+        Task<DeviceEnrollment> Create(DeviceEnrollment request);
+        Task Delete(string id);
+        Task<DeviceEnrollment> Get(string id);
+        PaginatedResponse<DeviceEnrollmentListOptions, DeviceEnrollment> List(DeviceEnrollmentListOptions options = null);
     }
 }

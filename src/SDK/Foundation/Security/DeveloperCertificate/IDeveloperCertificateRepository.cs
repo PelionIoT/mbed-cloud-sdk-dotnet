@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="IDeviceEnrollmentBulkCreateRepository.cs" company="Arm">
+// <copyright file="IDeveloperCertificateRepository.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -15,7 +15,7 @@
 namespace Mbed.Cloud.Foundation.Entities
 {
     using Mbed.Cloud.Foundation.Common;
-    using System.IO;
+    using Mbed.Cloud.Foundation.Entities;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
@@ -23,13 +23,13 @@ namespace Mbed.Cloud.Foundation.Entities
     using Mbed.Cloud.Foundation.RestClient;
 
     /// <summary>
-    /// DeviceEnrollmentBulkCreateRepository
+    /// DeveloperCertificateRepository
     /// </summary>
-    interface IDeviceEnrollmentBulkCreateRepository
+    public interface IDeveloperCertificateRepository
     {
-        Task<DeviceEnrollmentBulkCreate> Create(Stream enrollmentIdentities);
-        Task<Stream> DownloadErrorsReportFile(DeviceEnrollmentBulkCreate model);
-        Task<Stream> DownloadFullReportFile(DeviceEnrollmentBulkCreate model);
-        Task<DeviceEnrollmentBulkCreate> Get(string id);
+        Task<DeveloperCertificate> Create(DeveloperCertificate request);
+        Task Delete(string id);
+        Task<DeveloperCertificate> Get(string id);
+        Task<TrustedCertificate> GetTrustedCertificateInfo(string id);
     }
 }

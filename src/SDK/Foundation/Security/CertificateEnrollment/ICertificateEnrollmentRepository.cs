@@ -25,9 +25,9 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// CertificateEnrollmentRepository
     /// </summary>
-    interface ICertificateEnrollmentRepository
+    public interface ICertificateEnrollmentRepository
     {
         Task<CertificateEnrollment> Get(string id);
-        CertificateEnrollment List(CertificateEnrollmentListOptions options);
+        PaginatedResponse<CertificateEnrollmentListOptions, CertificateEnrollment> List(CertificateEnrollmentListOptions options = null);
     }
 }

@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="ISubtenantUserRepository.cs" company="Arm">
+// <copyright file="IUserRepository.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -15,6 +15,7 @@
 namespace Mbed.Cloud.Foundation.Entities
 {
     using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Foundation.ListOptions;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
@@ -22,14 +23,14 @@ namespace Mbed.Cloud.Foundation.Entities
     using Mbed.Cloud.Foundation.RestClient;
 
     /// <summary>
-    /// SubtenantUserRepository
+    /// UserRepository
     /// </summary>
-    interface ISubtenantUserRepository
+    public interface IUserRepository
     {
-        Task<SubtenantUser> Create(string accountId, SubtenantUser request, string action);
-        Task Delete(string accountId, string id);
-        Task<SubtenantUser> Get(string accountId, string id);
-        Task<SubtenantUser> Update(string accountId, string id, SubtenantUser request);
-        Task<SubtenantUser> ValidateEmail(string accountId, string id);
+        Task<User> Create(User request, string action = null);
+        Task Delete(string id);
+        Task<User> Get(string id);
+        PaginatedResponse<UserListOptions, User> List(UserListOptions options = null);
+        Task<User> Update(string id, User request);
     }
 }

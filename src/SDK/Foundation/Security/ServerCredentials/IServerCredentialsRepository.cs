@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="ICertificateIssuerRepository.cs" company="Arm">
+// <copyright file="IServerCredentialsRepository.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -15,8 +15,6 @@
 namespace Mbed.Cloud.Foundation.Entities
 {
     using Mbed.Cloud.Foundation.Common;
-    using Mbed.Cloud.Foundation.ListOptions;
-    using Mbed.Cloud.Foundation.Entities;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
@@ -24,15 +22,11 @@ namespace Mbed.Cloud.Foundation.Entities
     using Mbed.Cloud.Foundation.RestClient;
 
     /// <summary>
-    /// CertificateIssuerRepository
+    /// ServerCredentialsRepository
     /// </summary>
-    interface ICertificateIssuerRepository
+    public interface IServerCredentialsRepository
     {
-        Task<CertificateIssuer> Create(CertificateIssuer request, Dictionary<string, string> issuerCredentials);
-        Task Delete(string id);
-        Task<CertificateIssuer> Get(string id);
-        CertificateIssuer List(CertificateIssuerListOptions options);
-        Task<CertificateIssuer> Update(string id, CertificateIssuer request, Dictionary<string, string> issuerCredentials);
-        Task<VerificationResponse> Verify(string id);
+        Task<ServerCredentials> GetBootstrap();
+        Task<ServerCredentials> GetLwm2m();
     }
 }

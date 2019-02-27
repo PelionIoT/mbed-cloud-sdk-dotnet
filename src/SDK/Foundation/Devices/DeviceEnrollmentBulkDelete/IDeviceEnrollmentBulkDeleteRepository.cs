@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="ITrustedCertificateRepository.cs" company="Arm">
+// <copyright file="IDeviceEnrollmentBulkDeleteRepository.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -15,8 +15,7 @@
 namespace Mbed.Cloud.Foundation.Entities
 {
     using Mbed.Cloud.Foundation.Common;
-    using Mbed.Cloud.Foundation.Entities;
-    using Mbed.Cloud.Foundation.ListOptions;
+    using System.IO;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
@@ -24,15 +23,13 @@ namespace Mbed.Cloud.Foundation.Entities
     using Mbed.Cloud.Foundation.RestClient;
 
     /// <summary>
-    /// TrustedCertificateRepository
+    /// DeviceEnrollmentBulkDeleteRepository
     /// </summary>
-    interface ITrustedCertificateRepository
+    public interface IDeviceEnrollmentBulkDeleteRepository
     {
-        Task<TrustedCertificate> Create(TrustedCertificate request);
-        Task Delete(string id);
-        Task<TrustedCertificate> Get(string id);
-        Task<DeveloperCertificate> GetDeveloperCertificateInfo(string id);
-        TrustedCertificate List(TrustedCertificateListOptions options);
-        Task<TrustedCertificate> Update(string id, TrustedCertificate request);
+        Task<DeviceEnrollmentBulkDelete> Delete(Stream enrollmentIdentities);
+        Task<Stream> DownloadErrorsReportFile(DeviceEnrollmentBulkDelete model);
+        Task<Stream> DownloadFullReportFile(DeviceEnrollmentBulkDelete model);
+        Task<DeviceEnrollmentBulkDelete> Get(string id);
     }
 }

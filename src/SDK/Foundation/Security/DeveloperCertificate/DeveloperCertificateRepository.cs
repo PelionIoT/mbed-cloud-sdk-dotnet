@@ -25,7 +25,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// DeveloperCertificateRepository
     /// </summary>
-    public class DeveloperCertificateRepository : Repository
+    public class DeveloperCertificateRepository : Repository, IDeveloperCertificateRepository
     {
         public DeveloperCertificateRepository()
         {

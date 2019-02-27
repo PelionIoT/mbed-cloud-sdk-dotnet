@@ -26,7 +26,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// DeviceRepository
     /// </summary>
-    public class DeviceRepository : Repository
+    public class DeviceRepository : Repository, IDeviceRepository
     {
         public DeviceRepository()
         {

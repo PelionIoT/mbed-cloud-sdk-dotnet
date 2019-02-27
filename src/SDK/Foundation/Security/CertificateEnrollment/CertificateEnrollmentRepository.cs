@@ -25,7 +25,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// CertificateEnrollmentRepository
     /// </summary>
-    public class CertificateEnrollmentRepository : Repository
+    public class CertificateEnrollmentRepository : Repository, ICertificateEnrollmentRepository
     {
         public CertificateEnrollmentRepository()
         {

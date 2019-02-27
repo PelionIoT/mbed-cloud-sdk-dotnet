@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="IDeviceEnrollmentRepository.cs" company="Arm">
+// <copyright file="ITrustedCertificateRepository.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -15,6 +15,7 @@
 namespace Mbed.Cloud.Foundation.Entities
 {
     using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Foundation.Entities;
     using Mbed.Cloud.Foundation.ListOptions;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
@@ -23,13 +24,15 @@ namespace Mbed.Cloud.Foundation.Entities
     using Mbed.Cloud.Foundation.RestClient;
 
     /// <summary>
-    /// DeviceEnrollmentRepository
+    /// TrustedCertificateRepository
     /// </summary>
-    interface IDeviceEnrollmentRepository
+    public interface ITrustedCertificateRepository
     {
-        Task<DeviceEnrollment> Create(DeviceEnrollment request);
+        Task<TrustedCertificate> Create(TrustedCertificate request);
         Task Delete(string id);
-        Task<DeviceEnrollment> Get(string id);
-        DeviceEnrollment List(DeviceEnrollmentListOptions options);
+        Task<TrustedCertificate> Get(string id);
+        Task<DeveloperCertificate> GetDeveloperCertificateInfo(string id);
+        PaginatedResponse<TrustedCertificateListOptions, TrustedCertificate> List(TrustedCertificateListOptions options = null);
+        Task<TrustedCertificate> Update(string id, TrustedCertificate request);
     }
 }

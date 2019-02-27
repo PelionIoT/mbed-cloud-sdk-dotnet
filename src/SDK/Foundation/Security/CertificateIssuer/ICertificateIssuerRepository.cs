@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="ICertificateIssuerConfigRepository.cs" company="Arm">
+// <copyright file="ICertificateIssuerRepository.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -16,6 +16,7 @@ namespace Mbed.Cloud.Foundation.Entities
 {
     using Mbed.Cloud.Foundation.Common;
     using Mbed.Cloud.Foundation.ListOptions;
+    using Mbed.Cloud.Foundation.Entities;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
@@ -23,15 +24,15 @@ namespace Mbed.Cloud.Foundation.Entities
     using Mbed.Cloud.Foundation.RestClient;
 
     /// <summary>
-    /// CertificateIssuerConfigRepository
+    /// CertificateIssuerRepository
     /// </summary>
-    interface ICertificateIssuerConfigRepository
+    public interface ICertificateIssuerRepository
     {
-        Task<CertificateIssuerConfig> Create(CertificateIssuerConfig request);
+        Task<CertificateIssuer> Create(CertificateIssuer request, Dictionary<string, string> issuerCredentials = null);
         Task Delete(string id);
-        Task<CertificateIssuerConfig> Get(string id);
-        Task<CertificateIssuerConfig> GetDefault();
-        CertificateIssuerConfig List(CertificateIssuerConfigListOptions options);
-        Task<CertificateIssuerConfig> Update(string id, CertificateIssuerConfig request);
+        Task<CertificateIssuer> Get(string id);
+        PaginatedResponse<CertificateIssuerListOptions, CertificateIssuer> List(CertificateIssuerListOptions options = null);
+        Task<CertificateIssuer> Update(string id, CertificateIssuer request, Dictionary<string, string> issuerCredentials = null);
+        Task<VerificationResponse> Verify(string id);
     }
 }

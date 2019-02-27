@@ -25,7 +25,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// SubtenantTrustedCertificateRepository
     /// </summary>
-    public class SubtenantTrustedCertificateRepository : Repository
+    public class SubtenantTrustedCertificateRepository : Repository, ISubtenantTrustedCertificateRepository
     {
         public SubtenantTrustedCertificateRepository()
         {
