@@ -117,7 +117,7 @@ namespace Manhasset.Core.src.Containers
         {
             // TODO for some reason my modifiers seems to be null for the interface. Needs further investigation
             // create interface
-            var interfaceSyntax = SyntaxFactory.InterfaceDeclaration(Name).AddModifiers(new [] { Modifiers.PUBLIC });
+            var interfaceSyntax = SyntaxFactory.InterfaceDeclaration(Name).AddModifiers(MyModifiers.Values.ToArray());
 
             // add doc
             interfaceSyntax = interfaceSyntax.AddSummary(DocString) as InterfaceDeclarationSyntax;
