@@ -7,20 +7,20 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="EntityFactory.cs" company="Arm">
+// <copyright file="FoundationFactory.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
-namespace Mbed.Cloud
+namespace Mbed.Cloud.Foundation.Factories
 {
     using Mbed.Cloud.Common;
     using Mbed.Cloud.Foundation;
 
     /// <summary>
-    /// Entity Factory
+    /// Foundation Factory
     /// </summary>
-    public partial class EntityFactory
+    public partial class FoundationFactory
     {
         public AccountRepository AccountRepository()
         {

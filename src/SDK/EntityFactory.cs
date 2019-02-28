@@ -2,7 +2,7 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-namespace Mbed.Cloud
+namespace Mbed.Cloud.Foundation.Factories
 {
     using Mbed.Cloud.Common;
     using Mbed.Cloud.RestClient;
@@ -10,7 +10,7 @@ namespace Mbed.Cloud
     /// <summary>
     /// Entity Factory
     /// </summary>
-    public partial class EntityFactory
+    public partial class FoundationFactory
     {
         private Client client;
 
@@ -21,7 +21,7 @@ namespace Mbed.Cloud
         /// </summary>
         /// <param name="config">The configuration.</param>
         /// <param name="client">The client.</param>
-        public EntityFactory(Config config, Client client)
+        public FoundationFactory(Config config, Client client)
         {
             this.config = config;
             this.client = client;
