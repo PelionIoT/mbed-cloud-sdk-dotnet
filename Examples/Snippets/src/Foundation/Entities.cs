@@ -6,6 +6,7 @@ using Mbed.Cloud;
 using Mbed.Cloud.Foundation.Common;
 using Mbed.Cloud.Foundation.Entities;
 using Mbed.Cloud.Foundation.Enums;
+using Mbed.Cloud.Foundation.ListOptions;
 using MbedCloudSDK.Exceptions;
 using NUnit.Framework;
 

@@ -170,15 +170,15 @@ jobs:
       - OUTPUT_DIR: "./docs"
     steps:
       - checkout
-    #  - run:
-    #      command: doxygen ar.doxygen
-    #      name: run Doxygen to build the docs
-    #  - store_artifacts:
-    #      path: docs
-    #  - persist_to_workspace:
-    #      root: ./
-    #      paths:
-    #        - docs
+      - run:
+          command: doxygen ar.doxygen
+          name: run Doxygen to build the docs
+      - store_artifacts:
+          path: docs
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - docs
   upload_docs:
     <<: *circle_python
     steps:
@@ -188,7 +188,7 @@ jobs:
       - run:
          command: |
                  . venv/bin/activate
-                 aws s3 sync --delete --cache-control max-age=3600 ~/docs s3://mbed-cloud-sdk-dotnet-dist/latest/docs
+                 aws s3 sync --delete --cache-control max-age=3600 ~/docs s3://mbed-cloud-sdk-dotnet-dist/${CIRCLE_BRANCH}/docs
          name: upload docs to s3
   #############################################################################################
   #                                Misc pre jobs                                              #
@@ -551,7 +551,7 @@ workflows:
       - upload_docs:
           requires:
           - docs
-          <<: *filter_master_only_build
+          <<: *filter_master_or_beta_only_build
       - tpip:
           <<: *filter_master_only_build
       - version_bump:
@@ -588,7 +588,7 @@ workflows:
           - unit_test
           - integration_test_os2
           - integration_test_production
-          <<: *filter_master_only_build
+          <<: *filter_master_or_beta_only_build
       - release_to_nuget:
           requires:
           - unit_test
