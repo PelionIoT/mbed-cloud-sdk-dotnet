@@ -50,7 +50,6 @@ references:
           only:
           - master
           - beta
-          - f/push-beta-docs
         tags:
           ignore:
           - /.*/
