@@ -14,8 +14,8 @@
 
 namespace Mbed.Cloud
 {
-    using Mbed.Cloud.Foundation.Common;
-    using Mbed.Cloud.Foundation.Entities;
+    using Mbed.Cloud.Common;
+    using Mbed.Cloud.Foundation;
 
     /// <summary>
     /// Entity Factory

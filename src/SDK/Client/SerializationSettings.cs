@@ -2,12 +2,12 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-namespace Mbed.Cloud.Foundation.RestClient
+namespace Mbed.Cloud.RestClient
 {
     using System;
     using System.Collections.Generic;
-    using Mbed.Cloud.Foundation.Common;
-    using Mbed.Cloud.Foundation.Common.CustomSerializers;
+    using Mbed.Cloud.Common;
+    using Mbed.Cloud.Common.CustomSerializers;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
     using Newtonsoft.Json.Serialization;

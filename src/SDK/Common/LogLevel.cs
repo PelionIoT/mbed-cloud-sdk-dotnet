@@ -1,4 +1,4 @@
-namespace Mbed.Cloud.Foundation.Common
+namespace Mbed.Cloud.Common
 {
     public enum LogLevel
     {

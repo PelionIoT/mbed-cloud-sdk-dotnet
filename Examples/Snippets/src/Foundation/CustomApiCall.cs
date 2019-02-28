@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Mbed.Cloud.Foundation.Common;
-using Mbed.Cloud.Foundation.Entities;
-using Mbed.Cloud.Foundation.RestClient;
+using Mbed.Cloud.Common;
+using Mbed.Cloud.Foundation;
+using Mbed.Cloud.RestClient;
 using NUnit.Framework;
 
 namespace Snippets.src.Foundation

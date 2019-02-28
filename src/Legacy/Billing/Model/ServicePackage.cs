@@ -5,7 +5,7 @@
 namespace MbedCloudSDK.Billing.Model
 {
     using System;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using MbedCloudSDK.Common;
     using Newtonsoft.Json;
 

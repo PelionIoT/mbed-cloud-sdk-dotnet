@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using NUnit.Framework;
 using MbedCloudSDK.Common.Extensions;
-using Mbed.Cloud.Foundation.Entities;
+using Mbed.Cloud.Foundation;
 
 namespace Snippets.src.Foundation
 {

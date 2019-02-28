@@ -25,7 +25,7 @@ namespace MbedCloudSDK.Connect.Api
     using MbedCloudSDK.Connect.Model;
     using Newtonsoft.Json;
     using Polly;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using System.Text;
 
     /// <summary>

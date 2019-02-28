@@ -1,4 +1,4 @@
-using Mbed.Cloud.Foundation.Common;
+using Mbed.Cloud.Common;
 
 namespace MbedCloudSDK.Connect.Api
 {

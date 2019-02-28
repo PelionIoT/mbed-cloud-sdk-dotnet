@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Mbed.Cloud;
-using Mbed.Cloud.Foundation.Common;
-using Mbed.Cloud.Foundation.Entities;
+using Mbed.Cloud.Common;
+using Mbed.Cloud.Foundation;
 using Mbed.Cloud.Foundation.Enums;
-using Mbed.Cloud.Foundation.ListOptions;
 using MbedCloudSDK.Exceptions;
 using NUnit.Framework;
 

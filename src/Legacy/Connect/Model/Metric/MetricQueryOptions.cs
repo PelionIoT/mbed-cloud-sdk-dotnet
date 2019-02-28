@@ -5,7 +5,7 @@
 namespace MbedCloudSDK.Connect.Model.Metric
 {
     using System;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
 
     /// <summary>
     /// Metric query options

@@ -12,13 +12,13 @@
 // </copyright>
 // </auto-generated>
 
-namespace Mbed.Cloud.Foundation.Entities
+namespace Mbed.Cloud.Foundation
 {
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using System.Collections.Generic;
     using System;
     using Mbed.Cloud.Foundation.Enums;
-    using Mbed.Cloud.Foundation.Entities;
+    using Mbed.Cloud.Foundation;
 
     /// <summary>
     /// Account

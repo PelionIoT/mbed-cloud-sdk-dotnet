@@ -1,6 +1,6 @@
 using Mbed.Cloud;
-using Mbed.Cloud.Foundation.Common;
-using Mbed.Cloud.Foundation.Entities;
+using Mbed.Cloud.Common;
+using Mbed.Cloud.Foundation;
 using NUnit.Framework;
 
 namespace MbedCloudSDK.UnitTests.Foundation

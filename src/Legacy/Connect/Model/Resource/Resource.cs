@@ -8,7 +8,7 @@ namespace MbedCloudSDK.Connect.Model.Resource
     using System.Collections.Generic;
     using System.Collections.Specialized;
     using System.Threading.Tasks;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Connect.Api;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;

@@ -8,7 +8,7 @@ namespace MbedCloudSDK.Connect.Model.Subscription
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Connect.Model.Notifications;

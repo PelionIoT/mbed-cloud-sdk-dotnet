@@ -7,7 +7,7 @@ namespace MbedCloudSDK.Connect.Api
     using System;
     using System.ComponentModel;
     using System.Threading.Tasks;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
     using MbedCloudSDK.Connect.Model.Resource;
     using MbedCloudSDK.Exceptions;

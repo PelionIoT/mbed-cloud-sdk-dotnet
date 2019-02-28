@@ -4,8 +4,8 @@
 
 namespace Mbed.Cloud
 {
-    using Mbed.Cloud.Foundation.Common;
-    using Mbed.Cloud.Foundation.RestClient;
+    using Mbed.Cloud.Common;
+    using Mbed.Cloud.RestClient;
 
     /// <summary>
     /// Entity Factory

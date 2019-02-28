@@ -6,7 +6,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
 {
     using System.Threading.Tasks;
     using device_directory.Model;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.DeviceDirectory.Model.Logging;
     using MbedCloudSDK.Exceptions;

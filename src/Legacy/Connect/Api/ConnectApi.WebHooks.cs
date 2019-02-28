@@ -7,7 +7,7 @@ namespace MbedCloudSDK.Connect.Api
     using System;
     using System.ComponentModel;
     using System.Threading.Tasks;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using MbedCloudSDK.Connect.Model.Webhook;
     using NotificationDeliveryMethod = MbedCloudSDK.Connect.Model.Enums;
     using MbedCloudSDK.Exceptions;
