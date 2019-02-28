@@ -25,7 +25,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// UserRepository
     /// </summary>
-    public class UserRepository : Repository
+    public class UserRepository : Repository, IUserRepository
     {
         public UserRepository()
         {
@@ -75,7 +75,7 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public PaginatedResponse<UserListOptions, User> List(UserListOptions options = null)
+        public PaginatedResponse<IUserListOptions, User> List(IUserListOptions options = null)
         {
             try
             {
@@ -84,8 +84,8 @@ namespace Mbed.Cloud.Foundation.Entities
                     options = new UserListOptions();
                 }
 
-                Func<UserListOptions, Task<ResponsePage<User>>> paginatedFunc = async (UserListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<User>>(path: "/v3/users", queryParams: queryParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<UserListOptions, User>(paginatedFunc, options);
+                Func<IUserListOptions, Task<ResponsePage<User>>> paginatedFunc = async (IUserListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<User>>(path: "/v3/users", queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<IUserListOptions, User>(paginatedFunc, options);
             }
             catch (ApiException e)
             {

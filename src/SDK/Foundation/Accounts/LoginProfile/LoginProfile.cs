@@ -19,7 +19,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// LoginProfile
     /// </summary>
-    public class LoginProfile : Entity
+    public class LoginProfile : Entity, ILoginProfile
     {
         /// <summary>
         /// name

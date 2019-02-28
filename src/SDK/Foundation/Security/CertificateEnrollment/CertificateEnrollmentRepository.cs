@@ -25,7 +25,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// CertificateEnrollmentRepository
     /// </summary>
-    public class CertificateEnrollmentRepository : Repository
+    public class CertificateEnrollmentRepository : Repository, ICertificateEnrollmentRepository
     {
         public CertificateEnrollmentRepository()
         {
@@ -48,7 +48,7 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public PaginatedResponse<CertificateEnrollmentListOptions, CertificateEnrollment> List(CertificateEnrollmentListOptions options = null)
+        public PaginatedResponse<ICertificateEnrollmentListOptions, CertificateEnrollment> List(ICertificateEnrollmentListOptions options = null)
         {
             try
             {
@@ -57,8 +57,8 @@ namespace Mbed.Cloud.Foundation.Entities
                     options = new CertificateEnrollmentListOptions();
                 }
 
-                Func<CertificateEnrollmentListOptions, Task<ResponsePage<CertificateEnrollment>>> paginatedFunc = async (CertificateEnrollmentListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<CertificateEnrollment>>(path: "/v3/certificate-enrollments", queryParams: queryParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<CertificateEnrollmentListOptions, CertificateEnrollment>(paginatedFunc, options);
+                Func<ICertificateEnrollmentListOptions, Task<ResponsePage<CertificateEnrollment>>> paginatedFunc = async (ICertificateEnrollmentListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<CertificateEnrollment>>(path: "/v3/certificate-enrollments", queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<ICertificateEnrollmentListOptions, CertificateEnrollment>(paginatedFunc, options);
             }
             catch (ApiException e)
             {

@@ -26,7 +26,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// DeviceRepository
     /// </summary>
-    public class DeviceRepository : Repository
+    public class DeviceRepository : Repository, IDeviceRepository
     {
         public DeviceRepository()
         {
@@ -75,7 +75,7 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public PaginatedResponse<DeviceListOptions, Device> List(DeviceListOptions options = null)
+        public PaginatedResponse<IDeviceListOptions, Device> List(IDeviceListOptions options = null)
         {
             try
             {
@@ -84,8 +84,8 @@ namespace Mbed.Cloud.Foundation.Entities
                     options = new DeviceListOptions();
                 }
 
-                Func<DeviceListOptions, Task<ResponsePage<Device>>> paginatedFunc = async (DeviceListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<Device>>(path: "/v3/devices/", queryParams: queryParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<DeviceListOptions, Device>(paginatedFunc, options);
+                Func<IDeviceListOptions, Task<ResponsePage<Device>>> paginatedFunc = async (IDeviceListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<Device>>(path: "/v3/devices/", queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<IDeviceListOptions, Device>(paginatedFunc, options);
             }
             catch (ApiException e)
             {

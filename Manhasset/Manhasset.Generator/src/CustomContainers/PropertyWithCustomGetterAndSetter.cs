@@ -14,9 +14,10 @@ namespace Manhasset.Generator.src.CustomContainers
         {
             get
             {
-                return SyntaxFactory.AccessorDeclaration(
-                        SyntaxKind.GetAccessorDeclaration)
-                            .WithBody(
+                var declaration = SyntaxFactory.AccessorDeclaration(
+                        SyntaxKind.GetAccessorDeclaration);
+
+                return IsInterface ? declaration.WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken)) : declaration.WithBody(
                                 SyntaxFactory.Block(
                                     SyntaxFactory.SingletonList<StatementSyntax>(
                                         SyntaxFactory.ReturnStatement(
@@ -38,9 +39,10 @@ namespace Manhasset.Generator.src.CustomContainers
         {
             get
             {
-                return SyntaxFactory.AccessorDeclaration(
-                        SyntaxKind.SetAccessorDeclaration)
-                    .WithBody(
+                var declaration = SyntaxFactory.AccessorDeclaration(
+                        SyntaxKind.SetAccessorDeclaration);
+
+                return IsInterface ? declaration.WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken)) : declaration.WithBody(
                         SyntaxFactory.Block(
                             SyntaxFactory.SingletonList<StatementSyntax>(
                                 SyntaxFactory.ExpressionStatement(

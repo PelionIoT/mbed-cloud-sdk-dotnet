@@ -1,3 +1,5 @@
+using System.Linq;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -9,9 +11,7 @@ namespace Manhasset.Core.src.Containers
         {
             return SyntaxFactory.ConstructorDeclaration(
                         SyntaxFactory.Identifier(Name))
-                    .WithModifiers(
-                        SyntaxFactory.TokenList(
-                            SyntaxFactory.Token(SyntaxKind.PublicKeyword)))
+                    .WithModifiers(new SyntaxTokenList(MyModifiers.Values.ToArray()))
                     .WithBody(
                         SyntaxFactory.Block());
         }

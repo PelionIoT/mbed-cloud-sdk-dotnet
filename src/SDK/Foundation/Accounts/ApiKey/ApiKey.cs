@@ -21,7 +21,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// ApiKey
     /// </summary>
-    public class ApiKey : Entity
+    public class ApiKey : Entity, IApiKey
     {
         /// <summary>
         /// account_id
@@ -29,7 +29,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string AccountId
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? CreatedAt
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public long? CreationTime
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string Key
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public long? LastLoginTime
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? UpdatedAt
         {
             get;
-            internal set;
+            private set;
         }
     }
 }

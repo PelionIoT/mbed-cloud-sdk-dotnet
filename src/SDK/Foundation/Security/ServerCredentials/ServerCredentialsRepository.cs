@@ -24,7 +24,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// ServerCredentialsRepository
     /// </summary>
-    public class ServerCredentialsRepository : Repository
+    public class ServerCredentialsRepository : Repository, IServerCredentialsRepository
     {
         public ServerCredentialsRepository()
         {

@@ -22,7 +22,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// Device
     /// </summary>
-    public class Device : Entity
+    public class Device : Entity, IDevice
     {
         /// <summary>
         /// account_id
@@ -30,7 +30,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string AccountId
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? CreatedAt
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DeviceDeployedState? DeployedState
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? EnrolmentListTimestamp
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -210,7 +210,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? ManifestTimestamp
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -264,7 +264,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? UpdatedAt
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>

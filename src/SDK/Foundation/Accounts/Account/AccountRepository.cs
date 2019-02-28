@@ -26,7 +26,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// AccountRepository
     /// </summary>
-    public class AccountRepository : Repository
+    public class AccountRepository : Repository, IAccountRepository
     {
         public AccountRepository()
         {
@@ -64,7 +64,7 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public PaginatedResponse<AccountListOptions, Account> List(AccountListOptions options = null)
+        public PaginatedResponse<IAccountListOptions, Account> List(IAccountListOptions options = null)
         {
             try
             {
@@ -73,8 +73,8 @@ namespace Mbed.Cloud.Foundation.Entities
                     options = new AccountListOptions();
                 }
 
-                Func<AccountListOptions, Task<ResponsePage<Account>>> paginatedFunc = async (AccountListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "format", _options.Format }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "properties", _options.Properties }, }; return await Client.CallApi<ResponsePage<Account>>(path: "/v3/accounts", queryParams: queryParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<AccountListOptions, Account>(paginatedFunc, options);
+                Func<IAccountListOptions, Task<ResponsePage<Account>>> paginatedFunc = async (IAccountListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "format", _options.Format }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "properties", _options.Properties }, }; return await Client.CallApi<ResponsePage<Account>>(path: "/v3/accounts", queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<IAccountListOptions, Account>(paginatedFunc, options);
             }
             catch (ApiException e)
             {
@@ -95,7 +95,7 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public PaginatedResponse<SubtenantTrustedCertificateListOptions, SubtenantTrustedCertificate> TrustedCertificates(string id, SubtenantTrustedCertificateListOptions options = null)
+        public PaginatedResponse<ISubtenantTrustedCertificateListOptions, SubtenantTrustedCertificate> TrustedCertificates(string id, ISubtenantTrustedCertificateListOptions options = null)
         {
             try
             {
@@ -105,8 +105,8 @@ namespace Mbed.Cloud.Foundation.Entities
                     options = new SubtenantTrustedCertificateListOptions();
                 }
 
-                Func<SubtenantTrustedCertificateListOptions, Task<ResponsePage<SubtenantTrustedCertificate>>> paginatedFunc = async (SubtenantTrustedCertificateListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<SubtenantTrustedCertificate>>(path: "/v3/accounts/{account_id}/trusted-certificates", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<SubtenantTrustedCertificateListOptions, SubtenantTrustedCertificate>(paginatedFunc, options);
+                Func<ISubtenantTrustedCertificateListOptions, Task<ResponsePage<SubtenantTrustedCertificate>>> paginatedFunc = async (ISubtenantTrustedCertificateListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<SubtenantTrustedCertificate>>(path: "/v3/accounts/{account_id}/trusted-certificates", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<ISubtenantTrustedCertificateListOptions, SubtenantTrustedCertificate>(paginatedFunc, options);
             }
             catch (ApiException e)
             {
@@ -128,7 +128,7 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public PaginatedResponse<SubtenantUserInvitationListOptions, SubtenantUserInvitation> UserInvitations(string id, SubtenantUserInvitationListOptions options = null)
+        public PaginatedResponse<ISubtenantUserInvitationListOptions, SubtenantUserInvitation> UserInvitations(string id, ISubtenantUserInvitationListOptions options = null)
         {
             try
             {
@@ -138,8 +138,8 @@ namespace Mbed.Cloud.Foundation.Entities
                     options = new SubtenantUserInvitationListOptions();
                 }
 
-                Func<SubtenantUserInvitationListOptions, Task<ResponsePage<SubtenantUserInvitation>>> paginatedFunc = async (SubtenantUserInvitationListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<SubtenantUserInvitation>>(path: "/v3/accounts/{account_id}/user-invitations", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<SubtenantUserInvitationListOptions, SubtenantUserInvitation>(paginatedFunc, options);
+                Func<ISubtenantUserInvitationListOptions, Task<ResponsePage<SubtenantUserInvitation>>> paginatedFunc = async (ISubtenantUserInvitationListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<SubtenantUserInvitation>>(path: "/v3/accounts/{account_id}/user-invitations", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<ISubtenantUserInvitationListOptions, SubtenantUserInvitation>(paginatedFunc, options);
             }
             catch (ApiException e)
             {
@@ -147,7 +147,7 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public PaginatedResponse<SubtenantUserListOptions, SubtenantUser> Users(string id, SubtenantUserListOptions options = null)
+        public PaginatedResponse<ISubtenantUserListOptions, SubtenantUser> Users(string id, ISubtenantUserListOptions options = null)
         {
             try
             {
@@ -157,8 +157,8 @@ namespace Mbed.Cloud.Foundation.Entities
                     options = new SubtenantUserListOptions();
                 }
 
-                Func<SubtenantUserListOptions, Task<ResponsePage<SubtenantUser>>> paginatedFunc = async (SubtenantUserListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<SubtenantUser>>(path: "/v3/accounts/{account_id}/users", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<SubtenantUserListOptions, SubtenantUser>(paginatedFunc, options);
+                Func<ISubtenantUserListOptions, Task<ResponsePage<SubtenantUser>>> paginatedFunc = async (ISubtenantUserListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<SubtenantUser>>(path: "/v3/accounts/{account_id}/users", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<ISubtenantUserListOptions, SubtenantUser>(paginatedFunc, options);
             }
             catch (ApiException e)
             {

@@ -21,7 +21,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// TrustedCertificate
     /// </summary>
-    public class TrustedCertificate : Entity
+    public class TrustedCertificate : Entity, ITrustedCertificate
     {
         /// <summary>
         /// account_id
@@ -29,7 +29,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string AccountId
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string CertificateFingerprint
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? CreatedAt
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string Issuer
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string OwnerId
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string Subject
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? UpdatedAt
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public bool? Valid
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -180,7 +180,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? Validity
         {
             get;
-            internal set;
+            private set;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Mbed.Cloud.Foundation.ListOptions
     /// <summary>
     /// SubtenantUserListOptions
     /// </summary>
-    public class SubtenantUserListOptions : QueryOptions
+    public class SubtenantUserListOptions : QueryOptions, ISubtenantUserListOptions
     {
     }
 }

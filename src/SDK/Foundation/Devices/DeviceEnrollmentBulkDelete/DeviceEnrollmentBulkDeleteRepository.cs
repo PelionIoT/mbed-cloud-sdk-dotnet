@@ -25,7 +25,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// DeviceEnrollmentBulkDeleteRepository
     /// </summary>
-    public class DeviceEnrollmentBulkDeleteRepository : Repository
+    public class DeviceEnrollmentBulkDeleteRepository : Repository, IDeviceEnrollmentBulkDeleteRepository
     {
         public DeviceEnrollmentBulkDeleteRepository()
         {

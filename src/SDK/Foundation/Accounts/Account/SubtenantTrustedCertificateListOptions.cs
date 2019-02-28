@@ -19,7 +19,7 @@ namespace Mbed.Cloud.Foundation.ListOptions
     /// <summary>
     /// SubtenantTrustedCertificateListOptions
     /// </summary>
-    public class SubtenantTrustedCertificateListOptions : QueryOptions
+    public class SubtenantTrustedCertificateListOptions : QueryOptions, ISubtenantTrustedCertificateListOptions
     {
     }
 }

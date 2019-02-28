@@ -21,7 +21,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// DeveloperCertificate
     /// </summary>
-    public class DeveloperCertificate : Entity
+    public class DeveloperCertificate : Entity, IDeveloperCertificate
     {
         internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "Certificate", "developer_certificate" }, { "PrivateKey", "developer_private_key" }, };
 
@@ -31,7 +31,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string AccountId
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string Certificate
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? CreatedAt
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string SecurityFileContent
         {
             get;
-            internal set;
+            private set;
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// SubtenantUserInvitation
     /// </summary>
-    public class SubtenantUserInvitation : Entity
+    public class SubtenantUserInvitation : Entity, ISubtenantUserInvitation
     {
         /// <summary>
         /// account_id
@@ -39,7 +39,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? CreatedAt
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? Expiration
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? UpdatedAt
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string UserId
         {
             get;
-            internal set;
+            private set;
         }
     }
 }

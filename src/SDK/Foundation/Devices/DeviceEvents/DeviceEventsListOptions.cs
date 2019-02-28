@@ -19,7 +19,7 @@ namespace Mbed.Cloud.Foundation.ListOptions
     /// <summary>
     /// DeviceEventsListOptions
     /// </summary>
-    public class DeviceEventsListOptions : QueryOptions
+    public class DeviceEventsListOptions : QueryOptions, IDeviceEventsListOptions
     {
     }
 }

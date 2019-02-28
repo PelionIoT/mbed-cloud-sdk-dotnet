@@ -19,7 +19,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// VerificationResponse
     /// </summary>
-    public class VerificationResponse : Entity
+    public class VerificationResponse : Entity, IVerificationResponse
     {
         /// <summary>
         /// message
@@ -27,7 +27,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string Message
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public bool? Successful
         {
             get;
-            internal set;
+            private set;
         }
     }
 }

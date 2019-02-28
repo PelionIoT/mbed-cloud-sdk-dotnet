@@ -20,7 +20,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// DeviceEnrollment
     /// </summary>
-    public class DeviceEnrollment : Entity
+    public class DeviceEnrollment : Entity, IDeviceEnrollment
     {
         /// <summary>
         /// account_id
@@ -28,7 +28,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string AccountId
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? ClaimedAt
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? CreatedAt
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string EnrolledDeviceId
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? ExpiresAt
         {
             get;
-            internal set;
+            private set;
         }
     }
 }

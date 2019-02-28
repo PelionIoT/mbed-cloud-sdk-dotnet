@@ -26,7 +26,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// TrustedCertificateRepository
     /// </summary>
-    public class TrustedCertificateRepository : Repository
+    public class TrustedCertificateRepository : Repository, ITrustedCertificateRepository
     {
         public TrustedCertificateRepository()
         {
@@ -88,7 +88,7 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public PaginatedResponse<TrustedCertificateListOptions, TrustedCertificate> List(TrustedCertificateListOptions options = null)
+        public PaginatedResponse<ITrustedCertificateListOptions, TrustedCertificate> List(ITrustedCertificateListOptions options = null)
         {
             try
             {
@@ -97,8 +97,8 @@ namespace Mbed.Cloud.Foundation.Entities
                     options = new TrustedCertificateListOptions();
                 }
 
-                Func<TrustedCertificateListOptions, Task<ResponsePage<TrustedCertificate>>> paginatedFunc = async (TrustedCertificateListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<TrustedCertificate>>(path: "/v3/trusted-certificates", queryParams: queryParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<TrustedCertificateListOptions, TrustedCertificate>(paginatedFunc, options);
+                Func<ITrustedCertificateListOptions, Task<ResponsePage<TrustedCertificate>>> paginatedFunc = async (ITrustedCertificateListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<TrustedCertificate>>(path: "/v3/trusted-certificates", queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<ITrustedCertificateListOptions, TrustedCertificate>(paginatedFunc, options);
             }
             catch (ApiException e)
             {

@@ -19,7 +19,7 @@ namespace Mbed.Cloud.Foundation.ListOptions
     /// <summary>
     /// ApiKeyListOptions
     /// </summary>
-    public class ApiKeyListOptions : QueryOptions
+    public class ApiKeyListOptions : QueryOptions, IApiKeyListOptions
     {
     }
 }

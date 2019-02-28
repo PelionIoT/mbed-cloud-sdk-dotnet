@@ -19,7 +19,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// Policy
     /// </summary>
-    public class Policy : Entity
+    public class Policy : Entity, IPolicy
     {
         /// <summary>
         /// action
@@ -27,7 +27,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string Action
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public bool? Allow
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string Feature
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public bool? Inherited
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string Resource
         {
             get;
-            internal set;
+            private set;
         }
     }
 }

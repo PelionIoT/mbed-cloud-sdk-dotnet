@@ -19,7 +19,7 @@ namespace Mbed.Cloud.Foundation.ListOptions
     /// <summary>
     /// UserInvitationListOptions
     /// </summary>
-    public class UserInvitationListOptions : QueryOptions
+    public class UserInvitationListOptions : QueryOptions, IUserInvitationListOptions
     {
     }
 }

@@ -23,7 +23,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// SubtenantUser
     /// </summary>
-    public class SubtenantUser : Entity
+    public class SubtenantUser : Entity, ISubtenantUser
     {
         internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "MarketingAccepted", "is_marketing_accepted" }, { "TermsAccepted", "is_gtc_accepted" }, { "TwoFactorAuthentication", "is_totp_enabled" }, };
 
@@ -42,7 +42,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public List<ActiveSession> ActiveSessions
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? CreatedAt
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public long? CreationTime
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public Dictionary<string, string> CustomFields
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public bool? EmailVerified
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public long? LastLoginTime
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public List<LoginHistory> LoginHistory
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public long? PasswordChangedTime
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public List<string> TotpScratchCodes
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? UpdatedAt
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>

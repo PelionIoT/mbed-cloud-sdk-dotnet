@@ -25,7 +25,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// UserInvitationRepository
     /// </summary>
-    public class UserInvitationRepository : Repository
+    public class UserInvitationRepository : Repository, IUserInvitationRepository
     {
         public UserInvitationRepository()
         {
@@ -74,7 +74,7 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public PaginatedResponse<UserInvitationListOptions, UserInvitation> List(UserInvitationListOptions options = null)
+        public PaginatedResponse<IUserInvitationListOptions, UserInvitation> List(IUserInvitationListOptions options = null)
         {
             try
             {
@@ -83,8 +83,8 @@ namespace Mbed.Cloud.Foundation.Entities
                     options = new UserInvitationListOptions();
                 }
 
-                Func<UserInvitationListOptions, Task<ResponsePage<UserInvitation>>> paginatedFunc = async (UserInvitationListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<UserInvitation>>(path: "/v3/user-invitations", queryParams: queryParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<UserInvitationListOptions, UserInvitation>(paginatedFunc, options);
+                Func<IUserInvitationListOptions, Task<ResponsePage<UserInvitation>>> paginatedFunc = async (IUserInvitationListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<UserInvitation>>(path: "/v3/user-invitations", queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<IUserInvitationListOptions, UserInvitation>(paginatedFunc, options);
             }
             catch (ApiException e)
             {

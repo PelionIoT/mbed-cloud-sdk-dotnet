@@ -20,7 +20,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// LoginHistory
     /// </summary>
-    public class LoginHistory : Entity
+    public class LoginHistory : Entity, ILoginHistory
     {
         /// <summary>
         /// date
@@ -28,7 +28,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? Date
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string IpAddress
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public bool? Success
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string UserAgent
         {
             get;
-            internal set;
+            private set;
         }
     }
 }

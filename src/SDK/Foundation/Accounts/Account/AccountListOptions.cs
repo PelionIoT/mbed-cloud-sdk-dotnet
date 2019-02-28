@@ -19,7 +19,7 @@ namespace Mbed.Cloud.Foundation.ListOptions
     /// <summary>
     /// AccountListOptions
     /// </summary>
-    public class AccountListOptions : QueryOptions
+    public class AccountListOptions : QueryOptions, IAccountListOptions
     {
         /// <summary>
         /// 

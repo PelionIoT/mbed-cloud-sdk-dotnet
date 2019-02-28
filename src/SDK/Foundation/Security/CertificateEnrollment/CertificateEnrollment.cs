@@ -21,7 +21,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// CertificateEnrollment
     /// </summary>
-    public class CertificateEnrollment : Entity
+    public class CertificateEnrollment : Entity, ICertificateEnrollment
     {
         /// <summary>
         /// certificate_name
@@ -29,7 +29,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string CertificateName
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? CreatedAt
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string DeviceId
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public CertificateEnrollmentEnrollResult? EnrollResult
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public CertificateEnrollmentEnrollStatus? EnrollStatus
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? UpdatedAt
         {
             get;
-            internal set;
+            private set;
         }
     }
 }
