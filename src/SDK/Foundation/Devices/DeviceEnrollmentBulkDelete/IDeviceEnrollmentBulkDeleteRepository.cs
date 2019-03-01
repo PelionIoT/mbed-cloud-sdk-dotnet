@@ -30,6 +30,6 @@ namespace Mbed.Cloud.Foundation.Entities
         Task<DeviceEnrollmentBulkDelete> Delete(Stream enrollmentIdentities);
         Task<Stream> DownloadErrorsReportFile(DeviceEnrollmentBulkDelete model);
         Task<Stream> DownloadFullReportFile(DeviceEnrollmentBulkDelete model);
-        Task<DeviceEnrollmentBulkDelete> Get(string id);
+        Task<DeviceEnrollmentBulkDelete> Read(string id);
     }
 }

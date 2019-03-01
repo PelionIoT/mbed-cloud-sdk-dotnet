@@ -61,19 +61,6 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public async Task<ApiKey> Get(string id)
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "apikey_id", id }, };
-                return await Client.CallApi<ApiKey>(path: "/v3/api-keys/{apikey_id}", pathParams: pathParams, method: HttpMethods.GET);
-            }
-            catch (ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
         public PaginatedResponse<IApiKeyListOptions, ApiKey> List(IApiKeyListOptions options = null)
         {
             try
@@ -97,6 +84,19 @@ namespace Mbed.Cloud.Foundation.Entities
             try
             {
                 return await Client.CallApi<ApiKey>(path: "/v3/api-keys/me", method: HttpMethods.GET);
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<ApiKey> Read(string id)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "apikey_id", id }, };
+                return await Client.CallApi<ApiKey>(path: "/v3/api-keys/{apikey_id}", pathParams: pathParams, method: HttpMethods.GET);
             }
             catch (ApiException e)
             {

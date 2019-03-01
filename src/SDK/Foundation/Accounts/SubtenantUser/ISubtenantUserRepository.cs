@@ -28,7 +28,7 @@ namespace Mbed.Cloud.Foundation.Entities
     {
         Task<SubtenantUser> Create(string accountId, SubtenantUser request, string action = null);
         Task Delete(string accountId, string id);
-        Task<SubtenantUser> Get(string accountId, string id);
+        Task<SubtenantUser> Read(string accountId, string id);
         Task<SubtenantUser> Update(string accountId, string id, SubtenantUser request);
         Task<SubtenantUser> ValidateEmail(string accountId, string id);
     }

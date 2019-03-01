@@ -27,7 +27,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string Action
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public bool? Allow
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string Feature
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public bool? Inherited
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string Resource
         {
             get;
-            private set;
+            internal set;
         }
     }
 }

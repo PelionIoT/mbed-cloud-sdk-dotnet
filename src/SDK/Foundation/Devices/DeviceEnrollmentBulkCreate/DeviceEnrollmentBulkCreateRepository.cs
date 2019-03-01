@@ -58,7 +58,7 @@ namespace Mbed.Cloud.Foundation.Entities
             return await CustomFunctions.DownloadFullReportFile(this, model);
         }
 
-        public async Task<DeviceEnrollmentBulkCreate> Get(string id)
+        public async Task<DeviceEnrollmentBulkCreate> Read(string id)
         {
             try
             {

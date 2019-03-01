@@ -67,7 +67,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string AdminId
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string AdminKey
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? CreatedAt
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -211,7 +211,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? Expiration
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -238,7 +238,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public Dictionary<string, string> Limits
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -265,7 +265,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public ParentAccount ParentAccount
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -274,7 +274,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string ParentId
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -310,7 +310,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public List<Policy> Policies
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -328,7 +328,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string Reason
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -337,7 +337,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string ReferenceNote
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -364,7 +364,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public AccountStatus? Status
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -373,7 +373,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string TemplateId
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -382,7 +382,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string Tier
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -391,7 +391,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? UpdatedAt
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -400,7 +400,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? UpgradedAt
         {
             get;
-            private set;
+            internal set;
         }
     }
 }

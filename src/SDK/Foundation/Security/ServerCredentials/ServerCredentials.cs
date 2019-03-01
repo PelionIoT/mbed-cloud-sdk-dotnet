@@ -28,7 +28,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? CreatedAt
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string ServerCertificate
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string ServerUri
         {
             get;
-            private set;
+            internal set;
         }
     }
 }

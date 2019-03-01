@@ -29,7 +29,7 @@ namespace Mbed.Cloud.Foundation.Entities
     {
         Task<DeveloperCertificate> Create(DeveloperCertificate request);
         Task Delete(string id);
-        Task<DeveloperCertificate> Get(string id);
         Task<TrustedCertificate> GetTrustedCertificateInfo(string id);
+        Task<DeveloperCertificate> Read(string id);
     }
 }

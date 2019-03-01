@@ -19,7 +19,7 @@ namespace Snippets.src.Foundation
 
                 Assert.IsInstanceOf(typeof(User), user);
 
-                var gotUser = await userRepo.Get(user.Id);
+                var gotUser = await userRepo.Read(user.Id);
 
                 Assert.IsInstanceOf(typeof(User), gotUser);
                 Assert.AreEqual(gotUser.CreatedAt, user.CreatedAt);

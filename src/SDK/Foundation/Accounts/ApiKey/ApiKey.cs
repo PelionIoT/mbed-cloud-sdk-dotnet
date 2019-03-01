@@ -29,7 +29,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string AccountId
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? CreatedAt
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public long? CreationTime
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string Key
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public long? LastLoginTime
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? UpdatedAt
         {
             get;
-            private set;
+            internal set;
         }
     }
 }

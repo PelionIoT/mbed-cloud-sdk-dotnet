@@ -30,6 +30,6 @@ namespace Mbed.Cloud.Foundation.Entities
         Task<DeviceEnrollmentBulkCreate> Create(Stream enrollmentIdentities);
         Task<Stream> DownloadErrorsReportFile(DeviceEnrollmentBulkCreate model);
         Task<Stream> DownloadFullReportFile(DeviceEnrollmentBulkCreate model);
-        Task<DeviceEnrollmentBulkCreate> Get(string id);
+        Task<DeviceEnrollmentBulkCreate> Read(string id);
     }
 }

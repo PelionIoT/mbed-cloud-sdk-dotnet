@@ -35,19 +35,6 @@ namespace Mbed.Cloud.Foundation.Entities
         {
         }
 
-        public async Task<DeviceEvents> Get(string id)
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "device_event_id", id }, };
-                return await Client.CallApi<DeviceEvents>(path: "/v3/device-events/{device_event_id}/", pathParams: pathParams, method: HttpMethods.GET);
-            }
-            catch (ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
         public PaginatedResponse<IDeviceEventsListOptions, DeviceEvents> List(IDeviceEventsListOptions options = null)
         {
             try
@@ -59,6 +46,19 @@ namespace Mbed.Cloud.Foundation.Entities
 
                 Func<IDeviceEventsListOptions, Task<ResponsePage<DeviceEvents>>> paginatedFunc = async (IDeviceEventsListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<DeviceEvents>>(path: "/v3/device-events/", queryParams: queryParams, method: HttpMethods.GET); };
                 return new PaginatedResponse<IDeviceEventsListOptions, DeviceEvents>(paginatedFunc, options);
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<DeviceEvents> Read(string id)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "device_event_id", id }, };
+                return await Client.CallApi<DeviceEvents>(path: "/v3/device-events/{device_event_id}/", pathParams: pathParams, method: HttpMethods.GET);
             }
             catch (ApiException e)
             {

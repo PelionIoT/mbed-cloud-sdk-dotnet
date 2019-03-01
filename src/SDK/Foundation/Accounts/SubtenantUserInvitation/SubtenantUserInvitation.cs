@@ -39,7 +39,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? CreatedAt
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? Expiration
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? UpdatedAt
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string UserId
         {
             get;
-            private set;
+            internal set;
         }
     }
 }

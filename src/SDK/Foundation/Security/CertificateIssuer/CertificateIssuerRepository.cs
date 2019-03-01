@@ -62,19 +62,6 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public async Task<CertificateIssuer> Get(string id)
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "certificate-issuer-id", id }, };
-                return await Client.CallApi<CertificateIssuer>(path: "/v3/certificate-issuers/{certificate-issuer-id}", pathParams: pathParams, method: HttpMethods.GET);
-            }
-            catch (ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
         public PaginatedResponse<ICertificateIssuerListOptions, CertificateIssuer> List(ICertificateIssuerListOptions options = null)
         {
             try
@@ -86,6 +73,19 @@ namespace Mbed.Cloud.Foundation.Entities
 
                 Func<ICertificateIssuerListOptions, Task<ResponsePage<CertificateIssuer>>> paginatedFunc = async (ICertificateIssuerListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<CertificateIssuer>>(path: "/v3/certificate-issuers", queryParams: queryParams, method: HttpMethods.GET); };
                 return new PaginatedResponse<ICertificateIssuerListOptions, CertificateIssuer>(paginatedFunc, options);
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<CertificateIssuer> Read(string id)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "certificate-issuer-id", id }, };
+                return await Client.CallApi<CertificateIssuer>(path: "/v3/certificate-issuers/{certificate-issuer-id}", pathParams: pathParams, method: HttpMethods.GET);
             }
             catch (ApiException e)
             {

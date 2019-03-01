@@ -127,7 +127,7 @@ namespace Manhasset.Generator.src.Generators
                         DocString = docString,
                         PropertyType = propertyType,
                         IsNullable = isNullable,
-                        SetAccessorModifier = isReadOnly ? Modifiers.PRIVATE : Modifiers.PUBLIC,
+                        SetAccessorModifier = isReadOnly ? Modifiers.INTERNAL : Modifiers.PUBLIC,
                     };
 
                     propContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);

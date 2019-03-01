@@ -29,7 +29,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string AccountId
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? CompletedAt
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? CreatedAt
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public int? ErrorsCount
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string ErrorsReportFile
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string FullReportFile
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public int? ProcessedCount
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DeviceEnrollmentBulkDeleteStatus? Status
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public int? TotalCount
         {
             get;
-            private set;
+            internal set;
         }
     }
 }

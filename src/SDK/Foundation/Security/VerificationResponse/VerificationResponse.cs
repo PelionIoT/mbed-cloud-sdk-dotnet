@@ -27,7 +27,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string Message
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public bool? Successful
         {
             get;
-            private set;
+            internal set;
         }
     }
 }

@@ -29,8 +29,8 @@ namespace Mbed.Cloud.Foundation.Entities
     {
         Task<User> Create(User request, string action = null);
         Task Delete(string id);
-        Task<User> Get(string id);
         PaginatedResponse<IUserListOptions, User> List(IUserListOptions options = null);
+        Task<User> Read(string id);
         Task<User> Update(string id, User request);
     }
 }

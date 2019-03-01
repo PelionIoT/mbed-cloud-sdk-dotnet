@@ -61,7 +61,7 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public async Task<SubtenantUserInvitation> Get(string accountId, string id)
+        public async Task<SubtenantUserInvitation> Read(string accountId, string id)
         {
             try
             {

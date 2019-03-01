@@ -42,7 +42,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public List<ActiveSession> ActiveSessions
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? CreatedAt
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public long? CreationTime
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public Dictionary<string, string> CustomFields
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public bool? EmailVerified
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public long? LastLoginTime
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public List<LoginHistory> LoginHistory
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public long? PasswordChangedTime
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public List<string> TotpScratchCodes
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? UpdatedAt
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>

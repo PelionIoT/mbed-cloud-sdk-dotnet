@@ -27,7 +27,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string AdminEmail
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string AdminName
         {
             get;
-            private set;
+            internal set;
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? Date
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string IpAddress
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public bool? Success
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string UserAgent
         {
             get;
-            private set;
+            internal set;
         }
     }
 }

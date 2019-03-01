@@ -29,9 +29,9 @@ namespace Mbed.Cloud.Foundation.Entities
     public interface IAccountRepository
     {
         Task<Account> Create(Account request, string action = null);
-        Task<Account> Get(string id, string include = null, string properties = null);
         PaginatedResponse<IAccountListOptions, Account> List(IAccountListOptions options = null);
         Task<Account> Me(string include = null, string properties = null);
+        Task<Account> Read(string id, string include = null, string properties = null);
         PaginatedResponse<ISubtenantTrustedCertificateListOptions, SubtenantTrustedCertificate> TrustedCertificates(string id, ISubtenantTrustedCertificateListOptions options = null);
         Task<Account> Update(string id, Account request);
         PaginatedResponse<ISubtenantUserInvitationListOptions, SubtenantUserInvitation> UserInvitations(string id, ISubtenantUserInvitationListOptions options = null);

@@ -62,19 +62,6 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public async Task<TrustedCertificate> Get(string id)
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "cert_id", id }, };
-                return await Client.CallApi<TrustedCertificate>(path: "/v3/trusted-certificates/{cert_id}", pathParams: pathParams, method: HttpMethods.GET);
-            }
-            catch (ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
         public async Task<DeveloperCertificate> GetDeveloperCertificateInfo(string id)
         {
             try
@@ -99,6 +86,19 @@ namespace Mbed.Cloud.Foundation.Entities
 
                 Func<ITrustedCertificateListOptions, Task<ResponsePage<TrustedCertificate>>> paginatedFunc = async (ITrustedCertificateListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<TrustedCertificate>>(path: "/v3/trusted-certificates", queryParams: queryParams, method: HttpMethods.GET); };
                 return new PaginatedResponse<ITrustedCertificateListOptions, TrustedCertificate>(paginatedFunc, options);
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<TrustedCertificate> Read(string id)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "cert_id", id }, };
+                return await Client.CallApi<TrustedCertificate>(path: "/v3/trusted-certificates/{cert_id}", pathParams: pathParams, method: HttpMethods.GET);
             }
             catch (ApiException e)
             {

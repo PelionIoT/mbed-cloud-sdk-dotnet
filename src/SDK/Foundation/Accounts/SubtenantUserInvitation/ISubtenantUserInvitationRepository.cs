@@ -28,6 +28,6 @@ namespace Mbed.Cloud.Foundation.Entities
     {
         Task<SubtenantUserInvitation> Create(string accountId, SubtenantUserInvitation request, int validForDays = 25);
         Task Delete(string accountId, string id);
-        Task<SubtenantUserInvitation> Get(string accountId, string id);
+        Task<SubtenantUserInvitation> Read(string accountId, string id);
     }
 }

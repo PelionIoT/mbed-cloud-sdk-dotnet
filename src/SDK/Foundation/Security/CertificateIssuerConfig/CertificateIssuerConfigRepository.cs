@@ -61,19 +61,6 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public async Task<CertificateIssuerConfig> Get(string id)
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "certificate-issuer-configuration-id", id }, };
-                return await Client.CallApi<CertificateIssuerConfig>(path: "/v3/certificate-issuer-configurations/{certificate-issuer-configuration-id}", pathParams: pathParams, method: HttpMethods.GET);
-            }
-            catch (ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
         public async Task<CertificateIssuerConfig> GetDefault()
         {
             try
@@ -97,6 +84,19 @@ namespace Mbed.Cloud.Foundation.Entities
 
                 Func<ICertificateIssuerConfigListOptions, Task<ResponsePage<CertificateIssuerConfig>>> paginatedFunc = async (ICertificateIssuerConfigListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<CertificateIssuerConfig>>(path: "/v3/certificate-issuer-configurations", queryParams: queryParams, method: HttpMethods.GET); };
                 return new PaginatedResponse<ICertificateIssuerConfigListOptions, CertificateIssuerConfig>(paginatedFunc, options);
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<CertificateIssuerConfig> Read(string id)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "certificate-issuer-configuration-id", id }, };
+                return await Client.CallApi<CertificateIssuerConfig>(path: "/v3/certificate-issuer-configurations/{certificate-issuer-configuration-id}", pathParams: pathParams, method: HttpMethods.GET);
             }
             catch (ApiException e)
             {

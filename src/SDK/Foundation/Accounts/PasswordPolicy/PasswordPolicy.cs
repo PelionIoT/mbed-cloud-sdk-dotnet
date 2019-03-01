@@ -27,7 +27,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string MinimumLength
         {
             get;
-            private set;
+            internal set;
         }
     }
 }

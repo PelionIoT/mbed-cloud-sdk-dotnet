@@ -137,7 +137,7 @@ namespace Manhasset.Core.src.Containers
                 {
                     c.SetAccessorModifier = default(SyntaxToken);
                 }
-                else if (c.SetAccessorModifier.ToString() == "private")
+                else if (c.SetAccessorModifier.ToString() == "private" || c.SetAccessorModifier.ToString() == "internal")
                 {
                     c.SetAccessor = false;
                 }

@@ -31,7 +31,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string AccountId
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string Certificate
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? CreatedAt
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string SecurityFileContent
         {
             get;
-            private set;
+            internal set;
         }
     }
 }

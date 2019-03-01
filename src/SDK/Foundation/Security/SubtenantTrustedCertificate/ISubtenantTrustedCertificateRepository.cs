@@ -29,8 +29,8 @@ namespace Mbed.Cloud.Foundation.Entities
     {
         Task<SubtenantTrustedCertificate> Create(string accountId, SubtenantTrustedCertificate request);
         Task Delete(string accountId, string id);
-        Task<SubtenantTrustedCertificate> Get(string accountId, string id);
         Task<DeveloperCertificate> GetDeveloperCertificateInfo(string id);
+        Task<SubtenantTrustedCertificate> Read(string accountId, string id);
         Task<SubtenantTrustedCertificate> Update(string accountId, string id, SubtenantTrustedCertificate request);
     }
 }

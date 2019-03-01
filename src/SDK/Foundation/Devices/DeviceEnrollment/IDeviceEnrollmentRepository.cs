@@ -29,7 +29,7 @@ namespace Mbed.Cloud.Foundation.Entities
     {
         Task<DeviceEnrollment> Create(DeviceEnrollment request);
         Task Delete(string id);
-        Task<DeviceEnrollment> Get(string id);
         PaginatedResponse<IDeviceEnrollmentListOptions, DeviceEnrollment> List(IDeviceEnrollmentListOptions options = null);
+        Task<DeviceEnrollment> Read(string id);
     }
 }

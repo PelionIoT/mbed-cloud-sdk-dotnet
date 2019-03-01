@@ -30,9 +30,9 @@ namespace Mbed.Cloud.Foundation.Entities
     {
         Task<TrustedCertificate> Create(TrustedCertificate request);
         Task Delete(string id);
-        Task<TrustedCertificate> Get(string id);
         Task<DeveloperCertificate> GetDeveloperCertificateInfo(string id);
         PaginatedResponse<ITrustedCertificateListOptions, TrustedCertificate> List(ITrustedCertificateListOptions options = null);
+        Task<TrustedCertificate> Read(string id);
         Task<TrustedCertificate> Update(string id, TrustedCertificate request);
     }
 }

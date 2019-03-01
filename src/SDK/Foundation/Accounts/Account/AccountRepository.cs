@@ -50,20 +50,6 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public async Task<Account> Get(string id, string include = null, string properties = null)
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "account_id", id }, };
-                var queryParams = new Dictionary<string, object> { { "include", include }, { "properties", properties }, };
-                return await Client.CallApi<Account>(path: "/v3/accounts/{account_id}", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET);
-            }
-            catch (ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
         public PaginatedResponse<IAccountListOptions, Account> List(IAccountListOptions options = null)
         {
             try
@@ -88,6 +74,20 @@ namespace Mbed.Cloud.Foundation.Entities
             {
                 var queryParams = new Dictionary<string, object> { { "include", include }, { "properties", properties }, };
                 return await Client.CallApi<Account>(path: "/v3/accounts/me", queryParams: queryParams, method: HttpMethods.GET);
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<Account> Read(string id, string include = null, string properties = null)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "account_id", id }, };
+                var queryParams = new Dictionary<string, object> { { "include", include }, { "properties", properties }, };
+                return await Client.CallApi<Account>(path: "/v3/accounts/{account_id}", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET);
             }
             catch (ApiException e)
             {

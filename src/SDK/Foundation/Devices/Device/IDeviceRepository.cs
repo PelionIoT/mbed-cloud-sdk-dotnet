@@ -30,8 +30,8 @@ namespace Mbed.Cloud.Foundation.Entities
     {
         Task<Device> Create(Device request);
         Task Delete(string id);
-        Task<Device> Get(string id);
         PaginatedResponse<IDeviceListOptions, Device> List(IDeviceListOptions options = null);
+        Task<Device> Read(string id);
         Task<CertificateEnrollment> RenewCertificate(string certificateName, string id);
         Task<Device> Update(string id, Device request);
     }

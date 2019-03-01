@@ -47,7 +47,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string CertificateFingerprint
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? CreatedAt
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string Issuer
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -126,7 +126,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string OwnerId
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string Subject
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? UpdatedAt
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public bool? Valid
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -180,7 +180,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? Validity
         {
             get;
-            private set;
+            internal set;
         }
     }
 }

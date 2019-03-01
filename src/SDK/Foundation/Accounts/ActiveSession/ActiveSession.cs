@@ -28,7 +28,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string AccountId
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string IpAddress
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? LoginTime
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string ReferenceToken
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string UserAgent
         {
             get;
-            private set;
+            internal set;
         }
     }
 }

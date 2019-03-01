@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="CertificateEnrollmentEnrollResult.cs" company="Arm">
+// <copyright file="DeviceLifecycleStatus.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -16,17 +16,13 @@ namespace Mbed.Cloud.Foundation.Enums
 {
     using System.Runtime.Serialization;
 
-    public enum CertificateEnrollmentEnrollResult
+    public enum DeviceLifecycleStatus
     {
         [EnumMember(Value = "UNKNOWN_ENUM_VALUE_RECEIVED")]
         UNKNOWN_ENUM_VALUE_RECEIVED,
-        [EnumMember(Value = "success")]
-        SUCCESS,
-        [EnumMember(Value = "failure")]
-        FAILURE,
-        [EnumMember(Value = "not_found")]
-        NOT_FOUND,
-        [EnumMember(Value = "forbidden")]
-        FORBIDDEN,
+        [EnumMember(Value = "enabled")]
+        ENABLED,
+        [EnumMember(Value = "blocked")]
+        BLOCKED,
     }
 }

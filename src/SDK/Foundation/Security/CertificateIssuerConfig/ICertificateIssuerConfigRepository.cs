@@ -29,9 +29,9 @@ namespace Mbed.Cloud.Foundation.Entities
     {
         Task<CertificateIssuerConfig> Create(CertificateIssuerConfig request);
         Task Delete(string id);
-        Task<CertificateIssuerConfig> Get(string id);
         Task<CertificateIssuerConfig> GetDefault();
         PaginatedResponse<ICertificateIssuerConfigListOptions, CertificateIssuerConfig> List(ICertificateIssuerConfigListOptions options = null);
+        Task<CertificateIssuerConfig> Read(string id);
         Task<CertificateIssuerConfig> Update(string id, CertificateIssuerConfig request);
     }
 }

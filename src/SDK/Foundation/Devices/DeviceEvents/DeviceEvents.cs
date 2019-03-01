@@ -29,7 +29,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public Dictionary<string, string> Changes
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? CreatedAt
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public Dictionary<string, string> Data
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public DateTime? DateTime
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string Description
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string DeviceId
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string EventType
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string EventTypeCategory
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string EventTypeDescription
         {
             get;
-            private set;
+            internal set;
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public bool? StateChange
         {
             get;
-            private set;
+            internal set;
         }
     }
 }

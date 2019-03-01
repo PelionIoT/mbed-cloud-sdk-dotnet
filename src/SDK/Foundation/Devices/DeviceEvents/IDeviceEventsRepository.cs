@@ -27,7 +27,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// </summary>
     public interface IDeviceEventsRepository
     {
-        Task<DeviceEvents> Get(string id);
         PaginatedResponse<IDeviceEventsListOptions, DeviceEvents> List(IDeviceEventsListOptions options = null);
+        Task<DeviceEvents> Read(string id);
     }
 }
