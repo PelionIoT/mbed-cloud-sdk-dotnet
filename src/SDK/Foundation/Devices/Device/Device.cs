@@ -156,7 +156,7 @@ namespace Mbed.Cloud.Foundation.Entities
         public string EndpointName
         {
             get;
-            internal set;
+            set;
         }
 
         /// <summary>
@@ -193,78 +193,6 @@ namespace Mbed.Cloud.Foundation.Entities
         {
             get;
             set;
-        }
-
-        /// <summary>
-        /// issuer_fingerprint
-        /// </summary>
-        public string IssuerFingerprint
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// last_operator_suspended_category
-        /// </summary>
-        public string LastOperatorSuspendedCategory
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
-        /// last_operator_suspended_description
-        /// </summary>
-        public string LastOperatorSuspendedDescription
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
-        /// last_operator_suspended_updated_at
-        /// </summary>
-        public DateTime? LastOperatorSuspendedUpdatedAt
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
-        /// last_system_suspended_category
-        /// </summary>
-        public string LastSystemSuspendedCategory
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
-        /// last_system_suspended_description
-        /// </summary>
-        public string LastSystemSuspendedDescription
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
-        /// last_system_suspended_updated_at
-        /// </summary>
-        public DateTime? LastSystemSuspendedUpdatedAt
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
-        /// lifecycle_status
-        /// </summary>
-        public DeviceLifecycleStatus? LifecycleStatus
-        {
-            get;
-            internal set;
         }
 
         /// <summary>
@@ -313,15 +241,6 @@ namespace Mbed.Cloud.Foundation.Entities
         }
 
         /// <summary>
-        /// operator_suspended
-        /// </summary>
-        public bool? OperatorSuspended
-        {
-            get;
-            internal set;
-        }
-
-        /// <summary>
         /// serial_number
         /// </summary>
         public string SerialNumber
@@ -337,15 +256,6 @@ namespace Mbed.Cloud.Foundation.Entities
         {
             get;
             set;
-        }
-
-        /// <summary>
-        /// system_suspended
-        /// </summary>
-        public bool? SystemSuspended
-        {
-            get;
-            internal set;
         }
 
         /// <summary>
