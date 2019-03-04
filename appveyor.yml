@@ -7,3 +7,8 @@ build_script:
  - dotnet build --no-restore --configuration Debug
 test_script:
   - .\packages\opencover\4.7.922\tools\OpenCover.Console.exe -target:"C:\Program Files\dotnet\dotnet.exe" -targetargs:"test Tests\MbedCloudSDK.UnitTests --no-restore" -oldstyle -register:user -filter:"+[MbedCloudSDK*]MbedCloudSDK*"
+after_test:
+  - ps: |
+      $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
+      Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
+      bash codecov.sh -f "coverage.xml"
