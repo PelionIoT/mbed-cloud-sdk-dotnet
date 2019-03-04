@@ -2,7 +2,7 @@ version: "{build}"
 image: Visual Studio 2017
 platform: Any CPU
 before_build:
- - dotnet restore --packages packages --configuration Debug
+ - dotnet restore --packages packages
 build_script:
  - dotnet build --no-restore --configuration Debug
 test_script:
