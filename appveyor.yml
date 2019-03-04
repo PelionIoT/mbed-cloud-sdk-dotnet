@@ -2,8 +2,10 @@ version: "{build}"
 image: Visual Studio 2017
 platform: Any CPU
 before_build:
- - dotnet restore --packages packages
+ - dotnet restore Tests/MbedCloudSDK.UnitTests/MbedCloudSDK.UnitTests.csproj --packages packages
+ - dotnet restore src/MbedCloudSDK.csproj --packages packages
 build_script:
- - dotnet build
+ - dotnet build Tests/MbedCloudSDK.UnitTests/MbedCloudSDK.UnitTests.csproj
+ - dotnet build src/MbedCloudSDK.csproj
 test_script:
   - .\packages\opencover\4.7.922\tools\OpenCover.Console.exe
