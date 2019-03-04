@@ -5,3 +5,4 @@ before_build:
  - dotnet restore
 build_script:
  - dotnet build
+deploy: off
