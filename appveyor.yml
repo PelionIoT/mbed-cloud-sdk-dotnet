@@ -1,9 +1,6 @@
 version: "{build}"
 image: Visual Studio 2017
 platform: Any CPU
-environment:
-  matrix:
-    - PYTHON: "C:\\Python37"
 build_script:
   - sh: |
       ${PYTHON}/python.exe - pip install pip awscli
