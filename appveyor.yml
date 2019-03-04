@@ -6,6 +6,7 @@ install:
   - "%PYTHON%\\Scripts\\pip3 install awscli"
   - "%PYTHON%\\Scripts\\pip3 install -U awscli"
   - where aws
+  - "ls %PYTHON%\\lib\\site-packages\\aws"
   - "%PYTHON%\\lib\\site-packages\\aws --version"
 
 build: off
