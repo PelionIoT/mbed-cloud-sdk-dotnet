@@ -4,12 +4,14 @@ platform: Any CPU
 install:
   - "%PYTHON%\\python.exe -m pip install pip awscli"
 
+build: off
+
 test_script:
-- sh: |
+- ps: |
     aws ecr get-login --no-include-email
     docker pull ${TESTRUNNER_DOCKER_IMAGE}
     docker run --rm --net=host --name=testrunner_container -e "TEST_SERVER_URL=localhost:5000" -e "TEST_FIXTURES_DIR=/home/ubuntu/rpc_fixtures" -v /home/ubuntu/rpc_fixtures:/runner/test_fixtures -v /home/ubuntu/rpc_results:/runner/results ${TESTRUNNER_DOCKER_IMAGE}
 
 after_test:
-- sh: |
+- ps: |
     echo "tests complete"
