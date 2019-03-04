@@ -2,8 +2,8 @@ version: "{build}"
 image: Visual Studio 2017
 platform: Any CPU
 install:
-  - "%PYTHON%\\python.exe -m pip install pip pipenv"
-  - pipenv run pip install awscli --three
+  - "%PYTHON%\\python.exe -m pip install --user pipenv"
+  - pipenv install awscli --three
   - pipenv aws --version
 
 build: off
