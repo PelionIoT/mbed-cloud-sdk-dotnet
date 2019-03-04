@@ -9,9 +9,8 @@ build: off
 test_script:
 - ps: |
     $login=aws ecr get-login
-    echo login
-    echo login
-    login
+    echo $login
+    $login
     docker pull ${TESTRUNNER_DOCKER_IMAGE}
     docker run --rm --net=host --name=testrunner_container -e "TEST_SERVER_URL=localhost:5000" -e "TEST_FIXTURES_DIR=/home/ubuntu/rpc_fixtures" -v /home/ubuntu/rpc_fixtures:/runner/test_fixtures -v /home/ubuntu/rpc_results:/runner/results ${TESTRUNNER_DOCKER_IMAGE}
 
