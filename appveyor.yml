@@ -2,8 +2,8 @@ version: "{build}"
 image: Visual Studio 2017
 platform: Any CPU
 before_build:
- - dotnet restore --packages packages
+ - dotnet restore --packages packages -c Debug
 build_script:
- - dotnet build --no-restore
+ - dotnet build --no-restore -c Debug
 test_script:
-  - .\packages\opencover\4.7.922\tools\OpenCover.Console.exe -target:"C:\Program Files\dotnet\dotnet.exe" -targetargs:"test Tests\MbedCloudSDK.UnitTests --no-restore --no-build" -oldstyle -register:user -filter:"+[MbedCloudSDK*]MbedCloudSDK*"
+  - .\packages\opencover\4.7.922\tools\OpenCover.Console.exe -target:"C:\Program Files\dotnet\dotnet.exe" -targetargs:"test Tests\MbedCloudSDK.UnitTests --no-restore --no-build -c Debug" -oldstyle -register:user -filter:"+[MbedCloudSDK*]MbedCloudSDK*"
