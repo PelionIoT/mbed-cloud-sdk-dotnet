@@ -4,7 +4,7 @@ platform: Any CPU
 install:
   - "%PYTHON%\\python.exe -m pip install --upgrade pip"
   - "%PYTHON%\\python.exe -m pip install awscli"
-  - "%PYTHON%\\python.exe -m pip install --upgrade awscli
+  - "%PYTHON%\\python.exe -m pip install --upgrade awscli"
   - aws --version
 
 build: off
