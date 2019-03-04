@@ -4,8 +4,6 @@ platform: Any CPU
 install:
   - "%PYTHON%\\python.exe -m pip install pip awscli"
 
-build: off
-
 test_script:
 - sh: |
     aws ecr get-login --no-include-email
