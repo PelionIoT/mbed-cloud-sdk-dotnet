@@ -3,16 +3,5 @@ image: Visual Studio 2017
 platform: Any CPU
 build_script:
   - sh: |
-      ${PYTHON}/python.exe - pip install pip awscli
+      ${PYTHON}/python.exe -m pip install pip awscli
       aws ecr get-login --no-include-email
-# before_build:
-#  - dotnet restore --packages packages
-# build_script:
-#  - dotnet --version
-# test_script:
-#   - .\packages\opencover\4.7.922\tools\OpenCover.Console.exe -target:"C:\Program Files\dotnet\dotnet.exe" -targetargs:"test Tests\MbedCloudSDK.UnitTests --no-restore" -oldstyle -register:user -filter:"+[MbedCloudSDK*]MbedCloudSDK* -[MbedCloudSDK.UnitTests*]*" -output:"coverage.xml"
-# after_test:
-#   - ps: |
-#       $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
-#       Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
-#       bash codecov.sh -f "coverage.xml"
