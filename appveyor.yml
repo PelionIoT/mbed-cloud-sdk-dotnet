@@ -2,10 +2,8 @@ version: "{build}"
 image: Visual Studio 2017
 platform: Any CPU
 before_build:
- - dotnet restore Tests/MbedCloudSDK.UnitTests/MbedCloudSDK.UnitTests.csproj --packages packages
- - dotnet restore src/MbedCloudSDK.csproj --packages packages
+ - dotnet restore --packages packages
 build_script:
- - dotnet build Tests/MbedCloudSDK.UnitTests/MbedCloudSDK.UnitTests.csproj
- - dotnet build src/MbedCloudSDK.csproj
+ - dotnet build
 test_script:
-  - .\packages\opencover\4.7.922\tools\OpenCover.Console.exe
+  - .\packages\opencover\4.7.922\tools\OpenCover.Console.exe -target:"C:\Program Files\dotnet\dotnet.exe" -targetargs:"test mbed-cloud-sdk-dotnet\Tests\MbedCloudSDK.UnitTests" -oldstyle -register:user
