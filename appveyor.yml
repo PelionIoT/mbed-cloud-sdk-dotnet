@@ -2,8 +2,9 @@ version: "{build}"
 image: Visual Studio 2017
 platform: Any CPU
 install:
-  - "%PYTHON%\\python.exe -m venv venv . venv/bin/activate pip install awscli"
-  - . venv/bin/activate aws --version
+  - "%PYTHON%\\python.exe pip install pip pipenv"
+  - pipenv run pip install awscli --three
+  - pipenv aws --version
 
 build: off
 
