@@ -5,4 +5,5 @@ before_build:
  - dotnet restore
 build_script:
  - dotnet build
-deploy: off
+test_script:
+  - .\packages\OpenCover.4.7.922\tools\OpenCover.Console.exe -register:user -target:"C:\Program Files\dotnet\dotnet.exe" -targetargs:"test mbed-cloud-sdk-dotnet\Tests\MbedCloudSDK.UnitTests" -output:"coverage.xml" -oldstyle -filter:"+[MbedCloudSDK*]MbedCloudSDK*"
