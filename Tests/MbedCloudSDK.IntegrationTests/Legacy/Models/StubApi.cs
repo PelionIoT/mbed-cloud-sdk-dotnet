@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Mbed.Cloud.Foundation.Common;
+using Mbed.Cloud.Common;
 using MbedCloudSDK.Common;
 
 namespace MbedCloudSDK.IntegrationTests.Models

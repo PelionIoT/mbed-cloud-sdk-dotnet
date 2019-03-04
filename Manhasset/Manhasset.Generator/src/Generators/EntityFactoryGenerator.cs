@@ -15,10 +15,10 @@ namespace Manhasset.Generator.src.Generators
         {
             var entityFactory = new ClassContainer
             {
-                Name = "EntityFactory",
-                Namespace = UsingKeys.HOME,
-                FilePath = $"{rootFilePath}/EntityFactory.cs",
-                DocString = "Entity Factory",
+                Name = "FoundationFactory",
+                Namespace = UsingKeys.FOUNDATION_FACTORY_CLASS,
+                FilePath = $"{rootFilePath}/FoundationFactory.cs",
+                DocString = "Foundation Factory",
             };
 
             entityFactory.AddUsing(nameof(UsingKeys.SDK_COMMON), UsingKeys.SDK_COMMON);

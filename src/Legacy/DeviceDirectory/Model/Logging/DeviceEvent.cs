@@ -8,7 +8,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Logging
     using System.Collections.Generic;
     using System.Text;
     using device_directory.Model;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;

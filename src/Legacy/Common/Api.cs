@@ -5,7 +5,7 @@
 namespace MbedCloudSDK.Common
 {
     using log4net;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using Mbed.Cloud;
 
     /// <summary>

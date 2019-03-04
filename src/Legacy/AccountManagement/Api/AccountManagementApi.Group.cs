@@ -6,7 +6,7 @@ namespace MbedCloudSDK.AccountManagement.Api
 {
     using System.Threading.Tasks;
     using iam.Model;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using MbedCloudSDK.AccountManagement.Model.ApiKey;
     using MbedCloudSDK.AccountManagement.Model.Group;
     using MbedCloudSDK.AccountManagement.Model.User;

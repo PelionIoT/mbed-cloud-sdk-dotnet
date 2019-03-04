@@ -2,7 +2,7 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-namespace Mbed.Cloud.Foundation.Common
+namespace Mbed.Cloud.Common
 {
     using System;
     using System.Threading;

@@ -6,7 +6,7 @@ namespace MbedCloudSDK.Update.Model.FirmwareImage
 {
     using System;
     using System.Text;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;

@@ -1,5 +1,5 @@
 using System.Linq;
-using Mbed.Cloud.Foundation.Entities;
+using Mbed.Cloud.Foundation;
 using NUnit.Framework;
 
 namespace Snippets.src.Foundation

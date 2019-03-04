@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 using System.Threading;
-using Mbed.Cloud.Foundation.Common;
+using Mbed.Cloud.Common;
 using NUnit.Framework;
 
 namespace MbedCloudSDK.UnitTests.Common

@@ -7,7 +7,7 @@ namespace MbedCloudSDK.DeviceDirectory.Model.Query
     using System;
     using System.Text;
     using device_directory.Model;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Common.Filter;

@@ -6,7 +6,7 @@ namespace MbedCloudSDK.Update.Api
 {
     using System;
     using System.Linq;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using MbedCloudSDK.Common;
     using update_service.Api;
     using update_service.Client;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Mbed.Cloud;
-using Mbed.Cloud.Foundation.Common;
+using Mbed.Cloud.Common;
 using MbedCloudSDK.IntegrationTests.Models;
 
 namespace MbedCloudSDK.IntegrationTests.Repositories

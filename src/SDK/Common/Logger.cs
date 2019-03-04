@@ -6,7 +6,7 @@ using log4net.Core;
 using log4net.Layout;
 using log4net.Repository.Hierarchy;
 
-namespace Mbed.Cloud.Foundation.Common
+namespace Mbed.Cloud.Common
 {
     public class Logger
     {

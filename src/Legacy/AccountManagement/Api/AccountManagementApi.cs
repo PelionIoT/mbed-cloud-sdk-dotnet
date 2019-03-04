@@ -8,7 +8,7 @@ namespace MbedCloudSDK.AccountManagement.Api
     using System.Linq;
     using iam.Api;
     using iam.Client;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using MbedCloudSDK.Common;
 
     /// <summary>

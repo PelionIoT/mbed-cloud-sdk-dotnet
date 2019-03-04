@@ -2,9 +2,9 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-namespace Mbed.Cloud.Foundation.Common
+namespace Mbed.Cloud.Common
 {
-    using Mbed.Cloud.Foundation.RestClient;
+    using Mbed.Cloud.RestClient;
 
     /// <summary>
     /// Repository

@@ -1,6 +1,6 @@
 using Mbed.Cloud;
-using Mbed.Cloud.Foundation.Common;
-using Mbed.Cloud.Foundation.Entities;
+using Mbed.Cloud.Common;
+using Mbed.Cloud.Foundation;
 using NUnit.Framework;
 
 namespace MbedCloudSDK.UnitTests.Foundation
@@ -52,7 +52,7 @@ namespace MbedCloudSDK.UnitTests.Foundation
 
             Assert.AreEqual("ak_1", sdk.Config.ApiKey);
 
-            var user = sdk.Entities().UserRepository();
+            var user = sdk.Foundation().UserRepository();
             Assert.AreEqual("ak_1", user.Config.ApiKey);
 
             var sdk2 = new SDK(config);

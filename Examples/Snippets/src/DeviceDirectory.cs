@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using MbedCloudSDK.Common;
-using Mbed.Cloud.Foundation.Common;
+using Mbed.Cloud.Common;
 using MbedCloudSDK.DeviceDirectory.Api;
 
 namespace Snippets.src

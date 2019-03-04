@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Mbed.Cloud.Foundation.Common;
+using Mbed.Cloud.Common;
 using MbedCloudSDK.Exceptions;
 using MbedCloudSDK.IntegrationTests.Exceptions;
 using MbedCloudSDK.IntegrationTests.Models;

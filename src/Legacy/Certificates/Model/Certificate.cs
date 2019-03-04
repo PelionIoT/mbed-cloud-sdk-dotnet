@@ -7,7 +7,7 @@ namespace MbedCloudSDK.Certificates.Model
     using System;
     using System.Text;
     using iam.Model;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using MbedCloudSDK.Certificates.Api;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
