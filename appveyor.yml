@@ -8,7 +8,7 @@ build: off
 
 test_script:
 - ps: |
-    login=aws ecr get-login
+    $login=aws ecr get-login
     echo login
     ${login}
     docker pull ${TESTRUNNER_DOCKER_IMAGE}
