@@ -2,8 +2,9 @@ version: "{build}"
 image: Visual Studio 2017
 platform: Any CPU
 install:
-  - "%PYTHON%\\python.exe -m pip install pip"
-  - "%PYTHON%\\python.exe pip3 install awscli"
+  - "%PYTHON%\\python.exe -m pip install --upgrade pip"
+  - "%PYTHON%\\python.exe -m pip install awscli"
+  - "%PYTHON%\\python.exe -m pip install --upgrade awscli
   - aws --version
 
 build: off
