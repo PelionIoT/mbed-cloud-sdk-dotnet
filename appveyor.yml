@@ -6,4 +6,4 @@ before_build:
 build_script:
  - dotnet build
 test_script:
-  - .\packages\opencover\4.7.922\tools\OpenCover.Console.exe -target:"C:\Program Files\dotnet\dotnet.exe" -targetargs:"test mbed-cloud-sdk-dotnet\Tests\MbedCloudSDK.UnitTests" -oldstyle -register:user
+  - .\packages\opencover\4.7.922\tools\OpenCover.Console.exe -target:"C:\Program Files\dotnet\dotnet.exe" -targetargs:"test Tests\MbedCloudSDK.UnitTests" -oldstyle -register:user
