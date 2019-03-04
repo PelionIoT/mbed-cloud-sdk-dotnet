@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Mbed.Cloud.Common;
 using MbedCloudSDK.AccountManagement.Api;
 using MbedCloudSDK.Certificates.Api;
@@ -33,7 +34,7 @@ namespace MbedCloudSDK.UnitTests.Common
 
             var iamConfig = new iam.Client.Configuration
             {
-                BasePath = "/",
+                BasePath = Path.Combine("/"),
                 UserAgent = Api.UserAgent,
             };
 
