@@ -6,4 +6,4 @@ before_build:
 build_script:
  - dotnet build --no-restore
 test_script:
-  - .\packages\opencover\4.7.922\tools\OpenCover.Console.exe -target:"C:\Program Files\dotnet\dotnet.exe" -targetargs:"test Tests\MbedCloudSDK.UnitTests --no-restore" -oldstyle -register:user
+  - .\packages\opencover\4.7.922\tools\OpenCover.Console.exe -target:"C:\Program Files\dotnet\dotnet.exe" -targetargs:"test Tests\MbedCloudSDK.UnitTests --no-restore" -oldstyle -register:user -filter:"+[MbedCloudSDK*]MbedCloudSDK*"
