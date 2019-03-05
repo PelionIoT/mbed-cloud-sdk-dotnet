@@ -8,7 +8,7 @@ platform: Any CPU
 build: off
 
 test_script:
-  - ps: git clone https://$env:GITHUB_TOKEN@github.com:ARMmbed/mbed-cloud-sdk-testrunner.git
+  - ps: git clone https://$env:GITHUB_TOKEN@github.com/ARMmbed/mbed-cloud-sdk-testrunner.git
   - ps: dotnet restore
   - ps: dotnet build
   # - ps: Invoke-Expression -Command (aws ecr get-login --no-include-email)
