@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using Mbed.Cloud.Common;
 using MbedCloudSDK.AccountManagement.Api;
 using MbedCloudSDK.Certificates.Api;
