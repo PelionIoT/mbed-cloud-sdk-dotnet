@@ -16,7 +16,7 @@ test_script:
   - ps: Start-Process .\packages\opencover\4.7.922\tools\OpenCover.Console.exe -ArgumentList '-target:"C:\Program Files\dotnet\dotnet.exe"', '-targetargs:"run --no-restore --no-build -c Debug --project .\Tests\MbedCloudSDK.IntegrationTests\MbedCloudSDK.IntegrationTests.csproj"', '-oldstyle', '-register:user', '-filter:"+[MbedCloudSDK*]Mbed*"', '-output:"int-coverage.xml"'
   - ps: Start-Sleep -s 15
   - ps: cd ..\mbed-cloud-sdk-testrunner
-  - ps: try { C:\Python36\python.exe -m trunner } catch { }
+  - ps: try { C:\Python36\python.exe -m -m pytest trunner/modules/connect/test_connect.py } catch { }
   - ps: cd ..\mbed-cloud-sdk-dotnet
   - ps: ls
   - ps: $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
