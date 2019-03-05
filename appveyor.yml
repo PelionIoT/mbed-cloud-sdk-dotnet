@@ -14,11 +14,10 @@ test_script:
   - ps: cd ..\mbed-cloud-sdk-dotnet
   - ps: dotnet restore
   - ps: dotnet build -c Debug
-  - ps: dotnet run --no-restore --no-build -c Debug --project .\Tests\MbedCloudSDK.IntegrationTests\MbedCloudSDK.IntegrationTests.csproj
-  # - ps: Start-Job -ScriptBlock { dotnet run --no-restore --no-build -c Debug --project .\Tests\MbedCloudSDK.IntegrationTests\MbedCloudSDK.IntegrationTests.csproj }
-  # - ps: Start-Sleep -s 5
-  # - ps: cd ..\mbed-cloud-sdk-testrunner
-  # - ps: C:\Python36\python.exe -m trunner
+  - ps: Start-Job -ScriptBlock { dotnet run --no-restore --no-build -c Debug --project .\Tests\MbedCloudSDK.IntegrationTests\MbedCloudSDK.IntegrationTests.csproj }
+  - ps: Start-Sleep -s 15
+  - ps: cd ..\mbed-cloud-sdk-testrunner
+  - ps: C:\Python36\python.exe -m trunner
   # - ps: dotnet restore
   # - ps: dotnet build
   # - ps: Invoke-Expression -Command (aws ecr get-login --no-include-email)
