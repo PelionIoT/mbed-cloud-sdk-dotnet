@@ -12,9 +12,9 @@ test_script:
   - ps: C:\Python36\python.exe -m pip install --upgrade pip
   - ps: C:\Python36\python.exe -m pip install -r requirements.txt --no-warn-script-location
   - ps: cd ..\mbed-cloud-sdk-dotnet
-  - ps: dotnet restore
+  - ps: dotnet restore --packages packages
   - ps: dotnet build -c Debug
-  - ps: Start-Process .\packages\opencover\4.7.922\tools\OpenCover.Console.exe -ArgumentList '-target:"C:\Program Files\dotnet\dotnet.exe"', '-targetargs:"run --no-restore --no-build -c Debug --project .\Tests\MbedCloudSDK.IntegrationTests\MbedCloudSDK.IntegrationTests.csproj"', '-oldstyle', 'register:user', '-filter:"+[MbedCloudSDK*]Mbed*"'
+  - ps: Start-Process .\packages\opencover\4.7.922\tools\OpenCover.Console.exe -ArgumentList '-target:"C:\Program Files\dotnet\dotnet.exe"', '-targetargs:"run --no-restore --no-build -c Debug --project .\Tests\MbedCloudSDK.IntegrationTests\MbedCloudSDK.IntegrationTests.csproj"', '-oldstyle', 'register:user', '-filter:"+[MbedCloudSDK*]Mbed*"', '-output:"int-coverage.xml"'
   - ps: Start-Sleep -s 15
   - ps: cd ..\mbed-cloud-sdk-testrunner
   - ps: C:\Python36\python.exe -m trunner
