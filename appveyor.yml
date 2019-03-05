@@ -4,17 +4,13 @@ platform: Any CPU
 install:
   - choco install awscli
   - refreshenv
-  - where aws
-  - aws --version
 
 build: off
 
 test_script:
-- ps: |
-    Invoke-Expression -Command (aws ecr get-login --no-include-email)
-    docker pull $env:TEST_RUNNER_DOCKER_IMAGE
-    docker run --rm --net=host --name=testrunner_container -e "TEST_SERVER_URL=localhost:5000" -e "TEST_FIXTURES_DIR=/home/ubuntu/rpc_fixtures" -v /home/ubuntu/rpc_fixtures:/runner/test_fixtures -v /home/ubuntu/rpc_results:/runner/results ${TESTRUNNER_DOCKER_IMAGE}
+  - ps: Invoke-Expression -Command (aws ecr get-login --no-include-email)
+  - ps: docker pull $env:TEST_RUNNER_DOCKER_IMAGE
+  - ps: docker run --rm --net=host --name=testrunner_container -e "TEST_SERVER_URL=localhost:5000" -e "TEST_FIXTURES_DIR=/home/ubuntu/rpc_fixtures" -v /home/ubuntu/rpc_fixtures:/runner/test_fixtures -v /home/ubuntu/rpc_results:/runner/results ${TESTRUNNER_DOCKER_IMAGE}
 
 after_test:
-- ps: |
-    echo "tests complete"
+  - ps: echo "tests complete"
