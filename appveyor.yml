@@ -17,6 +17,8 @@ test_script:
   - ps: Start-Sleep -s 15
   - ps: cd ..\mbed-cloud-sdk-testrunner
   - ps: C:\Python36\python.exe -m trunner
+  - ps: cd ..\mbed-cloud-sdk-dotnet
+  - ps: ls
 
 after_test:
   - ps: echo "tests complete"
