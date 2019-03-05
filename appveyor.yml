@@ -18,11 +18,6 @@ test_script:
   - ps: Start-Sleep -s 15
   - ps: cd ..\mbed-cloud-sdk-testrunner
   - ps: C:\Python36\python.exe -m trunner
-  # - ps: dotnet restore
-  # - ps: dotnet build
-  # - ps: Invoke-Expression -Command (aws ecr get-login --no-include-email)
-  # - ps: docker pull $env:TEST_RUNNER_DOCKER_IMAGE
-  # - ps: docker run --rm --net=host --name=testrunner_container -e "TEST_SERVER_URL=localhost:5000" -e "TEST_FIXTURES_DIR=/home/ubuntu/rpc_fixtures" -v /home/ubuntu/rpc_fixtures:/runner/test_fixtures -v /home/ubuntu/rpc_results:/runner/results ${TESTRUNNER_DOCKER_IMAGE}
 
 after_test:
   - ps: echo "tests complete"
