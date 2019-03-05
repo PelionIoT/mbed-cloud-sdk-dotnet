@@ -11,8 +11,6 @@ build: off
 
 test_script:
 - ps: |
-    docker version
-    docker-switch-linux
     Invoke-Expression -Command (aws ecr get-login --no-include-email)
     docker pull $env:TEST_RUNNER_DOCKER_IMAGE
     docker run --rm --net=host --name=testrunner_container -e "TEST_SERVER_URL=localhost:5000" -e "TEST_FIXTURES_DIR=/home/ubuntu/rpc_fixtures" -v /home/ubuntu/rpc_fixtures:/runner/test_fixtures -v /home/ubuntu/rpc_results:/runner/results ${TESTRUNNER_DOCKER_IMAGE}
