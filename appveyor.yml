@@ -1,6 +1,5 @@
 version: "{build}"
 image: Visual Studio 2017
-platform: Any CPU
 # install:
 #   - choco install awscli
 #   - refreshenv
