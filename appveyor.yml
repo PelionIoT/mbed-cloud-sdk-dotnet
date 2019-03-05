@@ -3,8 +3,8 @@ image: Visual Studio 2017
 platform: Any CPU
 install:
   - choco install awscli
-  - where aws
-  - aws --version
+  - where awscli
+  - awscli --version
 
 build: off
 
