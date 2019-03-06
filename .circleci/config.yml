@@ -132,8 +132,7 @@ jobs:
   cache_test_runner_image:
     <<: *circle_python
     environment:
-      TESTRUNNER_DOCKER_IMAGE: 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:${CIRCLE_BRANCH}
-      DEFAULT_TESTRUNNER_DOCKER_IMAGE: 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
+      TESTRUNNER_DOCKER_IMAGE: 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner
     steps:
       - setup_remote_docker
       - run:
@@ -150,18 +149,17 @@ jobs:
             ${login}
       - run:
           name: Fetch the test runner
-          command: |
-            docker pull ${TESTRUNNER_DOCKER_IMAGE} || docker pull ${DEFAULT_TESTRUNNER_DOCKER_IMAGE}
-            TESTRUNNER_IMAGE_ID=$(docker images --format "{{.ID}}")
-            echo $TESTRUNNER_IMAGE_ID
-      - run:
-          name: Tag the image to default image name
-          command: docker tag $TESTRUNNER_IMAGE_ID ${DEFAULT_TESTRUNNER_DOCKER_IMAGE}
+          command: (docker pull 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:${CIRCLE_BRANCH}
+              && docker tag 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:${CIRCLE_BRANCH}
+              104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:latest)
+              || (docker pull 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
+              && docker tag 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
+              104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:latest)
       - run:
           command: mkdir -p ~/test_runner_image
           name: create directory for the test_runner docker image
       - run:
-          command: docker save -o ~/test_runner_image/testrunner.tar ${DEFAULT_TESTRUNNER_DOCKER_IMAGE}
+          command: docker save -o ~/test_runner_image/testrunner.tar ${TESTRUNNER_DOCKER_IMAGE}
           name: save the test_runner image so it doesn't need building later
       - persist_to_workspace:
           root: ~/.
