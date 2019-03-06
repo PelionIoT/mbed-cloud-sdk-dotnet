@@ -8,7 +8,7 @@ sdk_test_server:
       - ./build/coverage-results:/testserver/build/coverage-results
       - ./test_fixtures:/testserver/test_fixtures
 testrunner:
-    image: 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
+    image: 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner
     environment:
       - TEST_SERVER_URL=http://sdk_test_server:80
       #folder on test server to get test files from
