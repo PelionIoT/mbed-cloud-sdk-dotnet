@@ -133,6 +133,7 @@ jobs:
     <<: *circle_python
     environment:
       TESTRUNNER_DOCKER_IMAGE: 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
+      DEFAULT_TESTRUNNER_DOCKER_IMAGE: 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
     steps:
       - setup_remote_docker
       - run:
@@ -149,12 +150,15 @@ jobs:
             ${login}
       - run:
           name: Fetch the test runner
-          command: docker pull ${TESTRUNNER_DOCKER_IMAGE}
+          command: TESTRUNNER_NAME=$(docker pull ${TESTRUNNER_DOCKER_IMAGE} || docker pull ${DEFAULT_TESTRUNNER_DOCKER_IMAGE})
+      - run:
+          name: Tag the image test_runner
+          command: docker tag TESTRUNNER_NAME ${DEFAULT_TESTRUNNER_DOCKER_IMAGE}
       - run:
           command: mkdir -p ~/test_runner_image
           name: create directory for the test_runner docker image
       - run:
-          command: docker save -o ~/test_runner_image/testrunner.tar ${TESTRUNNER_DOCKER_IMAGE}
+          command: docker save -o ~/test_runner_image/testrunner.tar ${DEFAULT_TESTRUNNER_DOCKER_IMAGE}
           name: save the test_runner image so it doesn't need building later
       - persist_to_workspace:
           root: ~/.
