@@ -15,6 +15,7 @@ namespace MbedCloudSDK.Connect.Api
     using System.Text;
     using System.Threading.Tasks;
     using MbedCloudSDK.Common;
+    using static MbedCloudSDK.Common.Utils;
     using MbedCloudSDK.Common.Filter;
     using MbedCloudSDK.Common.Query;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
@@ -203,12 +204,12 @@ namespace MbedCloudSDK.Connect.Api
             try
             {
                 return EndpointsApi.GetEndpointResources(deviceId)
-                .Select(r => Model.Resource.Resource.Map(deviceId, r, this))
-                .ToList();
+                    ?.Select(r => Model.Resource.Resource.Map(deviceId, r, this))
+                    ?.ToList();
             }
             catch (mds.Client.ApiException e)
             {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+                return HandleNotFound<List<Model.Resource.Resource>, mds.Client.ApiException>(e);
             }
         }
 
