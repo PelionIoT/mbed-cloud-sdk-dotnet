@@ -285,13 +285,6 @@ jobs:
       - run:
          command: cd project && ./build.sh --target=_run_unit_tests
          name: run the unit tests
-      - persist_to_workspace:
-         root: ~/project/project
-         paths:
-           - Tests/MbedCloudSDK.UnitTests/lcov.info
-      - store_artifacts:
-         path: ~/project/project/Tests/MbedCloudSDK.UnitTests/lcov.info
-         destination: unittest-coverage
   # coverage is now handled by appveyor
   # unit_test_coverage:
   #   docker:

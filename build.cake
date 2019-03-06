@@ -63,7 +63,6 @@ var run_unit_tests = Task("_run_unit_tests")
             NoBuild = true,
             NoRestore = true,
             Configuration = configuration,
-            ArgumentCustomization = args => args.Append("/p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutputFormat=lcov /p:CoverletOutput=./lcov.info /p:ExcludeByFile=\"../../src/Legacy/Backends/**/*.cs\""),
         });
     });
 
