@@ -32,7 +32,7 @@ namespace MbedCloudSDK.UnitTests.Common
 
             var iamConfig = new iam.Client.Configuration
             {
-                BasePath = "/",
+                BasePath = "https://somehost.com",
                 UserAgent = BaseApi.UserAgent,
             };
 

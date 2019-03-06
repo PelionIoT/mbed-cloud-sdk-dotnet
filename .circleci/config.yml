@@ -276,25 +276,19 @@ jobs:
       - run:
          command: cd project && ./build.sh --target=_run_unit_tests
          name: run the unit tests
-      - persist_to_workspace:
-         root: ~/project/project
-         paths:
-           - Tests/MbedCloudSDK.UnitTests/lcov.info
-      - store_artifacts:
-         path: ~/project/project/Tests/MbedCloudSDK.UnitTests/lcov.info
-         destination: unittest-coverage
-  unit_test_coverage:
-    docker:
-      - image: circleci/node:10-browsers
-    steps:
-      - <<: *attach_workspace
-      - run:
-         command: npm install codecov
-         name: install codecov
-      # can't install locally so have to go into node_modules
-      - run:
-         command: node ~/project/node_modules/codecov/bin/codecov ~/project/project/Tests/MbedCloudSDK.UnitTests/lcov.info
-         name: upload coverage report to codecov
+  # coverage is now handled by appveyor
+  # unit_test_coverage:
+  #   docker:
+  #     - image: circleci/node:10-browsers
+  #   steps:
+  #     - <<: *attach_workspace
+  #     - run:
+  #        command: npm install codecov
+  #        name: install codecov
+  #     # can't install locally so have to go into node_modules
+  #     - run:
+  #        command: node ~/project/node_modules/codecov/bin/codecov ~/project/project/Tests/MbedCloudSDK.UnitTests/lcov.info
+  #        name: upload coverage report to codecov
   #############################################################################################
   #                                Integration Tests                                          #
   #############################################################################################
@@ -545,9 +539,10 @@ workflows:
           requires:
           - build
           <<: *filter_ignore_release
-      - unit_test_coverage:
-          requires:
-          - unit_test
+      # coverage is now handled by appveyor
+      # - unit_test_coverage:
+      #     requires:
+      #     - unit_test
       - artifactory_deploy:
           requires:
           - unit_test
