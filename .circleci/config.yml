@@ -15,7 +15,6 @@ references:
       - image: circleci/python:3.6-jessie-browsers
 
   sdk_environment: &sdk_environment
-    TESTRUNNER_DOCKER_IMAGE: 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner
     ARTIFACTORY_URL: http://localhost:80/artifactory/
 
   install_aws_tools: &install_aws_tools
