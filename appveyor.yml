@@ -7,7 +7,7 @@ test_script:
   # python logs are sent to stderr which causes the script to crash. Silently continue on these errors
   - ps: $ErrorActionPreference = 'SilentlyContinue'
   # clone the testrunner
-  - ps: git clone -q --branch=$env:GITHUB_TOKEN https://$env:GITHUB_TOKEN@github.com/ARMmbed/mbed-cloud-sdk-testrunner.git C:\projects\mbed-cloud-sdk-testrunner -Or git clone -q --branch=master https://$env:GITHUB_TOKEN@github.com/ARMmbed/mbed-cloud-sdk-testrunner.git C:\projects\mbed-cloud-sdk-testrunner
+  - ps: try { git clone -q --branch=$env:GITHUB_TOKEN https://$env:GITHUB_TOKEN@github.com/ARMmbed/mbed-cloud-sdk-testrunner.git C:\projects\mbed-cloud-sdk-testrunner } catch { git clone -q --branch=master https://$env:GITHUB_TOKEN@github.com/ARMmbed/mbed-cloud-sdk-testrunner.git C:\projects\mbed-cloud-sdk-testrunner }
   - ps: cd ..\mbed-cloud-sdk-testrunner
   - ps: C:\Python36\python.exe -m pip install --upgrade pip
   - ps: C:\Python36\python.exe -m pip install -r requirements.txt --no-warn-script-location
