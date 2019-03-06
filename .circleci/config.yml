@@ -151,12 +151,12 @@ jobs:
       - run:
           name: Fetch the test runner
           command: |
-            TESTRUNNER_NAME=$(docker pull ${TESTRUNNER_DOCKER_IMAGE} || docker pull ${DEFAULT_TESTRUNNER_DOCKER_IMAGE})
-            echo TESTRUNNER_NAME
-            echo $TESTRUNNER_NAME
+            docker pull ${TESTRUNNER_DOCKER_IMAGE} || docker pull ${DEFAULT_TESTRUNNER_DOCKER_IMAGE}
+            TESTRUNNER_IMAGE_ID=$(docker images --format "{{.ID}}")
+            echo $TESTRUNNER_IMAGE_ID
       - run:
-          name: Tag the image test_runner
-          command: docker tag $TESTRUNNER_NAME ${DEFAULT_TESTRUNNER_DOCKER_IMAGE}
+          name: Tag the image to default image name
+          command: docker tag $TESTRUNNER_IMAGE_ID ${DEFAULT_TESTRUNNER_DOCKER_IMAGE}
       - run:
           command: mkdir -p ~/test_runner_image
           name: create directory for the test_runner docker image
