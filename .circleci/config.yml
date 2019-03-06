@@ -150,7 +150,10 @@ jobs:
             ${login}
       - run:
           name: Fetch the test runner
-          command: TESTRUNNER_NAME=$(docker pull ${TESTRUNNER_DOCKER_IMAGE} || docker pull ${DEFAULT_TESTRUNNER_DOCKER_IMAGE})
+          command: |
+            TESTRUNNER_NAME=$(docker pull ${TESTRUNNER_DOCKER_IMAGE} || docker pull ${DEFAULT_TESTRUNNER_DOCKER_IMAGE})
+            echo TESTRUNNER_NAME
+            echo $TESTRUNNER_NAME
       - run:
           name: Tag the image test_runner
           command: docker tag $TESTRUNNER_NAME ${DEFAULT_TESTRUNNER_DOCKER_IMAGE}
