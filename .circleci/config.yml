@@ -15,7 +15,6 @@ references:
       - image: circleci/python:3.6-jessie-browsers
 
   sdk_environment: &sdk_environment
-    TESTRUNNER_DOCKER_IMAGE: 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
     ARTIFACTORY_URL: http://localhost:80/artifactory/
 
   install_aws_tools: &install_aws_tools
@@ -123,7 +122,7 @@ jobs:
   cache_test_runner_image:
     <<: *circle_python
     environment:
-      TESTRUNNER_DOCKER_IMAGE: 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
+      TESTRUNNER_DOCKER_IMAGE: 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner
     steps:
       - setup_remote_docker
       - run:
@@ -140,7 +139,12 @@ jobs:
             ${login}
       - run:
           name: Fetch the test runner
-          command: docker pull ${TESTRUNNER_DOCKER_IMAGE}
+          command: (docker pull 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:${CIRCLE_BRANCH}
+              && docker tag 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:${CIRCLE_BRANCH}
+              104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:latest)
+              || (docker pull 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
+              && docker tag 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
+              104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:latest)
       - run:
           command: mkdir -p ~/test_runner_image
           name: create directory for the test_runner docker image
