@@ -153,7 +153,7 @@ jobs:
           command: TESTRUNNER_NAME=$(docker pull ${TESTRUNNER_DOCKER_IMAGE} || docker pull ${DEFAULT_TESTRUNNER_DOCKER_IMAGE})
       - run:
           name: Tag the image test_runner
-          command: docker tag TESTRUNNER_NAME ${DEFAULT_TESTRUNNER_DOCKER_IMAGE}
+          command: docker tag $TESTRUNNER_NAME ${DEFAULT_TESTRUNNER_DOCKER_IMAGE}
       - run:
           command: mkdir -p ~/test_runner_image
           name: create directory for the test_runner docker image
