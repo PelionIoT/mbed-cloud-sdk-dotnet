@@ -17,7 +17,7 @@ namespace Mbed.Cloud.Foundation.Factories
         private Config config;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EntityFactory"/> class.
+        /// Initializes a new instance of the <see cref="FoundationFactory"/> class.
         /// </summary>
         /// <param name="config">The configuration.</param>
         /// <param name="client">The client.</param>

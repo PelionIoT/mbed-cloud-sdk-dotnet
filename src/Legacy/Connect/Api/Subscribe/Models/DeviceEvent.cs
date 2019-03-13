@@ -1,4 +1,4 @@
-// <copyright file="DeviceEventEnum.cs" company="Arm">
+// <copyright file="DeviceEvent.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 

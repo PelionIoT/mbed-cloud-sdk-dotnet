@@ -47,6 +47,11 @@ namespace Mbed.Cloud.Common
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Config"/> class.
+        /// </summary>
+        /// <param name="apiKey">The API key.</param>
+        /// <param name="host">The host.</param>
         public Config(string apiKey, string host)
         {
             // check if key and host were set in constructor or environment variables
@@ -122,14 +127,19 @@ namespace Mbed.Cloud.Common
         public string AuthorizationPrefix { get; } = "Bearer";
 
         /// <summary>
-        /// Gets a value indicating whether to auto start notifications
+        /// Gets or sets a value indicating whether to auto start notifications
         /// </summary>
+        /// <value>
+        ///   <c>true</c> if [autostart notifications]; otherwise, <c>false</c>.
+        /// </value>
         public bool AutostartNotifications { get; set; } = false;
 
         /// <summary>
-        /// Gets a value indicating whether to clear any existing notification channels
+        /// Gets or sets a value indicating whether to clear any existing notification channels
         /// </summary>
-        /// <value>If true, notifications will start automaticaly</value>
+        /// <value>
+        /// If true, notifications will start automaticaly
+        /// </value>
         public bool ForceClear { get; set; } = false;
 
         /// <summary>
@@ -138,6 +148,12 @@ namespace Mbed.Cloud.Common
         /// <value>The host.</value>
         public string Host { get; } = "https://api.us-east-1.mbedcloud.com";
 
+        /// <summary>
+        /// Gets or sets the log level.
+        /// </summary>
+        /// <value>
+        /// The log level.
+        /// </value>
         public LogLevel LogLevel { get; set; } = LogLevel.OFF;
 
         private string FindDotEnv(string currentDirectory)

@@ -1,4 +1,4 @@
-// <copyright file="QueryOptions.cs" company="Arm">
+﻿// <copyright file="QueryOptions.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
@@ -6,6 +6,9 @@ namespace Mbed.Cloud.Common
 {
     using MbedCloudSDK.Common.Filter;
 
+    /// <summary>
+    /// IQueryOptions
+    /// </summary>
     public interface IQueryOptions
     {
         /// <summary>

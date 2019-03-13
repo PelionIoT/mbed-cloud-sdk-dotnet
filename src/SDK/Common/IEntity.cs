@@ -1,4 +1,4 @@
-// <copyright file="Entity.cs" company="Arm">
+﻿// <copyright file="Entity.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 

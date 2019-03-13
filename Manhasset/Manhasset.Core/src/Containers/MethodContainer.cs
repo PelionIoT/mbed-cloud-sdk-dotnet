@@ -18,8 +18,6 @@ namespace Manhasset.Core.src.Containers
 
         public bool IsVoidTask { get; set; }
 
-        public bool IsInterface { get; set; } = false;
-
         public virtual MethodDeclarationSyntax GetSyntax()
         {
             MethodDeclarationSyntax method = null;

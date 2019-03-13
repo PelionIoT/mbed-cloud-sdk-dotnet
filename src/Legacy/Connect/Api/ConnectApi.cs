@@ -5,23 +5,17 @@
 namespace MbedCloudSDK.Connect.Api
 {
     using System;
-    using System.Collections.Generic;
+    using System.Collections.Concurrent;
     using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
     using device_directory.Api;
     using device_directory.Client;
     using Mbed.Cloud.Common;
     using MbedCloudSDK.Common;
-    using MbedCloudSDK.Connect.Model;
-    using MbedCloudSDK.Connect.Model.ConnectedDevice;
-    using NotificationDeliveryMethod = MbedCloudSDK.Connect.Model.Enums;
-    using MbedCloudSDK.Connect.Model.Notifications;
     using MbedCloudSDK.Connect.Model.Resource;
     using mds.Api;
-    using statistics.Api;
-    using System.Collections.Concurrent;
     using Nito.AsyncEx;
+    using statistics.Api;
+    using NotificationDeliveryMethod = Model.Enums;
 
     /// <summary>
     /// Connect Api
@@ -44,9 +38,11 @@ namespace MbedCloudSDK.Connect.Api
     /// </summary>
     public partial class ConnectApi : Api, IDisposable
     {
-        private bool disposed;
-
         private static string websocketUrl;
+        private readonly bool autostartNotifications;
+        private readonly bool forceClear;
+        private readonly bool skipCleanup;
+        private bool disposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectApi"/> class.
@@ -67,7 +63,7 @@ namespace MbedCloudSDK.Connect.Api
         {
             SetUpApi(config);
             Subscribe = new Subscribe.Subscribe(this);
-            websocketUrl = $"wss://{config.Host.Replace("https://", "")}/v2/notification/websocket-connect";
+            websocketUrl = $"wss://{config.Host.Replace("https://", string.Empty)}/v2/notification/websocket-connect";
         }
 
         /// <summary>
@@ -80,12 +76,13 @@ namespace MbedCloudSDK.Connect.Api
         internal ConnectApi(Config config, statistics.Client.Configuration statsConfig = null, mds.Client.Configuration mdsConfig = null, device_directory.Client.Configuration deviceConfig = null)
             : base(config)
         {
-            forceClear = config.ForceClear == true;
-            autostartNotifications = config.AutostartNotifications != false;
-            if (this.autostartNotifications == true)
+            forceClear = config.ForceClear;
+            autostartNotifications = config.AutostartNotifications;
+            if (autostartNotifications)
             {
                 DeliveryMethod = NotificationDeliveryMethod.DeliveryMethod.CLIENT_INITIATED;
             }
+
             ResourceSubscribtions = new ConcurrentDictionary<string, Resource>();
             SetUpApi(config, statsConfig, mdsConfig, deviceConfig);
         }
@@ -94,6 +91,10 @@ namespace MbedCloudSDK.Connect.Api
         /// Gets async responses
         /// </summary>
         public ConcurrentDictionary<string, AsyncCollection<string>> AsyncResponses { get; } = new ConcurrentDictionary<string, AsyncCollection<string>>();
+
+        /// <summary>Gets the delivery method.</summary>
+        /// <value>The delivery method.</value>
+        public NotificationDeliveryMethod.DeliveryMethod? DeliveryMethod { get; private set; }
 
         /// <summary>
         /// Gets NotificationQueue
@@ -109,12 +110,6 @@ namespace MbedCloudSDK.Connect.Api
         /// Gets or sets the SubscribeManager
         /// </summary>
         public MbedCloudSDK.Connect.Api.Subscribe.Subscribe Subscribe { get; set; }
-
-        public NotificationDeliveryMethod.DeliveryMethod? DeliveryMethod { get; private set; }
-
-        private readonly bool forceClear;
-        private readonly bool autostartNotifications;
-        private readonly bool skipCleanup;
 
         /// <summary>
         /// Gets or sets the account API.
