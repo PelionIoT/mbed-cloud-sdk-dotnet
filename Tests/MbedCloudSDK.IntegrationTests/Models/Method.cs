@@ -173,6 +173,16 @@ namespace MbedCloudSDK.IntegrationTests.Models
             foreach (var p in @params)
             {
                 var paramType = p.ParameterType;
+                if (paramType.IsInterface)
+                {
+                    // parameter is interface so get corresponding class
+                    var interfaceType = Assembly.GetAssembly(typeof(SDK)).GetTypes().FirstOrDefault(t => paramType.IsAssignableFrom(t) && !t.IsInterface);
+                    if (interfaceType != null)
+                    {
+                        paramType = interfaceType;
+                    }
+                }
+
                 if (paramType.IsPrimitive || paramType == typeof(String))
                 {
                     var paramValue = GetParamValuePrimitive(p, paramType, argsJsonObj);
