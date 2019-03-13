@@ -168,7 +168,7 @@ namespace MbedCloudSDK.Connect.Api
                         cancellationToken?.Dispose();
                         cancellationToken = new CancellationTokenSource();
 
-                        await InitiateWebsocket();
+                        await InitiateWebsocketAsync();
 
                         // start a new task
                         notificationTask = Task.Factory.StartNew(
@@ -211,12 +211,12 @@ namespace MbedCloudSDK.Connect.Api
                                     }
                                     else
                                     {
-                                        log.Warn($"websocket is in an invalid state to receive - {webSocketClient.State}");
+                                        Log.Warn($"websocket is in an invalid state to receive - {webSocketClient.State}");
                                     }
                                 }
                                 catch (WebSocketException e)
                                 {
-                                    log.Error(e.Message, e);
+                                    Log.Error(e.Message, e);
                                     throw;
                                 }
                             }
@@ -435,44 +435,6 @@ namespace MbedCloudSDK.Connect.Api
             {
                 await webSocketClient.ConnectAsync(new Uri(websocketUrl), CancellationToken.None);
             }
-        }
-
-        private async Task StopWebsocketAsync()
-        {
-            // we are closing now so set isClosing to true so we expect a 1000 normal closure
-            IsClosing = true;
-            // close the websocket
-            if (webSocketClient.State == WebSocketState.Open || webSocketClient.State == WebSocketState.CloseReceived || webSocketClient.State == WebSocketState.CloseSent)
-            {
-                try
-                {
-                    await webSocketClient.CloseAsync(WebSocketCloseStatus.NormalClosure, "", CancellationToken.None);
-                }
-                catch (WebSocketException e)
-                {
-                    // connection was closed without completing handshake
-                    log.Error(e);
-                }
-            }
-
-            webSocketClient.Dispose();
-
-            // delete the channel
-            try
-            {
-                await NotificationsApi.DeleteWebsocketAsync();
-            }
-            catch (mds.Client.ApiException e)
-            {
-                if (e.ErrorCode != 404)
-                {
-                    // channel may have already gone away so just log this exception
-                    log.Error(e.Message, e);
-                }
-            }
-
-            // now finished closing
-            IsClosing = false;
         }
 
         private async Task handleMessageAsync(WebSocketReceiveResult message, List<byte> dynamicBuffer = null)
