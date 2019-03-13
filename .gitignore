@@ -333,6 +333,4 @@ src/auto-version
 **/*.env
 Manhasset.Generation.Temp
 lcov.info
-
-tools/*
-!tools/packages.config
+tools
