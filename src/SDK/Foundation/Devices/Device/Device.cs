@@ -12,9 +12,9 @@
 // </copyright>
 // </auto-generated>
 
-namespace Mbed.Cloud.Foundation.Entities
+namespace Mbed.Cloud.Foundation
 {
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using System;
     using System.Collections.Generic;
     using Mbed.Cloud.Foundation.Enums;
@@ -22,7 +22,7 @@ namespace Mbed.Cloud.Foundation.Entities
     /// <summary>
     /// Device
     /// </summary>
-    public class Device : Entity
+    public class Device : Entity, IDevice
     {
         /// <summary>
         /// account_id

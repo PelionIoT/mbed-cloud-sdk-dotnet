@@ -12,15 +12,15 @@
 // </copyright>
 // </auto-generated>
 
-namespace Mbed.Cloud.Foundation.Entities
+namespace Mbed.Cloud.Foundation
 {
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using System;
 
     /// <summary>
     /// DeviceEnrollment
     /// </summary>
-    public class DeviceEnrollment : Entity
+    public class DeviceEnrollment : Entity, IDeviceEnrollment
     {
         /// <summary>
         /// account_id

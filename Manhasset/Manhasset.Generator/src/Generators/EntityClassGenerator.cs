@@ -2,6 +2,7 @@ using System.Linq;
 using Manhasset.Core.src.Common;
 using Manhasset.Core.src.Compile;
 using Manhasset.Core.src.Containers;
+using Manhasset.Core.src.Extensions;
 using Manhasset.Generator.src.common;
 using Manhasset.Generator.src.CustomContainers;
 using Manhasset.Generator.src.extensions;
@@ -16,7 +17,7 @@ namespace Manhasset.Generator.src.Generators
             var entityClass = new ClassContainer();
 
             // namespace
-            entityClass.Namespace = UsingKeys.ENTITIES;
+            entityClass.Namespace = UsingKeys.FOUNDATION;
 
             // modifier (just public for now)
             entityClass.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
@@ -28,11 +29,15 @@ namespace Manhasset.Generator.src.Generators
             entityClass.AddBaseType("BASE_ENTITY", "Entity");
             entityClass.AddUsing(nameof(UsingKeys.SDK_COMMON), UsingKeys.SDK_COMMON);
 
+            // add interface
+            entityClass.AddBaseType("Interface", $"I{entityClass.Name}");
+
             // doc (just use the name for now)
             entityClass.DocString = entityClass.Name;
 
             // set the filepath root/groupId/Class/Class.cs
-            entityClass.FilePath = $"{rootFilePath}/{entityGroup}/{entityClass.Name}/{entityClass.Name}.cs";
+            entityClass.FilePath = $"{rootFilePath}/{entityGroup}/{entityClass.Name}/";
+            entityClass.FileName = $"{entityClass.Name}.cs";
 
             // add rename dictionary if any
             if (entity["field_renames"].Count() > 0)
@@ -134,7 +139,7 @@ namespace Manhasset.Generator.src.Generators
                 if (foreignKey != null)
                 {
                     var foreignKeyName = foreignKey["entity"].GetStringValue().ToPascal();
-                    entityClass.AddUsing("FOREIGN_KEY", UsingKeys.ENTITIES);
+                    entityClass.AddUsing("FOREIGN_KEY", UsingKeys.FOUNDATION);
                 }
 
                 // add usings for date time
@@ -151,6 +156,16 @@ namespace Manhasset.Generator.src.Generators
             }
 
             compilation.AddClass(entityClass.Name, entityClass);
+
+            var entityClassInterface = entityClass.Copy();
+            // entityRepositoryInterface.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
+            entityClassInterface.Name = $"I{entityClass.Name}";
+            entityClassInterface.FilePath = $"{rootFilePath}/{entityGroup}/{entityPascalName}/";
+            entityClassInterface.FileName = $"I{entityClass.FileName}";
+            entityClassInterface.BaseTypes.Clear();
+            entityClassInterface.IsInterface = true;
+
+            compilation.AddClass(entityClassInterface.Name, entityClassInterface);
         }
     }
 }

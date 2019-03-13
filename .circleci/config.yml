@@ -8,14 +8,13 @@ references:
 
   dotnet_mono_docker: &dotnet_mono_docker
     docker:
-      - image: andrewlock/dotnet-mono
+      - image: pomma89/dotnet-mono
 
   circle_python: &circle_python
     docker:
       - image: circleci/python:3.6-jessie-browsers
 
   sdk_environment: &sdk_environment
-    TESTRUNNER_DOCKER_IMAGE: 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
     ARTIFACTORY_URL: http://localhost:80/artifactory/
 
   install_aws_tools: &install_aws_tools
@@ -132,7 +131,7 @@ jobs:
   cache_test_runner_image:
     <<: *circle_python
     environment:
-      TESTRUNNER_DOCKER_IMAGE: 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
+      TESTRUNNER_DOCKER_IMAGE: 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner
     steps:
       - setup_remote_docker
       - run:
@@ -149,7 +148,12 @@ jobs:
             ${login}
       - run:
           name: Fetch the test runner
-          command: docker pull ${TESTRUNNER_DOCKER_IMAGE}
+          command: (docker pull 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:${CIRCLE_BRANCH}
+              && docker tag 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:${CIRCLE_BRANCH}
+              104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:latest)
+              || (docker pull 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
+              && docker tag 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
+              104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:latest)
       - run:
           command: mkdir -p ~/test_runner_image
           name: create directory for the test_runner docker image
@@ -170,15 +174,15 @@ jobs:
       - OUTPUT_DIR: "./docs"
     steps:
       - checkout
-    #  - run:
-    #      command: doxygen ar.doxygen
-    #      name: run Doxygen to build the docs
-    #  - store_artifacts:
-    #      path: docs
-    #  - persist_to_workspace:
-    #      root: ./
-    #      paths:
-    #        - docs
+      - run:
+          command: doxygen ar.doxygen
+          name: run Doxygen to build the docs
+      - store_artifacts:
+          path: docs
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - docs
   upload_docs:
     <<: *circle_python
     steps:
@@ -188,7 +192,7 @@ jobs:
       - run:
          command: |
                  . venv/bin/activate
-                 aws s3 sync --delete --cache-control max-age=3600 ~/docs s3://mbed-cloud-sdk-dotnet-dist/latest/docs
+                 aws s3 sync --delete --cache-control max-age=3600 ~/docs s3://mbed-cloud-sdk-dotnet-dist/${CIRCLE_BRANCH}/docs
          name: upload docs to s3
   #############################################################################################
   #                                Misc pre jobs                                              #
@@ -285,25 +289,19 @@ jobs:
       - run:
          command: cd project && ./build.sh --target=_run_unit_tests
          name: run the unit tests
-      - persist_to_workspace:
-         root: ~/project/project
-         paths:
-           - Tests/MbedCloudSDK.UnitTests/lcov.info
-      - store_artifacts:
-         path: ~/project/project/Tests/MbedCloudSDK.UnitTests/lcov.info
-         destination: unittest-coverage
-  unit_test_coverage:
-    docker:
-      - image: circleci/node:10-browsers
-    steps:
-      - <<: *attach_workspace
-      - run:
-         command: npm install codecov
-         name: install codecov
-      # can't install locally so have to go into node_modules
-      - run:
-         command: node ~/project/node_modules/codecov/bin/codecov ~/project/project/Tests/MbedCloudSDK.UnitTests/lcov.info
-         name: upload coverage report to codecov
+  # coverage is now handled by appveyor
+  # unit_test_coverage:
+  #   docker:
+  #     - image: circleci/node:10-browsers
+  #   steps:
+  #     - <<: *attach_workspace
+  #     - run:
+  #        command: npm install codecov
+  #        name: install codecov
+  #     # can't install locally so have to go into node_modules
+  #     - run:
+  #        command: node ~/project/node_modules/codecov/bin/codecov ~/project/project/Tests/MbedCloudSDK.UnitTests/lcov.info
+  #        name: upload coverage report to codecov
   #############################################################################################
   #                                Integration Tests                                          #
   #############################################################################################
@@ -551,7 +549,7 @@ workflows:
       - upload_docs:
           requires:
           - docs
-          <<: *filter_master_only_build
+          <<: *filter_master_or_beta_only_build
       - tpip:
           <<: *filter_master_only_build
       - version_bump:
@@ -580,15 +578,16 @@ workflows:
           requires:
           - build
           <<: *filter_ignore_release
-      - unit_test_coverage:
-          requires:
-          - unit_test
+      # coverage is now handled by appveyor
+      # - unit_test_coverage:
+      #     requires:
+      #     - unit_test
       - artifactory_deploy:
           requires:
           - unit_test
           - integration_test_os2
           - integration_test_production
-          <<: *filter_master_only_build
+          <<: *filter_master_or_beta_only_build
       - release_to_nuget:
           requires:
           - unit_test

@@ -12,14 +12,14 @@
 // </copyright>
 // </auto-generated>
 
-namespace Mbed.Cloud.Foundation.ListOptions
+namespace Mbed.Cloud.Foundation
 {
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
 
     /// <summary>
     /// SubtenantUserListOptions
     /// </summary>
-    public class SubtenantUserListOptions : QueryOptions
+    public class SubtenantUserListOptions : QueryOptions, ISubtenantUserListOptions
     {
     }
 }

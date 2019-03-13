@@ -21,7 +21,7 @@ namespace Manhasset.Generator.src.CustomContainers
 
             var queryOptionsNullCheck = new QueryOptionsNullCheckContainer
             {
-                ListOptionsName = ListOptionsName,
+                ListOptionsName = ListOptionsName.Substring(1),
             }.GetSyntax();
             methodBody.Add(queryOptionsNullCheck);
 

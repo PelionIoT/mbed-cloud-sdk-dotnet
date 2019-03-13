@@ -7,7 +7,7 @@ namespace MbedCloudSDK.Certificates.Model
     using System;
     using System.Text;
     using iam.Model;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using MbedCloudSDK.Certificates.Api;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
@@ -180,25 +180,6 @@ namespace MbedCloudSDK.Certificates.Model
             return serviceEnum;
         }
 
-        private static TrustedCertificateReq.StatusEnum GetStatusEnum(Certificate certificate)
-        {
-            TrustedCertificateReq.StatusEnum statusEnum;
-            switch (certificate.Status)
-            {
-                case CertificateStatus.Active:
-                    statusEnum = TrustedCertificateReq.StatusEnum.ACTIVE;
-                    break;
-                case CertificateStatus.Inactive:
-                    statusEnum = TrustedCertificateReq.StatusEnum.INACTIVE;
-                    break;
-                default:
-                    statusEnum = TrustedCertificateReq.StatusEnum.ACTIVE;
-                    break;
-            }
-
-            return statusEnum;
-        }
-
         /// <summary>
         /// Get update service enum
         /// </summary>
@@ -291,6 +272,8 @@ namespace MbedCloudSDK.Certificates.Model
                         case CertificateType.Lwm2m:
                             certificate.ServerUri = api.Lmw2mServerCredentials.Url;
                             certificate.ServerCertificate = api.Lmw2mServerCredentials.Url;
+                            break;
+                        default:
                             break;
                     }
                 }

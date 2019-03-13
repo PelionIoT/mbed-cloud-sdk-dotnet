@@ -14,7 +14,7 @@ namespace MbedCloudSDK.Connect.Api
     using System.Net.Mime;
     using System.Text;
     using System.Threading.Tasks;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Common.Filter;

@@ -12,21 +12,20 @@
 // </copyright>
 // </auto-generated>
 
-namespace Mbed.Cloud.Foundation.Entities
+namespace Mbed.Cloud.Foundation
 {
-    using Mbed.Cloud.Foundation.Common;
-    using Mbed.Cloud.Foundation.ListOptions;
-    using Mbed.Cloud.Foundation.Entities;
+    using Mbed.Cloud.Common;
+    using Mbed.Cloud.Foundation;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
     using System;
-    using Mbed.Cloud.Foundation.RestClient;
+    using Mbed.Cloud.RestClient;
 
     /// <summary>
     /// CertificateIssuerRepository
     /// </summary>
-    public class CertificateIssuerRepository : Repository
+    public class CertificateIssuerRepository : Repository, ICertificateIssuerRepository
     {
         public CertificateIssuerRepository()
         {
@@ -62,20 +61,7 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public async Task<CertificateIssuer> Get(string id)
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "certificate-issuer-id", id }, };
-                return await Client.CallApi<CertificateIssuer>(path: "/v3/certificate-issuers/{certificate-issuer-id}", pathParams: pathParams, method: HttpMethods.GET);
-            }
-            catch (ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public PaginatedResponse<CertificateIssuerListOptions, CertificateIssuer> List(CertificateIssuerListOptions options = null)
+        public PaginatedResponse<ICertificateIssuerListOptions, CertificateIssuer> List(ICertificateIssuerListOptions options = null)
         {
             try
             {
@@ -84,8 +70,21 @@ namespace Mbed.Cloud.Foundation.Entities
                     options = new CertificateIssuerListOptions();
                 }
 
-                Func<CertificateIssuerListOptions, Task<ResponsePage<CertificateIssuer>>> paginatedFunc = async (CertificateIssuerListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<CertificateIssuer>>(path: "/v3/certificate-issuers", queryParams: queryParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<CertificateIssuerListOptions, CertificateIssuer>(paginatedFunc, options);
+                Func<ICertificateIssuerListOptions, Task<ResponsePage<CertificateIssuer>>> paginatedFunc = async (ICertificateIssuerListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<CertificateIssuer>>(path: "/v3/certificate-issuers", queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<ICertificateIssuerListOptions, CertificateIssuer>(paginatedFunc, options);
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<CertificateIssuer> Read(string id)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "certificate-issuer-id", id }, };
+                return await Client.CallApi<CertificateIssuer>(path: "/v3/certificate-issuers/{certificate-issuer-id}", pathParams: pathParams, method: HttpMethods.GET);
             }
             catch (ApiException e)
             {

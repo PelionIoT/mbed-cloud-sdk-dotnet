@@ -7,7 +7,7 @@ namespace MbedCloudSDK.Update.Api
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Exceptions;
     using MbedCloudSDK.Update.Model.FirmwareManifest;

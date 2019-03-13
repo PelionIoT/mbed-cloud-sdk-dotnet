@@ -9,7 +9,7 @@ using System.Threading;
 using MbedCloudSDK.Connect.Api;
 using MbedCloudSDK.Common;
 using System.Collections.Generic;
-using Mbed.Cloud.Foundation.Common;
+using Mbed.Cloud.Common;
 using MbedCloudSDK.Connect.Api.Subscribe.Observers;
 
 namespace Playground

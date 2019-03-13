@@ -12,20 +12,19 @@
 // </copyright>
 // </auto-generated>
 
-namespace Mbed.Cloud.Foundation.Entities
+namespace Mbed.Cloud.Foundation
 {
-    using Mbed.Cloud.Foundation.Common;
-    using Mbed.Cloud.Foundation.ListOptions;
+    using Mbed.Cloud.Common;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
     using System;
-    using Mbed.Cloud.Foundation.RestClient;
+    using Mbed.Cloud.RestClient;
 
     /// <summary>
     /// DeviceEnrollmentRepository
     /// </summary>
-    public class DeviceEnrollmentRepository : Repository
+    public class DeviceEnrollmentRepository : Repository, IDeviceEnrollmentRepository
     {
         public DeviceEnrollmentRepository()
         {
@@ -61,20 +60,7 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public async Task<DeviceEnrollment> Get(string id)
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "id", id }, };
-                return await Client.CallApi<DeviceEnrollment>(path: "/v3/device-enrollments/{id}", pathParams: pathParams, method: HttpMethods.GET);
-            }
-            catch (ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public PaginatedResponse<DeviceEnrollmentListOptions, DeviceEnrollment> List(DeviceEnrollmentListOptions options = null)
+        public PaginatedResponse<IDeviceEnrollmentListOptions, DeviceEnrollment> List(IDeviceEnrollmentListOptions options = null)
         {
             try
             {
@@ -83,8 +69,21 @@ namespace Mbed.Cloud.Foundation.Entities
                     options = new DeviceEnrollmentListOptions();
                 }
 
-                Func<DeviceEnrollmentListOptions, Task<ResponsePage<DeviceEnrollment>>> paginatedFunc = async (DeviceEnrollmentListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<DeviceEnrollment>>(path: "/v3/device-enrollments", queryParams: queryParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<DeviceEnrollmentListOptions, DeviceEnrollment>(paginatedFunc, options);
+                Func<IDeviceEnrollmentListOptions, Task<ResponsePage<DeviceEnrollment>>> paginatedFunc = async (IDeviceEnrollmentListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<DeviceEnrollment>>(path: "/v3/device-enrollments", queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<IDeviceEnrollmentListOptions, DeviceEnrollment>(paginatedFunc, options);
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<DeviceEnrollment> Read(string id)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "id", id }, };
+                return await Client.CallApi<DeviceEnrollment>(path: "/v3/device-enrollments/{id}", pathParams: pathParams, method: HttpMethods.GET);
             }
             catch (ApiException e)
             {

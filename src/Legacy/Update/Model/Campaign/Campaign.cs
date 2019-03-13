@@ -8,7 +8,7 @@ namespace MbedCloudSDK.Update.Model.Campaign
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Text;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Common.Filter;

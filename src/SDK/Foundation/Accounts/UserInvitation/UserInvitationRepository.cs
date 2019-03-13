@@ -12,20 +12,19 @@
 // </copyright>
 // </auto-generated>
 
-namespace Mbed.Cloud.Foundation.Entities
+namespace Mbed.Cloud.Foundation
 {
-    using Mbed.Cloud.Foundation.Common;
-    using Mbed.Cloud.Foundation.ListOptions;
+    using Mbed.Cloud.Common;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
     using System;
-    using Mbed.Cloud.Foundation.RestClient;
+    using Mbed.Cloud.RestClient;
 
     /// <summary>
     /// UserInvitationRepository
     /// </summary>
-    public class UserInvitationRepository : Repository
+    public class UserInvitationRepository : Repository, IUserInvitationRepository
     {
         public UserInvitationRepository()
         {
@@ -61,20 +60,7 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public async Task<UserInvitation> Get(string id)
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "invitation_id", id }, };
-                return await Client.CallApi<UserInvitation>(path: "/v3/user-invitations/{invitation_id}", pathParams: pathParams, method: HttpMethods.GET);
-            }
-            catch (ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public PaginatedResponse<UserInvitationListOptions, UserInvitation> List(UserInvitationListOptions options = null)
+        public PaginatedResponse<IUserInvitationListOptions, UserInvitation> List(IUserInvitationListOptions options = null)
         {
             try
             {
@@ -83,8 +69,21 @@ namespace Mbed.Cloud.Foundation.Entities
                     options = new UserInvitationListOptions();
                 }
 
-                Func<UserInvitationListOptions, Task<ResponsePage<UserInvitation>>> paginatedFunc = async (UserInvitationListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<UserInvitation>>(path: "/v3/user-invitations", queryParams: queryParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<UserInvitationListOptions, UserInvitation>(paginatedFunc, options);
+                Func<IUserInvitationListOptions, Task<ResponsePage<UserInvitation>>> paginatedFunc = async (IUserInvitationListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<UserInvitation>>(path: "/v3/user-invitations", queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<IUserInvitationListOptions, UserInvitation>(paginatedFunc, options);
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<UserInvitation> Read(string id)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "invitation_id", id }, };
+                return await Client.CallApi<UserInvitation>(path: "/v3/user-invitations/{invitation_id}", pathParams: pathParams, method: HttpMethods.GET);
             }
             catch (ApiException e)
             {

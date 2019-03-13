@@ -12,14 +12,14 @@
 // </copyright>
 // </auto-generated>
 
-namespace Mbed.Cloud.Foundation.Entities
+namespace Mbed.Cloud.Foundation
 {
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
 
     /// <summary>
     /// ParentAccount
     /// </summary>
-    public class ParentAccount : Entity
+    public class ParentAccount : Entity, IParentAccount
     {
         /// <summary>
         /// admin_email

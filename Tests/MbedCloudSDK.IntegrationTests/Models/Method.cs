@@ -16,8 +16,8 @@ using MbedCloudSDK.Exceptions;
 using Mbed.Cloud;
 using System.Linq.Expressions;
 using MbedCloudSDK.Common.Extensions;
-using Mbed.Cloud.Foundation.Common;
-using Mbed.Cloud.Foundation.Common.CustomSerializers;
+using Mbed.Cloud.Common;
+using Mbed.Cloud.Common.CustomSerializers;
 
 namespace MbedCloudSDK.IntegrationTests.Models
 {

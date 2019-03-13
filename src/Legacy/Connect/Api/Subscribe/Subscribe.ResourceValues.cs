@@ -195,6 +195,12 @@ namespace MbedCloudSDK.Connect.Api.Subscribe
             }
         }
 
+        /// <summary>
+        /// Resources the values core asynchronous.
+        /// </summary>
+        /// <param name="observer">The observer.</param>
+        /// <param name="immediacy">The immediacy.</param>
+        /// <returns>Resource value observer</returns>
         protected virtual async Task<ResourceValuesObserver> ResourceValuesCoreAsync(ResourceValuesObserver observer, FirstValueImmediacy immediacy)
         {
             Immediacy = immediacy;

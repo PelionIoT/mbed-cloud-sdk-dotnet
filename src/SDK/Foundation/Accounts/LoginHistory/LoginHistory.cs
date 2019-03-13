@@ -12,15 +12,15 @@
 // </copyright>
 // </auto-generated>
 
-namespace Mbed.Cloud.Foundation.Entities
+namespace Mbed.Cloud.Foundation
 {
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using System;
 
     /// <summary>
     /// LoginHistory
     /// </summary>
-    public class LoginHistory : Entity
+    public class LoginHistory : Entity, ILoginHistory
     {
         /// <summary>
         /// date

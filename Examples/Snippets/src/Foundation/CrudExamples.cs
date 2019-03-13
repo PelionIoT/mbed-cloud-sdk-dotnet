@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using NUnit.Framework;
 using MbedCloudSDK.Common.Extensions;
-using Mbed.Cloud.Foundation.Entities;
+using Mbed.Cloud.Foundation;
 
 namespace Snippets.src.Foundation
 {
@@ -19,7 +19,7 @@ namespace Snippets.src.Foundation
 
                 Assert.IsInstanceOf(typeof(User), user);
 
-                var gotUser = await userRepo.Get(user.Id);
+                var gotUser = await userRepo.Read(user.Id);
 
                 Assert.IsInstanceOf(typeof(User), gotUser);
                 Assert.AreEqual(gotUser.CreatedAt, user.CreatedAt);

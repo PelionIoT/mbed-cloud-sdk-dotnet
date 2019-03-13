@@ -12,20 +12,20 @@
 // </copyright>
 // </auto-generated>
 
-namespace Mbed.Cloud.Foundation.Entities
+namespace Mbed.Cloud.Foundation
 {
-    using Mbed.Cloud.Foundation.Common;
-    using Mbed.Cloud.Foundation.Entities;
+    using Mbed.Cloud.Common;
+    using Mbed.Cloud.Foundation;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
     using System;
-    using Mbed.Cloud.Foundation.RestClient;
+    using Mbed.Cloud.RestClient;
 
     /// <summary>
     /// DeveloperCertificateRepository
     /// </summary>
-    public class DeveloperCertificateRepository : Repository
+    public class DeveloperCertificateRepository : Repository, IDeveloperCertificateRepository
     {
         public DeveloperCertificateRepository()
         {
@@ -61,12 +61,12 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public async Task<DeveloperCertificate> Get(string id)
+        public async Task<TrustedCertificate> GetTrustedCertificateInfo(string id)
         {
             try
             {
-                var pathParams = new Dictionary<string, object> { { "developerCertificateId", id }, };
-                return await Client.CallApi<DeveloperCertificate>(path: "/v3/developer-certificates/{developerCertificateId}", pathParams: pathParams, method: HttpMethods.GET);
+                var pathParams = new Dictionary<string, object> { { "cert_id", id }, };
+                return await Client.CallApi<TrustedCertificate>(path: "/v3/trusted-certificates/{cert_id}", pathParams: pathParams, method: HttpMethods.GET);
             }
             catch (ApiException e)
             {
@@ -74,12 +74,12 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public async Task<TrustedCertificate> GetTrustedCertificateInfo(string id)
+        public async Task<DeveloperCertificate> Read(string id)
         {
             try
             {
-                var pathParams = new Dictionary<string, object> { { "cert_id", id }, };
-                return await Client.CallApi<TrustedCertificate>(path: "/v3/trusted-certificates/{cert_id}", pathParams: pathParams, method: HttpMethods.GET);
+                var pathParams = new Dictionary<string, object> { { "developerCertificateId", id }, };
+                return await Client.CallApi<DeveloperCertificate>(path: "/v3/developer-certificates/{developerCertificateId}", pathParams: pathParams, method: HttpMethods.GET);
             }
             catch (ApiException e)
             {

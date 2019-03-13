@@ -96,7 +96,7 @@ namespace Manhasset.Generator.src.CustomContainers
         protected MethodDeclarationSyntax GetPaginatedSignature(string listOptionsName = "QueryOptions", MethodParameterContainer methodParams = null)
         {
             methodParams.Parameters = methodParams.Parameters.Where(p => p.Key != "after" && p.Key != "order" && p.Key != "limit" && p.Key != "include").OrderBy(p => !p.Required).ToList();
-            return SyntaxFactory.MethodDeclaration(
+            var paginatedSyntax = SyntaxFactory.MethodDeclaration(
                     SyntaxFactory.GenericName(
                         SyntaxFactory.Identifier("PaginatedResponse"))
                     .WithTypeArgumentList(
@@ -107,12 +107,12 @@ namespace Manhasset.Generator.src.CustomContainers
                                     SyntaxFactory.Token(SyntaxKind.CommaToken),
                                     SyntaxFactory.IdentifierName(Returns)}))),
                     SyntaxFactory.Identifier(Name))
-                .WithModifiers(
-                    SyntaxFactory.TokenList(
-                        SyntaxFactory.Token(SyntaxKind.PublicKeyword)))
+                .WithModifiers(new SyntaxTokenList(MyModifiers.Values.ToArray()))
                 .WithBody(
                     SyntaxFactory.Block())
                 .WithParameterList(methodParams.GetSyntax());
+
+            return IsInterface ? paginatedSyntax.WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken)) : paginatedSyntax.WithBody(SyntaxFactory.Block());
         }
     }
 }

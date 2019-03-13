@@ -12,14 +12,14 @@
 // </copyright>
 // </auto-generated>
 
-namespace Mbed.Cloud.Foundation.Entities
+namespace Mbed.Cloud.Foundation
 {
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
 
     /// <summary>
     /// LoginProfile
     /// </summary>
-    public class LoginProfile : Entity
+    public class LoginProfile : Entity, ILoginProfile
     {
         /// <summary>
         /// name

@@ -7,7 +7,7 @@ namespace MbedCloudSDK.AccountManagement.Model.Group
     using System;
     using System.Collections.Generic;
     using System.Text;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;

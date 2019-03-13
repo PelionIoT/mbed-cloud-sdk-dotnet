@@ -3,6 +3,7 @@ using System.Linq;
 using Manhasset.Core.src.Common;
 using Manhasset.Core.src.Compile;
 using Manhasset.Core.src.Containers;
+using Manhasset.Core.src.Extensions;
 using Manhasset.Generator.src.common;
 using Manhasset.Generator.src.CustomContainers;
 using Manhasset.Generator.src.extensions;
@@ -27,7 +28,7 @@ namespace Manhasset.Generator.src.Generators
             var customQueryOptions = new ClassContainer();
 
             // namespace
-            customQueryOptions.Namespace = UsingKeys.ListOptions;
+            customQueryOptions.Namespace = UsingKeys.FOUNDATION;
 
             // modifier (just public for now)
             customQueryOptions.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
@@ -39,11 +40,15 @@ namespace Manhasset.Generator.src.Generators
             customQueryOptions.AddBaseType("BASE_LIST_OPTIONS", "QueryOptions");
             customQueryOptions.AddUsing(nameof(UsingKeys.SDK_COMMON), UsingKeys.SDK_COMMON);
 
+            // interface
+            customQueryOptions.AddBaseType("BASE_LIST_OPTIONS_INTERFACE", $"I{customQueryOptions.Name}");
+
             // doc (just use the name for now)
             customQueryOptions.DocString = customQueryOptions.Name;
 
             // set the filepath root/groupId/Class/Class.cs
-            customQueryOptions.FilePath = $"{rootFilePath}/{entityGroup}/{entityName}/{customQueryOptions.Name}.cs";
+            customQueryOptions.FilePath = $"{rootFilePath}/{entityGroup}/{entityName}/";
+            customQueryOptions.FileName = $"{customQueryOptions.Name}.cs";
 
             if(extraQueryParams.Count > 0) {
                 extraQueryParams.ForEach(e =>
@@ -59,6 +64,17 @@ namespace Manhasset.Generator.src.Generators
             }
 
             compilation.AddClass($"{entityGroup}-{entityName}-{returns}", customQueryOptions);
+
+            var customQueryOptionsInterface = customQueryOptions.Copy();
+            // entityRepositoryInterface.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
+            customQueryOptionsInterface.Name = $"I{optionsName}";
+            customQueryOptionsInterface.FilePath = $"{rootFilePath}/{entityGroup}/{entityName}/";
+            customQueryOptionsInterface.FileName = $"I{customQueryOptions.FileName}";
+            customQueryOptionsInterface.IsInterface = true;
+            customQueryOptionsInterface.BaseTypes.Clear();
+            customQueryOptionsInterface.AddBaseType("BASE_LIST_OPTIONS_INTERFACE", "IQueryOptions");
+
+            compilation.AddClass($"{entityGroup}-{entityName}-{returns}-interface", customQueryOptionsInterface);
 
             return optionsName;
         }

@@ -12,14 +12,14 @@
 // </copyright>
 // </auto-generated>
 
-namespace Mbed.Cloud.Foundation.Entities
+namespace Mbed.Cloud.Foundation
 {
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
 
     /// <summary>
     /// PasswordPolicy
     /// </summary>
-    public class PasswordPolicy : Entity
+    public class PasswordPolicy : Entity, IPasswordPolicy
     {
         /// <summary>
         /// minimum_length

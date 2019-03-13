@@ -12,16 +12,16 @@
 // </copyright>
 // </auto-generated>
 
-namespace Mbed.Cloud.Foundation.Entities
+namespace Mbed.Cloud.Foundation
 {
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using System;
     using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
     /// DeviceEnrollmentBulkCreate
     /// </summary>
-    public class DeviceEnrollmentBulkCreate : Entity
+    public class DeviceEnrollmentBulkCreate : Entity, IDeviceEnrollmentBulkCreate
     {
         /// <summary>
         /// account_id

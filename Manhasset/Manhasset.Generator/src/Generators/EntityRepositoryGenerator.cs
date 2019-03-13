@@ -1,11 +1,14 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Manhasset.Core.src.Common;
 using Manhasset.Core.src.Compile;
 using Manhasset.Core.src.Containers;
+using Manhasset.Core.src.Extensions;
 using Manhasset.Generator.src.common;
 using Manhasset.Generator.src.CustomContainers;
 using Manhasset.Generator.src.extensions;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Manhasset.Generator.src.Generators
@@ -17,7 +20,7 @@ namespace Manhasset.Generator.src.Generators
             var entityRepository = new ClassContainer();
 
             // namespace
-            entityRepository.Namespace = UsingKeys.ENTITIES;
+            entityRepository.Namespace = UsingKeys.FOUNDATION;
 
             // modifier
             entityRepository.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
@@ -29,17 +32,25 @@ namespace Manhasset.Generator.src.Generators
             entityRepository.AddBaseType("BASE_ENTITY", "Repository");
             entityRepository.AddUsing(nameof(UsingKeys.SDK_COMMON), UsingKeys.SDK_COMMON);
 
+            // add interface
+            entityRepository.AddBaseType("INTERFACE", $"I{entityRepository.Name}");
+
             // doc (just use the name for now)
             entityRepository.DocString = entityRepository.Name;
 
             // set the filepath root/groupId/Class/Class.cs
-            entityRepository.FilePath = $"{rootFilePath}/{entityGroup}/{entityPascalName}/{entityRepository.Name}.cs";
+            entityRepository.FilePath = $"{rootFilePath}/{entityGroup}/{entityPascalName}/";
+            Console.WriteLine(entityRepository.FilePath);
+            entityRepository.FileName = $"{entityRepository.Name}.cs";
+            Console.WriteLine(entityRepository.FilePath);
+            Console.WriteLine(entityRepository.FilePath);
 
             //default constructor
             var defaultConstructor = new ConstructorContainer
             {
-                Name = entityRepository.Name
+                Name = entityRepository.Name,
             };
+            defaultConstructor.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
             entityRepository.AddConstructor("DEFAULT", defaultConstructor);
 
             // config constructor
@@ -92,7 +103,7 @@ namespace Manhasset.Generator.src.Generators
                 if (foreignKey)
                 {
                     // add using for foreign key
-                    entityRepository.AddUsing("FOREIGN_KEY", UsingKeys.ENTITIES);
+                    entityRepository.AddUsing("FOREIGN_KEY", UsingKeys.FOUNDATION);
                 }
 
                 var hasRequest = false;
@@ -203,12 +214,12 @@ namespace Manhasset.Generator.src.Generators
                 if (isPaginated == true)
                 {
                     var listOptionsName = CustomQueryOptionsGenerator.GenerateCustomQueryOptions(method, entityPascalName, returns, rootFilePath, entityGroup, compilation);
-                    entityRepository.AddUsing("LIST_OPTIONS", UsingKeys.ListOptions);
+                    // entityRepository.AddUsing("LIST_OPTIONS", UsingKeys.FOUNDATION);
 
                     methodParams.Parameters.Insert(0, new MyParameterContainer
                     {
                         Key = "options",
-                        ParamType = listOptionsName,
+                        ParamType = $"I{listOptionsName}",
                         Required = false,
                     });
                     var paginatedMethodContainer = new PaginatedMethodContainer
@@ -227,7 +238,7 @@ namespace Manhasset.Generator.src.Generators
                         CustomMethodCall = isCustomMethodCall,
                         CustomMethodName = customMethodName,
                         privateMethod = isPrivateMethod,
-                        ListOptionsName = listOptionsName,
+                        ListOptionsName = $"I{listOptionsName}",
                     };
 
                     paginatedMethodContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
@@ -311,6 +322,16 @@ namespace Manhasset.Generator.src.Generators
             }
 
             compilation.AddClass(entityRepository.Name, entityRepository);
+
+            var entityRepositoryInterface = entityRepository.Copy();
+            // entityRepositoryInterface.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
+            entityRepositoryInterface.Name = $"I{entityRepository.Name}";
+            entityRepositoryInterface.FilePath = $"{rootFilePath}/{entityGroup}/{entityPascalName}/";
+            entityRepositoryInterface.FileName = $"I{entityRepository.FileName}";
+            entityRepositoryInterface.BaseTypes.Clear();
+            entityRepositoryInterface.IsInterface = true;
+
+            compilation.AddClass(entityRepositoryInterface.Name, entityRepositoryInterface);
         }
     }
 }

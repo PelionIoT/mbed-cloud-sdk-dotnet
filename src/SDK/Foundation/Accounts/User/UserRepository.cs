@@ -12,20 +12,19 @@
 // </copyright>
 // </auto-generated>
 
-namespace Mbed.Cloud.Foundation.Entities
+namespace Mbed.Cloud.Foundation
 {
-    using Mbed.Cloud.Foundation.Common;
-    using Mbed.Cloud.Foundation.ListOptions;
+    using Mbed.Cloud.Common;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
     using System;
-    using Mbed.Cloud.Foundation.RestClient;
+    using Mbed.Cloud.RestClient;
 
     /// <summary>
     /// UserRepository
     /// </summary>
-    public class UserRepository : Repository
+    public class UserRepository : Repository, IUserRepository
     {
         public UserRepository()
         {
@@ -62,20 +61,7 @@ namespace Mbed.Cloud.Foundation.Entities
             }
         }
 
-        public async Task<User> Get(string id)
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "user_id", id }, };
-                return await Client.CallApi<User>(path: "/v3/users/{user_id}", pathParams: pathParams, method: HttpMethods.GET);
-            }
-            catch (ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public PaginatedResponse<UserListOptions, User> List(UserListOptions options = null)
+        public PaginatedResponse<IUserListOptions, User> List(IUserListOptions options = null)
         {
             try
             {
@@ -84,8 +70,21 @@ namespace Mbed.Cloud.Foundation.Entities
                     options = new UserListOptions();
                 }
 
-                Func<UserListOptions, Task<ResponsePage<User>>> paginatedFunc = async (UserListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<User>>(path: "/v3/users", queryParams: queryParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<UserListOptions, User>(paginatedFunc, options);
+                Func<IUserListOptions, Task<ResponsePage<User>>> paginatedFunc = async (IUserListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<User>>(path: "/v3/users", queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<IUserListOptions, User>(paginatedFunc, options);
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<User> Read(string id)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "user_id", id }, };
+                return await Client.CallApi<User>(path: "/v3/users/{user_id}", pathParams: pathParams, method: HttpMethods.GET);
             }
             catch (ApiException e)
             {

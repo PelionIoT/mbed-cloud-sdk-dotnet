@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Mbed.Cloud.Foundation.Common;
+using Mbed.Cloud.Common;
 using NUnit.Framework;
 
 namespace MbedCloudSDK.Test.Common

@@ -1,6 +1,6 @@
 using System;
 using System.IO;
-using Mbed.Cloud.Foundation.Entities;
+using Mbed.Cloud.Foundation;
 using Mbed.Cloud.Foundation.Enums;
 using MbedCloudSDK.Exceptions;
 using NUnit.Framework;
@@ -59,7 +59,7 @@ namespace Snippets.src.Foundation
                 Assert.AreEqual(bulk.Status, DeviceEnrollmentBulkCreateStatus.NEW);
                 // uncloak
 
-                bulk = await bulkRepo.Get(bulk.Id);
+                bulk = await bulkRepo.Read(bulk.Id);
                 // end of example
 
                 Assert.IsTrue(bulk.Status == DeviceEnrollmentBulkCreateStatus.COMPLETED || bulk.Status == DeviceEnrollmentBulkCreateStatus.PROCESSING);
@@ -94,7 +94,7 @@ namespace Snippets.src.Foundation
 
                 Assert.AreEqual(bulk.Status, DeviceEnrollmentBulkDeleteStatus.NEW);
 
-                bulk = await bulkRepo.Get(bulk.Id);
+                bulk = await bulkRepo.Read(bulk.Id);
 
                 Assert.IsTrue(bulk.Status == DeviceEnrollmentBulkDeleteStatus.COMPLETED || bulk.Status == DeviceEnrollmentBulkDeleteStatus.PROCESSING);
 

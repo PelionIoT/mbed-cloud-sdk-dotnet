@@ -10,7 +10,7 @@ namespace MbedCloudSDK.Enrollment.Api
     using enrollment.Api;
     using enrollment.Model;
     using Enrollment.Model;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.DeviceDirectory.Api;
     using MbedCloudSDK.Exceptions;

@@ -12,18 +12,18 @@
 // </copyright>
 // </auto-generated>
 
-namespace Mbed.Cloud.Foundation.Entities
+namespace Mbed.Cloud.Foundation
 {
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using System.Collections.Generic;
-    using Mbed.Cloud.Foundation.Entities;
+    using Mbed.Cloud.Foundation;
     using System;
     using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
     /// User
     /// </summary>
-    public class User : Entity
+    public class User : Entity, IUser
     {
         internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "MarketingAccepted", "is_marketing_accepted" }, { "TermsAccepted", "is_gtc_accepted" }, { "TwoFactorAuthentication", "is_totp_enabled" }, };
 

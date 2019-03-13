@@ -12,14 +12,14 @@
 // </copyright>
 // </auto-generated>
 
-namespace Mbed.Cloud.Foundation.Entities
+namespace Mbed.Cloud.Foundation
 {
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
 
     /// <summary>
     /// Policy
     /// </summary>
-    public class Policy : Entity
+    public class Policy : Entity, IPolicy
     {
         /// <summary>
         /// action

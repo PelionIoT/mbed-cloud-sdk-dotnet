@@ -11,7 +11,7 @@ namespace MbedCloudSDK.Billing.Api
     using AutoMapper;
     using billing.Api;
     using billing.Model;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using MbedCloudSDK.Billing.Model;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;

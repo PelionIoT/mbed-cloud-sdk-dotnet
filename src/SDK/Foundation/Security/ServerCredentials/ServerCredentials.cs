@@ -12,15 +12,15 @@
 // </copyright>
 // </auto-generated>
 
-namespace Mbed.Cloud.Foundation.Entities
+namespace Mbed.Cloud.Foundation
 {
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using System;
 
     /// <summary>
     /// ServerCredentials
     /// </summary>
-    public class ServerCredentials : Entity
+    public class ServerCredentials : Entity, IServerCredentials
     {
         /// <summary>
         /// created_at

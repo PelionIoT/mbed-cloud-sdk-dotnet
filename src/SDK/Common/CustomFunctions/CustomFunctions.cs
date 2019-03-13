@@ -2,11 +2,11 @@
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
-namespace Mbed.Cloud.Foundation.Common
+namespace Mbed.Cloud.Common
 {
     using System.IO;
     using System.Threading.Tasks;
-    using Mbed.Cloud.Foundation.Entities;
+    using Mbed.Cloud.Foundation;
     using RestSharp;
 
     /// <summary>

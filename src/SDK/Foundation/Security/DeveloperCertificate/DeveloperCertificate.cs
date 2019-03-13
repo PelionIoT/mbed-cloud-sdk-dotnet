@@ -12,16 +12,16 @@
 // </copyright>
 // </auto-generated>
 
-namespace Mbed.Cloud.Foundation.Entities
+namespace Mbed.Cloud.Foundation
 {
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using System.Collections.Generic;
     using System;
 
     /// <summary>
     /// DeveloperCertificate
     /// </summary>
-    public class DeveloperCertificate : Entity
+    public class DeveloperCertificate : Entity, IDeveloperCertificate
     {
         internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "Certificate", "developer_certificate" }, { "PrivateKey", "developer_private_key" }, };
 

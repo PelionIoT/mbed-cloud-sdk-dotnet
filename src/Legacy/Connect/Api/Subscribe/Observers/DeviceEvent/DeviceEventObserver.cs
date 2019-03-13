@@ -41,6 +41,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.DeviceEvent
         /// Notify this observer
         /// </summary>
         /// <param name="data">The device event data</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         public override async Task NotifyAsync(DeviceEventData data)
         {
             if (!FilterFuncs.Any())

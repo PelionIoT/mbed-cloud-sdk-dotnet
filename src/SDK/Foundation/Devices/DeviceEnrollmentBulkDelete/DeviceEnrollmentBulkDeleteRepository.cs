@@ -12,20 +12,20 @@
 // </copyright>
 // </auto-generated>
 
-namespace Mbed.Cloud.Foundation.Entities
+namespace Mbed.Cloud.Foundation
 {
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using System.IO;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
     using System;
-    using Mbed.Cloud.Foundation.RestClient;
+    using Mbed.Cloud.RestClient;
 
     /// <summary>
     /// DeviceEnrollmentBulkDeleteRepository
     /// </summary>
-    public class DeviceEnrollmentBulkDeleteRepository : Repository
+    public class DeviceEnrollmentBulkDeleteRepository : Repository, IDeviceEnrollmentBulkDeleteRepository
     {
         public DeviceEnrollmentBulkDeleteRepository()
         {
@@ -58,7 +58,7 @@ namespace Mbed.Cloud.Foundation.Entities
             return await CustomFunctions.DownloadFullReportFile(this, model);
         }
 
-        public async Task<DeviceEnrollmentBulkDelete> Get(string id)
+        public async Task<DeviceEnrollmentBulkDelete> Read(string id)
         {
             try
             {

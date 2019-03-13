@@ -12,14 +12,14 @@
 // </copyright>
 // </auto-generated>
 
-namespace Mbed.Cloud.Foundation.ListOptions
+namespace Mbed.Cloud.Foundation
 {
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
 
     /// <summary>
     /// DeviceListOptions
     /// </summary>
-    public class DeviceListOptions : QueryOptions
+    public class DeviceListOptions : QueryOptions, IDeviceListOptions
     {
     }
 }

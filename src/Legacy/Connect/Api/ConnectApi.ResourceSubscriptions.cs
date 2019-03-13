@@ -7,7 +7,7 @@ namespace MbedCloudSDK.Connect.Api
     using System;
     using System.ComponentModel;
     using System.Threading.Tasks;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using MbedCloudSDK.Connect.Model.ConnectedDevice;
     using MbedCloudSDK.Connect.Model.Resource;
     using MbedCloudSDK.Exceptions;
@@ -42,7 +42,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <exception cref="CloudApiException">CloudApiException</exception>
         public async Task<Resource> AddResourceSubscriptionAsync(string deviceId, string resourcePath)
         {
-            log.Info($"adding subscription for {deviceId} at path {resourcePath}");
+            Log.Info($"adding subscription for {deviceId} at path {resourcePath}");
             try
             {
                 await StartNotificationsAsync();
@@ -61,6 +61,9 @@ namespace MbedCloudSDK.Connect.Api
         }
 
         /// <summary>Obsolote, do not use.</summary>
+        /// <param name="deviceId">todo: describe deviceId parameter on AddResourceSubscription</param>
+        /// <param name="resourcePath">todo: describe resourcePath parameter on AddResourceSubscription</param>
+        /// <returns>Resource</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("Please us async version AddResourceSubscriptionAsync")]
         public Resource AddResourceSubscription(string deviceId, string resourcePath)

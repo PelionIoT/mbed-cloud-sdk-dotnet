@@ -11,7 +11,7 @@ namespace MbedCloudSDK.Certificates.Api
     using connector_ca.Client;
     using iam.Api;
     using iam.Model;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using MbedCloudSDK.Certificates.Model;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;

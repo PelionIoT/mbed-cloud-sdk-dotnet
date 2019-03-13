@@ -12,16 +12,16 @@
 // </copyright>
 // </auto-generated>
 
-namespace Mbed.Cloud.Foundation.Entities
+namespace Mbed.Cloud.Foundation
 {
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using System.Collections.Generic;
     using System;
 
     /// <summary>
     /// DeviceEvents
     /// </summary>
-    public class DeviceEvents : Entity
+    public class DeviceEvents : Entity, IDeviceEvents
     {
         /// <summary>
         /// changes

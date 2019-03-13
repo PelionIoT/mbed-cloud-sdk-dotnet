@@ -12,14 +12,14 @@
 // </copyright>
 // </auto-generated>
 
-namespace Mbed.Cloud.Foundation.ListOptions
+namespace Mbed.Cloud.Foundation
 {
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
 
     /// <summary>
     /// CertificateIssuerListOptions
     /// </summary>
-    public class CertificateIssuerListOptions : QueryOptions
+    public class CertificateIssuerListOptions : QueryOptions, ICertificateIssuerListOptions
     {
     }
 }

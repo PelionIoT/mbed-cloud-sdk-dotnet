@@ -5,7 +5,7 @@
 namespace MbedCloudSDK.Bootstrap.Model
 {
     using System;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;

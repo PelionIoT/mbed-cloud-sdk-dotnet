@@ -1,5 +1,5 @@
 using System.Linq;
-using Mbed.Cloud.Foundation.Entities;
+using Mbed.Cloud.Foundation;
 using NUnit.Framework;
 
 namespace Snippets.src.Foundation
@@ -27,7 +27,7 @@ namespace Snippets.src.Foundation
             var certificate = trustedCertificateRepo.List().All().FirstOrDefault(c => c.IsDeveloperCertificate == true);
 
             var devCertificateRepo = new DeveloperCertificateRepository();
-            var devCertificate = await devCertificateRepo.Get(certificate.Id);
+            var devCertificate = await devCertificateRepo.Read(certificate.Id);
 
             Assert.IsInstanceOf(typeof(DeveloperCertificate), devCertificate);
 

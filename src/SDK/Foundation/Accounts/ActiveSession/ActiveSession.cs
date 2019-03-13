@@ -12,15 +12,15 @@
 // </copyright>
 // </auto-generated>
 
-namespace Mbed.Cloud.Foundation.Entities
+namespace Mbed.Cloud.Foundation
 {
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using System;
 
     /// <summary>
     /// ActiveSession
     /// </summary>
-    public class ActiveSession : Entity
+    public class ActiveSession : Entity, IActiveSession
     {
         /// <summary>
         /// account_id

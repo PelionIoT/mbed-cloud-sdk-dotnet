@@ -96,6 +96,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers.ResourceValues
         /// Notifies the specified data.
         /// </summary>
         /// <param name="data">The data.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         public async Task NotifyAsync(NotificationData data)
         {
             if (!ResourceValueSubscriptions.Any() || ResourceValueSubscriptions.FirstOrDefault(p => p.Equals(data)) != null)

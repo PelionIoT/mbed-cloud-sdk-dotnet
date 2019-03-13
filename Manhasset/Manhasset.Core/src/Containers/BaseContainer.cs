@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Manhasset.Core.src.Common;
 using Manhasset.Core.src.Extensions;
@@ -14,6 +15,8 @@ namespace Manhasset.Core.src.Containers
         public string Name { get; set; }
 
         public string DocString { get; set; }
+
+        public bool IsInterface { get; set; } = false;
 
         public void AddModifier(string key, SyntaxToken modifier)
         {

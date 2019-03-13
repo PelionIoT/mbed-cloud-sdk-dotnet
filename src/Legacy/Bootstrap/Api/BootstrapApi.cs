@@ -6,7 +6,7 @@ namespace MbedCloudSDK.Bootstrap.Api
 {
     using System.Threading.Tasks;
     using connector_bootstrap.Api;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using MbedCloudSDK.Bootstrap.Model;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Exceptions;

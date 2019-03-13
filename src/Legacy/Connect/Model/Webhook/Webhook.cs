@@ -5,7 +5,7 @@
 namespace MbedCloudSDK.Connect.Model.Webhook
 {
     using System.Collections.Generic;
-    using Mbed.Cloud.Foundation.Common;
+    using Mbed.Cloud.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Common.Extensions;
     using Newtonsoft.Json;

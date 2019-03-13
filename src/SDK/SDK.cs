@@ -4,8 +4,9 @@
 
 namespace Mbed.Cloud
 {
-    using Mbed.Cloud.Foundation.Common;
-    using Mbed.Cloud.Foundation.RestClient;
+    using Mbed.Cloud.Common;
+    using Mbed.Cloud.Foundation.Factories;
+    using Mbed.Cloud.RestClient;
 
     /// <summary>
     /// Client
@@ -62,9 +63,9 @@ namespace Mbed.Cloud
         /// Entitieses this instance.
         /// </summary>
         /// <returns>Entity Factory</returns>
-        public EntityFactory Entities()
+        public FoundationFactory Foundation()
         {
-            return new EntityFactory(Config, Client);
+            return new FoundationFactory(Config, Client);
         }
     }
 }
