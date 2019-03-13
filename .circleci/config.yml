@@ -408,7 +408,7 @@ jobs:
       - checkout
       - run:
           name: Run generator
-          command: ./build.sh --target "generation_debug"
+          command: ./build.sh --target "generate"
       - run:
           name: Build
           command: ./build.sh --target "CI"
