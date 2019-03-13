@@ -1,4 +1,4 @@
-﻿// <copyright file="QueryOptions.cs" company="Arm">
+﻿// <copyright file="IQueryOptions.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
