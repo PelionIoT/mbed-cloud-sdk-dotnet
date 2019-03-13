@@ -28,14 +28,14 @@
     <CodeAnalysisRuleSet>MbedCloudSDK.ruleset</CodeAnalysisRuleSet>
     <LangVersion>latest</LangVersion>
     <NoWarn>1701;1702;1705;1591;1573;</NoWarn>
-    <WarningLevel>0</WarningLevel>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <CodeAnalysisRuleSet>MbedCloudSDK.ruleset</CodeAnalysisRuleSet>
     <LangVersion>latest</LangVersion>
     <NoWarn>1701;1702;1705;1591;1573;</NoWarn>
-    <WarningLevel>0</WarningLevel>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
 
   <PropertyGroup>
