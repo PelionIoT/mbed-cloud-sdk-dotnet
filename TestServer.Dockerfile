@@ -12,7 +12,7 @@ COPY ./src ./src
 
 RUN ./build.sh -Target=_restore_integration && ./build.sh -Target=_build_integration && ./build.sh -Target=_publish_integration
 
-FROM microsoft/dotnet:2.1-aspnetcore-runtime
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
 WORKDIR /app
 ENV ASPNETCORE_ENVIRONMENT Production
 ENTRYPOINT ["dotnet", "MbedCloudSDK.IntegrationTests.dll"]
