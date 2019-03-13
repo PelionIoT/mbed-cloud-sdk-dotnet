@@ -20,7 +20,7 @@ namespace Manhasset.Generator.src.Generators
             var entityRepository = new ClassContainer();
 
             // namespace
-            entityRepository.Namespace = UsingKeys.ENTITIES;
+            entityRepository.Namespace = UsingKeys.FOUNDATION;
 
             // modifier
             entityRepository.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
@@ -103,7 +103,7 @@ namespace Manhasset.Generator.src.Generators
                 if (foreignKey)
                 {
                     // add using for foreign key
-                    entityRepository.AddUsing("FOREIGN_KEY", UsingKeys.ENTITIES);
+                    entityRepository.AddUsing("FOREIGN_KEY", UsingKeys.FOUNDATION);
                 }
 
                 var hasRequest = false;
@@ -214,7 +214,7 @@ namespace Manhasset.Generator.src.Generators
                 if (isPaginated == true)
                 {
                     var listOptionsName = CustomQueryOptionsGenerator.GenerateCustomQueryOptions(method, entityPascalName, returns, rootFilePath, entityGroup, compilation);
-                    entityRepository.AddUsing("LIST_OPTIONS", UsingKeys.ListOptions);
+                    // entityRepository.AddUsing("LIST_OPTIONS", UsingKeys.FOUNDATION);
 
                     methodParams.Parameters.Insert(0, new MyParameterContainer
                     {

@@ -1,18 +1,23 @@
-﻿// <copyright file="BaseApi.cs" company="Arm">
+﻿// <copyright file="Api.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
 namespace MbedCloudSDK.Common
 {
     using log4net;
-    using Mbed.Cloud.Common;
     using Mbed.Cloud;
+    using Mbed.Cloud.Common;
 
     /// <summary>
     /// Base API.
     /// </summary>
     public abstract class Api
     {
+        /// <summary>
+        /// The log
+        /// </summary>
+        protected static readonly ILog Log = LogManager.GetLogger(typeof(Api));
+
         /// <summary>
         /// Gets UserAgent
         /// </summary>
@@ -23,7 +28,7 @@ namespace MbedCloudSDK.Common
         /// Initializes a new instance of the <see cref="Api"/> class.
         /// </summary>
         /// <param name="config">Config.</param>
-        public Api(Config config)
+        protected Api(Config config)
         {
             Config = config;
             Logger.Setup(config.LogLevel);
@@ -41,7 +46,5 @@ namespace MbedCloudSDK.Common
         /// Gets config
         /// </summary>
         public Config Config { get; }
-
-        protected static readonly ILog log = LogManager.GetLogger(typeof(Api));
     }
 }

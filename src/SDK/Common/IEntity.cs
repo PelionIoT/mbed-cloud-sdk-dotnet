@@ -1,9 +1,12 @@
-// <copyright file="Entity.cs" company="Arm">
+﻿// <copyright file="IEntity.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 
 namespace Mbed.Cloud.Common
 {
+    /// <summary>
+    /// IEntity
+    /// </summary>
     public interface IEntity
     {
         /// <summary>

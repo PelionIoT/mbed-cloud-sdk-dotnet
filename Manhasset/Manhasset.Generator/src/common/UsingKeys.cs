@@ -15,10 +15,9 @@ namespace Manhasset.Generator.src.common
 
         public static readonly string SYSTEM_IO = "System.IO";
 
-        public static readonly string ENTITIES = "Mbed.Cloud.Foundation";
+        public static readonly string FOUNDATION = "Mbed.Cloud.Foundation";
         public static readonly string ENUMS = "Mbed.Cloud.Foundation.Enums";
         public static readonly string HOME = "Mbed.Cloud";
-        public static readonly string ListOptions = "Mbed.Cloud.Foundation";
         public static readonly string FOUNDATION_FACTORY_CLASS = "Mbed.Cloud.Foundation.Factories";
         public static readonly string EnumMemberValue = "System.Runtime.Serialization";
 

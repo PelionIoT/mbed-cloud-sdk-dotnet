@@ -25,13 +25,13 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
         }
 
         /// <summary>
-        /// Gets or sets the AsyncId
+        /// Gets the AsyncId
         /// </summary>
         /// <returns>The Async Id</returns>
         public string AsyncId { get; }
 
         /// <summary>
-        /// Gets or sets the AsyncProducerConsumerCollection
+        /// Gets the AsyncProducerConsumerCollection
         /// </summary>
         /// <returns>The AsyncProducerConsumercollection</returns>
         public AsyncCollection<T> Collection { get; }
@@ -40,7 +40,7 @@ namespace MbedCloudSDK.Connect.Model.ConnectedDevice
         /// Gets the value.
         /// </summary>
         /// <returns>The value.</returns>
-        public async Task<T> GetValue()
+        public async Task<T> GetValueAsync()
         {
             return await Collection.TakeAsync();
         }
