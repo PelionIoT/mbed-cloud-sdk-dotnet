@@ -1,4 +1,4 @@
-FROM pomma89/dotnet-mono
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2
 
 WORKDIR /sdk
 

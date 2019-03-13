@@ -8,7 +8,7 @@ references:
 
   dotnet_mono_docker: &dotnet_mono_docker
     docker:
-      - image: pomma89/dotnet-mono
+      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
 
   circle_python: &circle_python
     docker:

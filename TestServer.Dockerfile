@@ -1,4 +1,4 @@
-FROM pomma89/dotnet-mono AS builder
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS builder
 
 WORKDIR /sln
 
