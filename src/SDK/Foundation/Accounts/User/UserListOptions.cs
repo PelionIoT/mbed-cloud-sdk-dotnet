@@ -21,5 +21,13 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public class UserListOptions : QueryOptions, IUserListOptions
     {
+        /// <summary>
+        /// Filter object
+        /// </summary>
+        public string Filter
+        {
+            get;
+            set;
+        }
     }
 }

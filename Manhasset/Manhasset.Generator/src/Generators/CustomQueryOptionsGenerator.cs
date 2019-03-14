@@ -63,6 +63,21 @@ namespace Manhasset.Generator.src.Generators
                 });
             }
 
+            var filter = method["x_filter"];
+
+            if (filter.Any())
+            {
+                Console.WriteLine(filter);
+                var filterPropertyContainer = new PropertyWithSummaryContainer
+                {
+                    Name = "Filter",
+                    PropertyType = "string",
+                    DocString = "Filter object",
+                };
+                filterPropertyContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
+                customQueryOptions.AddProperty(filterPropertyContainer.Name, filterPropertyContainer);
+            }
+
             compilation.AddClass($"{entityGroup}-{entityName}-{returns}", customQueryOptions);
 
             var customQueryOptionsInterface = customQueryOptions.Copy();

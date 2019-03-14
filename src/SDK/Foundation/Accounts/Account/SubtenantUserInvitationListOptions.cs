@@ -21,5 +21,13 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public class SubtenantUserInvitationListOptions : QueryOptions, ISubtenantUserInvitationListOptions
     {
+        /// <summary>
+        /// Filter object
+        /// </summary>
+        public string Filter
+        {
+            get;
+            set;
+        }
     }
 }

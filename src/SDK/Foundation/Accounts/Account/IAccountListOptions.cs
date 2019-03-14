@@ -38,5 +38,14 @@ namespace Mbed.Cloud.Foundation
             get;
             set;
         }
+
+        /// <summary>
+        /// Filter object
+        /// </summary>
+        string Filter
+        {
+            get;
+            set;
+        }
     }
 }

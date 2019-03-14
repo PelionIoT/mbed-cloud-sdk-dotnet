@@ -21,5 +21,13 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public interface ICertificateIssuerConfigListOptions : IQueryOptions
     {
+        /// <summary>
+        /// Filter object
+        /// </summary>
+        string Filter
+        {
+            get;
+            set;
+        }
     }
 }

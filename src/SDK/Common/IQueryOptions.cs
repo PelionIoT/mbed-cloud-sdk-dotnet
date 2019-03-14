@@ -35,11 +35,6 @@ namespace Mbed.Cloud.Common
         string Id { get; set; }
 
         /// <summary>
-        /// Gets or sets filter
-        /// </summary>
-        Filter Filter { get; set; }
-
-        /// <summary>
         /// Gets or sets the include.
         /// </summary>
         /// <value>Comma separate additional data to return. Currently supported: total_count.</value>
@@ -78,7 +73,6 @@ namespace Mbed.Cloud.Common
             Order = order;
             After = after;
             Include = include;
-            Filter = new MbedCloudSDK.Common.Filter.Filter(filterString);
             Id = id;
             PageSize = pageSize;
             MaxResults = maxResults;
@@ -107,10 +101,6 @@ namespace Mbed.Cloud.Common
         /// </summary>
         public string Id { get; set; }
 
-        /// <summary>
-        /// Gets or sets filter
-        /// </summary>
-        public Filter Filter { get; set; }
 
         /// <summary>
         /// Gets or sets the include.
