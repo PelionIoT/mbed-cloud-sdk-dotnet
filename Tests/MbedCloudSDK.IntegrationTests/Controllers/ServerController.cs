@@ -24,12 +24,13 @@ namespace MbedCloudSDK.IntegrationTests.Controllers
         }
 
         [HttpPost("reset")]
-        public IActionResult Reset()
+        public IActionResult ResetInstances()
         {
             try
             {
                 _instanceService.ResetInstances();
-                return StatusCode(205);
+                Response.StatusCode = 205;
+                return Json("reset");
             }
             catch (Exception e)
             {

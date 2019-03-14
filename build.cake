@@ -259,7 +259,7 @@ var move_Files_back = Task("_move_files_back")
         DeleteDirectory("./tmp");
     });
 
-var generation_debug = Task("generation_debug")
+var generate = Task("generate")
     .IsDependentOn(clean_generator)
     .IsDependentOn(move_custom_files)
     .IsDependentOn(restore_generator)
