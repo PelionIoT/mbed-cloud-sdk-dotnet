@@ -15,6 +15,7 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Mbed.Cloud.Common.Filters;
 
     /// <summary>
     /// AccountListOptions
@@ -42,7 +43,7 @@ namespace Mbed.Cloud.Foundation
         /// <summary>
         /// Filter object
         /// </summary>
-        public string Filter
+        public Filter Filter
         {
             get;
             set;

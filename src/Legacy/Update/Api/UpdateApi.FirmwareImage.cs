@@ -11,6 +11,7 @@ namespace MbedCloudSDK.Update.Api
     using MbedCloudSDK.Exceptions;
     using MbedCloudSDK.Update.Model.FirmwareImage;
     using static MbedCloudSDK.Common.Utils;
+    using QueryOptions = Common.QueryOptions;
 
     /// <summary>
     /// Update Api

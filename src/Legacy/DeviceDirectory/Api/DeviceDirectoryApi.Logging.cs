@@ -10,6 +10,7 @@ namespace MbedCloudSDK.DeviceDirectory.Api
     using MbedCloudSDK.Common;
     using MbedCloudSDK.DeviceDirectory.Model.Logging;
     using MbedCloudSDK.Exceptions;
+    using QueryOptions = Common.QueryOptions;
 
     /// <summary>
     /// Device Directory Api

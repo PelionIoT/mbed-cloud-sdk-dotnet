@@ -15,6 +15,7 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Mbed.Cloud.Common.Filters;
 
     /// <summary>
     /// TrustedCertificateListOptions
@@ -24,7 +25,7 @@ namespace Mbed.Cloud.Foundation
         /// <summary>
         /// Filter object
         /// </summary>
-        string Filter
+        Filter Filter
         {
             get;
             set;

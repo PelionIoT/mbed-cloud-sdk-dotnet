@@ -71,10 +71,11 @@ namespace Manhasset.Generator.src.Generators
                 var filterPropertyContainer = new PropertyWithSummaryContainer
                 {
                     Name = "Filter",
-                    PropertyType = "string",
+                    PropertyType = "Filter",
                     DocString = "Filter object",
                 };
                 filterPropertyContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
+                customQueryOptions.AddUsing(nameof(UsingKeys.FILTERS), UsingKeys.FILTERS);
                 customQueryOptions.AddProperty(filterPropertyContainer.Name, filterPropertyContainer);
             }
 

@@ -12,6 +12,7 @@ namespace MbedCloudSDK.Update.Api
     using MbedCloudSDK.Update.Model.Campaign;
     using update_service.Model;
     using static MbedCloudSDK.Common.Utils;
+    using QueryOptions = Common.QueryOptions;
 
     /// <summary>
     /// Update Api
