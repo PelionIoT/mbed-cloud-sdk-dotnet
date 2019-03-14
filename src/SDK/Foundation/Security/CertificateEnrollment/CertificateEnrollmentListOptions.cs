@@ -28,7 +28,7 @@ namespace Mbed.Cloud.Foundation
         public Filter Filter
         {
             get;
-            set;
+            private set;
         }
     }
 }

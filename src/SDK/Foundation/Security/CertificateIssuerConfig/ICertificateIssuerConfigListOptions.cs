@@ -28,7 +28,6 @@ namespace Mbed.Cloud.Foundation
         Filter Filter
         {
             get;
-            set;
         }
     }
 }
