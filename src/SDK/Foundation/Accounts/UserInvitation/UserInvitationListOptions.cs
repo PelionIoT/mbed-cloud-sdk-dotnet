@@ -22,6 +22,11 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public class UserInvitationListOptions : QueryOptions, IUserInvitationListOptions
     {
+        public UserInvitationListOptions()
+        {
+            Filter = new Filter();
+        }
+
         /// <summary>
         /// Filter object
         /// </summary>

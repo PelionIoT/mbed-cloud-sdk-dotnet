@@ -22,6 +22,11 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public class CertificateEnrollmentListOptions : QueryOptions, ICertificateEnrollmentListOptions
     {
+        public CertificateEnrollmentListOptions()
+        {
+            Filter = new Filter();
+        }
+
         /// <summary>
         /// Filter object
         /// </summary>

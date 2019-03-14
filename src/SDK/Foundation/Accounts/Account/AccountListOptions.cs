@@ -22,6 +22,11 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public class AccountListOptions : QueryOptions, IAccountListOptions
     {
+        public AccountListOptions()
+        {
+            Filter = new Filter();
+        }
+
         /// <summary>
         /// 
         /// </summary>

@@ -22,6 +22,11 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public class TrustedCertificateListOptions : QueryOptions, ITrustedCertificateListOptions
     {
+        public TrustedCertificateListOptions()
+        {
+            Filter = new Filter();
+        }
+
         /// <summary>
         /// Filter object
         /// </summary>

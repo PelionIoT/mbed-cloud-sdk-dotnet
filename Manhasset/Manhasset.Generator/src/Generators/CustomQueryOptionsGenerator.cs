@@ -78,6 +78,13 @@ namespace Manhasset.Generator.src.Generators
                 filterPropertyContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
                 customQueryOptions.AddUsing(nameof(UsingKeys.FILTERS), UsingKeys.FILTERS);
                 customQueryOptions.AddProperty(filterPropertyContainer.Name, filterPropertyContainer);
+
+                var customQueryOptionsConstructor = new ListOptionsConstructor
+                {
+                    Name = customQueryOptions.Name,
+                };
+                customQueryOptionsConstructor.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
+                customQueryOptions.AddConstructor(nameof(customQueryOptionsConstructor), customQueryOptionsConstructor);
             }
 
             compilation.AddClass($"{entityGroup}-{entityName}-{returns}", customQueryOptions);

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Mbed.Cloud.Common.Filters
 {
@@ -34,6 +35,18 @@ namespace Mbed.Cloud.Common.Filters
             {
                 filterCollection.Remove(key);
             }
+        }
+
+        public object getEncodedValue(string key)
+        {
+            var filterItem = filterCollection.FirstOrDefault(f => f.Key == key);
+
+            if (filterItem.Value != null)
+            {
+                return filterItem.Value;
+            }
+
+            return null;
         }
     }
 }
