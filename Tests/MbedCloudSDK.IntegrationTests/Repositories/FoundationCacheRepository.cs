@@ -32,7 +32,7 @@ namespace MbedCloudSDK.IntegrationTests.Repositories
 
             var repo = Assembly.GetAssembly(typeof(SDK))
                                         .GetTypes()
-                                        .FirstOrDefault(t => t.IsClass && t.Name == $"{name}Repository" && t.Namespace == "Mbed.Cloud.Foundation.Entities");
+                                        .FirstOrDefault(t => t.IsClass && t.Name == $"{name}Repository" && t.Namespace == "Mbed.Cloud.Foundation");
 
             var newInstance = (Repository)Activator.CreateInstance(repo, config, null);
 
@@ -58,7 +58,7 @@ namespace MbedCloudSDK.IntegrationTests.Repositories
         {
             return Assembly.GetAssembly(typeof(SDK))
                 .GetTypes()
-                .Where(t => t.IsClass && t.Namespace == "Mbed.Cloud.Foundation.Entities" && !t.Name.Contains("Repository"))
+                .Where(t => t.IsClass && t.Namespace == "Mbed.Cloud.Foundation" && !t.Name.Contains("Repository"))
                 .Select(t => t.Name);
         }
     }

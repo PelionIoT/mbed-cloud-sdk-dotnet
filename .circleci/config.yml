@@ -8,7 +8,7 @@ references:
 
   dotnet_mono_docker: &dotnet_mono_docker
     docker:
-      - image: pomma89/dotnet-mono
+      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
 
   circle_python: &circle_python
     docker:
@@ -258,7 +258,7 @@ jobs:
     steps:
       - <<: *attach_workspace
       - run:
-         command: cd project && ./build.sh --target=CI
+         command: cd project && ./build.sh --target "CI"
          name: build the project
       - persist_to_workspace:
          root: ~/project
@@ -287,7 +287,7 @@ jobs:
     steps:
       - <<: *attach_workspace
       - run:
-         command: cd project && ./build.sh --target=_run_unit_tests
+         command: cd project && ./build.sh --target "_run_unit_tests"
          name: run the unit tests
   # coverage is now handled by appveyor
   # unit_test_coverage:
@@ -360,7 +360,7 @@ jobs:
       - run: docker run -d --name artifactory artifactory && sleep 10
       - run:
           name: Deploying the SDK to Artifactory and beyond
-          command: docker run --rm --network container:artifactory sdk_deploy ./build.sh -Target=_publish -nuget_api_key=${ARTIFACTORY_API_KEY} -nuget_source=${ARTIFACTORY_URL}/api/nuget/mbed-cloud-sdk-dotnet-snapshots
+          command: docker run --rm --network container:artifactory sdk_deploy ./build.sh --target "_publish" -nuget_api_key=${ARTIFACTORY_API_KEY} -nuget_source=${ARTIFACTORY_URL}/api/nuget/mbed-cloud-sdk-dotnet-snapshots
   #############################################################################################
   #                                Tag for release                                            #
   #############################################################################################
@@ -408,13 +408,13 @@ jobs:
       - checkout
       - run:
           name: Run generator
-          command: ./build.sh --target="generation_debug"
+          command: ./build.sh --target "generate"
       - run:
           name: Build
-          command: ./build.sh --target=CI
+          command: ./build.sh --target "CI"
       - run:
           name: Test
-          command: ./build.sh --target=_run_unit_tests
+          command: ./build.sh --target "_run_unit_tests"
       - run:
           name: commit changes
           command: |
@@ -429,7 +429,7 @@ jobs:
     steps:
       - <<: *attach_workspace
       - run:
-         command: cd project && ./build.sh --target=Build-Pack-Publish
+         command: cd project && ./build.sh --target= "Build-Pack-Publish"
          name: build, pack and publish nuget package
   #############################################################################################
   #                                Production Release Jobs                                    #
