@@ -9,8 +9,8 @@ namespace MbedCloudSDK.Connect.Api
     using System.Threading.Tasks;
     using Mbed.Cloud.Common;
     using MbedCloudSDK.Connect.Model.Webhook;
-    using NotificationDeliveryMethod = MbedCloudSDK.Connect.Model.Enums;
     using MbedCloudSDK.Exceptions;
+    using NotificationDeliveryMethod = Model.Enums;
 
     /// <summary>
     /// Connect Api
@@ -74,6 +74,7 @@ namespace MbedCloudSDK.Connect.Api
         /// </code>
         /// </example>
         /// <exception cref="CloudApiException">CloudApiException</exception>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         public async Task UpdateWebhookAsync(Webhook webhook)
         {
             if (DeliveryMethod == null)
@@ -107,6 +108,7 @@ namespace MbedCloudSDK.Connect.Api
         }
 
         /// <summary>Obsolote, do not use.</summary>
+        /// <param name="webhook">todo: describe webhook parameter on UpdateWebhook</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("Please use async version Update webhook async")]
         public void UpdateWebhook(Webhook webhook)

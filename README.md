@@ -5,11 +5,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/3u5i6c52i7d2d6e8?svg=true)](https://ci.appveyor.com/project/alexl0gan/mbed-cloud-sdk-dotnet)
 [![codecov](https://codecov.io/gh/ARMmbed/mbed-cloud-sdk-dotnet/branch/master/graph/badge.svg?token=r8Bg3F9X7V)](https://codecov.io/gh/ARMmbed/mbed-cloud-sdk-dotnet)
 
-The Mbed Cloud SDK gives developers access to the full Mbed suite using .NET Core 2.0.
-
-If you want to contribute to creating a SDK for another language the work is
-greatly appreciated and you can read more about the process
-[here](https://github.com/ARMmbed/mbed-cloud-sdk-codegen/blob/master/docs/create-new-language.md).
+The Mbed Cloud SDK gives developers access to the full Mbed suite using .NET Standard 2.0.
 
 ## Installation
 

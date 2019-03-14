@@ -17,7 +17,7 @@ namespace Manhasset.Generator.src.Generators
             var entityClass = new ClassContainer();
 
             // namespace
-            entityClass.Namespace = UsingKeys.ENTITIES;
+            entityClass.Namespace = UsingKeys.FOUNDATION;
 
             // modifier (just public for now)
             entityClass.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
@@ -139,7 +139,7 @@ namespace Manhasset.Generator.src.Generators
                 if (foreignKey != null)
                 {
                     var foreignKeyName = foreignKey["entity"].GetStringValue().ToPascal();
-                    entityClass.AddUsing("FOREIGN_KEY", UsingKeys.ENTITIES);
+                    entityClass.AddUsing("FOREIGN_KEY", UsingKeys.FOUNDATION);
                 }
 
                 // add usings for date time

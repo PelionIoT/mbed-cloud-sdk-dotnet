@@ -56,7 +56,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
         public FilterFunctionCollection<F> FilterFuncs { get; } = new FilterFunctionCollection<F>();
 
         /// <summary>
-        /// Gets or sets the identifier.
+        /// Gets the identifier.
         /// </summary>
         /// <value>
         /// The identifier.
@@ -85,6 +85,10 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
             return NotificationQueue.TakeAsync();
         }
 
+        /// <summary>
+        /// Nexts this instance.
+        /// </summary>
+        /// <returns>The next value</returns>
         public T Next()
         {
             return NotificationQueue.Take();
@@ -94,6 +98,7 @@ namespace MbedCloudSDK.Connect.Api.Subscribe.Observers
         /// Notifies the specified data.
         /// </summary>
         /// <param name="data">The data.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         public virtual async Task NotifyAsync(T data)
         {
             if (Subscribed)

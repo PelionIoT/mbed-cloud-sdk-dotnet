@@ -154,7 +154,7 @@ namespace MbedCloudSDK.Connect.Api
                     }
                     catch (CloudApiException)
                     {
-                        log.Debug("no subscriptions found for this device");
+                        Log.Debug("no subscriptions found for this device");
                     }
                 }
 

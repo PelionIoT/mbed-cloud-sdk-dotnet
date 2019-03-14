@@ -44,13 +44,13 @@ namespace MbedCloudSDK.Common.Extensions
                 }
                 else
                 {
-                    var data = Convert.FromBase64String(payload ?? "");
+                    var data = Convert.FromBase64String(payload ?? string.Empty);
                     payload = Encoding.UTF8.GetString(data);
                 }
             }
             else
             {
-                var data = Convert.FromBase64String(payload ?? "");
+                var data = Convert.FromBase64String(payload ?? string.Empty);
                 payload = Encoding.UTF8.GetString(data);
             }
 

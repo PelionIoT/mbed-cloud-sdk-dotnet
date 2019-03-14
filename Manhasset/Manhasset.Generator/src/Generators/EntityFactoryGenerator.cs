@@ -22,7 +22,7 @@ namespace Manhasset.Generator.src.Generators
             };
 
             entityFactory.AddUsing(nameof(UsingKeys.SDK_COMMON), UsingKeys.SDK_COMMON);
-            entityFactory.AddUsing(nameof(UsingKeys.ENTITIES), UsingKeys.ENTITIES);
+            entityFactory.AddUsing(nameof(UsingKeys.FOUNDATION), UsingKeys.FOUNDATION);
 
             entityFactory.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
             entityFactory.AddModifier(nameof(Modifiers.PARTIAL), Modifiers.PARTIAL);

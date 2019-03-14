@@ -16,7 +16,6 @@ namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
     using Mbed.Cloud.Foundation;
-    using Mbed.Cloud.Foundation;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;

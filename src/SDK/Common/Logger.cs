@@ -1,28 +1,37 @@
-using System.Reflection;
-using log4net;
-using log4net.Appender;
-using log4net.Config;
-using log4net.Core;
-using log4net.Layout;
-using log4net.Repository.Hierarchy;
+// <copyright file="Logger.cs" company="Arm">
+// Copyright (c) Arm. All rights reserved.
+// </copyright>
 
 namespace Mbed.Cloud.Common
 {
+    using System.Reflection;
+    using log4net;
+    using log4net.Config;
+    using log4net.Core;
+    using log4net.Repository.Hierarchy;
+
+    /// <summary>
+    /// Logger
+    /// </summary>
     public class Logger
     {
+        /// <summary>
+        /// Setups the specified level.
+        /// </summary>
+        /// <param name="level">The level.</param>
         public static void Setup(LogLevel level)
         {
             var loggerRepo = LogManager.GetRepository(Assembly.GetCallingAssembly());
 
             BasicConfigurator.Configure(loggerRepo);
 
-            Hierarchy hierarchy = (Hierarchy)loggerRepo;
+            var hierarchy = (Hierarchy)loggerRepo;
 
-            hierarchy.Root.Level = getLogLevel(level);
+            hierarchy.Root.Level = GetLogLevel(level);
             hierarchy.Configured = true;
         }
 
-        private static Level getLogLevel(LogLevel level)
+        private static Level GetLogLevel(LogLevel level)
         {
             switch (level)
             {
