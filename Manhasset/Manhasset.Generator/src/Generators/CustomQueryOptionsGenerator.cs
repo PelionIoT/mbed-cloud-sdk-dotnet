@@ -67,7 +67,6 @@ namespace Manhasset.Generator.src.Generators
 
             if (filter.Any())
             {
-                Console.WriteLine(filter);
                 var filterPropertyContainer = new PropertyWithSummaryContainer
                 {
                     Name = "Filter",

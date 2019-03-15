@@ -208,13 +208,53 @@ namespace Manhasset.Generator.src.Generators
                     }
                 }
 
+                var filter = method["x_filter"];
+
+                if (filter.Any())
+                {
+                    foreach (var filterValue in filter)
+                    {
+                        if (filterValue is JProperty filterValueProperty)
+                        {
+                            var filterValueName = filterValueProperty.Name;
+                            var apiFilterName = filterValueName;
+
+                            var correspondingField = entity["fields"].FirstOrDefault(f => f["_key"].GetStringValue() == filterValueName);
+                            if (correspondingField != null)
+                            {
+                                apiFilterName = correspondingField["api_fieldname"].GetStringValue();
+                            }
+
+                            var filterOperators = filterValueProperty.Children().FirstOrDefault();
+                            if (filterOperators != null)
+                            {
+                                filterOperators.Children().ToList().ForEach(f =>
+                                {
+                                    var filterOperator = f.GetStringValue();
+                                    Console.WriteLine(filterValueName);
+                                    var filterQueryKey = $"{apiFilterName}__{filterOperator}";
+                                    Console.WriteLine(filterQueryKey);
+                                    var filterParam = new MyParameterContainer
+                                    {
+                                        Key = $"filter.GetEncodedValue(\"{filterValueName}\")",
+                                        ParamType = "string",
+                                        Required = false,
+                                        FieldName = filterQueryKey,
+                                        External = false,
+                                    };
+                                    queryParams.Add(filterParam);
+                                });
+                            }
+                        }
+                    }
+                }
+
                 var methodParams = new MyMethodParameterContainer(pathParams, isPaginated ? new List<MyParameterContainer>() : queryParams, bodyParams, fileParams);
 
                 // method is paginated, so create paginatedMethodContainer
                 if (isPaginated == true)
                 {
                     var listOptionsName = CustomQueryOptionsGenerator.GenerateCustomQueryOptions(method, entityPascalName, returns, rootFilePath, entityGroup, compilation);
-                    // entityRepository.AddUsing("LIST_OPTIONS", UsingKeys.FOUNDATION);
 
                     methodParams.Parameters.Insert(0, new MyParameterContainer
                     {
