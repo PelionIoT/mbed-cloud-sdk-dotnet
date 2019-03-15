@@ -17,6 +17,7 @@ namespace Mbed.Cloud.RestClient
     /// </summary>
     public static class SerializationSettings
     {
+        public static readonly string DateFormatString = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
         /// <summary>
         /// Gets the settings with renames.
         /// </summary>
@@ -27,6 +28,7 @@ namespace Mbed.Cloud.RestClient
             {
                 ContractResolver = new RenameSwitchResolver(),
                 DateTimeZoneHandling = DateTimeZoneHandling.Utc,
+                DateFormatString = SerializationSettings.DateFormatString,
             };
 
             settings.Converters.Add(new StringEnumConverter());
@@ -45,26 +47,6 @@ namespace Mbed.Cloud.RestClient
             settings.Converters.Clear();
             settings.Converters.Add(new TolerantEnumConverter());
             settings.Converters.Add(new EntityConverter(config));
-            return settings;
-        }
-
-        /// <summary>
-        /// Gets the default settings.
-        /// </summary>
-        /// <returns>Default settings</returns>
-        public static JsonSerializerSettings GetDefaultSettings()
-        {
-            var settings = new JsonSerializerSettings
-            {
-                DateTimeZoneHandling = DateTimeZoneHandling.Utc,
-                ContractResolver = new DefaultContractResolver
-                {
-                    NamingStrategy = new SnakeCaseNamingStrategy()
-                }
-            };
-
-            settings.Converters.Add(new StringEnumConverter());
-
             return settings;
         }
     }
