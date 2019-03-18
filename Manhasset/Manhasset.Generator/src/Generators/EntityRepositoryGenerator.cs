@@ -236,7 +236,7 @@ namespace Manhasset.Generator.src.Generators
                                     Console.WriteLine(filterQueryKey);
                                     var filterParam = new MyParameterContainer
                                     {
-                                        Key = $"filter.GetEncodedValue(\"{filterValueName}\")",
+                                        Key = $"filter.GetEncodedValue(\"{filterValueName}\", \"${filterOperator}\")",
                                         ParamType = "string",
                                         Required = false,
                                         FieldName = filterQueryKey,

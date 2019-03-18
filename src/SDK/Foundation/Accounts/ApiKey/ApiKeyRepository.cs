@@ -69,7 +69,7 @@ namespace Mbed.Cloud.Foundation
                     options = new ApiKeyListOptions();
                 }
 
-                Func<IApiKeyListOptions, Task<ResponsePage<ApiKey>>> paginatedFunc = async (IApiKeyListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "key__eq", _options.Filter.GetEncodedValue("key") }, { "owner__eq", _options.Filter.GetEncodedValue("owner") }, }; return await Client.CallApi<ResponsePage<ApiKey>>(path: "/v3/api-keys", queryParams: queryParams, method: HttpMethods.GET); };
+                Func<IApiKeyListOptions, Task<ResponsePage<ApiKey>>> paginatedFunc = async (IApiKeyListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "key__eq", _options.Filter.GetEncodedValue("key","$eq") }, { "owner__eq", _options.Filter.GetEncodedValue("owner","$eq") }, }; return await Client.CallApi<ResponsePage<ApiKey>>(path: "/v3/api-keys", queryParams: queryParams, method: HttpMethods.GET); };
                 return new PaginatedResponse<IApiKeyListOptions, ApiKey>(paginatedFunc, options);
             }
             catch (ApiException e)

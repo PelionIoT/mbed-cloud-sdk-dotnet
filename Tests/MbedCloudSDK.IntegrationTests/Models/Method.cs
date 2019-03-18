@@ -5,7 +5,6 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using MbedCloudSDK.Common.Filter;
 using MbedCloudSDK.Connect.Model.ConnectedDevice;
 using MbedCloudSDK.Connect.Model.Subscription;
 using Newtonsoft.Json;
@@ -18,6 +17,7 @@ using System.Linq.Expressions;
 using MbedCloudSDK.Common.Extensions;
 using Mbed.Cloud.Common;
 using Mbed.Cloud.Common.CustomSerializers;
+using Mbed.Cloud.Common.Filters;
 
 namespace MbedCloudSDK.IntegrationTests.Models
 {
@@ -215,18 +215,8 @@ namespace MbedCloudSDK.IntegrationTests.Models
                             {
                                 var filterJson = GetParamValue(propertyInst, argsJsonObj);
                                 var filterJsonString = filterJson != null ? filterJson.ToString() : "";
-                                if (filterJsonString.Contains("filter_string"))
-                                {
-                                    var filterJsonObj = JsonConvert.DeserializeObject(filterJsonString) as JObject;
-                                    var dict = filterJsonObj["filter_json"].ToString();
-                                    var obj = JToken.FromObject(new Filter(dict, string.IsNullOrEmpty(dict)));
-                                    vals[propertyInst.Name] = obj;
-                                }
-                                else
-                                {
-                                    var filterJToken = JToken.FromObject(new Filter(filterJsonString, string.IsNullOrEmpty(filterJsonString)));
-                                    vals[propertyInst.Name] = filterJToken;
-                                }
+                                var filterJToken = JToken.FromObject(new Filter(filterJsonString));
+                                vals[propertyInst.Name] = filterJToken;
                             }
                             else if (propertyInst.PropertyType == typeof(List<string>))
                             {

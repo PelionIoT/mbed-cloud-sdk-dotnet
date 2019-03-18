@@ -1,9 +1,18 @@
+using System;
+using MbedCloudSDK.Common.Extensions;
+using Newtonsoft.Json;
+
 namespace Mbed.Cloud.Common.Filters
 {
     public class FilterItem
     {
-        public FilterOperator Operator { get; }
-        public object Value { get; }
+        [JsonProperty]
+        public FilterOperator Operator { get; private set; }
+        [JsonProperty]
+        public object Value { get; private set; }
+
+        public FilterItem()
+        {}
 
         public FilterItem(object value)
             : this(value, FilterOperator.Equals)
