@@ -69,7 +69,7 @@ namespace Mbed.Cloud.Foundation
         /// <summary>
         /// device_execution_mode
         /// </summary>
-        int? DeviceExecutionMode
+        int DeviceExecutionMode
         {
             get;
             set;

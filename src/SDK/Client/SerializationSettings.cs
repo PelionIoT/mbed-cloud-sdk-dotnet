@@ -29,6 +29,7 @@ namespace Mbed.Cloud.RestClient
                 ContractResolver = new RenameSwitchResolver(),
                 DateTimeZoneHandling = DateTimeZoneHandling.Utc,
                 DateFormatString = SerializationSettings.DateFormatString,
+                NullValueHandling = NullValueHandling.Ignore,
             };
 
             settings.Converters.Add(new StringEnumConverter());

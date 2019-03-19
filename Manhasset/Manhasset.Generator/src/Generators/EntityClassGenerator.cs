@@ -96,7 +96,7 @@ namespace Manhasset.Generator.src.Generators
                 var customGetter = property["getter_custom_method"] != null;
                 var customSetter = property["setter_custom_method"] != null;
 
-                var isNullable = !propertyType.Contains("List<") && !propertyType.Contains("Dictionary<") && !propertyType.Contains("string") && !propertyType.Contains("object") && !(SwaggerTypeHelper.GetForeignKeyType(property) != null);
+                var isNullable = !propertyType.Contains("List<") && !propertyType.Contains("Dictionary<") && !propertyType.Contains("string") && !propertyType.Contains("object") && !propertyType.Contains("int") && !(SwaggerTypeHelper.GetForeignKeyType(property) != null);
 
                 if (customGetter || customSetter)
                 {

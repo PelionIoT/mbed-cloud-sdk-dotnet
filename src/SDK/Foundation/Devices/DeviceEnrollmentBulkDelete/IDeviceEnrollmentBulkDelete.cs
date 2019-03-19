@@ -50,7 +50,7 @@ namespace Mbed.Cloud.Foundation
         /// <summary>
         /// errors_count
         /// </summary>
-        int? ErrorsCount
+        int ErrorsCount
         {
             get;
         }
@@ -74,7 +74,7 @@ namespace Mbed.Cloud.Foundation
         /// <summary>
         /// processed_count
         /// </summary>
-        int? ProcessedCount
+        int ProcessedCount
         {
             get;
         }
@@ -90,7 +90,7 @@ namespace Mbed.Cloud.Foundation
         /// <summary>
         /// total_count
         /// </summary>
-        int? TotalCount
+        int TotalCount
         {
             get;
         }

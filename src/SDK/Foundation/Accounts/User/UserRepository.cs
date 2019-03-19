@@ -20,7 +20,6 @@ namespace Mbed.Cloud.Foundation
     using System.Collections.Generic;
     using System;
     using Mbed.Cloud.RestClient;
-    using System.Linq;
 
     /// <summary>
     /// UserRepository
