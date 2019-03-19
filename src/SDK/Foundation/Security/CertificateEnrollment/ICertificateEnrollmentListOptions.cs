@@ -30,6 +30,7 @@ namespace Mbed.Cloud.Foundation
         Filter Filter
         {
             get;
+            set;
         }
 
         CertificateEnrollmentListOptions DeviceIdEqualTo(string value);

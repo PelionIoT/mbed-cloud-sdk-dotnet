@@ -28,6 +28,7 @@ namespace Mbed.Cloud.Foundation
         Filter Filter
         {
             get;
+            set;
         }
 
         CertificateIssuerConfigListOptions CertificateReferenceEqualTo(string value);

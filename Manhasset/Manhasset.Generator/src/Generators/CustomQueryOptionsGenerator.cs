@@ -74,7 +74,6 @@ namespace Manhasset.Generator.src.Generators
                     Name = "Filter",
                     PropertyType = "Filter",
                     DocString = "Filter object",
-                    SetAccessorModifier = Modifiers.PRIVATE,
                 };
                 filterPropertyContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
                 customQueryOptions.AddUsing(nameof(UsingKeys.FILTERS), UsingKeys.FILTERS);

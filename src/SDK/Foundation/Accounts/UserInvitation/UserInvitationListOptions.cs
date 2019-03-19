@@ -33,7 +33,7 @@ namespace Mbed.Cloud.Foundation
         public Filter Filter
         {
             get;
-            private set;
+            set;
         }
 
         public UserInvitationListOptions LoginProfileEqualTo(string value)

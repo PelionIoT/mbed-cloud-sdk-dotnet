@@ -28,6 +28,7 @@ namespace Mbed.Cloud.Foundation
         Filter Filter
         {
             get;
+            set;
         }
 
         SubtenantUserInvitationListOptions LoginProfileEqualTo(string value);

@@ -53,7 +53,7 @@ namespace Mbed.Cloud.Foundation
         public Filter Filter
         {
             get;
-            private set;
+            set;
         }
 
         public AccountListOptions StatusEqualTo(AccountStatus value)

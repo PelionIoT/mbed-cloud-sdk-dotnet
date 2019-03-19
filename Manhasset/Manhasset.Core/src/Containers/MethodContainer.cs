@@ -14,9 +14,9 @@ namespace Manhasset.Core.src.Containers
 
         public MethodParameterContainer MethodParams { get; set; } = new MethodParameterContainer();
 
-        public bool IsAsync { get; set; } = false;
+        public bool IsAsync { get; set; }
 
-        public bool IsVoidTask { get; set; } = false;
+        public bool IsVoidTask { get; set; }
 
         public virtual MethodDeclarationSyntax GetSyntax()
         {

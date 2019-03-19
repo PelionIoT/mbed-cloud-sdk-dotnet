@@ -30,6 +30,7 @@ namespace Mbed.Cloud.Foundation
         Filter Filter
         {
             get;
+            set;
         }
 
         SubtenantUserListOptions EmailEqualTo(string value);

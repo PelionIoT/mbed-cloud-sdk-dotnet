@@ -34,7 +34,7 @@ namespace Mbed.Cloud.Foundation
         public Filter Filter
         {
             get;
-            private set;
+            set;
         }
 
         public TrustedCertificateListOptions NameEqualTo(string value)
