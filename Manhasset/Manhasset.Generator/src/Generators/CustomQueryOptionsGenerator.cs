@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Manhasset.Core.src.Common;
 using Manhasset.Core.src.Compile;
@@ -6,6 +7,7 @@ using Manhasset.Core.src.Containers;
 using Manhasset.Core.src.Extensions;
 using Manhasset.Generator.src.common;
 using Manhasset.Generator.src.CustomContainers;
+using Manhasset.Generator.src.CustomContainers.Methods;
 using Manhasset.Generator.src.extensions;
 using Newtonsoft.Json.Linq;
 
@@ -13,7 +15,7 @@ namespace Manhasset.Generator.src.Generators
 {
     public class CustomQueryOptionsGenerator
     {
-        public static string GenerateCustomQueryOptions(JToken method, string entityName, string returns, string rootFilePath, string entityGroup, Compilation compilation)
+        public static string GenerateCustomQueryOptions(JToken method, JToken fields, string entityName, string returns, string rootFilePath, string entityGroup, Compilation compilation)
         {
             var optionsName = $"{returns}ListOptions";
 
@@ -77,6 +79,64 @@ namespace Manhasset.Generator.src.Generators
                 filterPropertyContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
                 customQueryOptions.AddUsing(nameof(UsingKeys.FILTERS), UsingKeys.FILTERS);
                 customQueryOptions.AddProperty(filterPropertyContainer.Name, filterPropertyContainer);
+
+                foreach (var filterValue in filter)
+                {
+                    if (filterValue is JProperty filterValueProperty)
+                    {
+                        var filterValueName = filterValueProperty.Name;
+                        var filterType = "string";
+
+                        var correspondingField = fields.FirstOrDefault(f => f["_key"].GetStringValue() == filterValueName);
+                        if (correspondingField != null)
+                        {
+                            filterType = TypeHelpers.GetPropertyType(correspondingField, customQueryOptions);
+                            if (filterType == "DateTime")
+                            {
+                                customQueryOptions.AddUsing(nameof(UsingKeys.SYSTEM), UsingKeys.SYSTEM);
+                            }
+                        }
+
+                        var filterOperators = filterValueProperty.Children().FirstOrDefault();
+                        if (filterOperators != null)
+                        {
+                            filterOperators.Children().ToList().ForEach(f =>
+                            {
+                                var filterOperator = f.GetStringValue();
+                                string enumerableFilterType = null;
+                                if (filterOperator == "in" || filterOperator == "nin")
+                                {
+                                    enumerableFilterType = $"IEnumerable<{filterType}>";
+                                    customQueryOptions.AddUsing(nameof(UsingKeys.GENERIC_COLLECTIONS), UsingKeys.GENERIC_COLLECTIONS);
+                                }
+                                var methodName = $"{filterValueName}{TypeHelpers.MapFilterName(filterOperator)}".ToPascal();
+                                var filterMethodParams = new MethodParameterContainer
+                                {
+                                    Parameters = new List<ParameterContainer>()
+                                    {
+                                        new ParameterContainer
+                                        {
+                                            Key = "value",
+                                            ParamType = enumerableFilterType ?? filterType,
+                                            Required = true,
+                                        }
+                                    }
+                                };
+
+                                var filterMethodContainer = new FilterExtensionMethodContainer
+                                {
+                                    Name = methodName,
+                                    Returns = optionsName,
+                                    MethodParams = filterMethodParams,
+                                    FilterKey = filterValueName,
+                                    FilterOperator = filterOperator,
+                                };
+                                filterMethodContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
+                                customQueryOptions.AddMethod(methodName, filterMethodContainer);
+                            });
+                        }
+                    }
+                }
 
                 var customQueryOptionsConstructor = new ListOptionsConstructor
                 {

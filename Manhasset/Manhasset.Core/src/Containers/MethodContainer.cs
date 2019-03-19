@@ -12,11 +12,11 @@ namespace Manhasset.Core.src.Containers
     {
         public string Returns { get; set; }
 
-        public MethodParameterContainer MethodParams { get; set; }
+        public MethodParameterContainer MethodParams { get; set; } = new MethodParameterContainer();
 
-        public bool IsAsync { get; set; }
+        public bool IsAsync { get; set; } = false;
 
-        public bool IsVoidTask { get; set; }
+        public bool IsVoidTask { get; set; } = false;
 
         public virtual MethodDeclarationSyntax GetSyntax()
         {

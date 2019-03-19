@@ -27,7 +27,7 @@ namespace Manhasset.Generator.src.CustomContainers
                                 SyntaxFactory.MemberAccessExpression(
                                     SyntaxKind.SimpleMemberAccessExpression,
                                     SyntaxFactory.IdentifierName("_options"),
-                                    SyntaxFactory.IdentifierName(p.Key.ToPascal()))}));
+                                    SyntaxFactory.IdentifierName(p.Key.StartsWith("Filter.GetEncodedValue") ? p.Key : p.Key.ToPascal()))}));
             })
             .ToList()
             .ForEach(p =>

@@ -29,5 +29,7 @@ namespace Mbed.Cloud.Foundation
         {
             get;
         }
+
+        SubtenantUserInvitationListOptions LoginProfileEqualTo(string value);
     }
 }

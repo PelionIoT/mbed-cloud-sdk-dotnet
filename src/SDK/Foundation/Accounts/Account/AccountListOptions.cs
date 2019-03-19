@@ -16,6 +16,8 @@ namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
     using Mbed.Cloud.Common.Filters;
+    using Mbed.Cloud.Foundation.Enums;
+    using System.Collections.Generic;
 
     /// <summary>
     /// AccountListOptions
@@ -52,6 +54,48 @@ namespace Mbed.Cloud.Foundation
         {
             get;
             private set;
+        }
+
+        public AccountListOptions StatusEqualTo(AccountStatus value)
+        {
+            this.Filter.AddFilterItem("status", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public AccountListOptions StatusIn(IEnumerable<AccountStatus> value)
+        {
+            this.Filter.AddFilterItem("status", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public AccountListOptions StatusNotIn(IEnumerable<AccountStatus> value)
+        {
+            this.Filter.AddFilterItem("status", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public AccountListOptions TierEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("tier", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public AccountListOptions ParentEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("parent", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public AccountListOptions EndMarketEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("end_market", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public AccountListOptions CountryLike(string value)
+        {
+            this.Filter.AddFilterItem("country", new FilterItem(value, FilterOperator.Like));
+            return this;
         }
     }
 }

@@ -70,33 +70,12 @@ namespace Manhasset.Generator.src.Generators
                 var isReadOnly = property["readOnly"].GetBoolValue();
 
                 // get type
-                // format or type for most methods
-                var swaggerType = property["format"].GetStringValue() ?? property["type"].GetStringValue();
-                // if peoperty is array, get inner values
-                var items = property["items"];
-                // an array of foreign keys
-                var foreignKey = property["items"] != null ? property["items"]["foreign_key"] : null;
-                var innerValues = items != null ? foreignKey != null ? foreignKey["entity"].GetStringValue().ToPascal() : property["items"]["type"].GetStringValue() : null;
-
-                // might be enum
-                var propertyType = (property["enum"] != null && property["enum_reference"] != null) ?
-                    property["enum_reference"].GetStringValue().ToPascal() :
-                    SwaggerTypeHelper.GetForeignKeyType(property) ??
-                    SwaggerTypeHelper.GetAdditionalProperties(property) ??
-                    SwaggerTypeHelper.MapType(swaggerType, innerValues);
-
-                // check if property type is enum
-                if (propertyType.Contains("Enum"))
-                {
-                    // hacky but remove enum name from type
-                    propertyType = propertyType.Replace("Enum", "");
-                    entityClass.AddUsing("ENUM_KEY", UsingKeys.ENUMS);
-                }
+                var propertyType = TypeHelpers.GetPropertyType(property, entityClass);
 
                 var customGetter = property["getter_custom_method"] != null;
                 var customSetter = property["setter_custom_method"] != null;
 
-                var isNullable = !propertyType.Contains("List<") && !propertyType.Contains("Dictionary<") && !propertyType.Contains("string") && !propertyType.Contains("object") && !propertyType.Contains("int") && !(SwaggerTypeHelper.GetForeignKeyType(property) != null);
+                var isNullable = !propertyType.Contains("List<") && !propertyType.Contains("Dictionary<") && !propertyType.Contains("string") && !propertyType.Contains("object") && !propertyType.Contains("int") && !(TypeHelpers.GetForeignKeyType(property) != null);
 
                 if (customGetter || customSetter)
                 {
@@ -136,6 +115,7 @@ namespace Manhasset.Generator.src.Generators
                 }
 
                 // add usings for foreign keys
+                var foreignKey = property["items"] != null ? property["items"]["foreign_key"] : null;
                 if (foreignKey != null)
                 {
                     var foreignKeyName = foreignKey["entity"].GetStringValue().ToPascal();

@@ -40,10 +40,7 @@ namespace Manhasset.Generator.src.Generators
 
             // set the filepath root/groupId/Class/Class.cs
             entityRepository.FilePath = $"{rootFilePath}/{entityGroup}/{entityPascalName}/";
-            Console.WriteLine(entityRepository.FilePath);
             entityRepository.FileName = $"{entityRepository.Name}.cs";
-            Console.WriteLine(entityRepository.FilePath);
-            Console.WriteLine(entityRepository.FilePath);
 
             //default constructor
             var defaultConstructor = new ConstructorContainer
@@ -87,10 +84,10 @@ namespace Manhasset.Generator.src.Generators
                 var isCustomMethodCall = method["custom_method"] != null;
 
                 // does method return a foreing key
-                var foreignKey = method["return_info"]["self"].GetBoolValue() == false && SwaggerTypeHelper.MapType(method["return_info"]["type"].GetStringValue()) == null;
+                var foreignKey = method["return_info"]["self"].GetBoolValue() == false && TypeHelpers.MapType(method["return_info"]["type"].GetStringValue()) == null;
 
                 // return type
-                var returns = SwaggerTypeHelper.MapType(method["return_info"]["type"].GetStringValue()) ?? method["return_info"]["type"].GetStringValue().ToPascal();
+                var returns = TypeHelpers.MapType(method["return_info"]["type"].GetStringValue()) ?? method["return_info"]["type"].GetStringValue().ToPascal();
 
                 // name of custom method
                 var customMethodName = method["custom_method"].GetStringValue().ToPascal();
@@ -147,7 +144,7 @@ namespace Manhasset.Generator.src.Generators
                     var replaceBody = field["__REPLACE_BODY"] != null;
 
                     var internalVal = field["items"] != null ? field["items"]["type"].GetStringValue() : null;
-                    type = SwaggerTypeHelper.GetAdditionalProperties(field) ?? SwaggerTypeHelper.MapType(field["type"].GetStringValue(), internalVal) ?? "string";
+                    type = TypeHelpers.GetAdditionalProperties(field) ?? TypeHelpers.MapType(field["type"].GetStringValue(), internalVal) ?? "string";
                     if (type == "Stream")
                     {
                         entityRepository.AddUsing(nameof(UsingKeys.SYSTEM_IO), UsingKeys.SYSTEM_IO);
@@ -231,12 +228,10 @@ namespace Manhasset.Generator.src.Generators
                                 filterOperators.Children().ToList().ForEach(f =>
                                 {
                                     var filterOperator = f.GetStringValue();
-                                    Console.WriteLine(filterValueName);
                                     var filterQueryKey = $"{apiFilterName}__{filterOperator}";
-                                    Console.WriteLine(filterQueryKey);
                                     var filterParam = new MyParameterContainer
                                     {
-                                        Key = $"filter.GetEncodedValue(\"{filterValueName}\", \"${filterOperator}\")",
+                                        Key = $"Filter.GetEncodedValue(\"{filterValueName}\", \"${filterOperator}\")",
                                         ParamType = "string",
                                         Required = false,
                                         FieldName = filterQueryKey,
@@ -254,7 +249,7 @@ namespace Manhasset.Generator.src.Generators
                 // method is paginated, so create paginatedMethodContainer
                 if (isPaginated == true)
                 {
-                    var listOptionsName = CustomQueryOptionsGenerator.GenerateCustomQueryOptions(method, entityPascalName, returns, rootFilePath, entityGroup, compilation);
+                    var listOptionsName = CustomQueryOptionsGenerator.GenerateCustomQueryOptions(method, entity["fields"], entityPascalName, returns, rootFilePath, entityGroup, compilation);
 
                     methodParams.Parameters.Insert(0, new MyParameterContainer
                     {

@@ -16,6 +16,8 @@ namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
     using Mbed.Cloud.Common.Filters;
+    using Mbed.Cloud.Foundation.Enums;
+    using System;
 
     /// <summary>
     /// CertificateEnrollmentListOptions
@@ -29,5 +31,16 @@ namespace Mbed.Cloud.Foundation
         {
             get;
         }
+
+        CertificateEnrollmentListOptions DeviceIdEqualTo(string value);
+        CertificateEnrollmentListOptions CertificateNameEqualTo(string value);
+        CertificateEnrollmentListOptions EnrollStatusNotEqualTo(CertificateEnrollmentEnrollStatus value);
+        CertificateEnrollmentListOptions EnrollStatusEqualTo(CertificateEnrollmentEnrollStatus value);
+        CertificateEnrollmentListOptions EnrollResultNotEqualTo(CertificateEnrollmentEnrollResult value);
+        CertificateEnrollmentListOptions EnrollResultEqualTo(CertificateEnrollmentEnrollResult value);
+        CertificateEnrollmentListOptions CreatedAtLessThan(DateTime value);
+        CertificateEnrollmentListOptions CreatedAtGreaterThan(DateTime value);
+        CertificateEnrollmentListOptions UpdatedAtLessThan(DateTime value);
+        CertificateEnrollmentListOptions UpdatedAtGreaterThan(DateTime value);
     }
 }

@@ -29,5 +29,8 @@ namespace Mbed.Cloud.Foundation
         {
             get;
         }
+
+        ApiKeyListOptions KeyEqualTo(string value);
+        ApiKeyListOptions OwnerEqualTo(string value);
     }
 }

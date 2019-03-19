@@ -35,5 +35,17 @@ namespace Mbed.Cloud.Foundation
             get;
             private set;
         }
+
+        public ApiKeyListOptions KeyEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("key", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public ApiKeyListOptions OwnerEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("owner", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
     }
 }

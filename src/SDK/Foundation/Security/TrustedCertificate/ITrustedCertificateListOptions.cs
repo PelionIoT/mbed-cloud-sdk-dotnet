@@ -16,6 +16,7 @@ namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
     using Mbed.Cloud.Common.Filters;
+    using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
     /// TrustedCertificateListOptions
@@ -29,5 +30,17 @@ namespace Mbed.Cloud.Foundation
         {
             get;
         }
+
+        TrustedCertificateListOptions NameEqualTo(string value);
+        TrustedCertificateListOptions ServiceEqualTo(TrustedCertificateService value);
+        TrustedCertificateListOptions ExpireEqualTo(string value);
+        TrustedCertificateListOptions DeviceExecutionModeEqualTo(int value);
+        TrustedCertificateListOptions DeviceExecutionModeNotEqualTo(int value);
+        TrustedCertificateListOptions OwnerEqualTo(string value);
+        TrustedCertificateListOptions EnrollmentModeEqualTo(bool value);
+        TrustedCertificateListOptions StatusEqualTo(TrustedCertificateStatus value);
+        TrustedCertificateListOptions IssuerLike(string value);
+        TrustedCertificateListOptions SubjectLike(string value);
+        TrustedCertificateListOptions ValidEqualTo(bool value);
     }
 }
