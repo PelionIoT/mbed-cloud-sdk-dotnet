@@ -13,24 +13,24 @@ namespace Mbed.Cloud.Common.Filters
 {
     public class Filter
     {
-        private Dictionary<string, List<FilterItem>> filterCollection;
+        private Dictionary<string, FilterItemList> filterCollection;
 
         public Filter()
         {
-            filterCollection = new Dictionary<string, List<FilterItem>>();
+            filterCollection = new Dictionary<string, FilterItemList>();
         }
 
         internal Filter(string value)
         {
-            filterCollection = !string.IsNullOrEmpty(value) ? QueryJsonToDictionary(value) : new Dictionary<string, List<FilterItem>>();
+            filterCollection = !string.IsNullOrEmpty(value) ? QueryJsonToDictionary(value) : new Dictionary<string, FilterItemList>();
         }
 
         [JsonProperty]
-        public ReadOnlyDictionary<string, List<FilterItem>> FilterCollection
+        public ReadOnlyDictionary<string, FilterItemList> FilterCollection
         {
             get
             {
-                return new ReadOnlyDictionary<string, List<FilterItem>>(filterCollection);
+                return new ReadOnlyDictionary<string, FilterItemList>(filterCollection);
             }
 
             private set
@@ -43,7 +43,7 @@ namespace Mbed.Cloud.Common.Filters
         {
             if (!filterCollection.ContainsKey(key))
             {
-                filterCollection.Add(key, new List<FilterItem> { item });
+                filterCollection.Add(key, new FilterItemList { item });
             }
             else
             {
@@ -51,15 +51,17 @@ namespace Mbed.Cloud.Common.Filters
             }
         }
 
-        public void AddFilterItem(string key, IEnumerable<FilterItem> item)
+        public void AddFilterItem(string key, IEnumerable<FilterItem> items)
         {
             if (!filterCollection.ContainsKey(key))
             {
-                filterCollection.Add(key, item.ToList());
+                var filterItemList = new FilterItemList();
+                filterItemList.AddRange(items);
+                filterCollection.Add(key, filterItemList);
             }
             else
             {
-                filterCollection[key].AddRange(item);
+                filterCollection[key].AddRange(items);
             }
         }
 
@@ -117,9 +119,9 @@ namespace Mbed.Cloud.Common.Filters
             return null;
         }
 
-        private static Dictionary<string, List<FilterItem>> QueryJsonToDictionary(string queryJson)
+        private static Dictionary<string, FilterItemList> QueryJsonToDictionary(string queryJson)
         {
-            var customAttributes = new Dictionary<string, List<FilterItem>>();
+            var customAttributes = new Dictionary<string, FilterItemList>();
             if (queryJson.IsValidJson())
             {
                 var tempJson = JsonConvert.DeserializeObject<Dictionary<string, object>>(queryJson);
@@ -135,12 +137,12 @@ namespace Mbed.Cloud.Common.Filters
                 return dict;
             }
 
-            return new Dictionary<string, List<FilterItem>>();
+            return new Dictionary<string, FilterItemList>();
         }
 
-        private static List<FilterItem> GetQueryAttribute(object val)
+        private static FilterItemList GetQueryAttribute(object val)
         {
-            var filterAttributes = new List<FilterItem>();
+            var filterAttributes = new FilterItemList();
             var objStr = Convert.ToString(val);
             try
             {
