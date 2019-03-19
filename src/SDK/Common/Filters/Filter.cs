@@ -74,7 +74,7 @@ namespace Mbed.Cloud.Common.Filters
         public object GetEncodedValue(string key, string filterOperatorString = "$eq")
         {
             var filterOperator = (FilterOperator)filterOperatorString.GetEnumFromEnumMemberValue(typeof(FilterOperator));
-            var filterItem = filterCollection.FirstOrDefault(f => f.Key.SnakeToLowerCamel() == key);
+            var filterItem = filterCollection.FirstOrDefault(f => f.Key == key);
 
             if (filterItem.Value != null)
             {
