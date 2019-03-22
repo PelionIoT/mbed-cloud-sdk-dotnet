@@ -14,8 +14,8 @@ namespace Manhasset.Generator.src.common
             // if peoperty is array, get inner values
             var items = property["items"];
             // an array of foreign keys
-            var foreignKey = property["items"] != null ? property["items"]["foreign_key"] : null;
-            var innerValues = items != null ? foreignKey != null ? foreignKey["entity"].GetStringValue().ToPascal() : property["items"]["type"].GetStringValue() : null;
+            var foreignKey = items != null ? items["foreign_key"] : null;
+            var innerValues = items != null ? foreignKey != null ? foreignKey["entity"].GetStringValue().ToPascal() : items["type"].GetStringValue() : null;
 
             // might be enum
             var propertyType = (property["enum"] != null && property["enum_reference"] != null) ?

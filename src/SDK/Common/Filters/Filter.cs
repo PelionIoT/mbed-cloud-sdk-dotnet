@@ -41,27 +41,27 @@ namespace Mbed.Cloud.Common.Filters
 
         public void AddFilterItem(string key, FilterItem item)
         {
-            if (!filterCollection.ContainsKey(key))
+            if (filterCollection.ContainsKey(key))
             {
-                filterCollection.Add(key, new FilterItemList { item });
+                filterCollection[key].Add(item);
             }
             else
             {
-                filterCollection[key].Add(item);
+                filterCollection.Add(key, new FilterItemList { item });
             }
         }
 
         public void AddFilterItem(string key, IEnumerable<FilterItem> items)
         {
-            if (!filterCollection.ContainsKey(key))
+            if (filterCollection.ContainsKey(key))
+            {
+                filterCollection[key].AddRange(items);
+            }
+            else
             {
                 var filterItemList = new FilterItemList();
                 filterItemList.AddRange(items);
                 filterCollection.Add(key, filterItemList);
-            }
-            else
-            {
-                filterCollection[key].AddRange(items);
             }
         }
 
@@ -89,7 +89,7 @@ namespace Mbed.Cloud.Common.Filters
 
                 if (filterValue is bool filterValueBool)
                 {
-                    return filterValueBool ? "true" : "false";
+                    return filterValueBool.ToString();
                 }
 
                 if (filterValue is DateTime filterValueDateTime)
@@ -132,9 +132,7 @@ namespace Mbed.Cloud.Common.Filters
                     json.Add(key, val);
                 }
 
-                var dict = json.ToDictionary(k => k.Key, k => GetQueryAttribute(k.Value));
-
-                return dict;
+                return json.ToDictionary(k => k.Key, k => GetQueryAttribute(k.Value));
             }
 
             return new Dictionary<string, FilterItemList>();

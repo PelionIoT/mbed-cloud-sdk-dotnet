@@ -75,7 +75,7 @@ namespace Manhasset.Generator.src.Generators
                 var customGetter = property["getter_custom_method"] != null;
                 var customSetter = property["setter_custom_method"] != null;
 
-                var isNullable = !propertyType.Contains("List<") && !propertyType.Contains("Dictionary<") && !propertyType.Contains("string") && !propertyType.Contains("object") && !propertyType.Contains("int") && !(TypeHelpers.GetForeignKeyType(property) != null);
+                var isNullable = isNullableType(propertyType, property);
 
                 if (customGetter || customSetter)
                 {
@@ -146,6 +146,16 @@ namespace Manhasset.Generator.src.Generators
             entityClassInterface.IsInterface = true;
 
             compilation.AddClass(entityClassInterface.Name, entityClassInterface);
+        }
+
+        private static bool isNullableType(string propertyType, JToken property)
+        {
+            return !propertyType.Contains("List<")
+                && !propertyType.Contains("Dictionary<")
+                && !propertyType.Contains("string")
+                && !propertyType.Contains("object")
+                && !propertyType.Contains("int")
+                && !(TypeHelpers.GetForeignKeyType(property) != null);
         }
     }
 }

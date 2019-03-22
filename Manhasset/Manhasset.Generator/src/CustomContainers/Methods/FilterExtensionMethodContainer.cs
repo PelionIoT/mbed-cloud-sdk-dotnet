@@ -54,45 +54,29 @@ namespace Manhasset.Generator.src.CustomContainers.Methods
             switch (filterOperator)
             {
                 case "eq":
-                    return SyntaxFactory.MemberAccessExpression(
-                            SyntaxKind.SimpleMemberAccessExpression,
-                            SyntaxFactory.IdentifierName("FilterOperator"),
-                            SyntaxFactory.IdentifierName("Equals"));
+                    return getAccessExpression("Equals");
                 case "neq":
-                    return SyntaxFactory.MemberAccessExpression(
-                            SyntaxKind.SimpleMemberAccessExpression,
-                            SyntaxFactory.IdentifierName("FilterOperator"),
-                            SyntaxFactory.IdentifierName("NotEqual"));
+                    return getAccessExpression("NotEqual");
                 case "gte":
-                    return SyntaxFactory.MemberAccessExpression(
-                            SyntaxKind.SimpleMemberAccessExpression,
-                            SyntaxFactory.IdentifierName("FilterOperator"),
-                            SyntaxFactory.IdentifierName("GreaterThan"));
+                    return getAccessExpression("GreaterThan");
                 case "lte":
-                    return SyntaxFactory.MemberAccessExpression(
-                            SyntaxKind.SimpleMemberAccessExpression,
-                            SyntaxFactory.IdentifierName("FilterOperator"),
-                            SyntaxFactory.IdentifierName("LessThan"));
+                    return getAccessExpression("LessThan");
                 case "in":
-                    return SyntaxFactory.MemberAccessExpression(
-                            SyntaxKind.SimpleMemberAccessExpression,
-                            SyntaxFactory.IdentifierName("FilterOperator"),
-                            SyntaxFactory.IdentifierName("In"));
+                    return getAccessExpression("In");
                 case "nin":
-                    return SyntaxFactory.MemberAccessExpression(
-                            SyntaxKind.SimpleMemberAccessExpression,
-                            SyntaxFactory.IdentifierName("FilterOperator"),
-                            SyntaxFactory.IdentifierName("NotIn"));
+                    return getAccessExpression("NotIn");
                 case "like":
-                    return SyntaxFactory.MemberAccessExpression(
-                            SyntaxKind.SimpleMemberAccessExpression,
-                            SyntaxFactory.IdentifierName("FilterOperator"),
-                            SyntaxFactory.IdentifierName("Like"));
+                    return getAccessExpression("Like");
                 default:
-                    return SyntaxFactory.MemberAccessExpression(
-                            SyntaxKind.SimpleMemberAccessExpression,
-                            SyntaxFactory.IdentifierName("FilterOperator"),
-                            SyntaxFactory.IdentifierName("Equals"));
+                    return getAccessExpression("Equals");
+            }
+
+            MemberAccessExpressionSyntax getAccessExpression(string filter)
+            {
+                return SyntaxFactory.MemberAccessExpression(
+                        SyntaxKind.SimpleMemberAccessExpression,
+                        SyntaxFactory.IdentifierName("FilterOperator"),
+                        SyntaxFactory.IdentifierName(filter));
             }
         }
     }
