@@ -44,7 +44,7 @@ namespace Snippets.src.Foundation
         {
             try
             {
-                var pathToCsv = "/Users/alelog01/git/mbed-cloud-sdk-dotnet/Examples/Snippets/src/Foundation/test.csv";
+                var pathToCsv = "test.csv";
                 // an example: device enrollment bulk
                 var bulkRepo = new DeviceEnrollmentBulkCreateRepository();
 
