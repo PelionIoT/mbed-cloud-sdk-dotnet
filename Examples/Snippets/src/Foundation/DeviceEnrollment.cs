@@ -44,7 +44,7 @@ namespace Snippets.src.Foundation
         {
             try
             {
-                var pathToCsv = "test.csv";
+                var pathToCsv = "../../../src/Foundation/test.csv";
                 // an example: device enrollment bulk
                 var bulkRepo = new DeviceEnrollmentBulkCreateRepository();
 
@@ -83,7 +83,7 @@ namespace Snippets.src.Foundation
         {
             try
             {
-                var pathToCsv = "/Users/alelog01/git/mbed-cloud-sdk-dotnet/Examples/Snippets/src/Foundation/test.csv";
+                var pathToCsv = "../../../src/Foundation/test.csv";
                 var bulkRepo = new DeviceEnrollmentBulkDeleteRepository();
                 // use System.IO file open
                 var bulk = default(DeviceEnrollmentBulkDelete);
