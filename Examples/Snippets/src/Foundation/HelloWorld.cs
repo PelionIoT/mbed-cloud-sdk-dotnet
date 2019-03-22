@@ -1,33 +1,41 @@
+// an example: hello world
 using System;
-using System.Diagnostics;
 using Mbed.Cloud.Foundation;
-using NUnit.Framework;
-using static NUnit.Framework.TestContext;
 
-namespace Snippets.src.Foundation
+// cloak
+using NUnit.Framework;
+
+[TestFixture]
+// uncloak
+public class HelloWorld
 {
-    [TestFixture]
-    public class HelloWorld
+    // cloak
+    [Test]
+    public async System.Threading.Tasks.Task HelloWorldTask()
     {
-        [Test]
-        public async System.Threading.Tasks.Task HelloWorldTask()
+        try
         {
-            try
-            {
-                // an example: hello world
-                foreach (var device in new DeviceRepository().List())
-                {
-                    Console.WriteLine("Device name is " + device.Name);
-                    // cloak
-                    Progress.WriteLine("Device name is " + device.Name);
-                    // uncloak
-                }
-                // end of example
-            }
-            catch (Exception)
-            {
-                // Exception processing here.
-            }
+            main();
+        }
+        catch (Exception)
+        {
+            // Exception processing here.
+        }
+    }
+
+// uncloak
+    public void Main()
+    {
+        // List the first ten devices on your Pelion Device Management account.
+        var options = new DeviceListOptions
+        {
+            MaxResults = 10
+        };
+
+        foreach (var device in new DeviceRepository().List(options))
+        {
+            Console.WriteLine("Hello device " + device.Name);
         }
     }
 }
+// end of example
