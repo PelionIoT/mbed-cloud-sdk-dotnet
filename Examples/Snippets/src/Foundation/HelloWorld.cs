@@ -15,7 +15,7 @@ public class HelloWorld
     {
         try
         {
-            main();
+            Main();
         }
         catch (Exception)
         {
@@ -26,12 +26,12 @@ public class HelloWorld
 // uncloak
     public void Main()
     {
-        // List the first ten devices on your Pelion Device Management account.
         var options = new DeviceListOptions
         {
-            MaxResults = 10
+            MaxResults = 10     // Limit to ten devices
         };
 
+        // List the first ten devices on your Pelion Device Management account.
         foreach (var device in new DeviceRepository().List(options))
         {
             Console.WriteLine("Hello device " + device.Name);

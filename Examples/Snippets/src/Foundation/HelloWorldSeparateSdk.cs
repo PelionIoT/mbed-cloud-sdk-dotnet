@@ -1,36 +1,45 @@
+// an example: hello world with sdk instance
 using System;
-using System.Diagnostics;
 using Mbed.Cloud;
 using Mbed.Cloud.Foundation;
+
+// cloak
 using NUnit.Framework;
-using static NUnit.Framework.TestContext;
 
-namespace Snippets.src.Foundation
+[TestFixture]
+// uncloak
+public class HelloWorldSeparateSdk
 {
-    [TestFixture]
-    public class HelloWorldSeparateSdk
+    // cloak
+    [Test]
+    public async System.Threading.Tasks.Task HelloWorldSeparateSdkTask()
     {
-        [Test]
-        public async System.Threading.Tasks.Task HelloWorldSeparateSdkTask()
+        try
         {
-            try
-            {
-                // an example: hello world with sdk instance
-                var sdk = new SDK();
+            Main();
+        }
+        catch (Exception)
+        {
+            // Exception processing here.
+        }
+    }
 
-                foreach (var device in sdk.Foundation().DeviceRepository().List())
-                {
-                    Console.WriteLine("Device name is " + device.Name);
-                    // cloak
-                    Progress.WriteLine("Device name is " + device.Name);
-                    // uncloak
-                }
-                // end of example
-            }
-            catch (Exception)
-            {
-                // Exception processing here.
-            }
+    // uncloak
+    public void Main()
+    {
+        // Create an instasnce of the Pelion Device Management SDK
+        var sdk = new SDK();
+
+        var options = new DeviceListOptions
+        {
+            MaxResults = 10     // Limit to ten devices
+        };
+
+        // List the first ten devices on your Pelion Device Management account
+        foreach (var device in sdk.Foundation().DeviceRepository().List(options))
+        {
+            Console.WriteLine("Hello device " + device.Name);
         }
     }
 }
+// end of example
