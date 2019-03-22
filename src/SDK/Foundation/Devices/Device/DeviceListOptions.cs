@@ -15,11 +15,712 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Mbed.Cloud.Common.Filters;
+    using System.Collections.Generic;
+    using System;
+    using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
     /// DeviceListOptions
     /// </summary>
     public class DeviceListOptions : QueryOptions, IDeviceListOptions
     {
+        public DeviceListOptions()
+        {
+            Filter = new Filter();
+        }
+
+        /// <summary>
+        /// Filter object
+        /// </summary>
+        public Filter Filter
+        {
+            get;
+            set;
+        }
+
+        public DeviceListOptions AccountIdEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("account_id", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceListOptions AccountIdNotEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("account_id", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceListOptions AccountIdIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("account_id", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions AccountIdNotIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("account_id", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions AutoUpdateEqualTo(bool value)
+        {
+            this.Filter.AddFilterItem("auto_update", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceListOptions AutoUpdateNotEqualTo(bool value)
+        {
+            this.Filter.AddFilterItem("auto_update", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceListOptions AutoUpdateIn(IEnumerable<bool> value)
+        {
+            this.Filter.AddFilterItem("auto_update", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions AutoUpdateNotIn(IEnumerable<bool> value)
+        {
+            this.Filter.AddFilterItem("auto_update", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions BootstrappedExpirationDateIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("bootstrapped_expiration_date", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions BootstrappedExpirationDateNotIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("bootstrapped_expiration_date", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions BootstrappedExpirationDateLessThan(string value)
+        {
+            this.Filter.AddFilterItem("bootstrapped_expiration_date", new FilterItem(value, FilterOperator.LessThan));
+            return this;
+        }
+
+        public DeviceListOptions BootstrappedExpirationDateGreaterThan(string value)
+        {
+            this.Filter.AddFilterItem("bootstrapped_expiration_date", new FilterItem(value, FilterOperator.GreaterThan));
+            return this;
+        }
+
+        public DeviceListOptions BootstrappedTimestampIn(IEnumerable<DateTime> value)
+        {
+            this.Filter.AddFilterItem("bootstrapped_timestamp", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions BootstrappedTimestampNotIn(IEnumerable<DateTime> value)
+        {
+            this.Filter.AddFilterItem("bootstrapped_timestamp", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions BootstrappedTimestampLessThan(DateTime value)
+        {
+            this.Filter.AddFilterItem("bootstrapped_timestamp", new FilterItem(value, FilterOperator.LessThan));
+            return this;
+        }
+
+        public DeviceListOptions BootstrappedTimestampGreaterThan(DateTime value)
+        {
+            this.Filter.AddFilterItem("bootstrapped_timestamp", new FilterItem(value, FilterOperator.GreaterThan));
+            return this;
+        }
+
+        public DeviceListOptions CaIdEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("ca_id", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceListOptions CaIdNotEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("ca_id", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceListOptions CaIdIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("ca_id", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions CaIdNotIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("ca_id", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions ConnectorExpirationDateIn(IEnumerable<DateTime> value)
+        {
+            this.Filter.AddFilterItem("connector_expiration_date", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions ConnectorExpirationDateNotIn(IEnumerable<DateTime> value)
+        {
+            this.Filter.AddFilterItem("connector_expiration_date", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions ConnectorExpirationDateLessThan(DateTime value)
+        {
+            this.Filter.AddFilterItem("connector_expiration_date", new FilterItem(value, FilterOperator.LessThan));
+            return this;
+        }
+
+        public DeviceListOptions ConnectorExpirationDateGreaterThan(DateTime value)
+        {
+            this.Filter.AddFilterItem("connector_expiration_date", new FilterItem(value, FilterOperator.GreaterThan));
+            return this;
+        }
+
+        public DeviceListOptions CreatedAtIn(IEnumerable<DateTime> value)
+        {
+            this.Filter.AddFilterItem("created_at", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions CreatedAtNotIn(IEnumerable<DateTime> value)
+        {
+            this.Filter.AddFilterItem("created_at", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions CreatedAtLessThan(DateTime value)
+        {
+            this.Filter.AddFilterItem("created_at", new FilterItem(value, FilterOperator.LessThan));
+            return this;
+        }
+
+        public DeviceListOptions CreatedAtGreaterThan(DateTime value)
+        {
+            this.Filter.AddFilterItem("created_at", new FilterItem(value, FilterOperator.GreaterThan));
+            return this;
+        }
+
+        public DeviceListOptions CustomAttributesEqualTo(Dictionary<string, string> value)
+        {
+            this.Filter.AddFilterItem("custom_attributes", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceListOptions CustomAttributesNotEqualTo(Dictionary<string, string> value)
+        {
+            this.Filter.AddFilterItem("custom_attributes", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceListOptions DeployedStateEqualTo(DeviceDeployedState value)
+        {
+            this.Filter.AddFilterItem("deployed_state", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceListOptions DeployedStateNotEqualTo(DeviceDeployedState value)
+        {
+            this.Filter.AddFilterItem("deployed_state", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceListOptions DeployedStateIn(IEnumerable<DeviceDeployedState> value)
+        {
+            this.Filter.AddFilterItem("deployed_state", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions DeployedStateNotIn(IEnumerable<DeviceDeployedState> value)
+        {
+            this.Filter.AddFilterItem("deployed_state", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions DeploymentEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("deployment", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceListOptions DeploymentNotEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("deployment", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceListOptions DeploymentIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("deployment", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions DeploymentNotIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("deployment", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions DescriptionEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("description", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceListOptions DescriptionNotEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("description", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceListOptions DescriptionIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("description", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions DescriptionNotIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("description", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions DeviceClassEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("device_class", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceListOptions DeviceClassNotEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("device_class", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceListOptions DeviceClassIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("device_class", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions DeviceClassNotIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("device_class", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions DeviceExecutionModeEqualTo(int value)
+        {
+            this.Filter.AddFilterItem("device_execution_mode", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceListOptions DeviceExecutionModeNotEqualTo(int value)
+        {
+            this.Filter.AddFilterItem("device_execution_mode", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceListOptions DeviceExecutionModeIn(IEnumerable<int> value)
+        {
+            this.Filter.AddFilterItem("device_execution_mode", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions DeviceExecutionModeNotIn(IEnumerable<int> value)
+        {
+            this.Filter.AddFilterItem("device_execution_mode", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions DeviceKeyEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("device_key", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceListOptions DeviceKeyNotEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("device_key", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceListOptions DeviceKeyIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("device_key", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions DeviceKeyNotIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("device_key", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions EndpointNameEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("endpoint_name", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceListOptions EndpointNameNotEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("endpoint_name", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceListOptions EndpointNameIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("endpoint_name", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions EndpointNameNotIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("endpoint_name", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions EndpointTypeEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("endpoint_type", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceListOptions EndpointTypeNotEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("endpoint_type", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceListOptions EndpointTypeIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("endpoint_type", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions EndpointTypeNotIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("endpoint_type", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions EnrollmentListTimestampIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("enrollment_list_timestamp", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions EnrollmentListTimestampNotIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("enrollment_list_timestamp", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions EnrollmentListTimestampLessThan(string value)
+        {
+            this.Filter.AddFilterItem("enrollment_list_timestamp", new FilterItem(value, FilterOperator.LessThan));
+            return this;
+        }
+
+        public DeviceListOptions EnrollmentListTimestampGreaterThan(string value)
+        {
+            this.Filter.AddFilterItem("enrollment_list_timestamp", new FilterItem(value, FilterOperator.GreaterThan));
+            return this;
+        }
+
+        public DeviceListOptions FirmwareChecksumEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("firmware_checksum", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceListOptions FirmwareChecksumNotEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("firmware_checksum", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceListOptions FirmwareChecksumIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("firmware_checksum", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions FirmwareChecksumNotIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("firmware_checksum", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions HostGatewayEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("host_gateway", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceListOptions HostGatewayNotEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("host_gateway", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceListOptions HostGatewayIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("host_gateway", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions HostGatewayNotIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("host_gateway", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions IdEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("id", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceListOptions IdNotEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("id", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceListOptions IdIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("id", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions IdNotIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("id", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions ManifestEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("manifest", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceListOptions ManifestNotEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("manifest", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceListOptions ManifestIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("manifest", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions ManifestNotIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("manifest", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions ManifestTimestampIn(IEnumerable<DateTime> value)
+        {
+            this.Filter.AddFilterItem("manifest_timestamp", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions ManifestTimestampNotIn(IEnumerable<DateTime> value)
+        {
+            this.Filter.AddFilterItem("manifest_timestamp", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions ManifestTimestampLessThan(DateTime value)
+        {
+            this.Filter.AddFilterItem("manifest_timestamp", new FilterItem(value, FilterOperator.LessThan));
+            return this;
+        }
+
+        public DeviceListOptions ManifestTimestampGreaterThan(DateTime value)
+        {
+            this.Filter.AddFilterItem("manifest_timestamp", new FilterItem(value, FilterOperator.GreaterThan));
+            return this;
+        }
+
+        public DeviceListOptions MechanismEqualTo(DeviceMechanism value)
+        {
+            this.Filter.AddFilterItem("mechanism", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceListOptions MechanismNotEqualTo(DeviceMechanism value)
+        {
+            this.Filter.AddFilterItem("mechanism", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceListOptions MechanismIn(IEnumerable<DeviceMechanism> value)
+        {
+            this.Filter.AddFilterItem("mechanism", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions MechanismNotIn(IEnumerable<DeviceMechanism> value)
+        {
+            this.Filter.AddFilterItem("mechanism", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions MechanismUrlEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("mechanism_url", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceListOptions MechanismUrlNotEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("mechanism_url", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceListOptions MechanismUrlIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("mechanism_url", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions MechanismUrlNotIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("mechanism_url", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions NameEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("name", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceListOptions NameNotEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("name", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceListOptions NameIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("name", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions NameNotIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("name", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions SerialNumberEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("serial_number", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceListOptions SerialNumberNotEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("serial_number", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceListOptions SerialNumberIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("serial_number", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions SerialNumberNotIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("serial_number", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions StateEqualTo(DeviceState value)
+        {
+            this.Filter.AddFilterItem("state", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceListOptions StateNotEqualTo(DeviceState value)
+        {
+            this.Filter.AddFilterItem("state", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceListOptions StateIn(IEnumerable<DeviceState> value)
+        {
+            this.Filter.AddFilterItem("state", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions StateNotIn(IEnumerable<DeviceState> value)
+        {
+            this.Filter.AddFilterItem("state", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions UpdatedAtIn(IEnumerable<DateTime> value)
+        {
+            this.Filter.AddFilterItem("updated_at", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions UpdatedAtNotIn(IEnumerable<DateTime> value)
+        {
+            this.Filter.AddFilterItem("updated_at", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceListOptions UpdatedAtLessThan(DateTime value)
+        {
+            this.Filter.AddFilterItem("updated_at", new FilterItem(value, FilterOperator.LessThan));
+            return this;
+        }
+
+        public DeviceListOptions UpdatedAtGreaterThan(DateTime value)
+        {
+            this.Filter.AddFilterItem("updated_at", new FilterItem(value, FilterOperator.GreaterThan));
+            return this;
+        }
+
+        public DeviceListOptions VendorIdEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("vendor_id", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceListOptions VendorIdNotEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("vendor_id", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceListOptions VendorIdIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("vendor_id", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceListOptions VendorIdNotIn(IEnumerable<string> value)
+        {
+            this.Filter.AddFilterItem("vendor_id", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
     }
 }
