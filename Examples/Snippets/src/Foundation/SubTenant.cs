@@ -82,7 +82,6 @@ namespace Snippets.src.Foundation
             }
             finally
             {
-                // uncloak
                 var userRepo = new SubtenantUserRepository();
                 // Populate the new user details
                 // create the user
