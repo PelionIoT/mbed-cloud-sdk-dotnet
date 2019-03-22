@@ -15,9 +15,9 @@ namespace Snippets.src.Foundation
         {
             try
             {
+                // an example: hello world with sdk instance
                 var sdk = new SDK();
 
-                // an example: hello world with sdk instance
                 foreach (var device in sdk.Foundation().DeviceRepository().List())
                 {
                     Console.WriteLine("Device name is " + device.Name);
