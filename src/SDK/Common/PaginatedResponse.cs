@@ -10,6 +10,8 @@ namespace Mbed.Cloud.Common
     using System.Linq;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
+    using Mbed.Cloud.RestClient;
+    using MbedCloudSDK.Exceptions;
 
     /// <summary>
     /// Paginated Response
@@ -84,8 +86,15 @@ namespace Mbed.Cloud.Common
         {
             if (page == null && hasMore)
             {
-                // first run of paginator
-                AsyncHelper.RunSync(() => FetchNextPageAsync());
+                try
+                {
+                    // first run of paginator
+                    AsyncHelper.RunSync(() => FetchNextPageAsync());
+                }
+                catch(ApiException e)
+                {
+                    throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+                }
             }
             else if (page == null && !hasMore)
             {
@@ -109,7 +118,14 @@ namespace Mbed.Cloud.Common
                     yield return iterator.Current;
                 }
 
-                AsyncHelper.RunSync(() => FetchNextPageAsync());
+                try
+                {
+                    AsyncHelper.RunSync(() => FetchNextPageAsync());
+                }
+                catch (ApiException e)
+                {
+                    throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+                }
             }
         }
 

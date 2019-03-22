@@ -41,20 +41,22 @@ namespace Snippets.src.Foundation
                 // get first subtenant user acociated with the account
                 var firstUser = accountRepo.Users(myAccount.Id).FirstOrDefault();
 
-                var phoneNumber = firstUser.PhoneNumber;
+                var originalPhoneNumber = firstUser.PhoneNumber;
+
+                var newPhoneNumber = originalPhoneNumber + "00";
 
                 // update the user's phone number
-                firstUser.PhoneNumber = "117117";
+                firstUser.PhoneNumber = newPhoneNumber;
                 await userRepo.Update(myAccount.Id, firstUser.Id, firstUser);
 
-                Assert.AreNotEqual(phoneNumber, firstUser.PhoneNumber);
-                Assert.AreEqual("117117", firstUser.PhoneNumber);
+                Assert.AreNotEqual(originalPhoneNumber, firstUser.PhoneNumber);
+                Assert.AreEqual(newPhoneNumber, firstUser.PhoneNumber);
 
                 // change it back to the original
-                firstUser.PhoneNumber = phoneNumber;
+                firstUser.PhoneNumber = originalPhoneNumber;
                 await userRepo.Update(myAccount.Id, firstUser.Id, firstUser);
 
-                Assert.AreNotEqual("117117", firstUser.PhoneNumber);
+                Assert.AreEqual(originalPhoneNumber, firstUser.PhoneNumber);
             }
         }
 
@@ -115,19 +117,19 @@ namespace Snippets.src.Foundation
             var accountRepo = new AccountRepository();
             var myAccount = await accountRepo.Me();
 
-            var user = accountRepo.Users(myAccount.Id).First();
+            var user = accountRepo.Users(myAccount.Id).FirstOrDefault();
             if (user != null)
             {
                 Assert.IsInstanceOf(typeof(SubtenantUser), user);
             }
 
-            var trustedCert = accountRepo.TrustedCertificates(myAccount.Id).First();
+            var trustedCert = accountRepo.TrustedCertificates(myAccount.Id)?.FirstOrDefault();
             if (trustedCert != null)
             {
                 Assert.IsInstanceOf(typeof(SubtenantTrustedCertificate), trustedCert);
             }
 
-            var invitation = accountRepo.UserInvitations(myAccount.Id).First();
+            var invitation = accountRepo.UserInvitations(myAccount.Id)?.FirstOrDefault();
             if (invitation != null)
             {
                 Assert.IsInstanceOf(typeof(SubtenantUserInvitation), invitation);

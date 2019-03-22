@@ -30,6 +30,7 @@ namespace Mbed.Cloud.RestClient
                 DateTimeZoneHandling = DateTimeZoneHandling.Utc,
                 DateFormatString = SerializationSettings.DateFormatString,
                 NullValueHandling = NullValueHandling.Ignore,
+                ObjectCreationHandling = ObjectCreationHandling.Replace,
             };
 
             settings.Converters.Add(new StringEnumConverter());
