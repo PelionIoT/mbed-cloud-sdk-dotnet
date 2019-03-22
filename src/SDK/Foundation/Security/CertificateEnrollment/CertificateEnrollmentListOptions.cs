@@ -15,11 +15,87 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Mbed.Cloud.Common.Filters;
+    using Mbed.Cloud.Foundation.Enums;
+    using System;
 
     /// <summary>
     /// CertificateEnrollmentListOptions
     /// </summary>
     public class CertificateEnrollmentListOptions : QueryOptions, ICertificateEnrollmentListOptions
     {
+        public CertificateEnrollmentListOptions()
+        {
+            Filter = new Filter();
+        }
+
+        /// <summary>
+        /// Filter object
+        /// </summary>
+        public Filter Filter
+        {
+            get;
+            set;
+        }
+
+        public CertificateEnrollmentListOptions DeviceIdEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("device_id", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public CertificateEnrollmentListOptions CertificateNameEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("certificate_name", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public CertificateEnrollmentListOptions EnrollStatusNotEqualTo(CertificateEnrollmentEnrollStatus value)
+        {
+            this.Filter.AddFilterItem("enroll_status", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public CertificateEnrollmentListOptions EnrollStatusEqualTo(CertificateEnrollmentEnrollStatus value)
+        {
+            this.Filter.AddFilterItem("enroll_status", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public CertificateEnrollmentListOptions EnrollResultNotEqualTo(CertificateEnrollmentEnrollResult value)
+        {
+            this.Filter.AddFilterItem("enroll_result", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public CertificateEnrollmentListOptions EnrollResultEqualTo(CertificateEnrollmentEnrollResult value)
+        {
+            this.Filter.AddFilterItem("enroll_result", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public CertificateEnrollmentListOptions CreatedAtLessThan(DateTime value)
+        {
+            this.Filter.AddFilterItem("created_at", new FilterItem(value, FilterOperator.LessThan));
+            return this;
+        }
+
+        public CertificateEnrollmentListOptions CreatedAtGreaterThan(DateTime value)
+        {
+            this.Filter.AddFilterItem("created_at", new FilterItem(value, FilterOperator.GreaterThan));
+            return this;
+        }
+
+        public CertificateEnrollmentListOptions UpdatedAtLessThan(DateTime value)
+        {
+            this.Filter.AddFilterItem("updated_at", new FilterItem(value, FilterOperator.LessThan));
+            return this;
+        }
+
+        public CertificateEnrollmentListOptions UpdatedAtGreaterThan(DateTime value)
+        {
+            this.Filter.AddFilterItem("updated_at", new FilterItem(value, FilterOperator.GreaterThan));
+            return this;
+        }
     }
 }

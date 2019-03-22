@@ -3,6 +3,7 @@ using System.Linq;
 using MbedCloudSDK.Common;
 using Mbed.Cloud.Common;
 using MbedCloudSDK.DeviceDirectory.Api;
+using QueryOptions = MbedCloudSDK.Common.QueryOptions;
 
 namespace Snippets.src
 {

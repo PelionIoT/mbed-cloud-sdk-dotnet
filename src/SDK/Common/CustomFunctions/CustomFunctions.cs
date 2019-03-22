@@ -23,7 +23,7 @@ namespace Mbed.Cloud.Common
         /// </returns>
         public static bool IsDeveloperCertificateGetter(TrustedCertificate self)
         {
-            return self.DeviceExecutionMode.HasValue ? (self.DeviceExecutionMode != 0) : false;
+            return self.DeviceExecutionMode == 1;
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Mbed.Cloud.Common
         /// </returns>
         public static bool IsDeveloperCertificateGetter(SubtenantTrustedCertificate self)
         {
-            return self.DeviceExecutionMode.HasValue ? (self.DeviceExecutionMode != 0) : false;
+            return self.DeviceExecutionMode == 1;
         }
 
         /// <summary>

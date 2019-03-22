@@ -15,11 +15,37 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Mbed.Cloud.Common.Filters;
 
     /// <summary>
     /// ApiKeyListOptions
     /// </summary>
     public class ApiKeyListOptions : QueryOptions, IApiKeyListOptions
     {
+        public ApiKeyListOptions()
+        {
+            Filter = new Filter();
+        }
+
+        /// <summary>
+        /// Filter object
+        /// </summary>
+        public Filter Filter
+        {
+            get;
+            set;
+        }
+
+        public ApiKeyListOptions KeyEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("key", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public ApiKeyListOptions OwnerEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("owner", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
     }
 }

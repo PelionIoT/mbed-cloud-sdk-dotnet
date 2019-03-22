@@ -58,7 +58,7 @@ namespace Mbed.Cloud.Foundation
                     options = new AccountListOptions();
                 }
 
-                Func<IAccountListOptions, Task<ResponsePage<Account>>> paginatedFunc = async (IAccountListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "format", _options.Format }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "properties", _options.Properties }, }; return await Client.CallApi<ResponsePage<Account>>(path: "/v3/accounts", queryParams: queryParams, method: HttpMethods.GET); };
+                Func<IAccountListOptions, Task<ResponsePage<Account>>> paginatedFunc = async (IAccountListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "format", _options.Format }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "properties", _options.Properties }, { "status__eq", _options.Filter.GetEncodedValue("status", "$eq") }, { "status__in", _options.Filter.GetEncodedValue("status", "$in") }, { "status__nin", _options.Filter.GetEncodedValue("status", "$nin") }, { "tier__eq", _options.Filter.GetEncodedValue("tier", "$eq") }, { "parent__eq", _options.Filter.GetEncodedValue("parent", "$eq") }, { "end_market__eq", _options.Filter.GetEncodedValue("end_market", "$eq") }, { "country__like", _options.Filter.GetEncodedValue("country", "$like") }, }; return await Client.CallApi<ResponsePage<Account>>(path: "/v3/accounts", queryParams: queryParams, method: HttpMethods.GET); };
                 return new PaginatedResponse<IAccountListOptions, Account>(paginatedFunc, options);
             }
             catch (ApiException e)
@@ -104,7 +104,7 @@ namespace Mbed.Cloud.Foundation
                     options = new SubtenantTrustedCertificateListOptions();
                 }
 
-                Func<ISubtenantTrustedCertificateListOptions, Task<ResponsePage<SubtenantTrustedCertificate>>> paginatedFunc = async (ISubtenantTrustedCertificateListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<SubtenantTrustedCertificate>>(path: "/v3/accounts/{account_id}/trusted-certificates", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); };
+                Func<ISubtenantTrustedCertificateListOptions, Task<ResponsePage<SubtenantTrustedCertificate>>> paginatedFunc = async (ISubtenantTrustedCertificateListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "name__eq", _options.Filter.GetEncodedValue("name", "$eq") }, { "service__eq", _options.Filter.GetEncodedValue("service", "$eq") }, { "expire__eq", _options.Filter.GetEncodedValue("expire", "$eq") }, { "device_execution_mode__eq", _options.Filter.GetEncodedValue("device_execution_mode", "$eq") }, { "device_execution_mode__neq", _options.Filter.GetEncodedValue("device_execution_mode", "$neq") }, { "owner__eq", _options.Filter.GetEncodedValue("owner", "$eq") }, { "enrollment_mode__eq", _options.Filter.GetEncodedValue("enrollment_mode", "$eq") }, { "status__eq", _options.Filter.GetEncodedValue("status", "$eq") }, { "issuer__like", _options.Filter.GetEncodedValue("issuer", "$like") }, { "subject__like", _options.Filter.GetEncodedValue("subject", "$like") }, { "valid__eq", _options.Filter.GetEncodedValue("valid", "$eq") }, }; return await Client.CallApi<ResponsePage<SubtenantTrustedCertificate>>(path: "/v3/accounts/{account_id}/trusted-certificates", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); };
                 return new PaginatedResponse<ISubtenantTrustedCertificateListOptions, SubtenantTrustedCertificate>(paginatedFunc, options);
             }
             catch (ApiException e)
@@ -137,7 +137,7 @@ namespace Mbed.Cloud.Foundation
                     options = new SubtenantUserInvitationListOptions();
                 }
 
-                Func<ISubtenantUserInvitationListOptions, Task<ResponsePage<SubtenantUserInvitation>>> paginatedFunc = async (ISubtenantUserInvitationListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<SubtenantUserInvitation>>(path: "/v3/accounts/{account_id}/user-invitations", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); };
+                Func<ISubtenantUserInvitationListOptions, Task<ResponsePage<SubtenantUserInvitation>>> paginatedFunc = async (ISubtenantUserInvitationListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "limit", _options.Limit }, { "order", _options.Order }, { "login_profile__eq", _options.Filter.GetEncodedValue("login_profile", "$eq") }, }; return await Client.CallApi<ResponsePage<SubtenantUserInvitation>>(path: "/v3/accounts/{account_id}/user-invitations", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); };
                 return new PaginatedResponse<ISubtenantUserInvitationListOptions, SubtenantUserInvitation>(paginatedFunc, options);
             }
             catch (ApiException e)
@@ -156,7 +156,7 @@ namespace Mbed.Cloud.Foundation
                     options = new SubtenantUserListOptions();
                 }
 
-                Func<ISubtenantUserListOptions, Task<ResponsePage<SubtenantUser>>> paginatedFunc = async (ISubtenantUserListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<SubtenantUser>>(path: "/v3/accounts/{account_id}/users", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); };
+                Func<ISubtenantUserListOptions, Task<ResponsePage<SubtenantUser>>> paginatedFunc = async (ISubtenantUserListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "email__eq", _options.Filter.GetEncodedValue("email", "$eq") }, { "status__eq", _options.Filter.GetEncodedValue("status", "$eq") }, { "status__in", _options.Filter.GetEncodedValue("status", "$in") }, { "status__nin", _options.Filter.GetEncodedValue("status", "$nin") }, { "login_profile__eq", _options.Filter.GetEncodedValue("login_profile", "$eq") }, }; return await Client.CallApi<ResponsePage<SubtenantUser>>(path: "/v3/accounts/{account_id}/users", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); };
                 return new PaginatedResponse<ISubtenantUserListOptions, SubtenantUser>(paginatedFunc, options);
             }
             catch (ApiException e)

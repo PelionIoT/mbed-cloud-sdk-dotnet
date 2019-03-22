@@ -15,11 +15,33 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Mbed.Cloud.Common.Filters;
+    using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
     /// SubtenantTrustedCertificateListOptions
     /// </summary>
     public interface ISubtenantTrustedCertificateListOptions : IQueryOptions
     {
+        /// <summary>
+        /// Filter object
+        /// </summary>
+        Filter Filter
+        {
+            get;
+            set;
+        }
+
+        SubtenantTrustedCertificateListOptions NameEqualTo(string value);
+        SubtenantTrustedCertificateListOptions ServiceEqualTo(string value);
+        SubtenantTrustedCertificateListOptions ExpireEqualTo(string value);
+        SubtenantTrustedCertificateListOptions DeviceExecutionModeEqualTo(string value);
+        SubtenantTrustedCertificateListOptions DeviceExecutionModeNotEqualTo(string value);
+        SubtenantTrustedCertificateListOptions OwnerEqualTo(string value);
+        SubtenantTrustedCertificateListOptions EnrollmentModeEqualTo(string value);
+        SubtenantTrustedCertificateListOptions StatusEqualTo(AccountStatus value);
+        SubtenantTrustedCertificateListOptions IssuerLike(string value);
+        SubtenantTrustedCertificateListOptions SubjectLike(string value);
+        SubtenantTrustedCertificateListOptions ValidEqualTo(string value);
     }
 }

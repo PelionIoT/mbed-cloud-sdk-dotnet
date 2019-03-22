@@ -15,11 +15,57 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Mbed.Cloud.Common.Filters;
+    using Mbed.Cloud.Foundation.Enums;
+    using System.Collections.Generic;
 
     /// <summary>
     /// SubtenantUserListOptions
     /// </summary>
     public class SubtenantUserListOptions : QueryOptions, ISubtenantUserListOptions
     {
+        public SubtenantUserListOptions()
+        {
+            Filter = new Filter();
+        }
+
+        /// <summary>
+        /// Filter object
+        /// </summary>
+        public Filter Filter
+        {
+            get;
+            set;
+        }
+
+        public SubtenantUserListOptions EmailEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("email", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public SubtenantUserListOptions StatusEqualTo(AccountStatus value)
+        {
+            this.Filter.AddFilterItem("status", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public SubtenantUserListOptions StatusIn(IEnumerable<AccountStatus> value)
+        {
+            this.Filter.AddFilterItem("status", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public SubtenantUserListOptions StatusNotIn(IEnumerable<AccountStatus> value)
+        {
+            this.Filter.AddFilterItem("status", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public SubtenantUserListOptions LoginProfileEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("login_profile", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
     }
 }

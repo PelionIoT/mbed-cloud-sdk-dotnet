@@ -15,11 +15,22 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Mbed.Cloud.Common.Filters;
 
     /// <summary>
     /// SubtenantUserInvitationListOptions
     /// </summary>
     public interface ISubtenantUserInvitationListOptions : IQueryOptions
     {
+        /// <summary>
+        /// Filter object
+        /// </summary>
+        Filter Filter
+        {
+            get;
+            set;
+        }
+
+        SubtenantUserInvitationListOptions LoginProfileEqualTo(string value);
     }
 }

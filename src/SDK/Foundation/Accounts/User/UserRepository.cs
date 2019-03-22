@@ -70,7 +70,7 @@ namespace Mbed.Cloud.Foundation
                     options = new UserListOptions();
                 }
 
-                Func<IUserListOptions, Task<ResponsePage<User>>> paginatedFunc = async (IUserListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<User>>(path: "/v3/users", queryParams: queryParams, method: HttpMethods.GET); };
+                Func<IUserListOptions, Task<ResponsePage<User>>> paginatedFunc = async (IUserListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "email__eq", _options.Filter.GetEncodedValue("email", "$eq") }, { "status__eq", _options.Filter.GetEncodedValue("status", "$eq") }, { "status__in", _options.Filter.GetEncodedValue("status", "$in") }, { "status__nin", _options.Filter.GetEncodedValue("status", "$nin") }, { "login_profile__eq", _options.Filter.GetEncodedValue("login_profile", "$eq") }, }; return await Client.CallApi<ResponsePage<User>>(path: "/v3/users", queryParams: queryParams, method: HttpMethods.GET); };
                 return new PaginatedResponse<IUserListOptions, User>(paginatedFunc, options);
             }
             catch (ApiException e)

@@ -15,11 +15,31 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Mbed.Cloud.Common.Filters;
 
     /// <summary>
     /// UserInvitationListOptions
     /// </summary>
     public class UserInvitationListOptions : QueryOptions, IUserInvitationListOptions
     {
+        public UserInvitationListOptions()
+        {
+            Filter = new Filter();
+        }
+
+        /// <summary>
+        /// Filter object
+        /// </summary>
+        public Filter Filter
+        {
+            get;
+            set;
+        }
+
+        public UserInvitationListOptions LoginProfileEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("login_profile", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
     }
 }

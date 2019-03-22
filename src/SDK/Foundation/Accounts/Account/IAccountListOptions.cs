@@ -15,6 +15,9 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Mbed.Cloud.Common.Filters;
+    using Mbed.Cloud.Foundation.Enums;
+    using System.Collections.Generic;
 
     /// <summary>
     /// AccountListOptions
@@ -38,5 +41,22 @@ namespace Mbed.Cloud.Foundation
             get;
             set;
         }
+
+        /// <summary>
+        /// Filter object
+        /// </summary>
+        Filter Filter
+        {
+            get;
+            set;
+        }
+
+        AccountListOptions StatusEqualTo(AccountStatus value);
+        AccountListOptions StatusIn(IEnumerable<AccountStatus> value);
+        AccountListOptions StatusNotIn(IEnumerable<AccountStatus> value);
+        AccountListOptions TierEqualTo(string value);
+        AccountListOptions ParentEqualTo(string value);
+        AccountListOptions EndMarketEqualTo(string value);
+        AccountListOptions CountryLike(string value);
     }
 }

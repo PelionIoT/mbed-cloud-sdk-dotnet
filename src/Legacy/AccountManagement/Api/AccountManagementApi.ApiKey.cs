@@ -10,8 +10,10 @@ namespace MbedCloudSDK.AccountManagement.Api
     using iam.Model;
     using Mbed.Cloud.Common;
     using MbedCloudSDK.AccountManagement.Model.ApiKey;
+    using MbedCloudSDK.Common;
     using MbedCloudSDK.Exceptions;
     using static MbedCloudSDK.Common.Utils;
+    using QueryOptions = Common.QueryOptions;
 
     /// <summary>
     /// Account Management api

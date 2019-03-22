@@ -12,6 +12,8 @@ namespace MbedCloudSDK.AccountManagement.Api
     using MbedCloudSDK.Common.Filter;
     using MbedCloudSDK.Exceptions;
     using static MbedCloudSDK.Common.Utils;
+    using QueryOptions = Common.QueryOptions;
+
 
     /// <summary>
     /// Account Management Api

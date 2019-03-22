@@ -23,6 +23,7 @@ namespace MbedCloudSDK.Connect.Api
     using mds.Model;
     using Nito.AsyncEx;
     using static MbedCloudSDK.Common.Utils;
+    using QueryOptions = Common.QueryOptions;
 
     /// <summary>
     /// Connect Api
