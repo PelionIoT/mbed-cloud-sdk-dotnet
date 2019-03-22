@@ -89,7 +89,8 @@ namespace Mbed.Cloud.Common.Filters
 
                 if (filterValue is bool filterValueBool)
                 {
-                    return filterValueBool.ToString();
+                    // tostring returns True or False, needs to be true or false
+                    return filterValueBool.ToString().ToLower();
                 }
 
                 if (filterValue is DateTime filterValueDateTime)
