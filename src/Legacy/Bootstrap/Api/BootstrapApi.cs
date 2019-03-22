@@ -11,6 +11,8 @@ namespace MbedCloudSDK.Bootstrap.Api
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Exceptions;
     using static MbedCloudSDK.Common.Utils;
+    using QueryOptions = Common.QueryOptions;
+
 
     /// <summary>
     /// Bootstrap Api

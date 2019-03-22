@@ -15,11 +15,23 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Mbed.Cloud.Common.Filters;
 
     /// <summary>
     /// ApiKeyListOptions
     /// </summary>
     public interface IApiKeyListOptions : IQueryOptions
     {
+        /// <summary>
+        /// Filter object
+        /// </summary>
+        Filter Filter
+        {
+            get;
+            set;
+        }
+
+        ApiKeyListOptions KeyEqualTo(string value);
+        ApiKeyListOptions OwnerEqualTo(string value);
     }
 }

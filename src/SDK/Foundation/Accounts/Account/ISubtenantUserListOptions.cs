@@ -15,11 +15,28 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Mbed.Cloud.Common.Filters;
+    using Mbed.Cloud.Foundation.Enums;
+    using System.Collections.Generic;
 
     /// <summary>
     /// SubtenantUserListOptions
     /// </summary>
     public interface ISubtenantUserListOptions : IQueryOptions
     {
+        /// <summary>
+        /// Filter object
+        /// </summary>
+        Filter Filter
+        {
+            get;
+            set;
+        }
+
+        SubtenantUserListOptions EmailEqualTo(string value);
+        SubtenantUserListOptions StatusEqualTo(AccountStatus value);
+        SubtenantUserListOptions StatusIn(IEnumerable<AccountStatus> value);
+        SubtenantUserListOptions StatusNotIn(IEnumerable<AccountStatus> value);
+        SubtenantUserListOptions LoginProfileEqualTo(string value);
     }
 }

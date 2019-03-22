@@ -17,6 +17,7 @@ namespace MbedCloudSDK.Certificates.Api
     using MbedCloudSDK.Common.Extensions;
     using MbedCloudSDK.Exceptions;
     using static MbedCloudSDK.Common.Utils;
+    using QueryOptions = Common.QueryOptions;
 
     /// <summary>
     /// Certificates Api

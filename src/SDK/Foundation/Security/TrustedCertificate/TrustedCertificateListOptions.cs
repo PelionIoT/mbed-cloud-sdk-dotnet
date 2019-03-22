@@ -15,11 +15,92 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Mbed.Cloud.Common.Filters;
+    using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
     /// TrustedCertificateListOptions
     /// </summary>
     public class TrustedCertificateListOptions : QueryOptions, ITrustedCertificateListOptions
     {
+        public TrustedCertificateListOptions()
+        {
+            Filter = new Filter();
+        }
+
+        /// <summary>
+        /// Filter object
+        /// </summary>
+        public Filter Filter
+        {
+            get;
+            set;
+        }
+
+        public TrustedCertificateListOptions NameEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("name", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public TrustedCertificateListOptions ServiceEqualTo(TrustedCertificateService value)
+        {
+            this.Filter.AddFilterItem("service", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public TrustedCertificateListOptions ExpireEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("expire", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public TrustedCertificateListOptions DeviceExecutionModeEqualTo(int value)
+        {
+            this.Filter.AddFilterItem("device_execution_mode", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public TrustedCertificateListOptions DeviceExecutionModeNotEqualTo(int value)
+        {
+            this.Filter.AddFilterItem("device_execution_mode", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public TrustedCertificateListOptions OwnerEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("owner", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public TrustedCertificateListOptions EnrollmentModeEqualTo(bool value)
+        {
+            this.Filter.AddFilterItem("enrollment_mode", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public TrustedCertificateListOptions StatusEqualTo(TrustedCertificateStatus value)
+        {
+            this.Filter.AddFilterItem("status", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public TrustedCertificateListOptions IssuerLike(string value)
+        {
+            this.Filter.AddFilterItem("issuer", new FilterItem(value, FilterOperator.Like));
+            return this;
+        }
+
+        public TrustedCertificateListOptions SubjectLike(string value)
+        {
+            this.Filter.AddFilterItem("subject", new FilterItem(value, FilterOperator.Like));
+            return this;
+        }
+
+        public TrustedCertificateListOptions ValidEqualTo(bool value)
+        {
+            this.Filter.AddFilterItem("valid", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
     }
 }

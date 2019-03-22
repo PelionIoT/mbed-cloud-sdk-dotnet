@@ -15,11 +15,47 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Mbed.Cloud.Common.Filters;
+    using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// DeviceEventsListOptions
     /// </summary>
     public interface IDeviceEventsListOptions : IQueryOptions
     {
+        /// <summary>
+        /// Filter object
+        /// </summary>
+        Filter Filter
+        {
+            get;
+            set;
+        }
+
+        DeviceEventsListOptions DateTimeIn(IEnumerable<DateTime> value);
+        DeviceEventsListOptions DateTimeNotIn(IEnumerable<DateTime> value);
+        DeviceEventsListOptions DateTimeLessThan(DateTime value);
+        DeviceEventsListOptions DateTimeGreaterThan(DateTime value);
+        DeviceEventsListOptions DescriptionEqualTo(string value);
+        DeviceEventsListOptions DescriptionNotEqualTo(string value);
+        DeviceEventsListOptions DescriptionIn(IEnumerable<string> value);
+        DeviceEventsListOptions DescriptionNotIn(IEnumerable<string> value);
+        DeviceEventsListOptions IdEqualTo(string value);
+        DeviceEventsListOptions IdNotEqualTo(string value);
+        DeviceEventsListOptions IdIn(IEnumerable<string> value);
+        DeviceEventsListOptions IdNotIn(IEnumerable<string> value);
+        DeviceEventsListOptions DeviceIdEqualTo(string value);
+        DeviceEventsListOptions DeviceIdNotEqualTo(string value);
+        DeviceEventsListOptions DeviceIdIn(IEnumerable<string> value);
+        DeviceEventsListOptions DeviceIdNotIn(IEnumerable<string> value);
+        DeviceEventsListOptions EventTypeEqualTo(string value);
+        DeviceEventsListOptions EventTypeNotEqualTo(string value);
+        DeviceEventsListOptions EventTypeIn(IEnumerable<string> value);
+        DeviceEventsListOptions EventTypeNotIn(IEnumerable<string> value);
+        DeviceEventsListOptions StateChangeEqualTo(bool value);
+        DeviceEventsListOptions StateChangeNotEqualTo(bool value);
+        DeviceEventsListOptions StateChangeIn(IEnumerable<bool> value);
+        DeviceEventsListOptions StateChangeNotIn(IEnumerable<bool> value);
     }
 }

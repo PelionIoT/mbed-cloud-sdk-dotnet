@@ -15,6 +15,7 @@ namespace MbedCloudSDK.Enrollment.Api
     using MbedCloudSDK.DeviceDirectory.Api;
     using MbedCloudSDK.Exceptions;
     using static MbedCloudSDK.Common.Utils;
+    using QueryOptions = Common.QueryOptions;
 
     /// <summary>
     /// Exposing functionality from the following underlying services:

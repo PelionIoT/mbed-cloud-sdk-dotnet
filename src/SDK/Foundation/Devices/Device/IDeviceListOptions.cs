@@ -15,11 +15,138 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Mbed.Cloud.Common.Filters;
+    using System.Collections.Generic;
+    using System;
+    using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
     /// DeviceListOptions
     /// </summary>
     public interface IDeviceListOptions : IQueryOptions
     {
+        /// <summary>
+        /// Filter object
+        /// </summary>
+        Filter Filter
+        {
+            get;
+            set;
+        }
+
+        DeviceListOptions AccountIdEqualTo(string value);
+        DeviceListOptions AccountIdNotEqualTo(string value);
+        DeviceListOptions AccountIdIn(IEnumerable<string> value);
+        DeviceListOptions AccountIdNotIn(IEnumerable<string> value);
+        DeviceListOptions AutoUpdateEqualTo(bool value);
+        DeviceListOptions AutoUpdateNotEqualTo(bool value);
+        DeviceListOptions AutoUpdateIn(IEnumerable<bool> value);
+        DeviceListOptions AutoUpdateNotIn(IEnumerable<bool> value);
+        DeviceListOptions BootstrappedExpirationDateIn(IEnumerable<string> value);
+        DeviceListOptions BootstrappedExpirationDateNotIn(IEnumerable<string> value);
+        DeviceListOptions BootstrappedExpirationDateLessThan(string value);
+        DeviceListOptions BootstrappedExpirationDateGreaterThan(string value);
+        DeviceListOptions BootstrappedTimestampIn(IEnumerable<DateTime> value);
+        DeviceListOptions BootstrappedTimestampNotIn(IEnumerable<DateTime> value);
+        DeviceListOptions BootstrappedTimestampLessThan(DateTime value);
+        DeviceListOptions BootstrappedTimestampGreaterThan(DateTime value);
+        DeviceListOptions CaIdEqualTo(string value);
+        DeviceListOptions CaIdNotEqualTo(string value);
+        DeviceListOptions CaIdIn(IEnumerable<string> value);
+        DeviceListOptions CaIdNotIn(IEnumerable<string> value);
+        DeviceListOptions ConnectorExpirationDateIn(IEnumerable<DateTime> value);
+        DeviceListOptions ConnectorExpirationDateNotIn(IEnumerable<DateTime> value);
+        DeviceListOptions ConnectorExpirationDateLessThan(DateTime value);
+        DeviceListOptions ConnectorExpirationDateGreaterThan(DateTime value);
+        DeviceListOptions CreatedAtIn(IEnumerable<DateTime> value);
+        DeviceListOptions CreatedAtNotIn(IEnumerable<DateTime> value);
+        DeviceListOptions CreatedAtLessThan(DateTime value);
+        DeviceListOptions CreatedAtGreaterThan(DateTime value);
+        DeviceListOptions CustomAttributesEqualTo(Dictionary<string, string> value);
+        DeviceListOptions CustomAttributesNotEqualTo(Dictionary<string, string> value);
+        DeviceListOptions DeployedStateEqualTo(DeviceDeployedState value);
+        DeviceListOptions DeployedStateNotEqualTo(DeviceDeployedState value);
+        DeviceListOptions DeployedStateIn(IEnumerable<DeviceDeployedState> value);
+        DeviceListOptions DeployedStateNotIn(IEnumerable<DeviceDeployedState> value);
+        DeviceListOptions DeploymentEqualTo(string value);
+        DeviceListOptions DeploymentNotEqualTo(string value);
+        DeviceListOptions DeploymentIn(IEnumerable<string> value);
+        DeviceListOptions DeploymentNotIn(IEnumerable<string> value);
+        DeviceListOptions DescriptionEqualTo(string value);
+        DeviceListOptions DescriptionNotEqualTo(string value);
+        DeviceListOptions DescriptionIn(IEnumerable<string> value);
+        DeviceListOptions DescriptionNotIn(IEnumerable<string> value);
+        DeviceListOptions DeviceClassEqualTo(string value);
+        DeviceListOptions DeviceClassNotEqualTo(string value);
+        DeviceListOptions DeviceClassIn(IEnumerable<string> value);
+        DeviceListOptions DeviceClassNotIn(IEnumerable<string> value);
+        DeviceListOptions DeviceExecutionModeEqualTo(int value);
+        DeviceListOptions DeviceExecutionModeNotEqualTo(int value);
+        DeviceListOptions DeviceExecutionModeIn(IEnumerable<int> value);
+        DeviceListOptions DeviceExecutionModeNotIn(IEnumerable<int> value);
+        DeviceListOptions DeviceKeyEqualTo(string value);
+        DeviceListOptions DeviceKeyNotEqualTo(string value);
+        DeviceListOptions DeviceKeyIn(IEnumerable<string> value);
+        DeviceListOptions DeviceKeyNotIn(IEnumerable<string> value);
+        DeviceListOptions EndpointNameEqualTo(string value);
+        DeviceListOptions EndpointNameNotEqualTo(string value);
+        DeviceListOptions EndpointNameIn(IEnumerable<string> value);
+        DeviceListOptions EndpointNameNotIn(IEnumerable<string> value);
+        DeviceListOptions EndpointTypeEqualTo(string value);
+        DeviceListOptions EndpointTypeNotEqualTo(string value);
+        DeviceListOptions EndpointTypeIn(IEnumerable<string> value);
+        DeviceListOptions EndpointTypeNotIn(IEnumerable<string> value);
+        DeviceListOptions EnrollmentListTimestampIn(IEnumerable<string> value);
+        DeviceListOptions EnrollmentListTimestampNotIn(IEnumerable<string> value);
+        DeviceListOptions EnrollmentListTimestampLessThan(string value);
+        DeviceListOptions EnrollmentListTimestampGreaterThan(string value);
+        DeviceListOptions FirmwareChecksumEqualTo(string value);
+        DeviceListOptions FirmwareChecksumNotEqualTo(string value);
+        DeviceListOptions FirmwareChecksumIn(IEnumerable<string> value);
+        DeviceListOptions FirmwareChecksumNotIn(IEnumerable<string> value);
+        DeviceListOptions HostGatewayEqualTo(string value);
+        DeviceListOptions HostGatewayNotEqualTo(string value);
+        DeviceListOptions HostGatewayIn(IEnumerable<string> value);
+        DeviceListOptions HostGatewayNotIn(IEnumerable<string> value);
+        DeviceListOptions IdEqualTo(string value);
+        DeviceListOptions IdNotEqualTo(string value);
+        DeviceListOptions IdIn(IEnumerable<string> value);
+        DeviceListOptions IdNotIn(IEnumerable<string> value);
+        DeviceListOptions ManifestEqualTo(string value);
+        DeviceListOptions ManifestNotEqualTo(string value);
+        DeviceListOptions ManifestIn(IEnumerable<string> value);
+        DeviceListOptions ManifestNotIn(IEnumerable<string> value);
+        DeviceListOptions ManifestTimestampIn(IEnumerable<DateTime> value);
+        DeviceListOptions ManifestTimestampNotIn(IEnumerable<DateTime> value);
+        DeviceListOptions ManifestTimestampLessThan(DateTime value);
+        DeviceListOptions ManifestTimestampGreaterThan(DateTime value);
+        DeviceListOptions MechanismEqualTo(DeviceMechanism value);
+        DeviceListOptions MechanismNotEqualTo(DeviceMechanism value);
+        DeviceListOptions MechanismIn(IEnumerable<DeviceMechanism> value);
+        DeviceListOptions MechanismNotIn(IEnumerable<DeviceMechanism> value);
+        DeviceListOptions MechanismUrlEqualTo(string value);
+        DeviceListOptions MechanismUrlNotEqualTo(string value);
+        DeviceListOptions MechanismUrlIn(IEnumerable<string> value);
+        DeviceListOptions MechanismUrlNotIn(IEnumerable<string> value);
+        DeviceListOptions NameEqualTo(string value);
+        DeviceListOptions NameNotEqualTo(string value);
+        DeviceListOptions NameIn(IEnumerable<string> value);
+        DeviceListOptions NameNotIn(IEnumerable<string> value);
+        DeviceListOptions SerialNumberEqualTo(string value);
+        DeviceListOptions SerialNumberNotEqualTo(string value);
+        DeviceListOptions SerialNumberIn(IEnumerable<string> value);
+        DeviceListOptions SerialNumberNotIn(IEnumerable<string> value);
+        DeviceListOptions StateEqualTo(DeviceState value);
+        DeviceListOptions StateNotEqualTo(DeviceState value);
+        DeviceListOptions StateIn(IEnumerable<DeviceState> value);
+        DeviceListOptions StateNotIn(IEnumerable<DeviceState> value);
+        DeviceListOptions UpdatedAtIn(IEnumerable<DateTime> value);
+        DeviceListOptions UpdatedAtNotIn(IEnumerable<DateTime> value);
+        DeviceListOptions UpdatedAtLessThan(DateTime value);
+        DeviceListOptions UpdatedAtGreaterThan(DateTime value);
+        DeviceListOptions VendorIdEqualTo(string value);
+        DeviceListOptions VendorIdNotEqualTo(string value);
+        DeviceListOptions VendorIdIn(IEnumerable<string> value);
+        DeviceListOptions VendorIdNotIn(IEnumerable<string> value);
     }
 }

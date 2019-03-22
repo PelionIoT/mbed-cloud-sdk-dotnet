@@ -18,6 +18,8 @@ namespace MbedCloudSDK.Billing.Api
     using MbedCloudSDK.Exceptions;
     using Newtonsoft.Json;
     using RestSharp;
+    using QueryOptions = Common.QueryOptions;
+
 
     /// <summary>
     /// Billing

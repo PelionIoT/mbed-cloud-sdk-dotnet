@@ -15,11 +15,22 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Mbed.Cloud.Common.Filters;
 
     /// <summary>
     /// CertificateIssuerConfigListOptions
     /// </summary>
     public interface ICertificateIssuerConfigListOptions : IQueryOptions
     {
+        /// <summary>
+        /// Filter object
+        /// </summary>
+        Filter Filter
+        {
+            get;
+            set;
+        }
+
+        CertificateIssuerConfigListOptions CertificateReferenceEqualTo(string value);
     }
 }
