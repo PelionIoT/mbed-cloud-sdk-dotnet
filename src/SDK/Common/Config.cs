@@ -99,7 +99,11 @@ namespace Mbed.Cloud.Common
                         ApiKey = "default";
                     }
 
-                    Host = DotNetEnv.Env.GetString(HOST, setHost ?? "https://api.us-east-1.mbedcloud.com");
+                    Host = DotNetEnv.Env.GetString(HOST, string.IsNullOrEmpty(setHost) ? "https://api.us-east-1.mbedcloud.com" : setHost);
+                    if (string.IsNullOrEmpty(host))
+                    {
+                        Host = "https://api.us-east-1.mbedcloud.com";
+                    }
                 }
             }
         }
