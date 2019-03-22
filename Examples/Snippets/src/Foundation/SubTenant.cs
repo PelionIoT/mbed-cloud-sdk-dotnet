@@ -95,7 +95,6 @@ namespace Snippets.src.Foundation
                     Email = $"tommi_{randomString()}@example.com",
                 });
 
-                // end of example
                 Assert.IsInstanceOf(typeof(SubtenantUser), user);
                 Assert.IsNotNull(user.CreatedAt);
 

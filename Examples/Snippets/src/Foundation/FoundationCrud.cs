@@ -2,45 +2,37 @@ using System;
 using System.Threading.Tasks;
 using Mbed.Cloud;
 using Mbed.Cloud.Foundation;
-
-// cloak
 using NUnit.Framework;
 
 [TestFixture]
-// uncloak
 public class FoundationCrud
 {
-    // cloak
     [Test]
     public async System.Threading.Tasks.Task FoundationCrudTask()
     {
         // Create an instance of the Pelion Device Management SDK
         var sdk = new SDK();
-        Console.WriteLine(sdk.Config.ApiKey);
-        Console.WriteLine(sdk.Config.Host);
 
-        //await CreateEntity(sdk);
-        
+        await Examples(sdk);
     }
 
-    // uncloak
     public async Task Examples(SDK sdk)
     {
         var userOneId = "user-1";
         var userTwoId = "user-2";
 
-        // an example: create an entity
+        // an example: create_an_entity
         var newUser = new User();
         newUser.Email = "fred.bloggs+test@arm.com";
         await sdk.Foundation().UserRepository().Create(newUser);
         // end of example
 
-        // an example: read an entity
+        // an example: read_an_entity
         var userOne = await sdk.Foundation().UserRepository().Read(userOneId);
         Console.WriteLine("User email address is " + userOne.Email);
         // end of example
 
-        // an example: update an entity
+        // an example: update_an_entity
         var userTwo = await sdk.Foundation().UserRepository().Read(userTwoId);
         userTwo.FullName = "C Sharp SDK User";
         await sdk.Foundation().UserRepository().Update(userTwo.Id, userTwo);
@@ -48,11 +40,11 @@ public class FoundationCrud
 
         var idOfUserToRemove = newUser.Id;
 
-        // an example: delete an entity
+        // an example: delete_an_entity
         await sdk.Foundation().UserRepository().Delete(idOfUserToRemove);
         // end of example
 
-        // an example: list entities
+        // an example: list_entities
         var options = new UserListOptions
         {
             Order = "asc",
@@ -67,13 +59,8 @@ public class FoundationCrud
             var message = string.Format("{0}: ({1}): {2}", user.FullName, user.Id, user.Email);
             Console.WriteLine(message);
         }
-        Console.WriteLine("Total Count: " + userList.Count());
+        // Console.WriteLine("Total Count: " + userList.Count());
+
         // end of example
-    }
-
-    public async Task DeleteEntity(SDK sdk)
-    {
-
-        await sdk.Foundation().UserRepository().Delete("");
     }
 }
