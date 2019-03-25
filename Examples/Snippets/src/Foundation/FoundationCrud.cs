@@ -63,8 +63,6 @@ public class FoundationCrud
             Console.WriteLine(message);
         }
         // end of example
-        // Console.WriteLine("Total Count: " + userList.Count());
-
 
         // an example: list entities with filters
         var userOptions = new UserListOptions
@@ -85,7 +83,7 @@ public class FoundationCrud
         }
         // end of example
 
-        // example: read first entity in list
+        // an example: read first entity in list
         var firstUserInList = sdk.Foundation().UserRepository().List().GetEnumerator().Current;
         Console.WriteLine("User email address: ", firstUserInList.Email);
         // end of example
