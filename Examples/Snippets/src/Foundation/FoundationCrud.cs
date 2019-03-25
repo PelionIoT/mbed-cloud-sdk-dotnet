@@ -6,6 +6,7 @@ using Mbed.Cloud.Common.Filters;
 using NUnit.Framework;
 using Mbed.Cloud.Foundation.Enums;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 [TestFixture]
 public class FoundationCrud
@@ -21,36 +22,35 @@ public class FoundationCrud
 
     public async Task Examples(SDK sdk)
     {
-        var userOneId = "user-1";
-        var userTwoId = "user-2";
+        var userId = "user-1";
 
         // an example: create an entity
         var newUser = new User();
-        newUser.Email = "fred.bloggs+test@arm.com";
+        newUser.Email = "csharp.sdk.user@arm.com";
         await sdk.Foundation().UserRepository().Create(newUser);
         // end of example
 
         // an example: read an entity
-        var userOne = await sdk.Foundation().UserRepository().Read(userOneId);
-        Console.WriteLine("User email address is " + userOne.Email);
+        var userOne = await sdk.Foundation().UserRepository().Read(userId);
+        Console.WriteLine("User email address: " + userOne.Email);
         // end of example
 
         // an example: update an entity
-        var userTwo = await sdk.Foundation().UserRepository().Read(userTwoId);
-        userTwo.FullName = "C Sharp SDK User";
+        var userTwo = await sdk.Foundation().UserRepository().Read(userId);
+        userTwo.FullName = "CSharp SDK User";
         await sdk.Foundation().UserRepository().Update(userTwo.Id, userTwo);
         // end of example
 
-        var idOfUserToRemove = newUser.Id;
-
         // an example: delete an entity
-        await sdk.Foundation().UserRepository().Delete(idOfUserToRemove);
+        var userThree = await sdk.Foundation().UserRepository().Read(userId);
+
+        await sdk.Foundation().UserRepository().Delete(userThree.Id);
         // end of example
 
         // an example: list entities
         var options = new UserListOptions
         {
-            Order = "asc",
+            Order = "ASC",
             PageSize = 5,
             MaxResults = 10,
             Include = "total_count"
@@ -65,14 +65,9 @@ public class FoundationCrud
         // end of example
 
         // an example: list entities with filters
-        var userOptions = new UserListOptions
-        {
-            Order = "asc",
-            PageSize = 5,
-            MaxResults = 10,
-        };
-
-        userOptions.EmailEqualTo("mr.test@mydomain.com").StatusIn(UserStatus.ACTIVE, UserStatus.ENROLLING);
+        var userOptions = new UserListOptions()
+            .EmailEqualTo("mr.test@mydomain.com")
+            .StatusIn(UserStatus.ACTIVE, UserStatus.ENROLLING);
 
         userList = sdk.Foundation().UserRepository().List(userOptions);
         foreach (var user in userList)
@@ -83,7 +78,7 @@ public class FoundationCrud
         // end of example
 
         // an example: read first entity in list
-        var firstUserInList = sdk.Foundation().UserRepository().List().GetEnumerator().Current;
+        var firstUserInList = sdk.Foundation().UserRepository().List().FirstOrDefault();
         Console.WriteLine("User email address: ", firstUserInList.Email);
         // end of example
     }
