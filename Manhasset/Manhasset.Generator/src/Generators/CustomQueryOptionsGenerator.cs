@@ -9,7 +9,9 @@ using Manhasset.Generator.src.common;
 using Manhasset.Generator.src.CustomContainers;
 using Manhasset.Generator.src.CustomContainers.Methods;
 using Manhasset.Generator.src.extensions;
+using Microsoft.CodeAnalysis;
 using Newtonsoft.Json.Linq;
+using Compilation = Manhasset.Core.src.Compile.Compilation;
 
 namespace Manhasset.Generator.src.Generators
 {
@@ -105,7 +107,7 @@ namespace Manhasset.Generator.src.Generators
                                 string enumerableFilterType = null;
                                 if (filterOperator == "in" || filterOperator == "nin")
                                 {
-                                    enumerableFilterType = $"IEnumerable<{filterType}>";
+                                    enumerableFilterType = $"{filterType}[]";
                                     customQueryOptions.AddUsing(nameof(UsingKeys.GENERIC_COLLECTIONS), UsingKeys.GENERIC_COLLECTIONS);
                                 }
                                 var methodName = $"{filterValueName}{TypeHelpers.MapFilterName(filterOperator)}".ToPascal();
@@ -118,6 +120,9 @@ namespace Manhasset.Generator.src.Generators
                                             Key = "value",
                                             ParamType = enumerableFilterType ?? filterType,
                                             Required = true,
+                                            MyModifiers = !string.IsNullOrEmpty(enumerableFilterType)
+                                                            ? new Dictionary<string, SyntaxToken> { { nameof(Modifiers.PARAMS), Modifiers.PARAMS } }
+                                                            : new Dictionary<string, SyntaxToken>(),
                                         }
                                     }
                                 };

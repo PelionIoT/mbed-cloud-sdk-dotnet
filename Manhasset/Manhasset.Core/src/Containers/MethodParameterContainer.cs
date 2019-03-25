@@ -16,6 +16,8 @@ namespace Manhasset.Core.src.Containers
                     SyntaxFactory.Identifier(p.Key)
                 ).WithType(
                     SyntaxFactory.IdentifierName(p.ParamType)
+                ).WithModifiers(
+                    new SyntaxTokenList(p.MyModifiers.Values.ToArray())
                 );
         }
 

@@ -38,13 +38,13 @@ namespace Mbed.Cloud.Foundation
             set;
         }
 
-        public DeviceEventsListOptions DateTimeIn(IEnumerable<DateTime> value)
+        public DeviceEventsListOptions DateTimeIn(params DateTime[] value)
         {
             this.Filter.AddFilterItem("date_time", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceEventsListOptions DateTimeNotIn(IEnumerable<DateTime> value)
+        public DeviceEventsListOptions DateTimeNotIn(params DateTime[] value)
         {
             this.Filter.AddFilterItem("date_time", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -74,13 +74,13 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceEventsListOptions DescriptionIn(IEnumerable<string> value)
+        public DeviceEventsListOptions DescriptionIn(params string[] value)
         {
             this.Filter.AddFilterItem("description", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceEventsListOptions DescriptionNotIn(IEnumerable<string> value)
+        public DeviceEventsListOptions DescriptionNotIn(params string[] value)
         {
             this.Filter.AddFilterItem("description", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -98,13 +98,13 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceEventsListOptions IdIn(IEnumerable<string> value)
+        public DeviceEventsListOptions IdIn(params string[] value)
         {
             this.Filter.AddFilterItem("id", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceEventsListOptions IdNotIn(IEnumerable<string> value)
+        public DeviceEventsListOptions IdNotIn(params string[] value)
         {
             this.Filter.AddFilterItem("id", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -122,13 +122,13 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceEventsListOptions DeviceIdIn(IEnumerable<string> value)
+        public DeviceEventsListOptions DeviceIdIn(params string[] value)
         {
             this.Filter.AddFilterItem("device_id", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceEventsListOptions DeviceIdNotIn(IEnumerable<string> value)
+        public DeviceEventsListOptions DeviceIdNotIn(params string[] value)
         {
             this.Filter.AddFilterItem("device_id", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -146,13 +146,13 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceEventsListOptions EventTypeIn(IEnumerable<string> value)
+        public DeviceEventsListOptions EventTypeIn(params string[] value)
         {
             this.Filter.AddFilterItem("event_type", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceEventsListOptions EventTypeNotIn(IEnumerable<string> value)
+        public DeviceEventsListOptions EventTypeNotIn(params string[] value)
         {
             this.Filter.AddFilterItem("event_type", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -170,13 +170,13 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceEventsListOptions StateChangeIn(IEnumerable<bool> value)
+        public DeviceEventsListOptions StateChangeIn(params bool[] value)
         {
             this.Filter.AddFilterItem("state_change", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceEventsListOptions StateChangeNotIn(IEnumerable<bool> value)
+        public DeviceEventsListOptions StateChangeNotIn(params bool[] value)
         {
             this.Filter.AddFilterItem("state_change", new FilterItem(value, FilterOperator.NotIn));
             return this;
