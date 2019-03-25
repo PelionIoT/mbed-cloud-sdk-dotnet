@@ -1489,6 +1489,7 @@ entities:
       type: account
     return_type: account
     summary: Create a new account.
+    x_deprecation: null
     x_filter: {}
   - _key: list
     description: 'Returns an array of account objects, optionally filtered by status
@@ -2366,6 +2367,7 @@ entities:
       type: account
     return_type: paginated_response(account)
     summary: Get all accounts.
+    x_deprecation: null
     x_filter:
       country:
       - like
@@ -3263,6 +3265,7 @@ entities:
       type: account
     return_type: account
     summary: Get account info.
+    x_deprecation: null
     x_filter: {}
   - _key: read
     description: 'Returns detailed information about the account.
@@ -4202,6 +4205,7 @@ entities:
       type: account
     return_type: account
     summary: Get account info.
+    x_deprecation: null
     x_filter: {}
   - _key: trusted_certificates
     description: 'An endpoint for retrieving trusted certificates in an array.
@@ -4650,6 +4654,7 @@ entities:
       type: subtenant_trusted_certificate
     return_type: paginated_response(subtenant_trusted_certificate)
     summary: Get all trusted certificates.
+    x_deprecation: null
     x_filter:
       device_execution_mode:
       - eq
@@ -5845,6 +5850,7 @@ entities:
       type: account
     return_type: account
     summary: Update attributes of an existing account.
+    x_deprecation: null
     x_filter: {}
   - _key: user_invitations
     description: 'An endpoint for retrieving the details of all the active user invitations
@@ -6031,6 +6037,7 @@ entities:
                 - id
                 type: object
               type: array
+              x-nullable: true
             - _key: object
               description: 'Entity name: always ''user-invitation'''
               enum:
@@ -6261,6 +6268,7 @@ entities:
       type: subtenant_user_invitation
     return_type: paginated_response(subtenant_user_invitation)
     summary: Get the details of all the user invitations.
+    x_deprecation: null
     x_filter:
       login_profile:
       - eq
@@ -6457,6 +6465,7 @@ entities:
               description: Address.
               example: 110 Fulbourn Rd, Cambridge, United Kingdom
               type: string
+              x-nullable: true
             - _key: created_at
               description: Creation UTC time RFC3339.
               example: '2018-02-13T09:35:20Z'
@@ -6601,6 +6610,7 @@ entities:
                 - id
                 type: object
               type: array
+              x-nullable: true
             - _key: object
               description: 'Entity name: always ''user'''
               enum:
@@ -6611,6 +6621,7 @@ entities:
                 when not present in the request.
               example: PZf9eEUH43DAPE9ULINFeuj
               type: string
+              x-nullable: true
             - _key: password_changed_time
               description: A timestamp of the latest change of the user password,
                 in milliseconds.
@@ -6621,6 +6632,7 @@ entities:
               description: Phone number.
               example: +44 (1223) 400 400
               type: string
+              x-nullable: true
             - _key: status
               description: The status of the user. ENROLLING state indicates that
                 the user is in the middle of the enrollment process. INVITED means
@@ -6651,6 +6663,7 @@ entities:
                 characters.
               example: admin
               type: string
+              x-nullable: true
             required:
             - account_id
             - email
@@ -6867,6 +6880,7 @@ entities:
       type: subtenant_user
     return_type: paginated_response(subtenant_user)
     summary: Get all user details.
+    x_deprecation: null
     x_filter:
       email:
       - eq
@@ -7338,6 +7352,7 @@ entities:
       type: api_key
     return_type: api_key
     summary: Create a new API key.
+    x_deprecation: null
     x_filter: {}
   - _key: delete
     description: 'An endpoint for deleting the API key.
@@ -7529,6 +7544,7 @@ entities:
       type: api_key
     return_type: api_key
     summary: Delete API key.
+    x_deprecation: null
     x_filter: {}
   - _key: list
     description: 'An endpoint for retrieving API keys in an array, optionally filtered
@@ -7861,6 +7877,7 @@ entities:
       type: api_key
     return_type: paginated_response(api_key)
     summary: Get all API keys
+    x_deprecation: null
     x_filter:
       key:
       - eq
@@ -8111,6 +8128,7 @@ entities:
       type: api_key
     return_type: api_key
     summary: Get API key details.
+    x_deprecation: null
     x_filter: {}
   - _key: read
     description: 'An endpoint for retrieving API key details.
@@ -8411,6 +8429,7 @@ entities:
       type: api_key
     return_type: api_key
     summary: Get API key details.
+    x_deprecation: null
     x_filter: {}
   - _key: update
     additional_operations:
@@ -8790,6 +8809,7 @@ entities:
       type: api_key
     return_type: api_key
     summary: Update API key details.
+    x_deprecation: null
     x_filter: {}
   primary_key_field: id
   swagger_models:
@@ -9253,6 +9273,7 @@ entities:
       type: certificate_enrollment
     return_type: paginated_response(certificate_enrollment)
     summary: Get certificate enrollments list.
+    x_deprecation: null
     x_filter:
       certificate_name:
       - eq
@@ -9573,6 +9594,7 @@ entities:
       type: certificate_enrollment
     return_type: certificate_enrollment
     summary: Get a certificate enrollment by ID.
+    x_deprecation: null
     x_filter: {}
   primary_key_field: id
   swagger_models:
@@ -10058,6 +10080,7 @@ entities:
       type: certificate_issuer
     return_type: certificate_issuer
     summary: Create certificate issuer.
+    x_deprecation: null
     x_filter: {}
   - _key: delete
     description: 'Delete a certificate issuer by ID.
@@ -10282,6 +10305,7 @@ entities:
       type: certificate_issuer
     return_type: certificate_issuer
     summary: Delete certificate issuer.
+    x_deprecation: null
     x_filter: {}
   - _key: list
     description: 'Note: This endpoint does not implement pagination and therefore,
@@ -10578,6 +10602,7 @@ entities:
       type: certificate_issuer
     return_type: paginated_response(certificate_issuer)
     summary: Get certificate issuers list.
+    x_deprecation: null
     x_filter: {}
   - _key: read
     description: (No description provided)
@@ -10860,6 +10885,7 @@ entities:
       type: certificate_issuer
     return_type: certificate_issuer
     summary: Get certificate issuer by ID.
+    x_deprecation: null
     x_filter: {}
   - _key: update
     description: "Update a certificate issuer.\n<br>\n**Example usage:**\n\n```\n\
@@ -11284,6 +11310,7 @@ entities:
       type: certificate_issuer
     return_type: certificate_issuer
     summary: Update certificate issuer.
+    x_deprecation: null
     x_filter: {}
   - _key: verify
     description: 'A utility API that can be used to validate the user configuration
@@ -11588,6 +11615,7 @@ entities:
     return_type: verification_response
     summary: Verify certificate issuer.
     unaggregated: true
+    x_deprecation: null
     x_filter: {}
   primary_key_field: id
   swagger_models:
@@ -11937,6 +11965,7 @@ entities:
       type: certificate_issuer_config
     return_type: certificate_issuer_config
     summary: Create certificate issuer configuration.
+    x_deprecation: null
     x_filter: {}
   - _key: delete
     description: 'Delete the configured certificate issuer configuration.
@@ -12146,6 +12175,7 @@ entities:
       type: certificate_issuer_config
     return_type: certificate_issuer_config
     summary: Delete certificate issuer configuration.
+    x_deprecation: null
     x_filter: {}
   - _key: get_default
     description: 'Provides the configured certificate issuer to be used when creating
@@ -12371,6 +12401,7 @@ entities:
       type: certificate_issuer_config
     return_type: certificate_issuer_config
     summary: Get certificate issuer configuration.
+    x_deprecation: null
     x_filter: {}
   - _key: list
     description: 'Get certificate issuer configurations, optionally filtered by reference.
@@ -12714,6 +12745,7 @@ entities:
       type: certificate_issuer_config
     return_type: paginated_response(certificate_issuer_config)
     summary: Get certificate issuer configurations.
+    x_deprecation: null
     x_filter:
       certificate_reference:
       - eq
@@ -12988,6 +13020,7 @@ entities:
       type: certificate_issuer_config
     return_type: certificate_issuer_config
     summary: Get certificate issuer configuration.
+    x_deprecation: null
     x_filter: {}
   - _key: update
     additional_operations:
@@ -13276,6 +13309,7 @@ entities:
       type: certificate_issuer_config
     return_type: certificate_issuer_config
     summary: Update certificate issuer configuration.
+    x_deprecation: null
     x_filter: {}
   primary_key_field: id
   swagger_models:
@@ -13901,6 +13935,7 @@ entities:
       type: developer_certificate
     return_type: developer_certificate
     summary: Create a new developer certificate to connect to the bootstrap server.
+    x_deprecation: null
     x_filter: {}
   - _key: delete
     description: 'An endpoint for deleting a trusted certificate.
@@ -14097,6 +14132,7 @@ entities:
       type: developer_certificate
     return_type: developer_certificate
     summary: Delete a trusted certificate by ID.
+    x_deprecation: null
     x_filter: {}
   - _key: get_trusted_certificate_info
     description: 'An endpoint for retrieving a trusted certificate by ID.
@@ -14469,6 +14505,7 @@ entities:
     return_type: trusted_certificate
     summary: Get trusted certificate by ID.
     unaggregated: true
+    x_deprecation: null
     x_filter: {}
   - _key: read
     description: 'This REST API is intended to be used by customers to fetch an existing
@@ -14943,6 +14980,7 @@ entities:
       type: developer_certificate
     return_type: developer_certificate
     summary: Fetch an existing developer certificate to connect to the bootstrap server.
+    x_deprecation: null
     x_filter: {}
   primary_key_field: id
   swagger_models:
@@ -15891,6 +15929,7 @@ entities:
       type: device
     return_type: device
     summary: Create a device
+    x_deprecation: null
     x_filter: {}
   - _key: delete
     description: Delete device. Only available for devices with a developer certificate.
@@ -15936,6 +15975,7 @@ entities:
       type: device
     return_type: device
     summary: Delete a device.
+    x_deprecation: null
     x_filter: {}
   - _key: list
     description: List all devices.
@@ -15951,6 +15991,120 @@ entities:
     - data
     - has_more
     - total_count
+    - account_id__eq
+    - account_id__neq
+    - account_id__in
+    - account_id__nin
+    - auto_update__eq
+    - auto_update__neq
+    - auto_update__in
+    - auto_update__nin
+    - bootstrapped_expiration_date__in
+    - bootstrapped_expiration_date__nin
+    - bootstrapped_expiration_date__lte
+    - bootstrapped_expiration_date__gte
+    - bootstrapped_timestamp__in
+    - bootstrapped_timestamp__nin
+    - bootstrapped_timestamp__lte
+    - bootstrapped_timestamp__gte
+    - ca_id__eq
+    - ca_id__neq
+    - ca_id__in
+    - ca_id__nin
+    - connector_expiration_date__in
+    - connector_expiration_date__nin
+    - connector_expiration_date__lte
+    - connector_expiration_date__gte
+    - created_at__in
+    - created_at__nin
+    - created_at__lte
+    - created_at__gte
+    - custom_attributes__eq
+    - custom_attributes__neq
+    - deployed_state__eq
+    - deployed_state__neq
+    - deployed_state__in
+    - deployed_state__nin
+    - deployment__eq
+    - deployment__neq
+    - deployment__in
+    - deployment__nin
+    - description__eq
+    - description__neq
+    - description__in
+    - description__nin
+    - device_class__eq
+    - device_class__neq
+    - device_class__in
+    - device_class__nin
+    - device_execution_mode__eq
+    - device_execution_mode__neq
+    - device_execution_mode__in
+    - device_execution_mode__nin
+    - device_key__eq
+    - device_key__neq
+    - device_key__in
+    - device_key__nin
+    - endpoint_name__eq
+    - endpoint_name__neq
+    - endpoint_name__in
+    - endpoint_name__nin
+    - endpoint_type__eq
+    - endpoint_type__neq
+    - endpoint_type__in
+    - endpoint_type__nin
+    - enrollment_list_timestamp__in
+    - enrollment_list_timestamp__nin
+    - enrollment_list_timestamp__lte
+    - enrollment_list_timestamp__gte
+    - firmware_checksum__eq
+    - firmware_checksum__neq
+    - firmware_checksum__in
+    - firmware_checksum__nin
+    - host_gateway__eq
+    - host_gateway__neq
+    - host_gateway__in
+    - host_gateway__nin
+    - id__eq
+    - id__neq
+    - id__in
+    - id__nin
+    - manifest__eq
+    - manifest__neq
+    - manifest__in
+    - manifest__nin
+    - manifest_timestamp__in
+    - manifest_timestamp__nin
+    - manifest_timestamp__lte
+    - manifest_timestamp__gte
+    - mechanism__eq
+    - mechanism__neq
+    - mechanism__in
+    - mechanism__nin
+    - mechanism_url__eq
+    - mechanism_url__neq
+    - mechanism_url__in
+    - mechanism_url__nin
+    - name__eq
+    - name__neq
+    - name__in
+    - name__nin
+    - serial_number__eq
+    - serial_number__neq
+    - serial_number__in
+    - serial_number__nin
+    - state__eq
+    - state__neq
+    - state__in
+    - state__nin
+    - updated_at__in
+    - updated_at__nin
+    - updated_at__lte
+    - updated_at__gte
+    - vendor_id__eq
+    - vendor_id__neq
+    - vendor_id__in
+    - vendor_id__nin
     field_renames: []
     fields:
     - _key: after
@@ -16309,6 +16463,7 @@ entities:
       type: device
     return_type: paginated_response(device)
     summary: List all devices.
+    x_deprecation: null
     x_filter:
       account_id:
       - eq
@@ -16848,6 +17003,7 @@ entities:
       type: device
     return_type: device
     summary: Get a device
+    x_deprecation: null
     x_filter: {}
   - _key: renew_certificate
     description: 'Request a certificate renewal.
@@ -17248,6 +17404,7 @@ entities:
     return_type: certificate_enrollment
     summary: Request certificate renewal.
     unaggregated: true
+    x_deprecation: null
     x_filter: {}
   - _key: update
     description: Update a specific device.
@@ -17731,6 +17888,7 @@ entities:
       type: device
     return_type: device
     summary: Update a device
+    x_deprecation: null
     x_filter: {}
   primary_key_field: id
   swagger_models:
@@ -18088,6 +18246,7 @@ entities:
       type: device_enrollment
     return_type: device_enrollment
     summary: Place an enrollment claim for one or several devices.
+    x_deprecation: null
     x_filter: {}
   - _key: delete
     description: 'To free a device from your account you can delete the enrollment
@@ -18242,6 +18401,7 @@ entities:
       type: device_enrollment
     return_type: device_enrollment
     summary: Delete an enrollment by ID.
+    x_deprecation: null
     x_filter: {}
   - _key: list
     description: 'Provides a list of pending and claimed enrollments.
@@ -18573,6 +18733,7 @@ entities:
       type: device_enrollment
     return_type: paginated_response(device_enrollment)
     summary: Get enrollment list.
+    x_deprecation: null
     x_filter: {}
   - _key: read
     description: 'To check the enrollment info in detail, for example date of claim
@@ -18806,6 +18967,7 @@ entities:
       type: device_enrollment
     return_type: device_enrollment
     summary: Get details of an enrollment by ID.
+    x_deprecation: null
     x_filter: {}
   primary_key_field: id
   swagger_models:
@@ -19218,6 +19380,7 @@ entities:
       type: device_enrollment_bulk_create
     return_type: device_enrollment_bulk_create
     summary: Bulk upload
+    x_deprecation: null
     x_filter: {}
   - _key: download_errors_report_file
     custom_method: download_errors_report_file
@@ -19250,6 +19413,7 @@ entities:
       return_type: file
       summary: Download the error report file for the created the bulk enrollment.
     summary: Download the error report file for the created the bulk enrollment.
+    x_deprecation: null
     x_filter: {}
   - _key: download_full_report_file
     custom_method: download_full_report_file
@@ -19282,6 +19446,7 @@ entities:
       return_type: file
       summary: Download the full report file for the created of the bulk enrollment.
     summary: Download the full report file for the created of the bulk enrollment.
+    x_deprecation: null
     x_filter: {}
   - _key: read
     description: 'Provides information on bulk upload for the given ID. For example,
@@ -19643,6 +19808,7 @@ entities:
       type: device_enrollment_bulk_create
     return_type: device_enrollment_bulk_create
     summary: Get bulk upload entity
+    x_deprecation: null
     x_filter: {}
   primary_key_field: id
   swagger_models:
@@ -20058,6 +20224,7 @@ entities:
       type: device_enrollment_bulk_delete
     return_type: device_enrollment_bulk_delete
     summary: Bulk delete
+    x_deprecation: null
     x_filter: {}
   - _key: download_errors_report_file
     custom_method: download_errors_report_file
@@ -20090,6 +20257,7 @@ entities:
       return_type: file
       summary: Download the error report file for the bulk enrollment deletion.
     summary: Download the error report file for the bulk enrollment deletion.
+    x_deprecation: null
     x_filter: {}
   - _key: download_full_report_file
     custom_method: download_full_report_file
@@ -20122,6 +20290,7 @@ entities:
       return_type: file
       summary: Download the full report file for the bulk enrollment deletion.
     summary: Download the full report file for the bulk enrollment deletion.
+    x_deprecation: null
     x_filter: {}
   - _key: read
     description: 'Provides information on bulk delete for the given ID. For example,
@@ -20486,6 +20655,7 @@ entities:
       type: device_enrollment_bulk_delete
     return_type: device_enrollment_bulk_delete
     summary: Get bulk delete entity
+    x_deprecation: null
     x_filter: {}
   primary_key_field: id
   swagger_models:
@@ -20593,6 +20763,30 @@ entities:
     - data
     - has_more
     - total_count
+    - date_time__in
+    - date_time__nin
+    - date_time__lte
+    - date_time__gte
+    - description__eq
+    - description__neq
+    - description__in
+    - description__nin
+    - id__eq
+    - id__neq
+    - id__in
+    - id__nin
+    - device_id__eq
+    - device_id__neq
+    - device_id__in
+    - device_id__nin
+    - event_type__eq
+    - event_type__neq
+    - event_type__in
+    - event_type__nin
+    - state_change__eq
+    - state_change__neq
+    - state_change__in
+    - state_change__nin
     field_renames: []
     fields:
     - _key: after
@@ -20776,6 +20970,7 @@ entities:
       type: device_events
     return_type: paginated_response(device_events)
     summary: List all device events.
+    x_deprecation: null
     x_filter:
       date_time:
       - in
@@ -20952,6 +21147,7 @@ entities:
       type: device_events
     return_type: device_events
     summary: Retrieve a device event.
+    x_deprecation: null
     x_filter: {}
   primary_key_field: id
   swagger_models:
@@ -21340,6 +21536,7 @@ entities:
       type: server_credentials
     return_type: server_credentials
     summary: Fetch bootstrap server credentials.
+    x_deprecation: null
     x_filter: {}
   - _key: get_lwm2m
     additional_operations:
@@ -21537,6 +21734,7 @@ entities:
       type: server_credentials
     return_type: server_credentials
     summary: Fetch LwM2M server credentials.
+    x_deprecation: null
     x_filter: {}
   primary_key_field: id
   swagger_models:
@@ -22205,6 +22403,7 @@ entities:
       type: subtenant_trusted_certificate
     return_type: subtenant_trusted_certificate
     summary: Upload new trusted certificate.
+    x_deprecation: null
     x_filter: {}
   - _key: delete
     description: 'An endpoint for deleting the trusted certificate.
@@ -22422,6 +22621,7 @@ entities:
       type: subtenant_trusted_certificate
     return_type: subtenant_trusted_certificate
     summary: Delete trusted certificate by ID.
+    x_deprecation: null
     x_filter: {}
   - _key: get_developer_certificate_info
     description: 'This REST API is intended to be used by customers to fetch an existing
@@ -22913,6 +23113,7 @@ entities:
     return_type: developer_certificate
     summary: Fetch an existing developer certificate to connect to the bootstrap server.
     unaggregated: true
+    x_deprecation: null
     x_filter: {}
   - _key: read
     description: 'An endpoint for retrieving a trusted certificate by ID.
@@ -23316,6 +23517,7 @@ entities:
       type: subtenant_trusted_certificate
     return_type: subtenant_trusted_certificate
     summary: Get trusted certificate by ID.
+    x_deprecation: null
     x_filter: {}
   - _key: update
     description: 'An endpoint for updating existing trusted certificates.
@@ -23822,6 +24024,7 @@ entities:
       type: subtenant_trusted_certificate
     return_type: subtenant_trusted_certificate
     summary: Update trusted certificate.
+    x_deprecation: null
     x_filter: {}
   primary_key_field: id
   swagger_models:
@@ -23916,6 +24119,7 @@ entities:
     readOnly: false
     required: false
     type: string
+    x-nullable: true
   - _key: created_at
     api_fieldname: created_at
     description: Creation UTC time RFC3339.
@@ -24071,6 +24275,7 @@ entities:
     readOnly: false
     required: false
     type: array
+    x-nullable: true
   - _key: marketing_accepted
     api_fieldname: is_marketing_accepted
     description: A flag indicating that receiving marketing information has been accepted.
@@ -24090,6 +24295,7 @@ entities:
     readOnly: false
     required: false
     type: string
+    x-nullable: true
   - _key: password_changed_time
     api_fieldname: password_changed_time
     description: A timestamp of the latest change of the user password, in milliseconds.
@@ -24107,6 +24313,7 @@ entities:
     readOnly: false
     required: false
     type: string
+    x-nullable: true
   - _key: status
     api_fieldname: status
     description: The status of the user. ENROLLING state indicates that the user is
@@ -24172,6 +24379,7 @@ entities:
     readOnly: false
     required: false
     type: string
+    x-nullable: true
   group_id: Accounts
   methods:
   - _key: create
@@ -24244,6 +24452,7 @@ entities:
       parameter_fieldname: address
       required: false
       type: string
+      x-nullable: true
     - _key: email
       api_fieldname: email
       description: The email address.
@@ -24305,6 +24514,7 @@ entities:
       parameter_fieldname: login_profiles
       required: false
       type: array
+      x-nullable: true
     - _key: marketing_accepted
       api_fieldname: is_marketing_accepted
       description: A flag indicating that receiving marketing information has been
@@ -24325,6 +24535,7 @@ entities:
       parameter_fieldname: password
       required: false
       type: string
+      x-nullable: true
     - _key: phone_number
       api_fieldname: phone_number
       description: Phone number.
@@ -24334,6 +24545,7 @@ entities:
       parameter_fieldname: phone_number
       required: false
       type: string
+      x-nullable: true
     - _key: terms_accepted
       api_fieldname: is_gtc_accepted
       description: A flag indicating that the General Terms and Conditions has been
@@ -24353,6 +24565,7 @@ entities:
       parameter_fieldname: username
       required: false
       type: string
+      x-nullable: true
     group_id: Accounts
     method: post
     mode: create
@@ -24443,6 +24656,7 @@ entities:
           parameter_fieldname: address
           required: false
           type: string
+          x-nullable: true
         - _key: created_at
           api_fieldname: created_at
           description: Creation UTC time RFC3339.
@@ -24497,7 +24711,8 @@ entities:
           type: string
         - _key: groups
           api_fieldname: groups
-          description: A list of group IDs this user belongs to.
+          description: A list of group IDs this user belongs to. Can be updated by
+            the Account Admin only.
           entity_fieldname: groups
           external_param: true
           in: body
@@ -24642,6 +24857,7 @@ entities:
           parameter_fieldname: login_profiles
           required: false
           type: array
+          x-nullable: true
         - _key: object
           api_fieldname: object
           description: 'Entity name: always ''user'''
@@ -24659,6 +24875,7 @@ entities:
           parameter_fieldname: password
           required: false
           type: string
+          x-nullable: true
         - _key: password_changed_time
           api_fieldname: password_changed_time
           description: A timestamp of the latest change of the user password, in milliseconds.
@@ -24675,6 +24892,7 @@ entities:
           parameter_fieldname: phone_number
           required: false
           type: string
+          x-nullable: true
         - _key: status
           api_fieldname: status
           description: The status of the user. ENROLLING state indicates that the
@@ -24718,6 +24936,7 @@ entities:
           parameter_fieldname: username
           required: false
           type: string
+          x-nullable: true
         required:
         - account_id
         - email
@@ -24972,6 +25191,7 @@ entities:
       type: subtenant_user
     return_type: subtenant_user
     summary: Create a new user.
+    x_deprecation: null
     x_filter: {}
   - _key: delete
     description: 'An endpoint for deleting a user.
@@ -25227,6 +25447,7 @@ entities:
       type: subtenant_user
     return_type: subtenant_user
     summary: Delete a user.
+    x_deprecation: null
     x_filter: {}
   - _key: read
     description: 'An endpoint for retrieving details of the user.
@@ -25382,6 +25603,7 @@ entities:
           parameter_fieldname: address
           required: false
           type: string
+          x-nullable: true
         - _key: created_at
           api_fieldname: created_at
           description: Creation UTC time RFC3339.
@@ -25436,7 +25658,8 @@ entities:
           type: string
         - _key: groups
           api_fieldname: groups
-          description: A list of group IDs this user belongs to.
+          description: A list of group IDs this user belongs to. Can be updated by
+            the Account Admin only.
           entity_fieldname: groups
           external_param: true
           in: body
@@ -25581,6 +25804,7 @@ entities:
           parameter_fieldname: login_profiles
           required: false
           type: array
+          x-nullable: true
         - _key: object
           api_fieldname: object
           description: 'Entity name: always ''user'''
@@ -25598,6 +25822,7 @@ entities:
           parameter_fieldname: password
           required: false
           type: string
+          x-nullable: true
         - _key: password_changed_time
           api_fieldname: password_changed_time
           description: A timestamp of the latest change of the user password, in milliseconds.
@@ -25614,6 +25839,7 @@ entities:
           parameter_fieldname: phone_number
           required: false
           type: string
+          x-nullable: true
         - _key: status
           api_fieldname: status
           description: The status of the user. ENROLLING state indicates that the
@@ -25657,6 +25883,7 @@ entities:
           parameter_fieldname: username
           required: false
           type: string
+          x-nullable: true
         required:
         - account_id
         - email
@@ -25815,6 +26042,7 @@ entities:
       type: subtenant_user
     return_type: subtenant_user
     summary: Details of the user.
+    x_deprecation: null
     x_filter: {}
   - _key: update
     description: 'An endpoint for updating user details.
@@ -25874,6 +26102,7 @@ entities:
       parameter_fieldname: address
       required: false
       type: string
+      x-nullable: true
     - _key: full_name
       api_fieldname: full_name
       description: The full name of the user.
@@ -25930,6 +26159,7 @@ entities:
       parameter_fieldname: login_profiles
       required: false
       type: array
+      x-nullable: true
     - _key: marketing_accepted
       api_fieldname: is_marketing_accepted
       description: A flag indicating that receiving marketing information has been
@@ -25949,6 +26179,7 @@ entities:
       parameter_fieldname: phone_number
       required: false
       type: string
+      x-nullable: true
     - _key: terms_accepted
       api_fieldname: is_gtc_accepted
       description: A flag indicating that the General Terms and Conditions has been
@@ -25978,6 +26209,7 @@ entities:
       parameter_fieldname: username
       required: false
       type: string
+      x-nullable: true
     group_id: Accounts
     method: put
     mode: update
@@ -26068,6 +26300,7 @@ entities:
           parameter_fieldname: address
           required: false
           type: string
+          x-nullable: true
         - _key: created_at
           api_fieldname: created_at
           description: Creation UTC time RFC3339.
@@ -26122,7 +26355,8 @@ entities:
           type: string
         - _key: groups
           api_fieldname: groups
-          description: A list of group IDs this user belongs to.
+          description: A list of group IDs this user belongs to. Can be updated by
+            the Account Admin only.
           entity_fieldname: groups
           external_param: true
           in: body
@@ -26267,6 +26501,7 @@ entities:
           parameter_fieldname: login_profiles
           required: false
           type: array
+          x-nullable: true
         - _key: object
           api_fieldname: object
           description: 'Entity name: always ''user'''
@@ -26284,6 +26519,7 @@ entities:
           parameter_fieldname: password
           required: false
           type: string
+          x-nullable: true
         - _key: password_changed_time
           api_fieldname: password_changed_time
           description: A timestamp of the latest change of the user password, in milliseconds.
@@ -26300,6 +26536,7 @@ entities:
           parameter_fieldname: phone_number
           required: false
           type: string
+          x-nullable: true
         - _key: status
           api_fieldname: status
           description: The status of the user. ENROLLING state indicates that the
@@ -26343,6 +26580,7 @@ entities:
           parameter_fieldname: username
           required: false
           type: string
+          x-nullable: true
         required:
         - account_id
         - email
@@ -26597,6 +26835,7 @@ entities:
       type: subtenant_user
     return_type: subtenant_user
     summary: Update user details.
+    x_deprecation: null
     x_filter: {}
   - _key: validate_email
     description: 'An endpoint for validating the user email.
@@ -26804,6 +27043,7 @@ entities:
       type: subtenant_user
     return_type: subtenant_user
     summary: Validate the user email.
+    x_deprecation: null
     x_filter: {}
   primary_key_field: id
   swagger_models:
@@ -26899,6 +27139,7 @@ entities:
     readOnly: false
     required: false
     type: array
+    x-nullable: true
   - _key: updated_at
     api_fieldname: updated_at
     description: Last update UTC time RFC3339.
@@ -27002,14 +27243,17 @@ entities:
       parameter_fieldname: login_profiles
       required: false
       type: array
+      x-nullable: true
     - _key: valid_for_days
       api_fieldname: valid_for_days
-      description: Specifies how many days the invitation will be valid for. The default
-        is 30 days. Value should be between 1 and 100 days.
+      default: 30
+      description: Specifies how many days the invitation will be valid for.
       entity_fieldname: valid_for_days
       external_param: true
       format: int32
       in: body
+      maximum: 100
+      minimum: 1
       name: valid_for_days
       parameter_fieldname: valid_for_days
       required: false
@@ -27132,6 +27376,7 @@ entities:
           parameter_fieldname: login_profiles
           required: false
           type: array
+          x-nullable: true
         - _key: object
           api_fieldname: object
           description: 'Entity name: always ''user-invitation'''
@@ -27310,6 +27555,7 @@ entities:
       type: subtenant_user_invitation
     return_type: subtenant_user_invitation
     summary: Create a user invitation.
+    x_deprecation: null
     x_filter: {}
   - _key: delete
     description: 'An endpoint for deleting an active user invitation which has been
@@ -27512,6 +27758,7 @@ entities:
       type: subtenant_user_invitation
     return_type: subtenant_user_invitation
     summary: Delete a user invitation.
+    x_deprecation: null
     x_filter: {}
   - _key: read
     description: 'An endpoint for retrieving the details of an active user invitation
@@ -27674,6 +27921,7 @@ entities:
           parameter_fieldname: login_profiles
           required: false
           type: array
+          x-nullable: true
         - _key: object
           api_fieldname: object
           description: 'Entity name: always ''user-invitation'''
@@ -27852,6 +28100,7 @@ entities:
       type: subtenant_user_invitation
     return_type: subtenant_user_invitation
     summary: Details of a user invitation.
+    x_deprecation: null
     x_filter: {}
   primary_key_field: id
   swagger_models:
@@ -28475,6 +28724,7 @@ entities:
       type: trusted_certificate
     return_type: trusted_certificate
     summary: Upload a new trusted certificate.
+    x_deprecation: null
     x_filter: {}
   - _key: delete
     description: 'An endpoint for deleting a trusted certificate.
@@ -28682,6 +28932,7 @@ entities:
       type: trusted_certificate
     return_type: trusted_certificate
     summary: Delete a trusted certificate by ID.
+    x_deprecation: null
     x_filter: {}
   - _key: get_developer_certificate_info
     description: 'This REST API is intended to be used by customers to fetch an existing
@@ -29173,6 +29424,7 @@ entities:
     return_type: developer_certificate
     summary: Fetch an existing developer certificate to connect to the bootstrap server.
     unaggregated: true
+    x_deprecation: null
     x_filter: {}
   - _key: list
     description: 'An endpoint for retrieving trusted certificates in an array.
@@ -29561,6 +29813,7 @@ entities:
       type: trusted_certificate
     return_type: paginated_response(trusted_certificate)
     summary: Get all trusted certificates.
+    x_deprecation: null
     x_filter:
       device_execution_mode:
       - eq
@@ -29954,6 +30207,7 @@ entities:
       type: trusted_certificate
     return_type: trusted_certificate
     summary: Get trusted certificate by ID.
+    x_deprecation: null
     x_filter: {}
   - _key: update
     description: 'An endpoint for updating existing trusted certificates.
@@ -30476,6 +30730,7 @@ entities:
       type: trusted_certificate
     return_type: trusted_certificate
     summary: Update trusted certificate.
+    x_deprecation: null
     x_filter: {}
   primary_key_field: id
   swagger_models:
@@ -30570,6 +30825,7 @@ entities:
     readOnly: false
     required: false
     type: string
+    x-nullable: true
   - _key: created_at
     api_fieldname: created_at
     description: Creation UTC time RFC3339.
@@ -30717,6 +30973,7 @@ entities:
     readOnly: false
     required: false
     type: array
+    x-nullable: true
   - _key: marketing_accepted
     api_fieldname: is_marketing_accepted
     description: A flag indicating that receiving marketing information has been accepted.
@@ -30732,6 +30989,7 @@ entities:
     readOnly: false
     required: false
     type: string
+    x-nullable: true
   - _key: password_changed_time
     api_fieldname: password_changed_time
     description: A timestamp of the latest change of the user password, in milliseconds.
@@ -30747,6 +31005,7 @@ entities:
     readOnly: false
     required: false
     type: string
+    x-nullable: true
   - _key: status
     api_fieldname: status
     description: The status of the user. ENROLLING state indicates that the user is
@@ -30804,6 +31063,7 @@ entities:
     readOnly: false
     required: false
     type: string
+    x-nullable: true
   group_id: Accounts
   methods:
   - _key: create
@@ -30868,6 +31128,7 @@ entities:
       parameter_fieldname: address
       required: false
       type: string
+      x-nullable: true
     - _key: email
       api_fieldname: email
       description: The email address.
@@ -30929,6 +31190,7 @@ entities:
       parameter_fieldname: login_profiles
       required: false
       type: array
+      x-nullable: true
     - _key: marketing_accepted
       api_fieldname: is_marketing_accepted
       description: A flag indicating that receiving marketing information has been
@@ -30949,6 +31211,7 @@ entities:
       parameter_fieldname: password
       required: false
       type: string
+      x-nullable: true
     - _key: phone_number
       api_fieldname: phone_number
       description: Phone number.
@@ -30958,6 +31221,7 @@ entities:
       parameter_fieldname: phone_number
       required: false
       type: string
+      x-nullable: true
     - _key: terms_accepted
       api_fieldname: is_gtc_accepted
       description: A flag indicating that the General Terms and Conditions has been
@@ -30977,6 +31241,7 @@ entities:
       parameter_fieldname: username
       required: false
       type: string
+      x-nullable: true
     group_id: Accounts
     method: post
     mode: create
@@ -31064,6 +31329,7 @@ entities:
           entity_fieldname: address
           example: 110 Fulbourn Rd, Cambridge, United Kingdom
           type: string
+          x-nullable: true
         - _key: created_at
           api_fieldname: created_at
           description: Creation UTC time RFC3339.
@@ -31236,6 +31502,7 @@ entities:
             - id
             type: object
           type: array
+          x-nullable: true
         - _key: object
           api_fieldname: object
           description: 'Entity name: always ''user'''
@@ -31250,6 +31517,7 @@ entities:
           entity_fieldname: password
           example: PZf9eEUH43DAPE9ULINFeuj
           type: string
+          x-nullable: true
         - _key: password_changed_time
           api_fieldname: password_changed_time
           description: A timestamp of the latest change of the user password, in milliseconds.
@@ -31263,6 +31531,7 @@ entities:
           entity_fieldname: phone_number
           example: +44 (1223) 400 400
           type: string
+          x-nullable: true
         - _key: status
           api_fieldname: status
           description: The status of the user. ENROLLING state indicates that the
@@ -31300,6 +31569,7 @@ entities:
           entity_fieldname: username
           example: admin
           type: string
+          x-nullable: true
         required:
         - account_id
         - email
@@ -31506,6 +31776,7 @@ entities:
       type: user
     return_type: user
     summary: Create a new user.
+    x_deprecation: null
     x_filter: {}
   - _key: delete
     description: 'An endpoint for deleting a user.
@@ -31751,6 +32022,7 @@ entities:
       type: user
     return_type: user
     summary: Delete a user.
+    x_deprecation: null
     x_filter: {}
   - _key: list
     description: 'An endpoint for retrieving the details of all users.
@@ -31937,6 +32209,7 @@ entities:
               description: Address.
               example: 110 Fulbourn Rd, Cambridge, United Kingdom
               type: string
+              x-nullable: true
             - _key: created_at
               description: Creation UTC time RFC3339.
               example: '2018-02-13T09:35:20Z'
@@ -32081,6 +32354,7 @@ entities:
                 - id
                 type: object
               type: array
+              x-nullable: true
             - _key: object
               description: 'Entity name: always ''user'''
               enum:
@@ -32091,6 +32365,7 @@ entities:
                 when not present in the request.
               example: PZf9eEUH43DAPE9ULINFeuj
               type: string
+              x-nullable: true
             - _key: password_changed_time
               description: A timestamp of the latest change of the user password,
                 in milliseconds.
@@ -32101,6 +32376,7 @@ entities:
               description: Phone number.
               example: +44 (1223) 400 400
               type: string
+              x-nullable: true
             - _key: status
               description: The status of the user. ENROLLING state indicates that
                 the user is in the middle of the enrollment process. INVITED means
@@ -32131,6 +32407,7 @@ entities:
                 characters.
               example: admin
               type: string
+              x-nullable: true
             required:
             - account_id
             - email
@@ -32287,6 +32564,7 @@ entities:
       type: user
     return_type: paginated_response(user)
     summary: Get the details of all users.
+    x_deprecation: null
     x_filter:
       email:
       - eq
@@ -32439,6 +32717,7 @@ entities:
           entity_fieldname: address
           example: 110 Fulbourn Rd, Cambridge, United Kingdom
           type: string
+          x-nullable: true
         - _key: created_at
           api_fieldname: created_at
           description: Creation UTC time RFC3339.
@@ -32611,6 +32890,7 @@ entities:
             - id
             type: object
           type: array
+          x-nullable: true
         - _key: object
           api_fieldname: object
           description: 'Entity name: always ''user'''
@@ -32625,6 +32905,7 @@ entities:
           entity_fieldname: password
           example: PZf9eEUH43DAPE9ULINFeuj
           type: string
+          x-nullable: true
         - _key: password_changed_time
           api_fieldname: password_changed_time
           description: A timestamp of the latest change of the user password, in milliseconds.
@@ -32638,6 +32919,7 @@ entities:
           entity_fieldname: phone_number
           example: +44 (1223) 400 400
           type: string
+          x-nullable: true
         - _key: status
           api_fieldname: status
           description: The status of the user. ENROLLING state indicates that the
@@ -32675,6 +32957,7 @@ entities:
           entity_fieldname: username
           example: admin
           type: string
+          x-nullable: true
         required:
         - account_id
         - email
@@ -32833,6 +33116,7 @@ entities:
       type: user
     return_type: user
     summary: Details of a user.
+    x_deprecation: null
     x_filter: {}
   - _key: update
     description: 'An endpoint for updating user details.
@@ -32884,6 +33168,7 @@ entities:
       parameter_fieldname: address
       required: false
       type: string
+      x-nullable: true
     - _key: full_name
       api_fieldname: full_name
       description: The full name of the user.
@@ -32940,6 +33225,7 @@ entities:
       parameter_fieldname: login_profiles
       required: false
       type: array
+      x-nullable: true
     - _key: marketing_accepted
       api_fieldname: is_marketing_accepted
       description: A flag indicating that receiving marketing information has been
@@ -32959,6 +33245,7 @@ entities:
       parameter_fieldname: phone_number
       required: false
       type: string
+      x-nullable: true
     - _key: terms_accepted
       api_fieldname: is_gtc_accepted
       description: A flag indicating that the General Terms and Conditions has been
@@ -32988,6 +33275,7 @@ entities:
       parameter_fieldname: username
       required: false
       type: string
+      x-nullable: true
     group_id: Accounts
     method: put
     mode: update
@@ -33075,6 +33363,7 @@ entities:
           entity_fieldname: address
           example: 110 Fulbourn Rd, Cambridge, United Kingdom
           type: string
+          x-nullable: true
         - _key: created_at
           api_fieldname: created_at
           description: Creation UTC time RFC3339.
@@ -33247,6 +33536,7 @@ entities:
             - id
             type: object
           type: array
+          x-nullable: true
         - _key: object
           api_fieldname: object
           description: 'Entity name: always ''user'''
@@ -33261,6 +33551,7 @@ entities:
           entity_fieldname: password
           example: PZf9eEUH43DAPE9ULINFeuj
           type: string
+          x-nullable: true
         - _key: password_changed_time
           api_fieldname: password_changed_time
           description: A timestamp of the latest change of the user password, in milliseconds.
@@ -33274,6 +33565,7 @@ entities:
           entity_fieldname: phone_number
           example: +44 (1223) 400 400
           type: string
+          x-nullable: true
         - _key: status
           api_fieldname: status
           description: The status of the user. ENROLLING state indicates that the
@@ -33311,6 +33603,7 @@ entities:
           entity_fieldname: username
           example: admin
           type: string
+          x-nullable: true
         required:
         - account_id
         - email
@@ -33565,6 +33858,7 @@ entities:
       type: user
     return_type: user
     summary: Update user details.
+    x_deprecation: null
     x_filter: {}
   primary_key_field: id
   swagger_models:
@@ -33655,6 +33949,7 @@ entities:
     readOnly: false
     required: false
     type: array
+    x-nullable: true
   - _key: updated_at
     api_fieldname: updated_at
     description: Last update UTC time RFC3339.
@@ -33750,14 +34045,17 @@ entities:
       parameter_fieldname: login_profiles
       required: false
       type: array
+      x-nullable: true
     - _key: valid_for_days
       api_fieldname: valid_for_days
-      description: Specifies how many days the invitation will be valid for. The default
-        is 30 days. Value should be between 1 and 100 days.
+      default: 30
+      description: Specifies how many days the invitation will be valid for.
       entity_fieldname: valid_for_days
       external_param: true
       format: int32
       in: body
+      maximum: 100
+      minimum: 1
       name: valid_for_days
       parameter_fieldname: valid_for_days
       required: false
@@ -33865,6 +34163,7 @@ entities:
             - id
             type: object
           type: array
+          x-nullable: true
         - _key: object
           api_fieldname: object
           description: 'Entity name: always ''user-invitation'''
@@ -34043,6 +34342,7 @@ entities:
       type: user_invitation
     return_type: user_invitation
     summary: Create a user invitation.
+    x_deprecation: null
     x_filter: {}
   - _key: delete
     description: 'An endpoint for deleting an active user invitation which has been
@@ -34235,6 +34535,7 @@ entities:
       type: user_invitation
     return_type: user_invitation
     summary: Delete a user invitation.
+    x_deprecation: null
     x_filter: {}
   - _key: list
     description: 'An endpoint for retrieving the details of all the active user invitations
@@ -34407,6 +34708,7 @@ entities:
                 - id
                 type: object
               type: array
+              x-nullable: true
             - _key: object
               description: 'Entity name: always ''user-invitation'''
               enum:
@@ -34577,6 +34879,7 @@ entities:
       type: user_invitation
     return_type: paginated_response(user_invitation)
     summary: Get the details of all the user invitations.
+    x_deprecation: null
     x_filter:
       login_profile:
       - eq
@@ -34718,6 +35021,7 @@ entities:
             - id
             type: object
           type: array
+          x-nullable: true
         - _key: object
           api_fieldname: object
           description: 'Entity name: always ''user-invitation'''
@@ -34896,6 +35200,7 @@ entities:
       type: user_invitation
     return_type: user_invitation
     summary: Details of a user invitation.
+    x_deprecation: null
     x_filter: {}
   primary_key_field: id
   swagger_models:
