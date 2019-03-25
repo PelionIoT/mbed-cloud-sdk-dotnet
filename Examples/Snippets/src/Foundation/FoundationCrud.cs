@@ -70,10 +70,4 @@ public class FoundationCrud
         Console.WriteLine("Total Count: " + userList.Count());
         // end of example
     }
-
-    public async Task DeleteEntity(SDK sdk)
-    {
-
-        await sdk.Foundation().UserRepository().Delete("");
-    }
 }
