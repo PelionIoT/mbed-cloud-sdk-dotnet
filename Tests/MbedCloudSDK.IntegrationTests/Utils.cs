@@ -55,7 +55,7 @@ namespace TestServer
         {
             var dict = new Dictionary<string, object>();
 
-            foreach(var k in nameValueCollection.Keys)
+            foreach (var k in nameValueCollection.Keys)
             {
                 var key = SnakeToCamel(k).ToUpper();
                 dict.Add(key, nameValueCollection[k]);

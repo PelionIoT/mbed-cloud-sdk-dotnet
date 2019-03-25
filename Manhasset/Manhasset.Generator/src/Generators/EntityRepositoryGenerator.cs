@@ -332,7 +332,7 @@ namespace Manhasset.Generator.src.Generators
                         IsAsync = true,
                         HasRequest = hasRequest,
                         IsVoidTask = isVoid,
-                };
+                    };
 
                     if (isPrivateMethod)
                     {

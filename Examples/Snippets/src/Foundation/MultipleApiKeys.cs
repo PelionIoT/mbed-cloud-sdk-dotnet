@@ -21,7 +21,7 @@ public class MultipleApiKeys
         try
         {
             var sdk = new SDK();
-            
+
             API_KEY_ONE = sdk.Config.ApiKey;
             API_KEY_TWO = sdk.Config.ApiKey;
 
@@ -33,7 +33,7 @@ public class MultipleApiKeys
         }
     }
 
-// uncloak
+    // uncloak
     public void Main()
     {
         // Create instances of the Pelion Device Management SDK for two accounts

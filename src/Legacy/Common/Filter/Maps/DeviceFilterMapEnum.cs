@@ -14,7 +14,7 @@ namespace MbedCloudSDK.Common.Filter.Maps
         /// <summary>
         /// Enum Alias for "Alias"
         /// </summary>
-        [EnumMember(Value="endpoint_name")]
+        [EnumMember(Value = "endpoint_name")]
         Alias,
 
         /// <summary>

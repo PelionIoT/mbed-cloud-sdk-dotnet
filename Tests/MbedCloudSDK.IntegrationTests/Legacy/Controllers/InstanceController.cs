@@ -122,7 +122,7 @@ namespace MbedCloudSDK.IntegrationTests.Controllers
 
                 var result = _methodRunnerService.TestModuleMethod(instance, instanceObject, methodId, parameters);
 
-                return Json(new ApiResult { Payload = result});
+                return Json(new ApiResult { Payload = result });
             }
             catch (CloudApiException e)
             {

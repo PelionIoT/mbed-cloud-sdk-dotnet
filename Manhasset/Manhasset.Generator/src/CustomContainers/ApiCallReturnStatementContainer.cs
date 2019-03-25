@@ -20,7 +20,7 @@ namespace Manhasset.Generator.src.CustomContainers
         public bool HasRequest { get; set; }
         public bool IsVoidTask { get; set; }
 
-    public override StatementSyntax GetSyntax()
+        public override StatementSyntax GetSyntax()
         {
             var paramArgList = new List<SyntaxNodeOrToken>();
 

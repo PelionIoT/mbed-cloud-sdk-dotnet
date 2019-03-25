@@ -45,7 +45,7 @@ namespace MbedCloudSDK.UnitTests.Foundation.Filters
         {
             var filter = new Filter();
             filter.AddFilterItem("name", new FilterItem(new DateTime(2019, 3, 7, 13, 33, 47)));
-            
+
             var expectedValue = "2019-03-07T13:33:47.000Z";
             filter.GetEncodedValue("name").ShouldBe(expectedValue);
         }
@@ -54,7 +54,7 @@ namespace MbedCloudSDK.UnitTests.Foundation.Filters
         public void ShouldEncodeList()
         {
             var filter = new Filter();
-            filter.AddFilterItem("name", new FilterItem(new [] { "Badger", "Gopher"}));
+            filter.AddFilterItem("name", new FilterItem(new[] { "Badger", "Gopher" }));
 
             var expectedValue = "Badger,Gopher";
             filter.GetEncodedValue("name").ShouldBe(expectedValue);
@@ -64,7 +64,7 @@ namespace MbedCloudSDK.UnitTests.Foundation.Filters
         public void ShouldEncodeDictionary()
         {
             var filter = new Filter();
-            filter.AddFilterItem("name", new FilterItem(new Dictionary<string, string>{{ "Animal", "Badger"}}));
+            filter.AddFilterItem("name", new FilterItem(new Dictionary<string, string> { { "Animal", "Badger" } }));
 
             var expectedValue = "{\"Animal\":\"Badger\"}";
             filter.GetEncodedValue("name").ShouldBe(expectedValue);

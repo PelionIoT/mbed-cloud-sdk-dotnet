@@ -91,7 +91,7 @@ namespace Mbed.Cloud.Common
                     // first run of paginator
                     AsyncHelper.RunSync(() => FetchNextPageAsync());
                 }
-                catch(ApiException e)
+                catch (ApiException e)
                 {
                     throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
                 }

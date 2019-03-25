@@ -10,7 +10,7 @@ using MbedCloudSDK.Update.Api;
 
 namespace TestServer
 {
-    public interface IModuleRepositoryFactory 
+    public interface IModuleRepositoryFactory
     {
         ModuleRepository Create();
     }
@@ -53,7 +53,7 @@ namespace TestServer
 
         private class Nested
         {
-            static Nested(){}
+            static Nested() { }
             internal static readonly ModuleRepository instance = new ModuleRepository();
         }
 

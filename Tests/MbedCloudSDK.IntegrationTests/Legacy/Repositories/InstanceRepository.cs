@@ -42,10 +42,10 @@ namespace MbedCloudSDK.IntegrationTests.Repositories
             var config = new Config(
                 apiKey: instanceConfiguration.ApiKey,
                 host: instanceConfiguration.Host)
-                {
-                    AutostartNotifications = instanceConfiguration.AutostartDaemon,
-                    ForceClear = true,
-                };
+            {
+                AutostartNotifications = instanceConfiguration.AutostartDaemon,
+                ForceClear = true,
+            };
 
             var instance = new Instance { Id = Guid.NewGuid().ToString(), Module = module, CreatedAt = DateTime.Now };
             switch (module)

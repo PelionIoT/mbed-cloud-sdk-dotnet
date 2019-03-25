@@ -54,7 +54,8 @@ namespace Manhasset.Generator.src.Generators
             customQueryOptions.FilePath = $"{rootFilePath}/{entityGroup}/{entityName}/";
             customQueryOptions.FileName = $"{customQueryOptions.Name}.cs";
 
-            if(extraQueryParams.Count > 0) {
+            if (extraQueryParams.Count > 0)
+            {
                 extraQueryParams.ForEach(e =>
                 {
                     var propContainer = new PropertyWithSummaryContainer

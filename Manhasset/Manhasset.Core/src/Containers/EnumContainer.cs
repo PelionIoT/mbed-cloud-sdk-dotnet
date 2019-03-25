@@ -39,7 +39,8 @@ namespace Manhasset.Core.src.Containers
                                                         SyntaxFactory.IdentifierName("Value"))))))))));
             })
             .ToList()
-            .ForEach(v => {
+            .ForEach(v =>
+            {
                 nodeList.Add(v);
                 nodeList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
             });

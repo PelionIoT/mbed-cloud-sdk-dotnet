@@ -46,7 +46,7 @@ namespace MbedCloudSDK.Connect.Model.Subscription
                 DeviceId = subscriptionData?.EndpointName,
                 DeviceType = subscriptionData?.EndpointType,
                 ResourcePaths = subscriptionData?.ResourcePath?.ToList() ?? new List<string>()
-        };
+            };
             return substriction;
         }
 

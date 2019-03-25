@@ -12,11 +12,11 @@ namespace Mbed.Cloud.Common.Filters
         public object Value { get; private set; }
 
         public FilterItem()
-        {}
+        { }
 
         public FilterItem(object value)
             : this(value, FilterOperator.Equals)
-        {}
+        { }
 
         public FilterItem(object value, FilterOperator filterOperator)
         {

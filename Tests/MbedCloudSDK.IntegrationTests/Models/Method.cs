@@ -34,7 +34,8 @@ namespace MbedCloudSDK.IntegrationTests.Models
             MethodInfo = methodInfo;
         }
 
-        public object Call(object myInstance, Dictionary<string, object> parameters = null) {
+        public object Call(object myInstance, Dictionary<string, object> parameters = null)
+        {
             return CallMethod(myInstance, MethodInfo, parameters);
         }
 
