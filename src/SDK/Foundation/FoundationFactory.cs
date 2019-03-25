@@ -72,6 +72,11 @@ namespace Mbed.Cloud.Foundation.Factories
             return new DeviceEnrollmentBulkDeleteRepository(config, client);
         }
 
+        public DeviceEnrollmentDenialRepository DeviceEnrollmentDenialRepository()
+        {
+            return new DeviceEnrollmentDenialRepository(config, client);
+        }
+
         public DeviceEventsRepository DeviceEventsRepository()
         {
             return new DeviceEventsRepository(config, client);
