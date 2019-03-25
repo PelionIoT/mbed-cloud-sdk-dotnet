@@ -72,8 +72,7 @@ public class FoundationCrud
             MaxResults = 10,
         };
 
-        var validStatuses = new Collection<UserStatus>() {UserStatus.ACTIVE, UserStatus.ENROLLING };
-        userOptions.EmailEqualTo("mr.test@mydomain.com").StatusIn(validStatuses);
+        userOptions.EmailEqualTo("mr.test@mydomain.com").StatusIn(UserStatus.ACTIVE, UserStatus.ENROLLING);
 
         userList = sdk.Foundation().UserRepository().List(userOptions);
         foreach (var user in userList)
