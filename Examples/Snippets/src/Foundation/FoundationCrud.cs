@@ -27,24 +27,44 @@ public class FoundationCrud
         // an example: create an entity
         var newUser = new User();
         newUser.Email = "csharp.sdk.user@arm.com";
-        await sdk.Foundation().UserRepository().Create(newUser);
+        await sdk
+            .Foundation()
+            .UserRepository()
+            .Create(newUser);
         // end of example
 
         // an example: read an entity
-        var userOne = await sdk.Foundation().UserRepository().Read(userId);
+        var userOne = await sdk
+                            .Foundation()
+                            .UserRepository()
+                            .Read(userId);
         Console.WriteLine("User email address: " + userOne.Email);
         // end of example
 
         // an example: update an entity
-        var userTwo = await sdk.Foundation().UserRepository().Read(userId);
+        var userTwo = await sdk
+                            .Foundation()
+                            .UserRepository()
+                            .Read(userId);
+
         userTwo.FullName = "CSharp SDK User";
-        await sdk.Foundation().UserRepository().Update(userTwo.Id, userTwo);
+
+        await sdk
+            .Foundation()
+            .UserRepository()
+            .Update(userTwo.Id, userTwo);
         // end of example
 
         // an example: delete an entity
-        var userThree = await sdk.Foundation().UserRepository().Read(userId);
+        var userThree = await sdk
+                            .Foundation()
+                            .UserRepository()
+                            .Read(userId);
 
-        await sdk.Foundation().UserRepository().Delete(userThree.Id);
+        await sdk
+            .Foundation()
+            .UserRepository()
+            .Delete(userThree.Id);
         // end of example
 
         // an example: list entities
@@ -56,7 +76,11 @@ public class FoundationCrud
             Include = "total_count"
         };
 
-        var userList = sdk.Foundation().UserRepository().List(options);
+        var userList = sdk
+                        .Foundation()
+                        .UserRepository()
+                        .List(options);
+
         foreach (var user in userList)
         {
             var message = string.Format("{0}: ({1}): {2}", user.FullName, user.Id, user.Email);
@@ -69,7 +93,11 @@ public class FoundationCrud
             .EmailEqualTo("mr.test@mydomain.com")
             .StatusIn(UserStatus.ACTIVE, UserStatus.ENROLLING);
 
-        userList = sdk.Foundation().UserRepository().List(userOptions);
+        userList = sdk
+                    .Foundation()
+                    .UserRepository()
+                    .List(userOptions);
+
         foreach (var user in userList)
         {
             var message = string.Format("{0}: ({1}): {2}", user.FullName, user.Id, user.Email);
@@ -78,7 +106,12 @@ public class FoundationCrud
         // end of example
 
         // an example: read first entity in list
-        var firstUserInList = sdk.Foundation().UserRepository().List().FirstOrDefault();
+        var firstUserInList = sdk
+                                .Foundation()
+                                .UserRepository()
+                                .List()
+                                .FirstOrDefault();
+
         Console.WriteLine("User email address: ", firstUserInList.Email);
         // end of example
     }
