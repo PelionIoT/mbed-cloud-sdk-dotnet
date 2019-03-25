@@ -2,7 +2,10 @@ using System;
 using System.Threading.Tasks;
 using Mbed.Cloud;
 using Mbed.Cloud.Foundation;
+using Mbed.Cloud.Common.Filters;
 using NUnit.Framework;
+using Mbed.Cloud.Foundation.Enums;
+using System.Collections.ObjectModel;
 
 [TestFixture]
 public class FoundationCrud
@@ -61,6 +64,25 @@ public class FoundationCrud
         }
         // Console.WriteLine("Total Count: " + userList.Count());
 
+        // end of example
+
+        // an example: list_entities_with_filters
+        var userOptions = new UserListOptions
+        {
+            Order = "asc",
+            PageSize = 5,
+            MaxResults = 10,
+        };
+
+        var validStatuses = new Collection<UserStatus>() {UserStatus.ACTIVE, UserStatus.ENROLLING };
+        userOptions.EmailEqualTo("mr.test@mydomain.com").StatusIn(validStatuses);
+
+        userList = sdk.Foundation().UserRepository().List(userOptions);
+        foreach (var user in userList)
+        {
+            var message = string.Format("{0}: ({1}): {2}", user.FullName, user.Id, user.Email);
+            Console.WriteLine(message);
+        }
         // end of example
     }
 }
