@@ -50,13 +50,13 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public UserListOptions StatusIn(IEnumerable<UserStatus> value)
+        public UserListOptions StatusIn(params UserStatus[] value)
         {
             this.Filter.AddFilterItem("status", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public UserListOptions StatusNotIn(IEnumerable<UserStatus> value)
+        public UserListOptions StatusNotIn(params UserStatus[] value)
         {
             this.Filter.AddFilterItem("status", new FilterItem(value, FilterOperator.NotIn));
             return this;

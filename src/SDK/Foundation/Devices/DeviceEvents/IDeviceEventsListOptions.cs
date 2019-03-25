@@ -33,29 +33,29 @@ namespace Mbed.Cloud.Foundation
             set;
         }
 
-        DeviceEventsListOptions DateTimeIn(IEnumerable<DateTime> value);
-        DeviceEventsListOptions DateTimeNotIn(IEnumerable<DateTime> value);
+        DeviceEventsListOptions DateTimeIn(params DateTime[] value);
+        DeviceEventsListOptions DateTimeNotIn(params DateTime[] value);
         DeviceEventsListOptions DateTimeLessThan(DateTime value);
         DeviceEventsListOptions DateTimeGreaterThan(DateTime value);
         DeviceEventsListOptions DescriptionEqualTo(string value);
         DeviceEventsListOptions DescriptionNotEqualTo(string value);
-        DeviceEventsListOptions DescriptionIn(IEnumerable<string> value);
-        DeviceEventsListOptions DescriptionNotIn(IEnumerable<string> value);
+        DeviceEventsListOptions DescriptionIn(params string[] value);
+        DeviceEventsListOptions DescriptionNotIn(params string[] value);
         DeviceEventsListOptions IdEqualTo(string value);
         DeviceEventsListOptions IdNotEqualTo(string value);
-        DeviceEventsListOptions IdIn(IEnumerable<string> value);
-        DeviceEventsListOptions IdNotIn(IEnumerable<string> value);
+        DeviceEventsListOptions IdIn(params string[] value);
+        DeviceEventsListOptions IdNotIn(params string[] value);
         DeviceEventsListOptions DeviceIdEqualTo(string value);
         DeviceEventsListOptions DeviceIdNotEqualTo(string value);
-        DeviceEventsListOptions DeviceIdIn(IEnumerable<string> value);
-        DeviceEventsListOptions DeviceIdNotIn(IEnumerable<string> value);
+        DeviceEventsListOptions DeviceIdIn(params string[] value);
+        DeviceEventsListOptions DeviceIdNotIn(params string[] value);
         DeviceEventsListOptions EventTypeEqualTo(string value);
         DeviceEventsListOptions EventTypeNotEqualTo(string value);
-        DeviceEventsListOptions EventTypeIn(IEnumerable<string> value);
-        DeviceEventsListOptions EventTypeNotIn(IEnumerable<string> value);
+        DeviceEventsListOptions EventTypeIn(params string[] value);
+        DeviceEventsListOptions EventTypeNotIn(params string[] value);
         DeviceEventsListOptions StateChangeEqualTo(bool value);
         DeviceEventsListOptions StateChangeNotEqualTo(bool value);
-        DeviceEventsListOptions StateChangeIn(IEnumerable<bool> value);
-        DeviceEventsListOptions StateChangeNotIn(IEnumerable<bool> value);
+        DeviceEventsListOptions StateChangeIn(params bool[] value);
+        DeviceEventsListOptions StateChangeNotIn(params bool[] value);
     }
 }

@@ -1,6 +1,6 @@
 namespace Manhasset.Core.src.Containers
 {
-    public class ParameterContainer
+    public class ParameterContainer : BaseContainer
     {
         public bool Required { get; set; }
         public string ParamType { get; set; }

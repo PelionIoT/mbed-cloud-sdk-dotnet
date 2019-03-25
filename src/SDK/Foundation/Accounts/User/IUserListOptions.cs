@@ -35,8 +35,8 @@ namespace Mbed.Cloud.Foundation
 
         UserListOptions EmailEqualTo(string value);
         UserListOptions StatusEqualTo(UserStatus value);
-        UserListOptions StatusIn(IEnumerable<UserStatus> value);
-        UserListOptions StatusNotIn(IEnumerable<UserStatus> value);
+        UserListOptions StatusIn(params UserStatus[] value);
+        UserListOptions StatusNotIn(params UserStatus[] value);
         UserListOptions LoginProfileEqualTo(string value);
     }
 }

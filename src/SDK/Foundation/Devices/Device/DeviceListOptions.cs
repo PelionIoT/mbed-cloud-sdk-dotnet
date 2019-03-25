@@ -51,13 +51,13 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions AccountIdIn(IEnumerable<string> value)
+        public DeviceListOptions AccountIdIn(params string[] value)
         {
             this.Filter.AddFilterItem("account_id", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions AccountIdNotIn(IEnumerable<string> value)
+        public DeviceListOptions AccountIdNotIn(params string[] value)
         {
             this.Filter.AddFilterItem("account_id", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -75,25 +75,25 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions AutoUpdateIn(IEnumerable<bool> value)
+        public DeviceListOptions AutoUpdateIn(params bool[] value)
         {
             this.Filter.AddFilterItem("auto_update", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions AutoUpdateNotIn(IEnumerable<bool> value)
+        public DeviceListOptions AutoUpdateNotIn(params bool[] value)
         {
             this.Filter.AddFilterItem("auto_update", new FilterItem(value, FilterOperator.NotIn));
             return this;
         }
 
-        public DeviceListOptions BootstrappedExpirationDateIn(IEnumerable<string> value)
+        public DeviceListOptions BootstrappedExpirationDateIn(params string[] value)
         {
             this.Filter.AddFilterItem("bootstrapped_expiration_date", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions BootstrappedExpirationDateNotIn(IEnumerable<string> value)
+        public DeviceListOptions BootstrappedExpirationDateNotIn(params string[] value)
         {
             this.Filter.AddFilterItem("bootstrapped_expiration_date", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -111,13 +111,13 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions BootstrappedTimestampIn(IEnumerable<DateTime> value)
+        public DeviceListOptions BootstrappedTimestampIn(params DateTime[] value)
         {
             this.Filter.AddFilterItem("bootstrapped_timestamp", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions BootstrappedTimestampNotIn(IEnumerable<DateTime> value)
+        public DeviceListOptions BootstrappedTimestampNotIn(params DateTime[] value)
         {
             this.Filter.AddFilterItem("bootstrapped_timestamp", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -147,25 +147,25 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions CaIdIn(IEnumerable<string> value)
+        public DeviceListOptions CaIdIn(params string[] value)
         {
             this.Filter.AddFilterItem("ca_id", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions CaIdNotIn(IEnumerable<string> value)
+        public DeviceListOptions CaIdNotIn(params string[] value)
         {
             this.Filter.AddFilterItem("ca_id", new FilterItem(value, FilterOperator.NotIn));
             return this;
         }
 
-        public DeviceListOptions ConnectorExpirationDateIn(IEnumerable<DateTime> value)
+        public DeviceListOptions ConnectorExpirationDateIn(params DateTime[] value)
         {
             this.Filter.AddFilterItem("connector_expiration_date", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions ConnectorExpirationDateNotIn(IEnumerable<DateTime> value)
+        public DeviceListOptions ConnectorExpirationDateNotIn(params DateTime[] value)
         {
             this.Filter.AddFilterItem("connector_expiration_date", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -183,13 +183,13 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions CreatedAtIn(IEnumerable<DateTime> value)
+        public DeviceListOptions CreatedAtIn(params DateTime[] value)
         {
             this.Filter.AddFilterItem("created_at", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions CreatedAtNotIn(IEnumerable<DateTime> value)
+        public DeviceListOptions CreatedAtNotIn(params DateTime[] value)
         {
             this.Filter.AddFilterItem("created_at", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -231,13 +231,13 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions DeployedStateIn(IEnumerable<DeviceDeployedState> value)
+        public DeviceListOptions DeployedStateIn(params DeviceDeployedState[] value)
         {
             this.Filter.AddFilterItem("deployed_state", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions DeployedStateNotIn(IEnumerable<DeviceDeployedState> value)
+        public DeviceListOptions DeployedStateNotIn(params DeviceDeployedState[] value)
         {
             this.Filter.AddFilterItem("deployed_state", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -255,13 +255,13 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions DeploymentIn(IEnumerable<string> value)
+        public DeviceListOptions DeploymentIn(params string[] value)
         {
             this.Filter.AddFilterItem("deployment", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions DeploymentNotIn(IEnumerable<string> value)
+        public DeviceListOptions DeploymentNotIn(params string[] value)
         {
             this.Filter.AddFilterItem("deployment", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -279,13 +279,13 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions DescriptionIn(IEnumerable<string> value)
+        public DeviceListOptions DescriptionIn(params string[] value)
         {
             this.Filter.AddFilterItem("description", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions DescriptionNotIn(IEnumerable<string> value)
+        public DeviceListOptions DescriptionNotIn(params string[] value)
         {
             this.Filter.AddFilterItem("description", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -303,13 +303,13 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions DeviceClassIn(IEnumerable<string> value)
+        public DeviceListOptions DeviceClassIn(params string[] value)
         {
             this.Filter.AddFilterItem("device_class", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions DeviceClassNotIn(IEnumerable<string> value)
+        public DeviceListOptions DeviceClassNotIn(params string[] value)
         {
             this.Filter.AddFilterItem("device_class", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -327,13 +327,13 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions DeviceExecutionModeIn(IEnumerable<int> value)
+        public DeviceListOptions DeviceExecutionModeIn(params int[] value)
         {
             this.Filter.AddFilterItem("device_execution_mode", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions DeviceExecutionModeNotIn(IEnumerable<int> value)
+        public DeviceListOptions DeviceExecutionModeNotIn(params int[] value)
         {
             this.Filter.AddFilterItem("device_execution_mode", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -351,13 +351,13 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions DeviceKeyIn(IEnumerable<string> value)
+        public DeviceListOptions DeviceKeyIn(params string[] value)
         {
             this.Filter.AddFilterItem("device_key", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions DeviceKeyNotIn(IEnumerable<string> value)
+        public DeviceListOptions DeviceKeyNotIn(params string[] value)
         {
             this.Filter.AddFilterItem("device_key", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -375,13 +375,13 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions EndpointNameIn(IEnumerable<string> value)
+        public DeviceListOptions EndpointNameIn(params string[] value)
         {
             this.Filter.AddFilterItem("endpoint_name", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions EndpointNameNotIn(IEnumerable<string> value)
+        public DeviceListOptions EndpointNameNotIn(params string[] value)
         {
             this.Filter.AddFilterItem("endpoint_name", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -399,25 +399,25 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions EndpointTypeIn(IEnumerable<string> value)
+        public DeviceListOptions EndpointTypeIn(params string[] value)
         {
             this.Filter.AddFilterItem("endpoint_type", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions EndpointTypeNotIn(IEnumerable<string> value)
+        public DeviceListOptions EndpointTypeNotIn(params string[] value)
         {
             this.Filter.AddFilterItem("endpoint_type", new FilterItem(value, FilterOperator.NotIn));
             return this;
         }
 
-        public DeviceListOptions EnrollmentListTimestampIn(IEnumerable<string> value)
+        public DeviceListOptions EnrollmentListTimestampIn(params string[] value)
         {
             this.Filter.AddFilterItem("enrollment_list_timestamp", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions EnrollmentListTimestampNotIn(IEnumerable<string> value)
+        public DeviceListOptions EnrollmentListTimestampNotIn(params string[] value)
         {
             this.Filter.AddFilterItem("enrollment_list_timestamp", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -447,13 +447,13 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions FirmwareChecksumIn(IEnumerable<string> value)
+        public DeviceListOptions FirmwareChecksumIn(params string[] value)
         {
             this.Filter.AddFilterItem("firmware_checksum", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions FirmwareChecksumNotIn(IEnumerable<string> value)
+        public DeviceListOptions FirmwareChecksumNotIn(params string[] value)
         {
             this.Filter.AddFilterItem("firmware_checksum", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -471,13 +471,13 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions HostGatewayIn(IEnumerable<string> value)
+        public DeviceListOptions HostGatewayIn(params string[] value)
         {
             this.Filter.AddFilterItem("host_gateway", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions HostGatewayNotIn(IEnumerable<string> value)
+        public DeviceListOptions HostGatewayNotIn(params string[] value)
         {
             this.Filter.AddFilterItem("host_gateway", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -495,13 +495,13 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions IdIn(IEnumerable<string> value)
+        public DeviceListOptions IdIn(params string[] value)
         {
             this.Filter.AddFilterItem("id", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions IdNotIn(IEnumerable<string> value)
+        public DeviceListOptions IdNotIn(params string[] value)
         {
             this.Filter.AddFilterItem("id", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -519,25 +519,25 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions ManifestIn(IEnumerable<string> value)
+        public DeviceListOptions ManifestIn(params string[] value)
         {
             this.Filter.AddFilterItem("manifest", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions ManifestNotIn(IEnumerable<string> value)
+        public DeviceListOptions ManifestNotIn(params string[] value)
         {
             this.Filter.AddFilterItem("manifest", new FilterItem(value, FilterOperator.NotIn));
             return this;
         }
 
-        public DeviceListOptions ManifestTimestampIn(IEnumerable<DateTime> value)
+        public DeviceListOptions ManifestTimestampIn(params DateTime[] value)
         {
             this.Filter.AddFilterItem("manifest_timestamp", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions ManifestTimestampNotIn(IEnumerable<DateTime> value)
+        public DeviceListOptions ManifestTimestampNotIn(params DateTime[] value)
         {
             this.Filter.AddFilterItem("manifest_timestamp", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -567,13 +567,13 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions MechanismIn(IEnumerable<DeviceMechanism> value)
+        public DeviceListOptions MechanismIn(params DeviceMechanism[] value)
         {
             this.Filter.AddFilterItem("mechanism", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions MechanismNotIn(IEnumerable<DeviceMechanism> value)
+        public DeviceListOptions MechanismNotIn(params DeviceMechanism[] value)
         {
             this.Filter.AddFilterItem("mechanism", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -591,13 +591,13 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions MechanismUrlIn(IEnumerable<string> value)
+        public DeviceListOptions MechanismUrlIn(params string[] value)
         {
             this.Filter.AddFilterItem("mechanism_url", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions MechanismUrlNotIn(IEnumerable<string> value)
+        public DeviceListOptions MechanismUrlNotIn(params string[] value)
         {
             this.Filter.AddFilterItem("mechanism_url", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -615,13 +615,13 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions NameIn(IEnumerable<string> value)
+        public DeviceListOptions NameIn(params string[] value)
         {
             this.Filter.AddFilterItem("name", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions NameNotIn(IEnumerable<string> value)
+        public DeviceListOptions NameNotIn(params string[] value)
         {
             this.Filter.AddFilterItem("name", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -639,13 +639,13 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions SerialNumberIn(IEnumerable<string> value)
+        public DeviceListOptions SerialNumberIn(params string[] value)
         {
             this.Filter.AddFilterItem("serial_number", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions SerialNumberNotIn(IEnumerable<string> value)
+        public DeviceListOptions SerialNumberNotIn(params string[] value)
         {
             this.Filter.AddFilterItem("serial_number", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -663,25 +663,25 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions StateIn(IEnumerable<DeviceState> value)
+        public DeviceListOptions StateIn(params DeviceState[] value)
         {
             this.Filter.AddFilterItem("state", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions StateNotIn(IEnumerable<DeviceState> value)
+        public DeviceListOptions StateNotIn(params DeviceState[] value)
         {
             this.Filter.AddFilterItem("state", new FilterItem(value, FilterOperator.NotIn));
             return this;
         }
 
-        public DeviceListOptions UpdatedAtIn(IEnumerable<DateTime> value)
+        public DeviceListOptions UpdatedAtIn(params DateTime[] value)
         {
             this.Filter.AddFilterItem("updated_at", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions UpdatedAtNotIn(IEnumerable<DateTime> value)
+        public DeviceListOptions UpdatedAtNotIn(params DateTime[] value)
         {
             this.Filter.AddFilterItem("updated_at", new FilterItem(value, FilterOperator.NotIn));
             return this;
@@ -711,13 +711,13 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions VendorIdIn(IEnumerable<string> value)
+        public DeviceListOptions VendorIdIn(params string[] value)
         {
             this.Filter.AddFilterItem("vendor_id", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions VendorIdNotIn(IEnumerable<string> value)
+        public DeviceListOptions VendorIdNotIn(params string[] value)
         {
             this.Filter.AddFilterItem("vendor_id", new FilterItem(value, FilterOperator.NotIn));
             return this;
