@@ -22,11 +22,11 @@ namespace Mbed.Cloud.Foundation.Enums
         UNKNOWN_ENUM_VALUE_RECEIVED,
         [EnumMember(Value = "success")]
         SUCCESS,
+        [EnumMember(Value = "failure")]
+        FAILURE,
         [EnumMember(Value = "not_found")]
         NOT_FOUND,
         [EnumMember(Value = "forbidden")]
         FORBIDDEN,
-        [EnumMember(Value = "failure")]
-        FAILURE,
     }
 }
