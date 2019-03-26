@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using Mbed.Cloud.RestClient;
 using MbedCloudSDK.Common.Extensions;
 using Newtonsoft.Json;
@@ -20,9 +21,9 @@ namespace Mbed.Cloud.Common.Filters
             filterCollection = new Dictionary<string, FilterItemList>();
         }
 
-        internal Filter(string value)
+        internal Filter(string value, ParameterInfo paramInfo = null)
         {
-            filterCollection = !string.IsNullOrEmpty(value) ? QueryJsonToDictionary(value) : new Dictionary<string, FilterItemList>();
+            filterCollection = !string.IsNullOrEmpty(value) ? QueryJsonToDictionary(value, paramInfo) : new Dictionary<string, FilterItemList>();
         }
 
         [JsonProperty]
@@ -120,7 +121,7 @@ namespace Mbed.Cloud.Common.Filters
             return null;
         }
 
-        private static Dictionary<string, FilterItemList> QueryJsonToDictionary(string queryJson)
+        private static Dictionary<string, FilterItemList> QueryJsonToDictionary(string queryJson, ParameterInfo paramInfo)
         {
             var customAttributes = new Dictionary<string, FilterItemList>();
             if (queryJson.IsValidJson())
@@ -133,13 +134,13 @@ namespace Mbed.Cloud.Common.Filters
                     json.Add(key, val);
                 }
 
-                return json.ToDictionary(k => k.Key, k => GetQueryAttribute(k.Value));
+                return json.ToDictionary(k => k.Key, k => GetQueryAttribute(k.Value, k.Key, paramInfo));
             }
 
             return new Dictionary<string, FilterItemList>();
         }
 
-        private static FilterItemList GetQueryAttribute(object val)
+        private static FilterItemList GetQueryAttribute(object val, string key, ParameterInfo paramInfo)
         {
             var filterAttributes = new FilterItemList();
             var objStr = Convert.ToString(val);
@@ -157,6 +158,27 @@ namespace Mbed.Cloud.Common.Filters
                     }
 
                     var filterOperator = (FilterOperator)item.Key.GetEnumFromEnumMemberValue(typeof(FilterOperator));
+
+                    if (paramInfo != null)
+                    {
+                        var correspondingValueType = paramInfo.ParameterType
+                            .GetMethods()
+                            .FirstOrDefault(m => m.Name.StartsWith(key.SnakeToCamel()))
+                            .GetParameters()
+                            .FirstOrDefault()
+                            .ParameterType;
+
+                        if (correspondingValueType.IsEnum)
+                        {
+                            var enumValue = value.GetEnumMemberValue(correspondingValueType);
+
+                            if (!string.IsNullOrEmpty(enumValue))
+                            {
+                                value = enumValue;
+                            }
+                        }
+                    }
+
                     filterAttributes.Add(new FilterItem(value, filterOperator));
                 }
             }

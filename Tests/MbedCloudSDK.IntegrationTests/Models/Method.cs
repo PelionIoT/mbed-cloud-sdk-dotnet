@@ -216,7 +216,7 @@ namespace MbedCloudSDK.IntegrationTests.Models
                             {
                                 var filterJson = GetParamValue(propertyInst, argsJsonObj);
                                 var filterJsonString = filterJson != null ? filterJson.ToString() : "";
-                                var filterJToken = JToken.FromObject(new Filter(filterJsonString));
+                                var filterJToken = JToken.FromObject(new Filter(filterJsonString, p));
                                 vals[propertyInst.Name] = filterJToken;
                             }
                             else if (propertyInst.PropertyType == typeof(List<string>))
