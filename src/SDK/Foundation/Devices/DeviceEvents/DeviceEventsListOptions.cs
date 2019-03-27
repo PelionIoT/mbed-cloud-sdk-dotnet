@@ -169,17 +169,5 @@ namespace Mbed.Cloud.Foundation
             this.Filter.AddFilterItem("state_change", new FilterItem(value, FilterOperator.NotEqual));
             return this;
         }
-
-        public DeviceEventsListOptions StateChangeIn(params bool[] value)
-        {
-            this.Filter.AddFilterItem("state_change", new FilterItem(value, FilterOperator.In));
-            return this;
-        }
-
-        public DeviceEventsListOptions StateChangeNotIn(params bool[] value)
-        {
-            this.Filter.AddFilterItem("state_change", new FilterItem(value, FilterOperator.NotIn));
-            return this;
-        }
     }
 }

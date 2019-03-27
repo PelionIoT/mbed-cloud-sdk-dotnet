@@ -55,7 +55,5 @@ namespace Mbed.Cloud.Foundation
         DeviceEventsListOptions EventTypeNotIn(params string[] value);
         DeviceEventsListOptions StateChangeEqualTo(bool value);
         DeviceEventsListOptions StateChangeNotEqualTo(bool value);
-        DeviceEventsListOptions StateChangeIn(params bool[] value);
-        DeviceEventsListOptions StateChangeNotIn(params bool[] value);
     }
 }
