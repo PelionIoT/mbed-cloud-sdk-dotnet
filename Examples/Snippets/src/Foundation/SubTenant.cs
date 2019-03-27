@@ -20,6 +20,7 @@ namespace Snippets.src.Foundation
             Account myAccount = null;
             try
             {
+                //  an example: creating and managing a subtenant account
                 myAccount = await accountRepo.Create(new Account
                 {
                     DisplayName = "new test account",
@@ -28,6 +29,7 @@ namespace Snippets.src.Foundation
                     AdminFullName = "Alex Logan",
                     AdminEmail = "alexadmin@admin.com",
                 });
+                // cloak
             }
             catch (CloudApiException e) when (e.ErrorCode == 403)
             {
@@ -36,6 +38,7 @@ namespace Snippets.src.Foundation
             finally
             {
                 Assert.IsInstanceOf(typeof(Account), myAccount);
+                // uncloak
                 var userRepo = new SubtenantUserRepository();
 
                 // get first subtenant user acociated with the account
@@ -49,12 +52,16 @@ namespace Snippets.src.Foundation
                 firstUser.PhoneNumber = newPhoneNumber;
                 await userRepo.Update(myAccount.Id, firstUser.Id, firstUser);
 
+                // cloak
                 Assert.AreNotEqual(originalPhoneNumber, firstUser.PhoneNumber);
                 Assert.AreEqual(newPhoneNumber, firstUser.PhoneNumber);
+                // uncloak
 
                 // change it back to the original
                 firstUser.PhoneNumber = originalPhoneNumber;
                 await userRepo.Update(myAccount.Id, firstUser.Id, firstUser);
+
+                // end of example
 
                 Assert.AreEqual(originalPhoneNumber, firstUser.PhoneNumber);
             }
