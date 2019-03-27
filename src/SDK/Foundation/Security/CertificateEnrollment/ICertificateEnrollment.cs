@@ -56,6 +56,14 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
+        /// enroll_result_detail
+        /// </summary>
+        string EnrollResultDetail
+        {
+            get;
+        }
+
+        /// <summary>
         /// enroll_status
         /// </summary>
         CertificateEnrollmentEnrollStatus? EnrollStatus
