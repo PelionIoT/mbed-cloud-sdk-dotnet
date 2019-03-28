@@ -75,39 +75,27 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions AutoUpdateIn(params bool[] value)
+        public DeviceListOptions BootstrapExpirationDateIn(params DateTime[] value)
         {
-            this.Filter.AddFilterItem("auto_update", new FilterItem(value, FilterOperator.In));
+            this.Filter.AddFilterItem("bootstrap_expiration_date", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions AutoUpdateNotIn(params bool[] value)
+        public DeviceListOptions BootstrapExpirationDateNotIn(params DateTime[] value)
         {
-            this.Filter.AddFilterItem("auto_update", new FilterItem(value, FilterOperator.NotIn));
+            this.Filter.AddFilterItem("bootstrap_expiration_date", new FilterItem(value, FilterOperator.NotIn));
             return this;
         }
 
-        public DeviceListOptions BootstrappedExpirationDateIn(params string[] value)
+        public DeviceListOptions BootstrapExpirationDateLessThan(DateTime value)
         {
-            this.Filter.AddFilterItem("bootstrapped_expiration_date", new FilterItem(value, FilterOperator.In));
+            this.Filter.AddFilterItem("bootstrap_expiration_date", new FilterItem(value, FilterOperator.LessThan));
             return this;
         }
 
-        public DeviceListOptions BootstrappedExpirationDateNotIn(params string[] value)
+        public DeviceListOptions BootstrapExpirationDateGreaterThan(DateTime value)
         {
-            this.Filter.AddFilterItem("bootstrapped_expiration_date", new FilterItem(value, FilterOperator.NotIn));
-            return this;
-        }
-
-        public DeviceListOptions BootstrappedExpirationDateLessThan(string value)
-        {
-            this.Filter.AddFilterItem("bootstrapped_expiration_date", new FilterItem(value, FilterOperator.LessThan));
-            return this;
-        }
-
-        public DeviceListOptions BootstrappedExpirationDateGreaterThan(string value)
-        {
-            this.Filter.AddFilterItem("bootstrapped_expiration_date", new FilterItem(value, FilterOperator.GreaterThan));
+            this.Filter.AddFilterItem("bootstrap_expiration_date", new FilterItem(value, FilterOperator.GreaterThan));
             return this;
         }
 
@@ -204,18 +192,6 @@ namespace Mbed.Cloud.Foundation
         public DeviceListOptions CreatedAtGreaterThan(DateTime value)
         {
             this.Filter.AddFilterItem("created_at", new FilterItem(value, FilterOperator.GreaterThan));
-            return this;
-        }
-
-        public DeviceListOptions CustomAttributesEqualTo(Dictionary<string, string> value)
-        {
-            this.Filter.AddFilterItem("custom_attributes", new FilterItem(value, FilterOperator.Equals));
-            return this;
-        }
-
-        public DeviceListOptions CustomAttributesNotEqualTo(Dictionary<string, string> value)
-        {
-            this.Filter.AddFilterItem("custom_attributes", new FilterItem(value, FilterOperator.NotEqual));
             return this;
         }
 
@@ -411,27 +387,27 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions EnrollmentListTimestampIn(params string[] value)
+        public DeviceListOptions EnrolmentListTimestampIn(params DateTime[] value)
         {
-            this.Filter.AddFilterItem("enrollment_list_timestamp", new FilterItem(value, FilterOperator.In));
+            this.Filter.AddFilterItem("enrolment_list_timestamp", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions EnrollmentListTimestampNotIn(params string[] value)
+        public DeviceListOptions EnrolmentListTimestampNotIn(params DateTime[] value)
         {
-            this.Filter.AddFilterItem("enrollment_list_timestamp", new FilterItem(value, FilterOperator.NotIn));
+            this.Filter.AddFilterItem("enrolment_list_timestamp", new FilterItem(value, FilterOperator.NotIn));
             return this;
         }
 
-        public DeviceListOptions EnrollmentListTimestampLessThan(string value)
+        public DeviceListOptions EnrolmentListTimestampLessThan(DateTime value)
         {
-            this.Filter.AddFilterItem("enrollment_list_timestamp", new FilterItem(value, FilterOperator.LessThan));
+            this.Filter.AddFilterItem("enrolment_list_timestamp", new FilterItem(value, FilterOperator.LessThan));
             return this;
         }
 
-        public DeviceListOptions EnrollmentListTimestampGreaterThan(string value)
+        public DeviceListOptions EnrolmentListTimestampGreaterThan(DateTime value)
         {
-            this.Filter.AddFilterItem("enrollment_list_timestamp", new FilterItem(value, FilterOperator.GreaterThan));
+            this.Filter.AddFilterItem("enrolment_list_timestamp", new FilterItem(value, FilterOperator.GreaterThan));
             return this;
         }
 
