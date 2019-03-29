@@ -68,6 +68,7 @@ namespace Snippets.src.Foundation
         }
 
         [Test]
+        [Ignore("Not currently used as an example")]
         public async Task SubTenantFlow()
         {
             var accountRepo = new AccountRepository();
@@ -117,6 +118,7 @@ namespace Snippets.src.Foundation
         }
 
         [Test]
+        [Ignore("Not currently used as an example")]
         public async Task AccountLists()
         {
             var accountRepo = new AccountRepository();
@@ -139,18 +141,6 @@ namespace Snippets.src.Foundation
             {
                 Assert.IsInstanceOf(typeof(SubtenantUserInvitation), invitation);
             }
-        }
-
-        [Test]
-        public void AccountPasswordPolicies()
-        {
-            new AccountRepository().List().All().ForEach(a =>
-            {
-                if (a.PasswordPolicy != null)
-                {
-                    Assert.IsInstanceOf(typeof(PasswordPolicy), a.PasswordPolicy);
-                }
-            });
         }
 
         private string randomString(int length = 16)

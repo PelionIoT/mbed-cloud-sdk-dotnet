@@ -8,6 +8,7 @@ namespace Snippets.src.Foundation
     public class Certificates
     {
         [Test]
+        [Ignore("Not currently used as an example")]
         public async System.Threading.Tasks.Task GetDeveloperInfoAsync()
         {
             var trustedCertificateRepo = new TrustedCertificateRepository();
@@ -21,6 +22,7 @@ namespace Snippets.src.Foundation
         }
 
         [Test]
+        [Ignore("Not currently used as an example")]
         public async System.Threading.Tasks.Task GetTrustedInfoAsync()
         {
             var trustedCertificateRepo = new TrustedCertificateRepository();

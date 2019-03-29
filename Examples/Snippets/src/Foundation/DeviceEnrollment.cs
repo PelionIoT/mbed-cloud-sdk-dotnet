@@ -79,6 +79,7 @@ namespace Snippets.src.Foundation
         }
 
         [Test]
+        [Ignore("Not currently used as an example")]
         public async System.Threading.Tasks.Task BulkEnrollDeleteDevicesAsync()
         {
             try

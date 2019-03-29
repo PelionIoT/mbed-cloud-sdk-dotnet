@@ -25,8 +25,11 @@ public class FoundationCrud
         var userId = "user-1";
 
         // an example: create an entity
-        var newUser = new User();
-        newUser.Email = "csharp.sdk.user@arm.com";
+        var newUser = new User
+        {
+            Email = "csharp.sdk.user@arm.com"
+        };
+
         await sdk
             .Foundation()
             .UserRepository()
@@ -38,7 +41,7 @@ public class FoundationCrud
                             .Foundation()
                             .UserRepository()
                             .Read(userId);
-        Console.WriteLine("User email address: " + userOne.Email);
+        Console.WriteLine($"User email address: {userOne.Email}");
         // end of example
 
         // an example: update an entity
@@ -83,8 +86,7 @@ public class FoundationCrud
 
         foreach (var user in userList)
         {
-            var message = string.Format("{0}: ({1}): {2}", user.FullName, user.Id, user.Email);
-            Console.WriteLine(message);
+            Console.WriteLine($"{user.FullName}: ({user.Id}): {user.Email}");
         }
         // end of example
 
@@ -100,8 +102,7 @@ public class FoundationCrud
 
         foreach (var user in userList)
         {
-            var message = string.Format("{0}: ({1}): {2}", user.FullName, user.Id, user.Email);
-            Console.WriteLine(message);
+            Console.WriteLine($"{user.FullName}: ({user.Id}): {user.Email}");
         }
         // end of example
 
@@ -112,7 +113,7 @@ public class FoundationCrud
                                 .List()
                                 .FirstOrDefault();
 
-        Console.WriteLine("User email address: ", firstUserInList.Email);
+        Console.WriteLine($"User email address: {firstUserInList.Email}");
         // end of example
     }
 }

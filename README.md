@@ -28,43 +28,33 @@ dotnet build
 
 ## Example Usage
 
-The following sample lists the first five devices in your Device Directory.
+The following sample lists the first ten devices in your Device Directory.
 
 ```csharp
-namespace demo
+using System;
+using Mbed.Cloud;
+using Mbed.Cloud.Foundation;
+
+public class HelloWorldSeparateSdk
 {
-    using System;
-    using System.Linq;
-    using MbedCloudSDK.Common;
-    using MbedCloudSDK.Connect.Api;
-
-    class Program
+    public void Main()
     {
-        static void Main(string[] args)
+        // Create an instance of the Pelion Device Management SDK
+        var sdk = new SDK();
+
+        var options = new DeviceListOptions
         {
-            // create new configuration object. When autostartNotifications is true, you don't need to open a notification channel manually
-            var config = new Config(apiKey: "<your api key>", autostartNotifications: true);
-            var connect = new ConnectApi(config);
+            MaxResults = 10     // Limit to ten devices
+        };
 
-            // lists the first 50 connectedDevices
-            var connectedDevices = connect.ListConnectedDevices();
-
-            // get the first connected device
-            var val = connectedDevices.FirstOrDefault()
-                                        // list the resources
-                                        ?.ListResources()
-                                        // get the first resource that matches the path /3201/0/5853
-                                        ?.FirstOrDefault(d => d.Path == "/3201/0/5853")
-                                        // get the value of the resource
-                                        ?.GetResourceValue();
-
-            Console.WriteLine(val);
+        // List the first ten devices on your Pelion Device Management account
+        foreach (var device in sdk.Foundation().DeviceRepository().List(options))
+        {
+            Console.WriteLine("Hello device " + device.Name);
         }
     }
 }
 ```
-
-Further examples can be found in the [Examples](Examples) folder of this repository.
 
 ## Documentation
 

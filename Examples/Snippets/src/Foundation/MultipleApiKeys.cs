@@ -37,8 +37,8 @@ public class MultipleApiKeys
     public void Main()
     {
         // Create instances of the Pelion Device Management SDK for two accounts
-        var account_one = new SDK(new Config(API_KEY_ONE));
-        var account_two = new SDK(new Config(API_KEY_TWO));
+        var account_one = new SDK(API_KEY_ONE);
+        var account_two = new SDK(API_KEY_TWO);
 
         var options = new DeviceListOptions
         {

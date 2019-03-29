@@ -25,11 +25,31 @@ namespace Mbed.Cloud
         /// <summary>
         /// Initializes a new instance of the <see cref="SDK" /> class.
         /// </summary>
+        /// <param name="apiKey">The apiKey to use</param>
+        public SDK(string apiKey)
+        {
+            Config = new Config(apiKey);
+            Client = new Client(Config);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SDK" /> class.
+        /// </summary>
+        /// <param name="apiKey">The apiKey to use</param>
+        /// <param name="host">The host to use</param>
+        public SDK(string apiKey, string host)
+        {
+            Config = new Config(apiKey, host);
+            Client = new Client(Config);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SDK" /> class.
+        /// </summary>
         /// <param name="config">The configuration.</param>
         public SDK(Config config)
+            : this(config, new Client(config))
         {
-            Config = config;
-            Client = new Client(Config);
         }
 
         /// <summary>

@@ -34,7 +34,7 @@ public class HelloWorld
         // List the first ten devices on your Pelion Device Management account.
         foreach (var device in new DeviceRepository().List(options))
         {
-            Console.WriteLine("Hello device " + device.Name);
+            Console.WriteLine($"Hello device {device.Name}");
         }
     }
 }
