@@ -7,7 +7,7 @@
 
 set -euo pipefail
 
-command -v dotnet >/dev/null 2>&1 || { 
+command -v dotnet >/dev/null 2>&1 || {
     echo >&2 "This project requires dotnet core but it could not be found"
     echo >&2 "Please install dotnet core and ensure it is available on your PATH"
     exit 1
@@ -15,7 +15,7 @@ command -v dotnet >/dev/null 2>&1 || {
 
 SCRIPT_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 TOOLS_DIR=${TOOLS_DIR:-"${SCRIPT_ROOT}/tools"}
-CAKE_VERSION=${CAKE_VERSION:-0.30.0}
+CAKE_VERSION=${CAKE_VERSION:-0.32.0}
 CAKE_NETCOREAPP_VERSION=${CAKE_NETCOREAPP_VERSION:-2.2}
 
 mkdir -p "${TOOLS_DIR}"

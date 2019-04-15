@@ -33,7 +33,7 @@ function Get-EnvironmentVariableOrDefault {
 }
 
 $ToolsDir = Get-EnvironmentVariableOrDefault -Name 'TOOLS_DIR' -Default (Join-Path -Path $PSScriptRoot -ChildPath 'tools')
-$CakeVersion = Get-EnvironmentVariableOrDefault -Name 'CAKE_VERSION' -Default '0.30.0'
+$CakeVersion = Get-EnvironmentVariableOrDefault -Name 'CAKE_VERSION' -Default '0.32.0'
 $CakeNetcoreappVersion = Get-EnvironmentVariableOrDefault -Name 'CAKE_NETCOREAPP_VERSION' -Default '2.2'
 
 if (-not (Test-Path -Path $ToolsDir)) {
