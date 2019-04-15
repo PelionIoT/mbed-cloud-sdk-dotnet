@@ -15,7 +15,6 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
-    using Mbed.Cloud.Foundation.Enums;
     using System;
     using Newtonsoft.Json;
     using Mbed.Cloud.Common.Filters;
@@ -32,15 +31,6 @@ namespace Mbed.Cloud.Foundation
         {
             get;
             internal set;
-        }
-
-        /// <summary>
-        /// campaign_strategy
-        /// </summary>
-        public UpdateCampaignStrategy? CampaignStrategy
-        {
-            get;
-            set;
         }
 
         /// <summary>

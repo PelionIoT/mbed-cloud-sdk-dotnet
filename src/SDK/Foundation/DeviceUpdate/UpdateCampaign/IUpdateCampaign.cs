@@ -15,7 +15,6 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
-    using Mbed.Cloud.Foundation.Enums;
     using System;
     using Newtonsoft.Json;
     using Mbed.Cloud.Common.Filters;
@@ -31,15 +30,6 @@ namespace Mbed.Cloud.Foundation
         string AutostopReason
         {
             get;
-        }
-
-        /// <summary>
-        /// campaign_strategy
-        /// </summary>
-        UpdateCampaignStrategy? CampaignStrategy
-        {
-            get;
-            set;
         }
 
         /// <summary>
