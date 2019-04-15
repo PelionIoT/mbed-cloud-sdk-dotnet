@@ -80,21 +80,6 @@ var Default = Task("Default")
 // CI Tasks
 var restore_ci =  Task("_restore_ci")
     .Does(() => {
-        if(FileExists("NuGet.Config"))
-        {
-            DeleteFile("NuGet.Config");
-        }
-
-        CreateDirectory("packages");
-        FileAppendLines("NuGet.Config", new string[] {
-            "<?xml version=\"1.0\" encoding=\"utf-8\"?>",
-            "<configuration>",
-            "  <config>",
-            "    <add key=\"globalPackagesFolder\" value=\"packages\" />",
-            "  </config>",
-            "</configuration>"
-        });
-
         foreach(var project in ciBuildProjects)
         {
             var path = MakeAbsolute(new DirectoryPath(project));
