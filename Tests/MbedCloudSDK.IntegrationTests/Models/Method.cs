@@ -18,6 +18,7 @@ using MbedCloudSDK.Common.Extensions;
 using Mbed.Cloud.Common;
 using Mbed.Cloud.Common.CustomSerializers;
 using Mbed.Cloud.Common.Filters;
+using System.IO;
 
 namespace MbedCloudSDK.IntegrationTests.Models
 {
@@ -94,22 +95,22 @@ namespace MbedCloudSDK.IntegrationTests.Models
                         var asyncConsumer = invokedMethod as AsyncConsumer<string>;
                         return asyncConsumer.ToString();
                     }
-                    if (invokedMethod.GetType().GetProperties().Select(p => p.Name).Contains("DeviceFilter"))
-                    {
-                        var returnedJson = JObject.FromObject(invokedMethod);
-                        var tempJson = new JObject();
+                    // if (invokedMethod.GetType().GetProperties().Select(p => p.Name).Contains("DeviceFilter"))
+                    // {
+                    //     var returnedJson = JObject.FromObject(invokedMethod);
+                    //     var tempJson = new JObject();
 
-                        var deviceFilter = returnedJson["DeviceFilter"];
-                        returnedJson.Remove("DeviceFilter");
-                        returnedJson.Add("DeviceFilter", JObject.FromObject(deviceFilter["FilterJson"]));
+                    //     var deviceFilter = returnedJson["DeviceFilter"];
+                    //     returnedJson.Remove("DeviceFilter");
+                    //     returnedJson.Add("DeviceFilter", JObject.FromObject(deviceFilter["FilterJson"]));
 
-                        foreach (var row in returnedJson)
-                        {
-                            tempJson.Add(TestServer.Utils.CamelToSnake(row.Key), row.Value);
-                        }
+                    //     foreach (var row in returnedJson)
+                    //     {
+                    //         tempJson.Add(TestServer.Utils.CamelToSnake(row.Key), row.Value);
+                    //     }
 
-                        return tempJson;
-                    }
+                    //     return tempJson;
+                    // }
                     if (methodInfo.ReturnType.Name.StartsWith("PaginatedResponse"))
                     {
                         // if return type is a paginator, return the data property which ca
@@ -203,6 +204,12 @@ namespace MbedCloudSDK.IntegrationTests.Models
                         serialisedParams.Add(null);
                     }
                 }
+                else if (paramType == typeof(Stream))
+                {
+                    var filePath = argsJsonObj[p.Name.ToUpper()].Value<string>();
+                    var fs = File.OpenRead(filePath);
+                    serialisedParams.Add(fs);
+                }
                 else
                 {
                     var properties = paramType.GetProperties();
@@ -214,10 +221,17 @@ namespace MbedCloudSDK.IntegrationTests.Models
                         {
                             if (propertyInst.PropertyType.Name == "Filter")
                             {
-                                var filterJson = GetParamValue(propertyInst, argsJsonObj);
-                                var filterJsonString = filterJson != null ? filterJson.ToString() : "";
-                                var filterJToken = JToken.FromObject(new Filter(filterJsonString, p));
-                                vals[propertyInst.Name] = filterJToken;
+                                if (propertyInst.Name == "DeviceFilterHelper")
+                                {
+                                    vals[propertyInst.Name] = null;
+                                }
+                                else
+                                {
+                                    var filterJson = GetParamValue(propertyInst, argsJsonObj);
+                                    var filterJsonString = filterJson != null ? filterJson.ToString() : "";
+                                    var filterJToken = JToken.FromObject(new Filter(filterJsonString, p));
+                                    vals[propertyInst.Name] = filterJToken;
+                                }
                             }
                             else if (propertyInst.PropertyType == typeof(List<string>))
                             {

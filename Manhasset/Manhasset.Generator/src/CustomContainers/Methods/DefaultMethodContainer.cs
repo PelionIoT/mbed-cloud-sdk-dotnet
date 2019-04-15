@@ -25,6 +25,7 @@ namespace Manhasset.Generator.src.CustomContainers
                 PathParams = PathParams,
                 QueryParams = QueryParams,
                 FileParams = FileParams,
+                FormParams = FormParams,
                 BodyParams = BodyParams,
                 HttpMethod = HttpMethod,
                 Returns = Returns,

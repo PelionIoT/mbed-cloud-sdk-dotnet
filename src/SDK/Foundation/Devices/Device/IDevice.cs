@@ -200,6 +200,62 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
+        /// last_operator_suspended_category
+        /// </summary>
+        string LastOperatorSuspendedCategory
+        {
+            get;
+        }
+
+        /// <summary>
+        /// last_operator_suspended_description
+        /// </summary>
+        string LastOperatorSuspendedDescription
+        {
+            get;
+        }
+
+        /// <summary>
+        /// last_operator_suspended_updated_at
+        /// </summary>
+        DateTime? LastOperatorSuspendedUpdatedAt
+        {
+            get;
+        }
+
+        /// <summary>
+        /// last_system_suspended_category
+        /// </summary>
+        string LastSystemSuspendedCategory
+        {
+            get;
+        }
+
+        /// <summary>
+        /// last_system_suspended_description
+        /// </summary>
+        string LastSystemSuspendedDescription
+        {
+            get;
+        }
+
+        /// <summary>
+        /// last_system_suspended_updated_at
+        /// </summary>
+        DateTime? LastSystemSuspendedUpdatedAt
+        {
+            get;
+        }
+
+        /// <summary>
+        /// lifecycle_status
+        /// </summary>
+        DeviceLifecycleStatus? LifecycleStatus
+        {
+            get;
+        }
+
+        /// <summary>
         /// manifest
         /// </summary>
         string Manifest
@@ -244,6 +300,14 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
+        /// operator_suspended
+        /// </summary>
+        bool? OperatorSuspended
+        {
+            get;
+        }
+
+        /// <summary>
         /// serial_number
         /// </summary>
         string SerialNumber
@@ -259,6 +323,14 @@ namespace Mbed.Cloud.Foundation
         {
             get;
             set;
+        }
+
+        /// <summary>
+        /// system_suspended
+        /// </summary>
+        bool? SystemSuspended
+        {
+            get;
         }
 
         /// <summary>

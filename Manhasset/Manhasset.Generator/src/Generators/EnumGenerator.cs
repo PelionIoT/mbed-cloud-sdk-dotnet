@@ -33,7 +33,7 @@ namespace Manhasset.Generator.src.Generators
                 {
                     values.Add(new EnumItem
                     {
-                        EnumValue = v.ToUpper(),
+                        EnumValue = v.ToUpper().Replace("-", "_"),
                         ApiValue = v,
                     });
                 });

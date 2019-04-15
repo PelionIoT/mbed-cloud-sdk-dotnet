@@ -110,6 +110,7 @@ namespace Manhasset.Generator.src.Generators
                 var queryParams = new List<MyParameterContainer>();
                 var bodyParams = new List<MyParameterContainer>();
                 var fileParams = new List<MyParameterContainer>();
+                var formParams = new List<MyParameterContainer>();
 
                 // does method need a request param
                 if (method["fields"].Any(f => f["in"].GetStringValue() == "body"))
@@ -193,15 +194,30 @@ namespace Manhasset.Generator.src.Generators
 
                     if (paramIn == "stream")
                     {
-                        var param = new MyParameterContainer
+                        if (field["type"].GetStringValue() == "file")
                         {
-                            Key = key,
-                            ParamType = type,
-                            External = true,
-                            Required = required,
-                            FieldName = fieldName,
-                        };
-                        fileParams.Add(param);
+                            var param = new MyParameterContainer
+                            {
+                                Key = key,
+                                ParamType = type,
+                                External = true,
+                                Required = required,
+                                FieldName = fieldName,
+                            };
+                            fileParams.Add(param);
+                        }
+                        else
+                        {
+                            var param = new MyParameterContainer
+                            {
+                                Key = key,
+                                ParamType = type,
+                                External = true,
+                                Required = required,
+                                FieldName = fieldName,
+                            };
+                            formParams.Add(param);
+                        }
                     }
                 }
 
@@ -244,7 +260,7 @@ namespace Manhasset.Generator.src.Generators
                     }
                 }
 
-                var methodParams = new MyMethodParameterContainer(pathParams, isPaginated ? new List<MyParameterContainer>() : queryParams, bodyParams, fileParams);
+                var methodParams = new MyMethodParameterContainer(pathParams, isPaginated ? new List<MyParameterContainer>() : queryParams, bodyParams, fileParams, formParams);
 
                 // method is paginated, so create paginatedMethodContainer
                 if (isPaginated == true)
@@ -269,6 +285,7 @@ namespace Manhasset.Generator.src.Generators
                         QueryParams = queryParams,
                         BodyParams = bodyParams,
                         FileParams = fileParams,
+                        FormParams = formParams,
                         MethodParams = methodParams,
                         CustomMethodCall = isCustomMethodCall,
                         CustomMethodName = customMethodName,
@@ -325,6 +342,7 @@ namespace Manhasset.Generator.src.Generators
                         QueryParams = queryParams,
                         BodyParams = bodyParams,
                         FileParams = fileParams,
+                        FormParams = formParams,
                         MethodParams = methodParams,
                         CustomMethodCall = isCustomMethodCall,
                         CustomMethodName = customMethodName,

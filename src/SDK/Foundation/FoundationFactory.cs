@@ -32,6 +32,11 @@ namespace Mbed.Cloud.Foundation.Factories
             return new ApiKeyRepository(config, client);
         }
 
+        public CampaignDeviceMetadataRepository CampaignDeviceMetadataRepository()
+        {
+            return new CampaignDeviceMetadataRepository(config, client);
+        }
+
         public CertificateEnrollmentRepository CertificateEnrollmentRepository()
         {
             return new CertificateEnrollmentRepository(config, client);
@@ -82,6 +87,16 @@ namespace Mbed.Cloud.Foundation.Factories
             return new DeviceEventsRepository(config, client);
         }
 
+        public FirmwareImageRepository FirmwareImageRepository()
+        {
+            return new FirmwareImageRepository(config, client);
+        }
+
+        public FirmwareManifestRepository FirmwareManifestRepository()
+        {
+            return new FirmwareManifestRepository(config, client);
+        }
+
         public ServerCredentialsRepository ServerCredentialsRepository()
         {
             return new ServerCredentialsRepository(config, client);
@@ -105,6 +120,11 @@ namespace Mbed.Cloud.Foundation.Factories
         public TrustedCertificateRepository TrustedCertificateRepository()
         {
             return new TrustedCertificateRepository(config, client);
+        }
+
+        public UpdateCampaignRepository UpdateCampaignRepository()
+        {
+            return new UpdateCampaignRepository(config, client);
         }
 
         public UserRepository UserRepository()

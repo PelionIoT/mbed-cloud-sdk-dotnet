@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="TrustedCertificate.cs" company="Arm">
+// <copyright file="UpdateCampaign.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -15,40 +15,32 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Mbed.Cloud.Foundation.Enums;
     using System;
     using Newtonsoft.Json;
-    using Mbed.Cloud.Foundation.Enums;
+    using Mbed.Cloud.Common.Filters;
 
     /// <summary>
-    /// TrustedCertificate
+    /// UpdateCampaign
     /// </summary>
-    public class TrustedCertificate : Entity, ITrustedCertificate
+    public class UpdateCampaign : Entity, IUpdateCampaign
     {
         /// <summary>
-        /// account_id
+        /// autostop_reason
         /// </summary>
-        public string AccountId
+        public string AutostopReason
         {
             get;
             internal set;
         }
 
         /// <summary>
-        /// certificate
+        /// campaign_strategy
         /// </summary>
-        public string Certificate
+        public UpdateCampaignStrategy? CampaignStrategy
         {
             get;
             set;
-        }
-
-        /// <summary>
-        /// certificate_fingerprint
-        /// </summary>
-        public string CertificateFingerprint
-        {
-            get;
-            internal set;
         }
 
         /// <summary>
@@ -70,18 +62,9 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
-        /// device_execution_mode
+        /// device_filter
         /// </summary>
-        public int DeviceExecutionMode
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// enrollment_mode
-        /// </summary>
-        public bool? EnrollmentMode
+        public string DeviceFilter
         {
             get;
             set;
@@ -89,25 +72,25 @@ namespace Mbed.Cloud.Foundation
 
         [JsonIgnore]
         /// <summary>
-        /// is_developer_certificate
+        /// device_filter_helper
         /// </summary>
-        public bool? IsDeveloperCertificate
+        public Filter DeviceFilterHelper
         {
             get
             {
-                return CustomFunctions.IsDeveloperCertificateGetter(this);
+                return CustomFunctions.DeviceFilterHelperGetter(this);
             }
 
             set
             {
-                CustomFunctions.IsDeveloperCertificateSetter(this, value);
+                CustomFunctions.DeviceFilterHelperSetter(this, value);
             }
         }
 
         /// <summary>
-        /// issuer
+        /// finished
         /// </summary>
-        public string Issuer
+        public DateTime? Finished
         {
             get;
             internal set;
@@ -123,36 +106,36 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
-        /// owner_id
+        /// phase
         /// </summary>
-        public string OwnerId
+        public string Phase
         {
             get;
             internal set;
         }
 
         /// <summary>
-        /// service
+        /// root_manifest_id
         /// </summary>
-        public TrustedCertificateService? Service
+        public string RootManifestId
         {
             get;
             set;
         }
 
         /// <summary>
-        /// status
+        /// root_manifest_url
         /// </summary>
-        public TrustedCertificateStatus? Status
+        public string RootManifestUrl
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
-        /// subject
+        /// started_at
         /// </summary>
-        public string Subject
+        public DateTime? StartedAt
         {
             get;
             internal set;
@@ -168,21 +151,12 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
-        /// valid
+        /// when
         /// </summary>
-        public bool? Valid
+        public DateTime? When
         {
             get;
-            internal set;
-        }
-
-        /// <summary>
-        /// validity
-        /// </summary>
-        public DateTime? Validity
-        {
-            get;
-            internal set;
+            set;
         }
     }
 }

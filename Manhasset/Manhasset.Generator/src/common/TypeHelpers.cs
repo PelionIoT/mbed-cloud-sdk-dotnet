@@ -1,3 +1,4 @@
+using System;
 using Manhasset.Core.src.Common;
 using Manhasset.Core.src.Containers;
 using Manhasset.Generator.src.extensions;
@@ -50,6 +51,7 @@ namespace Manhasset.Generator.src.common
                     case "boolean":
                         return "bool";
                     case "string":
+                    case "uri":
                         return "string";
                     case "integer":
                     case "int32":
@@ -65,6 +67,8 @@ namespace Manhasset.Generator.src.common
                         return "DateTime";
                     case "array":
                         return $"List<{internalValue}>";
+                    case "filter":
+                        return "Filter";
                     default:
                         return null;
                 }

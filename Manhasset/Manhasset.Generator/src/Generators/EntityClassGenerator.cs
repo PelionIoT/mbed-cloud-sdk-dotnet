@@ -97,6 +97,7 @@ namespace Manhasset.Generator.src.Generators
                     entityClass.AddProperty(name, overridePropContainer);
                     // need common for custom functions
                     entityClass.AddUsing(nameof(UsingKeys.SDK_COMMON), UsingKeys.SDK_COMMON);
+                    entityClass.AddUsing(nameof(UsingKeys.JSON), UsingKeys.JSON);
                 }
                 else
                 {
@@ -128,6 +129,12 @@ namespace Manhasset.Generator.src.Generators
                     entityClass.AddUsing(nameof(UsingKeys.SYSTEM), UsingKeys.SYSTEM);
                 }
 
+                // add usings for date time
+                if (propertyType == "Filter")
+                {
+                    entityClass.AddUsing(nameof(UsingKeys.FILTERS), UsingKeys.FILTERS);
+                }
+
                 // add usings for list
                 if (propertyType.Contains("List<") || propertyType.Contains("Dictionary<"))
                 {
@@ -155,6 +162,7 @@ namespace Manhasset.Generator.src.Generators
                 && !propertyType.Contains("string")
                 && !propertyType.Contains("object")
                 && !propertyType.Contains("int")
+                && !propertyType.Contains("Filter")
                 && !(TypeHelpers.GetForeignKeyType(property) != null);
         }
     }

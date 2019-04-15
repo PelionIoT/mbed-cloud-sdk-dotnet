@@ -4,8 +4,10 @@
 
 namespace Mbed.Cloud.Common
 {
+    using System;
     using System.IO;
     using System.Threading.Tasks;
+    using Mbed.Cloud.Common.Filters;
     using Mbed.Cloud.Foundation;
     using RestSharp;
 
@@ -102,6 +104,16 @@ namespace Mbed.Cloud.Common
         public static Task<Stream> DownloadErrorsReportFile(DeviceEnrollmentBulkDeleteRepository repo, DeviceEnrollmentBulkDelete model)
         {
             return StreamToFile(repo.Config, model.ErrorsReportFile, "error-report.csv");
+        }
+
+        public static void DeviceFilterHelperSetter(UpdateCampaign self, Filter filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static Filter DeviceFilterHelperGetter(UpdateCampaign self)
+        {
+            throw new NotImplementedException();
         }
 
         private static Task<Stream> StreamToFile(Config config, string url, string filePath = "report.csv")

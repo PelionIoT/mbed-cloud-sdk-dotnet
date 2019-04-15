@@ -18,6 +18,7 @@ namespace Manhasset.Generator.src.CustomContainers
         public List<MyParameterContainer> QueryParams { get; set; }
         public List<MyParameterContainer> BodyParams { get; set; }
         public List<MyParameterContainer> FileParams { get; set; }
+        public List<MyParameterContainer> FormParams { get; set; }
         public bool DeferToForeignKey { get; set; }
         public DeferedMethodCallContainer DeferedMethodCall { get; set; }
         public bool CustomMethodCall { get; set; }
@@ -60,6 +61,17 @@ namespace Manhasset.Generator.src.CustomContainers
                 }.GetSyntax();
 
                 methodBody.Add(fileParamDeclaration);
+            }
+
+            if (FormParams.Any())
+            {
+                var formParamDeclaration = new DictionaryParamaterLocalDeclarationSyntax
+                {
+                    Name = "formParams",
+                    MyParams = FormParams,
+                }.GetSyntax();
+
+                methodBody.Add(formParamDeclaration);
             }
 
             // only add internal body params

@@ -13,6 +13,7 @@ namespace Manhasset.Generator.src.CustomContainers
         public List<MyParameterContainer> PathParams { get; set; }
         public List<MyParameterContainer> QueryParams { get; set; }
         public List<MyParameterContainer> FileParams { get; set; }
+        public List<MyParameterContainer> FormParams { get; set; }
         public List<MyParameterContainer> BodyParams { get; set; }
         public string HttpMethod { get; set; }
         public string Returns { get; set; }
@@ -42,6 +43,12 @@ namespace Manhasset.Generator.src.CustomContainers
             if (FileParams.Any())
             {
                 paramArgList.Add(GetVariableArg("fileParams", "fileParams"));
+                paramArgList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+            }
+
+            if (FormParams.Any())
+            {
+                paramArgList.Add(GetVariableArg("formParams", "formParams"));
                 paramArgList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
             }
 

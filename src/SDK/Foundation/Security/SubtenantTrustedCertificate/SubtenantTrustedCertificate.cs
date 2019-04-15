@@ -16,6 +16,7 @@ namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
     using System;
+    using Newtonsoft.Json;
     using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
@@ -86,6 +87,7 @@ namespace Mbed.Cloud.Foundation
             set;
         }
 
+        [JsonIgnore]
         /// <summary>
         /// is_developer_certificate
         /// </summary>

@@ -13,13 +13,15 @@ namespace Manhasset.Generator.src.CustomContainers
         public MyMethodParameterContainer(List<MyParameterContainer> pathParams,
                                         List<MyParameterContainer> queryParams,
                                         List<MyParameterContainer> bodyParams,
-                                        List<MyParameterContainer> fileParams)
+                                        List<MyParameterContainer> fileParams,
+                                        List<MyParameterContainer> formParams)
         {
             Parameters = new List<MyParameterContainer>()
                                 .Concat(pathParams)
                                 .Concat(queryParams)
                                 .Concat(bodyParams)
                                 .Concat(fileParams)
+                                .Concat(formParams)
                                 .Where(p => p.External == true)
                                 .Select(p =>
                                 {
