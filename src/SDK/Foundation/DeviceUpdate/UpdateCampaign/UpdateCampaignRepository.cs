@@ -52,7 +52,7 @@ namespace Mbed.Cloud.Foundation
         {
             try
             {
-                var bodyParams = new UpdateCampaign { CampaignStrategy = request.CampaignStrategy, Description = request.Description, DeviceFilter = request.DeviceFilter, Name = request.Name, RootManifestId = request.RootManifestId, When = request.When, };
+                var bodyParams = new UpdateCampaign { Description = request.Description, DeviceFilter = request.DeviceFilter, Name = request.Name, RootManifestId = request.RootManifestId, When = request.When, };
                 return await Client.CallApi<UpdateCampaign>(path: "/v3/update-campaigns/", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: request);
             }
             catch (ApiException e)

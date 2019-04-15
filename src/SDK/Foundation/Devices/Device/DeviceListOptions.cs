@@ -16,9 +16,9 @@ namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
     using Mbed.Cloud.Common.Filters;
-    using Mbed.Cloud.Foundation.Enums;
     using System.Collections.Generic;
     using System;
+    using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
     /// DeviceListOptions
@@ -37,150 +37,6 @@ namespace Mbed.Cloud.Foundation
         {
             get;
             set;
-        }
-
-        public DeviceListOptions LifecycleStatusEqualTo(DeviceLifecycleStatus value)
-        {
-            this.Filter.AddFilterItem("lifecycle_status", new FilterItem(value, FilterOperator.Equals));
-            return this;
-        }
-
-        public DeviceListOptions LifecycleStatusNotEqualTo(DeviceLifecycleStatus value)
-        {
-            this.Filter.AddFilterItem("lifecycle_status", new FilterItem(value, FilterOperator.NotEqual));
-            return this;
-        }
-
-        public DeviceListOptions LifecycleStatusIn(params DeviceLifecycleStatus[] value)
-        {
-            this.Filter.AddFilterItem("lifecycle_status", new FilterItem(value, FilterOperator.In));
-            return this;
-        }
-
-        public DeviceListOptions LifecycleStatusNotIn(params DeviceLifecycleStatus[] value)
-        {
-            this.Filter.AddFilterItem("lifecycle_status", new FilterItem(value, FilterOperator.NotIn));
-            return this;
-        }
-
-        public DeviceListOptions OperatorSuspendedEqualTo(bool value)
-        {
-            this.Filter.AddFilterItem("operator_suspended", new FilterItem(value, FilterOperator.Equals));
-            return this;
-        }
-
-        public DeviceListOptions OperatorSuspendedNotEqualTo(bool value)
-        {
-            this.Filter.AddFilterItem("operator_suspended", new FilterItem(value, FilterOperator.NotEqual));
-            return this;
-        }
-
-        public DeviceListOptions LastOperatorSuspensionCategoryEqualTo(string value)
-        {
-            this.Filter.AddFilterItem("last_operator_suspension_category", new FilterItem(value, FilterOperator.Equals));
-            return this;
-        }
-
-        public DeviceListOptions LastOperatorSuspensionCategoryNotEqualTo(string value)
-        {
-            this.Filter.AddFilterItem("last_operator_suspension_category", new FilterItem(value, FilterOperator.NotEqual));
-            return this;
-        }
-
-        public DeviceListOptions LastOperatorSuspensionCategoryIn(params string[] value)
-        {
-            this.Filter.AddFilterItem("last_operator_suspension_category", new FilterItem(value, FilterOperator.In));
-            return this;
-        }
-
-        public DeviceListOptions LastOperatorSuspensionCategoryNotIn(params string[] value)
-        {
-            this.Filter.AddFilterItem("last_operator_suspension_category", new FilterItem(value, FilterOperator.NotIn));
-            return this;
-        }
-
-        public DeviceListOptions LastOperatorSuspensionUpdatedAtIn(params string[] value)
-        {
-            this.Filter.AddFilterItem("last_operator_suspension_updated_at", new FilterItem(value, FilterOperator.In));
-            return this;
-        }
-
-        public DeviceListOptions LastOperatorSuspensionUpdatedAtNotIn(params string[] value)
-        {
-            this.Filter.AddFilterItem("last_operator_suspension_updated_at", new FilterItem(value, FilterOperator.NotIn));
-            return this;
-        }
-
-        public DeviceListOptions LastOperatorSuspensionUpdatedAtLessThan(string value)
-        {
-            this.Filter.AddFilterItem("last_operator_suspension_updated_at", new FilterItem(value, FilterOperator.LessThan));
-            return this;
-        }
-
-        public DeviceListOptions LastOperatorSuspensionUpdatedAtGreaterThan(string value)
-        {
-            this.Filter.AddFilterItem("last_operator_suspension_updated_at", new FilterItem(value, FilterOperator.GreaterThan));
-            return this;
-        }
-
-        public DeviceListOptions SystemSuspendedEqualTo(bool value)
-        {
-            this.Filter.AddFilterItem("system_suspended", new FilterItem(value, FilterOperator.Equals));
-            return this;
-        }
-
-        public DeviceListOptions SystemSuspendedNotEqualTo(bool value)
-        {
-            this.Filter.AddFilterItem("system_suspended", new FilterItem(value, FilterOperator.NotEqual));
-            return this;
-        }
-
-        public DeviceListOptions LastSystemSuspensionCategoryEqualTo(string value)
-        {
-            this.Filter.AddFilterItem("last_system_suspension_category", new FilterItem(value, FilterOperator.Equals));
-            return this;
-        }
-
-        public DeviceListOptions LastSystemSuspensionCategoryNotEqualTo(string value)
-        {
-            this.Filter.AddFilterItem("last_system_suspension_category", new FilterItem(value, FilterOperator.NotEqual));
-            return this;
-        }
-
-        public DeviceListOptions LastSystemSuspensionCategoryIn(params string[] value)
-        {
-            this.Filter.AddFilterItem("last_system_suspension_category", new FilterItem(value, FilterOperator.In));
-            return this;
-        }
-
-        public DeviceListOptions LastSystemSuspensionCategoryNotIn(params string[] value)
-        {
-            this.Filter.AddFilterItem("last_system_suspension_category", new FilterItem(value, FilterOperator.NotIn));
-            return this;
-        }
-
-        public DeviceListOptions LastSystemSuspensionUpdatedAtIn(params string[] value)
-        {
-            this.Filter.AddFilterItem("last_system_suspension_updated_at", new FilterItem(value, FilterOperator.In));
-            return this;
-        }
-
-        public DeviceListOptions LastSystemSuspensionUpdatedAtNotIn(params string[] value)
-        {
-            this.Filter.AddFilterItem("last_system_suspension_updated_at", new FilterItem(value, FilterOperator.NotIn));
-            return this;
-        }
-
-        public DeviceListOptions LastSystemSuspensionUpdatedAtLessThan(string value)
-        {
-            this.Filter.AddFilterItem("last_system_suspension_updated_at", new FilterItem(value, FilterOperator.LessThan));
-            return this;
-        }
-
-        public DeviceListOptions LastSystemSuspensionUpdatedAtGreaterThan(string value)
-        {
-            this.Filter.AddFilterItem("last_system_suspension_updated_at", new FilterItem(value, FilterOperator.GreaterThan));
-            return this;
         }
 
         public DeviceListOptions AccountIdEqualTo(string value)
