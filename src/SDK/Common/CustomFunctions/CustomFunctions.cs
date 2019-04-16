@@ -108,12 +108,12 @@ namespace Mbed.Cloud.Common
 
         public static void DeviceFilterHelperSetter(UpdateCampaign self, Filter filter)
         {
-            throw new NotImplementedException();
+            self.DeviceFilter = filter.CampaignFilterString;
         }
 
         public static Filter DeviceFilterHelperGetter(UpdateCampaign self)
         {
-            throw new NotImplementedException();
+            return new Filter(self.DeviceFilter);
         }
 
         private static Task<Stream> StreamToFile(Config config, string url, string filePath = "report.csv")
