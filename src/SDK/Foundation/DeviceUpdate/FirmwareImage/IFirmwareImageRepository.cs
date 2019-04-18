@@ -27,9 +27,9 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public interface IFirmwareImageRepository
     {
+        Task<FirmwareImage> Create(Stream firmwareImageFile, string description = null, string name = null);
         Task Delete(string id);
         PaginatedResponse<IFirmwareImageListOptions, FirmwareImage> List(IFirmwareImageListOptions options = null);
         Task<FirmwareImage> Read(string id);
-        Task<FirmwareImage> Upload(Stream firmwareImageFile, string description = null, string name = null);
     }
 }

@@ -26,6 +26,6 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public interface ICampaignDeviceMetadataRepository
     {
-        Task<CampaignDeviceMetadata> Read(string campaign, string id);
+        Task<CampaignDeviceMetadata> Read(string campaignId, string id);
     }
 }

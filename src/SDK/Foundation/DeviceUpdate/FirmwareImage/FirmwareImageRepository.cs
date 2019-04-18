@@ -35,6 +35,20 @@ namespace Mbed.Cloud.Foundation
         {
         }
 
+        public async Task<FirmwareImage> Create(Stream firmwareImageFile, string description = null, string name = null)
+        {
+            try
+            {
+                var fileParams = new Dictionary<string, Stream> { { "datafile", firmwareImageFile }, };
+                var formParams = new Dictionary<string, object> { { "description", description }, { "name", name }, };
+                return await Client.CallApi<FirmwareImage>(path: "/v3/firmware-images/", fileParams: fileParams, formParams: formParams, method: HttpMethods.POST);
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
         public async Task Delete(string id)
         {
             try
@@ -72,20 +86,6 @@ namespace Mbed.Cloud.Foundation
             {
                 var pathParams = new Dictionary<string, object> { { "image_id", id }, };
                 return await Client.CallApi<FirmwareImage>(path: "/v3/firmware-images/{image_id}/", pathParams: pathParams, method: HttpMethods.GET);
-            }
-            catch (ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public async Task<FirmwareImage> Upload(Stream firmwareImageFile, string description = null, string name = null)
-        {
-            try
-            {
-                var fileParams = new Dictionary<string, Stream> { { "datafile", firmwareImageFile }, };
-                var formParams = new Dictionary<string, object> { { "description", description }, { "name", name }, };
-                return await Client.CallApi<FirmwareImage>(path: "/v3/firmware-images/", fileParams: fileParams, formParams: formParams, method: HttpMethods.POST);
             }
             catch (ApiException e)
             {

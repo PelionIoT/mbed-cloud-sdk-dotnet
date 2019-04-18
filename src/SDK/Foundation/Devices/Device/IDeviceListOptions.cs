@@ -44,10 +44,10 @@ namespace Mbed.Cloud.Foundation
         DeviceListOptions BootstrapExpirationDateNotIn(params DateTime[] value);
         DeviceListOptions BootstrapExpirationDateLessThan(DateTime value);
         DeviceListOptions BootstrapExpirationDateGreaterThan(DateTime value);
-        DeviceListOptions BootstrappedTimestampIn(params DateTime[] value);
-        DeviceListOptions BootstrappedTimestampNotIn(params DateTime[] value);
-        DeviceListOptions BootstrappedTimestampLessThan(DateTime value);
-        DeviceListOptions BootstrappedTimestampGreaterThan(DateTime value);
+        DeviceListOptions BootstrappedTimestampIn(params string[] value);
+        DeviceListOptions BootstrappedTimestampNotIn(params string[] value);
+        DeviceListOptions BootstrappedTimestampLessThan(string value);
+        DeviceListOptions BootstrappedTimestampGreaterThan(string value);
         DeviceListOptions CaIdEqualTo(string value);
         DeviceListOptions CaIdNotEqualTo(string value);
         DeviceListOptions CaIdIn(params string[] value);

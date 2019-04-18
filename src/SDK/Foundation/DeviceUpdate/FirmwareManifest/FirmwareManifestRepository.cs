@@ -35,6 +35,20 @@ namespace Mbed.Cloud.Foundation
         {
         }
 
+        public async Task<FirmwareManifest> Create(Stream firmwareManifestFile, Stream keyTableFile = null, string description = null, string name = null)
+        {
+            try
+            {
+                var fileParams = new Dictionary<string, Stream> { { "datafile", firmwareManifestFile }, { "key_table", keyTableFile }, };
+                var formParams = new Dictionary<string, object> { { "description", description }, { "name", name }, };
+                return await Client.CallApi<FirmwareManifest>(path: "/v3/firmware-manifests/", fileParams: fileParams, formParams: formParams, method: HttpMethods.POST);
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
         public async Task Delete(string id)
         {
             try
@@ -72,20 +86,6 @@ namespace Mbed.Cloud.Foundation
             {
                 var pathParams = new Dictionary<string, object> { { "manifest_id", id }, };
                 return await Client.CallApi<FirmwareManifest>(path: "/v3/firmware-manifests/{manifest_id}/", pathParams: pathParams, method: HttpMethods.GET);
-            }
-            catch (ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
-        public async Task<FirmwareManifest> Upload(Stream firmwareManifestFile, Stream keyTableFile = null, string description = null, string name = null)
-        {
-            try
-            {
-                var fileParams = new Dictionary<string, Stream> { { "datafile", firmwareManifestFile }, { "key_table", keyTableFile }, };
-                var formParams = new Dictionary<string, object> { { "description", description }, { "name", name }, };
-                return await Client.CallApi<FirmwareManifest>(path: "/v3/firmware-manifests/", fileParams: fileParams, formParams: formParams, method: HttpMethods.POST);
             }
             catch (ApiException e)
             {
