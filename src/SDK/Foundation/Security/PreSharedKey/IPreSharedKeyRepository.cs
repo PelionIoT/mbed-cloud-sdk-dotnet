@@ -27,8 +27,8 @@ namespace Mbed.Cloud.Foundation
     public interface IPreSharedKeyRepository
     {
         Task<PreSharedKey> Create(PreSharedKey request, string secretHex);
-        Task Delete(string endpointName);
+        Task Delete(string id);
         PaginatedResponse<IPreSharedKeyListOptions, PreSharedKey> List(IPreSharedKeyListOptions options = null);
-        Task<PreSharedKey> Read(string endpointName);
+        Task<PreSharedKey> Read(string id);
     }
 }

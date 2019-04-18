@@ -38,7 +38,7 @@ namespace Mbed.Cloud.Foundation
         {
             try
             {
-                var bodyParams = new PreSharedKey { EndpointName = request.EndpointName, };
+                var bodyParams = new PreSharedKey { Id = request.Id, };
                 return await Client.CallApi<PreSharedKey>(path: "/v2/device-shared-keys", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: request);
             }
             catch (ApiException e)
@@ -47,11 +47,11 @@ namespace Mbed.Cloud.Foundation
             }
         }
 
-        public async Task Delete(string endpointName)
+        public async Task Delete(string id)
         {
             try
             {
-                var pathParams = new Dictionary<string, object> { { "endpoint_name", endpointName }, };
+                var pathParams = new Dictionary<string, object> { { "endpoint_name", id }, };
                 await Client.CallApi<PreSharedKey>(path: "/v2/device-shared-keys/{endpoint_name}", pathParams: pathParams, method: HttpMethods.DELETE);
             }
             catch (ApiException e)
@@ -78,11 +78,11 @@ namespace Mbed.Cloud.Foundation
             }
         }
 
-        public async Task<PreSharedKey> Read(string endpointName)
+        public async Task<PreSharedKey> Read(string id)
         {
             try
             {
-                var pathParams = new Dictionary<string, object> { { "endpoint_name", endpointName }, };
+                var pathParams = new Dictionary<string, object> { { "endpoint_name", id }, };
                 return await Client.CallApi<PreSharedKey>(path: "/v2/device-shared-keys/{endpoint_name}", pathParams: pathParams, method: HttpMethods.GET);
             }
             catch (ApiException e)
