@@ -65,13 +65,14 @@ namespace Manhasset.Generator.src.CustomContainers
 
         public override PropertyDeclarationSyntax GetSyntax()
         {
-            var baseProperry = base.GetSyntax();
-            return baseProperry.WithAttributeLists(
-                    SyntaxFactory.SingletonList<AttributeListSyntax>(
-                        SyntaxFactory.AttributeList(
-                            SyntaxFactory.SingletonSeparatedList<AttributeSyntax>(
-                                SyntaxFactory.Attribute(
-                                    SyntaxFactory.IdentifierName("JsonIgnore"))))));
+            // var baseProperry = base.GetSyntax();
+            // return baseProperry.WithAttributeLists(
+            //         SyntaxFactory.SingletonList<AttributeListSyntax>(
+            //             SyntaxFactory.AttributeList(
+            //                 SyntaxFactory.SingletonSeparatedList<AttributeSyntax>(
+            //                     SyntaxFactory.Attribute(
+            //                         SyntaxFactory.IdentifierName("JsonIgnore"))))));
+            return base.GetSyntax();
 
 
         }

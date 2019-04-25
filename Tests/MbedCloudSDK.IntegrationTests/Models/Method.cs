@@ -249,7 +249,10 @@ namespace MbedCloudSDK.IntegrationTests.Models
                             else
                             {
                                 var paramValue = GetParamValue(propertyInst, argsJsonObj);
-                                vals[propertyInst.Name] = paramValue;
+                                if (paramValue != null)
+                                {
+                                    vals[propertyInst.Name] = paramValue;
+                                }
                             }
                         }
                     }

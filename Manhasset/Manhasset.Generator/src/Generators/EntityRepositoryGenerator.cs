@@ -129,6 +129,12 @@ namespace Manhasset.Generator.src.Generators
 
                 foreach (var field in method["fields"])
                 {
+                    var _key = field["_key"].GetStringValue()?.ToPascal();
+                    var _name = field["name"].GetStringValue();
+                    var _api_fieldname = field["api_fieldname"].GetStringValue();
+                    var _entity_fieldname = field["entity_fieldname"].GetStringValue()?.ToPascal();
+                    var _parameter_fieldname = field["parameter_fieldname"].GetStringValue();
+
                     // where is parameter?
                     var paramIn = field["in"].GetStringValue();
                     // is it external?
@@ -137,10 +143,6 @@ namespace Manhasset.Generator.src.Generators
                     var required = field["required"].GetBoolValue();
                     // the type
                     string type = null;
-                    // the fieldname as it is in parameter
-                    var fieldName = field["parameter_fieldname"].GetStringValue() ?? field["name"].GetStringValue();
-                    // key on entity
-                    var key = field["_key"].GetStringValue()?.ToPascal();
                     // replace body with other type
                     var replaceBody = field["__REPLACE_BODY"] != null;
 
@@ -155,11 +157,11 @@ namespace Manhasset.Generator.src.Generators
                     {
                         var param = new MyParameterContainer
                         {
-                            Key = key,
+                            Key = _entity_fieldname,
                             ParamType = type,
                             External = true,
                             Required = required,
-                            FieldName = fieldName,
+                            FieldName = _name ?? _parameter_fieldname ?? _api_fieldname,
                         };
                         pathParams.Add(param);
                     }
@@ -168,11 +170,11 @@ namespace Manhasset.Generator.src.Generators
                     {
                         var param = new MyParameterContainer
                         {
-                            Key = key,
+                            Key = _entity_fieldname,
                             ParamType = type,
                             External = true,
                             Required = required,
-                            FieldName = fieldName,
+                            FieldName = _name ?? _api_fieldname,
                         };
                         queryParams.Add(param);
                     }
@@ -181,12 +183,12 @@ namespace Manhasset.Generator.src.Generators
                     {
                         var param = new MyParameterContainer
                         {
-                            Key = key,
+                            Key = _name?.ToPascal() ?? _entity_fieldname,
                             ParamType = type,
                             External = external,
                             Required = required,
                             ReplaceBody = replaceBody,
-                            FieldName = fieldName,
+                            FieldName = _name ?? _api_fieldname,
                             CallContext = "request",
                         };
                         bodyParams.Add(param);
@@ -198,11 +200,11 @@ namespace Manhasset.Generator.src.Generators
                         {
                             var param = new MyParameterContainer
                             {
-                                Key = key,
+                                Key = _entity_fieldname,
                                 ParamType = type,
                                 External = true,
                                 Required = required,
-                                FieldName = fieldName,
+                                FieldName = _name ?? _api_fieldname,
                             };
                             fileParams.Add(param);
                         }
@@ -210,11 +212,11 @@ namespace Manhasset.Generator.src.Generators
                         {
                             var param = new MyParameterContainer
                             {
-                                Key = key,
+                                Key = _entity_fieldname,
                                 ParamType = type,
                                 External = true,
                                 Required = required,
-                                FieldName = fieldName,
+                                FieldName = _name ?? _api_fieldname,
                             };
                             formParams.Add(param);
                         }

@@ -84,7 +84,7 @@ namespace Mbed.Cloud.Foundation
             get;
             set;
         }
-        [JsonIgnore]
+
         /// <summary>
         /// is_developer_certificate
         /// </summary>

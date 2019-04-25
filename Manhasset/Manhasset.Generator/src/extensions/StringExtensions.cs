@@ -15,6 +15,7 @@ namespace Manhasset.Generator.src.extensions
         {
             if (input != null)
             {
+                input = input.Replace("-", "_");
                 var newString = new char[input.Length];
                 var startIndex = 1;
                 var newStringIndex = 1;

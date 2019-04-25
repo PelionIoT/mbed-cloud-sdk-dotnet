@@ -38,7 +38,7 @@ namespace Mbed.Cloud.Foundation
         {
             try
             {
-                var bodyParams = new PreSharedKey { Id = request.Id, };
+                var bodyParams = new PreSharedKey { EndpointName = request.EndpointName, };
                 return await Client.CallApi<PreSharedKey>(path: "/v2/device-shared-keys", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: request);
             }
             catch (ApiException e)

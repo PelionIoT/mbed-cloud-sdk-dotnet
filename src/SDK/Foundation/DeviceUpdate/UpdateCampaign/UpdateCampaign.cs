@@ -62,7 +62,6 @@ namespace Mbed.Cloud.Foundation
             set;
         }
 
-        [JsonIgnore]
         /// <summary>
         /// device_filter_helper
         /// </summary>
