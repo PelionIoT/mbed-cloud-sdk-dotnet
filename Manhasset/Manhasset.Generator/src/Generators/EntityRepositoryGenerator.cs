@@ -189,7 +189,7 @@ namespace Manhasset.Generator.src.Generators
                             Required = required,
                             ReplaceBody = replaceBody,
                             FieldName = _name ?? _api_fieldname,
-                            CallContext = "request",
+                            CallContext = external ? null : "request",
                         };
                         bodyParams.Add(param);
                     }

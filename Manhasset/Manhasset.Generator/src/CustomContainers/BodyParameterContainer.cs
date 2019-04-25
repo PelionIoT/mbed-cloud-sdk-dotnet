@@ -29,31 +29,79 @@ namespace Manhasset.Generator.src.CustomContainers
                                         SyntaxFactory.IdentifierName(BodyParams.FirstOrDefault()?.Key))))));
             }
 
-            var propList = new List<SyntaxNodeOrToken>();
+            ExpressionSyntax objectCreation;
 
-            BodyParams.Select(b =>
+            if (BodyType == "Annonymous")
             {
-                return b.CallContext != null ?
-                SyntaxFactory.AssignmentExpression(
-                SyntaxKind.SimpleAssignmentExpression,
-                SyntaxFactory.IdentifierName(b.Key),
-                SyntaxFactory.MemberAccessExpression(
-                    SyntaxKind.SimpleMemberAccessExpression,
-                    SyntaxFactory.IdentifierName(b.CallContext),
-                    SyntaxFactory.IdentifierName(b.Key)
-                ))
-                :
-                SyntaxFactory.AssignmentExpression(
-                SyntaxKind.SimpleAssignmentExpression,
-                SyntaxFactory.IdentifierName(b.Key),
-                SyntaxFactory.IdentifierName(b.Key));
-            })
-            .ToList()
-            .ForEach(b =>
+                var anonPropList = new List<SyntaxNodeOrToken>();
+
+                BodyParams.Select(b =>
+                {
+                    return b.CallContext != null ?
+                    SyntaxFactory.AnonymousObjectMemberDeclarator(
+                        SyntaxFactory.MemberAccessExpression(
+                            SyntaxKind.SimpleMemberAccessExpression,
+                            SyntaxFactory.IdentifierName(b.CallContext),
+                            SyntaxFactory.IdentifierName(b.Key)))
+                        .WithNameEquals(
+                            SyntaxFactory.NameEquals(
+                                SyntaxFactory.IdentifierName(b.Key)))
+                    :
+                    SyntaxFactory.AnonymousObjectMemberDeclarator(
+                        SyntaxFactory.IdentifierName(b.Key))
+                    .WithNameEquals(
+                        SyntaxFactory.NameEquals(
+                            SyntaxFactory.IdentifierName(b.Key)));
+                })
+                .ToList()
+                .ForEach(b =>
+                {
+                    anonPropList.Add(b);
+                    anonPropList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+                });
+
+                objectCreation = SyntaxFactory.AnonymousObjectCreationExpression(
+                        SyntaxFactory.SeparatedList<AnonymousObjectMemberDeclaratorSyntax>(
+                            anonPropList.ToArray()
+                        ));
+            }
+            else
             {
-                propList.Add(b);
-                propList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
-            });
+                var propList = new List<SyntaxNodeOrToken>();
+
+                BodyParams.Select(b =>
+                {
+                    return b.CallContext != null ?
+                    SyntaxFactory.AssignmentExpression(
+                    SyntaxKind.SimpleAssignmentExpression,
+                    SyntaxFactory.IdentifierName(b.Key),
+                    SyntaxFactory.MemberAccessExpression(
+                        SyntaxKind.SimpleMemberAccessExpression,
+                        SyntaxFactory.IdentifierName(b.CallContext),
+                        SyntaxFactory.IdentifierName(b.Key)
+                    ))
+                    :
+                    SyntaxFactory.AssignmentExpression(
+                    SyntaxKind.SimpleAssignmentExpression,
+                    SyntaxFactory.IdentifierName(b.Key),
+                    SyntaxFactory.IdentifierName(b.Key));
+                })
+                .ToList()
+                .ForEach(b =>
+                {
+                    propList.Add(b);
+                    propList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+                });
+
+                objectCreation = SyntaxFactory.ObjectCreationExpression(
+                    SyntaxFactory.IdentifierName(BodyType))
+                .WithInitializer(
+                    SyntaxFactory.InitializerExpression(
+                        SyntaxKind.ObjectInitializerExpression,
+                        SyntaxFactory.SeparatedList<ExpressionSyntax>(
+                            propList.ToArray()
+                        )));
+            }
 
             return SyntaxFactory.LocalDeclarationStatement(
                 SyntaxFactory.VariableDeclaration(
@@ -64,14 +112,8 @@ namespace Manhasset.Generator.src.CustomContainers
                             SyntaxFactory.Identifier("bodyParams"))
                         .WithInitializer(
                             SyntaxFactory.EqualsValueClause(
-                                SyntaxFactory.ObjectCreationExpression(
-                                    SyntaxFactory.IdentifierName(BodyType))
-                                .WithInitializer(
-                                    SyntaxFactory.InitializerExpression(
-                                        SyntaxKind.ObjectInitializerExpression,
-                                        SyntaxFactory.SeparatedList<ExpressionSyntax>(
-                                            propList.ToArray()
-                                        ))))))));
+                                objectCreation
+                            )))));
         }
     }
 }
