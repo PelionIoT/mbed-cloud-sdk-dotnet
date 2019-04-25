@@ -30,7 +30,7 @@ namespace Mbed.Cloud.Foundation
         {
             get;
         }
-        [JsonIgnore]
+
         /// <summary>
         /// endpoint_name
         /// </summary>

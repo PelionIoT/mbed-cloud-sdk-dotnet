@@ -124,7 +124,7 @@ namespace Mbed.Cloud.Common
         public static void PreSharedKeyIdSetter(PreSharedKey self, string value)
         {
             self.endpointName = value;
-            self.Id = self.endpointName;
+            self.Id = value;
         }
 
         private static Task<Stream> StreamToFile(Config config, string url, string filePath = "report.csv")

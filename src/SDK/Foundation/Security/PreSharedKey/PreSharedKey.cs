@@ -34,7 +34,6 @@ namespace Mbed.Cloud.Foundation
             internal set;
         }
 
-        [JsonIgnore]
         /// <summary>
         /// endpoint_name
         /// </summary>
