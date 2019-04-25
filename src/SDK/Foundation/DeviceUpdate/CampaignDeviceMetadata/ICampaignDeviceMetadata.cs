@@ -15,6 +15,7 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using System.Collections.Generic;
     using System;
     using Mbed.Cloud.Foundation.Enums;
 
@@ -24,9 +25,9 @@ namespace Mbed.Cloud.Foundation
     public interface ICampaignDeviceMetadata
     {
         /// <summary>
-        /// campaign
+        /// campaign_id
         /// </summary>
-        string Campaign
+        string CampaignId
         {
             get;
             set;

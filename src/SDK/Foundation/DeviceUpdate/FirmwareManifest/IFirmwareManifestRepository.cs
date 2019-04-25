@@ -27,9 +27,9 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public interface IFirmwareManifestRepository
     {
+        Task<FirmwareManifest> Create(Stream firmwareManifestFile, Stream keyTableFile = null, string description = null, string name = null);
         Task Delete(string id);
         PaginatedResponse<IFirmwareManifestListOptions, FirmwareManifest> List(IFirmwareManifestListOptions options = null);
         Task<FirmwareManifest> Read(string id);
-        Task<FirmwareManifest> Upload(Stream firmwareManifestFile, Stream keyTableFile = null, string description = null, string name = null);
     }
 }

@@ -48,7 +48,7 @@ namespace Mbed.Cloud.Common
         public static void IsDeveloperCertificateSetter(TrustedCertificate self, bool? value)
         {
             self.DeviceExecutionMode = value.HasValue ? 1 : 0;
-            self.IsDeveloperCertificate = value;
+            self.isDeveloperCertificate = value.HasValue ? value.Value : false;
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Mbed.Cloud.Common
         public static void IsDeveloperCertificateSetter(SubtenantTrustedCertificate self, bool? value)
         {
             self.DeviceExecutionMode = value.HasValue ? 1 : 0;
-            self.IsDeveloperCertificate = value;
+            self.isDeveloperCertificate = value.HasValue ? value.Value : false;
         }
 
         /// <summary>
@@ -114,6 +114,17 @@ namespace Mbed.Cloud.Common
         public static Filter DeviceFilterHelperGetter(UpdateCampaign self)
         {
             throw new NotImplementedException();
+        }
+
+        public static string PreSharedKeyIdGetter(PreSharedKey self)
+        {
+            return self.endpointName ?? self.Id;
+        }
+
+        public static void PreSharedKeyIdSetter(PreSharedKey self, string value)
+        {
+            self.endpointName = value;
+            self.Id = self.endpointName;
         }
 
         private static Task<Stream> StreamToFile(Config config, string url, string filePath = "report.csv")

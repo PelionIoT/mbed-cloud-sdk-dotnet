@@ -15,6 +15,7 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using System.Collections.Generic;
     using System;
     using Mbed.Cloud.Foundation.Enums;
 
@@ -23,10 +24,12 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public class CampaignDeviceMetadata : Entity, ICampaignDeviceMetadata
     {
+        internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "CampaignId", "campaign" }, };
+
         /// <summary>
-        /// campaign
+        /// campaign_id
         /// </summary>
-        public string Campaign
+        public string CampaignId
         {
             get;
             set;

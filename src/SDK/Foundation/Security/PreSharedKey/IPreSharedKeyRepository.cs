@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="IFirmwareImageRepository.cs" company="Arm">
+// <copyright file="IPreSharedKeyRepository.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -15,7 +15,6 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
-    using System.IO;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
@@ -23,13 +22,13 @@ namespace Mbed.Cloud.Foundation
     using Mbed.Cloud.RestClient;
 
     /// <summary>
-    /// FirmwareImageRepository
+    /// PreSharedKeyRepository
     /// </summary>
-    public interface IFirmwareImageRepository
+    public interface IPreSharedKeyRepository
     {
-        Task<FirmwareImage> Create(Stream firmwareImageFile, string description = null, string name = null);
+        Task<PreSharedKey> Create(PreSharedKey request, string secretHex);
         Task Delete(string id);
-        PaginatedResponse<IFirmwareImageListOptions, FirmwareImage> List(IFirmwareImageListOptions options = null);
-        Task<FirmwareImage> Read(string id);
+        PaginatedResponse<IPreSharedKeyListOptions, PreSharedKey> List(IPreSharedKeyListOptions options = null);
+        Task<PreSharedKey> Read(string id);
     }
 }

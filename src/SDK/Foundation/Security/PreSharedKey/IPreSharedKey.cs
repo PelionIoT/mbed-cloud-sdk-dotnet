@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="ICampaignDeviceMetadataRepository.cs" company="Arm">
+// <copyright file="IPreSharedKey.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -15,17 +15,29 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
-    using System.Threading.Tasks;
-    using MbedCloudSDK.Exceptions;
-    using System.Collections.Generic;
     using System;
-    using Mbed.Cloud.RestClient;
+    using Newtonsoft.Json;
 
     /// <summary>
-    /// CampaignDeviceMetadataRepository
+    /// PreSharedKey
     /// </summary>
-    public interface ICampaignDeviceMetadataRepository
+    public interface IPreSharedKey
     {
-        Task<CampaignDeviceMetadata> Read(string campaignId, string id);
+        /// <summary>
+        /// created_at
+        /// </summary>
+        DateTime? CreatedAt
+        {
+            get;
+        }
+        [JsonIgnore]
+        /// <summary>
+        /// endpoint_name
+        /// </summary>
+        string EndpointName
+        {
+            get;
+            set;
+        }
     }
 }

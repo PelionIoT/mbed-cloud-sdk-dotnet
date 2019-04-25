@@ -97,6 +97,11 @@ namespace Mbed.Cloud.Foundation.Factories
             return new FirmwareManifestRepository(config, client);
         }
 
+        public PreSharedKeyRepository PreSharedKeyRepository()
+        {
+            return new PreSharedKeyRepository(config, client);
+        }
+
         public ServerCredentialsRepository ServerCredentialsRepository()
         {
             return new ServerCredentialsRepository(config, client);

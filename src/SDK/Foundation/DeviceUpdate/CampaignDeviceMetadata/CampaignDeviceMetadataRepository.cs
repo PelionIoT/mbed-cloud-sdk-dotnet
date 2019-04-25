@@ -34,11 +34,11 @@ namespace Mbed.Cloud.Foundation
         {
         }
 
-        public async Task<CampaignDeviceMetadata> Read(string campaign, string id)
+        public async Task<CampaignDeviceMetadata> Read(string campaignId, string id)
         {
             try
             {
-                var pathParams = new Dictionary<string, object> { { "campaign_id", campaign }, { "campaign_device_metadata_id", id }, };
+                var pathParams = new Dictionary<string, object> { { "campaign_id", campaignId }, { "campaign_device_metadata_id", id }, };
                 return await Client.CallApi<CampaignDeviceMetadata>(path: "/v3/update-campaigns/{campaign_id}/campaign-device-metadata/{campaign_device_metadata_id}/", pathParams: pathParams, method: HttpMethods.GET);
             }
             catch (ApiException e)

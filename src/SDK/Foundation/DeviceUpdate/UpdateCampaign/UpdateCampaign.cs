@@ -24,6 +24,8 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public class UpdateCampaign : Entity, IUpdateCampaign
     {
+        internal Filter deviceFilterHelper;
+
         /// <summary>
         /// autostop_reason
         /// </summary>

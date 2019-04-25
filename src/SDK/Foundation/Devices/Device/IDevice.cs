@@ -51,15 +51,6 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
-        /// bootstrapped_timestamp
-        /// </summary>
-        DateTime? BootstrappedTimestamp
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// ca_id
         /// </summary>
         string CaId
@@ -170,15 +161,6 @@ namespace Mbed.Cloud.Foundation
         DateTime? EnrolmentListTimestamp
         {
             get;
-        }
-
-        /// <summary>
-        /// firmware_checksum
-        /// </summary>
-        string FirmwareChecksum
-        {
-            get;
-            set;
         }
 
         /// <summary>
