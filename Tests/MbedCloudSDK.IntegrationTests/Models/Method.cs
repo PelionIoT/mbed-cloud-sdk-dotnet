@@ -188,7 +188,10 @@ namespace MbedCloudSDK.IntegrationTests.Models
                 if (paramType.IsPrimitive || paramType == typeof(String))
                 {
                     var paramValue = GetParamValuePrimitive(p, paramType, argsJsonObj);
-                    serialisedParams.Add(paramValue);
+                    if (paramValue != null)
+                    {
+                        serialisedParams.Add(paramValue);
+                    }
                 }
                 else if (paramType == typeof(DateTime))
                 {
@@ -249,7 +252,10 @@ namespace MbedCloudSDK.IntegrationTests.Models
                             else
                             {
                                 var paramValue = GetParamValue(propertyInst, argsJsonObj);
-                                vals[propertyInst.Name] = paramValue;
+                                if (paramValue != null)
+                                {
+                                    vals[propertyInst.Name] = paramValue;
+                                }
                             }
                         }
                     }
@@ -269,7 +275,7 @@ namespace MbedCloudSDK.IntegrationTests.Models
             {
                 while (serialisedParams.Count < @params.Length)
                 {
-                    serialisedParams.Add(null);
+                    serialisedParams.Add(Type.Missing);
                 }
             }
             return serialisedParams;
