@@ -116,6 +116,17 @@ namespace Mbed.Cloud.Common
             throw new NotImplementedException();
         }
 
+        public static string PreSharedKeyIdGetter(PreSharedKey self)
+        {
+            return self.EndpointName;
+        }
+
+        public static void PreSharedKeyIdSetter(PreSharedKey self, string value)
+        {
+            self.EndpointName = value;
+            self.Id = self.EndpointName;
+        }
+
         private static Task<Stream> StreamToFile(Config config, string url, string filePath = "report.csv")
         {
             using (var writer = File.OpenWrite(filePath))

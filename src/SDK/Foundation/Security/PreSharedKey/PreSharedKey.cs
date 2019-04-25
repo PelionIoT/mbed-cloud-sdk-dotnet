@@ -16,6 +16,7 @@ namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
     using System;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// PreSharedKey
@@ -31,13 +32,21 @@ namespace Mbed.Cloud.Foundation
             internal set;
         }
 
+        [JsonIgnore]
         /// <summary>
         /// endpoint_name
         /// </summary>
         public string EndpointName
         {
-            get;
-            set;
+            get
+            {
+                return CustomFunctions.PreSharedKeyIdGetter(this);
+            }
+
+            set
+            {
+                CustomFunctions.PreSharedKeyIdSetter(this, value);
+            }
         }
     }
 }
