@@ -24,6 +24,8 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public class TrustedCertificate : Entity, ITrustedCertificate
     {
+        internal bool isDeveloperCertificate;
+
         /// <summary>
         /// account_id
         /// </summary>

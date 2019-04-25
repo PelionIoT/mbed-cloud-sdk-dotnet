@@ -23,6 +23,8 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public class PreSharedKey : Entity, IPreSharedKey
     {
+        internal string endpointName;
+
         /// <summary>
         /// created_at
         /// </summary>
