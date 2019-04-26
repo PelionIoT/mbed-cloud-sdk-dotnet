@@ -41,13 +41,9 @@ namespace Mbed.Cloud.Foundation
             {
                 var bodyParams = new
                 {
-                    Description = request.Description,
-                    IssuerAttributes = request.IssuerAttributes,
                     issuerCredentials = issuerCredentials,
-                    IssuerType = request.IssuerType,
-                    Name = request.Name,
                 };
-                return await Client.CallApi<CertificateIssuer>(path: "/v3/certificate-issuers", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: request);
+                return await Client.CallApi<CertificateIssuer>(path: "/v3/certificate-issuers", bodyParams: bodyParams, request: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
             {
@@ -106,12 +102,9 @@ namespace Mbed.Cloud.Foundation
                 var pathParams = new Dictionary<string, object> { { "certificate-issuer-id", id }, };
                 var bodyParams = new
                 {
-                    Description = request.Description,
-                    IssuerAttributes = request.IssuerAttributes,
                     issuerCredentials = issuerCredentials,
-                    Name = request.Name,
                 };
-                return await Client.CallApi<CertificateIssuer>(path: "/v3/certificate-issuers/{certificate-issuer-id}", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: request);
+                return await Client.CallApi<CertificateIssuer>(path: "/v3/certificate-issuers/{certificate-issuer-id}", pathParams: pathParams, bodyParams: bodyParams, request: request, method: HttpMethods.PUT);
             }
             catch (ApiException e)
             {

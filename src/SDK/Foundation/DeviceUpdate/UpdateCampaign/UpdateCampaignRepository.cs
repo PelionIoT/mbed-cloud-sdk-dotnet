@@ -52,8 +52,7 @@ namespace Mbed.Cloud.Foundation
         {
             try
             {
-                var bodyParams = new UpdateCampaign { Description = request.Description, DeviceFilter = request.DeviceFilter, Name = request.Name, RootManifestId = request.RootManifestId, When = request.When, };
-                return await Client.CallApi<UpdateCampaign>(path: "/v3/update-campaigns/", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: request);
+                return await Client.CallApi<UpdateCampaign>(path: "/v3/update-campaigns/", request: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
             {
@@ -155,8 +154,7 @@ namespace Mbed.Cloud.Foundation
             try
             {
                 var pathParams = new Dictionary<string, object> { { "campaign_id", id }, };
-                var bodyParams = new UpdateCampaign { Description = request.Description, DeviceFilter = request.DeviceFilter, Name = request.Name, RootManifestId = request.RootManifestId, When = request.When, };
-                return await Client.CallApi<UpdateCampaign>(path: "/v3/update-campaigns/{campaign_id}/", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: request);
+                return await Client.CallApi<UpdateCampaign>(path: "/v3/update-campaigns/{campaign_id}/", pathParams: pathParams, request: request, method: HttpMethods.PUT);
             }
             catch (ApiException e)
             {

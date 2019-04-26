@@ -52,20 +52,19 @@ namespace Manhasset.Generator.src.CustomContainers
                 paramArgList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
             }
 
-            if (BodyParams.Any())
+            if (BodyParams.Any(b => b.External == true && !b.Key.EndsWith("request")))
             {
                 paramArgList.Add(GetVariableArg("bodyParams", "bodyParams"));
                 paramArgList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
             }
 
-            paramArgList.Add(GetMemberAccessArg("method", "HttpMethods", HttpMethod));
-
             if (HasRequest)
             {
+                paramArgList.Add(GetVariableArg("request", "request"));
                 paramArgList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
-
-                paramArgList.Add(GetVariableArg("request", "objectToUnpack"));
             }
+
+            paramArgList.Add(GetMemberAccessArg("method", "HttpMethods", HttpMethod));
 
             var statementBody = SyntaxFactory.AwaitExpression(
                     SyntaxFactory.InvocationExpression(

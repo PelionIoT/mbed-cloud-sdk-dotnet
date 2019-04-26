@@ -40,8 +40,7 @@ namespace Mbed.Cloud.Foundation
             {
                 var pathParams = new Dictionary<string, object> { { "account_id", accountId }, };
                 var queryParams = new Dictionary<string, object> { { "action", action }, };
-                var bodyParams = new SubtenantUser { Address = request.Address, Email = request.Email, FullName = request.FullName, LoginProfiles = request.LoginProfiles, MarketingAccepted = request.MarketingAccepted, Password = request.Password, PhoneNumber = request.PhoneNumber, TermsAccepted = request.TermsAccepted, Username = request.Username, };
-                return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{account_id}/users", pathParams: pathParams, queryParams: queryParams, bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: request);
+                return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{account_id}/users", pathParams: pathParams, queryParams: queryParams, request: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
             {
@@ -80,8 +79,7 @@ namespace Mbed.Cloud.Foundation
             try
             {
                 var pathParams = new Dictionary<string, object> { { "account_id", accountId }, { "user_id", id }, };
-                var bodyParams = new SubtenantUser { Address = request.Address, FullName = request.FullName, LoginProfiles = request.LoginProfiles, MarketingAccepted = request.MarketingAccepted, PhoneNumber = request.PhoneNumber, TermsAccepted = request.TermsAccepted, TwoFactorAuthentication = request.TwoFactorAuthentication, Username = request.Username, };
-                return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{account_id}/users/{user_id}", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: request);
+                return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{account_id}/users/{user_id}", pathParams: pathParams, request: request, method: HttpMethods.PUT);
             }
             catch (ApiException e)
             {

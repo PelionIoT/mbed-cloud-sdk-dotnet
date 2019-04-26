@@ -40,11 +40,9 @@ namespace Mbed.Cloud.Foundation
             {
                 var bodyParams = new
                 {
-                    Email = request.Email,
-                    LoginProfiles = request.LoginProfiles,
                     validForDays = validForDays,
                 };
-                return await Client.CallApi<UserInvitation>(path: "/v3/user-invitations", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: request);
+                return await Client.CallApi<UserInvitation>(path: "/v3/user-invitations", bodyParams: bodyParams, request: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
             {

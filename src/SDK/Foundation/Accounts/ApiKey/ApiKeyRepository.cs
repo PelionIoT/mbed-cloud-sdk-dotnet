@@ -38,8 +38,7 @@ namespace Mbed.Cloud.Foundation
         {
             try
             {
-                var bodyParams = new ApiKey { Name = request.Name, Owner = request.Owner, Status = request.Status, };
-                return await Client.CallApi<ApiKey>(path: "/v3/api-keys", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: request);
+                return await Client.CallApi<ApiKey>(path: "/v3/api-keys", request: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
             {
@@ -108,8 +107,7 @@ namespace Mbed.Cloud.Foundation
             try
             {
                 var pathParams = new Dictionary<string, object> { { "apikey_id", id }, };
-                var bodyParams = new ApiKey { Name = request.Name, Owner = request.Owner, Status = request.Status, };
-                return await Client.CallApi<ApiKey>(path: "/v3/api-keys/{apikey_id}", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: request);
+                return await Client.CallApi<ApiKey>(path: "/v3/api-keys/{apikey_id}", pathParams: pathParams, request: request, method: HttpMethods.PUT);
             }
             catch (ApiException e)
             {

@@ -11,6 +11,9 @@ using MbedCloudSDK.Common;
 using System.Collections.Generic;
 using Mbed.Cloud.Common;
 using MbedCloudSDK.Connect.Api.Subscribe.Observers;
+using Mbed.Cloud.Foundation;
+using Mbed.Cloud.Foundation.Enums;
+using Mbed.Cloud.RestClient;
 
 namespace Playground
 {
@@ -20,54 +23,35 @@ namespace Playground
         {
             try
             {
-                using (var connect = new ConnectApi(new Config()
+                var repo = new DeviceRepository();
+
+                var deviceRequest = new Device
                 {
-                    ForceClear = true,
-                    LogLevel = LogLevel.ALL,
-                }))
-                {
+                    AutoUpdate = true,
+                    BootstrapExpirationDate = new DateTime(1986, 11, 8),
+                    CaId = "fSQgZNIVdVMxpVvtEpBP",
+                    ConnectorExpirationDate = new DateTime(2002, 8, 3),
+                    Description = "some long description",
+                    DeviceClass = "NHCACKaeRazNoZZuBIij",
+                    DeviceExecutionMode = 1,
+                    DeviceKey = "ylVJZwoLqVrtRUNTIHAF",
+                    EndpointType = "jkYgufdZxaHETxxlhPNV",
+                    HostGateway = "69365650-230d-4648-9824-2864042f465d",
+                    Mechanism = DeviceMechanism.DIRECT,
+                    MechanismUrl = "https://www.examplea03502a1-204b-446e-9aef-59ed02b4e62f.com",
+                    Name = "AUTOTEST-IPG30C",
+                    SerialNumber = "HTjSZbmOYIdvvRIfmvFi",
+                    State = DeviceState.BOOTSTRAPPED,
+                    VendorId = "bhKjKuQIAKOLhdiQBpKT",
+                };
 
-                    // Console.WriteLine("----------------- start -----------------------");
+                var deviceString = JsonConvert.SerializeObject(deviceRequest, SerializationSettings.GetSerializationSettings());
 
-                    // await connect.StartNotificationsAsync();
+                var dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(deviceString);
 
-                    // Console.WriteLine("------------------ start ----------------------");
+                // var device = await repo.Create(deviceRequest, "timestamp", "checksum");
 
-                    // await connect.StartNotificationsAsync();
-
-                    // Console.WriteLine("------------------ start ----------------------");
-
-                    // await connect.StartNotificationsAsync();
-
-                    // Console.WriteLine("------------------ stop ----------------------");
-
-                    // await connect.StopNotificationsAsync();
-
-                    // Console.WriteLine("------------------- stop ---------------------");
-
-                    // await connect.StopNotificationsAsync();
-
-                    // Console.WriteLine("-------------------- start --------------------");
-
-                    // await connect.StartNotificationsAsync();
-
-                    // Console.WriteLine("-------------------- start --------------------");
-
-                    // await connect.StartNotificationsAsync();
-
-                    Console.WriteLine("-------------------- subscribe --------------------");
-
-                    var myDevice = connect.ListConnectedDevices().FirstOrDefault();
-
-                    var obs = await connect.Subscribe.ResourceValuesAsync(myDevice.Id, new List<string> { "/3202/0/5600" });
-
-                    for (int i = 0; i < 10; i++)
-                    {
-                        Console.WriteLine("looping...");
-                        Console.WriteLine(await obs.NextAsync());
-                        Console.WriteLine(i);
-                    }
-                }
+                Console.WriteLine(deviceString);
             }
             catch (Exception e)
             {
