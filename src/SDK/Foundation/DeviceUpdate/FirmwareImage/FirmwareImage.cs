@@ -16,6 +16,7 @@ namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
     using System.Collections.Generic;
+    using Newtonsoft.Json;
     using System;
 
     /// <summary>
@@ -25,6 +26,7 @@ namespace Mbed.Cloud.Foundation
     {
         internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "DatafileUrl", "datafile" }, };
 
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// created_at
         /// </summary>
@@ -78,7 +80,7 @@ namespace Mbed.Cloud.Foundation
             get;
             set;
         }
-
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// updated_at
         /// </summary>

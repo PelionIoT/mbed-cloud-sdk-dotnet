@@ -15,6 +15,7 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Newtonsoft.Json;
     using System;
 
     /// <summary>
@@ -22,6 +23,7 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public class LoginHistory : Entity, ILoginHistory
     {
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// date
         /// </summary>

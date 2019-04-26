@@ -108,6 +108,25 @@ namespace Manhasset.Generator.src.Generators
 
                     entityClass.AddPrivateField($"{name}_BACKING_FIELD", backingField);
                 }
+                else if (propertyType == "DateTime")
+                {
+                    var format = property["format"].GetStringValue();
+
+                    var propContainer = new DateTimePropertyContainer()
+                    {
+                        Name = name,
+                        DocString = docString,
+                        PropertyType = propertyType,
+                        IsNullable = isNullable,
+                        SetAccessorModifier = isReadOnly ? Modifiers.INTERNAL : Modifiers.PUBLIC,
+                        DateFormat = format,
+                    };
+
+                    propContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
+
+                    entityClass.AddProperty(name, propContainer);
+                    entityClass.AddUsing(nameof(UsingKeys.JSON), UsingKeys.JSON);
+                }
                 else
                 {
                     var propContainer = new PropertyWithSummaryContainer()

@@ -15,14 +15,15 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
-    using System;
     using Newtonsoft.Json;
+    using System;
 
     /// <summary>
     /// PreSharedKey
     /// </summary>
     public interface IPreSharedKey
     {
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// created_at
         /// </summary>

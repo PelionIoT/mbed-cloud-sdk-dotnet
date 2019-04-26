@@ -19,6 +19,7 @@ using Mbed.Cloud.Common;
 using Mbed.Cloud.Common.CustomSerializers;
 using Mbed.Cloud.Common.Filters;
 using System.IO;
+using Newtonsoft.Json.Converters;
 
 namespace MbedCloudSDK.IntegrationTests.Models
 {
@@ -116,7 +117,7 @@ namespace MbedCloudSDK.IntegrationTests.Models
                         // if return type is a paginator, return the data property which ca
                         var listResponse = methodInfo.ReturnType.GetMethod("All").Invoke(invokedMethod, null);
                         var serializedResult = JsonConvert.SerializeObject(listResponse, Formatting.Indented, GetSerializerSettings());
-                        return JsonConvert.DeserializeObject(serializedResult);
+                        return JsonConvert.DeserializeObject(serializedResult, GetDeserializerSettings());
                     }
                 }
                 var result = JsonConvert.SerializeObject(invokedMethod, Formatting.Indented, GetSerializerSettings());
@@ -125,7 +126,7 @@ namespace MbedCloudSDK.IntegrationTests.Models
                     return null;
                 }
 
-                return JsonConvert.DeserializeObject(result);
+                return JsonConvert.DeserializeObject(result, GetDeserializerSettings());
             }
             catch (TargetInvocationException e)
             {
@@ -136,7 +137,7 @@ namespace MbedCloudSDK.IntegrationTests.Models
 
                 throw;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 throw;
             }
@@ -156,7 +157,21 @@ namespace MbedCloudSDK.IntegrationTests.Models
         {
             var settings = new JsonSerializerSettings()
             {
-                DateFormatString = "yyyy-MM-ddTHH:mm:ss.ffffffZ",
+                DateTimeZoneHandling = DateTimeZoneHandling.Utc
+            };
+            var contractResolver = new DefaultContractResolver
+            {
+                NamingStrategy = new SnakeCaseNamingStrategy(),
+            };
+            settings.ContractResolver = contractResolver;
+            settings.Converters.Add(new StringEnumConverter());
+            return settings;
+        }
+
+        private JsonSerializerSettings GetDeserializerSettings()
+        {
+            var settings = new JsonSerializerSettings()
+            {
                 DateTimeZoneHandling = DateTimeZoneHandling.Utc
             };
             var contractResolver = new DefaultContractResolver
