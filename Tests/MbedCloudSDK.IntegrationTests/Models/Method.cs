@@ -119,6 +119,13 @@ namespace MbedCloudSDK.IntegrationTests.Models
                         var serializedResult = JsonConvert.SerializeObject(listResponse, Formatting.Indented, GetSerializerSettings());
                         return JsonConvert.DeserializeObject(serializedResult, GetDeserializerSettings());
                     }
+                    if (invokedMethod.GetType() == typeof(FileStream))
+                    {
+                        var file = invokedMethod as FileStream;
+                        file.Close();
+                        file.Dispose();
+                        return "got a file";
+                    }
                 }
                 var result = JsonConvert.SerializeObject(invokedMethod, Formatting.Indented, GetSerializerSettings());
                 if (result == null || result == "null")

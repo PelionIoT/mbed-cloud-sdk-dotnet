@@ -108,7 +108,10 @@ namespace Mbed.Cloud.Common
 
         public static void DeviceFilterHelperSetter(UpdateCampaign self, Filter filter)
         {
-            self.DeviceFilter = filter.CampaignFilterString;
+            if (filter != null)
+            {
+                self.DeviceFilter = filter.CampaignFilterString;
+            }
         }
 
         public static Filter DeviceFilterHelperGetter(UpdateCampaign self)
