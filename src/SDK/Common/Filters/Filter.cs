@@ -23,7 +23,7 @@ namespace Mbed.Cloud.Common.Filters
 
         internal Filter(string value, ParameterInfo paramInfo = null)
         {
-            filterCollection = !string.IsNullOrEmpty(value) ? QueryJsonToDictionary(value, paramInfo) : new Dictionary<string, FilterItemList>();
+            filterCollection = !string.IsNullOrEmpty(value) ? value.IsValidJson() ? QueryJsonToDictionary(value, paramInfo) : QueryStringToDictionary(value) : new Dictionary<string, FilterItemList>();
         }
 
         [JsonProperty]
@@ -37,6 +37,25 @@ namespace Mbed.Cloud.Common.Filters
             private set
             {
                 filterCollection = value.ToDictionary(kv => kv.Key, kv => kv.Value);
+            }
+        }
+
+        /// <summary>
+        /// Gets string representation of Filter.
+        /// </summary>
+        internal string CampaignFilterString
+        {
+            get
+            {
+                if (filterCollection.Any())
+                {
+                    var fString = new List<string>();
+                    filterCollection.ToList().ForEach(k => k.Value.ToList().ForEach(f => fString.Add($"{k.Key}{f.GetSuffix()}={f.Value}")));
+                    var stringVal = string.Join("&", fString);
+                    return stringVal;
+                }
+
+                return string.Empty;
             }
         }
 
@@ -188,6 +207,67 @@ namespace Mbed.Cloud.Common.Filters
             }
 
             return filterAttributes;
+        }
+
+        private static Dictionary<string, FilterItemList> QueryStringToDictionary(string queryString)
+        {
+            var dict = new Dictionary<string, FilterItemList>();
+            var split = queryString.Split('&');
+            foreach (var part in split)
+            {
+                var keyValue = part.Split('=');
+                if (keyValue.Length == 2)
+                {
+                    var val = keyValue[1];
+                    var key = keyValue[0];
+                    var oper = FilterOperator.Equals;
+
+                    if (key.Contains("__neq"))
+                    {
+                        key = key.Replace("__neq", string.Empty);
+                        oper = FilterOperator.NotEqual;
+                    }
+
+                    if (key.Contains("__lte"))
+                    {
+                        key = key.Replace("__lte", string.Empty);
+                        oper = FilterOperator.LessThan;
+                    }
+
+                    if (key.Contains("__gte"))
+                    {
+                        key = key.Replace("__gte", string.Empty);
+                        oper = FilterOperator.GreaterThan;
+                    }
+
+                    if (key.Contains("__in"))
+                    {
+                        key = key.Replace("__in", string.Empty);
+                        oper = FilterOperator.In;
+                    }
+
+                    if (key.Contains("__nin"))
+                    {
+                        key = key.Replace("__nin", string.Empty);
+                        oper = FilterOperator.NotIn;
+                    }
+
+                    var queryAttribute = new FilterItem(val, oper);
+                    if (dict.ContainsKey(key))
+                    {
+                        var tmp = dict[key];
+                        tmp.Add(queryAttribute);
+                        dict.Remove(key);
+                        dict.Add(key, tmp);
+                    }
+                    else
+                    {
+                        dict.Add(key, new FilterItemList { queryAttribute });
+                    }
+                }
+            }
+
+            return dict;
         }
     }
 }
