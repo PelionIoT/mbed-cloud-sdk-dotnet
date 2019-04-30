@@ -189,7 +189,7 @@ namespace Manhasset.Generator.src.Generators
                 && !propertyType.Contains("Dictionary<")
                 && !propertyType.Contains("string")
                 && !propertyType.Contains("object")
-                && !propertyType.Contains("int")
+                // && !propertyType.Contains("int")
                 && !propertyType.Contains("Filter")
                 && !(TypeHelpers.GetForeignKeyType(property) != null);
         }

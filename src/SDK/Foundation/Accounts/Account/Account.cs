@@ -290,7 +290,7 @@ namespace Mbed.Cloud.Foundation
         /// <summary>
         /// password_recovery_expiration
         /// </summary>
-        public int PasswordRecoveryExpiration
+        public int? PasswordRecoveryExpiration
         {
             get;
             set;

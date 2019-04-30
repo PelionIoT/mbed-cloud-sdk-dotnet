@@ -54,7 +54,7 @@ namespace Mbed.Cloud.Foundation
         /// <summary>
         /// errors_count
         /// </summary>
-        public int ErrorsCount
+        public int? ErrorsCount
         {
             get;
             internal set;
@@ -81,7 +81,7 @@ namespace Mbed.Cloud.Foundation
         /// <summary>
         /// processed_count
         /// </summary>
-        public int ProcessedCount
+        public int? ProcessedCount
         {
             get;
             internal set;
@@ -99,7 +99,7 @@ namespace Mbed.Cloud.Foundation
         /// <summary>
         /// total_count
         /// </summary>
-        public int TotalCount
+        public int? TotalCount
         {
             get;
             internal set;
