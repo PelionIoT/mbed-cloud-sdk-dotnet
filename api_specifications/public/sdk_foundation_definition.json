@@ -1018,6 +1018,7 @@
                       "group": "Accounts",
                       "entity": "parent_account"
                     },
+                    "x-nullable": true,
                     "api_fieldname": "parent_account",
                     "entity_fieldname": "parent_account",
                     "_key": "parent_account"
@@ -1050,6 +1051,8 @@
                       "group": "Accounts",
                       "entity": "password_policy"
                     },
+                    "description": "The password policy for this account.",
+                    "x-nullable": true,
                     "api_fieldname": "password_policy",
                     "entity_fieldname": "password_policy",
                     "_key": "password_policy"
@@ -1450,6 +1453,7 @@
                             "group": "Accounts",
                             "entity": "parent_account"
                           },
+                          "x-nullable": true,
                           "_key": "parent_account"
                         },
                         {
@@ -1478,6 +1482,8 @@
                             "group": "Accounts",
                             "entity": "password_policy"
                           },
+                          "description": "The password policy for this account.",
+                          "x-nullable": true,
                           "_key": "password_policy"
                         },
                         {
@@ -2322,6 +2328,7 @@
                             "group": "Accounts",
                             "entity": "parent_account"
                           },
+                          "x-nullable": true,
                           "_key": "parent_account"
                         },
                         {
@@ -2350,6 +2357,8 @@
                             "group": "Accounts",
                             "entity": "password_policy"
                           },
+                          "description": "The password policy for this account.",
+                          "x-nullable": true,
                           "_key": "password_policy"
                         },
                         {
@@ -2730,6 +2739,7 @@
                                   "group": "Accounts",
                                   "entity": "parent_account"
                                 },
+                                "x-nullable": true,
                                 "_key": "parent_account"
                               },
                               {
@@ -2758,6 +2768,8 @@
                                   "group": "Accounts",
                                   "entity": "password_policy"
                                 },
+                                "description": "The password policy for this account.",
+                                "x-nullable": true,
                                 "_key": "password_policy"
                               },
                               {
@@ -3561,6 +3573,7 @@
                       "group": "Accounts",
                       "entity": "parent_account"
                     },
+                    "x-nullable": true,
                     "api_fieldname": "parent_account",
                     "entity_fieldname": "parent_account",
                     "_key": "parent_account"
@@ -3593,6 +3606,8 @@
                       "group": "Accounts",
                       "entity": "password_policy"
                     },
+                    "description": "The password policy for this account.",
+                    "x-nullable": true,
                     "api_fieldname": "password_policy",
                     "entity_fieldname": "password_policy",
                     "_key": "password_policy"
@@ -3993,6 +4008,7 @@
                             "group": "Accounts",
                             "entity": "parent_account"
                           },
+                          "x-nullable": true,
                           "_key": "parent_account"
                         },
                         {
@@ -4021,6 +4037,8 @@
                             "group": "Accounts",
                             "entity": "password_policy"
                           },
+                          "description": "The password policy for this account.",
+                          "x-nullable": true,
                           "_key": "password_policy"
                         },
                         {
@@ -4802,6 +4820,7 @@
                       "group": "Accounts",
                       "entity": "parent_account"
                     },
+                    "x-nullable": true,
                     "api_fieldname": "parent_account",
                     "entity_fieldname": "parent_account",
                     "_key": "parent_account"
@@ -4834,6 +4853,8 @@
                       "group": "Accounts",
                       "entity": "password_policy"
                     },
+                    "description": "The password policy for this account.",
+                    "x-nullable": true,
                     "api_fieldname": "password_policy",
                     "entity_fieldname": "password_policy",
                     "_key": "password_policy"
@@ -5234,6 +5255,7 @@
                             "group": "Accounts",
                             "entity": "parent_account"
                           },
+                          "x-nullable": true,
                           "_key": "parent_account"
                         },
                         {
@@ -5262,6 +5284,8 @@
                             "group": "Accounts",
                             "entity": "password_policy"
                           },
+                          "description": "The password policy for this account.",
+                          "x-nullable": true,
                           "_key": "password_policy"
                         },
                         {
@@ -6631,6 +6655,8 @@
                 "group": "Accounts",
                 "entity": "password_policy"
               },
+              "description": "The password policy for this account.",
+              "x-nullable": true,
               "api_fieldname": "password_policy",
               "entity_fieldname": "password_policy",
               "parameter_fieldname": "password_policy",
@@ -7018,6 +7044,7 @@
                       "group": "Accounts",
                       "entity": "parent_account"
                     },
+                    "x-nullable": true,
                     "api_fieldname": "parent_account",
                     "entity_fieldname": "parent_account",
                     "_key": "parent_account"
@@ -7050,6 +7077,8 @@
                       "group": "Accounts",
                       "entity": "password_policy"
                     },
+                    "description": "The password policy for this account.",
+                    "x-nullable": true,
                     "api_fieldname": "password_policy",
                     "entity_fieldname": "password_policy",
                     "_key": "password_policy"
@@ -7450,6 +7479,7 @@
                             "group": "Accounts",
                             "entity": "parent_account"
                           },
+                          "x-nullable": true,
                           "_key": "parent_account"
                         },
                         {
@@ -7478,6 +7508,8 @@
                             "group": "Accounts",
                             "entity": "password_policy"
                           },
+                          "description": "The password policy for this account.",
+                          "x-nullable": true,
                           "_key": "password_policy"
                         },
                         {
@@ -9721,6 +9753,7 @@
             "group": "Accounts",
             "entity": "parent_account"
           },
+          "x-nullable": true,
           "api_fieldname": "parent_account",
           "readOnly": true,
           "required": false,
@@ -9753,6 +9786,8 @@
             "group": "Accounts",
             "entity": "password_policy"
           },
+          "description": "The password policy for this account.",
+          "x-nullable": true,
           "api_fieldname": "password_policy",
           "readOnly": false,
           "_key": "password_policy"
