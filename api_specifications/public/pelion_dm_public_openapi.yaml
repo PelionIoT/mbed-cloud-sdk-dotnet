@@ -7,71 +7,86 @@ definitions:
           for commercial accounts only.
         example: 110 Fulbourn Rd
         type: string
+        x-nullable: true
       address_line2:
         description: Postal address line 2, no longer than 100 characters.
         example: ' '
         type: string
+        x-nullable: true
       admin_email:
         description: The email address of the account admin, no longer than 254 characters.
         example: admin@arm.com
         type: string
+        x-nullable: true
       admin_full_name:
         description: The full name of the admin user to create.
         example: Admin Doe
         type: string
+        x-nullable: true
       admin_name:
         description: The username of the admin user to create, containing alphanumerical
           letters and -,._@+= characters. Must be 4-30 characters.
         example: admin
         type: string
+        x-nullable: true
       admin_password:
         description: The password when creating a new user. Generated when not present
           in the request.
         example: PZf9eEUH43DAPE9ULINFeuj
         type: string
+        x-nullable: true
       aliases:
         description: An array of aliases, no more than 10. Must be between 8 and 100
           characters, inclusive.
         items:
           type: string
         type: array
+        x-nullable: true
       city:
         description: The city part of the postal address, no longer than 100 characters.
           Required for commercial accounts only.
         example: Cambridge
         type: string
+        x-nullable: true
       company:
         description: The name of the company, no longer than 100 characters. Required
           for commercial accounts only.
         example: ARM Holdings Plc
         type: string
+        x-nullable: true
       contact:
         description: The name of the contact person for this account, no longer than
           100 characters. Required for commercial accounts only.
         example: J. Doe
         type: string
+        x-nullable: true
       contract_number:
         description: Contract number of the customer.
         example: 1NX25_0001
         type: string
+        x-nullable: true
       country:
         description: The country part of the postal address, no longer than 100 characters.
           Required for commercial accounts only.
         example: United Kingdom
         type: string
+        x-nullable: true
       customer_number:
         description: Customer number of the customer.
         example: 1NC25_0001
         type: string
+        x-nullable: true
       display_name:
         description: The display name for the account, no longer than 100 characters.
         example: ARM
         type: string
+        x-nullable: true
       email:
         description: The company email address for this account, no longer than 254
           characters. Required for commercial accounts only.
         example: info@arm.com
         type: string
+        x-nullable: true
       end_market:
         description: The end market of the account to create.
         example: IT
@@ -81,15 +96,18 @@ definitions:
           than 100 characters.
         example: +44 (1223) 400 400
         type: string
+        x-nullable: true
       postal_code:
         description: The postal code part of the postal address, no longer than 100
           characters.
         example: CB1 9NJ
         type: string
+        x-nullable: true
       state:
         description: The state part of the postal address, no longer than 100 characters.
         example: ' '
         type: string
+        x-nullable: true
     required:
     - end_market
     type: object
@@ -100,40 +118,48 @@ definitions:
         description: Postal address line 1.
         example: 110 Fulbourn Rd
         type: string
+        x-nullable: true
       address_line2:
         description: Postal address line 2.
         example: ' '
         type: string
+        x-nullable: true
       admin_email:
         description: The email address of the admin user created for this account.
           Present only in the response for account creation.
         example: admin@arm.com
         type: string
+        x-nullable: true
       admin_full_name:
         description: The full name of the admin user created for this account. Present
           only in the response for account creation.
         example: Admin Doe
         type: string
+        x-nullable: true
       admin_id:
         description: The ID of the admin user created for this account.
         example: 01619571e2e89242ac12000600000000
         type: string
+        x-nullable: true
       admin_key:
         description: The admin API key created for this account. Present only in the
           response for account creation.
         example: ak_1MDE2MTk1NzFmNmU4MDI0MmFjMTIwMDA2MDAwMDAwMDA01619571f7020242ac12000600000000B40IkJADMANmAscAj0Ot0n2yeQnyt9tT
         readOnly: true
         type: string
+        x-nullable: true
       admin_name:
         description: The username of the admin user created for this account. Present
           only in the response for account creation.
         example: admin
         type: string
+        x-nullable: true
       admin_password:
         description: The password of the admin user created for this account. Present
           only in the response for account creation.
         example: PZf9eEUH43DAPE9ULINFeuj
         type: string
+        x-nullable: true
       aliases:
         description: An array of aliases.
         items:
@@ -143,22 +169,27 @@ definitions:
         description: The city part of the postal address.
         example: Cambridge
         type: string
+        x-nullable: true
       company:
         description: The name of the company.
         example: ARM Holdings Plc
         type: string
+        x-nullable: true
       contact:
         description: The name of the contact person for this account.
         example: J. Doe
         type: string
+        x-nullable: true
       contract_number:
         description: Contract number of the customer.
         example: 1NX25_0001
         type: string
+        x-nullable: true
       country:
         description: The country part of the postal address.
         example: United Kingdom
         type: string
+        x-nullable: true
       created_at:
         description: Creation UTC time RFC3339.
         example: '2018-02-13T09:35:20Z'
@@ -169,18 +200,22 @@ definitions:
           type: string
         description: Account's custom properties as key-value pairs.
         type: object
+        x-nullable: true
       customer_number:
         description: Customer number of the customer.
         example: 1NC25_0001
         type: string
+        x-nullable: true
       display_name:
         description: The display name for the account.
         example: ARM
         type: string
+        x-nullable: true
       email:
         description: The company email address for this account.
         example: info@arm.com
         type: string
+        x-nullable: true
       end_market:
         description: Account end market.
         example: IT
@@ -193,11 +228,13 @@ definitions:
         description: Expiration time of the account, as UTC time RFC3339.
         format: date-time
         type: string
+        x-nullable: true
       expiration_warning_threshold:
         description: Indicates how many days (1-180) before account expiration a notification
           email is sent.
         example: '180'
         type: string
+        x-nullable: true
       id:
         description: Account ID.
         example: 01619571e2e90242ac12000600000000
@@ -206,11 +243,13 @@ definitions:
         description: The reference token expiration time, in minutes, for this account.
         example: '30'
         type: string
+        x-nullable: true
       limits:
         additionalProperties:
           type: string
         description: List of limits as key-value pairs if requested.
         type: object
+        x-nullable: true
       mfa_status:
         description: The enforcement status of multi-factor authentication, either
           `enforced` or `optional`.
@@ -218,11 +257,13 @@ definitions:
         - enforced
         - optional
         type: string
+        x-nullable: true
       notification_emails:
         description: A list of notification email addresses.
         items:
           type: string
         type: array
+        x-nullable: true
       object:
         description: 'Entity name: always `account`.'
         enum:
@@ -231,13 +272,16 @@ definitions:
       parent_account:
         $ref: '#/definitions/ParentAccountInfo'
         description: Contact details of the parent account.
+        x-nullable: true
       parent_id:
         description: The ID of the parent account, if any.
         example: 01619571dad80242ac12000600000000
         type: string
+        x-nullable: true
       password_policy:
         $ref: '#/definitions/PasswordPolicy'
         description: The password policy for this account.
+        x-nullable: true
       password_recovery_expiration:
         description: Indicates for how many minutes a password recovery email is valid
           (1-45).
@@ -249,31 +293,38 @@ definitions:
         description: The phone number of a company representative.
         example: +44 (1223) 400 400
         type: string
+        x-nullable: true
       policies:
         description: List of policies if requested.
         items:
           $ref: '#/definitions/FeaturePolicy'
         type: array
+        x-nullable: true
       postal_code:
         description: The postal code part of the postal address.
         example: CB1 9NJ
         type: string
+        x-nullable: true
       reason:
         description: A note with the reason for account status update.
         example: Subscription paid.
         type: string
+        x-nullable: true
       reference_note:
         description: A reference note for updating the status of the account.
         example: ARM-INT-0001
         type: string
+        x-nullable: true
       sales_contact:
         description: Email address of the sales contact.
         example: sales@arm.com
         type: string
+        x-nullable: true
       state:
         description: The state part of the postal address.
         example: ' '
         type: string
+        x-nullable: true
       status:
         description: The status of the account.
         enum:
@@ -288,10 +339,12 @@ definitions:
         items:
           $ref: '#/definitions/AccountInfo'
         type: array
+        x-nullable: true
       template_id:
         description: Account template ID.
         example: 01619571e7160242ac12000600000000
         type: string
+        x-nullable: true
       tier:
         description: 'The tier level of the account; `0`: free tier, `1`: commercial
           account, `2`: partner tier. Other values are reserved for the future.'
@@ -367,62 +420,75 @@ definitions:
           for commercial accounts only.
         example: 110 Fulbourn Rd
         type: string
+        x-nullable: true
       address_line2:
         description: Postal address line 2, no longer than 100 characters.
         example: ' '
         type: string
+        x-nullable: true
       aliases:
         description: An array of aliases, no more than 10. Aliases must be 8-120 characters,
           inclusive.
         items:
           type: string
         type: array
+        x-nullable: true
       city:
         description: The city part of the postal address, no longer than 100 characters.
           Required for commercial accounts only.
         example: Cambridge
         type: string
+        x-nullable: true
       company:
         description: The name of the company, no longer than 100 characters. Required
           for commercial accounts only.
         example: ARM Holdings Plc
         type: string
+        x-nullable: true
       contact:
         description: The name of the contact person for this account, no longer than
           100 characters. Required for commercial accounts only.
         example: J. Doe
         type: string
+        x-nullable: true
       country:
         description: The country part of the postal address, no longer than 100 characters.
           Required for commercial accounts only.
         example: United Kingdom
         type: string
+        x-nullable: true
       custom_fields:
         additionalProperties:
           type: string
         description: Account's custom properties as key-value pairs, maximum 10. Maximum
           key length 100 characters. Maximum value length 1000 characters.
         type: object
+        x-nullable: true
       display_name:
         description: The display name for the account, no longer than 100 characters.
         example: ARM
         type: string
+        x-nullable: true
       email:
         description: The company email address for this account, no longer than 254
           characters. Required for commercial accounts only.
         example: info@arm.com
         type: string
+        x-nullable: true
       end_market:
         description: The end market for this account, no longer than 100 characters.
         example: IT
         type: string
+        x-nullable: true
       expiration_warning_threshold:
         description: Indicates how many days before account expiration a notification
           email is sent (1-180).
         type: string
+        x-nullable: true
       idle_timeout:
         description: Reference token expiration time in minutes (1-120).
         type: string
+        x-nullable: true
       mfa_status:
         description: The enforcement status of multi-factor authentication, either
           `enforced` or `optional`.
@@ -430,14 +496,17 @@ definitions:
         - enforced
         - optional
         type: string
+        x-nullable: true
       notification_emails:
         description: A list of notification email addresses.
         items:
           type: string
         type: array
+        x-nullable: true
       password_policy:
         $ref: '#/definitions/PasswordPolicy'
         description: Password policy for this account.
+        x-nullable: true
       password_recovery_expiration:
         description: Indicates for how many minutes a password recovery email is valid
           (1-45).
@@ -445,20 +514,24 @@ definitions:
         maximum: 45
         minimum: 1
         type: integer
+        x-nullable: true
       phone_number:
         description: The phone number of a representative of the company, no longer
           than 100 characters.
         example: +44 (1223) 400 400
         type: string
+        x-nullable: true
       postal_code:
         description: The postal code part of the postal address, no longer than 100
           characters.
         example: CB1 9NJ
         type: string
+        x-nullable: true
       state:
         description: The state part of the postal address, no longer than 100 characters.
         example: ' '
         type: string
+        x-nullable: true
     type: object
   AccountUpdateRootReq:
     description: Represents an account update request.
@@ -468,39 +541,47 @@ definitions:
           for commercial accounts only.
         example: 110 Fulbourn Rd
         type: string
+        x-nullable: true
       address_line2:
         description: Postal address line 2, no longer than 100 characters.
         example: ' '
         type: string
+        x-nullable: true
       aliases:
         description: An array of aliases, no more than 10. An alias is not shorter
           than 8 and no longer than 100 characters.
         items:
           type: string
         type: array
+        x-nullable: true
       city:
         description: The city part of the postal address, no longer than 100 characters.
           Required for commercial accounts only.
         example: Cambridge
         type: string
+        x-nullable: true
       company:
         description: The name of the company, no longer than 100 characters. Required
           for commercial accounts only.
         example: ARM Holdings Plc
         type: string
+        x-nullable: true
       contact:
         description: The name of the contact person for this account, no longer than
           100 characters. Required for commercial accounts only.
         example: J. Doe
         type: string
+        x-nullable: true
       contract_number:
         description: Contract number of the customer.
         type: string
+        x-nullable: true
       country:
         description: The country part of the postal address, no longer than 100 characters.
           Required for commercial accounts only.
         example: United Kingdom
         type: string
+        x-nullable: true
       custom_fields:
         additionalProperties:
           type: string
@@ -508,30 +589,37 @@ definitions:
           of 10 keys. The maximum length of a key is 100 characters. The values are
           handled as strings and the maximum length for a value is 1000 characters.
         type: object
+        x-nullable: true
       customer_number:
         description: Customer number of the customer.
         type: string
+        x-nullable: true
       display_name:
         description: The display name for the account, no longer than 100 characters.
         example: ARM
         type: string
+        x-nullable: true
       email:
         description: The company email address for this account, no longer than 254
           characters. Required for commercial accounts only.
         example: info@arm.com
         type: string
+        x-nullable: true
       end_market:
         description: The end market for this account, no longer than 100 characters.
         example: IT
         type: string
+        x-nullable: true
       expiration_warning_threshold:
         description: Indicates how many days before account expiration a notification
           email is sent (1-180).
         type: string
+        x-nullable: true
       idle_timeout:
         description: The reference token expiration time in minutes for this account.
           Between 1 and 120 minutes.
         type: string
+        x-nullable: true
       mfa_status:
         description: The enforcement status of setting up the multi-factor authentication.
           'Enforced' means that setting up the MFA is required after login. 'Optional'
@@ -540,14 +628,17 @@ definitions:
         - enforced
         - optional
         type: string
+        x-nullable: true
       notification_emails:
         description: A list of notification email addresses.
         items:
           type: string
         type: array
+        x-nullable: true
       password_policy:
         $ref: '#/definitions/PasswordPolicy'
         description: Password policy for this account.
+        x-nullable: true
       password_recovery_expiration:
         description: Indicates for how many minutes a password recovery email is valid
           (1-45).
@@ -555,23 +646,28 @@ definitions:
         maximum: 45
         minimum: 1
         type: integer
+        x-nullable: true
       phone_number:
         description: The phone number of a representative of the company, no longer
           than 100 characters.
         example: +44 (1223) 400 400
         type: string
+        x-nullable: true
       postal_code:
         description: The postal code part of the postal address, no longer than 100
           characters.
         example: CB1 9NJ
         type: string
+        x-nullable: true
       sales_contact:
         description: Email address of the sales contact.
         type: string
+        x-nullable: true
       state:
         description: The state part of the postal address, no longer than 100 characters.
         example: ' '
         type: string
+        x-nullable: true
     type: object
   ActiveServicePackage:
     description: An active service package.
@@ -1848,6 +1944,17 @@ definitions:
     required:
     - hmac_hex_key
     type: object
+  ChannelMetadata:
+    properties:
+      delivery_mechanism:
+        description: Channel delivery mechanism.
+        enum:
+        - CALLBACK
+        - LONG_POLLING
+        - WEB_SOCKET
+        example: CALLBACK
+        type: string
+    type: object
   CreateCertificateIssuerConfig:
     properties:
       certificate_issuer_id:
@@ -1929,6 +2036,7 @@ definitions:
           Please see [TrustedCertificateReq](../current/api-references/account-management-api.html#trustedcertificatereq).
         maxLength: 500
         type: string
+        x-nullable: true
       name:
         description: Name of the developer certificate. Must be unique. Maximum 100
           characters. Please see [TrustedCertificateReq](../current/api-references/account-management-api.html#trustedcertificatereq).
@@ -1949,6 +2057,7 @@ definitions:
       description:
         description: Description for the developer certificate.
         type: string
+        x-nullable: true
       developer_certificate:
         description: PEM-format X.509 developer certificate.
         type: string
@@ -1986,6 +2095,7 @@ definitions:
           server.
         format: date
         type: string
+        x-nullable: true
       ca_id:
         description: The certificate issuer's ID.
         example: '00000000000000000000000000000000'
@@ -1996,6 +2106,7 @@ definitions:
           server.
         format: date
         type: string
+        x-nullable: true
       created_at:
         description: The timestamp of when the device was created in the device directory.
         example: '2017-05-22T12:37:55.576563Z'
@@ -2085,6 +2196,7 @@ definitions:
         example: C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322
         pattern: '[A-Fa-f0-9]{64}'
         type: string
+        x-nullable: true
       manifest:
         description: 'DEPRECATED: The URL for the current device manifest.'
         example: ''
@@ -2143,14 +2255,16 @@ definitions:
       bootstrap_expiration_date:
         description: The expiration date of the certificate used to connect to bootstrap
           server.
-        example: '2017-05-22T12:37:55.576563Z'
-        format: date-time
+        example: '2017-05-22'
+        format: date
         type: string
+        x-nullable: true
       bootstrapped_timestamp:
         description: The timestamp of the device's most recent bootstrap process.
         example: '2017-05-22T12:37:55.576563Z'
         format: date-time
         type: string
+        x-nullable: true
       ca_id:
         description: The certificate issuer's ID.
         example: '00000000000000000000000000000000'
@@ -2159,9 +2273,10 @@ definitions:
       connector_expiration_date:
         description: The expiration date of the certificate used to connect to the
           LwM2M server.
-        example: '2017-05-22T12:37:55.576563Z'
-        format: date-time
+        example: '2017-05-22'
+        format: date
         type: string
+        x-nullable: true
       custom_attributes:
         additionalProperties:
           maxLength: 128
@@ -5188,6 +5303,7 @@ definitions:
         description: Human readable description of this certificate, no longer than
           500 characters.
         type: string
+        x-nullable: true
       enrollment_mode:
         description: Certificate is used in enrollment mode. Default value is false.
         type: boolean
@@ -5239,6 +5355,7 @@ definitions:
         description: Human readable description of this certificate.
         example: Certificate created by me.
         type: string
+        x-nullable: true
       device_execution_mode:
         description: Device execution mode where 1 means a developer certificate.
         example: 1
@@ -5273,6 +5390,7 @@ definitions:
         description: The ID of the owner.
         example: 01619571dad80242ac12000600000000
         type: string
+        x-nullable: true
       service:
         description: Service name where the certificate is used.
         enum:
@@ -5375,6 +5493,7 @@ definitions:
         description: Human readable description of this certificate, no longer than
           500 characters.
         type: string
+        x-nullable: true
       enrollment_mode:
         description: Certificate is used in enrollment mode. Default value is false.
         type: boolean
@@ -5832,6 +5951,10 @@ definitions:
         example: '2017-05-22T12:37:55.576563Z'
         format: date-time
         type: string
+      upload_job_id:
+        description: The upload job ID.
+        example: '00000000000000000000000000000000'
+        type: string
     type: object
   UploadChunkInfoPage:
     properties:
@@ -5938,6 +6061,7 @@ definitions:
       full_name:
         description: The full name of the user, no longer than 100 characters.
         type: string
+        x-nullable: true
       groups:
         description: A list of IDs of the groups this user belongs to.
         items:
@@ -6008,6 +6132,7 @@ definitions:
           type: string
         description: User's account-specific custom properties. The value is a string.
         type: object
+        x-nullable: true
       email:
         description: The email address.
         example: user@arm.com
@@ -6025,6 +6150,7 @@ definitions:
         description: The full name of the user.
         example: User Doe
         type: string
+        x-nullable: true
       groups:
         description: A list of IDs of the groups this user belongs to.
         items:
@@ -6108,6 +6234,7 @@ definitions:
         items:
           type: string
         type: array
+        x-nullable: true
       updated_at:
         description: Last update UTC time RFC3339.
         example: '2018-02-14T15:24:14Z'
@@ -6312,31 +6439,38 @@ definitions:
       address:
         description: Address, no longer than 100 characters.
         type: string
+        x-nullable: true
       email:
         description: The email address, no longer than 254 characters. Not allowed
           to update other user's email address.
         type: string
+        x-nullable: true
       full_name:
         description: The full name of the user, no longer than 100 characters.
         type: string
+        x-nullable: true
       groups:
         description: A list of group IDs this user belongs to. Can be updated by the
           Account Admin only.
         items:
           type: string
         type: array
+        x-nullable: true
       is_gtc_accepted:
         description: A flag indicating that the user has accepted General Terms and
           Conditions.
         type: boolean
+        x-nullable: true
       is_marketing_accepted:
         description: A flag indicating that the user has consented to receive marketing
           information.
         type: boolean
+        x-nullable: true
       is_totp_enabled:
         description: A flag indicating whether mandatory two-factor authentication
           (TOTP) is enabled.
         type: boolean
+        x-nullable: true
       login_profiles:
         description: A list of login profiles for the user, specified as identity
           providers associated with the user. Only the ID attribute of the login profile
@@ -6345,9 +6479,11 @@ definitions:
         items:
           $ref: '#/definitions/LoginProfile'
         type: array
+        x-nullable: true
       phone_number:
         description: Phone number, no longer than 100 characters.
         type: string
+        x-nullable: true
       status:
         description: The status of the user. ENROLLING indicates that the user is
           in the middle of the enrollment process. INVITED means that the user has
@@ -6362,10 +6498,12 @@ definitions:
         - INACTIVE
         example: ACTIVE
         type: string
+        x-nullable: true
       username:
         description: A username containing alphanumerical letters and -,._@+= characters.
           Must be 4-30 characters.
         type: string
+        x-nullable: true
     type: object
   Webhook:
     properties:
@@ -7467,6 +7605,22 @@ paths:
         415:
           description: Unsupported Media Type.
       summary: Register a callback URL
+      tags:
+      - Notifications
+  /v2/notification/channel:
+    get:
+      description: "Get channel delivery mechanism.\n\n**Example:**\n\n    curl -X\
+        \ GET https://api.us-east-1.mbedcloud.com/v2/notification/channel \\\n   \
+        \ -H 'Authorization: Bearer <api_key>' \\\n"
+      operationId: getChannelMetadata
+      responses:
+        200:
+          description: Success.
+          schema:
+            $ref: '#/definitions/ChannelMetadata'
+        404:
+          description: Channel was not found.
+      summary: Get channel metadata.
       tags:
       - Notifications
   /v2/notification/pull:
@@ -15450,7 +15604,7 @@ paths:
             $ref: '#/definitions/ErrorResponse'
       summary: Create a new developer certificate to connect to the bootstrap server.
       tags:
-      - Developer certificate
+      - Device security - developer class certificates
   /v3/developer-certificates/{developerCertificateId}:
     get:
       description: 'Return an existing developer certificate (a certificate that can
@@ -15725,7 +15879,7 @@ paths:
       summary: Fetch an existing developer certificate to connect to the bootstrap
         server.
       tags:
-      - Developer certificate
+      - Device security - developer class certificates
   /v3/device-enrollment-denials:
     get:
       description: 'This produces a list of failed attempts to bootstrap using a particular
@@ -20884,7 +21038,7 @@ paths:
             $ref: '#/definitions/ErrorResponse'
       summary: Fetch all (Bootstrap and LwM2M) server credentials.
       tags:
-      - Server credentials
+      - Service security - server credentials
   /v3/server-credentials/bootstrap:
     get:
       deprecated: true
@@ -20936,7 +21090,7 @@ paths:
             $ref: '#/definitions/ErrorResponse'
       summary: Fetch bootstrap server credentials.
       tags:
-      - Server credentials
+      - Service security - server credentials
   /v3/server-credentials/lwm2m:
     get:
       deprecated: true
@@ -20988,7 +21142,7 @@ paths:
             $ref: '#/definitions/ErrorResponse'
       summary: Fetch LwM2M server credentials.
       tags:
-      - Server credentials
+      - Service security - server credentials
   /v3/service-packages:
     get:
       description: 'Get information for all service packages for the current authenticated
@@ -22702,6 +22856,63 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
       summary: Details of the current user.
+      tags:
+      - Account - users
+    put:
+      consumes:
+      - application/json
+      description: 'Update user details.
+
+
+        **Example:**
+
+        ```
+
+        curl -X PUT https://api.us-east-1.mbedcloud.com/v3/users/me \
+
+        -H ''Authorization: Bearer <token>'' \
+
+        -H ''content-type: application/json'' \
+
+        -d ''{"full_name": "fullname"}''
+
+        ```'
+      operationId: updateMyUser
+      parameters:
+      - description: A user object with attributes.
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/UserUpdateReq'
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: Successful operation.
+          schema:
+            $ref: '#/definitions/UserInfoResp'
+        '400':
+          description: Error in input data, for example, an invalid email address.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Authentication failure.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: A user with the given ID does not exist.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '409':
+          description: A user with the given username or email already exists.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Update user details.
       tags:
       - Account - users
   /v3/users/{user_id}:

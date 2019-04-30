@@ -472,6 +472,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "110 Fulbourn Rd",
               "description": "Postal address line 1.",
               "api_fieldname": "address_line1",
@@ -483,6 +484,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": " ",
               "description": "Postal address line 2.",
               "api_fieldname": "address_line2",
@@ -494,6 +496,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "admin@arm.com",
               "description": "The email address of the admin user created for this account. Present only in the response for account creation.",
               "api_fieldname": "admin_email",
@@ -505,6 +508,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "Admin Doe",
               "description": "The full name of the admin user created for this account. Present only in the response for account creation.",
               "api_fieldname": "admin_full_name",
@@ -516,6 +520,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "admin",
               "description": "The username of the admin user created for this account. Present only in the response for account creation.",
               "api_fieldname": "admin_name",
@@ -527,6 +532,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "PZf9eEUH43DAPE9ULINFeuj",
               "description": "The password of the admin user created for this account. Present only in the response for account creation.",
               "api_fieldname": "admin_password",
@@ -551,6 +557,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "Cambridge",
               "description": "The city part of the postal address.",
               "api_fieldname": "city",
@@ -562,6 +569,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "ARM Holdings Plc",
               "description": "The name of the company.",
               "api_fieldname": "company",
@@ -573,6 +581,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "J. Doe",
               "description": "The name of the contact person for this account.",
               "api_fieldname": "contact",
@@ -585,6 +594,7 @@
             {
               "type": "string",
               "example": "1NX25_0001",
+              "x-nullable": true,
               "description": "Contract number of the customer.",
               "api_fieldname": "contract_number",
               "entity_fieldname": "contract_number",
@@ -595,6 +605,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "United Kingdom",
               "description": "The country part of the postal address.",
               "api_fieldname": "country",
@@ -607,6 +618,7 @@
             {
               "type": "string",
               "example": "1NC25_0001",
+              "x-nullable": true,
               "description": "Customer number of the customer.",
               "api_fieldname": "customer_number",
               "entity_fieldname": "customer_number",
@@ -617,6 +629,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "ARM",
               "description": "The display name for the account.",
               "api_fieldname": "display_name",
@@ -628,6 +641,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "info@arm.com",
               "description": "The company email address for this account.",
               "api_fieldname": "email",
@@ -650,6 +664,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "+44 (1223) 400 400",
               "description": "The phone number of a company representative.",
               "api_fieldname": "phone_number",
@@ -661,6 +676,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "CB1 9NJ",
               "description": "The postal code part of the postal address.",
               "api_fieldname": "postal_code",
@@ -672,6 +688,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": " ",
               "description": "The state part of the postal address.",
               "api_fieldname": "state",
@@ -700,6 +717,7 @@
                 "properties": [
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "110 Fulbourn Rd",
                     "description": "Postal address line 1.",
                     "api_fieldname": "address_line1",
@@ -708,6 +726,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": " ",
                     "description": "Postal address line 2.",
                     "api_fieldname": "address_line2",
@@ -716,6 +735,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "admin@arm.com",
                     "description": "The email address of the admin user created for this account. Present only in the response for account creation.",
                     "api_fieldname": "admin_email",
@@ -724,6 +744,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "Admin Doe",
                     "description": "The full name of the admin user created for this account. Present only in the response for account creation.",
                     "api_fieldname": "admin_full_name",
@@ -732,6 +753,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "01619571e2e89242ac12000600000000",
                     "description": "The ID of the admin user created for this account.",
                     "api_fieldname": "admin_id",
@@ -740,6 +762,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "ak_1MDE2MTk1NzFmNmU4MDI0MmFjMTIwMDA2MDAwMDAwMDA01619571f7020242ac12000600000000B40IkJADMANmAscAj0Ot0n2yeQnyt9tT",
                     "description": "The admin API key created for this account. Present only in the response for account creation.",
                     "readOnly": true,
@@ -749,6 +772,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "admin",
                     "description": "The username of the admin user created for this account. Present only in the response for account creation.",
                     "api_fieldname": "admin_name",
@@ -757,6 +781,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "PZf9eEUH43DAPE9ULINFeuj",
                     "description": "The password of the admin user created for this account. Present only in the response for account creation.",
                     "api_fieldname": "admin_password",
@@ -775,6 +800,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "Cambridge",
                     "description": "The city part of the postal address.",
                     "api_fieldname": "city",
@@ -783,6 +809,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "ARM Holdings Plc",
                     "description": "The name of the company.",
                     "api_fieldname": "company",
@@ -791,6 +818,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "J. Doe",
                     "description": "The name of the contact person for this account.",
                     "api_fieldname": "contact",
@@ -800,6 +828,7 @@
                   {
                     "type": "string",
                     "example": "1NX25_0001",
+                    "x-nullable": true,
                     "description": "Contract number of the customer.",
                     "api_fieldname": "contract_number",
                     "entity_fieldname": "contract_number",
@@ -807,6 +836,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "United Kingdom",
                     "description": "The country part of the postal address.",
                     "api_fieldname": "country",
@@ -824,6 +854,7 @@
                   },
                   {
                     "type": "object",
+                    "x-nullable": true,
                     "description": "Account's custom properties as key-value pairs.",
                     "additionalProperties": {
                       "type": "string"
@@ -835,6 +866,7 @@
                   {
                     "type": "string",
                     "example": "1NC25_0001",
+                    "x-nullable": true,
                     "description": "Customer number of the customer.",
                     "api_fieldname": "customer_number",
                     "entity_fieldname": "customer_number",
@@ -842,6 +874,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "ARM",
                     "description": "The display name for the account.",
                     "api_fieldname": "display_name",
@@ -850,6 +883,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "info@arm.com",
                     "description": "The company email address for this account.",
                     "api_fieldname": "email",
@@ -874,6 +908,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "format": "date-time",
                     "description": "Expiration time of the account, as UTC time RFC3339.",
                     "api_fieldname": "expiration",
@@ -883,6 +918,7 @@
                   {
                     "type": "string",
                     "example": "180",
+                    "x-nullable": true,
                     "description": "Indicates how many days (1-180) before account expiration a notification email is sent.",
                     "api_fieldname": "expiration_warning_threshold",
                     "entity_fieldname": "expiration_warning_threshold",
@@ -898,6 +934,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "30",
                     "description": "The reference token expiration time, in minutes, for this account.",
                     "api_fieldname": "idle_timeout",
@@ -906,6 +943,7 @@
                   },
                   {
                     "type": "object",
+                    "x-nullable": true,
                     "description": "List of limits as key-value pairs if requested.",
                     "additionalProperties": {
                       "type": "string"
@@ -916,6 +954,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "description": "The enforcement status of multi-factor authentication, either `enforced` or `optional`.",
                     "enum": [
                       "enforced",
@@ -927,6 +966,7 @@
                   },
                   {
                     "type": "array",
+                    "x-nullable": true,
                     "description": "A list of notification email addresses.",
                     "items": {
                       "type": "string"
@@ -984,6 +1024,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "01619571dad80242ac12000600000000",
                     "description": "The ID of the parent account, if any.",
                     "api_fieldname": "parent_id",
@@ -1025,6 +1066,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "+44 (1223) 400 400",
                     "description": "The phone number of a company representative.",
                     "api_fieldname": "phone_number",
@@ -1033,6 +1075,7 @@
                   },
                   {
                     "type": "array",
+                    "x-nullable": true,
                     "description": "List of policies if requested.",
                     "items": {
                       "type": "object",
@@ -1090,6 +1133,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "CB1 9NJ",
                     "description": "The postal code part of the postal address.",
                     "api_fieldname": "postal_code",
@@ -1098,6 +1142,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "Subscription paid.",
                     "description": "A note with the reason for account status update.",
                     "api_fieldname": "reason",
@@ -1106,6 +1151,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "ARM-INT-0001",
                     "description": "A reference note for updating the status of the account.",
                     "api_fieldname": "reference_note",
@@ -1115,6 +1161,7 @@
                   {
                     "type": "string",
                     "example": "sales@arm.com",
+                    "x-nullable": true,
                     "description": "Email address of the sales contact.",
                     "api_fieldname": "sales_contact",
                     "entity_fieldname": "sales_contact",
@@ -1122,6 +1169,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": " ",
                     "description": "The state part of the postal address.",
                     "api_fieldname": "state",
@@ -1144,6 +1192,7 @@
                   },
                   {
                     "type": "array",
+                    "x-nullable": true,
                     "description": "List of sub accounts. Not available for developer users.",
                     "items": {
                       "type": "object",
@@ -1158,36 +1207,42 @@
                       "properties": [
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "110 Fulbourn Rd",
                           "description": "Postal address line 1.",
                           "_key": "address_line1"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": " ",
                           "description": "Postal address line 2.",
                           "_key": "address_line2"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "admin@arm.com",
                           "description": "The email address of the admin user created for this account. Present only in the response for account creation.",
                           "_key": "admin_email"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "Admin Doe",
                           "description": "The full name of the admin user created for this account. Present only in the response for account creation.",
                           "_key": "admin_full_name"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "01619571e2e89242ac12000600000000",
                           "description": "The ID of the admin user created for this account.",
                           "_key": "admin_id"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "ak_1MDE2MTk1NzFmNmU4MDI0MmFjMTIwMDA2MDAwMDAwMDA01619571f7020242ac12000600000000B40IkJADMANmAscAj0Ot0n2yeQnyt9tT",
                           "description": "The admin API key created for this account. Present only in the response for account creation.",
                           "readOnly": true,
@@ -1195,12 +1250,14 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "admin",
                           "description": "The username of the admin user created for this account. Present only in the response for account creation.",
                           "_key": "admin_name"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "PZf9eEUH43DAPE9ULINFeuj",
                           "description": "The password of the admin user created for this account. Present only in the response for account creation.",
                           "_key": "admin_password"
@@ -1215,18 +1272,21 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "Cambridge",
                           "description": "The city part of the postal address.",
                           "_key": "city"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "ARM Holdings Plc",
                           "description": "The name of the company.",
                           "_key": "company"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "J. Doe",
                           "description": "The name of the contact person for this account.",
                           "_key": "contact"
@@ -1234,11 +1294,13 @@
                         {
                           "type": "string",
                           "example": "1NX25_0001",
+                          "x-nullable": true,
                           "description": "Contract number of the customer.",
                           "_key": "contract_number"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "United Kingdom",
                           "description": "The country part of the postal address.",
                           "_key": "country"
@@ -1252,6 +1314,7 @@
                         },
                         {
                           "type": "object",
+                          "x-nullable": true,
                           "description": "Account's custom properties as key-value pairs.",
                           "additionalProperties": {
                             "type": "string"
@@ -1261,17 +1324,20 @@
                         {
                           "type": "string",
                           "example": "1NC25_0001",
+                          "x-nullable": true,
                           "description": "Customer number of the customer.",
                           "_key": "customer_number"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "ARM",
                           "description": "The display name for the account.",
                           "_key": "display_name"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "info@arm.com",
                           "description": "The company email address for this account.",
                           "_key": "email"
@@ -1290,6 +1356,7 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "format": "date-time",
                           "description": "Expiration time of the account, as UTC time RFC3339.",
                           "_key": "expiration"
@@ -1297,6 +1364,7 @@
                         {
                           "type": "string",
                           "example": "180",
+                          "x-nullable": true,
                           "description": "Indicates how many days (1-180) before account expiration a notification email is sent.",
                           "_key": "expiration_warning_threshold"
                         },
@@ -1308,12 +1376,14 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "30",
                           "description": "The reference token expiration time, in minutes, for this account.",
                           "_key": "idle_timeout"
                         },
                         {
                           "type": "object",
+                          "x-nullable": true,
                           "description": "List of limits as key-value pairs if requested.",
                           "additionalProperties": {
                             "type": "string"
@@ -1322,6 +1392,7 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "description": "The enforcement status of multi-factor authentication, either `enforced` or `optional`.",
                           "enum": [
                             "enforced",
@@ -1331,6 +1402,7 @@
                         },
                         {
                           "type": "array",
+                          "x-nullable": true,
                           "description": "A list of notification email addresses.",
                           "items": {
                             "type": "string"
@@ -1382,6 +1454,7 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "01619571dad80242ac12000600000000",
                           "description": "The ID of the parent account, if any.",
                           "_key": "parent_id"
@@ -1417,12 +1490,14 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "+44 (1223) 400 400",
                           "description": "The phone number of a company representative.",
                           "_key": "phone_number"
                         },
                         {
                           "type": "array",
+                          "x-nullable": true,
                           "description": "List of policies if requested.",
                           "items": {
                             "type": "object",
@@ -1478,18 +1553,21 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "CB1 9NJ",
                           "description": "The postal code part of the postal address.",
                           "_key": "postal_code"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "Subscription paid.",
                           "description": "A note with the reason for account status update.",
                           "_key": "reason"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "ARM-INT-0001",
                           "description": "A reference note for updating the status of the account.",
                           "_key": "reference_note"
@@ -1497,11 +1575,13 @@
                         {
                           "type": "string",
                           "example": "sales@arm.com",
+                          "x-nullable": true,
                           "description": "Email address of the sales contact.",
                           "_key": "sales_contact"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": " ",
                           "description": "The state part of the postal address.",
                           "_key": "state"
@@ -1520,12 +1600,14 @@
                         },
                         {
                           "type": "array",
+                          "x-nullable": true,
                           "description": "List of sub accounts. Not available for developer users.",
                           "items": [],
                           "_key": "sub_accounts"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "01619571e7160242ac12000600000000",
                           "description": "Account template ID.",
                           "_key": "template_id"
@@ -1559,6 +1641,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "01619571e7160242ac12000600000000",
                     "description": "Account template ID.",
                     "api_fieldname": "template_id",
@@ -1996,36 +2079,42 @@
                       "properties": [
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "110 Fulbourn Rd",
                           "description": "Postal address line 1.",
                           "_key": "address_line1"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": " ",
                           "description": "Postal address line 2.",
                           "_key": "address_line2"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "admin@arm.com",
                           "description": "The email address of the admin user created for this account. Present only in the response for account creation.",
                           "_key": "admin_email"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "Admin Doe",
                           "description": "The full name of the admin user created for this account. Present only in the response for account creation.",
                           "_key": "admin_full_name"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "01619571e2e89242ac12000600000000",
                           "description": "The ID of the admin user created for this account.",
                           "_key": "admin_id"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "ak_1MDE2MTk1NzFmNmU4MDI0MmFjMTIwMDA2MDAwMDAwMDA01619571f7020242ac12000600000000B40IkJADMANmAscAj0Ot0n2yeQnyt9tT",
                           "description": "The admin API key created for this account. Present only in the response for account creation.",
                           "readOnly": true,
@@ -2033,12 +2122,14 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "admin",
                           "description": "The username of the admin user created for this account. Present only in the response for account creation.",
                           "_key": "admin_name"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "PZf9eEUH43DAPE9ULINFeuj",
                           "description": "The password of the admin user created for this account. Present only in the response for account creation.",
                           "_key": "admin_password"
@@ -2053,18 +2144,21 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "Cambridge",
                           "description": "The city part of the postal address.",
                           "_key": "city"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "ARM Holdings Plc",
                           "description": "The name of the company.",
                           "_key": "company"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "J. Doe",
                           "description": "The name of the contact person for this account.",
                           "_key": "contact"
@@ -2072,11 +2166,13 @@
                         {
                           "type": "string",
                           "example": "1NX25_0001",
+                          "x-nullable": true,
                           "description": "Contract number of the customer.",
                           "_key": "contract_number"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "United Kingdom",
                           "description": "The country part of the postal address.",
                           "_key": "country"
@@ -2090,6 +2186,7 @@
                         },
                         {
                           "type": "object",
+                          "x-nullable": true,
                           "description": "Account's custom properties as key-value pairs.",
                           "additionalProperties": {
                             "type": "string"
@@ -2099,17 +2196,20 @@
                         {
                           "type": "string",
                           "example": "1NC25_0001",
+                          "x-nullable": true,
                           "description": "Customer number of the customer.",
                           "_key": "customer_number"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "ARM",
                           "description": "The display name for the account.",
                           "_key": "display_name"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "info@arm.com",
                           "description": "The company email address for this account.",
                           "_key": "email"
@@ -2128,6 +2228,7 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "format": "date-time",
                           "description": "Expiration time of the account, as UTC time RFC3339.",
                           "_key": "expiration"
@@ -2135,6 +2236,7 @@
                         {
                           "type": "string",
                           "example": "180",
+                          "x-nullable": true,
                           "description": "Indicates how many days (1-180) before account expiration a notification email is sent.",
                           "_key": "expiration_warning_threshold"
                         },
@@ -2146,12 +2248,14 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "30",
                           "description": "The reference token expiration time, in minutes, for this account.",
                           "_key": "idle_timeout"
                         },
                         {
                           "type": "object",
+                          "x-nullable": true,
                           "description": "List of limits as key-value pairs if requested.",
                           "additionalProperties": {
                             "type": "string"
@@ -2160,6 +2264,7 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "description": "The enforcement status of multi-factor authentication, either `enforced` or `optional`.",
                           "enum": [
                             "enforced",
@@ -2169,6 +2274,7 @@
                         },
                         {
                           "type": "array",
+                          "x-nullable": true,
                           "description": "A list of notification email addresses.",
                           "items": {
                             "type": "string"
@@ -2220,6 +2326,7 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "01619571dad80242ac12000600000000",
                           "description": "The ID of the parent account, if any.",
                           "_key": "parent_id"
@@ -2255,12 +2362,14 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "+44 (1223) 400 400",
                           "description": "The phone number of a company representative.",
                           "_key": "phone_number"
                         },
                         {
                           "type": "array",
+                          "x-nullable": true,
                           "description": "List of policies if requested.",
                           "items": {
                             "type": "object",
@@ -2316,18 +2425,21 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "CB1 9NJ",
                           "description": "The postal code part of the postal address.",
                           "_key": "postal_code"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "Subscription paid.",
                           "description": "A note with the reason for account status update.",
                           "_key": "reason"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "ARM-INT-0001",
                           "description": "A reference note for updating the status of the account.",
                           "_key": "reference_note"
@@ -2335,11 +2447,13 @@
                         {
                           "type": "string",
                           "example": "sales@arm.com",
+                          "x-nullable": true,
                           "description": "Email address of the sales contact.",
                           "_key": "sales_contact"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": " ",
                           "description": "The state part of the postal address.",
                           "_key": "state"
@@ -2358,6 +2472,7 @@
                         },
                         {
                           "type": "array",
+                          "x-nullable": true,
                           "description": "List of sub accounts. Not available for developer users.",
                           "items": {
                             "type": "object",
@@ -2372,36 +2487,42 @@
                             "properties": [
                               {
                                 "type": "string",
+                                "x-nullable": true,
                                 "example": "110 Fulbourn Rd",
                                 "description": "Postal address line 1.",
                                 "_key": "address_line1"
                               },
                               {
                                 "type": "string",
+                                "x-nullable": true,
                                 "example": " ",
                                 "description": "Postal address line 2.",
                                 "_key": "address_line2"
                               },
                               {
                                 "type": "string",
+                                "x-nullable": true,
                                 "example": "admin@arm.com",
                                 "description": "The email address of the admin user created for this account. Present only in the response for account creation.",
                                 "_key": "admin_email"
                               },
                               {
                                 "type": "string",
+                                "x-nullable": true,
                                 "example": "Admin Doe",
                                 "description": "The full name of the admin user created for this account. Present only in the response for account creation.",
                                 "_key": "admin_full_name"
                               },
                               {
                                 "type": "string",
+                                "x-nullable": true,
                                 "example": "01619571e2e89242ac12000600000000",
                                 "description": "The ID of the admin user created for this account.",
                                 "_key": "admin_id"
                               },
                               {
                                 "type": "string",
+                                "x-nullable": true,
                                 "example": "ak_1MDE2MTk1NzFmNmU4MDI0MmFjMTIwMDA2MDAwMDAwMDA01619571f7020242ac12000600000000B40IkJADMANmAscAj0Ot0n2yeQnyt9tT",
                                 "description": "The admin API key created for this account. Present only in the response for account creation.",
                                 "readOnly": true,
@@ -2409,12 +2530,14 @@
                               },
                               {
                                 "type": "string",
+                                "x-nullable": true,
                                 "example": "admin",
                                 "description": "The username of the admin user created for this account. Present only in the response for account creation.",
                                 "_key": "admin_name"
                               },
                               {
                                 "type": "string",
+                                "x-nullable": true,
                                 "example": "PZf9eEUH43DAPE9ULINFeuj",
                                 "description": "The password of the admin user created for this account. Present only in the response for account creation.",
                                 "_key": "admin_password"
@@ -2429,18 +2552,21 @@
                               },
                               {
                                 "type": "string",
+                                "x-nullable": true,
                                 "example": "Cambridge",
                                 "description": "The city part of the postal address.",
                                 "_key": "city"
                               },
                               {
                                 "type": "string",
+                                "x-nullable": true,
                                 "example": "ARM Holdings Plc",
                                 "description": "The name of the company.",
                                 "_key": "company"
                               },
                               {
                                 "type": "string",
+                                "x-nullable": true,
                                 "example": "J. Doe",
                                 "description": "The name of the contact person for this account.",
                                 "_key": "contact"
@@ -2448,11 +2574,13 @@
                               {
                                 "type": "string",
                                 "example": "1NX25_0001",
+                                "x-nullable": true,
                                 "description": "Contract number of the customer.",
                                 "_key": "contract_number"
                               },
                               {
                                 "type": "string",
+                                "x-nullable": true,
                                 "example": "United Kingdom",
                                 "description": "The country part of the postal address.",
                                 "_key": "country"
@@ -2466,6 +2594,7 @@
                               },
                               {
                                 "type": "object",
+                                "x-nullable": true,
                                 "description": "Account's custom properties as key-value pairs.",
                                 "additionalProperties": {
                                   "type": "string"
@@ -2475,17 +2604,20 @@
                               {
                                 "type": "string",
                                 "example": "1NC25_0001",
+                                "x-nullable": true,
                                 "description": "Customer number of the customer.",
                                 "_key": "customer_number"
                               },
                               {
                                 "type": "string",
+                                "x-nullable": true,
                                 "example": "ARM",
                                 "description": "The display name for the account.",
                                 "_key": "display_name"
                               },
                               {
                                 "type": "string",
+                                "x-nullable": true,
                                 "example": "info@arm.com",
                                 "description": "The company email address for this account.",
                                 "_key": "email"
@@ -2504,6 +2636,7 @@
                               },
                               {
                                 "type": "string",
+                                "x-nullable": true,
                                 "format": "date-time",
                                 "description": "Expiration time of the account, as UTC time RFC3339.",
                                 "_key": "expiration"
@@ -2511,6 +2644,7 @@
                               {
                                 "type": "string",
                                 "example": "180",
+                                "x-nullable": true,
                                 "description": "Indicates how many days (1-180) before account expiration a notification email is sent.",
                                 "_key": "expiration_warning_threshold"
                               },
@@ -2522,12 +2656,14 @@
                               },
                               {
                                 "type": "string",
+                                "x-nullable": true,
                                 "example": "30",
                                 "description": "The reference token expiration time, in minutes, for this account.",
                                 "_key": "idle_timeout"
                               },
                               {
                                 "type": "object",
+                                "x-nullable": true,
                                 "description": "List of limits as key-value pairs if requested.",
                                 "additionalProperties": {
                                   "type": "string"
@@ -2536,6 +2672,7 @@
                               },
                               {
                                 "type": "string",
+                                "x-nullable": true,
                                 "description": "The enforcement status of multi-factor authentication, either `enforced` or `optional`.",
                                 "enum": [
                                   "enforced",
@@ -2545,6 +2682,7 @@
                               },
                               {
                                 "type": "array",
+                                "x-nullable": true,
                                 "description": "A list of notification email addresses.",
                                 "items": {
                                   "type": "string"
@@ -2596,6 +2734,7 @@
                               },
                               {
                                 "type": "string",
+                                "x-nullable": true,
                                 "example": "01619571dad80242ac12000600000000",
                                 "description": "The ID of the parent account, if any.",
                                 "_key": "parent_id"
@@ -2631,12 +2770,14 @@
                               },
                               {
                                 "type": "string",
+                                "x-nullable": true,
                                 "example": "+44 (1223) 400 400",
                                 "description": "The phone number of a company representative.",
                                 "_key": "phone_number"
                               },
                               {
                                 "type": "array",
+                                "x-nullable": true,
                                 "description": "List of policies if requested.",
                                 "items": {
                                   "type": "object",
@@ -2692,18 +2833,21 @@
                               },
                               {
                                 "type": "string",
+                                "x-nullable": true,
                                 "example": "CB1 9NJ",
                                 "description": "The postal code part of the postal address.",
                                 "_key": "postal_code"
                               },
                               {
                                 "type": "string",
+                                "x-nullable": true,
                                 "example": "Subscription paid.",
                                 "description": "A note with the reason for account status update.",
                                 "_key": "reason"
                               },
                               {
                                 "type": "string",
+                                "x-nullable": true,
                                 "example": "ARM-INT-0001",
                                 "description": "A reference note for updating the status of the account.",
                                 "_key": "reference_note"
@@ -2711,11 +2855,13 @@
                               {
                                 "type": "string",
                                 "example": "sales@arm.com",
+                                "x-nullable": true,
                                 "description": "Email address of the sales contact.",
                                 "_key": "sales_contact"
                               },
                               {
                                 "type": "string",
+                                "x-nullable": true,
                                 "example": " ",
                                 "description": "The state part of the postal address.",
                                 "_key": "state"
@@ -2734,12 +2880,14 @@
                               },
                               {
                                 "type": "array",
+                                "x-nullable": true,
                                 "description": "List of sub accounts. Not available for developer users.",
                                 "items": [],
                                 "_key": "sub_accounts"
                               },
                               {
                                 "type": "string",
+                                "x-nullable": true,
                                 "example": "01619571e7160242ac12000600000000",
                                 "description": "Account template ID.",
                                 "_key": "template_id"
@@ -2771,6 +2919,7 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "01619571e7160242ac12000600000000",
                           "description": "Account template ID.",
                           "_key": "template_id"
@@ -3111,6 +3260,7 @@
                 "properties": [
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "110 Fulbourn Rd",
                     "description": "Postal address line 1.",
                     "api_fieldname": "address_line1",
@@ -3119,6 +3269,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": " ",
                     "description": "Postal address line 2.",
                     "api_fieldname": "address_line2",
@@ -3127,6 +3278,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "admin@arm.com",
                     "description": "The email address of the admin user created for this account. Present only in the response for account creation.",
                     "api_fieldname": "admin_email",
@@ -3135,6 +3287,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "Admin Doe",
                     "description": "The full name of the admin user created for this account. Present only in the response for account creation.",
                     "api_fieldname": "admin_full_name",
@@ -3143,6 +3296,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "01619571e2e89242ac12000600000000",
                     "description": "The ID of the admin user created for this account.",
                     "api_fieldname": "admin_id",
@@ -3151,6 +3305,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "ak_1MDE2MTk1NzFmNmU4MDI0MmFjMTIwMDA2MDAwMDAwMDA01619571f7020242ac12000600000000B40IkJADMANmAscAj0Ot0n2yeQnyt9tT",
                     "description": "The admin API key created for this account. Present only in the response for account creation.",
                     "readOnly": true,
@@ -3160,6 +3315,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "admin",
                     "description": "The username of the admin user created for this account. Present only in the response for account creation.",
                     "api_fieldname": "admin_name",
@@ -3168,6 +3324,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "PZf9eEUH43DAPE9ULINFeuj",
                     "description": "The password of the admin user created for this account. Present only in the response for account creation.",
                     "api_fieldname": "admin_password",
@@ -3186,6 +3343,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "Cambridge",
                     "description": "The city part of the postal address.",
                     "api_fieldname": "city",
@@ -3194,6 +3352,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "ARM Holdings Plc",
                     "description": "The name of the company.",
                     "api_fieldname": "company",
@@ -3202,6 +3361,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "J. Doe",
                     "description": "The name of the contact person for this account.",
                     "api_fieldname": "contact",
@@ -3211,6 +3371,7 @@
                   {
                     "type": "string",
                     "example": "1NX25_0001",
+                    "x-nullable": true,
                     "description": "Contract number of the customer.",
                     "api_fieldname": "contract_number",
                     "entity_fieldname": "contract_number",
@@ -3218,6 +3379,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "United Kingdom",
                     "description": "The country part of the postal address.",
                     "api_fieldname": "country",
@@ -3235,6 +3397,7 @@
                   },
                   {
                     "type": "object",
+                    "x-nullable": true,
                     "description": "Account's custom properties as key-value pairs.",
                     "additionalProperties": {
                       "type": "string"
@@ -3246,6 +3409,7 @@
                   {
                     "type": "string",
                     "example": "1NC25_0001",
+                    "x-nullable": true,
                     "description": "Customer number of the customer.",
                     "api_fieldname": "customer_number",
                     "entity_fieldname": "customer_number",
@@ -3253,6 +3417,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "ARM",
                     "description": "The display name for the account.",
                     "api_fieldname": "display_name",
@@ -3261,6 +3426,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "info@arm.com",
                     "description": "The company email address for this account.",
                     "api_fieldname": "email",
@@ -3285,6 +3451,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "format": "date-time",
                     "description": "Expiration time of the account, as UTC time RFC3339.",
                     "api_fieldname": "expiration",
@@ -3294,6 +3461,7 @@
                   {
                     "type": "string",
                     "example": "180",
+                    "x-nullable": true,
                     "description": "Indicates how many days (1-180) before account expiration a notification email is sent.",
                     "api_fieldname": "expiration_warning_threshold",
                     "entity_fieldname": "expiration_warning_threshold",
@@ -3309,6 +3477,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "30",
                     "description": "The reference token expiration time, in minutes, for this account.",
                     "api_fieldname": "idle_timeout",
@@ -3317,6 +3486,7 @@
                   },
                   {
                     "type": "object",
+                    "x-nullable": true,
                     "description": "List of limits as key-value pairs if requested.",
                     "additionalProperties": {
                       "type": "string"
@@ -3327,6 +3497,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "description": "The enforcement status of multi-factor authentication, either `enforced` or `optional`.",
                     "enum": [
                       "enforced",
@@ -3338,6 +3509,7 @@
                   },
                   {
                     "type": "array",
+                    "x-nullable": true,
                     "description": "A list of notification email addresses.",
                     "items": {
                       "type": "string"
@@ -3395,6 +3567,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "01619571dad80242ac12000600000000",
                     "description": "The ID of the parent account, if any.",
                     "api_fieldname": "parent_id",
@@ -3436,6 +3609,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "+44 (1223) 400 400",
                     "description": "The phone number of a company representative.",
                     "api_fieldname": "phone_number",
@@ -3444,6 +3618,7 @@
                   },
                   {
                     "type": "array",
+                    "x-nullable": true,
                     "description": "List of policies if requested.",
                     "items": {
                       "type": "object",
@@ -3501,6 +3676,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "CB1 9NJ",
                     "description": "The postal code part of the postal address.",
                     "api_fieldname": "postal_code",
@@ -3509,6 +3685,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "Subscription paid.",
                     "description": "A note with the reason for account status update.",
                     "api_fieldname": "reason",
@@ -3517,6 +3694,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "ARM-INT-0001",
                     "description": "A reference note for updating the status of the account.",
                     "api_fieldname": "reference_note",
@@ -3526,6 +3704,7 @@
                   {
                     "type": "string",
                     "example": "sales@arm.com",
+                    "x-nullable": true,
                     "description": "Email address of the sales contact.",
                     "api_fieldname": "sales_contact",
                     "entity_fieldname": "sales_contact",
@@ -3533,6 +3712,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": " ",
                     "description": "The state part of the postal address.",
                     "api_fieldname": "state",
@@ -3555,6 +3735,7 @@
                   },
                   {
                     "type": "array",
+                    "x-nullable": true,
                     "description": "List of sub accounts. Not available for developer users.",
                     "items": {
                       "type": "object",
@@ -3569,36 +3750,42 @@
                       "properties": [
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "110 Fulbourn Rd",
                           "description": "Postal address line 1.",
                           "_key": "address_line1"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": " ",
                           "description": "Postal address line 2.",
                           "_key": "address_line2"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "admin@arm.com",
                           "description": "The email address of the admin user created for this account. Present only in the response for account creation.",
                           "_key": "admin_email"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "Admin Doe",
                           "description": "The full name of the admin user created for this account. Present only in the response for account creation.",
                           "_key": "admin_full_name"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "01619571e2e89242ac12000600000000",
                           "description": "The ID of the admin user created for this account.",
                           "_key": "admin_id"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "ak_1MDE2MTk1NzFmNmU4MDI0MmFjMTIwMDA2MDAwMDAwMDA01619571f7020242ac12000600000000B40IkJADMANmAscAj0Ot0n2yeQnyt9tT",
                           "description": "The admin API key created for this account. Present only in the response for account creation.",
                           "readOnly": true,
@@ -3606,12 +3793,14 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "admin",
                           "description": "The username of the admin user created for this account. Present only in the response for account creation.",
                           "_key": "admin_name"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "PZf9eEUH43DAPE9ULINFeuj",
                           "description": "The password of the admin user created for this account. Present only in the response for account creation.",
                           "_key": "admin_password"
@@ -3626,18 +3815,21 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "Cambridge",
                           "description": "The city part of the postal address.",
                           "_key": "city"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "ARM Holdings Plc",
                           "description": "The name of the company.",
                           "_key": "company"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "J. Doe",
                           "description": "The name of the contact person for this account.",
                           "_key": "contact"
@@ -3645,11 +3837,13 @@
                         {
                           "type": "string",
                           "example": "1NX25_0001",
+                          "x-nullable": true,
                           "description": "Contract number of the customer.",
                           "_key": "contract_number"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "United Kingdom",
                           "description": "The country part of the postal address.",
                           "_key": "country"
@@ -3663,6 +3857,7 @@
                         },
                         {
                           "type": "object",
+                          "x-nullable": true,
                           "description": "Account's custom properties as key-value pairs.",
                           "additionalProperties": {
                             "type": "string"
@@ -3672,17 +3867,20 @@
                         {
                           "type": "string",
                           "example": "1NC25_0001",
+                          "x-nullable": true,
                           "description": "Customer number of the customer.",
                           "_key": "customer_number"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "ARM",
                           "description": "The display name for the account.",
                           "_key": "display_name"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "info@arm.com",
                           "description": "The company email address for this account.",
                           "_key": "email"
@@ -3701,6 +3899,7 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "format": "date-time",
                           "description": "Expiration time of the account, as UTC time RFC3339.",
                           "_key": "expiration"
@@ -3708,6 +3907,7 @@
                         {
                           "type": "string",
                           "example": "180",
+                          "x-nullable": true,
                           "description": "Indicates how many days (1-180) before account expiration a notification email is sent.",
                           "_key": "expiration_warning_threshold"
                         },
@@ -3719,12 +3919,14 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "30",
                           "description": "The reference token expiration time, in minutes, for this account.",
                           "_key": "idle_timeout"
                         },
                         {
                           "type": "object",
+                          "x-nullable": true,
                           "description": "List of limits as key-value pairs if requested.",
                           "additionalProperties": {
                             "type": "string"
@@ -3733,6 +3935,7 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "description": "The enforcement status of multi-factor authentication, either `enforced` or `optional`.",
                           "enum": [
                             "enforced",
@@ -3742,6 +3945,7 @@
                         },
                         {
                           "type": "array",
+                          "x-nullable": true,
                           "description": "A list of notification email addresses.",
                           "items": {
                             "type": "string"
@@ -3793,6 +3997,7 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "01619571dad80242ac12000600000000",
                           "description": "The ID of the parent account, if any.",
                           "_key": "parent_id"
@@ -3828,12 +4033,14 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "+44 (1223) 400 400",
                           "description": "The phone number of a company representative.",
                           "_key": "phone_number"
                         },
                         {
                           "type": "array",
+                          "x-nullable": true,
                           "description": "List of policies if requested.",
                           "items": {
                             "type": "object",
@@ -3889,18 +4096,21 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "CB1 9NJ",
                           "description": "The postal code part of the postal address.",
                           "_key": "postal_code"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "Subscription paid.",
                           "description": "A note with the reason for account status update.",
                           "_key": "reason"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "ARM-INT-0001",
                           "description": "A reference note for updating the status of the account.",
                           "_key": "reference_note"
@@ -3908,11 +4118,13 @@
                         {
                           "type": "string",
                           "example": "sales@arm.com",
+                          "x-nullable": true,
                           "description": "Email address of the sales contact.",
                           "_key": "sales_contact"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": " ",
                           "description": "The state part of the postal address.",
                           "_key": "state"
@@ -3931,12 +4143,14 @@
                         },
                         {
                           "type": "array",
+                          "x-nullable": true,
                           "description": "List of sub accounts. Not available for developer users.",
                           "items": [],
                           "_key": "sub_accounts"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "01619571e7160242ac12000600000000",
                           "description": "Account template ID.",
                           "_key": "template_id"
@@ -3970,6 +4184,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "01619571e7160242ac12000600000000",
                     "description": "Account template ID.",
                     "api_fieldname": "template_id",
@@ -4286,6 +4501,7 @@
                 "properties": [
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "110 Fulbourn Rd",
                     "description": "Postal address line 1.",
                     "api_fieldname": "address_line1",
@@ -4294,6 +4510,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": " ",
                     "description": "Postal address line 2.",
                     "api_fieldname": "address_line2",
@@ -4302,6 +4519,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "admin@arm.com",
                     "description": "The email address of the admin user created for this account. Present only in the response for account creation.",
                     "api_fieldname": "admin_email",
@@ -4310,6 +4528,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "Admin Doe",
                     "description": "The full name of the admin user created for this account. Present only in the response for account creation.",
                     "api_fieldname": "admin_full_name",
@@ -4318,6 +4537,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "01619571e2e89242ac12000600000000",
                     "description": "The ID of the admin user created for this account.",
                     "api_fieldname": "admin_id",
@@ -4326,6 +4546,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "ak_1MDE2MTk1NzFmNmU4MDI0MmFjMTIwMDA2MDAwMDAwMDA01619571f7020242ac12000600000000B40IkJADMANmAscAj0Ot0n2yeQnyt9tT",
                     "description": "The admin API key created for this account. Present only in the response for account creation.",
                     "readOnly": true,
@@ -4335,6 +4556,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "admin",
                     "description": "The username of the admin user created for this account. Present only in the response for account creation.",
                     "api_fieldname": "admin_name",
@@ -4343,6 +4565,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "PZf9eEUH43DAPE9ULINFeuj",
                     "description": "The password of the admin user created for this account. Present only in the response for account creation.",
                     "api_fieldname": "admin_password",
@@ -4361,6 +4584,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "Cambridge",
                     "description": "The city part of the postal address.",
                     "api_fieldname": "city",
@@ -4369,6 +4593,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "ARM Holdings Plc",
                     "description": "The name of the company.",
                     "api_fieldname": "company",
@@ -4377,6 +4602,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "J. Doe",
                     "description": "The name of the contact person for this account.",
                     "api_fieldname": "contact",
@@ -4386,6 +4612,7 @@
                   {
                     "type": "string",
                     "example": "1NX25_0001",
+                    "x-nullable": true,
                     "description": "Contract number of the customer.",
                     "api_fieldname": "contract_number",
                     "entity_fieldname": "contract_number",
@@ -4393,6 +4620,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "United Kingdom",
                     "description": "The country part of the postal address.",
                     "api_fieldname": "country",
@@ -4410,6 +4638,7 @@
                   },
                   {
                     "type": "object",
+                    "x-nullable": true,
                     "description": "Account's custom properties as key-value pairs.",
                     "additionalProperties": {
                       "type": "string"
@@ -4421,6 +4650,7 @@
                   {
                     "type": "string",
                     "example": "1NC25_0001",
+                    "x-nullable": true,
                     "description": "Customer number of the customer.",
                     "api_fieldname": "customer_number",
                     "entity_fieldname": "customer_number",
@@ -4428,6 +4658,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "ARM",
                     "description": "The display name for the account.",
                     "api_fieldname": "display_name",
@@ -4436,6 +4667,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "info@arm.com",
                     "description": "The company email address for this account.",
                     "api_fieldname": "email",
@@ -4460,6 +4692,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "format": "date-time",
                     "description": "Expiration time of the account, as UTC time RFC3339.",
                     "api_fieldname": "expiration",
@@ -4469,6 +4702,7 @@
                   {
                     "type": "string",
                     "example": "180",
+                    "x-nullable": true,
                     "description": "Indicates how many days (1-180) before account expiration a notification email is sent.",
                     "api_fieldname": "expiration_warning_threshold",
                     "entity_fieldname": "expiration_warning_threshold",
@@ -4484,6 +4718,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "30",
                     "description": "The reference token expiration time, in minutes, for this account.",
                     "api_fieldname": "idle_timeout",
@@ -4492,6 +4727,7 @@
                   },
                   {
                     "type": "object",
+                    "x-nullable": true,
                     "description": "List of limits as key-value pairs if requested.",
                     "additionalProperties": {
                       "type": "string"
@@ -4502,6 +4738,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "description": "The enforcement status of multi-factor authentication, either `enforced` or `optional`.",
                     "enum": [
                       "enforced",
@@ -4513,6 +4750,7 @@
                   },
                   {
                     "type": "array",
+                    "x-nullable": true,
                     "description": "A list of notification email addresses.",
                     "items": {
                       "type": "string"
@@ -4570,6 +4808,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "01619571dad80242ac12000600000000",
                     "description": "The ID of the parent account, if any.",
                     "api_fieldname": "parent_id",
@@ -4611,6 +4850,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "+44 (1223) 400 400",
                     "description": "The phone number of a company representative.",
                     "api_fieldname": "phone_number",
@@ -4619,6 +4859,7 @@
                   },
                   {
                     "type": "array",
+                    "x-nullable": true,
                     "description": "List of policies if requested.",
                     "items": {
                       "type": "object",
@@ -4676,6 +4917,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "CB1 9NJ",
                     "description": "The postal code part of the postal address.",
                     "api_fieldname": "postal_code",
@@ -4684,6 +4926,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "Subscription paid.",
                     "description": "A note with the reason for account status update.",
                     "api_fieldname": "reason",
@@ -4692,6 +4935,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "ARM-INT-0001",
                     "description": "A reference note for updating the status of the account.",
                     "api_fieldname": "reference_note",
@@ -4701,6 +4945,7 @@
                   {
                     "type": "string",
                     "example": "sales@arm.com",
+                    "x-nullable": true,
                     "description": "Email address of the sales contact.",
                     "api_fieldname": "sales_contact",
                     "entity_fieldname": "sales_contact",
@@ -4708,6 +4953,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": " ",
                     "description": "The state part of the postal address.",
                     "api_fieldname": "state",
@@ -4730,6 +4976,7 @@
                   },
                   {
                     "type": "array",
+                    "x-nullable": true,
                     "description": "List of sub accounts. Not available for developer users.",
                     "items": {
                       "type": "object",
@@ -4744,36 +4991,42 @@
                       "properties": [
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "110 Fulbourn Rd",
                           "description": "Postal address line 1.",
                           "_key": "address_line1"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": " ",
                           "description": "Postal address line 2.",
                           "_key": "address_line2"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "admin@arm.com",
                           "description": "The email address of the admin user created for this account. Present only in the response for account creation.",
                           "_key": "admin_email"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "Admin Doe",
                           "description": "The full name of the admin user created for this account. Present only in the response for account creation.",
                           "_key": "admin_full_name"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "01619571e2e89242ac12000600000000",
                           "description": "The ID of the admin user created for this account.",
                           "_key": "admin_id"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "ak_1MDE2MTk1NzFmNmU4MDI0MmFjMTIwMDA2MDAwMDAwMDA01619571f7020242ac12000600000000B40IkJADMANmAscAj0Ot0n2yeQnyt9tT",
                           "description": "The admin API key created for this account. Present only in the response for account creation.",
                           "readOnly": true,
@@ -4781,12 +5034,14 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "admin",
                           "description": "The username of the admin user created for this account. Present only in the response for account creation.",
                           "_key": "admin_name"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "PZf9eEUH43DAPE9ULINFeuj",
                           "description": "The password of the admin user created for this account. Present only in the response for account creation.",
                           "_key": "admin_password"
@@ -4801,18 +5056,21 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "Cambridge",
                           "description": "The city part of the postal address.",
                           "_key": "city"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "ARM Holdings Plc",
                           "description": "The name of the company.",
                           "_key": "company"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "J. Doe",
                           "description": "The name of the contact person for this account.",
                           "_key": "contact"
@@ -4820,11 +5078,13 @@
                         {
                           "type": "string",
                           "example": "1NX25_0001",
+                          "x-nullable": true,
                           "description": "Contract number of the customer.",
                           "_key": "contract_number"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "United Kingdom",
                           "description": "The country part of the postal address.",
                           "_key": "country"
@@ -4838,6 +5098,7 @@
                         },
                         {
                           "type": "object",
+                          "x-nullable": true,
                           "description": "Account's custom properties as key-value pairs.",
                           "additionalProperties": {
                             "type": "string"
@@ -4847,17 +5108,20 @@
                         {
                           "type": "string",
                           "example": "1NC25_0001",
+                          "x-nullable": true,
                           "description": "Customer number of the customer.",
                           "_key": "customer_number"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "ARM",
                           "description": "The display name for the account.",
                           "_key": "display_name"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "info@arm.com",
                           "description": "The company email address for this account.",
                           "_key": "email"
@@ -4876,6 +5140,7 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "format": "date-time",
                           "description": "Expiration time of the account, as UTC time RFC3339.",
                           "_key": "expiration"
@@ -4883,6 +5148,7 @@
                         {
                           "type": "string",
                           "example": "180",
+                          "x-nullable": true,
                           "description": "Indicates how many days (1-180) before account expiration a notification email is sent.",
                           "_key": "expiration_warning_threshold"
                         },
@@ -4894,12 +5160,14 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "30",
                           "description": "The reference token expiration time, in minutes, for this account.",
                           "_key": "idle_timeout"
                         },
                         {
                           "type": "object",
+                          "x-nullable": true,
                           "description": "List of limits as key-value pairs if requested.",
                           "additionalProperties": {
                             "type": "string"
@@ -4908,6 +5176,7 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "description": "The enforcement status of multi-factor authentication, either `enforced` or `optional`.",
                           "enum": [
                             "enforced",
@@ -4917,6 +5186,7 @@
                         },
                         {
                           "type": "array",
+                          "x-nullable": true,
                           "description": "A list of notification email addresses.",
                           "items": {
                             "type": "string"
@@ -4968,6 +5238,7 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "01619571dad80242ac12000600000000",
                           "description": "The ID of the parent account, if any.",
                           "_key": "parent_id"
@@ -5003,12 +5274,14 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "+44 (1223) 400 400",
                           "description": "The phone number of a company representative.",
                           "_key": "phone_number"
                         },
                         {
                           "type": "array",
+                          "x-nullable": true,
                           "description": "List of policies if requested.",
                           "items": {
                             "type": "object",
@@ -5064,18 +5337,21 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "CB1 9NJ",
                           "description": "The postal code part of the postal address.",
                           "_key": "postal_code"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "Subscription paid.",
                           "description": "A note with the reason for account status update.",
                           "_key": "reason"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "ARM-INT-0001",
                           "description": "A reference note for updating the status of the account.",
                           "_key": "reference_note"
@@ -5083,11 +5359,13 @@
                         {
                           "type": "string",
                           "example": "sales@arm.com",
+                          "x-nullable": true,
                           "description": "Email address of the sales contact.",
                           "_key": "sales_contact"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": " ",
                           "description": "The state part of the postal address.",
                           "_key": "state"
@@ -5106,12 +5384,14 @@
                         },
                         {
                           "type": "array",
+                          "x-nullable": true,
                           "description": "List of sub accounts. Not available for developer users.",
                           "items": [],
                           "_key": "sub_accounts"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "01619571e7160242ac12000600000000",
                           "description": "Account template ID.",
                           "_key": "template_id"
@@ -5145,6 +5425,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "01619571e7160242ac12000600000000",
                     "description": "Account template ID.",
                     "api_fieldname": "template_id",
@@ -5623,6 +5904,7 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "Certificate created by me.",
                           "description": "Human readable description of this certificate.",
                           "_key": "description"
@@ -5632,9 +5914,6 @@
                           "format": "int32",
                           "example": 1,
                           "description": "Device execution mode where 1 means a developer certificate.",
-                          "private_field": true,
-                          "readOnly": false,
-                          "_override": true,
                           "_key": "device_execution_mode"
                         },
                         {
@@ -5676,6 +5955,7 @@
                           "_key": "object"
                         },
                         {
+                          "x-nullable": true,
                           "type": "string",
                           "example": "01619571dad80242ac12000600000000",
                           "description": "The ID of the owner.",
@@ -6113,6 +6393,7 @@
           "fields": [
             {
               "type": "string",
+              "x-nullable": true,
               "example": "110 Fulbourn Rd",
               "description": "Postal address line 1.",
               "api_fieldname": "address_line1",
@@ -6124,6 +6405,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": " ",
               "description": "Postal address line 2.",
               "api_fieldname": "address_line2",
@@ -6148,6 +6430,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "Cambridge",
               "description": "The city part of the postal address.",
               "api_fieldname": "city",
@@ -6159,6 +6442,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "ARM Holdings Plc",
               "description": "The name of the company.",
               "api_fieldname": "company",
@@ -6170,6 +6454,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "J. Doe",
               "description": "The name of the contact person for this account.",
               "api_fieldname": "contact",
@@ -6182,6 +6467,7 @@
             {
               "type": "string",
               "example": "1NX25_0001",
+              "x-nullable": true,
               "description": "Contract number of the customer.",
               "api_fieldname": "contract_number",
               "entity_fieldname": "contract_number",
@@ -6192,6 +6478,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "United Kingdom",
               "description": "The country part of the postal address.",
               "api_fieldname": "country",
@@ -6203,6 +6490,7 @@
             },
             {
               "type": "object",
+              "x-nullable": true,
               "description": "Account's custom properties as key-value pairs.",
               "additionalProperties": {
                 "type": "string"
@@ -6217,6 +6505,7 @@
             {
               "type": "string",
               "example": "1NC25_0001",
+              "x-nullable": true,
               "description": "Customer number of the customer.",
               "api_fieldname": "customer_number",
               "entity_fieldname": "customer_number",
@@ -6227,6 +6516,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "ARM",
               "description": "The display name for the account.",
               "api_fieldname": "display_name",
@@ -6238,6 +6528,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "info@arm.com",
               "description": "The company email address for this account.",
               "api_fieldname": "email",
@@ -6261,6 +6552,7 @@
             {
               "type": "string",
               "example": "180",
+              "x-nullable": true,
               "description": "Indicates how many days (1-180) before account expiration a notification email is sent.",
               "api_fieldname": "expiration_warning_threshold",
               "entity_fieldname": "expiration_warning_threshold",
@@ -6282,6 +6574,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "30",
               "description": "The reference token expiration time, in minutes, for this account.",
               "api_fieldname": "idle_timeout",
@@ -6293,6 +6586,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "description": "The enforcement status of multi-factor authentication, either `enforced` or `optional`.",
               "enum": [
                 "enforced",
@@ -6308,6 +6602,7 @@
             },
             {
               "type": "array",
+              "x-nullable": true,
               "description": "A list of notification email addresses.",
               "items": {
                 "type": "string"
@@ -6357,6 +6652,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "+44 (1223) 400 400",
               "description": "The phone number of a company representative.",
               "api_fieldname": "phone_number",
@@ -6368,6 +6664,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "CB1 9NJ",
               "description": "The postal code part of the postal address.",
               "api_fieldname": "postal_code",
@@ -6380,6 +6677,7 @@
             {
               "type": "string",
               "example": "sales@arm.com",
+              "x-nullable": true,
               "description": "Email address of the sales contact.",
               "api_fieldname": "sales_contact",
               "entity_fieldname": "sales_contact",
@@ -6390,6 +6688,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": " ",
               "description": "The state part of the postal address.",
               "api_fieldname": "state",
@@ -6418,6 +6717,7 @@
                 "properties": [
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "110 Fulbourn Rd",
                     "description": "Postal address line 1.",
                     "api_fieldname": "address_line1",
@@ -6426,6 +6726,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": " ",
                     "description": "Postal address line 2.",
                     "api_fieldname": "address_line2",
@@ -6434,6 +6735,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "admin@arm.com",
                     "description": "The email address of the admin user created for this account. Present only in the response for account creation.",
                     "api_fieldname": "admin_email",
@@ -6442,6 +6744,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "Admin Doe",
                     "description": "The full name of the admin user created for this account. Present only in the response for account creation.",
                     "api_fieldname": "admin_full_name",
@@ -6450,6 +6753,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "01619571e2e89242ac12000600000000",
                     "description": "The ID of the admin user created for this account.",
                     "api_fieldname": "admin_id",
@@ -6458,6 +6762,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "ak_1MDE2MTk1NzFmNmU4MDI0MmFjMTIwMDA2MDAwMDAwMDA01619571f7020242ac12000600000000B40IkJADMANmAscAj0Ot0n2yeQnyt9tT",
                     "description": "The admin API key created for this account. Present only in the response for account creation.",
                     "readOnly": true,
@@ -6467,6 +6772,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "admin",
                     "description": "The username of the admin user created for this account. Present only in the response for account creation.",
                     "api_fieldname": "admin_name",
@@ -6475,6 +6781,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "PZf9eEUH43DAPE9ULINFeuj",
                     "description": "The password of the admin user created for this account. Present only in the response for account creation.",
                     "api_fieldname": "admin_password",
@@ -6493,6 +6800,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "Cambridge",
                     "description": "The city part of the postal address.",
                     "api_fieldname": "city",
@@ -6501,6 +6809,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "ARM Holdings Plc",
                     "description": "The name of the company.",
                     "api_fieldname": "company",
@@ -6509,6 +6818,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "J. Doe",
                     "description": "The name of the contact person for this account.",
                     "api_fieldname": "contact",
@@ -6518,6 +6828,7 @@
                   {
                     "type": "string",
                     "example": "1NX25_0001",
+                    "x-nullable": true,
                     "description": "Contract number of the customer.",
                     "api_fieldname": "contract_number",
                     "entity_fieldname": "contract_number",
@@ -6525,6 +6836,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "United Kingdom",
                     "description": "The country part of the postal address.",
                     "api_fieldname": "country",
@@ -6542,6 +6854,7 @@
                   },
                   {
                     "type": "object",
+                    "x-nullable": true,
                     "description": "Account's custom properties as key-value pairs.",
                     "additionalProperties": {
                       "type": "string"
@@ -6553,6 +6866,7 @@
                   {
                     "type": "string",
                     "example": "1NC25_0001",
+                    "x-nullable": true,
                     "description": "Customer number of the customer.",
                     "api_fieldname": "customer_number",
                     "entity_fieldname": "customer_number",
@@ -6560,6 +6874,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "ARM",
                     "description": "The display name for the account.",
                     "api_fieldname": "display_name",
@@ -6568,6 +6883,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "info@arm.com",
                     "description": "The company email address for this account.",
                     "api_fieldname": "email",
@@ -6592,6 +6908,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "format": "date-time",
                     "description": "Expiration time of the account, as UTC time RFC3339.",
                     "api_fieldname": "expiration",
@@ -6601,6 +6918,7 @@
                   {
                     "type": "string",
                     "example": "180",
+                    "x-nullable": true,
                     "description": "Indicates how many days (1-180) before account expiration a notification email is sent.",
                     "api_fieldname": "expiration_warning_threshold",
                     "entity_fieldname": "expiration_warning_threshold",
@@ -6616,6 +6934,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "30",
                     "description": "The reference token expiration time, in minutes, for this account.",
                     "api_fieldname": "idle_timeout",
@@ -6624,6 +6943,7 @@
                   },
                   {
                     "type": "object",
+                    "x-nullable": true,
                     "description": "List of limits as key-value pairs if requested.",
                     "additionalProperties": {
                       "type": "string"
@@ -6634,6 +6954,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "description": "The enforcement status of multi-factor authentication, either `enforced` or `optional`.",
                     "enum": [
                       "enforced",
@@ -6645,6 +6966,7 @@
                   },
                   {
                     "type": "array",
+                    "x-nullable": true,
                     "description": "A list of notification email addresses.",
                     "items": {
                       "type": "string"
@@ -6702,6 +7024,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "01619571dad80242ac12000600000000",
                     "description": "The ID of the parent account, if any.",
                     "api_fieldname": "parent_id",
@@ -6743,6 +7066,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "+44 (1223) 400 400",
                     "description": "The phone number of a company representative.",
                     "api_fieldname": "phone_number",
@@ -6751,6 +7075,7 @@
                   },
                   {
                     "type": "array",
+                    "x-nullable": true,
                     "description": "List of policies if requested.",
                     "items": {
                       "type": "object",
@@ -6808,6 +7133,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "CB1 9NJ",
                     "description": "The postal code part of the postal address.",
                     "api_fieldname": "postal_code",
@@ -6816,6 +7142,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "Subscription paid.",
                     "description": "A note with the reason for account status update.",
                     "api_fieldname": "reason",
@@ -6824,6 +7151,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "ARM-INT-0001",
                     "description": "A reference note for updating the status of the account.",
                     "api_fieldname": "reference_note",
@@ -6833,6 +7161,7 @@
                   {
                     "type": "string",
                     "example": "sales@arm.com",
+                    "x-nullable": true,
                     "description": "Email address of the sales contact.",
                     "api_fieldname": "sales_contact",
                     "entity_fieldname": "sales_contact",
@@ -6840,6 +7169,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": " ",
                     "description": "The state part of the postal address.",
                     "api_fieldname": "state",
@@ -6862,6 +7192,7 @@
                   },
                   {
                     "type": "array",
+                    "x-nullable": true,
                     "description": "List of sub accounts. Not available for developer users.",
                     "items": {
                       "type": "object",
@@ -6876,36 +7207,42 @@
                       "properties": [
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "110 Fulbourn Rd",
                           "description": "Postal address line 1.",
                           "_key": "address_line1"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": " ",
                           "description": "Postal address line 2.",
                           "_key": "address_line2"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "admin@arm.com",
                           "description": "The email address of the admin user created for this account. Present only in the response for account creation.",
                           "_key": "admin_email"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "Admin Doe",
                           "description": "The full name of the admin user created for this account. Present only in the response for account creation.",
                           "_key": "admin_full_name"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "01619571e2e89242ac12000600000000",
                           "description": "The ID of the admin user created for this account.",
                           "_key": "admin_id"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "ak_1MDE2MTk1NzFmNmU4MDI0MmFjMTIwMDA2MDAwMDAwMDA01619571f7020242ac12000600000000B40IkJADMANmAscAj0Ot0n2yeQnyt9tT",
                           "description": "The admin API key created for this account. Present only in the response for account creation.",
                           "readOnly": true,
@@ -6913,12 +7250,14 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "admin",
                           "description": "The username of the admin user created for this account. Present only in the response for account creation.",
                           "_key": "admin_name"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "PZf9eEUH43DAPE9ULINFeuj",
                           "description": "The password of the admin user created for this account. Present only in the response for account creation.",
                           "_key": "admin_password"
@@ -6933,18 +7272,21 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "Cambridge",
                           "description": "The city part of the postal address.",
                           "_key": "city"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "ARM Holdings Plc",
                           "description": "The name of the company.",
                           "_key": "company"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "J. Doe",
                           "description": "The name of the contact person for this account.",
                           "_key": "contact"
@@ -6952,11 +7294,13 @@
                         {
                           "type": "string",
                           "example": "1NX25_0001",
+                          "x-nullable": true,
                           "description": "Contract number of the customer.",
                           "_key": "contract_number"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "United Kingdom",
                           "description": "The country part of the postal address.",
                           "_key": "country"
@@ -6970,6 +7314,7 @@
                         },
                         {
                           "type": "object",
+                          "x-nullable": true,
                           "description": "Account's custom properties as key-value pairs.",
                           "additionalProperties": {
                             "type": "string"
@@ -6979,17 +7324,20 @@
                         {
                           "type": "string",
                           "example": "1NC25_0001",
+                          "x-nullable": true,
                           "description": "Customer number of the customer.",
                           "_key": "customer_number"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "ARM",
                           "description": "The display name for the account.",
                           "_key": "display_name"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "info@arm.com",
                           "description": "The company email address for this account.",
                           "_key": "email"
@@ -7008,6 +7356,7 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "format": "date-time",
                           "description": "Expiration time of the account, as UTC time RFC3339.",
                           "_key": "expiration"
@@ -7015,6 +7364,7 @@
                         {
                           "type": "string",
                           "example": "180",
+                          "x-nullable": true,
                           "description": "Indicates how many days (1-180) before account expiration a notification email is sent.",
                           "_key": "expiration_warning_threshold"
                         },
@@ -7026,12 +7376,14 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "30",
                           "description": "The reference token expiration time, in minutes, for this account.",
                           "_key": "idle_timeout"
                         },
                         {
                           "type": "object",
+                          "x-nullable": true,
                           "description": "List of limits as key-value pairs if requested.",
                           "additionalProperties": {
                             "type": "string"
@@ -7040,6 +7392,7 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "description": "The enforcement status of multi-factor authentication, either `enforced` or `optional`.",
                           "enum": [
                             "enforced",
@@ -7049,6 +7402,7 @@
                         },
                         {
                           "type": "array",
+                          "x-nullable": true,
                           "description": "A list of notification email addresses.",
                           "items": {
                             "type": "string"
@@ -7100,6 +7454,7 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "01619571dad80242ac12000600000000",
                           "description": "The ID of the parent account, if any.",
                           "_key": "parent_id"
@@ -7135,12 +7490,14 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "+44 (1223) 400 400",
                           "description": "The phone number of a company representative.",
                           "_key": "phone_number"
                         },
                         {
                           "type": "array",
+                          "x-nullable": true,
                           "description": "List of policies if requested.",
                           "items": {
                             "type": "object",
@@ -7196,18 +7553,21 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "CB1 9NJ",
                           "description": "The postal code part of the postal address.",
                           "_key": "postal_code"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "Subscription paid.",
                           "description": "A note with the reason for account status update.",
                           "_key": "reason"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "ARM-INT-0001",
                           "description": "A reference note for updating the status of the account.",
                           "_key": "reference_note"
@@ -7215,11 +7575,13 @@
                         {
                           "type": "string",
                           "example": "sales@arm.com",
+                          "x-nullable": true,
                           "description": "Email address of the sales contact.",
                           "_key": "sales_contact"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": " ",
                           "description": "The state part of the postal address.",
                           "_key": "state"
@@ -7238,12 +7600,14 @@
                         },
                         {
                           "type": "array",
+                          "x-nullable": true,
                           "description": "List of sub accounts. Not available for developer users.",
                           "items": [],
                           "_key": "sub_accounts"
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "01619571e7160242ac12000600000000",
                           "description": "Account template ID.",
                           "_key": "template_id"
@@ -7277,6 +7641,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "01619571e7160242ac12000600000000",
                     "description": "Account template ID.",
                     "api_fieldname": "template_id",
@@ -8447,6 +8812,7 @@
                         },
                         {
                           "type": "object",
+                          "x-nullable": true,
                           "description": "User's account-specific custom properties. The value is a string.",
                           "additionalProperties": {
                             "type": "string"
@@ -8474,6 +8840,7 @@
                         {
                           "type": "string",
                           "example": "User Doe",
+                          "x-nullable": true,
                           "description": "The full name of the user.",
                           "_key": "full_name"
                         },
@@ -8665,6 +9032,7 @@
                         },
                         {
                           "type": "array",
+                          "x-nullable": true,
                           "description": "A list of scratch codes for the two-factor authentication. Visible only when 2FA is requested to be enabled or the codes regenerated.",
                           "items": {
                             "type": "string"
@@ -9043,6 +9411,7 @@
       "fields": [
         {
           "type": "string",
+          "x-nullable": true,
           "example": "110 Fulbourn Rd",
           "description": "Postal address line 1.",
           "api_fieldname": "address_line1",
@@ -9052,6 +9421,7 @@
         },
         {
           "type": "string",
+          "x-nullable": true,
           "example": " ",
           "description": "Postal address line 2.",
           "api_fieldname": "address_line2",
@@ -9061,6 +9431,7 @@
         },
         {
           "type": "string",
+          "x-nullable": true,
           "example": "admin@arm.com",
           "description": "The email address of the admin user created for this account. Present only in the response for account creation.",
           "api_fieldname": "admin_email",
@@ -9070,6 +9441,7 @@
         },
         {
           "type": "string",
+          "x-nullable": true,
           "example": "Admin Doe",
           "description": "The full name of the admin user created for this account. Present only in the response for account creation.",
           "api_fieldname": "admin_full_name",
@@ -9079,6 +9451,7 @@
         },
         {
           "type": "string",
+          "x-nullable": true,
           "example": "01619571e2e89242ac12000600000000",
           "description": "The ID of the admin user created for this account.",
           "api_fieldname": "admin_id",
@@ -9088,6 +9461,7 @@
         },
         {
           "type": "string",
+          "x-nullable": true,
           "example": "ak_1MDE2MTk1NzFmNmU4MDI0MmFjMTIwMDA2MDAwMDAwMDA01619571f7020242ac12000600000000B40IkJADMANmAscAj0Ot0n2yeQnyt9tT",
           "description": "The admin API key created for this account. Present only in the response for account creation.",
           "readOnly": true,
@@ -9097,6 +9471,7 @@
         },
         {
           "type": "string",
+          "x-nullable": true,
           "example": "admin",
           "description": "The username of the admin user created for this account. Present only in the response for account creation.",
           "api_fieldname": "admin_name",
@@ -9106,6 +9481,7 @@
         },
         {
           "type": "string",
+          "x-nullable": true,
           "example": "PZf9eEUH43DAPE9ULINFeuj",
           "description": "The password of the admin user created for this account. Present only in the response for account creation.",
           "api_fieldname": "admin_password",
@@ -9126,6 +9502,7 @@
         },
         {
           "type": "string",
+          "x-nullable": true,
           "example": "Cambridge",
           "description": "The city part of the postal address.",
           "api_fieldname": "city",
@@ -9135,6 +9512,7 @@
         },
         {
           "type": "string",
+          "x-nullable": true,
           "example": "ARM Holdings Plc",
           "description": "The name of the company.",
           "api_fieldname": "company",
@@ -9144,6 +9522,7 @@
         },
         {
           "type": "string",
+          "x-nullable": true,
           "example": "J. Doe",
           "description": "The name of the contact person for this account.",
           "api_fieldname": "contact",
@@ -9154,6 +9533,7 @@
         {
           "type": "string",
           "example": "1NX25_0001",
+          "x-nullable": true,
           "description": "Contract number of the customer.",
           "api_fieldname": "contract_number",
           "readOnly": false,
@@ -9162,6 +9542,7 @@
         },
         {
           "type": "string",
+          "x-nullable": true,
           "example": "United Kingdom",
           "description": "The country part of the postal address.",
           "api_fieldname": "country",
@@ -9181,6 +9562,7 @@
         },
         {
           "type": "object",
+          "x-nullable": true,
           "description": "Account's custom properties as key-value pairs.",
           "additionalProperties": {
             "type": "string"
@@ -9193,6 +9575,7 @@
         {
           "type": "string",
           "example": "1NC25_0001",
+          "x-nullable": true,
           "description": "Customer number of the customer.",
           "api_fieldname": "customer_number",
           "readOnly": false,
@@ -9201,6 +9584,7 @@
         },
         {
           "type": "string",
+          "x-nullable": true,
           "example": "ARM",
           "description": "The display name for the account.",
           "api_fieldname": "display_name",
@@ -9210,6 +9594,7 @@
         },
         {
           "type": "string",
+          "x-nullable": true,
           "example": "info@arm.com",
           "description": "The company email address for this account.",
           "api_fieldname": "email",
@@ -9228,6 +9613,7 @@
         },
         {
           "type": "string",
+          "x-nullable": true,
           "format": "date-time",
           "description": "Expiration time of the account, as UTC time RFC3339.",
           "api_fieldname": "expiration",
@@ -9238,6 +9624,7 @@
         {
           "type": "string",
           "example": "180",
+          "x-nullable": true,
           "description": "Indicates how many days (1-180) before account expiration a notification email is sent.",
           "api_fieldname": "expiration_warning_threshold",
           "readOnly": false,
@@ -9255,6 +9642,7 @@
         },
         {
           "type": "string",
+          "x-nullable": true,
           "example": "30",
           "description": "The reference token expiration time, in minutes, for this account.",
           "api_fieldname": "idle_timeout",
@@ -9264,6 +9652,7 @@
         },
         {
           "type": "object",
+          "x-nullable": true,
           "description": "List of limits as key-value pairs if requested.",
           "additionalProperties": {
             "type": "string"
@@ -9275,6 +9664,7 @@
         },
         {
           "type": "string",
+          "x-nullable": true,
           "description": "The enforcement status of multi-factor authentication, either `enforced` or `optional`.",
           "enum": [
             "enforced",
@@ -9288,6 +9678,7 @@
         },
         {
           "type": "array",
+          "x-nullable": true,
           "description": "A list of notification email addresses.",
           "items": {
             "type": "string"
@@ -9337,6 +9728,7 @@
         },
         {
           "type": "string",
+          "x-nullable": true,
           "example": "01619571dad80242ac12000600000000",
           "description": "The ID of the parent account, if any.",
           "api_fieldname": "parent_id",
@@ -9378,6 +9770,7 @@
         },
         {
           "type": "string",
+          "x-nullable": true,
           "example": "+44 (1223) 400 400",
           "description": "The phone number of a company representative.",
           "api_fieldname": "phone_number",
@@ -9387,6 +9780,7 @@
         },
         {
           "type": "array",
+          "x-nullable": true,
           "description": "List of policies if requested.",
           "items": {
             "type": "object",
@@ -9445,6 +9839,7 @@
         },
         {
           "type": "string",
+          "x-nullable": true,
           "example": "CB1 9NJ",
           "description": "The postal code part of the postal address.",
           "api_fieldname": "postal_code",
@@ -9454,6 +9849,7 @@
         },
         {
           "type": "string",
+          "x-nullable": true,
           "example": "Subscription paid.",
           "description": "A note with the reason for account status update.",
           "api_fieldname": "reason",
@@ -9463,6 +9859,7 @@
         },
         {
           "type": "string",
+          "x-nullable": true,
           "example": "ARM-INT-0001",
           "description": "A reference note for updating the status of the account.",
           "api_fieldname": "reference_note",
@@ -9473,6 +9870,7 @@
         {
           "type": "string",
           "example": "sales@arm.com",
+          "x-nullable": true,
           "description": "Email address of the sales contact.",
           "api_fieldname": "sales_contact",
           "readOnly": false,
@@ -9481,6 +9879,7 @@
         },
         {
           "type": "string",
+          "x-nullable": true,
           "example": " ",
           "description": "The state part of the postal address.",
           "api_fieldname": "state",
@@ -9506,6 +9905,7 @@
         },
         {
           "type": "string",
+          "x-nullable": true,
           "example": "01619571e7160242ac12000600000000",
           "description": "Account template ID.",
           "api_fieldname": "template_id",
@@ -18557,6 +18957,7 @@
             {
               "type": "string",
               "description": "Description for the developer certificate.",
+              "x-nullable": true,
               "api_fieldname": "description",
               "entity_fieldname": "description",
               "parameter_fieldname": "description",
@@ -18601,6 +19002,7 @@
                   {
                     "type": "string",
                     "description": "Description for the developer certificate.",
+                    "x-nullable": true,
                     "api_fieldname": "description",
                     "entity_fieldname": "description",
                     "_key": "description"
@@ -19356,18 +19758,6 @@
           ],
           "fields": [
             {
-              "type": "integer",
-              "format": "int32",
-              "example": 1,
-              "description": "Device execution mode where 1 means a developer certificate.",
-              "private_field": true,
-              "readOnly": false,
-              "_override": true,
-              "api_fieldname": "device_execution_mode",
-              "entity_fieldname": "device_execution_mode",
-              "_key": "device_execution_mode"
-            },
-            {
               "type": "string",
               "example": "01619571d01d0242ac12000600000000",
               "description": "Entity ID.",
@@ -19435,6 +19825,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "Certificate created by me.",
                     "description": "Human readable description of this certificate.",
                     "api_fieldname": "description",
@@ -19446,9 +19837,6 @@
                     "format": "int32",
                     "example": 1,
                     "description": "Device execution mode where 1 means a developer certificate.",
-                    "private_field": true,
-                    "readOnly": false,
-                    "_override": true,
                     "api_fieldname": "device_execution_mode",
                     "entity_fieldname": "device_execution_mode",
                     "_key": "device_execution_mode"
@@ -19504,6 +19892,7 @@
                     "_key": "object"
                   },
                   {
+                    "x-nullable": true,
                     "type": "string",
                     "example": "01619571dad80242ac12000600000000",
                     "description": "The ID of the owner.",
@@ -19828,6 +20217,7 @@
             "subject",
             "validity",
             "status",
+            "device_execution_mode",
             "enrollment_mode",
             "certificate_fingerprint",
             "valid"
@@ -19898,6 +20288,7 @@
                   {
                     "type": "string",
                     "description": "Description for the developer certificate.",
+                    "x-nullable": true,
                     "api_fieldname": "description",
                     "entity_fieldname": "description",
                     "_key": "description"
@@ -20279,6 +20670,7 @@
         {
           "type": "string",
           "description": "Description for the developer certificate.",
+          "x-nullable": true,
           "api_fieldname": "description",
           "readOnly": false,
           "required": false,
@@ -20322,7 +20714,7 @@
         }
       ],
       "tags": [
-        "Developer certificate",
+        "Device security - developer class certificates",
         "Device security - certificates"
       ],
       "group_id": "Security",
@@ -20355,6 +20747,7 @@
             {
               "format": "date",
               "type": "string",
+              "x-nullable": true,
               "description": "The expiration date of the certificate used to connect to bootstrap server.",
               "api_fieldname": "bootstrap_expiration_date",
               "entity_fieldname": "bootstrap_expiration_date",
@@ -20365,6 +20758,7 @@
             },
             {
               "format": "date-time",
+              "x-nullable": true,
               "example": "2017-05-22T12:37:55.576563Z",
               "type": "string",
               "description": "The timestamp of the device's most recent bootstrap process.",
@@ -20393,6 +20787,7 @@
             {
               "format": "date",
               "type": "string",
+              "x-nullable": true,
               "description": "The expiration date of the certificate used to connect to LwM2M server.",
               "api_fieldname": "connector_expiration_date",
               "entity_fieldname": "connector_expiration_date",
@@ -20536,6 +20931,7 @@
             {
               "type": "string",
               "pattern": "[A-Fa-f0-9]{64}",
+              "x-nullable": true,
               "description": "SHA256 fingerprint of the certificate used to validate the signature of the device certificate.",
               "example": "C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322",
               "api_fieldname": "issuer_fingerprint",
@@ -20650,6 +21046,7 @@
                   "issuer_fingerprint": {
                     "type": "string",
                     "pattern": "[A-Fa-f0-9]{64}",
+                    "x-nullable": true,
                     "description": "SHA256 fingerprint of the certificate used to validate the signature of the device certificate.",
                     "example": "C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322",
                     "api_fieldname": "issuer_fingerprint",
@@ -20683,6 +21080,7 @@
                   "bootstrap_expiration_date": {
                     "format": "date",
                     "type": "string",
+                    "x-nullable": true,
                     "description": "The expiration date of the certificate used to connect to bootstrap server.",
                     "api_fieldname": "bootstrap_expiration_date",
                     "entity_fieldname": "bootstrap_expiration_date"
@@ -20698,6 +21096,7 @@
                   "connector_expiration_date": {
                     "format": "date",
                     "type": "string",
+                    "x-nullable": true,
                     "description": "The expiration date of the certificate used to connect to LwM2M server.",
                     "api_fieldname": "connector_expiration_date",
                     "entity_fieldname": "connector_expiration_date"
@@ -21095,6 +21494,7 @@
                         "issuer_fingerprint": {
                           "type": "string",
                           "pattern": "[A-Fa-f0-9]{64}",
+                          "x-nullable": true,
                           "description": "SHA256 fingerprint of the certificate used to validate the signature of the device certificate.",
                           "example": "C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322"
                         },
@@ -21120,6 +21520,7 @@
                         "bootstrap_expiration_date": {
                           "format": "date",
                           "type": "string",
+                          "x-nullable": true,
                           "description": "The expiration date of the certificate used to connect to bootstrap server."
                         },
                         "ca_id": {
@@ -21131,6 +21532,7 @@
                         "connector_expiration_date": {
                           "format": "date",
                           "type": "string",
+                          "x-nullable": true,
                           "description": "The expiration date of the certificate used to connect to LwM2M server."
                         },
                         "created_at": {
@@ -21694,6 +22096,7 @@
                   "issuer_fingerprint": {
                     "type": "string",
                     "pattern": "[A-Fa-f0-9]{64}",
+                    "x-nullable": true,
                     "description": "SHA256 fingerprint of the certificate used to validate the signature of the device certificate.",
                     "example": "C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322",
                     "api_fieldname": "issuer_fingerprint",
@@ -21727,6 +22130,7 @@
                   "bootstrap_expiration_date": {
                     "format": "date",
                     "type": "string",
+                    "x-nullable": true,
                     "description": "The expiration date of the certificate used to connect to bootstrap server.",
                     "api_fieldname": "bootstrap_expiration_date",
                     "entity_fieldname": "bootstrap_expiration_date"
@@ -21742,6 +22146,7 @@
                   "connector_expiration_date": {
                     "format": "date",
                     "type": "string",
+                    "x-nullable": true,
                     "description": "The expiration date of the certificate used to connect to LwM2M server.",
                     "api_fieldname": "connector_expiration_date",
                     "entity_fieldname": "connector_expiration_date"
@@ -22719,6 +23124,7 @@
                   "issuer_fingerprint": {
                     "type": "string",
                     "pattern": "[A-Fa-f0-9]{64}",
+                    "x-nullable": true,
                     "description": "SHA256 fingerprint of the certificate used to validate the signature of the device certificate.",
                     "example": "C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322",
                     "api_fieldname": "issuer_fingerprint",
@@ -22752,6 +23158,7 @@
                   "bootstrap_expiration_date": {
                     "format": "date",
                     "type": "string",
+                    "x-nullable": true,
                     "description": "The expiration date of the certificate used to connect to bootstrap server.",
                     "api_fieldname": "bootstrap_expiration_date",
                     "entity_fieldname": "bootstrap_expiration_date"
@@ -22767,6 +23174,7 @@
                   "connector_expiration_date": {
                     "format": "date",
                     "type": "string",
+                    "x-nullable": true,
                     "description": "The expiration date of the certificate used to connect to LwM2M server.",
                     "api_fieldname": "connector_expiration_date",
                     "entity_fieldname": "connector_expiration_date"
@@ -23047,6 +23455,7 @@
         {
           "format": "date",
           "type": "string",
+          "x-nullable": true,
           "description": "The expiration date of the certificate used to connect to bootstrap server.",
           "api_fieldname": "bootstrap_expiration_date",
           "readOnly": false,
@@ -23066,6 +23475,7 @@
         {
           "format": "date",
           "type": "string",
+          "x-nullable": true,
           "description": "The expiration date of the certificate used to connect to LwM2M server.",
           "api_fieldname": "connector_expiration_date",
           "readOnly": false,
@@ -23215,6 +23625,7 @@
         {
           "type": "string",
           "pattern": "[A-Fa-f0-9]{64}",
+          "x-nullable": true,
           "description": "SHA256 fingerprint of the certificate used to validate the signature of the device certificate.",
           "example": "C42EDEFC75871E4CE2146FCDA67D03DDA05CC26FDF93B17B55F42C1EADFDC322",
           "api_fieldname": "issuer_fingerprint",
@@ -31192,7 +31603,7 @@
       ],
       "field_renames": [],
       "tags": [
-        "Server credentials"
+        "Service security - server credentials"
       ],
       "group_id": "Security",
       "_key": "server_credentials"
@@ -31234,6 +31645,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "Certificate created by me.",
               "description": "Human readable description of this certificate.",
               "api_fieldname": "description",
@@ -31242,18 +31654,6 @@
               "in": "body",
               "required": false,
               "_key": "description"
-            },
-            {
-              "type": "integer",
-              "format": "int32",
-              "example": 1,
-              "description": "Device execution mode where 1 means a developer certificate.",
-              "private_field": true,
-              "readOnly": false,
-              "_override": true,
-              "api_fieldname": "device_execution_mode",
-              "entity_fieldname": "device_execution_mode",
-              "_key": "device_execution_mode"
             },
             {
               "type": "boolean",
@@ -31270,8 +31670,8 @@
               "description": "Whether or not this certificate is a developer certificate.",
               "example": true,
               "type": "boolean",
+              "readOnly": true,
               "getter_custom_method": "is_developer_certificate_getter",
-              "setter_custom_method": "is_developer_certificate_setter",
               "_override": true,
               "api_fieldname": "is_developer_certificate",
               "entity_fieldname": "is_developer_certificate",
@@ -31379,6 +31779,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "Certificate created by me.",
                     "description": "Human readable description of this certificate.",
                     "api_fieldname": "description",
@@ -31393,9 +31794,6 @@
                     "format": "int32",
                     "example": 1,
                     "description": "Device execution mode where 1 means a developer certificate.",
-                    "private_field": true,
-                    "readOnly": false,
-                    "_override": true,
                     "api_fieldname": "device_execution_mode",
                     "entity_fieldname": "device_execution_mode",
                     "_key": "device_execution_mode"
@@ -31460,6 +31858,7 @@
                     "_key": "object"
                   },
                   {
+                    "x-nullable": true,
                     "type": "string",
                     "example": "01619571dad80242ac12000600000000",
                     "description": "The ID of the owner.",
@@ -31861,6 +32260,7 @@
             "issuer",
             "subject",
             "validity",
+            "device_execution_mode",
             "certificate_fingerprint",
             "valid"
           ],
@@ -31889,15 +32289,6 @@
               "_key": "account_id"
             },
             {
-              "type": "integer",
-              "private_field": true,
-              "readOnly": false,
-              "_override": true,
-              "api_fieldname": "device_execution_mode",
-              "entity_fieldname": "device_execution_mode",
-              "_key": "device_execution_mode"
-            },
-            {
               "name": "cert_id",
               "in": "path",
               "description": "The ID of the trusted certificate to delete.",
@@ -31913,8 +32304,8 @@
               "description": "Whether or not this certificate is a developer certificate.",
               "example": true,
               "type": "boolean",
+              "readOnly": true,
               "getter_custom_method": "is_developer_certificate_getter",
-              "setter_custom_method": "is_developer_certificate_setter",
               "_override": true,
               "api_fieldname": "is_developer_certificate",
               "entity_fieldname": "is_developer_certificate",
@@ -32182,15 +32573,6 @@
           "field_renames": [],
           "fields": [
             {
-              "type": "integer",
-              "private_field": true,
-              "readOnly": false,
-              "_override": true,
-              "api_fieldname": "device_execution_mode",
-              "entity_fieldname": "device_execution_mode",
-              "_key": "device_execution_mode"
-            },
-            {
               "type": "string",
               "description": "ID that uniquely identifies the developer certificate.",
               "api_fieldname": "id",
@@ -32204,8 +32586,8 @@
               "description": "Whether or not this certificate is a developer certificate.",
               "example": true,
               "type": "boolean",
+              "readOnly": true,
               "getter_custom_method": "is_developer_certificate_getter",
-              "setter_custom_method": "is_developer_certificate_setter",
               "_override": true,
               "api_fieldname": "is_developer_certificate",
               "entity_fieldname": "is_developer_certificate",
@@ -32238,6 +32620,7 @@
                   {
                     "type": "string",
                     "description": "Description for the developer certificate.",
+                    "x-nullable": true,
                     "api_fieldname": "description",
                     "entity_fieldname": "description",
                     "_key": "description"
@@ -32611,18 +32994,6 @@
               "_key": "account_id"
             },
             {
-              "type": "integer",
-              "format": "int32",
-              "example": 1,
-              "description": "Device execution mode where 1 means a developer certificate.",
-              "private_field": true,
-              "readOnly": false,
-              "_override": true,
-              "api_fieldname": "device_execution_mode",
-              "entity_fieldname": "device_execution_mode",
-              "_key": "device_execution_mode"
-            },
-            {
               "type": "string",
               "example": "01619571d01d0242ac12000600000000",
               "description": "Entity ID.",
@@ -32637,8 +33008,8 @@
               "description": "Whether or not this certificate is a developer certificate.",
               "example": true,
               "type": "boolean",
+              "readOnly": true,
               "getter_custom_method": "is_developer_certificate_getter",
-              "setter_custom_method": "is_developer_certificate_setter",
               "_override": true,
               "api_fieldname": "is_developer_certificate",
               "entity_fieldname": "is_developer_certificate",
@@ -32704,6 +33075,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "Certificate created by me.",
                     "description": "Human readable description of this certificate.",
                     "api_fieldname": "description",
@@ -32718,9 +33090,6 @@
                     "format": "int32",
                     "example": 1,
                     "description": "Device execution mode where 1 means a developer certificate.",
-                    "private_field": true,
-                    "readOnly": false,
-                    "_override": true,
                     "api_fieldname": "device_execution_mode",
                     "entity_fieldname": "device_execution_mode",
                     "_key": "device_execution_mode"
@@ -32785,6 +33154,7 @@
                     "_key": "object"
                   },
                   {
+                    "x-nullable": true,
                     "type": "string",
                     "example": "01619571dad80242ac12000600000000",
                     "description": "The ID of the owner.",
@@ -33116,6 +33486,7 @@
             "subject",
             "validity",
             "status",
+            "device_execution_mode",
             "enrollment_mode",
             "certificate_fingerprint",
             "valid"
@@ -33158,6 +33529,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "Certificate created by me.",
               "description": "Human readable description of this certificate.",
               "api_fieldname": "description",
@@ -33166,18 +33538,6 @@
               "in": "body",
               "required": false,
               "_key": "description"
-            },
-            {
-              "type": "integer",
-              "format": "int32",
-              "example": 1,
-              "description": "Device execution mode where 1 means a developer certificate.",
-              "private_field": true,
-              "readOnly": false,
-              "_override": true,
-              "api_fieldname": "device_execution_mode",
-              "entity_fieldname": "device_execution_mode",
-              "_key": "device_execution_mode"
             },
             {
               "type": "boolean",
@@ -33205,8 +33565,8 @@
               "description": "Whether or not this certificate is a developer certificate.",
               "example": true,
               "type": "boolean",
+              "readOnly": true,
               "getter_custom_method": "is_developer_certificate_getter",
-              "setter_custom_method": "is_developer_certificate_setter",
               "_override": true,
               "api_fieldname": "is_developer_certificate",
               "entity_fieldname": "is_developer_certificate",
@@ -33314,6 +33674,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "Certificate created by me.",
                     "description": "Human readable description of this certificate.",
                     "api_fieldname": "description",
@@ -33328,9 +33689,6 @@
                     "format": "int32",
                     "example": 1,
                     "description": "Device execution mode where 1 means a developer certificate.",
-                    "private_field": true,
-                    "readOnly": false,
-                    "_override": true,
                     "api_fieldname": "device_execution_mode",
                     "entity_fieldname": "device_execution_mode",
                     "_key": "device_execution_mode"
@@ -33395,6 +33753,7 @@
                     "_key": "object"
                   },
                   {
+                    "x-nullable": true,
                     "type": "string",
                     "example": "01619571dad80242ac12000600000000",
                     "description": "The ID of the owner.",
@@ -33795,6 +34154,7 @@
             "issuer",
             "subject",
             "validity",
+            "device_execution_mode",
             "certificate_fingerprint",
             "valid"
           ],
@@ -33852,6 +34212,7 @@
         },
         {
           "type": "string",
+          "x-nullable": true,
           "example": "Certificate created by me.",
           "description": "Human readable description of this certificate.",
           "api_fieldname": "description",
@@ -33866,10 +34227,8 @@
           "format": "int32",
           "example": 1,
           "description": "Device execution mode where 1 means a developer certificate.",
-          "private_field": true,
-          "readOnly": false,
-          "_override": true,
           "api_fieldname": "device_execution_mode",
+          "readOnly": true,
           "required": false,
           "_key": "device_execution_mode"
         },
@@ -33899,11 +34258,10 @@
           "description": "Whether or not this certificate is a developer certificate.",
           "example": true,
           "type": "boolean",
+          "readOnly": true,
           "getter_custom_method": "is_developer_certificate_getter",
-          "setter_custom_method": "is_developer_certificate_setter",
           "_override": true,
           "api_fieldname": "is_developer_certificate",
-          "readOnly": false,
           "required": false,
           "_key": "is_developer_certificate"
         },
@@ -33928,6 +34286,7 @@
           "_key": "name"
         },
         {
+          "x-nullable": true,
           "type": "string",
           "example": "01619571dad80242ac12000600000000",
           "description": "The ID of the owner.",
@@ -34009,7 +34368,7 @@
       "field_renames": [],
       "tags": [
         "Tenant device security - certificates",
-        "Developer certificate"
+        "Device security - developer class certificates"
       ],
       "group_id": "Security",
       "_key": "subtenant_trusted_certificate"
@@ -34089,6 +34448,7 @@
             {
               "type": "string",
               "example": "User Doe",
+              "x-nullable": true,
               "description": "The full name of the user.",
               "api_fieldname": "full_name",
               "entity_fieldname": "full_name",
@@ -34344,6 +34704,7 @@
                   },
                   {
                     "type": "object",
+                    "x-nullable": true,
                     "description": "User's account-specific custom properties. The value is a string.",
                     "additionalProperties": {
                       "type": "string"
@@ -34382,6 +34743,7 @@
                   {
                     "type": "string",
                     "example": "User Doe",
+                    "x-nullable": true,
                     "description": "The full name of the user.",
                     "api_fieldname": "full_name",
                     "entity_fieldname": "full_name",
@@ -34404,6 +34766,7 @@
                     "external_param": true,
                     "parameter_fieldname": "groups",
                     "required": false,
+                    "x-nullable": true,
                     "_key": "groups"
                   },
                   {
@@ -34634,6 +34997,7 @@
                   },
                   {
                     "type": "array",
+                    "x-nullable": true,
                     "description": "A list of scratch codes for the two-factor authentication. Visible only when 2FA is requested to be enabled or the codes regenerated.",
                     "items": {
                       "type": "string"
@@ -35623,6 +35987,7 @@
                   },
                   {
                     "type": "object",
+                    "x-nullable": true,
                     "description": "User's account-specific custom properties. The value is a string.",
                     "additionalProperties": {
                       "type": "string"
@@ -35661,6 +36026,7 @@
                   {
                     "type": "string",
                     "example": "User Doe",
+                    "x-nullable": true,
                     "description": "The full name of the user.",
                     "api_fieldname": "full_name",
                     "entity_fieldname": "full_name",
@@ -35683,6 +36049,7 @@
                     "external_param": true,
                     "parameter_fieldname": "groups",
                     "required": false,
+                    "x-nullable": true,
                     "_key": "groups"
                   },
                   {
@@ -35913,6 +36280,7 @@
                   },
                   {
                     "type": "array",
+                    "x-nullable": true,
                     "description": "A list of scratch codes for the two-factor authentication. Visible only when 2FA is requested to be enabled or the codes regenerated.",
                     "items": {
                       "type": "string"
@@ -36264,6 +36632,7 @@
             {
               "type": "string",
               "example": "User Doe",
+              "x-nullable": true,
               "description": "The full name of the user.",
               "api_fieldname": "full_name",
               "entity_fieldname": "full_name",
@@ -36529,6 +36898,7 @@
                   },
                   {
                     "type": "object",
+                    "x-nullable": true,
                     "description": "User's account-specific custom properties. The value is a string.",
                     "additionalProperties": {
                       "type": "string"
@@ -36567,6 +36937,7 @@
                   {
                     "type": "string",
                     "example": "User Doe",
+                    "x-nullable": true,
                     "description": "The full name of the user.",
                     "api_fieldname": "full_name",
                     "entity_fieldname": "full_name",
@@ -36589,6 +36960,7 @@
                     "external_param": true,
                     "parameter_fieldname": "groups",
                     "required": false,
+                    "x-nullable": true,
                     "_key": "groups"
                   },
                   {
@@ -36819,6 +37191,7 @@
                   },
                   {
                     "type": "array",
+                    "x-nullable": true,
                     "description": "A list of scratch codes for the two-factor authentication. Visible only when 2FA is requested to be enabled or the codes regenerated.",
                     "items": {
                       "type": "string"
@@ -37686,6 +38059,7 @@
         },
         {
           "type": "object",
+          "x-nullable": true,
           "description": "User's account-specific custom properties. The value is a string.",
           "additionalProperties": {
             "type": "string"
@@ -37718,6 +38092,7 @@
         {
           "type": "string",
           "example": "User Doe",
+          "x-nullable": true,
           "description": "The full name of the user.",
           "api_fieldname": "full_name",
           "parameter_fieldname": "full_name",
@@ -37937,6 +38312,7 @@
         },
         {
           "type": "array",
+          "x-nullable": true,
           "description": "A list of scratch codes for the two-factor authentication. Visible only when 2FA is requested to be enabled or the codes regenerated.",
           "items": {
             "type": "string"
@@ -39451,6 +39827,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "Certificate created by me.",
               "description": "Human readable description of this certificate.",
               "api_fieldname": "description",
@@ -39459,18 +39836,6 @@
               "in": "body",
               "required": false,
               "_key": "description"
-            },
-            {
-              "type": "integer",
-              "format": "int32",
-              "example": 1,
-              "description": "Device execution mode where 1 means a developer certificate.",
-              "private_field": true,
-              "readOnly": false,
-              "_override": true,
-              "api_fieldname": "device_execution_mode",
-              "entity_fieldname": "device_execution_mode",
-              "_key": "device_execution_mode"
             },
             {
               "type": "boolean",
@@ -39487,8 +39852,8 @@
               "description": "Whether or not this certificate is a developer certificate.",
               "example": true,
               "type": "boolean",
+              "readOnly": true,
               "getter_custom_method": "is_developer_certificate_getter",
-              "setter_custom_method": "is_developer_certificate_setter",
               "_override": true,
               "api_fieldname": "is_developer_certificate",
               "entity_fieldname": "is_developer_certificate",
@@ -39593,6 +39958,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "Certificate created by me.",
                     "description": "Human readable description of this certificate.",
                     "api_fieldname": "description",
@@ -39604,9 +39970,6 @@
                     "format": "int32",
                     "example": 1,
                     "description": "Device execution mode where 1 means a developer certificate.",
-                    "private_field": true,
-                    "readOnly": false,
-                    "_override": true,
                     "api_fieldname": "device_execution_mode",
                     "entity_fieldname": "device_execution_mode",
                     "_key": "device_execution_mode"
@@ -39662,6 +40025,7 @@
                     "_key": "object"
                   },
                   {
+                    "x-nullable": true,
                     "type": "string",
                     "example": "01619571dad80242ac12000600000000",
                     "description": "The ID of the owner.",
@@ -40056,6 +40420,7 @@
             "issuer",
             "subject",
             "validity",
+            "device_execution_mode",
             "certificate_fingerprint",
             "valid"
           ],
@@ -40072,15 +40437,6 @@
           "field_renames": [],
           "fields": [
             {
-              "type": "integer",
-              "private_field": true,
-              "readOnly": false,
-              "_override": true,
-              "api_fieldname": "device_execution_mode",
-              "entity_fieldname": "device_execution_mode",
-              "_key": "device_execution_mode"
-            },
-            {
               "name": "cert_id",
               "in": "path",
               "description": "The ID of the trusted certificate to delete.",
@@ -40096,8 +40452,8 @@
               "description": "Whether or not this certificate is a developer certificate.",
               "example": true,
               "type": "boolean",
+              "readOnly": true,
               "getter_custom_method": "is_developer_certificate_getter",
-              "setter_custom_method": "is_developer_certificate_setter",
               "_override": true,
               "api_fieldname": "is_developer_certificate",
               "entity_fieldname": "is_developer_certificate",
@@ -40365,15 +40721,6 @@
           "field_renames": [],
           "fields": [
             {
-              "type": "integer",
-              "private_field": true,
-              "readOnly": false,
-              "_override": true,
-              "api_fieldname": "device_execution_mode",
-              "entity_fieldname": "device_execution_mode",
-              "_key": "device_execution_mode"
-            },
-            {
               "type": "string",
               "description": "ID that uniquely identifies the developer certificate.",
               "api_fieldname": "id",
@@ -40387,8 +40734,8 @@
               "description": "Whether or not this certificate is a developer certificate.",
               "example": true,
               "type": "boolean",
+              "readOnly": true,
               "getter_custom_method": "is_developer_certificate_getter",
-              "setter_custom_method": "is_developer_certificate_setter",
               "_override": true,
               "api_fieldname": "is_developer_certificate",
               "entity_fieldname": "is_developer_certificate",
@@ -40421,6 +40768,7 @@
                   {
                     "type": "string",
                     "description": "Description for the developer certificate.",
+                    "x-nullable": true,
                     "api_fieldname": "description",
                     "entity_fieldname": "description",
                     "_key": "description"
@@ -40796,15 +41144,6 @@
               "_key": "after"
             },
             {
-              "type": "integer",
-              "private_field": true,
-              "readOnly": false,
-              "_override": true,
-              "api_fieldname": "device_execution_mode",
-              "entity_fieldname": "device_execution_mode",
-              "_key": "device_execution_mode"
-            },
-            {
               "name": "include",
               "in": "query",
               "description": "Comma-separated additional data to return. Currently supported: total_count.",
@@ -40820,8 +41159,8 @@
               "description": "Whether or not this certificate is a developer certificate.",
               "example": true,
               "type": "boolean",
+              "readOnly": true,
               "getter_custom_method": "is_developer_certificate_getter",
-              "setter_custom_method": "is_developer_certificate_setter",
               "_override": true,
               "api_fieldname": "is_developer_certificate",
               "entity_fieldname": "is_developer_certificate",
@@ -40930,6 +41269,7 @@
                         },
                         {
                           "type": "string",
+                          "x-nullable": true,
                           "example": "Certificate created by me.",
                           "description": "Human readable description of this certificate.",
                           "_key": "description"
@@ -40939,9 +41279,6 @@
                           "format": "int32",
                           "example": 1,
                           "description": "Device execution mode where 1 means a developer certificate.",
-                          "private_field": true,
-                          "readOnly": false,
-                          "_override": true,
                           "_key": "device_execution_mode"
                         },
                         {
@@ -40983,6 +41320,7 @@
                           "_key": "object"
                         },
                         {
+                          "x-nullable": true,
                           "type": "string",
                           "example": "01619571dad80242ac12000600000000",
                           "description": "The ID of the owner.",
@@ -41330,18 +41668,6 @@
           "field_renames": [],
           "fields": [
             {
-              "type": "integer",
-              "format": "int32",
-              "example": 1,
-              "description": "Device execution mode where 1 means a developer certificate.",
-              "private_field": true,
-              "readOnly": false,
-              "_override": true,
-              "api_fieldname": "device_execution_mode",
-              "entity_fieldname": "device_execution_mode",
-              "_key": "device_execution_mode"
-            },
-            {
               "type": "string",
               "example": "01619571d01d0242ac12000600000000",
               "description": "Entity ID.",
@@ -41356,8 +41682,8 @@
               "description": "Whether or not this certificate is a developer certificate.",
               "example": true,
               "type": "boolean",
+              "readOnly": true,
               "getter_custom_method": "is_developer_certificate_getter",
-              "setter_custom_method": "is_developer_certificate_setter",
               "_override": true,
               "api_fieldname": "is_developer_certificate",
               "entity_fieldname": "is_developer_certificate",
@@ -41420,6 +41746,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "Certificate created by me.",
                     "description": "Human readable description of this certificate.",
                     "api_fieldname": "description",
@@ -41431,9 +41758,6 @@
                     "format": "int32",
                     "example": 1,
                     "description": "Device execution mode where 1 means a developer certificate.",
-                    "private_field": true,
-                    "readOnly": false,
-                    "_override": true,
                     "api_fieldname": "device_execution_mode",
                     "entity_fieldname": "device_execution_mode",
                     "_key": "device_execution_mode"
@@ -41489,6 +41813,7 @@
                     "_key": "object"
                   },
                   {
+                    "x-nullable": true,
                     "type": "string",
                     "example": "01619571dad80242ac12000600000000",
                     "description": "The ID of the owner.",
@@ -41813,6 +42138,7 @@
             "subject",
             "validity",
             "status",
+            "device_execution_mode",
             "enrollment_mode",
             "certificate_fingerprint",
             "valid"
@@ -41844,6 +42170,7 @@
             },
             {
               "type": "string",
+              "x-nullable": true,
               "example": "Certificate created by me.",
               "description": "Human readable description of this certificate.",
               "api_fieldname": "description",
@@ -41852,18 +42179,6 @@
               "in": "body",
               "required": false,
               "_key": "description"
-            },
-            {
-              "type": "integer",
-              "format": "int32",
-              "example": 1,
-              "description": "Device execution mode where 1 means a developer certificate.",
-              "private_field": true,
-              "readOnly": false,
-              "_override": true,
-              "api_fieldname": "device_execution_mode",
-              "entity_fieldname": "device_execution_mode",
-              "_key": "device_execution_mode"
             },
             {
               "type": "boolean",
@@ -41891,8 +42206,8 @@
               "description": "Whether or not this certificate is a developer certificate.",
               "example": true,
               "type": "boolean",
+              "readOnly": true,
               "getter_custom_method": "is_developer_certificate_getter",
-              "setter_custom_method": "is_developer_certificate_setter",
               "_override": true,
               "api_fieldname": "is_developer_certificate",
               "entity_fieldname": "is_developer_certificate",
@@ -41997,6 +42312,7 @@
                   },
                   {
                     "type": "string",
+                    "x-nullable": true,
                     "example": "Certificate created by me.",
                     "description": "Human readable description of this certificate.",
                     "api_fieldname": "description",
@@ -42008,9 +42324,6 @@
                     "format": "int32",
                     "example": 1,
                     "description": "Device execution mode where 1 means a developer certificate.",
-                    "private_field": true,
-                    "readOnly": false,
-                    "_override": true,
                     "api_fieldname": "device_execution_mode",
                     "entity_fieldname": "device_execution_mode",
                     "_key": "device_execution_mode"
@@ -42066,6 +42379,7 @@
                     "_key": "object"
                   },
                   {
+                    "x-nullable": true,
                     "type": "string",
                     "example": "01619571dad80242ac12000600000000",
                     "description": "The ID of the owner.",
@@ -42532,6 +42846,7 @@
             "issuer",
             "subject",
             "validity",
+            "device_execution_mode",
             "certificate_fingerprint",
             "valid"
           ],
@@ -42587,6 +42902,7 @@
         },
         {
           "type": "string",
+          "x-nullable": true,
           "example": "Certificate created by me.",
           "description": "Human readable description of this certificate.",
           "api_fieldname": "description",
@@ -42599,10 +42915,8 @@
           "format": "int32",
           "example": 1,
           "description": "Device execution mode where 1 means a developer certificate.",
-          "private_field": true,
-          "readOnly": false,
-          "_override": true,
           "api_fieldname": "device_execution_mode",
+          "readOnly": true,
           "required": false,
           "_key": "device_execution_mode"
         },
@@ -42628,11 +42942,10 @@
           "description": "Whether or not this certificate is a developer certificate.",
           "example": true,
           "type": "boolean",
+          "readOnly": true,
           "getter_custom_method": "is_developer_certificate_getter",
-          "setter_custom_method": "is_developer_certificate_setter",
           "_override": true,
           "api_fieldname": "is_developer_certificate",
-          "readOnly": false,
           "required": false,
           "_key": "is_developer_certificate"
         },
@@ -42655,6 +42968,7 @@
           "_key": "name"
         },
         {
+          "x-nullable": true,
           "type": "string",
           "example": "01619571dad80242ac12000600000000",
           "description": "The ID of the owner.",
@@ -42732,7 +43046,7 @@
       "field_renames": [],
       "tags": [
         "Device security - certificates",
-        "Developer certificate"
+        "Device security - developer class certificates"
       ],
       "group_id": "Security",
       "_key": "trusted_certificate"
@@ -44934,6 +45248,7 @@
             {
               "type": "string",
               "example": "User Doe",
+              "x-nullable": true,
               "description": "The full name of the user.",
               "api_fieldname": "full_name",
               "entity_fieldname": "full_name",
@@ -45186,6 +45501,7 @@
                   },
                   {
                     "type": "object",
+                    "x-nullable": true,
                     "description": "User's account-specific custom properties. The value is a string.",
                     "additionalProperties": {
                       "type": "string"
@@ -45221,6 +45537,7 @@
                   {
                     "type": "string",
                     "example": "User Doe",
+                    "x-nullable": true,
                     "description": "The full name of the user.",
                     "api_fieldname": "full_name",
                     "entity_fieldname": "full_name",
@@ -45440,6 +45757,7 @@
                   },
                   {
                     "type": "array",
+                    "x-nullable": true,
                     "description": "A list of scratch codes for the two-factor authentication. Visible only when 2FA is requested to be enabled or the codes regenerated.",
                     "items": {
                       "type": "string"
@@ -46386,6 +46704,7 @@
                         },
                         {
                           "type": "object",
+                          "x-nullable": true,
                           "description": "User's account-specific custom properties. The value is a string.",
                           "additionalProperties": {
                             "type": "string"
@@ -46413,6 +46732,7 @@
                         {
                           "type": "string",
                           "example": "User Doe",
+                          "x-nullable": true,
                           "description": "The full name of the user.",
                           "_key": "full_name"
                         },
@@ -46604,6 +46924,7 @@
                         },
                         {
                           "type": "array",
+                          "x-nullable": true,
                           "description": "A list of scratch codes for the two-factor authentication. Visible only when 2FA is requested to be enabled or the codes regenerated.",
                           "items": {
                             "type": "string"
@@ -47050,6 +47371,7 @@
                   },
                   {
                     "type": "object",
+                    "x-nullable": true,
                     "description": "User's account-specific custom properties. The value is a string.",
                     "additionalProperties": {
                       "type": "string"
@@ -47085,6 +47407,7 @@
                   {
                     "type": "string",
                     "example": "User Doe",
+                    "x-nullable": true,
                     "description": "The full name of the user.",
                     "api_fieldname": "full_name",
                     "entity_fieldname": "full_name",
@@ -47304,6 +47627,7 @@
                   },
                   {
                     "type": "array",
+                    "x-nullable": true,
                     "description": "A list of scratch codes for the two-factor authentication. Visible only when 2FA is requested to be enabled or the codes regenerated.",
                     "items": {
                       "type": "string"
@@ -47642,6 +47966,7 @@
             {
               "type": "string",
               "example": "User Doe",
+              "x-nullable": true,
               "description": "The full name of the user.",
               "api_fieldname": "full_name",
               "entity_fieldname": "full_name",
@@ -47904,6 +48229,7 @@
                   },
                   {
                     "type": "object",
+                    "x-nullable": true,
                     "description": "User's account-specific custom properties. The value is a string.",
                     "additionalProperties": {
                       "type": "string"
@@ -47939,6 +48265,7 @@
                   {
                     "type": "string",
                     "example": "User Doe",
+                    "x-nullable": true,
                     "description": "The full name of the user.",
                     "api_fieldname": "full_name",
                     "entity_fieldname": "full_name",
@@ -48158,6 +48485,7 @@
                   },
                   {
                     "type": "array",
+                    "x-nullable": true,
                     "description": "A list of scratch codes for the two-factor authentication. Visible only when 2FA is requested to be enabled or the codes regenerated.",
                     "items": {
                       "type": "string"
@@ -48723,6 +49051,7 @@
         },
         {
           "type": "object",
+          "x-nullable": true,
           "description": "User's account-specific custom properties. The value is a string.",
           "additionalProperties": {
             "type": "string"
@@ -48753,6 +49082,7 @@
         {
           "type": "string",
           "example": "User Doe",
+          "x-nullable": true,
           "description": "The full name of the user.",
           "api_fieldname": "full_name",
           "readOnly": false,
@@ -48956,6 +49286,7 @@
         },
         {
           "type": "array",
+          "x-nullable": true,
           "description": "A list of scratch codes for the two-factor authentication. Visible only when 2FA is requested to be enabled or the codes regenerated.",
           "items": {
             "type": "string"
