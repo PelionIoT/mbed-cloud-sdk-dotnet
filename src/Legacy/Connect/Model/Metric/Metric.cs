@@ -96,47 +96,47 @@ namespace MbedCloudSDK.Connect.Model.Metric
         public long? FailedApiCalls { get; private set; }
 
         /// <summary>
-        /// Gets the number of successful proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from
-        /// Mbed Cloud Connect to devices when you try to read or write values to device resources using Connect API endpoints.
+        /// Gets the number of successful proxy requests from Pelion Device Management to devices linked to the account. The proxy requests are made from
+        /// Pelion Device Management to devices when you try to read or write values to device resources using Connect API endpoints.
         /// </summary>
-        /// <value>The number of successful proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from
-        /// Mbed Cloud Connect to devices when you try to read or write values to device resources using Connect API endpoints.</value>
+        /// <value>The number of successful proxy requests from Pelion Device Management to devices linked to the account. The proxy requests are made from
+        /// Pelion Device Management to devices when you try to read or write values to device resources using Connect API endpoints.</value>
         [JsonProperty]
         public long? SuccessfulProxyRequests { get; private set; }
 
         /// <summary>
-        /// Gets the number of failed proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from
-        /// Mbed Cloud Connect to devices when you try to read or write values to device resources using Connect API endpoints.
+        /// Gets the number of failed proxy requests from Pelion Device Management to devices linked to the account. The proxy requests are made from
+        /// Pelion Device Management to devices when you try to read or write values to device resources using Connect API endpoints.
         /// </summary>
-        /// <value>The number of failed proxy requests from Mbed Cloud Connect to devices linked to the account. The proxy requests are made from
-        /// Mbed Cloud Connect to devices when you try to read or write values to device resources using Connect API endpoints.</value>
+        /// <value>The number of failed proxy requests from Pelion Device Management to devices linked to the account. The proxy requests are made from
+        /// Pelion Device Management to devices when you try to read or write values to device resources using Connect API endpoints.</value>
         [JsonProperty]
         public long? FailedProxyRequests { get; private set; }
 
         /// <summary>
-        /// Gets the number of successful subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from
-        /// Mbed Cloud Connect to devices when you try to subscribe to a resource path using Connect API endpoints.
+        /// Gets the number of successful subscription requests from Pelion Device Management to devices linked to the account. The subscription requests are made from
+        /// Pelion Device Management to devices when you try to subscribe to a resource path using Connect API endpoints.
         /// </summary>
-        /// <value>The number of successful subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from
-        /// Mbed Cloud Connect to devices when you try to subscribe to a resource path using Connect API endpoints.</value>
+        /// <value>The number of successful subscription requests from Pelion Device Management to devices linked to the account. The subscription requests are made from
+        /// Pelion Device Management to devices when you try to subscribe to a resource path using Connect API endpoints.</value>
         [JsonProperty]
         public long? SuccessfulSubscriptionRequests { get; private set; }
 
         /// <summary>
-        /// Gets the number of failed subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from
-        /// Mbed Cloud Connect to devices when you try to subscribe to a resource path using Connect API endpoints.
+        /// Gets the number of failed subscription requests from Pelion Device Management to devices linked to the account. The subscription requests are made from
+        /// Pelion Device Management to devices when you try to subscribe to a resource path using Connect API endpoints.
         /// </summary>
-        /// <value>The number of failed subscription requests from Mbed Cloud Connect to devices linked to the account. The subscription requests are made from
-        /// Mbed Cloud Connect to devices when you try to subscribe to a resource path using Connect API endpoints.</value>
+        /// <value>The number of failed subscription requests from Pelion Device Management to devices linked to the account. The subscription requests are made from
+        /// Pelion Device Management to devices when you try to subscribe to a resource path using Connect API endpoints.</value>
         [JsonProperty]
         public long? FailedSubscriptionRequests { get; private set; }
 
         /// <summary>
-        /// Gets the number of observations received by Mbed Cloud Connect from the devices linked to the account. The observations are pushed from the device to
-        /// Mbed Cloud Connect when you have successfully subscribed to the device resources using Connect API endpoints.
+        /// Gets the number of observations received by Pelion Device Management from the devices linked to the account. The observations are pushed from the device to
+        /// Pelion Device Management when you have successfully subscribed to the device resources using Connect API endpoints.
         /// </summary>
-        /// <value>The number of observations received by Mbed Cloud Connect from the devices linked to the account. The observations are pushed from the device to
-        /// Mbed Cloud Connect when you have successfully subscribed to the device resources using Connect API endpoints.</value>
+        /// <value>The number of observations received by Pelion Device Management from the devices linked to the account. The observations are pushed from the device to
+        /// Pelion Device Management when you have successfully subscribed to the device resources using Connect API endpoints.</value>
         [JsonProperty]
         public long? Observations { get; private set; }
 

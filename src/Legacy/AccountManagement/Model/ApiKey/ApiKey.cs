@@ -16,7 +16,7 @@ namespace MbedCloudSDK.AccountManagement.Model.ApiKey
     using Newtonsoft.Json.Converters;
 
     /// <summary>
-    /// This object represents an API key in Mbed Cloud.
+    /// This object represents an API key in Pelion Device Management.
     /// </summary>
     public class ApiKey : Entity
     {

@@ -1,11 +1,11 @@
-# Mbed Cloud SDK for .NET
+# Pelion Device Management SDK for .NET
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://spdx.org/licenses/Apache-2.0.html)
 [![CircleCI](https://circleci.com/gh/ARMmbed/mbed-cloud-sdk-dotnet.svg?style=shield&circle-token=68538baa897f82e3dcc38a48315e9ba24977b183)](https://circleci.com/gh/ARMmbed/mbed-cloud-sdk-dotnet)
 [![Build status](https://ci.appveyor.com/api/projects/status/3u5i6c52i7d2d6e8?svg=true)](https://ci.appveyor.com/project/alexl0gan/mbed-cloud-sdk-dotnet)
 [![codecov](https://codecov.io/gh/ARMmbed/mbed-cloud-sdk-dotnet/branch/master/graph/badge.svg?token=r8Bg3F9X7V)](https://codecov.io/gh/ARMmbed/mbed-cloud-sdk-dotnet)
 
-The Mbed Cloud SDK gives developers access to the full Mbed suite using .NET Standard 2.0.
+The Pelion Device Management SDK gives developers access to the full Pelion Device Management suite using .NET Standard 2.0.
 
 ## Installation
 
@@ -24,7 +24,7 @@ dotnet add package Mbed.Cloud.SDK
 dotnet build
 ```
 
-4. To use the SDK you'll need an Api Key, which you can get from the [Mbed Cloud Portal](https://portal.mbedcloud.com/).
+4. To use the SDK you'll need an Api Key, which you can get from the [Pelion Device Management Portal](https://portal.mbedcloud.com/).
 
 ## Example Usage
 
@@ -62,10 +62,10 @@ See full [documentation and API reference here](https://cloud.mbed.com/docs/late
 
 ## Contributing
 
-Mbed Cloud SDK for .NET is open source and we would like your help; there is a
+Pelion Device Management SDK for .NET is open source and we would like your help; there is a
 brief guide on how to get started in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Licence
 
-Mbed Cloud SDK for .NET is free-to-use and licensed under the **Apache License 2.0**.
+Pelion Device Management Cloud SDK for .NET is free-to-use and licensed under the **Apache License 2.0**.
 Please see [LICENSE](LICENSE) file for more information.
