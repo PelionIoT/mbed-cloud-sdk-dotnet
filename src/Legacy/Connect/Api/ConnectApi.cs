@@ -176,7 +176,7 @@ namespace MbedCloudSDK.Connect.Api
         internal SubscriptionsApi SubscriptionsApi { get; set; }
 
         /// <summary>
-        /// Get meta data for the last Mbed Cloud API call
+        /// Get meta data for the last Pelion Device Management API call
         /// </summary>
         /// <returns><see cref="ApiMetadata"/></returns>
         public static ApiMetadata GetLastApiMetadata()

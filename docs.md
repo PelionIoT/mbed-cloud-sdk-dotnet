@@ -1,6 +1,6 @@
-# Mbed Cloud SDK for .NET
+# Pelion Device Management SDK for .NET
 
-The Mbed Cloud SDK gives developers access to the full Mbed suite using .NET Core 2.0.
+The Pelion Device Management SDK gives developers access to the full Pelion Device Management suite using .NET Core 2.0.
 
 If you want to contribute to creating a SDK for another language the work is
 greatly appreciated and you can read more about the process
@@ -23,7 +23,7 @@ dotnet add package Mbed.Cloud.SDK
 dotnet build
 \endcode
 
-4. To use the SDK you'll need an Api Key, which you can get from the [Mbed Cloud Portal](https://portal.mbedcloud.com/).
+4. To use the SDK you'll need an Api Key, which you can get from the [Pelion Device Management Portal](https://portal.mbedcloud.com/).
 
 ## Example Usage
 
@@ -57,10 +57,10 @@ public class HelloWorldSeparateSdk
 
 ## Contributing
 
-Mbed Cloud SDK for .NET is open source and we would like your help; there is a
+Pelion Device Management SDK for .NET is open source and we would like your help; there is a
 brief guide on how to get started in [CONTRIBUTING](https://github.com/ARMmbed/mbed-cloud-sdk-dotnet/blob/master/CONTRIBUTING.md/).
 
 ## Licence
 
-Mbed Cloud SDK for .NET is free-to-use and licensed under the **Apache License 2.0**.
+Pelion Device Management SDK for .NET is free-to-use and licensed under the **Apache License 2.0**.
 Please See [LICENSE](https://github.com/ARMmbed/mbed-cloud-sdk-dotnet/blob/master/LICENSE) file for more information.

@@ -71,7 +71,7 @@ namespace MbedCloudSDK.Enrollment.Api
         internal PublicAPIApi Api { get => api; set => api = value; }
 
         /// <summary>
-        /// Get meta data for the last Mbed Cloud API call
+        /// Get meta data for the last Pelion Device Management API call
         /// </summary>
         /// <returns><see cref="ApiMetadata"/></returns>
         public static ApiMetadata GetLastApiMetadata()
