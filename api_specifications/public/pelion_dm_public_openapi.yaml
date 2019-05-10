@@ -6911,6 +6911,18 @@ paths:
         See also /v2/endpoints/{device-id}/{resourcePath}.
 
 
+        You can write [Notification Rules](../connecting/resource-change-webapp.html#notification-rules)
+        for a
+
+        resource with PUT command. Please see example of the payload below.
+
+        ```
+
+        { "method": "PUT", "uri": "/5/0/1?lt=10&gt=60&pmax=120" }
+
+        ```
+
+
         ```
 
         Example URI:
@@ -6918,9 +6930,17 @@ paths:
         POST /v2/device-requests/015f2fa34d310000000000010030036c?async-id=123e4567-e89b-12d3-a456-426655440000
 
 
-        Example payloads:
+        Example payload to read value from resource /5/0/1:
 
         { "method": "GET", "uri": "/5/0/1" }
+
+
+        Example payload to set notification rules for resource /5/0/1:
+
+        { "method": "PUT", "uri": "/5/0/1?lt=10&gt=60&pmax=120" }
+
+
+        Example payload to write value "value1" to resource /5/0/1:
 
         { "method": "PUT", "uri": "/5/0/1%20?k1=v1&k2=v2%22", "accept": "text/plain",
         "content-type": "text/plain", "payload-b64": "dmFsdWUxCg==" }
