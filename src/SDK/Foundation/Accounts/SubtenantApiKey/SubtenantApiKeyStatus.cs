@@ -7,27 +7,22 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="PasswordPolicy.cs" company="Arm">
+// <copyright file="SubtenantApiKeyStatus.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
 
-namespace Mbed.Cloud.Foundation
+namespace Mbed.Cloud.Foundation.Enums
 {
-    using Mbed.Cloud.Common;
+    using System.Runtime.Serialization;
 
-    /// <summary>
-    /// PasswordPolicy
-    /// </summary>
-    public class PasswordPolicy : Entity, IPasswordPolicy
+    public enum SubtenantApiKeyStatus
     {
-        /// <summary>
-        /// minimum_length
-        /// </summary>
-        public int MinimumLength
-        {
-            get;
-            internal set;
-        }
+        [EnumMember(Value = "UNKNOWN_ENUM_VALUE_RECEIVED")]
+        UNKNOWN_ENUM_VALUE_RECEIVED,
+        [EnumMember(Value = "ACTIVE")]
+        ACTIVE,
+        [EnumMember(Value = "INACTIVE")]
+        INACTIVE,
     }
 }

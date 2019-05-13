@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="CertificateIssuerConfigListOptions.cs" company="Arm">
+// <copyright file="SubtenantApiKeyListOptions.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -18,11 +18,11 @@ namespace Mbed.Cloud.Foundation
     using Mbed.Cloud.Common.Filters;
 
     /// <summary>
-    /// CertificateIssuerConfigListOptions
+    /// SubtenantApiKeyListOptions
     /// </summary>
-    public class CertificateIssuerConfigListOptions : QueryOptions, ICertificateIssuerConfigListOptions
+    public class SubtenantApiKeyListOptions : QueryOptions, ISubtenantApiKeyListOptions
     {
-        public CertificateIssuerConfigListOptions()
+        public SubtenantApiKeyListOptions()
         {
             Filter = new Filter();
         }
@@ -36,9 +36,15 @@ namespace Mbed.Cloud.Foundation
             set;
         }
 
-        public CertificateIssuerConfigListOptions ReferenceEqualTo(string value)
+        public SubtenantApiKeyListOptions KeyEqualTo(string value)
         {
-            this.Filter.AddFilterItem("reference", new FilterItem(value, FilterOperator.Equals));
+            this.Filter.AddFilterItem("key", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public SubtenantApiKeyListOptions OwnerEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("owner", new FilterItem(value, FilterOperator.Equals));
             return this;
         }
     }

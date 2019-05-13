@@ -217,7 +217,7 @@ namespace Mbed.Cloud.Foundation
         /// <summary>
         /// expiration_warning_threshold
         /// </summary>
-        public string ExpirationWarningThreshold
+        public int ExpirationWarningThreshold
         {
             get;
             set;
@@ -226,7 +226,7 @@ namespace Mbed.Cloud.Foundation
         /// <summary>
         /// idle_timeout
         /// </summary>
-        public string IdleTimeout
+        public int IdleTimeout
         {
             get;
             set;

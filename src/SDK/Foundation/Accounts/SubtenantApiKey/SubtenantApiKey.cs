@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="IDeveloperCertificate.cs" company="Arm">
+// <copyright file="SubtenantApiKey.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -15,70 +15,93 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
-    using System.Collections.Generic;
     using System;
+    using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
-    /// DeveloperCertificate
+    /// SubtenantApiKey
     /// </summary>
-    public interface IDeveloperCertificate
+    public class SubtenantApiKey : Entity, ISubtenantApiKey
     {
         /// <summary>
         /// account_id
         /// </summary>
-        string AccountId
+        public string AccountId
         {
             get;
-        }
-
-        /// <summary>
-        /// certificate
-        /// </summary>
-        string Certificate
-        {
-            get;
+            set;
         }
 
         /// <summary>
         /// created_at
         /// </summary>
-        DateTime? CreatedAt
+        public DateTime? CreatedAt
         {
             get;
+            internal set;
         }
 
         /// <summary>
-        /// description
+        /// creation_time
         /// </summary>
-        string Description
+        public long? CreationTime
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
-        /// developer_private_key
+        /// key
         /// </summary>
-        string DeveloperPrivateKey
+        public string Key
         {
             get;
+            internal set;
+        }
+
+        /// <summary>
+        /// last_login_time
+        /// </summary>
+        public long? LastLoginTime
+        {
+            get;
+            internal set;
         }
 
         /// <summary>
         /// name
         /// </summary>
-        string Name
+        public string Name
         {
             get;
             set;
         }
 
         /// <summary>
-        /// security_file_content
+        /// owner
         /// </summary>
-        string SecurityFileContent
+        public string Owner
         {
             get;
+            set;
+        }
+
+        /// <summary>
+        /// status
+        /// </summary>
+        public SubtenantApiKeyStatus? Status
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// updated_at
+        /// </summary>
+        public DateTime? UpdatedAt
+        {
+            get;
+            internal set;
         }
     }
 }

@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="CertificateIssuerConfig.cs" company="Arm">
+// <copyright file="CampaignStatisticsEvents.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -18,17 +18,26 @@ namespace Mbed.Cloud.Foundation
     using System;
 
     /// <summary>
-    /// CertificateIssuerConfig
+    /// CampaignStatisticsEvents
     /// </summary>
-    public class CertificateIssuerConfig : Entity, ICertificateIssuerConfig
+    public class CampaignStatisticsEvents : Entity, ICampaignStatisticsEvents
     {
         /// <summary>
-        /// certificate_issuer_id
+        /// campaign_id
         /// </summary>
-        public string CertificateIssuerId
+        public string CampaignId
         {
             get;
             set;
+        }
+
+        /// <summary>
+        /// count
+        /// </summary>
+        public int Count
+        {
+            get;
+            internal set;
         }
 
         /// <summary>
@@ -41,21 +50,39 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
-        /// reference
+        /// description
         /// </summary>
-        public string Reference
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// updated_at
-        /// </summary>
-        public DateTime? UpdatedAt
+        public string Description
         {
             get;
             internal set;
+        }
+
+        /// <summary>
+        /// event_type
+        /// </summary>
+        public string EventType
+        {
+            get;
+            internal set;
+        }
+
+        /// <summary>
+        /// summary_status
+        /// </summary>
+        public string SummaryStatus
+        {
+            get;
+            internal set;
+        }
+
+        /// <summary>
+        /// summary_status_id
+        /// </summary>
+        public string SummaryStatusId
+        {
+            get;
+            set;
         }
     }
 }

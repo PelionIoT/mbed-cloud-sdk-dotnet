@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="IDeveloperCertificate.cs" company="Arm">
+// <copyright file="ISubtenantApiKey.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -15,13 +15,13 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
-    using System.Collections.Generic;
     using System;
+    using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
-    /// DeveloperCertificate
+    /// SubtenantApiKey
     /// </summary>
-    public interface IDeveloperCertificate
+    public interface ISubtenantApiKey
     {
         /// <summary>
         /// account_id
@@ -29,14 +29,7 @@ namespace Mbed.Cloud.Foundation
         string AccountId
         {
             get;
-        }
-
-        /// <summary>
-        /// certificate
-        /// </summary>
-        string Certificate
-        {
-            get;
+            set;
         }
 
         /// <summary>
@@ -48,18 +41,25 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
-        /// description
+        /// creation_time
         /// </summary>
-        string Description
+        long? CreationTime
         {
             get;
-            set;
         }
 
         /// <summary>
-        /// developer_private_key
+        /// key
         /// </summary>
-        string DeveloperPrivateKey
+        string Key
+        {
+            get;
+        }
+
+        /// <summary>
+        /// last_login_time
+        /// </summary>
+        long? LastLoginTime
         {
             get;
         }
@@ -74,9 +74,27 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
-        /// security_file_content
+        /// owner
         /// </summary>
-        string SecurityFileContent
+        string Owner
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// status
+        /// </summary>
+        SubtenantApiKeyStatus? Status
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// updated_at
+        /// </summary>
+        DateTime? UpdatedAt
         {
             get;
         }

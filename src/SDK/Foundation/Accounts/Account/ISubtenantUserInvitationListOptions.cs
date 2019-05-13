@@ -31,6 +31,6 @@ namespace Mbed.Cloud.Foundation
             set;
         }
 
-        SubtenantUserInvitationListOptions LoginProfileEqualTo(string value);
+        SubtenantUserInvitationListOptions LoginProfilesEqualTo(string value);
     }
 }

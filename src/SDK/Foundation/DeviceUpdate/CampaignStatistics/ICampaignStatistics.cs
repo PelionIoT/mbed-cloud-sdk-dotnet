@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="CertificateIssuerConfig.cs" company="Arm">
+// <copyright file="ICampaignStatistics.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -16,46 +16,44 @@ namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
     using System;
+    using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
-    /// CertificateIssuerConfig
+    /// CampaignStatistics
     /// </summary>
-    public class CertificateIssuerConfig : Entity, ICertificateIssuerConfig
+    public interface ICampaignStatistics
     {
         /// <summary>
-        /// certificate_issuer_id
+        /// campaign_id
         /// </summary>
-        public string CertificateIssuerId
+        string CampaignId
         {
             get;
             set;
+        }
+
+        /// <summary>
+        /// count
+        /// </summary>
+        int Count
+        {
+            get;
         }
 
         /// <summary>
         /// created_at
         /// </summary>
-        public DateTime? CreatedAt
+        DateTime? CreatedAt
         {
             get;
-            internal set;
         }
 
         /// <summary>
-        /// reference
+        /// summary_status
         /// </summary>
-        public string Reference
+        CampaignStatisticsSummaryStatus? SummaryStatus
         {
             get;
-            set;
-        }
-
-        /// <summary>
-        /// updated_at
-        /// </summary>
-        public DateTime? UpdatedAt
-        {
-            get;
-            internal set;
         }
     }
 }

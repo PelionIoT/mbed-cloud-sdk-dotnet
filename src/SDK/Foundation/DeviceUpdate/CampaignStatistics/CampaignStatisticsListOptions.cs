@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="ICertificateIssuerConfigListOptions.cs" company="Arm">
+// <copyright file="CampaignStatisticsListOptions.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -15,22 +15,11 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
-    using Mbed.Cloud.Common.Filters;
 
     /// <summary>
-    /// CertificateIssuerConfigListOptions
+    /// CampaignStatisticsListOptions
     /// </summary>
-    public interface ICertificateIssuerConfigListOptions : IQueryOptions
+    public class CampaignStatisticsListOptions : QueryOptions, ICampaignStatisticsListOptions
     {
-        /// <summary>
-        /// Filter object
-        /// </summary>
-        Filter Filter
-        {
-            get;
-            set;
-        }
-
-        CertificateIssuerConfigListOptions ReferenceEqualTo(string value);
     }
 }

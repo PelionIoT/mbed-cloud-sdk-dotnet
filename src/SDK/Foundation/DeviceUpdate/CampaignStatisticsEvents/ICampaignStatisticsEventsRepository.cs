@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="ICertificateIssuerConfigListOptions.cs" company="Arm">
+// <copyright file="ICampaignStatisticsEventsRepository.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -15,22 +15,17 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
-    using Mbed.Cloud.Common.Filters;
+    using System.Threading.Tasks;
+    using MbedCloudSDK.Exceptions;
+    using System.Collections.Generic;
+    using System;
+    using Mbed.Cloud.RestClient;
 
     /// <summary>
-    /// CertificateIssuerConfigListOptions
+    /// CampaignStatisticsEventsRepository
     /// </summary>
-    public interface ICertificateIssuerConfigListOptions : IQueryOptions
+    public interface ICampaignStatisticsEventsRepository
     {
-        /// <summary>
-        /// Filter object
-        /// </summary>
-        Filter Filter
-        {
-            get;
-            set;
-        }
-
-        CertificateIssuerConfigListOptions ReferenceEqualTo(string value);
+        Task<CampaignStatisticsEvents> Read(string campaignId, string id, string summaryStatusId);
     }
 }

@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="ICertificateIssuerRepository.cs" company="Arm">
+// <copyright file="ICampaignStatisticsRepository.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -23,15 +23,12 @@ namespace Mbed.Cloud.Foundation
     using Mbed.Cloud.RestClient;
 
     /// <summary>
-    /// CertificateIssuerRepository
+    /// CampaignStatisticsRepository
     /// </summary>
-    public interface ICertificateIssuerRepository
+    public interface ICampaignStatisticsRepository
     {
-        Task<CertificateIssuer> Create(CertificateIssuer request, Dictionary<string, string> issuerCredentials);
-        Task Delete(string id);
-        PaginatedResponse<ICertificateIssuerListOptions, CertificateIssuer> List(ICertificateIssuerListOptions options = null);
-        Task<CertificateIssuer> Read(string id);
-        Task<CertificateIssuer> Update(string id, CertificateIssuer request, Dictionary<string, string> issuerCredentials = null);
-        Task<VerificationResponse> Verify(string id);
+        PaginatedResponse<ICampaignStatisticsEventsListOptions, CampaignStatisticsEvents> Events(string campaignId, string id, ICampaignStatisticsEventsListOptions options = null);
+        PaginatedResponse<ICampaignStatisticsListOptions, CampaignStatistics> List(string campaignId, ICampaignStatisticsListOptions options = null);
+        Task<CampaignStatistics> Read(string campaignId, string id);
     }
 }
