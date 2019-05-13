@@ -35,16 +35,21 @@ namespace Mbed.Cloud.Foundation
         {
         }
 
-        public async Task<Device> Create(Device request, string bootstrappedTimestamp = null, string firmwareChecksum = null)
+        public async Task<Device> Create(Device request)
         {
             try
             {
+<<<<<<< HEAD
                 var bodyParams = new
                 {
                     bootstrappedTimestamp = bootstrappedTimestamp,
                     firmwareChecksum = firmwareChecksum,
                 };
                 return await Client.CallApi<Device>(path: "/v3/devices/", bodyParams: bodyParams, request: request, method: HttpMethods.POST);
+=======
+                var bodyParams = new Device { AutoUpdate = request.AutoUpdate, BootstrapExpirationDate = request.BootstrapExpirationDate, CaId = request.CaId, ConnectorExpirationDate = request.ConnectorExpirationDate, CustomAttributes = request.CustomAttributes, Deployment = request.Deployment, Description = request.Description, DeviceClass = request.DeviceClass, DeviceExecutionMode = request.DeviceExecutionMode, DeviceKey = request.DeviceKey, EndpointName = request.EndpointName, EndpointType = request.EndpointType, HostGateway = request.HostGateway, IssuerFingerprint = request.IssuerFingerprint, Manifest = request.Manifest, Mechanism = request.Mechanism, MechanismUrl = request.MechanismUrl, Name = request.Name, SerialNumber = request.SerialNumber, State = request.State, VendorId = request.VendorId, };
+                return await Client.CallApi<Device>(path: "/v3/devices/", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: request);
+>>>>>>> beta
             }
             catch (ApiException e)
             {

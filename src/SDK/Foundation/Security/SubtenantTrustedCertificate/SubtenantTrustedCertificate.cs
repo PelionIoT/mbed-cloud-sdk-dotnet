@@ -77,7 +77,7 @@ namespace Mbed.Cloud.Foundation
         public int? DeviceExecutionMode
         {
             get;
-            set;
+            internal set;
         }
 
         /// <summary>
@@ -97,11 +97,6 @@ namespace Mbed.Cloud.Foundation
             get
             {
                 return CustomFunctions.IsDeveloperCertificateGetter(this);
-            }
-
-            set
-            {
-                CustomFunctions.IsDeveloperCertificateSetter(this, value);
             }
         }
 

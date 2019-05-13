@@ -36,9 +36,9 @@ namespace Mbed.Cloud.Foundation
             set;
         }
 
-        public SubtenantUserInvitationListOptions LoginProfileEqualTo(string value)
+        public SubtenantUserInvitationListOptions LoginProfilesEqualTo(string value)
         {
-            this.Filter.AddFilterItem("login_profile", new FilterItem(value, FilterOperator.Equals));
+            this.Filter.AddFilterItem("login_profiles", new FilterItem(value, FilterOperator.Equals));
             return this;
         }
     }

@@ -24,7 +24,7 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public class DeveloperCertificate : Entity, IDeveloperCertificate
     {
-        internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "Certificate", "developer_certificate" }, { "PrivateKey", "developer_private_key" }, };
+        internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "Certificate", "developer_certificate" }, };
 
         /// <summary>
         /// account_id
@@ -60,6 +60,15 @@ namespace Mbed.Cloud.Foundation
         {
             get;
             set;
+        }
+
+        /// <summary>
+        /// developer_private_key
+        /// </summary>
+        public string DeveloperPrivateKey
+        {
+            get;
+            internal set;
         }
 
         /// <summary>

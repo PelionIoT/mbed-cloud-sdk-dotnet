@@ -37,6 +37,6 @@ namespace Mbed.Cloud.Foundation
         SubtenantUserListOptions StatusEqualTo(AccountStatus value);
         SubtenantUserListOptions StatusIn(params AccountStatus[] value);
         SubtenantUserListOptions StatusNotIn(params AccountStatus[] value);
-        SubtenantUserListOptions LoginProfileEqualTo(string value);
+        SubtenantUserListOptions LoginProfilesEqualTo(string value);
     }
 }

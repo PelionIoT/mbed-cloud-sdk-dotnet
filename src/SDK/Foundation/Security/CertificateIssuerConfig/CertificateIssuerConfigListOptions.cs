@@ -36,9 +36,9 @@ namespace Mbed.Cloud.Foundation
             set;
         }
 
-        public CertificateIssuerConfigListOptions CertificateReferenceEqualTo(string value)
+        public CertificateIssuerConfigListOptions ReferenceEqualTo(string value)
         {
-            this.Filter.AddFilterItem("certificate_reference", new FilterItem(value, FilterOperator.Equals));
+            this.Filter.AddFilterItem("reference", new FilterItem(value, FilterOperator.Equals));
             return this;
         }
     }

@@ -38,7 +38,12 @@ namespace Mbed.Cloud.Foundation
         {
             try
             {
+<<<<<<< HEAD
                 return await Client.CallApi<CertificateIssuerConfig>(path: "/v3/certificate-issuer-configurations", request: request, method: HttpMethods.POST);
+=======
+                var bodyParams = new CertificateIssuerConfig { CertificateIssuerId = request.CertificateIssuerId, Reference = request.Reference, };
+                return await Client.CallApi<CertificateIssuerConfig>(path: "/v3/certificate-issuer-configurations", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: request);
+>>>>>>> beta
             }
             catch (ApiException e)
             {
@@ -80,7 +85,7 @@ namespace Mbed.Cloud.Foundation
                     options = new CertificateIssuerConfigListOptions();
                 }
 
-                Func<ICertificateIssuerConfigListOptions, Task<ResponsePage<CertificateIssuerConfig>>> paginatedFunc = async (ICertificateIssuerConfigListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "reference__eq", _options.Filter.GetEncodedValue("certificate_reference", "$eq") }, }; return await Client.CallApi<ResponsePage<CertificateIssuerConfig>>(path: "/v3/certificate-issuer-configurations", queryParams: queryParams, method: HttpMethods.GET); };
+                Func<ICertificateIssuerConfigListOptions, Task<ResponsePage<CertificateIssuerConfig>>> paginatedFunc = async (ICertificateIssuerConfigListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "reference__eq", _options.Filter.GetEncodedValue("reference", "$eq") }, }; return await Client.CallApi<ResponsePage<CertificateIssuerConfig>>(path: "/v3/certificate-issuer-configurations", queryParams: queryParams, method: HttpMethods.GET); };
                 return new PaginatedResponse<ICertificateIssuerConfigListOptions, CertificateIssuerConfig>(paginatedFunc, options);
             }
             catch (ApiException e)

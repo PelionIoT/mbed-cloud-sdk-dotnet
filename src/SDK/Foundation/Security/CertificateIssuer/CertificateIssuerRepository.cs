@@ -35,7 +35,7 @@ namespace Mbed.Cloud.Foundation
         {
         }
 
-        public async Task<CertificateIssuer> Create(CertificateIssuer request, Dictionary<string, string> issuerCredentials = null)
+        public async Task<CertificateIssuer> Create(CertificateIssuer request, Dictionary<string, string> issuerCredentials)
         {
             try
             {

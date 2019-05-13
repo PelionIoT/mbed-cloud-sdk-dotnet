@@ -27,7 +27,7 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public interface ICertificateIssuerRepository
     {
-        Task<CertificateIssuer> Create(CertificateIssuer request, Dictionary<string, string> issuerCredentials = null);
+        Task<CertificateIssuer> Create(CertificateIssuer request, Dictionary<string, string> issuerCredentials);
         Task Delete(string id);
         PaginatedResponse<ICertificateIssuerListOptions, CertificateIssuer> List(ICertificateIssuerListOptions options = null);
         Task<CertificateIssuer> Read(string id);

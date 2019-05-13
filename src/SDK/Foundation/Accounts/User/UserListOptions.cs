@@ -62,9 +62,9 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public UserListOptions LoginProfileEqualTo(string value)
+        public UserListOptions LoginProfilesEqualTo(List<LoginProfile> value)
         {
-            this.Filter.AddFilterItem("login_profile", new FilterItem(value, FilterOperator.Equals));
+            this.Filter.AddFilterItem("login_profiles", new FilterItem(value, FilterOperator.Equals));
             return this;
         }
     }

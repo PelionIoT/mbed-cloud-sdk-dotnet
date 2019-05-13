@@ -27,7 +27,7 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public interface IDeviceRepository
     {
-        Task<Device> Create(Device request, string bootstrappedTimestamp = null, string firmwareChecksum = null);
+        Task<Device> Create(Device request);
         Task Delete(string id);
         PaginatedResponse<IDeviceListOptions, Device> List(IDeviceListOptions options = null);
         Task<Device> Read(string id);

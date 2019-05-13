@@ -73,7 +73,6 @@ namespace Mbed.Cloud.Foundation
         int? DeviceExecutionMode
         {
             get;
-            set;
         }
 
         /// <summary>
@@ -91,7 +90,6 @@ namespace Mbed.Cloud.Foundation
         bool? IsDeveloperCertificate
         {
             get;
-            set;
         }
 
         /// <summary>

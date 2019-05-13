@@ -97,6 +97,11 @@ namespace Manhasset.Generator.src.Generators
                             {
                                 customQueryOptions.AddUsing(nameof(UsingKeys.SYSTEM), UsingKeys.SYSTEM);
                             }
+                            // add usings for list
+                            if (filterType.Contains("List<") || filterType.Contains("Dictionary<"))
+                            {
+                                customQueryOptions.AddUsing(nameof(UsingKeys.GENERIC_COLLECTIONS), UsingKeys.GENERIC_COLLECTIONS);
+                            }
                         }
 
                         var filterOperators = filterValueProperty.Children().FirstOrDefault();

@@ -16,9 +16,9 @@ namespace Snippets.src.Foundation
             try
             {
                 // an example: certificate renew
-                var myConfig = new CertificateIssuerConfigRepository().List().All().FirstOrDefault(c => c.CertificateReference == "LWM2M");
+                var myConfig = new CertificateIssuerConfigRepository().List().All().FirstOrDefault(c => c.Reference == "LWM2M");
                 // cloak
-                Assert.AreEqual("LWM2M", myConfig.CertificateReference);
+                Assert.AreEqual("LWM2M", myConfig.Reference);
                 Assert.IsAssignableFrom(typeof(CertificateIssuerConfig), myConfig, "config should be instance of CertificateIssuerConfig");
                 // uncloak
 
@@ -34,7 +34,7 @@ namespace Snippets.src.Foundation
 
                 foreach (var device in connectedDevices)
                 {
-                    await new DeviceRepository().RenewCertificate(myConfig.CertificateReference, device.Id);
+                    await new DeviceRepository().RenewCertificate(myConfig.Reference, device.Id);
                 }
                 // end of example
             }

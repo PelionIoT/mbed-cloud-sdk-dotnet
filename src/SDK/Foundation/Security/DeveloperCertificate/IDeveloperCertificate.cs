@@ -58,6 +58,14 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
+        /// developer_private_key
+        /// </summary>
+        string DeveloperPrivateKey
+        {
+            get;
+        }
+
+        /// <summary>
         /// name
         /// </summary>
         string Name
