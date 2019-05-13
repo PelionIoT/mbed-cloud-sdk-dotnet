@@ -37,6 +37,16 @@ namespace Mbed.Cloud.Foundation.Factories
             return new CampaignDeviceMetadataRepository(config, client);
         }
 
+        public CampaignStatisticsRepository CampaignStatisticsRepository()
+        {
+            return new CampaignStatisticsRepository(config, client);
+        }
+
+        public CampaignStatisticsEventsRepository CampaignStatisticsEventsRepository()
+        {
+            return new CampaignStatisticsEventsRepository(config, client);
+        }
+
         public CertificateEnrollmentRepository CertificateEnrollmentRepository()
         {
             return new CertificateEnrollmentRepository(config, client);
@@ -105,6 +115,11 @@ namespace Mbed.Cloud.Foundation.Factories
         public ServerCredentialsRepository ServerCredentialsRepository()
         {
             return new ServerCredentialsRepository(config, client);
+        }
+
+        public SubtenantApiKeyRepository SubtenantApiKeyRepository()
+        {
+            return new SubtenantApiKeyRepository(config, client);
         }
 
         public SubtenantTrustedCertificateRepository SubtenantTrustedCertificateRepository()

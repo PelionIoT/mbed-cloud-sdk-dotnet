@@ -15,7 +15,6 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
-    using System.Collections.Generic;
     using System;
 
     /// <summary>
@@ -33,20 +32,20 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
-        /// certificate_reference
-        /// </summary>
-        string CertificateReference
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// created_at
         /// </summary>
         DateTime? CreatedAt
         {
             get;
+        }
+
+        /// <summary>
+        /// reference
+        /// </summary>
+        string Reference
+        {
+            get;
+            set;
         }
 
         /// <summary>

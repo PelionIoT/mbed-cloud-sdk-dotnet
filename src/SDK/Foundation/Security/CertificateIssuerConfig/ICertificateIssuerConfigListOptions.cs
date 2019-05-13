@@ -31,6 +31,6 @@ namespace Mbed.Cloud.Foundation
             set;
         }
 
-        CertificateIssuerConfigListOptions CertificateReferenceEqualTo(string value);
+        CertificateIssuerConfigListOptions ReferenceEqualTo(string value);
     }
 }

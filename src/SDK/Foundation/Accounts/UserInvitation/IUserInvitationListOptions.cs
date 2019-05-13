@@ -16,6 +16,7 @@ namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
     using Mbed.Cloud.Common.Filters;
+    using System.Collections.Generic;
 
     /// <summary>
     /// UserInvitationListOptions
@@ -31,6 +32,6 @@ namespace Mbed.Cloud.Foundation
             set;
         }
 
-        UserInvitationListOptions LoginProfileEqualTo(string value);
+        UserInvitationListOptions LoginProfilesEqualTo(List<LoginProfile> value);
     }
 }

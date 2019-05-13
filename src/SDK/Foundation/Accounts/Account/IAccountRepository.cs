@@ -27,6 +27,7 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public interface IAccountRepository
     {
+        PaginatedResponse<ISubtenantApiKeyListOptions, SubtenantApiKey> ApiKeys(string id, ISubtenantApiKeyListOptions options = null);
         Task<Account> Create(Account request, string action = null);
         PaginatedResponse<IAccountListOptions, Account> List(IAccountListOptions options = null);
         Task<Account> Me(string include = null, string properties = null);

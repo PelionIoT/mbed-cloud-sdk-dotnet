@@ -15,8 +15,8 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
-    using System.Collections.Generic;
     using Mbed.Cloud.Foundation;
+    using System.Collections.Generic;
     using System;
     using Mbed.Cloud.Foundation.Enums;
 
@@ -102,6 +102,33 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
+        /// is_gtc_accepted
+        /// </summary>
+        bool? IsGtcAccepted
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// is_marketing_accepted
+        /// </summary>
+        bool? IsMarketingAccepted
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// is_totp_enabled
+        /// </summary>
+        bool? IsTotpEnabled
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// last_login_time
         /// </summary>
         long? LastLoginTime
@@ -121,15 +148,6 @@ namespace Mbed.Cloud.Foundation
         /// login_profiles
         /// </summary>
         List<LoginProfile> LoginProfiles
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// marketing_accepted
-        /// </summary>
-        bool? MarketingAccepted
         {
             get;
             set;
@@ -171,29 +189,11 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
-        /// terms_accepted
-        /// </summary>
-        bool? TermsAccepted
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// totp_scratch_codes
         /// </summary>
         List<string> TotpScratchCodes
         {
             get;
-        }
-
-        /// <summary>
-        /// two_factor_authentication
-        /// </summary>
-        bool? TwoFactorAuthentication
-        {
-            get;
-            set;
         }
 
         /// <summary>

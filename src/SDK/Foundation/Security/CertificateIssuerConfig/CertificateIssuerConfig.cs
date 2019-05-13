@@ -15,7 +15,6 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
-    using System.Collections.Generic;
     using System;
 
     /// <summary>
@@ -23,21 +22,10 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public class CertificateIssuerConfig : Entity, ICertificateIssuerConfig
     {
-        internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "CertificateReference", "reference" }, };
-
         /// <summary>
         /// certificate_issuer_id
         /// </summary>
         public string CertificateIssuerId
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// certificate_reference
-        /// </summary>
-        public string CertificateReference
         {
             get;
             set;
@@ -50,6 +38,15 @@ namespace Mbed.Cloud.Foundation
         {
             get;
             internal set;
+        }
+
+        /// <summary>
+        /// reference
+        /// </summary>
+        public string Reference
+        {
+            get;
+            set;
         }
 
         /// <summary>

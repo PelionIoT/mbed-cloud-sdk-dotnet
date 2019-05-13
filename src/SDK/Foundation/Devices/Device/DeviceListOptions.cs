@@ -99,25 +99,25 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceListOptions BootstrappedTimestampIn(params string[] value)
+        public DeviceListOptions BootstrappedTimestampIn(params DateTime[] value)
         {
             this.Filter.AddFilterItem("bootstrapped_timestamp", new FilterItem(value, FilterOperator.In));
             return this;
         }
 
-        public DeviceListOptions BootstrappedTimestampNotIn(params string[] value)
+        public DeviceListOptions BootstrappedTimestampNotIn(params DateTime[] value)
         {
             this.Filter.AddFilterItem("bootstrapped_timestamp", new FilterItem(value, FilterOperator.NotIn));
             return this;
         }
 
-        public DeviceListOptions BootstrappedTimestampLessThan(string value)
+        public DeviceListOptions BootstrappedTimestampLessThan(DateTime value)
         {
             this.Filter.AddFilterItem("bootstrapped_timestamp", new FilterItem(value, FilterOperator.LessThan));
             return this;
         }
 
-        public DeviceListOptions BootstrappedTimestampGreaterThan(string value)
+        public DeviceListOptions BootstrappedTimestampGreaterThan(DateTime value)
         {
             this.Filter.AddFilterItem("bootstrapped_timestamp", new FilterItem(value, FilterOperator.GreaterThan));
             return this;
