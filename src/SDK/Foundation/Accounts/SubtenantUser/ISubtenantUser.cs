@@ -16,11 +16,8 @@ namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
     using Mbed.Cloud.Foundation;
-<<<<<<< HEAD
-    using Newtonsoft.Json;
-=======
     using System.Collections.Generic;
->>>>>>> beta
+    using Newtonsoft.Json;
     using System;
     using Mbed.Cloud.Foundation.Enums;
 

@@ -16,11 +16,8 @@ namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
     using Mbed.Cloud.Foundation;
-<<<<<<< HEAD
-    using Newtonsoft.Json;
-=======
     using System.Collections.Generic;
->>>>>>> beta
+    using Newtonsoft.Json;
     using System;
     using Mbed.Cloud.Foundation.Enums;
 
@@ -208,20 +205,8 @@ namespace Mbed.Cloud.Foundation
             get;
             internal set;
         }
-
-        /// <summary>
-<<<<<<< HEAD
-        /// two_factor_authentication
-        /// </summary>
-        public bool? TwoFactorAuthentication
-        {
-            get;
-            set;
-        }
         [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
-=======
->>>>>>> beta
         /// updated_at
         /// </summary>
         public DateTime? UpdatedAt

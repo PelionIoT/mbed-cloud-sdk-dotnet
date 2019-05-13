@@ -50,7 +50,7 @@ namespace Mbed.Cloud.Foundation
             get;
             set;
         }
-
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// bootstrapped_timestamp
         /// </summary>

@@ -15,11 +15,7 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
-<<<<<<< HEAD
-    using System.Collections.Generic;
     using Newtonsoft.Json;
-=======
->>>>>>> beta
     using System;
 
     /// <summary>
@@ -35,7 +31,7 @@ namespace Mbed.Cloud.Foundation
             get;
             set;
         }
-
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// created_at
         /// </summary>
@@ -44,7 +40,7 @@ namespace Mbed.Cloud.Foundation
             get;
             internal set;
         }
-        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
+
         /// <summary>
         /// reference
         /// </summary>

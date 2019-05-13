@@ -38,12 +38,7 @@ namespace Mbed.Cloud.Foundation
         {
             try
             {
-<<<<<<< HEAD
                 return await Client.CallApi<CertificateIssuerConfig>(path: "/v3/certificate-issuer-configurations", request: request, method: HttpMethods.POST);
-=======
-                var bodyParams = new CertificateIssuerConfig { CertificateIssuerId = request.CertificateIssuerId, Reference = request.Reference, };
-                return await Client.CallApi<CertificateIssuerConfig>(path: "/v3/certificate-issuer-configurations", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: request);
->>>>>>> beta
             }
             catch (ApiException e)
             {
