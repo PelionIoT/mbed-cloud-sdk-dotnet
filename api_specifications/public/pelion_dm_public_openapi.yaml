@@ -5089,7 +5089,8 @@ definitions:
         type: string
     type: object
   ServicePackageMetadata:
-    description: Account's service package metadata.
+    description: Account's service package metadata. Value is `null` if service package
+      has expired.
     properties:
       end_time:
         description: Service package end time in RFC3339 date-time with millisecond
@@ -5276,6 +5277,8 @@ definitions:
         type: array
       metadata:
         $ref: '#/definitions/ServicePackageMetadata'
+        description: '`Null` if service package has expired.'
+        x-nullable: true
       quota_usage:
         items:
           $ref: '#/definitions/QuotaUsageReport'
