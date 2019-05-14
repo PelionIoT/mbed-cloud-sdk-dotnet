@@ -24,6 +24,7 @@ namespace MbedCloudSDK.IntegrationTests
                 {
                     logging.ClearProviders();
                     logging.AddConsole();
+                    logging.SetMinimumLevel(LogLevel.Error);
                 })
                 .Build();
     }

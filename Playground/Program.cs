@@ -23,35 +23,17 @@ namespace Playground
         {
             try
             {
-                var repo = new DeviceRepository();
+                var stats = new CampaignStatisticsRepository();
 
-                var deviceRequest = new Device
-                {
-                    AutoUpdate = true,
-                    BootstrapExpirationDate = new DateTime(1986, 11, 8),
-                    CaId = "fSQgZNIVdVMxpVvtEpBP",
-                    ConnectorExpirationDate = new DateTime(2002, 8, 3),
-                    Description = "some long description",
-                    DeviceClass = "NHCACKaeRazNoZZuBIij",
-                    DeviceExecutionMode = 1,
-                    DeviceKey = "ylVJZwoLqVrtRUNTIHAF",
-                    EndpointType = "jkYgufdZxaHETxxlhPNV",
-                    HostGateway = "69365650-230d-4648-9824-2864042f465d",
-                    Mechanism = DeviceMechanism.DIRECT,
-                    MechanismUrl = "https://www.examplea03502a1-204b-446e-9aef-59ed02b4e62f.com",
-                    Name = "AUTOTEST-IPG30C",
-                    SerialNumber = "HTjSZbmOYIdvvRIfmvFi",
-                    State = DeviceState.BOOTSTRAPPED,
-                    VendorId = "bhKjKuQIAKOLhdiQBpKT",
-                };
+                var statsList = stats.Events("01616622693a00000000000100100019", "fail", new CampaignStatisticsEventsListOptions{ MaxResults = 3 }).All();
 
-                var deviceString = JsonConvert.SerializeObject(deviceRequest, SerializationSettings.GetSerializationSettings());
+                Console.WriteLine(statsList.Count);
 
-                var dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(deviceString);
+                // var device = new DeviceRepository();
 
-                // var device = await repo.Create(deviceRequest, "timestamp", "checksum");
+                // var deviceList = device.List(new DeviceListOptions { MaxResults = 2 }).All();
 
-                Console.WriteLine(deviceString);
+                // Console.WriteLine(deviceList.Count);
             }
             catch (Exception e)
             {
@@ -59,9 +41,5 @@ namespace Playground
                 Console.WriteLine(e);
             }
         }
-    }
-
-    public class TestObserver<T, F> : Observer<T, F>
-    {
     }
 }
