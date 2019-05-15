@@ -113,7 +113,7 @@ namespace MbedCloudSDK.IntegrationTests.Services
             }
             catch (Exception e)
             {
-                throw new TestServerException(e.Message, 500);
+                throw new TestServerException(e.InnerException.Message, 500);
             }
         }
 

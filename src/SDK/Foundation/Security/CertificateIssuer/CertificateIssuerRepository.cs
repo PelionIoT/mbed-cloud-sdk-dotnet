@@ -39,15 +39,12 @@ namespace Mbed.Cloud.Foundation
         {
             try
             {
-                var bodyParams = new
+                var bodyParams = new CertificateIssuer { Description = request.Description, IssuerAttributes = request.IssuerAttributes, IssuerType = request.IssuerType, Name = request.Name, };
+                var externalBodyParams = new
                 {
-                    Description = request.Description,
-                    IssuerAttributes = request.IssuerAttributes,
                     issuerCredentials = issuerCredentials,
-                    IssuerType = request.IssuerType,
-                    Name = request.Name,
                 };
-                return await Client.CallApi<CertificateIssuer>(path: "/v3/certificate-issuers", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: request);
+                return await Client.CallApi<CertificateIssuer>(path: "/v3/certificate-issuers", bodyParams: bodyParams, externalBodyParams: externalBodyParams, objectToUnpack: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
             {
@@ -104,14 +101,12 @@ namespace Mbed.Cloud.Foundation
             try
             {
                 var pathParams = new Dictionary<string, object> { { "certificate-issuer-id", id }, };
-                var bodyParams = new
+                var bodyParams = new CertificateIssuer { Description = request.Description, IssuerAttributes = request.IssuerAttributes, Name = request.Name, };
+                var externalBodyParams = new
                 {
-                    Description = request.Description,
-                    IssuerAttributes = request.IssuerAttributes,
                     issuerCredentials = issuerCredentials,
-                    Name = request.Name,
                 };
-                return await Client.CallApi<CertificateIssuer>(path: "/v3/certificate-issuers/{certificate-issuer-id}", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: request);
+                return await Client.CallApi<CertificateIssuer>(path: "/v3/certificate-issuers/{certificate-issuer-id}", pathParams: pathParams, bodyParams: bodyParams, externalBodyParams: externalBodyParams, objectToUnpack: request, method: HttpMethods.PUT);
             }
             catch (ApiException e)
             {

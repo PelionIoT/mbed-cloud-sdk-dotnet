@@ -15,8 +15,8 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
-    using System;
     using Newtonsoft.Json;
+    using System;
     using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
@@ -52,7 +52,7 @@ namespace Mbed.Cloud.Foundation
             get;
             internal set;
         }
-
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// created_at
         /// </summary>
@@ -74,7 +74,7 @@ namespace Mbed.Cloud.Foundation
         /// <summary>
         /// device_execution_mode
         /// </summary>
-        public int DeviceExecutionMode
+        public int? DeviceExecutionMode
         {
             get;
             internal set;
@@ -153,7 +153,7 @@ namespace Mbed.Cloud.Foundation
             get;
             internal set;
         }
-
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// updated_at
         /// </summary>
@@ -171,7 +171,7 @@ namespace Mbed.Cloud.Foundation
             get;
             internal set;
         }
-
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// validity
         /// </summary>

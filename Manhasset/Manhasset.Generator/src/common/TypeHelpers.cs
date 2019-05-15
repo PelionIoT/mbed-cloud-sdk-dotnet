@@ -8,6 +8,8 @@ namespace Manhasset.Generator.src.common
 {
     public static class TypeHelpers
     {
+        public static readonly string DateTimeFormatString = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
+        public static readonly string PythonDateFormatString = "yyyy-MM-dd";
         public static string GetPropertyType(JToken property, ClassContainer container = null)
         {
             // format or type for most methods

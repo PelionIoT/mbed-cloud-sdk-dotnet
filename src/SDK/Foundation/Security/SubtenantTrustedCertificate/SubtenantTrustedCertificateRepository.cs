@@ -41,7 +41,7 @@ namespace Mbed.Cloud.Foundation
             {
                 var pathParams = new Dictionary<string, object> { { "account_id", accountId }, };
                 var bodyParams = new SubtenantTrustedCertificate { Certificate = request.Certificate, Description = request.Description, EnrollmentMode = request.EnrollmentMode, Name = request.Name, Service = request.Service, Status = request.Status, };
-                return await Client.CallApi<SubtenantTrustedCertificate>(path: "/v3/accounts/{account_id}/trusted-certificates", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: request);
+                return await Client.CallApi<SubtenantTrustedCertificate>(path: "/v3/accounts/{account_id}/trusted-certificates", pathParams: pathParams, bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
             {
@@ -94,7 +94,7 @@ namespace Mbed.Cloud.Foundation
             {
                 var pathParams = new Dictionary<string, object> { { "account_id", accountId }, { "cert_id", id }, };
                 var bodyParams = new SubtenantTrustedCertificate { Certificate = request.Certificate, Description = request.Description, EnrollmentMode = request.EnrollmentMode, Name = request.Name, Service = request.Service, Status = request.Status, };
-                return await Client.CallApi<SubtenantTrustedCertificate>(path: "/v3/accounts/{account_id}/trusted-certificates/{cert_id}", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: request);
+                return await Client.CallApi<SubtenantTrustedCertificate>(path: "/v3/accounts/{account_id}/trusted-certificates/{cert_id}", pathParams: pathParams, bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.PUT);
             }
             catch (ApiException e)
             {

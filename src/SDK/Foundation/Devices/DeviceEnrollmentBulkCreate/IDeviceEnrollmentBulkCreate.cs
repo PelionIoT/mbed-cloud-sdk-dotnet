@@ -15,6 +15,7 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Newtonsoft.Json;
     using System;
     using Mbed.Cloud.Foundation.Enums;
 
@@ -30,7 +31,7 @@ namespace Mbed.Cloud.Foundation
         {
             get;
         }
-
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// completed_at
         /// </summary>
@@ -38,7 +39,7 @@ namespace Mbed.Cloud.Foundation
         {
             get;
         }
-
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// created_at
         /// </summary>
@@ -50,7 +51,7 @@ namespace Mbed.Cloud.Foundation
         /// <summary>
         /// errors_count
         /// </summary>
-        int ErrorsCount
+        int? ErrorsCount
         {
             get;
         }
@@ -74,7 +75,7 @@ namespace Mbed.Cloud.Foundation
         /// <summary>
         /// processed_count
         /// </summary>
-        int ProcessedCount
+        int? ProcessedCount
         {
             get;
         }
@@ -90,7 +91,7 @@ namespace Mbed.Cloud.Foundation
         /// <summary>
         /// total_count
         /// </summary>
-        int TotalCount
+        int? TotalCount
         {
             get;
         }

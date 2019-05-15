@@ -39,7 +39,7 @@ namespace Mbed.Cloud.Foundation
             try
             {
                 var bodyParams = new DeviceEnrollment { EnrollmentIdentity = request.EnrollmentIdentity, };
-                return await Client.CallApi<DeviceEnrollment>(path: "/v3/device-enrollments", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: request);
+                return await Client.CallApi<DeviceEnrollment>(path: "/v3/device-enrollments", bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
             {

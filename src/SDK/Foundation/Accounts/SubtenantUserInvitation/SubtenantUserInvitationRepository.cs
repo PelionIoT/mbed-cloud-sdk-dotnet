@@ -39,13 +39,12 @@ namespace Mbed.Cloud.Foundation
             try
             {
                 var pathParams = new Dictionary<string, object> { { "account_id", accountId }, };
-                var bodyParams = new
+                var bodyParams = new SubtenantUserInvitation { Email = request.Email, LoginProfiles = request.LoginProfiles, };
+                var externalBodyParams = new
                 {
-                    Email = request.Email,
-                    LoginProfiles = request.LoginProfiles,
                     validForDays = validForDays,
                 };
-                return await Client.CallApi<SubtenantUserInvitation>(path: "/v3/accounts/{account_id}/user-invitations", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: request);
+                return await Client.CallApi<SubtenantUserInvitation>(path: "/v3/accounts/{account_id}/user-invitations", pathParams: pathParams, bodyParams: bodyParams, externalBodyParams: externalBodyParams, objectToUnpack: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
             {

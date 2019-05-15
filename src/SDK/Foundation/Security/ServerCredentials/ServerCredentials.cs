@@ -15,6 +15,7 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Newtonsoft.Json;
     using System;
 
     /// <summary>
@@ -22,6 +23,7 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public class ServerCredentials : Entity, IServerCredentials
     {
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// created_at
         /// </summary>

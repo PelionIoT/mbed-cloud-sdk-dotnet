@@ -74,13 +74,26 @@ namespace Manhasset.Generator.src.CustomContainers
                 methodBody.Add(formParamDeclaration);
             }
 
-            // only add internal body params
-            if (BodyParams.Any())
+            if (BodyParams.Any(b => b.External != true))
             {
                 var bodyParamDeclaration = new BodyParameterContainer
                 {
-                    BodyType = BodyParams.Any(b => b.External == true && !b.Key.EndsWith("request")) ? "Annonymous" : Returns,
-                    BodyParams = BodyParams.Where(b => !b.Key.EndsWith("request")).ToList(),
+                    Name = "bodyParams",
+                    BodyType = Returns,
+                    BodyParams = BodyParams.Where(b => b.External != true && !b.Key.EndsWith("request")).ToList(),
+                }.GetSyntax();
+
+                methodBody.Add(bodyParamDeclaration);
+            }
+
+            // add external body params
+            if (BodyParams.Any(b => b.External == true && !b.Key.EndsWith("request")))
+            {
+                var bodyParamDeclaration = new BodyParameterContainer
+                {
+                    Name = "externalBodyParams",
+                    BodyType = "Annonymous",
+                    BodyParams = BodyParams.Where(b => b.External == true && !b.Key.EndsWith("request")).ToList(),
                 }.GetSyntax();
 
                 methodBody.Add(bodyParamDeclaration);

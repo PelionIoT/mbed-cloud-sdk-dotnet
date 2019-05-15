@@ -108,6 +108,25 @@ namespace Manhasset.Generator.src.Generators
 
                     entityClass.AddPrivateField($"{name}_BACKING_FIELD", backingField);
                 }
+                else if (propertyType == "DateTime")
+                {
+                    var format = property["format"].GetStringValue();
+
+                    var propContainer = new DateTimePropertyContainer()
+                    {
+                        Name = name,
+                        DocString = docString,
+                        PropertyType = propertyType,
+                        IsNullable = isNullable,
+                        SetAccessorModifier = isReadOnly ? Modifiers.INTERNAL : Modifiers.PUBLIC,
+                        DateFormat = format,
+                    };
+
+                    propContainer.AddModifier(nameof(Modifiers.PUBLIC), Modifiers.PUBLIC);
+
+                    entityClass.AddProperty(name, propContainer);
+                    entityClass.AddUsing(nameof(UsingKeys.JSON), UsingKeys.JSON);
+                }
                 else
                 {
                     var propContainer = new PropertyWithSummaryContainer()
@@ -170,7 +189,7 @@ namespace Manhasset.Generator.src.Generators
                 && !propertyType.Contains("Dictionary<")
                 && !propertyType.Contains("string")
                 && !propertyType.Contains("object")
-                && !propertyType.Contains("int")
+                // && !propertyType.Contains("int")
                 && !propertyType.Contains("Filter")
                 && !(TypeHelpers.GetForeignKeyType(property) != null);
         }

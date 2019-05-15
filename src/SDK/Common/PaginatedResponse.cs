@@ -109,7 +109,7 @@ namespace Mbed.Cloud.Common
             {
                 while (iterator.MoveNext())
                 {
-                    if (options.PageSize != null && totalItems > options.MaxResults)
+                    if (options.PageSize != null && totalItems >= options.MaxResults)
                     {
                         yield break;
                     }
@@ -159,6 +159,11 @@ namespace Mbed.Cloud.Common
         private async Task<ResponsePage<TData>> GetPageAsync()
         {
             var page = await apiCallFunction.Invoke(options);
+            if (page == null)
+            {
+                return new ResponsePage<TData>();
+            }
+
             options.After = page.Data.LastOrDefault()?.Id;
             return page;
         }

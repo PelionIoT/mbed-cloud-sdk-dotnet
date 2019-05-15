@@ -108,12 +108,15 @@ namespace Mbed.Cloud.Common
 
         public static void DeviceFilterHelperSetter(UpdateCampaign self, Filter filter)
         {
-            throw new NotImplementedException();
+            if (filter != null)
+            {
+                self.DeviceFilter = filter.CampaignFilterString;
+            }
         }
 
         public static Filter DeviceFilterHelperGetter(UpdateCampaign self)
         {
-            throw new NotImplementedException();
+            return new Filter(self.DeviceFilter);
         }
 
         public static string PreSharedKeyIdGetter(PreSharedKey self)

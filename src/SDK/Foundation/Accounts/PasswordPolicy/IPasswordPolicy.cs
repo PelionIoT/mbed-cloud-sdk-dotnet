@@ -24,7 +24,7 @@ namespace Mbed.Cloud.Foundation
         /// <summary>
         /// minimum_length
         /// </summary>
-        int MinimumLength
+        int? MinimumLength
         {
             get;
         }
