@@ -39,7 +39,8 @@ namespace Mbed.Cloud.Foundation
         {
             try
             {
-                return await Client.CallApi<DeveloperCertificate>(path: "/v3/developer-certificates", request: request, method: HttpMethods.POST);
+                var bodyParams = new DeveloperCertificate { Description = request.Description, Name = request.Name, };
+                return await Client.CallApi<DeveloperCertificate>(path: "/v3/developer-certificates", bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
             {

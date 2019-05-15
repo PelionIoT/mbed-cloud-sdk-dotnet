@@ -52,15 +52,21 @@ namespace Manhasset.Generator.src.CustomContainers
                 paramArgList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
             }
 
-            if (BodyParams.Any(b => b.External == true && !b.Key.EndsWith("request")))
+            if (BodyParams.Any(b => b.External != true))
             {
                 paramArgList.Add(GetVariableArg("bodyParams", "bodyParams"));
                 paramArgList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
             }
 
+            if (BodyParams.Any(b => b.External == true && !b.Key.EndsWith("request")))
+            {
+                paramArgList.Add(GetVariableArg("externalBodyParams", "externalBodyParams"));
+                paramArgList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+            }
+
             if (HasRequest)
             {
-                paramArgList.Add(GetVariableArg("request", "request"));
+                paramArgList.Add(GetVariableArg("request", "objectToUnpack"));
                 paramArgList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
             }
 

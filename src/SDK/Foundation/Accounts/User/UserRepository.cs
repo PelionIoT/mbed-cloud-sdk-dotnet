@@ -39,7 +39,8 @@ namespace Mbed.Cloud.Foundation
             try
             {
                 var queryParams = new Dictionary<string, object> { { "action", action }, };
-                return await Client.CallApi<User>(path: "/v3/users", queryParams: queryParams, request: request, method: HttpMethods.POST);
+                var bodyParams = new User { Address = request.Address, Email = request.Email, FullName = request.FullName, IsGtcAccepted = request.IsGtcAccepted, IsMarketingAccepted = request.IsMarketingAccepted, LoginProfiles = request.LoginProfiles, Password = request.Password, PhoneNumber = request.PhoneNumber, Username = request.Username, };
+                return await Client.CallApi<User>(path: "/v3/users", queryParams: queryParams, bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
             {
@@ -96,7 +97,8 @@ namespace Mbed.Cloud.Foundation
             try
             {
                 var pathParams = new Dictionary<string, object> { { "user_id", id }, };
-                return await Client.CallApi<User>(path: "/v3/users/{user_id}", pathParams: pathParams, request: request, method: HttpMethods.PUT);
+                var bodyParams = new User { Address = request.Address, FullName = request.FullName, IsGtcAccepted = request.IsGtcAccepted, IsMarketingAccepted = request.IsMarketingAccepted, IsTotpEnabled = request.IsTotpEnabled, LoginProfiles = request.LoginProfiles, PhoneNumber = request.PhoneNumber, Username = request.Username, };
+                return await Client.CallApi<User>(path: "/v3/users/{user_id}", pathParams: pathParams, bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.PUT);
             }
             catch (ApiException e)
             {

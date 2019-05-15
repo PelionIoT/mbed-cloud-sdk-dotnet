@@ -23,7 +23,7 @@ namespace Manhasset.Generator.src.CustomContainers
                         .WithVariables(
                             SyntaxFactory.SingletonSeparatedList<VariableDeclaratorSyntax>(
                                 SyntaxFactory.VariableDeclarator(
-                                    SyntaxFactory.Identifier("bodyParams"))
+                                    SyntaxFactory.Identifier(Name))
                                 .WithInitializer(
                                     SyntaxFactory.EqualsValueClause(
                                         SyntaxFactory.IdentifierName(BodyParams.FirstOrDefault()?.Key))))));
@@ -109,7 +109,7 @@ namespace Manhasset.Generator.src.CustomContainers
                 .WithVariables(
                     SyntaxFactory.SingletonSeparatedList<VariableDeclaratorSyntax>(
                         SyntaxFactory.VariableDeclarator(
-                            SyntaxFactory.Identifier("bodyParams"))
+                            SyntaxFactory.Identifier(Name))
                         .WithInitializer(
                             SyntaxFactory.EqualsValueClause(
                                 objectCreation

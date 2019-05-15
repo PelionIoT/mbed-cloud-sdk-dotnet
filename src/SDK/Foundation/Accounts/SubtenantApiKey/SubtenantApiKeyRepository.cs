@@ -39,7 +39,8 @@ namespace Mbed.Cloud.Foundation
             try
             {
                 var pathParams = new Dictionary<string, object> { { "account_id", accountId }, };
-                return await Client.CallApi<SubtenantApiKey>(path: "/v3/accounts/{account_id}/api-keys", pathParams: pathParams, request: request, method: HttpMethods.POST);
+                var bodyParams = new SubtenantApiKey { Name = request.Name, Owner = request.Owner, Status = request.Status, };
+                return await Client.CallApi<SubtenantApiKey>(path: "/v3/accounts/{account_id}/api-keys", pathParams: pathParams, bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
             {
@@ -78,7 +79,8 @@ namespace Mbed.Cloud.Foundation
             try
             {
                 var pathParams = new Dictionary<string, object> { { "account_id", accountId }, { "apikey_id", id }, };
-                return await Client.CallApi<SubtenantApiKey>(path: "/v3/accounts/{account_id}/api-keys/{apikey_id}", pathParams: pathParams, request: request, method: HttpMethods.PUT);
+                var bodyParams = new SubtenantApiKey { Name = request.Name, Owner = request.Owner, Status = request.Status, };
+                return await Client.CallApi<SubtenantApiKey>(path: "/v3/accounts/{account_id}/api-keys/{apikey_id}", pathParams: pathParams, bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.PUT);
             }
             catch (ApiException e)
             {

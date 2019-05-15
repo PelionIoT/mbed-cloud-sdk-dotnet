@@ -39,7 +39,8 @@ namespace Mbed.Cloud.Foundation
         {
             try
             {
-                return await Client.CallApi<Device>(path: "/v3/devices/", request: request, method: HttpMethods.POST);
+                var bodyParams = new Device { AutoUpdate = request.AutoUpdate, BootstrapExpirationDate = request.BootstrapExpirationDate, CaId = request.CaId, ConnectorExpirationDate = request.ConnectorExpirationDate, CustomAttributes = request.CustomAttributes, Deployment = request.Deployment, Description = request.Description, DeviceClass = request.DeviceClass, DeviceExecutionMode = request.DeviceExecutionMode, DeviceKey = request.DeviceKey, EndpointName = request.EndpointName, EndpointType = request.EndpointType, HostGateway = request.HostGateway, IssuerFingerprint = request.IssuerFingerprint, Manifest = request.Manifest, Mechanism = request.Mechanism, MechanismUrl = request.MechanismUrl, Name = request.Name, SerialNumber = request.SerialNumber, State = request.State, VendorId = request.VendorId, };
+                return await Client.CallApi<Device>(path: "/v3/devices/", bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
             {
@@ -109,7 +110,8 @@ namespace Mbed.Cloud.Foundation
             try
             {
                 var pathParams = new Dictionary<string, object> { { "id", id }, };
-                return await Client.CallApi<Device>(path: "/v3/devices/{id}/", pathParams: pathParams, request: request, method: HttpMethods.PUT);
+                var bodyParams = new Device { AutoUpdate = request.AutoUpdate, CaId = request.CaId, CustomAttributes = request.CustomAttributes, Description = request.Description, DeviceKey = request.DeviceKey, EndpointName = request.EndpointName, EndpointType = request.EndpointType, HostGateway = request.HostGateway, Name = request.Name, };
+                return await Client.CallApi<Device>(path: "/v3/devices/{id}/", pathParams: pathParams, bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.PUT);
             }
             catch (ApiException e)
             {

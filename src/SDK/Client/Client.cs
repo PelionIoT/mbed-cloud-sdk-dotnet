@@ -103,7 +103,8 @@ namespace Mbed.Cloud.RestClient
                             string[] contentTypes = null,
                             string[] accepts = null,
                             object bodyParams = null,
-                            T request = default,
+                            object externalBodyParams = null,
+                            T objectToUnpack = null,
                             HttpMethods method = default,
                             bool failOnNotFound = false)
                     where T : class, new()
@@ -194,25 +195,33 @@ namespace Mbed.Cloud.RestClient
                     }
                 }
 
-                var allBodyDict = new Dictionary<string, object>();
-
-                if (request != null)
+                // if we have a normal body, and no external body params
+                if (bodyParams != null && externalBodyParams == null)
                 {
-                    var requestString = Serialize(request, serializationSettings);
+                    localVarPostBody = Serialize(bodyParams, serializationSettings);
+                }
+                // edge case where we only have external body params
+                else if (bodyParams == null && externalBodyParams != null)
+                {
+                    localVarPostBody = Serialize(externalBodyParams, serializationSettings);
+                }
+                // we have a combination of internal and external body params
+                else if (bodyParams != null && externalBodyParams != null)
+                {
+                    var allBodyDict = new Dictionary<string, object>();
+
+                    var requestString = Serialize(bodyParams, serializationSettings);
                     var requestDict = JsonConvert.DeserializeObject<Dictionary<string, object>>(requestString);
                     requestDict.ToList().ForEach(x => allBodyDict[x.Key] = x.Value);
-                }
 
-                if (bodyParams != null)
-                {
-                    var bodyString = Serialize(bodyParams, serializationSettings);
+                    var bodyString = Serialize(externalBodyParams, serializationSettings);
                     var bodyDict = JsonConvert.DeserializeObject<Dictionary<string, object>>(bodyString);
                     bodyDict.ToList().ForEach(x => allBodyDict[x.Key] = x.Value);
-                }
 
-                if (allBodyDict.Any())
-                {
-                    localVarPostBody = Serialize(allBodyDict, serializationSettings); // http body (model) parameter
+                    if (allBodyDict.Any())
+                    {
+                        localVarPostBody = Serialize(allBodyDict, serializationSettings); // http body (model) parameter
+                    }
                 }
 
                 localVarHeaderParams["Authorization"] = $"{Config.AuthorizationPrefix} {Config.ApiKey}";
@@ -240,18 +249,19 @@ namespace Mbed.Cloud.RestClient
                 if (string.IsNullOrEmpty(localVarResponse.Content))
                 {
                     // we have an instance, if no content, then just return it.
-                    if (request != null)
+                    if (objectToUnpack != null)
                     {
-                        return request;
+                        return objectToUnpack;
                     }
 
                     return null;
                 }
 
-                if (request != null)
+                if (objectToUnpack != null)
                 {
-                    JsonConvert.PopulateObject(localVarResponse.Content, request, deserializationSettings);
-                    return request;
+                    Console.WriteLine(localVarResponse.Content);
+                    JsonConvert.PopulateObject(localVarResponse.Content, objectToUnpack, deserializationSettings);
+                    return objectToUnpack;
                 }
 
                 if (!failOnNotFound && (int)localVarResponse.StatusCode == 404)
@@ -260,6 +270,7 @@ namespace Mbed.Cloud.RestClient
                     return null;
                 }
 
+                Console.WriteLine(localVarResponse.Content);
                 return JsonConvert.DeserializeObject<T>(localVarResponse.Content, deserializationSettings);
             }
             catch (Exception e)

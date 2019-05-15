@@ -59,7 +59,8 @@ namespace Mbed.Cloud.Foundation
             try
             {
                 var queryParams = new Dictionary<string, object> { { "action", action }, };
-                return await Client.CallApi<Account>(path: "/v3/accounts", queryParams: queryParams, request: request, method: HttpMethods.POST);
+                var bodyParams = new Account { AddressLine1 = request.AddressLine1, AddressLine2 = request.AddressLine2, AdminEmail = request.AdminEmail, AdminFullName = request.AdminFullName, AdminName = request.AdminName, AdminPassword = request.AdminPassword, Aliases = request.Aliases, City = request.City, Company = request.Company, Contact = request.Contact, ContractNumber = request.ContractNumber, Country = request.Country, CustomerNumber = request.CustomerNumber, DisplayName = request.DisplayName, Email = request.Email, EndMarket = request.EndMarket, PhoneNumber = request.PhoneNumber, PostalCode = request.PostalCode, State = request.State, };
+                return await Client.CallApi<Account>(path: "/v3/accounts", queryParams: queryParams, bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
             {
@@ -136,7 +137,8 @@ namespace Mbed.Cloud.Foundation
             try
             {
                 var pathParams = new Dictionary<string, object> { { "account_id", id }, };
-                return await Client.CallApi<Account>(path: "/v3/accounts/{account_id}", pathParams: pathParams, request: request, method: HttpMethods.PUT);
+                var bodyParams = new Account { AddressLine1 = request.AddressLine1, AddressLine2 = request.AddressLine2, Aliases = request.Aliases, City = request.City, Company = request.Company, Contact = request.Contact, ContractNumber = request.ContractNumber, Country = request.Country, CustomFields = request.CustomFields, CustomerNumber = request.CustomerNumber, DisplayName = request.DisplayName, Email = request.Email, EndMarket = request.EndMarket, ExpirationWarningThreshold = request.ExpirationWarningThreshold, IdleTimeout = request.IdleTimeout, MfaStatus = request.MfaStatus, NotificationEmails = request.NotificationEmails, PasswordPolicy = request.PasswordPolicy, PasswordRecoveryExpiration = request.PasswordRecoveryExpiration, PhoneNumber = request.PhoneNumber, PostalCode = request.PostalCode, SalesContact = request.SalesContact, State = request.State, };
+                return await Client.CallApi<Account>(path: "/v3/accounts/{account_id}", pathParams: pathParams, bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.PUT);
             }
             catch (ApiException e)
             {

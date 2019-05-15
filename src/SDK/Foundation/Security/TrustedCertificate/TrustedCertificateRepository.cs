@@ -39,7 +39,8 @@ namespace Mbed.Cloud.Foundation
         {
             try
             {
-                return await Client.CallApi<TrustedCertificate>(path: "/v3/trusted-certificates", request: request, method: HttpMethods.POST);
+                var bodyParams = new TrustedCertificate { Certificate = request.Certificate, Description = request.Description, EnrollmentMode = request.EnrollmentMode, Name = request.Name, Service = request.Service, Status = request.Status, };
+                return await Client.CallApi<TrustedCertificate>(path: "/v3/trusted-certificates", bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
             {
@@ -109,7 +110,8 @@ namespace Mbed.Cloud.Foundation
             try
             {
                 var pathParams = new Dictionary<string, object> { { "cert_id", id }, };
-                return await Client.CallApi<TrustedCertificate>(path: "/v3/trusted-certificates/{cert_id}", pathParams: pathParams, request: request, method: HttpMethods.PUT);
+                var bodyParams = new TrustedCertificate { Certificate = request.Certificate, Description = request.Description, EnrollmentMode = request.EnrollmentMode, Name = request.Name, Service = request.Service, Status = request.Status, };
+                return await Client.CallApi<TrustedCertificate>(path: "/v3/trusted-certificates/{cert_id}", pathParams: pathParams, bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.PUT);
             }
             catch (ApiException e)
             {
