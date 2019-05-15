@@ -24,9 +24,5 @@ namespace Mbed.Cloud.Foundation.Enums
         SUCCESS,
         [EnumMember(Value = "failure")]
         FAILURE,
-        [EnumMember(Value = "not_found")]
-        NOT_FOUND,
-        [EnumMember(Value = "forbidden")]
-        FORBIDDEN,
     }
 }
