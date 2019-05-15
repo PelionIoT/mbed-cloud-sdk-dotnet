@@ -53,9 +53,22 @@ namespace Mbed.Cloud.RestClient
 
         private readonly ApiClient apiClient;
         private readonly string dateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
-        private readonly JsonSerializerSettings deserializationSettings;
 
-        private readonly JsonSerializerSettings serializationSettings;
+        public JsonSerializerSettings SerializationSettings
+        {
+            get
+            {
+                return Mbed.Cloud.RestClient.SerializationSettings.GetSerializationSettings();
+            }
+        }
+
+        public JsonSerializerSettings DeserializationSettings
+        {
+            get
+            {
+                return Mbed.Cloud.RestClient.SerializationSettings.GetDeserializationSettings(Config);
+            }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Client"/> class.
@@ -64,8 +77,6 @@ namespace Mbed.Cloud.RestClient
         public Client(Config config)
         {
             Config = config;
-            serializationSettings = SerializationSettings.GetSerializationSettings();
-            deserializationSettings = SerializationSettings.GetDeserializationSettings(config);
             apiClient = new ApiClient(Config.Host);
         }
 
@@ -198,29 +209,29 @@ namespace Mbed.Cloud.RestClient
                 // if we have a normal body, and no external body params
                 if (bodyParams != null && externalBodyParams == null)
                 {
-                    localVarPostBody = Serialize(bodyParams, serializationSettings);
+                    localVarPostBody = Serialize(bodyParams, SerializationSettings);
                 }
                 // edge case where we only have external body params
                 else if (bodyParams == null && externalBodyParams != null)
                 {
-                    localVarPostBody = Serialize(externalBodyParams, serializationSettings);
+                    localVarPostBody = Serialize(externalBodyParams, SerializationSettings);
                 }
                 // we have a combination of internal and external body params
                 else if (bodyParams != null && externalBodyParams != null)
                 {
                     var allBodyDict = new Dictionary<string, object>();
 
-                    var requestString = Serialize(bodyParams, serializationSettings);
+                    var requestString = Serialize(bodyParams, SerializationSettings);
                     var requestDict = JsonConvert.DeserializeObject<Dictionary<string, object>>(requestString);
                     requestDict.ToList().ForEach(x => allBodyDict[x.Key] = x.Value);
 
-                    var bodyString = Serialize(externalBodyParams, serializationSettings);
+                    var bodyString = Serialize(externalBodyParams, SerializationSettings);
                     var bodyDict = JsonConvert.DeserializeObject<Dictionary<string, object>>(bodyString);
                     bodyDict.ToList().ForEach(x => allBodyDict[x.Key] = x.Value);
 
                     if (allBodyDict.Any())
                     {
-                        localVarPostBody = Serialize(allBodyDict, serializationSettings); // http body (model) parameter
+                        localVarPostBody = Serialize(allBodyDict, SerializationSettings); // http body (model) parameter
                     }
                 }
 
@@ -259,8 +270,7 @@ namespace Mbed.Cloud.RestClient
 
                 if (objectToUnpack != null)
                 {
-                    Console.WriteLine(localVarResponse.Content);
-                    JsonConvert.PopulateObject(localVarResponse.Content, objectToUnpack, deserializationSettings);
+                    JsonConvert.PopulateObject(localVarResponse.Content, objectToUnpack, DeserializationSettings);
                     return objectToUnpack;
                 }
 
@@ -270,8 +280,7 @@ namespace Mbed.Cloud.RestClient
                     return null;
                 }
 
-                Console.WriteLine(localVarResponse.Content);
-                return JsonConvert.DeserializeObject<T>(localVarResponse.Content, deserializationSettings);
+                return JsonConvert.DeserializeObject<T>(localVarResponse.Content, DeserializationSettings);
             }
             catch (Exception e)
             {
