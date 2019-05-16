@@ -26,7 +26,7 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public interface ISubtenantUserInvitationRepository
     {
-        Task<SubtenantUserInvitation> Create(string accountId, SubtenantUserInvitation request, int validForDays = 25);
+        Task<SubtenantUserInvitation> Create(string accountId, SubtenantUserInvitation request, int validForDays = 1);
         Task Delete(string accountId, string id);
         Task<SubtenantUserInvitation> Read(string accountId, string id);
     }

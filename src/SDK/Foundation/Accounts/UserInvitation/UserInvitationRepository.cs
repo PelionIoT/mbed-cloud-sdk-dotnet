@@ -34,7 +34,7 @@ namespace Mbed.Cloud.Foundation
         {
         }
 
-        public async Task<UserInvitation> Create(UserInvitation request, int validForDays = 25)
+        public async Task<UserInvitation> Create(UserInvitation request, int validForDays = 1)
         {
             try
             {
