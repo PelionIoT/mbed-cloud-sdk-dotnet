@@ -146,6 +146,8 @@ namespace Manhasset.Generator.src.Generators
                     // replace body with other type
                     var replaceBody = field["__REPLACE_BODY"] != null;
 
+                    var defaultValue = field["minimum"].GetStringValue() ?? field["default"].GetStringValue();
+
                     var internalVal = field["items"] != null ? field["items"]["type"].GetStringValue() : null;
                     type = TypeHelpers.GetAdditionalProperties(field) ?? TypeHelpers.MapType(field["type"].GetStringValue(), internalVal) ?? "string";
                     if (type == "Stream")
@@ -162,6 +164,7 @@ namespace Manhasset.Generator.src.Generators
                             External = true,
                             Required = required,
                             FieldName = _name ?? _parameter_fieldname ?? _api_fieldname,
+                            DefaultValue = defaultValue,
                         };
                         pathParams.Add(param);
                     }
@@ -175,6 +178,7 @@ namespace Manhasset.Generator.src.Generators
                             External = true,
                             Required = required,
                             FieldName = _name ?? _api_fieldname,
+                            DefaultValue = defaultValue,
                         };
                         queryParams.Add(param);
                     }
@@ -190,6 +194,7 @@ namespace Manhasset.Generator.src.Generators
                             ReplaceBody = replaceBody,
                             FieldName = _name ?? _api_fieldname,
                             CallContext = external ? null : "request",
+                            DefaultValue = defaultValue,
                         };
                         bodyParams.Add(param);
                     }
@@ -205,6 +210,7 @@ namespace Manhasset.Generator.src.Generators
                                 External = true,
                                 Required = required,
                                 FieldName = _name ?? _api_fieldname,
+                                DefaultValue = defaultValue,
                             };
                             fileParams.Add(param);
                         }
@@ -217,6 +223,7 @@ namespace Manhasset.Generator.src.Generators
                                 External = true,
                                 Required = required,
                                 FieldName = _name ?? _api_fieldname,
+                                DefaultValue = defaultValue,
                             };
                             formParams.Add(param);
                         }

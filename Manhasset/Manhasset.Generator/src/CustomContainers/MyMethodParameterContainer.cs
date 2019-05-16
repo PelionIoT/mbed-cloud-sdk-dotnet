@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Manhasset.Core.src.Containers;
@@ -45,7 +46,7 @@ namespace Manhasset.Generator.src.CustomContainers
                         SyntaxFactory.EqualsValueClause(
                             SyntaxFactory.LiteralExpression(
                                 SyntaxKind.NumericLiteralExpression,
-                                SyntaxFactory.Literal(25))));
+                                SyntaxFactory.Literal(p.DefaultValue != null ? Int32.Parse(p.DefaultValue) : 0))));
                 }
 
                 return syntax.WithDefault(
