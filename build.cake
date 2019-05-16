@@ -194,7 +194,7 @@ var publish = Task("_publish")
             Information(file);
             Information(nugetApiKey);
             Information(source);
-            NuGetPush(file, new NuGetPushSettings
+            DotNetCoreNuGetPush(file, new DotNetCoreNuGetPushSettings
             {
                 ApiKey = nugetApiKey,
                 Source = source,

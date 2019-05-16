@@ -429,7 +429,7 @@ jobs:
     steps:
       - <<: *attach_workspace
       - run:
-         command: cd project && ./build.sh --target= "Build-Pack-Publish"
+         command: cd project && ./build.sh --target "Build-Pack-Publish"
          name: build, pack and publish nuget package
   #############################################################################################
   #                                Production Release Jobs                                    #
