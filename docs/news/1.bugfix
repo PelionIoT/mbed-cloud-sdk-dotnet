@@ -1,0 +1,1 @@
+Stop 404 being thrown by list resources instead of null
