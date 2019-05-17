@@ -11,7 +11,7 @@ a list of versions that have been released.
 
 [//]: # (begin_release_notes)
 
-2.1.0.dev (2019-05-17)
+2.1.0 (2019-05-17)
 ======================
 
 ### Features

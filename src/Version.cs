@@ -17,7 +17,7 @@ namespace Mbed.Cloud
         /// <summary>
         /// The version
         /// </summary>
-        public const string VersionValue = "2.1.0.dev";  // auto
+        public const string VersionValue = "2.1.0";  // auto
 
         /// <summary>
         /// The testrunner version
