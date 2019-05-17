@@ -10,10 +10,10 @@ using NUnit.Framework;
 namespace Snippets.src.Foundation
 {
     [TestFixture]
-    public class CustomApiCall
+    public class CustomApiCallExamples
     {
         [Test]
-        public async Task ACustomApiCall()
+        public async Task CustomApiCall()
         {
             try
             {

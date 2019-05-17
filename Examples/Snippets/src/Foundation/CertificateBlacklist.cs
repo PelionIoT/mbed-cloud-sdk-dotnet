@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Mbed.Cloud;
 using Mbed.Cloud.Foundation;
 using Mbed.Cloud.Foundation.Enums;
@@ -6,10 +7,10 @@ using MbedCloudSDK.Exceptions;
 using NUnit.Framework;
 
 [TestFixture]
-public class CertificateBlacklist
+public class CertificateBlacklistExamples
 {
     [Test]
-    public async System.Threading.Tasks.Task CertificateBlacklistExampleAsync()
+    public async Task CertificateBlacklisting()
     {
         try
         {

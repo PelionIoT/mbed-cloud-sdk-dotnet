@@ -9,10 +9,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 
 [TestFixture]
-public class FoundationCrud
+public class FoundationInterfaceExamples
 {
     [Test]
-    public async System.Threading.Tasks.Task FoundationCrudTask()
+    public async Task FoundationInterface()
     {
         // Create an instance of the Pelion Device Management SDK
         var sdk = new SDK();
