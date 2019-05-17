@@ -1,9 +1,9 @@
-using System;
+// using System;
 using System.Linq;
 using System.Threading;
 using MbedCloudSDK.Common;
 using MbedCloudSDK.Common.Filter.Maps;
-using MbedCloudSDK.Common.Query;
+using Mbed.Cloud.Common;
 using MbedCloudSDK.Connect.Api;
 using MbedCloudSDK.Connect.Api.Subscribe.Models;
 using MbedCloudSDK.DeviceDirectory.Api;

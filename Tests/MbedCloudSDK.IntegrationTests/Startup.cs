@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using MbedCloudSDK.IntegrationTests.Middleware;
 using MbedCloudSDK.IntegrationTests.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Serialization;
+using static MbedCloudSDK.IntegrationTests.Middleware.RequestResponseLoggingMiddleware;
 
 namespace MbedCloudSDK.IntegrationTests
 {
@@ -29,18 +32,22 @@ namespace MbedCloudSDK.IntegrationTests
                 .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver { NamingStrategy = new SnakeCaseNamingStrategy() });
 
             services.AddSingleton<IInstanceService, InstanceService>();
+            services.AddSingleton<IFoundationService, FoundationService>();
             services.AddScoped<IMethodRunnerService, MethodRunnerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
             app.UseMvc();
+
+            Action<RequestProfilerModel> requestResponseHandler = requestProfilerModel =>
+            {
+                Debug.Print(requestProfilerModel.Request);
+                Debug.Print(Environment.NewLine);
+                Debug.Print(requestProfilerModel.Response);
+            };
+            app.UseMiddleware<RequestResponseLoggingMiddleware>(requestResponseHandler);
         }
     }
 }

@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MbedCloudSDK.Common;
-using MbedCloudSDK.Common.Query;
+using System.Threading.Tasks;
+using Mbed.Cloud.Common;
 using NUnit.Framework;
 
 namespace MbedCloudSDK.Test.Common
@@ -28,7 +28,7 @@ namespace MbedCloudSDK.Test.Common
             Assert.AreEqual(0, pag.All().Count);
         }
 
-        private Func<QueryOptions, ResponsePage<MockData>> mockFuncWithData = (ops) =>
+        private Func<QueryOptions, Task<ResponsePage<MockData>>> mockFuncWithData = (ops) =>
         {
             var data = new List<MockData>();
             for (int i = 0; i < ops.PageSize; i++)
@@ -36,10 +36,10 @@ namespace MbedCloudSDK.Test.Common
                 data.Add(new MockData { data = i });
             }
 
-            return new ResponsePage<MockData>(data);
+            return Task.Run(() => new ResponsePage<MockData>(data));
         };
 
-        private class MockData : BaseModel
+        private class MockData : Entity
         {
             public int data { get; set; }
         }

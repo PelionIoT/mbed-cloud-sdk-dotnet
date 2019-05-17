@@ -1,18 +1,17 @@
-FROM andrewlock/dotnet-mono AS builder
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS builder
 
 WORKDIR /sln
 
 COPY ./build.sh ./build.cake  ./
-COPY ./tools ./tools
 
-RUN ./build.sh -Target=_clean_integration
+RUN ./build.sh --target "_clean_integration"
 
 COPY ./Tests/MbedCloudSDK.IntegrationTests ./Tests/MbedCloudSDK.IntegrationTests
-COPY ./MbedCloudSDK ./MbedCloudSDK
+COPY ./src ./src
 
-RUN ./build.sh -Target=_restore_integration && ./build.sh -Target=_build_integration && ./build.sh -Target=_publish_integration
+RUN ./build.sh --target "_restore_integration" && ./build.sh --target "_build_integration" && ./build.sh --target "_publish_integration"
 
-FROM microsoft/dotnet:2.1-aspnetcore-runtime
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
 WORKDIR /app
 ENV ASPNETCORE_ENVIRONMENT Production
 ENTRYPOINT ["dotnet", "MbedCloudSDK.IntegrationTests.dll"]

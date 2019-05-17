@@ -8,7 +8,7 @@ references:
 
   dotnet_mono_docker: &dotnet_mono_docker
     docker:
-      - image: andrewlock/dotnet-mono
+      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
 
   circle_python: &circle_python
     docker:
@@ -97,6 +97,15 @@ references:
         ignore:
         - /.*/
 
+  contract_repo_branch: &contract_repo_branch
+    filters:
+      branches:
+        only:
+        - /api-contract.*/
+      tags:
+        ignore:
+        - /.*/
+
 jobs:
   #############################################################################################
   #                                Cache Docker Images                                        #
@@ -165,15 +174,15 @@ jobs:
       - OUTPUT_DIR: "./docs"
     steps:
       - checkout
-    #  - run:
-    #      command: doxygen ar.doxygen
-    #      name: run Doxygen to build the docs
-    #  - store_artifacts:
-    #      path: docs
-    #  - persist_to_workspace:
-    #      root: ./
-    #      paths:
-    #        - docs
+      - run:
+          command: doxygen ar.doxygen
+          name: run Doxygen to build the docs
+      - store_artifacts:
+          path: docs
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - docs
   upload_docs:
     <<: *circle_python
     steps:
@@ -183,7 +192,7 @@ jobs:
       - run:
          command: |
                  . venv/bin/activate
-                 aws s3 sync --delete --cache-control max-age=3600 ~/docs s3://mbed-cloud-sdk-dotnet-dist/latest/docs
+                 aws s3 sync --delete --cache-control max-age=3600 ~/docs s3://mbed-cloud-sdk-dotnet-dist/${CIRCLE_BRANCH}/docs
          name: upload docs to s3
   #############################################################################################
   #                                Misc pre jobs                                              #
@@ -234,7 +243,7 @@ jobs:
          paths:
            - project/Deploy.Dockerfile
            - project/docs
-           - project/MbedCloudSDK
+           - project/src
            - project/scripts
            - project/Tests/MbedCloudSDK.UnitTests
            - project/build.cake
@@ -249,15 +258,15 @@ jobs:
     steps:
       - <<: *attach_workspace
       - run:
-         command: cd project && ./build.sh --target=CI
+         command: cd project && ./build.sh --target "CI"
          name: build the project
       - persist_to_workspace:
          root: ~/project
          paths:
            - project/tools
            - project/packages
-           - project/MbedCloudSDK/obj
-           - project/MbedCloudSDK/bin/Release
+           - project/src/obj
+           - project/src/bin/Release
            - project/Tests/MbedCloudSDK.UnitTests/obj
            - project/Tests/MbedCloudSDK.UnitTests/bin
   build_documentation:
@@ -278,7 +287,7 @@ jobs:
     steps:
       - <<: *attach_workspace
       - run:
-         command: cd project && ./build.sh --target=_run_unit_tests
+         command: cd project && ./build.sh --target "_run_unit_tests"
          name: run the unit tests
   # coverage is now handled by appveyor
   # unit_test_coverage:
@@ -351,7 +360,7 @@ jobs:
       - run: docker run -d --name artifactory artifactory && sleep 10
       - run:
           name: Deploying the SDK to Artifactory and beyond
-          command: docker run --rm --network container:artifactory sdk_deploy ./build.sh -Target=_publish -nuget_api_key=${ARTIFACTORY_API_KEY} -nuget_source=${ARTIFACTORY_URL}/api/nuget/mbed-cloud-sdk-dotnet-snapshots
+          command: docker run --rm --network container:artifactory sdk_deploy ./build.sh --target "_publish" -nuget_api_key=${ARTIFACTORY_API_KEY} -nuget_source=${ARTIFACTORY_URL}/api/nuget/mbed-cloud-sdk-dotnet-snapshots
   #############################################################################################
   #                                Tag for release                                            #
   #############################################################################################
@@ -366,11 +375,11 @@ jobs:
           name: Install Python Libraries
           command: pipenv run pip install -r scripts/requirements.txt
       - run:
-          name: bump the version for a release
+          name: bump the version for a dev release
           command: pipenv run auto_version --config=scripts/version.toml --bump=patch --news --release
       - run:
           name: run tag script
-          command: python ./scripts/tag_and_release.py tag $(pipenv run auto_version --config=scripts/version.toml --release)
+          command: python ./scripts/tag_and_release.py tag $(pipenv run auto_version --config=scripts/version.toml)
   #############################################################################################
   #                                Tag for beta                                               #
   #############################################################################################
@@ -391,6 +400,28 @@ jobs:
           name: run beta tag script
           command: python ./scripts/tag_and_release.py beta $(pipenv run auto_version --config=scripts/version_beta.toml)
   #############################################################################################
+  #                                Generation                                                 #
+  #############################################################################################
+  commit_back_generation:
+    <<: *dotnet_mono_docker
+    steps:
+      - checkout
+      - run:
+          name: Run generator
+          command: ./build.sh --target "generate"
+      - run:
+          name: Build
+          command: ./build.sh --target "CI"
+      - run:
+          name: Test
+          command: ./build.sh --target "_run_unit_tests"
+      - run:
+          name: commit changes
+          command: |
+              git add src/SDK/Foundation
+              git commit --message "New Foundation interface changes" || true
+              git push -q https://${GITHUB_TOKEN}@github.com/ARMmbed/${CIRCLE_PROJECT_REPONAME}.git ${CIRCLE_BRANCH}
+  #############################################################################################
   #                                Common Release Jobs                                        #
   #############################################################################################
   build_pack_deploy:
@@ -398,7 +429,7 @@ jobs:
     steps:
       - <<: *attach_workspace
       - run:
-         command: cd project && ./build.sh --target=Build-Pack-Publish
+         command: cd project && ./build.sh --target "Build-Pack-Publish"
          name: build, pack and publish nuget package
   #############################################################################################
   #                                Production Release Jobs                                    #
@@ -425,7 +456,7 @@ jobs:
       - persist_to_workspace:
           root: ~/repo
           paths:
-            - project/MbedCloudSDK
+            - project/src
             - project/build.cake
             - project/build.sh
   commit_news_and_version:
@@ -445,11 +476,11 @@ jobs:
           command: pipenv run auto_version --config=scripts/version.toml --bump=patch --news --release
       - run:
           name: run towncrier to generate news file
-          command: pipenv run towncrier --yes --name="" --version=$(cd ../../ && pipenv run autoversion --config=scripts/version.toml --release)
+          command: pipenv run towncrier --yes --name="" --version=$(cd ../../ && pipenv run autoversion --config=scripts/version.toml)
           working_directory: docs/news
       - run:
           name: tag and release
-          command: python ./scripts/tag_and_release.py news $(pipenv run autoversion --config=scripts/version.toml --release)
+          command: python ./scripts/tag_and_release.py news $(pipenv run autoversion --config=scripts/version.toml)
   #############################################################################################
   #                                Beta Release Jobs                                          #
   #############################################################################################
@@ -493,7 +524,7 @@ jobs:
       - persist_to_workspace:
           root: ~/repo
           paths:
-            - project/MbedCloudSDK
+            - project/src
             - project/build.cake
             - project/build.sh
 version: 2
@@ -501,6 +532,10 @@ version: 2
 #                                Workflows                                                  #
 #############################################################################################
 workflows:
+  generation_workflow:
+    jobs:
+      - commit_back_generation:
+          <<: *contract_repo_branch
   csharp_sdk_workflow:
     jobs:
       - cache_test_server_image:
@@ -514,7 +549,7 @@ workflows:
       - upload_docs:
           requires:
           - docs
-          <<: *filter_master_only_build
+          <<: *filter_master_or_beta_only_build
       - tpip:
           <<: *filter_master_only_build
       - version_bump:
@@ -552,7 +587,7 @@ workflows:
           - unit_test
           - integration_test_os2
           - integration_test_production
-          <<: *filter_master_only_build
+          <<: *filter_master_or_beta_only_build
       - release_to_nuget:
           requires:
           - unit_test

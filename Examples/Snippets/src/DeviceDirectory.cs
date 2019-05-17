@@ -1,8 +1,9 @@
 using System;
 using System.Linq;
 using MbedCloudSDK.Common;
-using MbedCloudSDK.Common.Query;
+using Mbed.Cloud.Common;
 using MbedCloudSDK.DeviceDirectory.Api;
+using QueryOptions = MbedCloudSDK.Common.QueryOptions;
 
 namespace Snippets.src
 {
@@ -10,7 +11,7 @@ namespace Snippets.src
     {
         public void ListDevices()
         {
-            // an example: list devices in Mbed Cloud
+            // an example: list devices in Pelion Device Management
             var config = new Config("An MbedCloud Api  Key", "custom host url");
 
             var deviceDirectory = new DeviceDirectoryApi(config);
@@ -25,7 +26,7 @@ namespace Snippets.src
 
         public void ListDevicesWithFilters()
         {
-            // an example: list deregistered devices in Mbed Cloud
+            // an example: list deregistered devices in Pelion Device Management
             var config = new Config("An MbedCloud Api  Key", "custom host url");
 
             var deviceDirectory = new DeviceDirectoryApi(config);
