@@ -375,11 +375,11 @@ jobs:
           name: Install Python Libraries
           command: pipenv run pip install -r scripts/requirements.txt
       - run:
-          name: bump the version for a dev release
+          name: bump the version for a release
           command: pipenv run auto_version --config=scripts/version.toml --bump=patch --news --release
       - run:
           name: run tag script
-          command: python ./scripts/tag_and_release.py tag $(pipenv run auto_version --config=scripts/version.toml)
+          command: python ./scripts/tag_and_release.py tag $(pipenv run auto_version --config=scripts/version.toml --release)
   #############################################################################################
   #                                Tag for beta                                               #
   #############################################################################################
