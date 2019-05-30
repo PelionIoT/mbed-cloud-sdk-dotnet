@@ -13,6 +13,7 @@ namespace MbedCloudSDK.Connect.Api
     using System.Net.Http;
     using System.Net.Mime;
     using System.Text;
+    using System.Threading;
     using System.Threading.Tasks;
     using Mbed.Cloud.Common;
     using MbedCloudSDK.Common;
@@ -247,6 +248,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <param name="deviceId">Device ID</param>
         /// <param name="resourcePath">Resource path</param>
         /// <param name="functionName">The function to trigger</param>
+        /// <param name="timeout">The async request will timeout after given number of milliseconds</param>
         /// <returns>AsyncConsumer with response</returns>
         /// <example>
         /// <code>
@@ -274,8 +276,8 @@ namespace MbedCloudSDK.Connect.Api
         /// <exception cref="CloudApiException">
         /// If an error occurred while communicating with the server or if the server responsed with an error.
         /// </exception>
-        public string ExecuteResource(string deviceId, string resourcePath, string functionName = null)
-            => ExecuteSynchronously(ExecuteResourceAsync(deviceId, resourcePath, functionName));
+        public string ExecuteResource(string deviceId, string resourcePath, string functionName = null, int timeout = 60000)
+            => ExecuteSynchronously(ExecuteResourceAsync(deviceId, resourcePath, functionName), timeout);
 
         /// <summary>
         /// Execute a function on a resource asynchronously
@@ -315,6 +317,7 @@ namespace MbedCloudSDK.Connect.Api
         /// </summary>
         /// <param name="deviceId">Device Id</param>
         /// <param name="resourcePath">Resource path.</param>
+        /// <param name="timeout">The async request will timeout after given number of milliseconds</param>
         /// <returns>Resourse Value</returns>
         /// <example>
         /// <code>
@@ -342,8 +345,8 @@ namespace MbedCloudSDK.Connect.Api
         /// <exception cref="CloudApiException">
         /// If an error occurred while communicating with the server or if the server responsed with an error.
         /// </exception>
-        public string GetResourceValue(string deviceId, string resourcePath)
-            => ExecuteSynchronously(GetResourceValueAsync(deviceId, resourcePath));
+        public string GetResourceValue(string deviceId, string resourcePath, int timeout = 60000)
+            => ExecuteSynchronously(GetResourceValueAsync(deviceId, resourcePath), timeout);
 
         /// <summary>
         /// Gets the value of the resource asynchronously
@@ -380,6 +383,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <param name="deviceId">ID of the device which contains the resource.</param>
         /// <param name="resourcePath">Full path of the resource to write.</param>
         /// <param name="resourceValue">The new value for the specified resource, sent as an UTF-8 encoded stream.</param>
+        /// <param name="timeout">The async request will timeout after given number of milliseconds</param>
         /// <returns>
         /// The ID of the asynchronous request.
         /// </returns>
@@ -398,8 +402,8 @@ namespace MbedCloudSDK.Connect.Api
         /// <exception cref="CloudApiException">
         /// If an error occurred while communicating with the server or if the server responsed with an error.
         /// </exception>
-        public string SetResourceValue(string deviceId, string resourcePath, string resourceValue)
-            => ExecuteSynchronously(SetResourceValueAsync(deviceId, resourcePath, resourceValue));
+        public string SetResourceValue(string deviceId, string resourcePath, string resourceValue, int timeout = 60000)
+            => ExecuteSynchronously(SetResourceValueAsync(deviceId, resourcePath, resourceValue), timeout);
 
         /// <overloads>
         /// Sets the value for the specified resource.
@@ -651,7 +655,7 @@ namespace MbedCloudSDK.Connect.Api
             }
         }
 
-        private string ExecuteSynchronously(Task<AsyncConsumer<string>> task)
+        private string ExecuteSynchronously(Task<AsyncConsumer<string>> task, int timeout = 60000)
         {
             var consumer = task
                 .GetAwaiter()
@@ -662,11 +666,21 @@ namespace MbedCloudSDK.Connect.Api
                 throw new CloudApiException(404, "AsyncId not found.");
             }
 
-            return AsyncResponses[consumer.AsyncId]
-                .TakeAsync()
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
+            var cancellationToken = new CancellationTokenSource();
+            cancellationToken.CancelAfter(timeout);
+
+            try
+            {
+                return AsyncResponses[consumer.AsyncId]
+                    .TakeAsync(cancellationToken.Token)
+                    .ConfigureAwait(false)
+                    .GetAwaiter()
+                    .GetResult();
+            }
+            catch (TaskCanceledException)
+            {
+                throw new CloudApiException(500, $"Timeout getting async value. Timeout {timeout}ms");
+            }
         }
 
         private async Task<AsyncConsumer<string>> SetResourceValueAsync(string deviceId, string resourcePath, byte[] resourceValue, string resourceValueMimeType)

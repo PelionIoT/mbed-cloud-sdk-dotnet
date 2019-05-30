@@ -311,7 +311,15 @@ namespace MbedCloudSDK.IntegrationTests.Services
             {
                 if (paramType == typeof(int))
                 {
-                    return Convert.ToInt32(obj.Value);
+                    if (p.Name == "timeout")
+                    {
+                        var val = Convert.ToInt32(obj.Value);
+                        return val * 1000;
+                    }
+                    else
+                    {
+                        return Convert.ToInt32(obj.Value);
+                    }
                 }
                 else
                 {
