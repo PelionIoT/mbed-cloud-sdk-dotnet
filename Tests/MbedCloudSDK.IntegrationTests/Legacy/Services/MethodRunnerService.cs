@@ -188,6 +188,11 @@ namespace MbedCloudSDK.IntegrationTests.Services
                         serialisedParams.Add(null);
                     }
                 }
+                else if (p.Name == "timeout")
+                {
+                    var val = argsJsonObj[p.Name.ToUpper()].Value<int>();
+                    serialisedParams.Add(val * 1000);
+                }
                 else
                 {
                     var properties = paramType.GetProperties();
@@ -311,15 +316,7 @@ namespace MbedCloudSDK.IntegrationTests.Services
             {
                 if (paramType == typeof(int))
                 {
-                    if (p.Name == "timeout")
-                    {
-                        var val = Convert.ToInt32(obj.Value);
-                        return val * 1000;
-                    }
-                    else
-                    {
-                        return Convert.ToInt32(obj.Value);
-                    }
+                    return Convert.ToInt32(obj.Value);
                 }
                 else
                 {

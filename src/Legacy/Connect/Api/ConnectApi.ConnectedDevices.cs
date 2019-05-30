@@ -276,7 +276,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <exception cref="CloudApiException">
         /// If an error occurred while communicating with the server or if the server responsed with an error.
         /// </exception>
-        public string ExecuteResource(string deviceId, string resourcePath, string functionName = null, int timeout = 60000)
+        public string ExecuteResource(string deviceId, string resourcePath, string functionName = null, int? timeout = null)
             => ExecuteSynchronously(ExecuteResourceAsync(deviceId, resourcePath, functionName), timeout);
 
         /// <summary>
@@ -345,7 +345,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <exception cref="CloudApiException">
         /// If an error occurred while communicating with the server or if the server responsed with an error.
         /// </exception>
-        public string GetResourceValue(string deviceId, string resourcePath, int timeout = 60000)
+        public string GetResourceValue(string deviceId, string resourcePath, int? timeout = null)
             => ExecuteSynchronously(GetResourceValueAsync(deviceId, resourcePath), timeout);
 
         /// <summary>
@@ -402,7 +402,7 @@ namespace MbedCloudSDK.Connect.Api
         /// <exception cref="CloudApiException">
         /// If an error occurred while communicating with the server or if the server responsed with an error.
         /// </exception>
-        public string SetResourceValue(string deviceId, string resourcePath, string resourceValue, int timeout = 60000)
+        public string SetResourceValue(string deviceId, string resourcePath, string resourceValue, int? timeout = null)
             => ExecuteSynchronously(SetResourceValueAsync(deviceId, resourcePath, resourceValue), timeout);
 
         /// <overloads>
@@ -655,7 +655,7 @@ namespace MbedCloudSDK.Connect.Api
             }
         }
 
-        private string ExecuteSynchronously(Task<AsyncConsumer<string>> task, int timeout = 60000)
+        private string ExecuteSynchronously(Task<AsyncConsumer<string>> task, int? timeout)
         {
             var consumer = task
                 .GetAwaiter()
@@ -667,7 +667,10 @@ namespace MbedCloudSDK.Connect.Api
             }
 
             var cancellationToken = new CancellationTokenSource();
-            cancellationToken.CancelAfter(timeout);
+            if (timeout.HasValue)
+            {
+                cancellationToken.CancelAfter(timeout.Value);
+            }
 
             try
             {
@@ -679,7 +682,7 @@ namespace MbedCloudSDK.Connect.Api
             }
             catch (TaskCanceledException)
             {
-                throw new CloudApiException(500, $"Timeout getting async value. Timeout {timeout}ms");
+                throw new CloudApiException(500, $"Timeout getting async value. Timeout {timeout} ms");
             }
         }
 
