@@ -45,6 +45,7 @@ namespace MbedCloudSDK.IntegrationTests.Repositories
             {
                 AutostartNotifications = instanceConfiguration.AutostartDaemon,
                 ForceClear = true,
+                LogLevel = LogLevel.ALL,
             };
 
             var instance = new Instance { Id = Guid.NewGuid().ToString(), Module = module, CreatedAt = DateTime.Now };
