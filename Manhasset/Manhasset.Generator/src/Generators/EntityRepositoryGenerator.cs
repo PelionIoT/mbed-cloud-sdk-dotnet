@@ -204,7 +204,7 @@ namespace Manhasset.Generator.src.Generators
                             External = external,
                             Required = required,
                             ReplaceBody = replaceBody,
-                            FieldName = _name ?? _api_fieldname,
+                            FieldName = _api_fieldname,
                             CallContext = external ? null : "request",
                             DefaultValue = defaultValue,
                         };
@@ -371,6 +371,7 @@ namespace Manhasset.Generator.src.Generators
                         IsAsync = true,
                         HasRequest = hasRequest,
                         IsVoidTask = isVoid,
+                        UseAnnonBody = ((methodName == "AddToGroup" || methodName == "RemoveFromGroup") && entityPascalName == "Device")
                     };
 
                     if (isPrivateMethod)

@@ -40,7 +40,10 @@ namespace Mbed.Cloud.Foundation
             try
             {
                 var pathParams = new Dictionary<string, object> { { "device-group-id", deviceGroupId }, };
-                var bodyParams = new Device { Id = request.Id, };
+                var bodyParams = new
+                {
+                    device_id = request.Id,
+                };
                 await Client.CallApi<Device>(path: "/v3/device-groups/{device-group-id}/devices/add/", pathParams: pathParams, bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
@@ -111,7 +114,10 @@ namespace Mbed.Cloud.Foundation
             try
             {
                 var pathParams = new Dictionary<string, object> { { "device-group-id", deviceGroupId }, };
-                var bodyParams = new Device { Id = request.Id, };
+                var bodyParams = new
+                {
+                    device_id = request.Id,
+                };
                 await Client.CallApi<Device>(path: "/v3/device-groups/{device-group-id}/devices/remove/", pathParams: pathParams, bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
