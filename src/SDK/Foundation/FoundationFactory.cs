@@ -62,6 +62,16 @@ namespace Mbed.Cloud.Foundation.Factories
             return new CertificateIssuerConfigRepository(config, client);
         }
 
+        public DarkThemeColorRepository DarkThemeColorRepository()
+        {
+            return new DarkThemeColorRepository(config, client);
+        }
+
+        public DarkThemeImageRepository DarkThemeImageRepository()
+        {
+            return new DarkThemeImageRepository(config, client);
+        }
+
         public DeveloperCertificateRepository DeveloperCertificateRepository()
         {
             return new DeveloperCertificateRepository(config, client);
@@ -97,6 +107,11 @@ namespace Mbed.Cloud.Foundation.Factories
             return new DeviceEventsRepository(config, client);
         }
 
+        public DeviceGroupRepository DeviceGroupRepository()
+        {
+            return new DeviceGroupRepository(config, client);
+        }
+
         public FirmwareImageRepository FirmwareImageRepository()
         {
             return new FirmwareImageRepository(config, client);
@@ -105,6 +120,16 @@ namespace Mbed.Cloud.Foundation.Factories
         public FirmwareManifestRepository FirmwareManifestRepository()
         {
             return new FirmwareManifestRepository(config, client);
+        }
+
+        public LightThemeColorRepository LightThemeColorRepository()
+        {
+            return new LightThemeColorRepository(config, client);
+        }
+
+        public LightThemeImageRepository LightThemeImageRepository()
+        {
+            return new LightThemeImageRepository(config, client);
         }
 
         public PreSharedKeyRepository PreSharedKeyRepository()

@@ -29,7 +29,7 @@ namespace Mbed.Cloud.Foundation
     {
         Task<FirmwareImage> Create(Stream firmwareImageFile, string description = null, string name = null);
         Task Delete(string id);
-        PaginatedResponse<IFirmwareImageListOptions, FirmwareImage> List(IFirmwareImageListOptions options = null);
+        PaginatedResponse<IFirmwareImageFirmwareImageListOptions, FirmwareImage> List(IFirmwareImageFirmwareImageListOptions options = null);
         Task<FirmwareImage> Read(string id);
     }
 }

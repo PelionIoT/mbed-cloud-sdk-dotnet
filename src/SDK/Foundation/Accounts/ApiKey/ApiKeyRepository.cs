@@ -60,17 +60,17 @@ namespace Mbed.Cloud.Foundation
             }
         }
 
-        public PaginatedResponse<IApiKeyListOptions, ApiKey> List(IApiKeyListOptions options = null)
+        public PaginatedResponse<IApiKeyApiKeyListOptions, ApiKey> List(IApiKeyApiKeyListOptions options = null)
         {
             try
             {
                 if (options == null)
                 {
-                    options = new ApiKeyListOptions();
+                    options = new ApiKeyApiKeyListOptions();
                 }
 
-                Func<IApiKeyListOptions, Task<ResponsePage<ApiKey>>> paginatedFunc = async (IApiKeyListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "key__eq", _options.Filter.GetEncodedValue("key", "$eq") }, { "owner__eq", _options.Filter.GetEncodedValue("owner", "$eq") }, }; return await Client.CallApi<ResponsePage<ApiKey>>(path: "/v3/api-keys", queryParams: queryParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<IApiKeyListOptions, ApiKey>(paginatedFunc, options);
+                Func<IApiKeyApiKeyListOptions, Task<ResponsePage<ApiKey>>> paginatedFunc = async (IApiKeyApiKeyListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "key__eq", _options.Filter.GetEncodedValue("key", "$eq") }, { "owner__eq", _options.Filter.GetEncodedValue("owner", "$eq") }, }; return await Client.CallApi<ResponsePage<ApiKey>>(path: "/v3/api-keys", queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<IApiKeyApiKeyListOptions, ApiKey>(paginatedFunc, options);
             }
             catch (ApiException e)
             {

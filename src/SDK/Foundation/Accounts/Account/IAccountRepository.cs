@@ -27,14 +27,14 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public interface IAccountRepository
     {
-        PaginatedResponse<ISubtenantApiKeyListOptions, SubtenantApiKey> ApiKeys(string id, ISubtenantApiKeyListOptions options = null);
+        PaginatedResponse<IAccountSubtenantApiKeyListOptions, SubtenantApiKey> ApiKeys(string id, IAccountSubtenantApiKeyListOptions options = null);
         Task<Account> Create(Account request, string action = null);
-        PaginatedResponse<IAccountListOptions, Account> List(IAccountListOptions options = null);
+        PaginatedResponse<IAccountAccountListOptions, Account> List(IAccountAccountListOptions options = null);
         Task<Account> Me(string include = null, string properties = null);
         Task<Account> Read(string id, string include = null, string properties = null);
-        PaginatedResponse<ISubtenantTrustedCertificateListOptions, SubtenantTrustedCertificate> TrustedCertificates(string id, ISubtenantTrustedCertificateListOptions options = null);
+        PaginatedResponse<IAccountSubtenantTrustedCertificateListOptions, SubtenantTrustedCertificate> TrustedCertificates(string id, IAccountSubtenantTrustedCertificateListOptions options = null);
         Task<Account> Update(string id, Account request);
-        PaginatedResponse<ISubtenantUserInvitationListOptions, SubtenantUserInvitation> UserInvitations(string id, ISubtenantUserInvitationListOptions options = null);
-        PaginatedResponse<ISubtenantUserListOptions, SubtenantUser> Users(string id, ISubtenantUserListOptions options = null);
+        PaginatedResponse<IAccountSubtenantUserInvitationListOptions, SubtenantUserInvitation> UserInvitations(string id, IAccountSubtenantUserInvitationListOptions options = null);
+        PaginatedResponse<IAccountSubtenantUserListOptions, SubtenantUser> Users(string id, IAccountSubtenantUserListOptions options = null);
     }
 }

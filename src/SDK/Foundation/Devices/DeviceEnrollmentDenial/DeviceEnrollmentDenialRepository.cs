@@ -34,17 +34,17 @@ namespace Mbed.Cloud.Foundation
         {
         }
 
-        public PaginatedResponse<IDeviceEnrollmentDenialListOptions, DeviceEnrollmentDenial> List(IDeviceEnrollmentDenialListOptions options = null)
+        public PaginatedResponse<IDeviceEnrollmentDenialDeviceEnrollmentDenialListOptions, DeviceEnrollmentDenial> List(IDeviceEnrollmentDenialDeviceEnrollmentDenialListOptions options = null)
         {
             try
             {
                 if (options == null)
                 {
-                    options = new DeviceEnrollmentDenialListOptions();
+                    options = new DeviceEnrollmentDenialDeviceEnrollmentDenialListOptions();
                 }
 
-                Func<IDeviceEnrollmentDenialListOptions, Task<ResponsePage<DeviceEnrollmentDenial>>> paginatedFunc = async (IDeviceEnrollmentDenialListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "limit", _options.Limit }, { "order", _options.Order }, { "trusted_certificate_id__eq", _options.Filter.GetEncodedValue("trusted_certificate_id", "$eq") }, { "endpoint_name__eq", _options.Filter.GetEncodedValue("endpoint_name", "$eq") }, }; return await Client.CallApi<ResponsePage<DeviceEnrollmentDenial>>(path: "/v3/device-enrollment-denials", queryParams: queryParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<IDeviceEnrollmentDenialListOptions, DeviceEnrollmentDenial>(paginatedFunc, options);
+                Func<IDeviceEnrollmentDenialDeviceEnrollmentDenialListOptions, Task<ResponsePage<DeviceEnrollmentDenial>>> paginatedFunc = async (IDeviceEnrollmentDenialDeviceEnrollmentDenialListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "limit", _options.Limit }, { "order", _options.Order }, { "trusted_certificate_id__eq", _options.Filter.GetEncodedValue("trusted_certificate_id", "$eq") }, { "endpoint_name__eq", _options.Filter.GetEncodedValue("endpoint_name", "$eq") }, }; return await Client.CallApi<ResponsePage<DeviceEnrollmentDenial>>(path: "/v3/device-enrollment-denials", queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<IDeviceEnrollmentDenialDeviceEnrollmentDenialListOptions, DeviceEnrollmentDenial>(paginatedFunc, options);
             }
             catch (ApiException e)
             {

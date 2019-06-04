@@ -34,17 +34,17 @@ namespace Mbed.Cloud.Foundation
         {
         }
 
-        public PaginatedResponse<ICertificateEnrollmentListOptions, CertificateEnrollment> List(ICertificateEnrollmentListOptions options = null)
+        public PaginatedResponse<ICertificateEnrollmentCertificateEnrollmentListOptions, CertificateEnrollment> List(ICertificateEnrollmentCertificateEnrollmentListOptions options = null)
         {
             try
             {
                 if (options == null)
                 {
-                    options = new CertificateEnrollmentListOptions();
+                    options = new CertificateEnrollmentCertificateEnrollmentListOptions();
                 }
 
-                Func<ICertificateEnrollmentListOptions, Task<ResponsePage<CertificateEnrollment>>> paginatedFunc = async (ICertificateEnrollmentListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "device_id__eq", _options.Filter.GetEncodedValue("device_id", "$eq") }, { "certificate_name__eq", _options.Filter.GetEncodedValue("certificate_name", "$eq") }, { "enroll_status__neq", _options.Filter.GetEncodedValue("enroll_status", "$neq") }, { "enroll_status__eq", _options.Filter.GetEncodedValue("enroll_status", "$eq") }, { "enroll_result__neq", _options.Filter.GetEncodedValue("enroll_result", "$neq") }, { "enroll_result__eq", _options.Filter.GetEncodedValue("enroll_result", "$eq") }, { "created_at__lte", _options.Filter.GetEncodedValue("created_at", "$lte") }, { "created_at__gte", _options.Filter.GetEncodedValue("created_at", "$gte") }, { "updated_at__lte", _options.Filter.GetEncodedValue("updated_at", "$lte") }, { "updated_at__gte", _options.Filter.GetEncodedValue("updated_at", "$gte") }, }; return await Client.CallApi<ResponsePage<CertificateEnrollment>>(path: "/v3/certificate-enrollments", queryParams: queryParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<ICertificateEnrollmentListOptions, CertificateEnrollment>(paginatedFunc, options);
+                Func<ICertificateEnrollmentCertificateEnrollmentListOptions, Task<ResponsePage<CertificateEnrollment>>> paginatedFunc = async (ICertificateEnrollmentCertificateEnrollmentListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "device_id__eq", _options.Filter.GetEncodedValue("device_id", "$eq") }, { "certificate_name__eq", _options.Filter.GetEncodedValue("certificate_name", "$eq") }, { "enroll_status__neq", _options.Filter.GetEncodedValue("enroll_status", "$neq") }, { "enroll_status__eq", _options.Filter.GetEncodedValue("enroll_status", "$eq") }, { "enroll_result__neq", _options.Filter.GetEncodedValue("enroll_result", "$neq") }, { "enroll_result__eq", _options.Filter.GetEncodedValue("enroll_result", "$eq") }, { "created_at__lte", _options.Filter.GetEncodedValue("created_at", "$lte") }, { "created_at__gte", _options.Filter.GetEncodedValue("created_at", "$gte") }, { "updated_at__lte", _options.Filter.GetEncodedValue("updated_at", "$lte") }, { "updated_at__gte", _options.Filter.GetEncodedValue("updated_at", "$gte") }, }; return await Client.CallApi<ResponsePage<CertificateEnrollment>>(path: "/v3/certificate-enrollments", queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<ICertificateEnrollmentCertificateEnrollmentListOptions, CertificateEnrollment>(paginatedFunc, options);
             }
             catch (ApiException e)
             {

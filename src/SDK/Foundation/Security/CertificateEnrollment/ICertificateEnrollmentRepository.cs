@@ -26,7 +26,7 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public interface ICertificateEnrollmentRepository
     {
-        PaginatedResponse<ICertificateEnrollmentListOptions, CertificateEnrollment> List(ICertificateEnrollmentListOptions options = null);
+        PaginatedResponse<ICertificateEnrollmentCertificateEnrollmentListOptions, CertificateEnrollment> List(ICertificateEnrollmentCertificateEnrollmentListOptions options = null);
         Task<CertificateEnrollment> Read(string id);
     }
 }

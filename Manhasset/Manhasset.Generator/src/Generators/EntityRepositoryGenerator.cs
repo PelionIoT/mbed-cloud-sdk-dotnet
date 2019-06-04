@@ -89,6 +89,12 @@ namespace Manhasset.Generator.src.Generators
                 // return type
                 var returns = TypeHelpers.MapType(method["return_info"]["type"].GetStringValue()) ?? method["return_info"]["type"].GetStringValue().ToPascal();
 
+                if (returns == "Void")
+                {
+                    returns = entityPascalName;
+                    isVoid = true;
+                }
+
                 // name of custom method
                 var customMethodName = method["custom_method"].GetStringValue().ToPascal();
 
