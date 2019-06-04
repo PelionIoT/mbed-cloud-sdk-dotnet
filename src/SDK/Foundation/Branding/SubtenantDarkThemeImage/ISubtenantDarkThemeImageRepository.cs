@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="IDarkThemeImageRepository.cs" company="Arm">
+// <copyright file="ISubtenantDarkThemeImageRepository.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -23,13 +23,13 @@ namespace Mbed.Cloud.Foundation
     using Mbed.Cloud.RestClient;
 
     /// <summary>
-    /// DarkThemeImageRepository
+    /// SubtenantDarkThemeImageRepository
     /// </summary>
-    public interface IDarkThemeImageRepository
+    public interface ISubtenantDarkThemeImageRepository
     {
-        Task<DarkThemeImage> Create(string reference, Stream image);
-        Task<DarkThemeImage> Delete(string reference);
-        PaginatedResponse<IDarkThemeImageDarkThemeImageListOptions, DarkThemeImage> List(IDarkThemeImageDarkThemeImageListOptions options = null);
-        Task<DarkThemeImage> Read(string reference);
+        Task<SubtenantDarkThemeImage> Create(string accountId, string reference, Stream image);
+        Task<SubtenantDarkThemeImage> Delete(string accountId, string reference);
+        PaginatedResponse<ISubtenantDarkThemeImageSubtenantDarkThemeImageListOptions, SubtenantDarkThemeImage> List(string accountId, ISubtenantDarkThemeImageSubtenantDarkThemeImageListOptions options = null);
+        Task<SubtenantDarkThemeImage> Read(string accountId, string reference);
     }
 }

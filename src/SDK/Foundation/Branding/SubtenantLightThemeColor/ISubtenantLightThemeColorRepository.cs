@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="IDarkThemeImageRepository.cs" company="Arm">
+// <copyright file="ISubtenantLightThemeColorRepository.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -15,7 +15,7 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
-    using System.IO;
+    using Mbed.Cloud.Foundation;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
@@ -23,13 +23,13 @@ namespace Mbed.Cloud.Foundation
     using Mbed.Cloud.RestClient;
 
     /// <summary>
-    /// DarkThemeImageRepository
+    /// SubtenantLightThemeColorRepository
     /// </summary>
-    public interface IDarkThemeImageRepository
+    public interface ISubtenantLightThemeColorRepository
     {
-        Task<DarkThemeImage> Create(string reference, Stream image);
-        Task<DarkThemeImage> Delete(string reference);
-        PaginatedResponse<IDarkThemeImageDarkThemeImageListOptions, DarkThemeImage> List(IDarkThemeImageDarkThemeImageListOptions options = null);
-        Task<DarkThemeImage> Read(string reference);
+        Task Delete(string accountId, string reference);
+        PaginatedResponse<ISubtenantLightThemeColorSubtenantLightThemeColorListOptions, SubtenantLightThemeColor> List(string accountId, ISubtenantLightThemeColorSubtenantLightThemeColorListOptions options = null);
+        Task<SubtenantLightThemeColor> Read(string accountId, string reference);
+        Task<SubtenantLightThemeColor> Update(string accountId, string reference, SubtenantLightThemeColor request);
     }
 }

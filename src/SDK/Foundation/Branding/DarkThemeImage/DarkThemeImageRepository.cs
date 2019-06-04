@@ -35,13 +35,13 @@ namespace Mbed.Cloud.Foundation
         {
         }
 
-        public async Task<DarkThemeImage> Create(string accountId, string reference, Stream image)
+        public async Task<DarkThemeImage> Create(string reference, Stream image)
         {
             try
             {
-                var pathParams = new Dictionary<string, object> { { "account_id", accountId }, { "reference", reference }, };
+                var pathParams = new Dictionary<string, object> { { "reference", reference }, };
                 var fileParams = new Dictionary<string, Stream> { { "image", image }, };
-                return await Client.CallApi<DarkThemeImage>(path: "/v3/accounts/{account_id}/branding-images/dark/{reference}/upload-multipart", pathParams: pathParams, fileParams: fileParams, method: HttpMethods.POST);
+                return await Client.CallApi<DarkThemeImage>(path: "/v3/branding-images/dark/{reference}/upload-multipart", pathParams: pathParams, fileParams: fileParams, method: HttpMethods.POST);
             }
             catch (ApiException e)
             {

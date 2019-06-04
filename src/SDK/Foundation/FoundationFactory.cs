@@ -147,6 +147,26 @@ namespace Mbed.Cloud.Foundation.Factories
             return new SubtenantApiKeyRepository(config, client);
         }
 
+        public SubtenantDarkThemeColorRepository SubtenantDarkThemeColorRepository()
+        {
+            return new SubtenantDarkThemeColorRepository(config, client);
+        }
+
+        public SubtenantDarkThemeImageRepository SubtenantDarkThemeImageRepository()
+        {
+            return new SubtenantDarkThemeImageRepository(config, client);
+        }
+
+        public SubtenantLightThemeColorRepository SubtenantLightThemeColorRepository()
+        {
+            return new SubtenantLightThemeColorRepository(config, client);
+        }
+
+        public SubtenantLightThemeImageRepository SubtenantLightThemeImageRepository()
+        {
+            return new SubtenantLightThemeImageRepository(config, client);
+        }
+
         public SubtenantTrustedCertificateRepository SubtenantTrustedCertificateRepository()
         {
             return new SubtenantTrustedCertificateRepository(config, client);
