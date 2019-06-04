@@ -141,6 +141,12 @@ namespace Manhasset.Generator.src.Generators
                     var _entity_fieldname = field["entity_fieldname"].GetStringValue()?.ToPascal();
                     var _parameter_fieldname = field["parameter_fieldname"].GetStringValue();
 
+                    // TODO remove as soon as fixed in generator. Truly awful hack
+                    if (_name == "device_id" && entityPascalName == "Device")
+                    {
+                        _name = "id";
+                    }
+
                     // where is parameter?
                     var paramIn = field["in"].GetStringValue();
                     // is it external?

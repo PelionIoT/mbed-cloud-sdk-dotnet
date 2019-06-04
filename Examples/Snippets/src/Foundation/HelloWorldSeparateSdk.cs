@@ -30,7 +30,7 @@ public class HelloWorldSeparateSdk
         // Create an instance of the Pelion Device Management SDK
         var sdk = new SDK();
 
-        var options = new DeviceListOptions
+        var options = new DeviceDeviceListOptions
         {
             MaxResults = 10     // Limit to ten devices
         };

@@ -71,7 +71,7 @@ public class FoundationCrud
         // end of example
 
         // an example: list entities
-        var options = new UserListOptions
+        var options = new UserUserListOptions
         {
             Order = "ASC",
             PageSize = 5,
@@ -91,7 +91,7 @@ public class FoundationCrud
         // end of example
 
         // an example: list entities with filters
-        var userOptions = new UserListOptions()
+        var userOptions = new UserUserListOptions()
             .EmailEqualTo("mr.test@mydomain.com")
             .StatusIn(UserStatus.ACTIVE, UserStatus.ENROLLING);
 
