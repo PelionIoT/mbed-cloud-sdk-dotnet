@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="ISubtenantLightThemeColorSubtenantLightThemeColorListOptions.cs" company="Arm">
+// <copyright file="AccountSubtenantDarkThemeColorListOptions.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -17,9 +17,9 @@ namespace Mbed.Cloud.Foundation
     using Mbed.Cloud.Common;
 
     /// <summary>
-    /// SubtenantLightThemeColorSubtenantLightThemeColorListOptions
+    /// AccountSubtenantDarkThemeColorListOptions
     /// </summary>
-    public interface ISubtenantLightThemeColorSubtenantLightThemeColorListOptions : IQueryOptions
+    public class AccountSubtenantDarkThemeColorListOptions : QueryOptions, IAccountSubtenantDarkThemeColorListOptions
     {
     }
 }

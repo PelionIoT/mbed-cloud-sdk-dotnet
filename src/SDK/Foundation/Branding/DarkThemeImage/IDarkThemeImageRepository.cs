@@ -27,9 +27,9 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public interface IDarkThemeImageRepository
     {
-        Task<DarkThemeImage> Create(string reference, Stream image);
         Task<DarkThemeImage> Delete(string reference);
         PaginatedResponse<IDarkThemeImageDarkThemeImageListOptions, DarkThemeImage> List(IDarkThemeImageDarkThemeImageListOptions options = null);
         Task<DarkThemeImage> Read(string reference);
+        Task<DarkThemeImage> Update(string reference, Stream image);
     }
 }

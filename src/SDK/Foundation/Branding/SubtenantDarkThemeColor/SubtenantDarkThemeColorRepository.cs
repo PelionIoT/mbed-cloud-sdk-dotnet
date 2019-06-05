@@ -48,25 +48,6 @@ namespace Mbed.Cloud.Foundation
             }
         }
 
-        public PaginatedResponse<ISubtenantDarkThemeColorSubtenantDarkThemeColorListOptions, SubtenantDarkThemeColor> List(string accountId, ISubtenantDarkThemeColorSubtenantDarkThemeColorListOptions options = null)
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "account_id", accountId }, };
-                if (options == null)
-                {
-                    options = new SubtenantDarkThemeColorSubtenantDarkThemeColorListOptions();
-                }
-
-                Func<ISubtenantDarkThemeColorSubtenantDarkThemeColorListOptions, Task<ResponsePage<SubtenantDarkThemeColor>>> paginatedFunc = async (ISubtenantDarkThemeColorSubtenantDarkThemeColorListOptions _options) => { return await Client.CallApi<ResponsePage<SubtenantDarkThemeColor>>(path: "/v3/accounts/{account_id}/branding-colors/dark", pathParams: pathParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<ISubtenantDarkThemeColorSubtenantDarkThemeColorListOptions, SubtenantDarkThemeColor>(paginatedFunc, options);
-            }
-            catch (ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
         public async Task<SubtenantDarkThemeColor> Read(string accountId, string reference)
         {
             try

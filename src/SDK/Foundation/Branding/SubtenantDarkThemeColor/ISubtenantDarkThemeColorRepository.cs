@@ -28,7 +28,6 @@ namespace Mbed.Cloud.Foundation
     public interface ISubtenantDarkThemeColorRepository
     {
         Task Delete(string accountId, string reference);
-        PaginatedResponse<ISubtenantDarkThemeColorSubtenantDarkThemeColorListOptions, SubtenantDarkThemeColor> List(string accountId, ISubtenantDarkThemeColorSubtenantDarkThemeColorListOptions options = null);
         Task<SubtenantDarkThemeColor> Read(string accountId, string reference);
         Task<SubtenantDarkThemeColor> Update(string accountId, string reference, SubtenantDarkThemeColor request);
     }

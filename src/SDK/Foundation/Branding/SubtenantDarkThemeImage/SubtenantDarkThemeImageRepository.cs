@@ -35,20 +35,6 @@ namespace Mbed.Cloud.Foundation
         {
         }
 
-        public async Task<SubtenantDarkThemeImage> Create(string accountId, string reference, Stream image)
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "account_id", accountId }, { "reference", reference }, };
-                var fileParams = new Dictionary<string, Stream> { { "image", image }, };
-                return await Client.CallApi<SubtenantDarkThemeImage>(path: "/v3/accounts/{account_id}/branding-images/dark/{reference}/upload-multipart", pathParams: pathParams, fileParams: fileParams, method: HttpMethods.POST);
-            }
-            catch (ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
         public async Task<SubtenantDarkThemeImage> Delete(string accountId, string reference)
         {
             try
@@ -62,18 +48,12 @@ namespace Mbed.Cloud.Foundation
             }
         }
 
-        public PaginatedResponse<ISubtenantDarkThemeImageSubtenantDarkThemeImageListOptions, SubtenantDarkThemeImage> List(string accountId, ISubtenantDarkThemeImageSubtenantDarkThemeImageListOptions options = null)
+        public async Task<SubtenantDarkThemeImage> Read(string accountId, string reference)
         {
             try
             {
-                var pathParams = new Dictionary<string, object> { { "account_id", accountId }, };
-                if (options == null)
-                {
-                    options = new SubtenantDarkThemeImageSubtenantDarkThemeImageListOptions();
-                }
-
-                Func<ISubtenantDarkThemeImageSubtenantDarkThemeImageListOptions, Task<ResponsePage<SubtenantDarkThemeImage>>> paginatedFunc = async (ISubtenantDarkThemeImageSubtenantDarkThemeImageListOptions _options) => { return await Client.CallApi<ResponsePage<SubtenantDarkThemeImage>>(path: "/v3/accounts/{account_id}/branding-images/dark", pathParams: pathParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<ISubtenantDarkThemeImageSubtenantDarkThemeImageListOptions, SubtenantDarkThemeImage>(paginatedFunc, options);
+                var pathParams = new Dictionary<string, object> { { "account_id", accountId }, { "reference", reference }, };
+                return await Client.CallApi<SubtenantDarkThemeImage>(path: "/v3/accounts/{account_id}/branding-images/dark/{reference}", pathParams: pathParams, method: HttpMethods.GET);
             }
             catch (ApiException e)
             {
@@ -81,12 +61,13 @@ namespace Mbed.Cloud.Foundation
             }
         }
 
-        public async Task<SubtenantDarkThemeImage> Read(string accountId, string reference)
+        public async Task<SubtenantDarkThemeImage> Update(string accountId, string reference, Stream image)
         {
             try
             {
                 var pathParams = new Dictionary<string, object> { { "account_id", accountId }, { "reference", reference }, };
-                return await Client.CallApi<SubtenantDarkThemeImage>(path: "/v3/accounts/{account_id}/branding-images/dark/{reference}", pathParams: pathParams, method: HttpMethods.GET);
+                var fileParams = new Dictionary<string, Stream> { { "image", image }, };
+                return await Client.CallApi<SubtenantDarkThemeImage>(path: "/v3/accounts/{account_id}/branding-images/dark/{reference}/upload-multipart", pathParams: pathParams, fileParams: fileParams, method: HttpMethods.POST);
             }
             catch (ApiException e)
             {
