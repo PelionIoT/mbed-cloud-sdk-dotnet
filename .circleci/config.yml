@@ -69,6 +69,7 @@ references:
           - master
           - /swagger-codegen\//
           - /dependabot.*/
+          - /api-contract.*/
         tags:
           ignore:
           - /.*/
