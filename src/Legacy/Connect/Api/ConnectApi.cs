@@ -209,6 +209,7 @@ namespace MbedCloudSDK.Connect.Api
             disposed = true;
             if (disposing)
             {
+                Log.Debug($"Dispose this connect instance {this.GetHashCode()}");
                 StopNotifications();
             }
         }

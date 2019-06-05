@@ -19,7 +19,7 @@ namespace Manhasset.Generator.src.Generators
     {
         public static string GenerateCustomQueryOptions(JToken method, JToken fields, string entityName, string returns, string rootFilePath, string entityGroup, Compilation compilation)
         {
-            var optionsName = $"{returns}ListOptions";
+            var optionsName = $"{entityName}{returns}ListOptions";
 
             var extraQueryParams = method["fields"].Where(
                 q => q["in"].GetStringValue() == "query" &&

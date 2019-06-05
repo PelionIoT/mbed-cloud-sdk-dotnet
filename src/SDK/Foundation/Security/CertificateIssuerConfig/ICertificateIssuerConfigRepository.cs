@@ -29,7 +29,7 @@ namespace Mbed.Cloud.Foundation
         Task<CertificateIssuerConfig> Create(CertificateIssuerConfig request);
         Task Delete(string id);
         Task<CertificateIssuerConfig> GetDefault();
-        PaginatedResponse<ICertificateIssuerConfigListOptions, CertificateIssuerConfig> List(ICertificateIssuerConfigListOptions options = null);
+        PaginatedResponse<ICertificateIssuerConfigCertificateIssuerConfigListOptions, CertificateIssuerConfig> List(ICertificateIssuerConfigCertificateIssuerConfigListOptions options = null);
         Task<CertificateIssuerConfig> Read(string id);
         Task<CertificateIssuerConfig> Update(string id, CertificateIssuerConfig request);
     }

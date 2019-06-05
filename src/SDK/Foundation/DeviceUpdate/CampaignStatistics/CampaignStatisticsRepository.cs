@@ -35,18 +35,18 @@ namespace Mbed.Cloud.Foundation
         {
         }
 
-        public PaginatedResponse<ICampaignStatisticsEventsListOptions, CampaignStatisticsEvents> Events(string campaignId, string id, ICampaignStatisticsEventsListOptions options = null)
+        public PaginatedResponse<ICampaignStatisticsCampaignStatisticsEventsListOptions, CampaignStatisticsEvents> Events(string campaignId, string id, ICampaignStatisticsCampaignStatisticsEventsListOptions options = null)
         {
             try
             {
                 var pathParams = new Dictionary<string, object> { { "campaign_id", campaignId }, { "summary_status_id", id }, };
                 if (options == null)
                 {
-                    options = new CampaignStatisticsEventsListOptions();
+                    options = new CampaignStatisticsCampaignStatisticsEventsListOptions();
                 }
 
-                Func<ICampaignStatisticsEventsListOptions, Task<ResponsePage<CampaignStatisticsEvents>>> paginatedFunc = async (ICampaignStatisticsEventsListOptions _options) => { return await Client.CallApi<ResponsePage<CampaignStatisticsEvents>>(path: "/v3/update-campaigns/{campaign_id}/statistics/{summary_status_id}/event_types/", pathParams: pathParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<ICampaignStatisticsEventsListOptions, CampaignStatisticsEvents>(paginatedFunc, options);
+                Func<ICampaignStatisticsCampaignStatisticsEventsListOptions, Task<ResponsePage<CampaignStatisticsEvents>>> paginatedFunc = async (ICampaignStatisticsCampaignStatisticsEventsListOptions _options) => { return await Client.CallApi<ResponsePage<CampaignStatisticsEvents>>(path: "/v3/update-campaigns/{campaign_id}/statistics/{summary_status_id}/event_types/", pathParams: pathParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<ICampaignStatisticsCampaignStatisticsEventsListOptions, CampaignStatisticsEvents>(paginatedFunc, options);
             }
             catch (ApiException e)
             {
@@ -54,18 +54,18 @@ namespace Mbed.Cloud.Foundation
             }
         }
 
-        public PaginatedResponse<ICampaignStatisticsListOptions, CampaignStatistics> List(string campaignId, ICampaignStatisticsListOptions options = null)
+        public PaginatedResponse<ICampaignStatisticsCampaignStatisticsListOptions, CampaignStatistics> List(string campaignId, ICampaignStatisticsCampaignStatisticsListOptions options = null)
         {
             try
             {
                 var pathParams = new Dictionary<string, object> { { "campaign_id", campaignId }, };
                 if (options == null)
                 {
-                    options = new CampaignStatisticsListOptions();
+                    options = new CampaignStatisticsCampaignStatisticsListOptions();
                 }
 
-                Func<ICampaignStatisticsListOptions, Task<ResponsePage<CampaignStatistics>>> paginatedFunc = async (ICampaignStatisticsListOptions _options) => { return await Client.CallApi<ResponsePage<CampaignStatistics>>(path: "/v3/update-campaigns/{campaign_id}/statistics/", pathParams: pathParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<ICampaignStatisticsListOptions, CampaignStatistics>(paginatedFunc, options);
+                Func<ICampaignStatisticsCampaignStatisticsListOptions, Task<ResponsePage<CampaignStatistics>>> paginatedFunc = async (ICampaignStatisticsCampaignStatisticsListOptions _options) => { return await Client.CallApi<ResponsePage<CampaignStatistics>>(path: "/v3/update-campaigns/{campaign_id}/statistics/", pathParams: pathParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<ICampaignStatisticsCampaignStatisticsListOptions, CampaignStatistics>(paginatedFunc, options);
             }
             catch (ApiException e)
             {

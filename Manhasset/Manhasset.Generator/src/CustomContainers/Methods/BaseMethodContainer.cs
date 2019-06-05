@@ -24,6 +24,7 @@ namespace Manhasset.Generator.src.CustomContainers
         public bool CustomMethodCall { get; set; }
         public string CustomMethodName { get; set; }
         public bool privateMethod { get; set; }
+        public bool UseAnnonBody { get; set; }
 
         protected List<StatementSyntax> GetMethodBodyParams(bool ignoreQuery = false)
         {
@@ -79,7 +80,7 @@ namespace Manhasset.Generator.src.CustomContainers
                 var bodyParamDeclaration = new BodyParameterContainer
                 {
                     Name = "bodyParams",
-                    BodyType = Returns,
+                    BodyType = UseAnnonBody ? "Annonymous" : Returns,
                     BodyParams = BodyParams.Where(b => b.External != true && !b.Key.EndsWith("request")).ToList(),
                 }.GetSyntax();
 

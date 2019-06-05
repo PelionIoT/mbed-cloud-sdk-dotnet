@@ -45,7 +45,7 @@ namespace Manhasset.Generator.src.CustomContainers
                             SyntaxFactory.IdentifierName(b.Key)))
                         .WithNameEquals(
                             SyntaxFactory.NameEquals(
-                                SyntaxFactory.IdentifierName(b.Key)))
+                                SyntaxFactory.IdentifierName(b.FieldName)))
                     :
                     SyntaxFactory.AnonymousObjectMemberDeclarator(
                         SyntaxFactory.IdentifierName(b.Key))

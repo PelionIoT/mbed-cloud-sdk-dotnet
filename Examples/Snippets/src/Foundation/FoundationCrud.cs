@@ -9,10 +9,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 
 [TestFixture]
-public class FoundationCrud
+public class FoundationInterfaceExamples
 {
     [Test]
-    public async System.Threading.Tasks.Task FoundationCrudTask()
+    public async Task FoundationInterface()
     {
         // Create an instance of the Pelion Device Management SDK
         var sdk = new SDK();
@@ -71,7 +71,7 @@ public class FoundationCrud
         // end of example
 
         // an example: list entities
-        var options = new UserListOptions
+        var options = new UserUserListOptions
         {
             Order = "ASC",
             PageSize = 5,
@@ -91,7 +91,7 @@ public class FoundationCrud
         // end of example
 
         // an example: list entities with filters
-        var userOptions = new UserListOptions()
+        var userOptions = new UserUserListOptions()
             .EmailEqualTo("mr.test@mydomain.com")
             .StatusIn(UserStatus.ACTIVE, UserStatus.ENROLLING);
 

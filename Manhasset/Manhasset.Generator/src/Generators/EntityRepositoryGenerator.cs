@@ -89,6 +89,12 @@ namespace Manhasset.Generator.src.Generators
                 // return type
                 var returns = TypeHelpers.MapType(method["return_info"]["type"].GetStringValue()) ?? method["return_info"]["type"].GetStringValue().ToPascal();
 
+                if (returns == "Void")
+                {
+                    returns = entityPascalName;
+                    isVoid = true;
+                }
+
                 // name of custom method
                 var customMethodName = method["custom_method"].GetStringValue().ToPascal();
 
@@ -134,6 +140,12 @@ namespace Manhasset.Generator.src.Generators
                     var _api_fieldname = field["api_fieldname"].GetStringValue();
                     var _entity_fieldname = field["entity_fieldname"].GetStringValue()?.ToPascal();
                     var _parameter_fieldname = field["parameter_fieldname"].GetStringValue();
+
+                    // TODO remove as soon as fixed in generator. Truly awful hack
+                    if (_name == "device_id" && entityPascalName == "Device")
+                    {
+                        _name = "id";
+                    }
 
                     // where is parameter?
                     var paramIn = field["in"].GetStringValue();
@@ -192,7 +204,7 @@ namespace Manhasset.Generator.src.Generators
                             External = external,
                             Required = required,
                             ReplaceBody = replaceBody,
-                            FieldName = _name ?? _api_fieldname,
+                            FieldName = _api_fieldname,
                             CallContext = external ? null : "request",
                             DefaultValue = defaultValue,
                         };
@@ -359,6 +371,7 @@ namespace Manhasset.Generator.src.Generators
                         IsAsync = true,
                         HasRequest = hasRequest,
                         IsVoidTask = isVoid,
+                        UseAnnonBody = ((methodName == "AddToGroup" || methodName == "RemoveFromGroup") && entityPascalName == "Device")
                     };
 
                     if (isPrivateMethod)

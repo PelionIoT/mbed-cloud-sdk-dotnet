@@ -324,6 +324,15 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
+        /// reference
+        /// </summary>
+        AccountReference? Reference
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// reference_note
         /// </summary>
         string ReferenceNote
@@ -347,6 +356,14 @@ namespace Mbed.Cloud.Foundation
         {
             get;
             set;
+        }
+
+        /// <summary>
+        /// static_uri
+        /// </summary>
+        string StaticUri
+        {
+            get;
         }
 
         /// <summary>

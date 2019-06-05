@@ -1,5 +1,6 @@
 // an example: hello world
 using System;
+using System.Threading.Tasks;
 using Mbed.Cloud.Foundation;
 
 // cloak
@@ -7,11 +8,11 @@ using NUnit.Framework;
 
 [TestFixture]
 // uncloak
-public class HelloWorld
+public class HelloWorldExamples
 {
     // cloak
     [Test]
-    public async System.Threading.Tasks.Task HelloWorldTask()
+    public void HelloWorld()
     {
         try
         {
@@ -26,7 +27,7 @@ public class HelloWorld
     // uncloak
     public void Main()
     {
-        var options = new DeviceListOptions
+        var options = new DeviceDeviceListOptions
         {
             MaxResults = 10     // Limit to ten devices
         };

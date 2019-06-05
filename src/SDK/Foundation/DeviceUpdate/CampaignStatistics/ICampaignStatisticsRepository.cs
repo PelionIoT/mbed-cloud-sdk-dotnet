@@ -27,8 +27,8 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public interface ICampaignStatisticsRepository
     {
-        PaginatedResponse<ICampaignStatisticsEventsListOptions, CampaignStatisticsEvents> Events(string campaignId, string id, ICampaignStatisticsEventsListOptions options = null);
-        PaginatedResponse<ICampaignStatisticsListOptions, CampaignStatistics> List(string campaignId, ICampaignStatisticsListOptions options = null);
+        PaginatedResponse<ICampaignStatisticsCampaignStatisticsEventsListOptions, CampaignStatisticsEvents> Events(string campaignId, string id, ICampaignStatisticsCampaignStatisticsEventsListOptions options = null);
+        PaginatedResponse<ICampaignStatisticsCampaignStatisticsListOptions, CampaignStatistics> List(string campaignId, ICampaignStatisticsCampaignStatisticsListOptions options = null);
         Task<CampaignStatistics> Read(string campaignId, string id);
     }
 }

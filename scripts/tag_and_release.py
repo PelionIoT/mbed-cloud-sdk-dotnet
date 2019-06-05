@@ -53,14 +53,14 @@ def news():
     #commit news files
     subprocess.check_call(['git', 'add', 'CHANGELOG.md'])
     subprocess.check_call(['git', 'add', 'docs/news/*'])
-    subprocess.check_call(['git', 'add', 'src/Common'])
+    subprocess.check_call(['git', 'add', 'src/Version.cs'])
     subprocess.check_call(['git', 'add', 'src/MbedCloudSDK.csproj'])
     subprocess.check_call(['git', 'commit', '-m', "Hear yea, hear yea. News O'Clock. [skip ci]"])
     subprocess.check_call(['git', 'push', 'origin'])
 
 def news_beta():
     #commit news files
-    subprocess.check_call(['git', 'add', 'src/Common'])
+    subprocess.check_call(['git', 'add', 'src/Version.cs'])
     subprocess.check_call(['git', 'add', 'src/MbedCloudSDK.csproj'])
     subprocess.check_call(['git', 'commit', '-m', ":checkered_flag: beta [skip ci]"])
     subprocess.check_call(['git', 'push', 'origin'])

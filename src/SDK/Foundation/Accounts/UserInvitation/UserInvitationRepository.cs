@@ -64,17 +64,17 @@ namespace Mbed.Cloud.Foundation
             }
         }
 
-        public PaginatedResponse<IUserInvitationListOptions, UserInvitation> List(IUserInvitationListOptions options = null)
+        public PaginatedResponse<IUserInvitationUserInvitationListOptions, UserInvitation> List(IUserInvitationUserInvitationListOptions options = null)
         {
             try
             {
                 if (options == null)
                 {
-                    options = new UserInvitationListOptions();
+                    options = new UserInvitationUserInvitationListOptions();
                 }
 
-                Func<IUserInvitationListOptions, Task<ResponsePage<UserInvitation>>> paginatedFunc = async (IUserInvitationListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "limit", _options.Limit }, { "order", _options.Order }, { "login_profiles__eq", _options.Filter.GetEncodedValue("login_profiles", "$eq") }, }; return await Client.CallApi<ResponsePage<UserInvitation>>(path: "/v3/user-invitations", queryParams: queryParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<IUserInvitationListOptions, UserInvitation>(paginatedFunc, options);
+                Func<IUserInvitationUserInvitationListOptions, Task<ResponsePage<UserInvitation>>> paginatedFunc = async (IUserInvitationUserInvitationListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "limit", _options.Limit }, { "order", _options.Order }, { "login_profiles__eq", _options.Filter.GetEncodedValue("login_profiles", "$eq") }, }; return await Client.CallApi<ResponsePage<UserInvitation>>(path: "/v3/user-invitations", queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<IUserInvitationUserInvitationListOptions, UserInvitation>(paginatedFunc, options);
             }
             catch (ApiException e)
             {

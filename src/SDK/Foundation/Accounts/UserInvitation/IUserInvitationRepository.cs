@@ -28,7 +28,7 @@ namespace Mbed.Cloud.Foundation
     {
         Task<UserInvitation> Create(UserInvitation request, int validForDays = 1);
         Task Delete(string id);
-        PaginatedResponse<IUserInvitationListOptions, UserInvitation> List(IUserInvitationListOptions options = null);
+        PaginatedResponse<IUserInvitationUserInvitationListOptions, UserInvitation> List(IUserInvitationUserInvitationListOptions options = null);
         Task<UserInvitation> Read(string id);
     }
 }

@@ -28,7 +28,7 @@ namespace Mbed.Cloud.Foundation
     {
         Task<DeviceEnrollment> Create(DeviceEnrollment request);
         Task Delete(string id);
-        PaginatedResponse<IDeviceEnrollmentListOptions, DeviceEnrollment> List(IDeviceEnrollmentListOptions options = null);
+        PaginatedResponse<IDeviceEnrollmentDeviceEnrollmentListOptions, DeviceEnrollment> List(IDeviceEnrollmentDeviceEnrollmentListOptions options = null);
         Task<DeviceEnrollment> Read(string id);
     }
 }
