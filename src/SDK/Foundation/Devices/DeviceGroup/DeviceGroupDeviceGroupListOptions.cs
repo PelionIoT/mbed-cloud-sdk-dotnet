@@ -122,18 +122,6 @@ namespace Mbed.Cloud.Foundation
             return this;
         }
 
-        public DeviceGroupDeviceGroupListOptions CustomAttributesEqualTo(Dictionary<string, string> value)
-        {
-            this.Filter.AddFilterItem("custom_attributes", new FilterItem(value, FilterOperator.Equals));
-            return this;
-        }
-
-        public DeviceGroupDeviceGroupListOptions CustomAttributesNotEqualTo(Dictionary<string, string> value)
-        {
-            this.Filter.AddFilterItem("custom_attributes", new FilterItem(value, FilterOperator.NotEqual));
-            return this;
-        }
-
         public DeviceGroupDeviceGroupListOptions CreatedAtIn(params DateTime[] value)
         {
             this.Filter.AddFilterItem("created_at", new FilterItem(value, FilterOperator.In));

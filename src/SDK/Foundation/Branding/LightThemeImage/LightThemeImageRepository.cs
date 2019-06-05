@@ -35,20 +35,6 @@ namespace Mbed.Cloud.Foundation
         {
         }
 
-        public async Task<LightThemeImage> Create(string reference, Stream image)
-        {
-            try
-            {
-                var pathParams = new Dictionary<string, object> { { "reference", reference }, };
-                var fileParams = new Dictionary<string, Stream> { { "image", image }, };
-                return await Client.CallApi<LightThemeImage>(path: "/v3/branding-images/light/{reference}/upload-multipart", pathParams: pathParams, fileParams: fileParams, method: HttpMethods.POST);
-            }
-            catch (ApiException e)
-            {
-                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
-            }
-        }
-
         public async Task<LightThemeImage> Delete(string reference)
         {
             try
@@ -86,6 +72,20 @@ namespace Mbed.Cloud.Foundation
             {
                 var pathParams = new Dictionary<string, object> { { "reference", reference }, };
                 return await Client.CallApi<LightThemeImage>(path: "/v3/branding-images/light/{reference}", pathParams: pathParams, method: HttpMethods.GET);
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<LightThemeImage> Update(string reference, Stream image)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "reference", reference }, };
+                var fileParams = new Dictionary<string, Stream> { { "image", image }, };
+                return await Client.CallApi<LightThemeImage>(path: "/v3/branding-images/light/{reference}/upload-multipart", pathParams: pathParams, fileParams: fileParams, method: HttpMethods.POST);
             }
             catch (ApiException e)
             {

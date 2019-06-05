@@ -68,6 +68,76 @@ namespace Mbed.Cloud.Foundation
             }
         }
 
+        public PaginatedResponse<IAccountSubtenantDarkThemeColorListOptions, SubtenantDarkThemeColor> DarkThemeBrandingColors(string id, IAccountSubtenantDarkThemeColorListOptions options = null)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "account_id", id }, };
+                if (options == null)
+                {
+                    options = new AccountSubtenantDarkThemeColorListOptions();
+                }
+
+                Func<IAccountSubtenantDarkThemeColorListOptions, Task<ResponsePage<SubtenantDarkThemeColor>>> paginatedFunc = async (IAccountSubtenantDarkThemeColorListOptions _options) => { return await Client.CallApi<ResponsePage<SubtenantDarkThemeColor>>(path: "/v3/accounts/{account_id}/branding-colors/dark", pathParams: pathParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<IAccountSubtenantDarkThemeColorListOptions, SubtenantDarkThemeColor>(paginatedFunc, options);
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public PaginatedResponse<IAccountSubtenantDarkThemeImageListOptions, SubtenantDarkThemeImage> DarkThemeBrandingImages(string id, IAccountSubtenantDarkThemeImageListOptions options = null)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "account_id", id }, };
+                if (options == null)
+                {
+                    options = new AccountSubtenantDarkThemeImageListOptions();
+                }
+
+                Func<IAccountSubtenantDarkThemeImageListOptions, Task<ResponsePage<SubtenantDarkThemeImage>>> paginatedFunc = async (IAccountSubtenantDarkThemeImageListOptions _options) => { return await Client.CallApi<ResponsePage<SubtenantDarkThemeImage>>(path: "/v3/accounts/{account_id}/branding-images/dark", pathParams: pathParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<IAccountSubtenantDarkThemeImageListOptions, SubtenantDarkThemeImage>(paginatedFunc, options);
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public PaginatedResponse<IAccountSubtenantLightThemeColorListOptions, SubtenantLightThemeColor> LightThemeBrandingColors(string id, IAccountSubtenantLightThemeColorListOptions options = null)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "account_id", id }, };
+                if (options == null)
+                {
+                    options = new AccountSubtenantLightThemeColorListOptions();
+                }
+
+                Func<IAccountSubtenantLightThemeColorListOptions, Task<ResponsePage<SubtenantLightThemeColor>>> paginatedFunc = async (IAccountSubtenantLightThemeColorListOptions _options) => { return await Client.CallApi<ResponsePage<SubtenantLightThemeColor>>(path: "/v3/accounts/{account_id}/branding-colors/light", pathParams: pathParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<IAccountSubtenantLightThemeColorListOptions, SubtenantLightThemeColor>(paginatedFunc, options);
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public async Task<SubtenantLightThemeImage> LightThemeBrandingImages(string id, string reference)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "account_id", id }, { "reference", reference }, };
+                return await Client.CallApi<SubtenantLightThemeImage>(path: "/v3/accounts/{account_id}/branding-images/light/{reference}", pathParams: pathParams, method: HttpMethods.GET);
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
         public PaginatedResponse<IAccountAccountListOptions, Account> List(IAccountAccountListOptions options = null)
         {
             try

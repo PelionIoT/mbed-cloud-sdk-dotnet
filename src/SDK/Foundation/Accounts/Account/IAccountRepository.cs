@@ -29,6 +29,10 @@ namespace Mbed.Cloud.Foundation
     {
         PaginatedResponse<IAccountSubtenantApiKeyListOptions, SubtenantApiKey> ApiKeys(string id, IAccountSubtenantApiKeyListOptions options = null);
         Task<Account> Create(Account request, string action = null);
+        PaginatedResponse<IAccountSubtenantDarkThemeColorListOptions, SubtenantDarkThemeColor> DarkThemeBrandingColors(string id, IAccountSubtenantDarkThemeColorListOptions options = null);
+        PaginatedResponse<IAccountSubtenantDarkThemeImageListOptions, SubtenantDarkThemeImage> DarkThemeBrandingImages(string id, IAccountSubtenantDarkThemeImageListOptions options = null);
+        PaginatedResponse<IAccountSubtenantLightThemeColorListOptions, SubtenantLightThemeColor> LightThemeBrandingColors(string id, IAccountSubtenantLightThemeColorListOptions options = null);
+        Task<SubtenantLightThemeImage> LightThemeBrandingImages(string id, string reference);
         PaginatedResponse<IAccountAccountListOptions, Account> List(IAccountAccountListOptions options = null);
         Task<Account> Me(string include = null, string properties = null);
         Task<Account> Read(string id, string include = null, string properties = null);

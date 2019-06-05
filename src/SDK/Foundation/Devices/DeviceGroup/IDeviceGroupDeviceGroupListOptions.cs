@@ -47,8 +47,6 @@ namespace Mbed.Cloud.Foundation
         DeviceGroupDeviceGroupListOptions NameNotEqualTo(string value);
         DeviceGroupDeviceGroupListOptions NameIn(params string[] value);
         DeviceGroupDeviceGroupListOptions NameNotIn(params string[] value);
-        DeviceGroupDeviceGroupListOptions CustomAttributesEqualTo(Dictionary<string, string> value);
-        DeviceGroupDeviceGroupListOptions CustomAttributesNotEqualTo(Dictionary<string, string> value);
         DeviceGroupDeviceGroupListOptions CreatedAtIn(params DateTime[] value);
         DeviceGroupDeviceGroupListOptions CreatedAtNotIn(params DateTime[] value);
         DeviceGroupDeviceGroupListOptions CreatedAtLessThan(DateTime value);
