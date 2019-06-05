@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Mbed.Cloud.Foundation;
 using Mbed.Cloud.Foundation.Enums;
 using MbedCloudSDK.Exceptions;
@@ -8,10 +9,10 @@ using NUnit.Framework;
 namespace Snippets.src.Foundation
 {
     [TestFixture]
-    public class CertRenew
+    public class CertificateRenewExamples
     {
         [Test]
-        public async System.Threading.Tasks.Task RenewDeviceCertificateAsync()
+        public async Task CertificateRenew()
         {
             try
             {

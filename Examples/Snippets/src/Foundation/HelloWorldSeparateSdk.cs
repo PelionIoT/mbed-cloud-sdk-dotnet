@@ -1,5 +1,6 @@
 // an example: hello world with sdk instance
 using System;
+using System.Threading.Tasks;
 using Mbed.Cloud;
 using Mbed.Cloud.Foundation;
 
@@ -8,11 +9,11 @@ using NUnit.Framework;
 
 [TestFixture]
 // uncloak
-public class HelloWorldSeparateSdk
+public class HelloWorldSeparateSdkExamples
 {
     // cloak
     [Test]
-    public async System.Threading.Tasks.Task HelloWorldSeparateSdkTask()
+    public async Task HelloWorldSeparateSdk()
     {
         try
         {

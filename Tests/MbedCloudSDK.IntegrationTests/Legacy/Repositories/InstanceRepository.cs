@@ -45,6 +45,7 @@ namespace MbedCloudSDK.IntegrationTests.Repositories
             {
                 AutostartNotifications = instanceConfiguration.AutostartDaemon,
                 ForceClear = true,
+                LogLevel = LogLevel.ALL,
             };
 
             var instance = new Instance { Id = Guid.NewGuid().ToString(), Module = module, CreatedAt = DateTime.Now };
@@ -93,6 +94,12 @@ namespace MbedCloudSDK.IntegrationTests.Repositories
 
         internal void DeleteInstance(Instance instance)
         {
+            var instanceApi = Instances[instance];
+            if (typeof(IDisposable).IsAssignableFrom(instanceApi.GetType()))
+            {
+                (instanceApi as IDisposable).Dispose();
+            }
+
             Instances.Remove(instance);
         }
 
