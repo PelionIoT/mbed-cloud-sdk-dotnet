@@ -33,7 +33,7 @@ namespace Mbed.Cloud.Foundation
         PaginatedResponse<IAccountSubtenantDarkThemeImageListOptions, SubtenantDarkThemeImage> DarkThemeBrandingImages(string id, IAccountSubtenantDarkThemeImageListOptions options = null);
         PaginatedResponse<IAccountSubtenantLightThemeColorListOptions, SubtenantLightThemeColor> LightThemeBrandingColors(string id, IAccountSubtenantLightThemeColorListOptions options = null);
         PaginatedResponse<IAccountSubtenantLightThemeImageListOptions, SubtenantLightThemeImage> LightThemeBrandingImages(string id, IAccountSubtenantLightThemeImageListOptions options = null);
-        PaginatedResponse<IAccountAccountListOptions, Account> List(IAccountAccountListOptions options = null);
+        PaginatedResponse<IAccountListOptions, Account> List(IAccountListOptions options = null);
         Task<Account> Me(string include = null, string properties = null);
         Task<Account> Read(string id, string include = null, string properties = null);
         PaginatedResponse<IAccountSubtenantTrustedCertificateListOptions, SubtenantTrustedCertificate> TrustedCertificates(string id, IAccountSubtenantTrustedCertificateListOptions options = null);
