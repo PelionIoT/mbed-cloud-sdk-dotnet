@@ -87,7 +87,29 @@ namespace Mbed.Cloud.RestClient
         /// <returns>FileParameter.</returns>
         public static FileParameter ParameterToFile(string name, Stream stream)
         {
-            return stream is FileStream ? FileParameter.Create(name, ReadAsBytes(stream), Path.GetFileName(((FileStream)stream).Name), "multipart/form-data") : FileParameter.Create(name, ReadAsBytes(stream), "no_file_name_provided", "multipart/form-data");
+            var contentType = "multipart/form-data";
+            if (stream is FileStream fileStream)
+            {
+                var extension = Path.GetExtension(fileStream.Name);
+                if (extension == ".png")
+                {
+                    contentType = "image/png";
+                }
+
+                if (extension == ".svg")
+                {
+                    contentType = "image/svg+xml";
+                }
+
+                if (extension == "jpeg" || extension == "jpg")
+                {
+                    contentType = "image/jpeg";
+                }
+
+                return FileParameter.Create(name, ReadAsBytes(stream), fileStream.Name, contentType);
+            }
+
+            return FileParameter.Create(name, ReadAsBytes(stream), "no_file_name_provided", contentType);
         }
 
         /// <summary>
