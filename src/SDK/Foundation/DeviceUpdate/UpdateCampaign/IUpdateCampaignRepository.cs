@@ -31,7 +31,7 @@ namespace Mbed.Cloud.Foundation
         Task<UpdateCampaign> Create(UpdateCampaign request);
         Task Delete(string id);
         PaginatedResponse<IUpdateCampaignCampaignDeviceMetadataListOptions, CampaignDeviceMetadata> DeviceMetadata(string id, IUpdateCampaignCampaignDeviceMetadataListOptions options = null);
-        PaginatedResponse<IUpdateCampaignUpdateCampaignListOptions, UpdateCampaign> List(IUpdateCampaignUpdateCampaignListOptions options = null);
+        PaginatedResponse<IUpdateCampaignListOptions, UpdateCampaign> List(IUpdateCampaignListOptions options = null);
         Task<UpdateCampaign> Read(string id);
         Task<UpdateCampaign> Start(string id);
         Task<UpdateCampaign> Stop(string id);

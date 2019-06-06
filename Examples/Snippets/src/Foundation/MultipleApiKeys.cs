@@ -40,7 +40,7 @@ public class MultipleApiKeys
         var account_one = new SDK(API_KEY_ONE);
         var account_two = new SDK(API_KEY_TWO);
 
-        var options = new DeviceDeviceListOptions
+        var options = new DeviceListOptions
         {
             MaxResults = 10     // Limit to ten devices
         };

@@ -30,7 +30,7 @@ namespace Mbed.Cloud.Foundation
         Task AddToGroup(string deviceGroupId, Device request);
         Task<Device> Create(Device request);
         Task Delete(string id);
-        PaginatedResponse<IDeviceDeviceListOptions, Device> List(IDeviceDeviceListOptions options = null);
+        PaginatedResponse<IDeviceListOptions, Device> List(IDeviceListOptions options = null);
         Task<Device> Read(string id);
         Task RemoveFromGroup(string deviceGroupId, Device request);
         Task<CertificateEnrollment> RenewCertificate(string certificateName, string id);
