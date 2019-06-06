@@ -125,12 +125,18 @@ namespace Mbed.Cloud.Foundation
             }
         }
 
-        public async Task<SubtenantLightThemeImage> LightThemeBrandingImages(string id, string reference)
+        public PaginatedResponse<IAccountSubtenantLightThemeImageListOptions, SubtenantLightThemeImage> LightThemeBrandingImages(string id, IAccountSubtenantLightThemeImageListOptions options = null)
         {
             try
             {
-                var pathParams = new Dictionary<string, object> { { "account_id", id }, { "reference", reference }, };
-                return await Client.CallApi<SubtenantLightThemeImage>(path: "/v3/accounts/{account_id}/branding-images/light/{reference}", pathParams: pathParams, method: HttpMethods.GET);
+                var pathParams = new Dictionary<string, object> { { "account_id", id }, };
+                if (options == null)
+                {
+                    options = new AccountSubtenantLightThemeImageListOptions();
+                }
+
+                Func<IAccountSubtenantLightThemeImageListOptions, Task<ResponsePage<SubtenantLightThemeImage>>> paginatedFunc = async (IAccountSubtenantLightThemeImageListOptions _options) => { return await Client.CallApi<ResponsePage<SubtenantLightThemeImage>>(path: "/v3/accounts/{account_id}/branding-images/light", pathParams: pathParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<IAccountSubtenantLightThemeImageListOptions, SubtenantLightThemeImage>(paginatedFunc, options);
             }
             catch (ApiException e)
             {
