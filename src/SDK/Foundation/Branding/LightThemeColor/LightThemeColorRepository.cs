@@ -48,17 +48,17 @@ namespace Mbed.Cloud.Foundation
             }
         }
 
-        public PaginatedResponse<ILightThemeColorLightThemeColorListOptions, LightThemeColor> List(ILightThemeColorLightThemeColorListOptions options = null)
+        public PaginatedResponse<ILightThemeColorListOptions, LightThemeColor> List(ILightThemeColorListOptions options = null)
         {
             try
             {
                 if (options == null)
                 {
-                    options = new LightThemeColorLightThemeColorListOptions();
+                    options = new LightThemeColorListOptions();
                 }
 
-                Func<ILightThemeColorLightThemeColorListOptions, Task<ResponsePage<LightThemeColor>>> paginatedFunc = async (ILightThemeColorLightThemeColorListOptions _options) => { return await Client.CallApi<ResponsePage<LightThemeColor>>(path: "/v3/branding-colors/light", method: HttpMethods.GET); };
-                return new PaginatedResponse<ILightThemeColorLightThemeColorListOptions, LightThemeColor>(paginatedFunc, options);
+                Func<ILightThemeColorListOptions, Task<ResponsePage<LightThemeColor>>> paginatedFunc = async (ILightThemeColorListOptions _options) => { return await Client.CallApi<ResponsePage<LightThemeColor>>(path: "/v3/branding-colors/light", method: HttpMethods.GET); };
+                return new PaginatedResponse<ILightThemeColorListOptions, LightThemeColor>(paginatedFunc, options);
             }
             catch (ApiException e)
             {

@@ -31,7 +31,7 @@ namespace Mbed.Cloud.Foundation
         Task<DeviceGroup> Create(DeviceGroup request);
         Task Delete(string id);
         PaginatedResponse<IDeviceGroupDeviceListOptions, Device> Devices(string id, IDeviceGroupDeviceListOptions options = null);
-        PaginatedResponse<IDeviceGroupDeviceGroupListOptions, DeviceGroup> List(IDeviceGroupDeviceGroupListOptions options = null);
+        PaginatedResponse<IDeviceGroupListOptions, DeviceGroup> List(IDeviceGroupListOptions options = null);
         Task<DeviceGroup> Read(string id);
         Task RemoveDevice(string id, DeviceGroup request, string deviceId = null);
         Task<DeviceGroup> Update(string id, DeviceGroup request);

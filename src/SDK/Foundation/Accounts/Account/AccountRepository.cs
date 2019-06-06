@@ -144,17 +144,17 @@ namespace Mbed.Cloud.Foundation
             }
         }
 
-        public PaginatedResponse<IAccountAccountListOptions, Account> List(IAccountAccountListOptions options = null)
+        public PaginatedResponse<IAccountListOptions, Account> List(IAccountListOptions options = null)
         {
             try
             {
                 if (options == null)
                 {
-                    options = new AccountAccountListOptions();
+                    options = new AccountListOptions();
                 }
 
-                Func<IAccountAccountListOptions, Task<ResponsePage<Account>>> paginatedFunc = async (IAccountAccountListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "format", _options.Format }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "properties", _options.Properties }, { "status__eq", _options.Filter.GetEncodedValue("status", "$eq") }, { "status__in", _options.Filter.GetEncodedValue("status", "$in") }, { "status__nin", _options.Filter.GetEncodedValue("status", "$nin") }, { "tier__eq", _options.Filter.GetEncodedValue("tier", "$eq") }, { "parent__eq", _options.Filter.GetEncodedValue("parent", "$eq") }, { "end_market__eq", _options.Filter.GetEncodedValue("end_market", "$eq") }, { "country__like", _options.Filter.GetEncodedValue("country", "$like") }, }; return await Client.CallApi<ResponsePage<Account>>(path: "/v3/accounts", queryParams: queryParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<IAccountAccountListOptions, Account>(paginatedFunc, options);
+                Func<IAccountListOptions, Task<ResponsePage<Account>>> paginatedFunc = async (IAccountListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "format", _options.Format }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "properties", _options.Properties }, { "status__eq", _options.Filter.GetEncodedValue("status", "$eq") }, { "status__in", _options.Filter.GetEncodedValue("status", "$in") }, { "status__nin", _options.Filter.GetEncodedValue("status", "$nin") }, { "tier__eq", _options.Filter.GetEncodedValue("tier", "$eq") }, { "parent__eq", _options.Filter.GetEncodedValue("parent", "$eq") }, { "end_market__eq", _options.Filter.GetEncodedValue("end_market", "$eq") }, { "country__like", _options.Filter.GetEncodedValue("country", "$like") }, }; return await Client.CallApi<ResponsePage<Account>>(path: "/v3/accounts", queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<IAccountListOptions, Account>(paginatedFunc, options);
             }
             catch (ApiException e)
             {
