@@ -16,6 +16,7 @@ namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
     using System.Collections.Generic;
+    using Newtonsoft.Json;
     using System;
     using Mbed.Cloud.Foundation.Enums;
     using Mbed.Cloud.Foundation;
@@ -148,7 +149,7 @@ namespace Mbed.Cloud.Foundation
             get;
             set;
         }
-
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// created_at
         /// </summary>
@@ -201,7 +202,7 @@ namespace Mbed.Cloud.Foundation
             get;
             set;
         }
-
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// expiration
         /// </summary>
@@ -213,7 +214,7 @@ namespace Mbed.Cloud.Foundation
         /// <summary>
         /// expiration_warning_threshold
         /// </summary>
-        string ExpirationWarningThreshold
+        int? ExpirationWarningThreshold
         {
             get;
             set;
@@ -222,7 +223,7 @@ namespace Mbed.Cloud.Foundation
         /// <summary>
         /// idle_timeout
         /// </summary>
-        string IdleTimeout
+        int? IdleTimeout
         {
             get;
             set;
@@ -282,7 +283,7 @@ namespace Mbed.Cloud.Foundation
         /// <summary>
         /// password_recovery_expiration
         /// </summary>
-        int PasswordRecoveryExpiration
+        int? PasswordRecoveryExpiration
         {
             get;
             set;
@@ -371,7 +372,7 @@ namespace Mbed.Cloud.Foundation
         {
             get;
         }
-
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// updated_at
         /// </summary>
@@ -379,7 +380,7 @@ namespace Mbed.Cloud.Foundation
         {
             get;
         }
-
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// upgraded_at
         /// </summary>

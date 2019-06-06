@@ -9,7 +9,9 @@ using Manhasset.Generator.src.common;
 using Manhasset.Generator.src.CustomContainers;
 using Manhasset.Generator.src.CustomContainers.Methods;
 using Manhasset.Generator.src.extensions;
+using Microsoft.CodeAnalysis;
 using Newtonsoft.Json.Linq;
+using Compilation = Manhasset.Core.src.Compile.Compilation;
 
 namespace Manhasset.Generator.src.Generators
 {
@@ -17,7 +19,7 @@ namespace Manhasset.Generator.src.Generators
     {
         public static string GenerateCustomQueryOptions(JToken method, JToken fields, string entityName, string returns, string rootFilePath, string entityGroup, Compilation compilation)
         {
-            var optionsName = $"{returns}ListOptions";
+            var optionsName = $"{TypeHelpers.GetListOptionsName(entityName, returns)}ListOptions";
 
             var extraQueryParams = method["fields"].Where(
                 q => q["in"].GetStringValue() == "query" &&
@@ -52,7 +54,8 @@ namespace Manhasset.Generator.src.Generators
             customQueryOptions.FilePath = $"{rootFilePath}/{entityGroup}/{entityName}/";
             customQueryOptions.FileName = $"{customQueryOptions.Name}.cs";
 
-            if(extraQueryParams.Count > 0) {
+            if (extraQueryParams.Count > 0)
+            {
                 extraQueryParams.ForEach(e =>
                 {
                     var propContainer = new PropertyWithSummaryContainer
@@ -94,6 +97,11 @@ namespace Manhasset.Generator.src.Generators
                             {
                                 customQueryOptions.AddUsing(nameof(UsingKeys.SYSTEM), UsingKeys.SYSTEM);
                             }
+                            // add usings for list
+                            if (filterType.Contains("List<") || filterType.Contains("Dictionary<"))
+                            {
+                                customQueryOptions.AddUsing(nameof(UsingKeys.GENERIC_COLLECTIONS), UsingKeys.GENERIC_COLLECTIONS);
+                            }
                         }
 
                         var filterOperators = filterValueProperty.Children().FirstOrDefault();
@@ -105,7 +113,7 @@ namespace Manhasset.Generator.src.Generators
                                 string enumerableFilterType = null;
                                 if (filterOperator == "in" || filterOperator == "nin")
                                 {
-                                    enumerableFilterType = $"IEnumerable<{filterType}>";
+                                    enumerableFilterType = $"{filterType}[]";
                                     customQueryOptions.AddUsing(nameof(UsingKeys.GENERIC_COLLECTIONS), UsingKeys.GENERIC_COLLECTIONS);
                                 }
                                 var methodName = $"{filterValueName}{TypeHelpers.MapFilterName(filterOperator)}".ToPascal();
@@ -118,6 +126,9 @@ namespace Manhasset.Generator.src.Generators
                                             Key = "value",
                                             ParamType = enumerableFilterType ?? filterType,
                                             Required = true,
+                                            MyModifiers = !string.IsNullOrEmpty(enumerableFilterType)
+                                                            ? new Dictionary<string, SyntaxToken> { { nameof(Modifiers.PARAMS), Modifiers.PARAMS } }
+                                                            : new Dictionary<string, SyntaxToken>(),
                                         }
                                     }
                                 };

@@ -52,8 +52,8 @@ namespace Mbed.Cloud.Foundation
         }
 
         AccountListOptions StatusEqualTo(AccountStatus value);
-        AccountListOptions StatusIn(IEnumerable<AccountStatus> value);
-        AccountListOptions StatusNotIn(IEnumerable<AccountStatus> value);
+        AccountListOptions StatusIn(params AccountStatus[] value);
+        AccountListOptions StatusNotIn(params AccountStatus[] value);
         AccountListOptions TierEqualTo(string value);
         AccountListOptions ParentEqualTo(string value);
         AccountListOptions EndMarketEqualTo(string value);

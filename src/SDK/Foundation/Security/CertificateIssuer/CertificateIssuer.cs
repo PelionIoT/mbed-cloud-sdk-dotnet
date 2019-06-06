@@ -15,6 +15,7 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using Mbed.Cloud.Foundation.Enums;
@@ -24,6 +25,7 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public class CertificateIssuer : Entity, ICertificateIssuer
     {
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// created_at
         /// </summary>

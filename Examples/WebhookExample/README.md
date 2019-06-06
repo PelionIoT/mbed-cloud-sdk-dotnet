@@ -1,6 +1,6 @@
 # Webhook Example
 
-This example ASP.NET Core server demonstrates how the Mbed Cloud SDK can be used to listen for notifications with a webhook, rather than a long polling channel.
+This example ASP.NET Core server demonstrates how the Pelion Device Management SDK can be used to listen for notifications with a webhook, rather than a long polling channel.
 
 ## Build
 

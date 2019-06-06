@@ -15,8 +15,9 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
-    using System.Collections.Generic;
     using Mbed.Cloud.Foundation;
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
     using System;
     using Mbed.Cloud.Foundation.Enums;
 
@@ -25,8 +26,6 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public class User : Entity, IUser
     {
-        internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "MarketingAccepted", "is_marketing_accepted" }, { "TermsAccepted", "is_gtc_accepted" }, { "TwoFactorAuthentication", "is_totp_enabled" }, };
-
         /// <summary>
         /// account_id
         /// </summary>
@@ -53,7 +52,7 @@ namespace Mbed.Cloud.Foundation
             get;
             set;
         }
-
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// created_at
         /// </summary>
@@ -109,6 +108,33 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
+        /// is_gtc_accepted
+        /// </summary>
+        public bool? IsGtcAccepted
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// is_marketing_accepted
+        /// </summary>
+        public bool? IsMarketingAccepted
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// is_totp_enabled
+        /// </summary>
+        public bool? IsTotpEnabled
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// last_login_time
         /// </summary>
         public long? LastLoginTime
@@ -130,15 +156,6 @@ namespace Mbed.Cloud.Foundation
         /// login_profiles
         /// </summary>
         public List<LoginProfile> LoginProfiles
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// marketing_accepted
-        /// </summary>
-        public bool? MarketingAccepted
         {
             get;
             set;
@@ -181,15 +198,6 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
-        /// terms_accepted
-        /// </summary>
-        public bool? TermsAccepted
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// totp_scratch_codes
         /// </summary>
         public List<string> TotpScratchCodes
@@ -197,16 +205,7 @@ namespace Mbed.Cloud.Foundation
             get;
             internal set;
         }
-
-        /// <summary>
-        /// two_factor_authentication
-        /// </summary>
-        public bool? TwoFactorAuthentication
-        {
-            get;
-            set;
-        }
-
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// updated_at
         /// </summary>

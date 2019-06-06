@@ -38,8 +38,8 @@ namespace Mbed.Cloud.Foundation
         {
             try
             {
-                var bodyParams = new CertificateIssuerConfig { CertificateIssuerId = request.CertificateIssuerId, CertificateReference = request.CertificateReference, };
-                return await Client.CallApi<CertificateIssuerConfig>(path: "/v3/certificate-issuer-configurations", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: request);
+                var bodyParams = new CertificateIssuerConfig { CertificateIssuerId = request.CertificateIssuerId, Reference = request.Reference, };
+                return await Client.CallApi<CertificateIssuerConfig>(path: "/v3/certificate-issuer-configurations", bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
             {
@@ -81,7 +81,7 @@ namespace Mbed.Cloud.Foundation
                     options = new CertificateIssuerConfigListOptions();
                 }
 
-                Func<ICertificateIssuerConfigListOptions, Task<ResponsePage<CertificateIssuerConfig>>> paginatedFunc = async (ICertificateIssuerConfigListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "reference__eq", _options.Filter.GetEncodedValue("certificate_reference", "$eq") }, }; return await Client.CallApi<ResponsePage<CertificateIssuerConfig>>(path: "/v3/certificate-issuer-configurations", queryParams: queryParams, method: HttpMethods.GET); };
+                Func<ICertificateIssuerConfigListOptions, Task<ResponsePage<CertificateIssuerConfig>>> paginatedFunc = async (ICertificateIssuerConfigListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "reference__eq", _options.Filter.GetEncodedValue("reference", "$eq") }, }; return await Client.CallApi<ResponsePage<CertificateIssuerConfig>>(path: "/v3/certificate-issuer-configurations", queryParams: queryParams, method: HttpMethods.GET); };
                 return new PaginatedResponse<ICertificateIssuerConfigListOptions, CertificateIssuerConfig>(paginatedFunc, options);
             }
             catch (ApiException e)
@@ -109,7 +109,7 @@ namespace Mbed.Cloud.Foundation
             {
                 var pathParams = new Dictionary<string, object> { { "certificate-issuer-configuration-id", id }, };
                 var bodyParams = new CertificateIssuerConfig { CertificateIssuerId = request.CertificateIssuerId, };
-                return await Client.CallApi<CertificateIssuerConfig>(path: "/v3/certificate-issuer-configurations/{certificate-issuer-configuration-id}", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: request);
+                return await Client.CallApi<CertificateIssuerConfig>(path: "/v3/certificate-issuer-configurations/{certificate-issuer-configuration-id}", pathParams: pathParams, bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.PUT);
             }
             catch (ApiException e)
             {

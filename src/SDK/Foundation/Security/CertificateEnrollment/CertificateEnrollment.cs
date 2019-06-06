@@ -15,6 +15,7 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Newtonsoft.Json;
     using System;
     using Mbed.Cloud.Foundation.Enums;
 
@@ -31,7 +32,7 @@ namespace Mbed.Cloud.Foundation
             get;
             internal set;
         }
-
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// created_at
         /// </summary>
@@ -60,6 +61,15 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
+        /// enroll_result_detail
+        /// </summary>
+        public string EnrollResultDetail
+        {
+            get;
+            internal set;
+        }
+
+        /// <summary>
         /// enroll_status
         /// </summary>
         public CertificateEnrollmentEnrollStatus? EnrollStatus
@@ -67,7 +77,7 @@ namespace Mbed.Cloud.Foundation
             get;
             internal set;
         }
-
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// updated_at
         /// </summary>

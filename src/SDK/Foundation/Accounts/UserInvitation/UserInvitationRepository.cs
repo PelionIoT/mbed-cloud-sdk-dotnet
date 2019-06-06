@@ -34,12 +34,16 @@ namespace Mbed.Cloud.Foundation
         {
         }
 
-        public async Task<UserInvitation> Create(UserInvitation request, int validForDays = 25)
+        public async Task<UserInvitation> Create(UserInvitation request, int validForDays = 1)
         {
             try
             {
                 var bodyParams = new UserInvitation { Email = request.Email, LoginProfiles = request.LoginProfiles, };
-                return await Client.CallApi<UserInvitation>(path: "/v3/user-invitations", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: request);
+                var externalBodyParams = new
+                {
+                    validForDays = validForDays,
+                };
+                return await Client.CallApi<UserInvitation>(path: "/v3/user-invitations", bodyParams: bodyParams, externalBodyParams: externalBodyParams, objectToUnpack: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
             {
@@ -69,7 +73,7 @@ namespace Mbed.Cloud.Foundation
                     options = new UserInvitationListOptions();
                 }
 
-                Func<IUserInvitationListOptions, Task<ResponsePage<UserInvitation>>> paginatedFunc = async (IUserInvitationListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "limit", _options.Limit }, { "order", _options.Order }, { "login_profile__eq", _options.Filter.GetEncodedValue("login_profile", "$eq") }, }; return await Client.CallApi<ResponsePage<UserInvitation>>(path: "/v3/user-invitations", queryParams: queryParams, method: HttpMethods.GET); };
+                Func<IUserInvitationListOptions, Task<ResponsePage<UserInvitation>>> paginatedFunc = async (IUserInvitationListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "limit", _options.Limit }, { "order", _options.Order }, { "login_profiles__eq", _options.Filter.GetEncodedValue("login_profiles", "$eq") }, }; return await Client.CallApi<ResponsePage<UserInvitation>>(path: "/v3/user-invitations", queryParams: queryParams, method: HttpMethods.GET); };
                 return new PaginatedResponse<IUserInvitationListOptions, UserInvitation>(paginatedFunc, options);
             }
             catch (ApiException e)

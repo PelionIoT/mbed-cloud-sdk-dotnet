@@ -35,12 +35,16 @@ namespace Mbed.Cloud.Foundation
         {
         }
 
-        public async Task<CertificateIssuer> Create(CertificateIssuer request, Dictionary<string, string> issuerCredentials = null)
+        public async Task<CertificateIssuer> Create(CertificateIssuer request, Dictionary<string, string> issuerCredentials)
         {
             try
             {
                 var bodyParams = new CertificateIssuer { Description = request.Description, IssuerAttributes = request.IssuerAttributes, IssuerType = request.IssuerType, Name = request.Name, };
-                return await Client.CallApi<CertificateIssuer>(path: "/v3/certificate-issuers", bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: request);
+                var externalBodyParams = new
+                {
+                    issuerCredentials = issuerCredentials,
+                };
+                return await Client.CallApi<CertificateIssuer>(path: "/v3/certificate-issuers", bodyParams: bodyParams, externalBodyParams: externalBodyParams, objectToUnpack: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
             {
@@ -98,7 +102,11 @@ namespace Mbed.Cloud.Foundation
             {
                 var pathParams = new Dictionary<string, object> { { "certificate-issuer-id", id }, };
                 var bodyParams = new CertificateIssuer { Description = request.Description, IssuerAttributes = request.IssuerAttributes, Name = request.Name, };
-                return await Client.CallApi<CertificateIssuer>(path: "/v3/certificate-issuers/{certificate-issuer-id}", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: request);
+                var externalBodyParams = new
+                {
+                    issuerCredentials = issuerCredentials,
+                };
+                return await Client.CallApi<CertificateIssuer>(path: "/v3/certificate-issuers/{certificate-issuer-id}", pathParams: pathParams, bodyParams: bodyParams, externalBodyParams: externalBodyParams, objectToUnpack: request, method: HttpMethods.PUT);
             }
             catch (ApiException e)
             {

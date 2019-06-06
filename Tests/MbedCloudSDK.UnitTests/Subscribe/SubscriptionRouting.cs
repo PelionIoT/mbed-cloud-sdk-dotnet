@@ -59,7 +59,7 @@ namespace MbedCloudSDK.UnitTests.Subscribe
         {
             var subscribe = new MbedCloudSDK.Connect.Api.Subscribe.Subscribe();
             Assert.IsEmpty(subscribe.AllLocalSubscriptions);
-            var observer1 = (await subscribe.ResourceValuesAsync()).Filter(new ResourceValuesFilter { DeviceId = "1", ResourcePaths = new List<string>() { "3/0/0", "3/0/1"}});
+            var observer1 = (await subscribe.ResourceValuesAsync()).Filter(new ResourceValuesFilter { DeviceId = "1", ResourcePaths = new List<string>() { "3/0/0", "3/0/1" } });
             var observer2 = (await subscribe.ResourceValuesAsync()).Filter(new ResourceValuesFilter { DeviceId = "2", ResourcePaths = new List<string>() { "3/0/0", "3/0/1" } })
                                                       .Filter(new ResourceValuesFilter { DeviceId = "3", ResourcePaths = new List<string>() { "3/0/0", "3/0/1" } });
 

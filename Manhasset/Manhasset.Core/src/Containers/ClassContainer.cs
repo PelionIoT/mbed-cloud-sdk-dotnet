@@ -14,7 +14,8 @@ namespace Manhasset.Core.src.Containers
     {
         private string filePath;
         public string FileName { get; set; } = "";
-        public string FilePath {
+        public string FilePath
+        {
             get
             {
                 return filePath + FileName;
@@ -154,7 +155,8 @@ namespace Manhasset.Core.src.Containers
                 c.IsInterface = true;
                 return c.GetSyntax();
             })
-            .Select(s => {
+            .Select(s =>
+            {
                 s = s.WithBody(null);
                 return s;
             }).ToArray();

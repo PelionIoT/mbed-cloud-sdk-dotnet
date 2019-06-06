@@ -16,7 +16,8 @@ namespace MbedCloudSDK.IntegrationTests.Models
             Name = "Sdk";
             typeof(SDK).GetMethods()
                         .ToList()
-                        .ForEach(m => {
+                        .ForEach(m =>
+                        {
                             Methods.Add(m.Name, new Method(m.Name, Name, m));
                         });
         }

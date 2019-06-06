@@ -32,6 +32,21 @@ namespace Mbed.Cloud.Foundation.Factories
             return new ApiKeyRepository(config, client);
         }
 
+        public CampaignDeviceMetadataRepository CampaignDeviceMetadataRepository()
+        {
+            return new CampaignDeviceMetadataRepository(config, client);
+        }
+
+        public CampaignStatisticsRepository CampaignStatisticsRepository()
+        {
+            return new CampaignStatisticsRepository(config, client);
+        }
+
+        public CampaignStatisticsEventsRepository CampaignStatisticsEventsRepository()
+        {
+            return new CampaignStatisticsEventsRepository(config, client);
+        }
+
         public CertificateEnrollmentRepository CertificateEnrollmentRepository()
         {
             return new CertificateEnrollmentRepository(config, client);
@@ -45,6 +60,16 @@ namespace Mbed.Cloud.Foundation.Factories
         public CertificateIssuerConfigRepository CertificateIssuerConfigRepository()
         {
             return new CertificateIssuerConfigRepository(config, client);
+        }
+
+        public DarkThemeColorRepository DarkThemeColorRepository()
+        {
+            return new DarkThemeColorRepository(config, client);
+        }
+
+        public DarkThemeImageRepository DarkThemeImageRepository()
+        {
+            return new DarkThemeImageRepository(config, client);
         }
 
         public DeveloperCertificateRepository DeveloperCertificateRepository()
@@ -72,14 +97,74 @@ namespace Mbed.Cloud.Foundation.Factories
             return new DeviceEnrollmentBulkDeleteRepository(config, client);
         }
 
+        public DeviceEnrollmentDenialRepository DeviceEnrollmentDenialRepository()
+        {
+            return new DeviceEnrollmentDenialRepository(config, client);
+        }
+
         public DeviceEventsRepository DeviceEventsRepository()
         {
             return new DeviceEventsRepository(config, client);
         }
 
+        public DeviceGroupRepository DeviceGroupRepository()
+        {
+            return new DeviceGroupRepository(config, client);
+        }
+
+        public FirmwareImageRepository FirmwareImageRepository()
+        {
+            return new FirmwareImageRepository(config, client);
+        }
+
+        public FirmwareManifestRepository FirmwareManifestRepository()
+        {
+            return new FirmwareManifestRepository(config, client);
+        }
+
+        public LightThemeColorRepository LightThemeColorRepository()
+        {
+            return new LightThemeColorRepository(config, client);
+        }
+
+        public LightThemeImageRepository LightThemeImageRepository()
+        {
+            return new LightThemeImageRepository(config, client);
+        }
+
+        public PreSharedKeyRepository PreSharedKeyRepository()
+        {
+            return new PreSharedKeyRepository(config, client);
+        }
+
         public ServerCredentialsRepository ServerCredentialsRepository()
         {
             return new ServerCredentialsRepository(config, client);
+        }
+
+        public SubtenantApiKeyRepository SubtenantApiKeyRepository()
+        {
+            return new SubtenantApiKeyRepository(config, client);
+        }
+
+        public SubtenantDarkThemeColorRepository SubtenantDarkThemeColorRepository()
+        {
+            return new SubtenantDarkThemeColorRepository(config, client);
+        }
+
+        public SubtenantDarkThemeImageRepository SubtenantDarkThemeImageRepository()
+        {
+            return new SubtenantDarkThemeImageRepository(config, client);
+        }
+
+        public SubtenantLightThemeColorRepository SubtenantLightThemeColorRepository()
+        {
+            return new SubtenantLightThemeColorRepository(config, client);
+        }
+
+        public SubtenantLightThemeImageRepository SubtenantLightThemeImageRepository()
+        {
+            return new SubtenantLightThemeImageRepository(config, client);
         }
 
         public SubtenantTrustedCertificateRepository SubtenantTrustedCertificateRepository()
@@ -100,6 +185,11 @@ namespace Mbed.Cloud.Foundation.Factories
         public TrustedCertificateRepository TrustedCertificateRepository()
         {
             return new TrustedCertificateRepository(config, client);
+        }
+
+        public UpdateCampaignRepository UpdateCampaignRepository()
+        {
+            return new UpdateCampaignRepository(config, client);
         }
 
         public UserRepository UserRepository()

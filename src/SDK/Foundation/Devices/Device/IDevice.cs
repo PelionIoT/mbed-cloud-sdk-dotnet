@@ -15,6 +15,7 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using Mbed.Cloud.Foundation.Enums;
@@ -40,7 +41,7 @@ namespace Mbed.Cloud.Foundation
             get;
             set;
         }
-
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd")]
         /// <summary>
         /// bootstrap_expiration_date
         /// </summary>
@@ -49,14 +50,13 @@ namespace Mbed.Cloud.Foundation
             get;
             set;
         }
-
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// bootstrapped_timestamp
         /// </summary>
         DateTime? BootstrappedTimestamp
         {
             get;
-            set;
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Mbed.Cloud.Foundation
             get;
             set;
         }
-
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd")]
         /// <summary>
         /// connector_expiration_date
         /// </summary>
@@ -76,7 +76,7 @@ namespace Mbed.Cloud.Foundation
             get;
             set;
         }
-
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// created_at
         /// </summary>
@@ -132,7 +132,7 @@ namespace Mbed.Cloud.Foundation
         /// <summary>
         /// device_execution_mode
         /// </summary>
-        int DeviceExecutionMode
+        int? DeviceExecutionMode
         {
             get;
             set;
@@ -163,7 +163,7 @@ namespace Mbed.Cloud.Foundation
             get;
             set;
         }
-
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// enrolment_list_timestamp
         /// </summary>
@@ -178,7 +178,6 @@ namespace Mbed.Cloud.Foundation
         string FirmwareChecksum
         {
             get;
-            set;
         }
 
         /// <summary>
@@ -200,62 +199,6 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
-        /// last_operator_suspended_category
-        /// </summary>
-        string LastOperatorSuspendedCategory
-        {
-            get;
-        }
-
-        /// <summary>
-        /// last_operator_suspended_description
-        /// </summary>
-        string LastOperatorSuspendedDescription
-        {
-            get;
-        }
-
-        /// <summary>
-        /// last_operator_suspended_updated_at
-        /// </summary>
-        DateTime? LastOperatorSuspendedUpdatedAt
-        {
-            get;
-        }
-
-        /// <summary>
-        /// last_system_suspended_category
-        /// </summary>
-        string LastSystemSuspendedCategory
-        {
-            get;
-        }
-
-        /// <summary>
-        /// last_system_suspended_description
-        /// </summary>
-        string LastSystemSuspendedDescription
-        {
-            get;
-        }
-
-        /// <summary>
-        /// last_system_suspended_updated_at
-        /// </summary>
-        DateTime? LastSystemSuspendedUpdatedAt
-        {
-            get;
-        }
-
-        /// <summary>
-        /// lifecycle_status
-        /// </summary>
-        DeviceLifecycleStatus? LifecycleStatus
-        {
-            get;
-        }
-
-        /// <summary>
         /// manifest
         /// </summary>
         string Manifest
@@ -263,7 +206,7 @@ namespace Mbed.Cloud.Foundation
             get;
             set;
         }
-
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// manifest_timestamp
         /// </summary>
@@ -300,14 +243,6 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
-        /// operator_suspended
-        /// </summary>
-        bool? OperatorSuspended
-        {
-            get;
-        }
-
-        /// <summary>
         /// serial_number
         /// </summary>
         string SerialNumber
@@ -324,15 +259,7 @@ namespace Mbed.Cloud.Foundation
             get;
             set;
         }
-
-        /// <summary>
-        /// system_suspended
-        /// </summary>
-        bool? SystemSuspended
-        {
-            get;
-        }
-
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// updated_at
         /// </summary>

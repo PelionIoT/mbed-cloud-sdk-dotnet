@@ -89,6 +89,12 @@ namespace Manhasset.Generator.src.Generators
                 // return type
                 var returns = TypeHelpers.MapType(method["return_info"]["type"].GetStringValue()) ?? method["return_info"]["type"].GetStringValue().ToPascal();
 
+                if (returns == "Void")
+                {
+                    returns = entityPascalName;
+                    isVoid = true;
+                }
+
                 // name of custom method
                 var customMethodName = method["custom_method"].GetStringValue().ToPascal();
 
@@ -110,6 +116,7 @@ namespace Manhasset.Generator.src.Generators
                 var queryParams = new List<MyParameterContainer>();
                 var bodyParams = new List<MyParameterContainer>();
                 var fileParams = new List<MyParameterContainer>();
+                var formParams = new List<MyParameterContainer>();
 
                 // does method need a request param
                 if (method["fields"].Any(f => f["in"].GetStringValue() == "body"))
@@ -128,6 +135,18 @@ namespace Manhasset.Generator.src.Generators
 
                 foreach (var field in method["fields"])
                 {
+                    var _key = field["_key"].GetStringValue()?.ToPascal();
+                    var _name = field["name"].GetStringValue();
+                    var _api_fieldname = field["api_fieldname"].GetStringValue();
+                    var _entity_fieldname = field["entity_fieldname"].GetStringValue()?.ToPascal();
+                    var _parameter_fieldname = field["parameter_fieldname"].GetStringValue();
+
+                    // TODO remove as soon as fixed in generator. Truly awful hack
+                    if (_name == "device_id" && entityPascalName == "Device")
+                    {
+                        _name = "id";
+                    }
+
                     // where is parameter?
                     var paramIn = field["in"].GetStringValue();
                     // is it external?
@@ -136,12 +155,10 @@ namespace Manhasset.Generator.src.Generators
                     var required = field["required"].GetBoolValue();
                     // the type
                     string type = null;
-                    // the fieldname as it is in parameter
-                    var fieldName = field["parameter_fieldname"].GetStringValue() ?? field["name"].GetStringValue();
-                    // key on entity
-                    var key = field["_key"].GetStringValue()?.ToPascal();
                     // replace body with other type
                     var replaceBody = field["__REPLACE_BODY"] != null;
+
+                    var defaultValue = field["minimum"].GetStringValue() ?? field["default"].GetStringValue();
 
                     var internalVal = field["items"] != null ? field["items"]["type"].GetStringValue() : null;
                     type = TypeHelpers.GetAdditionalProperties(field) ?? TypeHelpers.MapType(field["type"].GetStringValue(), internalVal) ?? "string";
@@ -154,11 +171,12 @@ namespace Manhasset.Generator.src.Generators
                     {
                         var param = new MyParameterContainer
                         {
-                            Key = key,
+                            Key = _entity_fieldname,
                             ParamType = type,
                             External = true,
                             Required = required,
-                            FieldName = fieldName,
+                            FieldName = _name ?? _parameter_fieldname ?? _api_fieldname,
+                            DefaultValue = defaultValue,
                         };
                         pathParams.Add(param);
                     }
@@ -167,11 +185,12 @@ namespace Manhasset.Generator.src.Generators
                     {
                         var param = new MyParameterContainer
                         {
-                            Key = key,
+                            Key = _entity_fieldname,
                             ParamType = type,
                             External = true,
                             Required = required,
-                            FieldName = fieldName,
+                            FieldName = _name ?? _api_fieldname,
+                            DefaultValue = defaultValue,
                         };
                         queryParams.Add(param);
                     }
@@ -180,28 +199,46 @@ namespace Manhasset.Generator.src.Generators
                     {
                         var param = new MyParameterContainer
                         {
-                            Key = key,
+                            Key = _name?.ToPascal() ?? _entity_fieldname,
                             ParamType = type,
                             External = external,
                             Required = required,
                             ReplaceBody = replaceBody,
-                            FieldName = fieldName,
-                            CallContext = "request",
+                            FieldName = _api_fieldname,
+                            CallContext = external ? null : "request",
+                            DefaultValue = defaultValue,
                         };
                         bodyParams.Add(param);
                     }
 
                     if (paramIn == "stream")
                     {
-                        var param = new MyParameterContainer
+                        if (field["type"].GetStringValue() == "file")
                         {
-                            Key = key,
-                            ParamType = type,
-                            External = true,
-                            Required = required,
-                            FieldName = fieldName,
-                        };
-                        fileParams.Add(param);
+                            var param = new MyParameterContainer
+                            {
+                                Key = _entity_fieldname,
+                                ParamType = type,
+                                External = true,
+                                Required = required,
+                                FieldName = _name ?? _api_fieldname,
+                                DefaultValue = defaultValue,
+                            };
+                            fileParams.Add(param);
+                        }
+                        else
+                        {
+                            var param = new MyParameterContainer
+                            {
+                                Key = _entity_fieldname,
+                                ParamType = type,
+                                External = true,
+                                Required = required,
+                                FieldName = _name ?? _api_fieldname,
+                                DefaultValue = defaultValue,
+                            };
+                            formParams.Add(param);
+                        }
                     }
                 }
 
@@ -244,7 +281,7 @@ namespace Manhasset.Generator.src.Generators
                     }
                 }
 
-                var methodParams = new MyMethodParameterContainer(pathParams, isPaginated ? new List<MyParameterContainer>() : queryParams, bodyParams, fileParams);
+                var methodParams = new MyMethodParameterContainer(pathParams, isPaginated ? new List<MyParameterContainer>() : queryParams, bodyParams, fileParams, formParams);
 
                 // method is paginated, so create paginatedMethodContainer
                 if (isPaginated == true)
@@ -269,6 +306,7 @@ namespace Manhasset.Generator.src.Generators
                         QueryParams = queryParams,
                         BodyParams = bodyParams,
                         FileParams = fileParams,
+                        FormParams = formParams,
                         MethodParams = methodParams,
                         CustomMethodCall = isCustomMethodCall,
                         CustomMethodName = customMethodName,
@@ -325,6 +363,7 @@ namespace Manhasset.Generator.src.Generators
                         QueryParams = queryParams,
                         BodyParams = bodyParams,
                         FileParams = fileParams,
+                        FormParams = formParams,
                         MethodParams = methodParams,
                         CustomMethodCall = isCustomMethodCall,
                         CustomMethodName = customMethodName,
@@ -332,7 +371,8 @@ namespace Manhasset.Generator.src.Generators
                         IsAsync = true,
                         HasRequest = hasRequest,
                         IsVoidTask = isVoid,
-                };
+                        UseAnnonBody = ((methodName == "AddToGroup" || methodName == "RemoveFromGroup") && entityPascalName == "Device")
+                    };
 
                     if (isPrivateMethod)
                     {

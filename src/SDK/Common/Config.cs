@@ -15,6 +15,7 @@ namespace Mbed.Cloud.Common
     /// </summary>
     public class Config
     {
+        private bool dotEnvLoaded = false;
         /// <summary>
         /// The API key environment key
         /// </summary>
@@ -58,49 +59,22 @@ namespace Mbed.Cloud.Common
             var setkey = apiKey ?? Environment.GetEnvironmentVariable(API_KEY);
             var setHost = host ?? Environment.GetEnvironmentVariable(HOST);
 
-            if (!string.IsNullOrEmpty(setkey))
+            if (string.IsNullOrEmpty(setkey))
+            {
+                ApiKey = LoadFromEnvironment(API_KEY, "default");
+            }
+            else
             {
                 ApiKey = setkey;
             }
 
-            if (!string.IsNullOrEmpty(setHost))
+            if (string.IsNullOrEmpty(setHost))
+            {
+                Host = LoadFromEnvironment(HOST, "https://api.us-east-1.mbedcloud.com");
+            }
+            else
             {
                 Host = setHost;
-            }
-
-            // if either is still null then look in .env file
-            if (string.IsNullOrEmpty(setkey) || string.IsNullOrEmpty(setHost))
-            {
-                try
-                {
-                    var envDirectory = FindDotEnv(Directory.GetCurrentDirectory());
-                    if (string.IsNullOrEmpty(envDirectory))
-                    {
-                        DotNetEnv.Env.Load();
-                    }
-                    else
-                    {
-                        DotNetEnv.Env.Load(envDirectory);
-                    }
-                }
-                catch (System.IO.FileNotFoundException)
-                {
-                    Console.WriteLine("No .env file provided.");
-                }
-                catch (UnauthorizedAccessException)
-                {
-                    Console.WriteLine("Can't load .env from this directory");
-                }
-                finally
-                {
-                    ApiKey = DotNetEnv.Env.GetString(API_KEY, setkey);
-                    if (string.IsNullOrEmpty(ApiKey))
-                    {
-                        ApiKey = "default";
-                    }
-
-                    Host = DotNetEnv.Env.GetString(HOST, setHost ?? "https://api.us-east-1.mbedcloud.com");
-                }
             }
         }
 
@@ -160,31 +134,54 @@ namespace Mbed.Cloud.Common
         {
             try
             {
-                // search current directory for .env
-                var envFile = Directory.GetFiles(currentDirectory, ".env");
-                if (envFile.Length == 0)
-                {
-                    // no env found so check parent directory
-                    var parentDirectory = Directory.GetParent(currentDirectory);
-                    if (parentDirectory == null)
-                    {
-                        // reached top of file directory
-                        return null;
-                    }
-
-                    // search the parent directory
-                    return FindDotEnv(parentDirectory.FullName);
-                }
-
-                // found an env
-                Console.WriteLine($"found .env in {envFile.FirstOrDefault()}");
-                return envFile.FirstOrDefault();
+                return Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, ".env", SearchOption.AllDirectories).FirstOrDefault();
             }
             catch (UnauthorizedAccessException)
+            {
+                Console.WriteLine(".env in unreachable directory");
+                return null;
+            }
+            catch (DirectoryNotFoundException)
             {
                 Console.WriteLine("no .env found in directory");
                 return null;
             }
+        }
+
+        private void LoadDotEnv()
+        {
+            try
+            {
+                var envDirectory = FindDotEnv(Directory.GetCurrentDirectory());
+                if (string.IsNullOrEmpty(envDirectory))
+                {
+                    DotNetEnv.Env.Load();
+                }
+                else
+                {
+                    DotNetEnv.Env.Load(envDirectory);
+                }
+
+                dotEnvLoaded = true;
+            }
+            catch (System.IO.FileNotFoundException)
+            {
+                Console.WriteLine("No .env file provided.");
+            }
+            catch (UnauthorizedAccessException)
+            {
+                Console.WriteLine("Can't load .env from this directory");
+            }
+        }
+
+        private string LoadFromEnvironment(string key, string defaultValue = null)
+        {
+            if (!dotEnvLoaded)
+            {
+                LoadDotEnv();
+            }
+
+            return DotNetEnv.Env.GetString(key, defaultValue);
         }
     }
 }

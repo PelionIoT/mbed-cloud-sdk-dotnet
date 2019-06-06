@@ -13,42 +13,6 @@ namespace MbedCloudSDK.UnitTests.Common
 
         private const string host = "https://api.us-west-1.mbedcloud.com";
 
-        private const string envPath = ".env";
-
-        [Test]
-        [Ignore("Currently not working in windows")]
-        public void DotEnvProvided()
-        {
-            string[] env = { $"{Config.API_KEY}={apiKey}", $"{Config.HOST}={host}" };
-            System.IO.File.WriteAllLines(envPath, env);
-
-            var config = new Config();
-
-            Assert.AreEqual(config.ApiKey, apiKey);
-            Assert.AreEqual(config.Host, host);
-
-            System.IO.File.Delete(envPath);
-        }
-
-        [Test]
-        [Ignore("Currently not working in windows")]
-        public void DotEnvAndBools()
-        {
-            string[] env = { $"{Config.API_KEY}={apiKey}", $"{Config.HOST}={host}" };
-            System.IO.File.WriteAllLines(envPath, env);
-
-            var config = new Config
-            {
-                ForceClear = true,
-                AutostartNotifications = true,
-            };
-
-            Assert.AreEqual(config.ApiKey, apiKey);
-            Assert.AreEqual(config.Host, host);
-
-            System.IO.File.Delete(envPath);
-        }
-
         [Test]
         public void EnvironmentVariables()
         {

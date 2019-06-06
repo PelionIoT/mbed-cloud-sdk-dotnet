@@ -8,6 +8,7 @@ namespace MbedCloudSDK.Common.Extensions
     using System.Collections.Generic;
     using System.Globalization;
     using System.Text;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// ObjectExtensions
@@ -84,29 +85,19 @@ namespace MbedCloudSDK.Common.Extensions
         /// A textual representation of the object <paramref name="me"/>, useful for debugging. It's always
         /// <see cref="string.Empty"/> if <paramref name="me"/> is <see langword="null"/>.
         /// </returns>
-        public static string DebugDump(this object me, DumpFormat format = DumpFormat.Json)
+        public static string DebugDump(this object me)
         {
             if (me == null)
             {
                 return string.Empty;
             }
 
-            if (format == DumpFormat.Json)
+            return JsonConvert.SerializeObject(me, Formatting.Indented, new JsonSerializerSettings
             {
-                return Newtonsoft.Json.JsonConvert.SerializeObject(me);
-            }
-
-            var text = new StringBuilder();
-            text.AppendLine($"class {me.GetType().Name}SerializerData {{");
-
-            foreach (var property in me.GetProperties())
-            {
-                text.AppendLine(string.Format(CultureInfo.InvariantCulture, "    {0}: {1}", property.Key, property.Value));
-            }
-
-            text.AppendLine("}");
-
-            return text.ToString();
+                Error = (serializer, error) => {
+                    error.ErrorContext.Handled = true;
+                }
+            });
         }
 
         /// <summary>

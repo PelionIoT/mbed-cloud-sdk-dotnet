@@ -1,3 +1,4 @@
+using System;
 using Manhasset.Core.src.Common;
 using Manhasset.Core.src.Containers;
 using Manhasset.Generator.src.extensions;
@@ -7,6 +8,8 @@ namespace Manhasset.Generator.src.common
 {
     public static class TypeHelpers
     {
+        public static readonly string DateTimeFormatString = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
+        public static readonly string PythonDateFormatString = "yyyy-MM-dd";
         public static string GetPropertyType(JToken property, ClassContainer container = null)
         {
             // format or type for most methods
@@ -50,6 +53,7 @@ namespace Manhasset.Generator.src.common
                     case "boolean":
                         return "bool";
                     case "string":
+                    case "uri":
                         return "string";
                     case "integer":
                     case "int32":
@@ -65,6 +69,8 @@ namespace Manhasset.Generator.src.common
                         return "DateTime";
                     case "array":
                         return $"List<{internalValue}>";
+                    case "filter":
+                        return "Filter";
                     default:
                         return null;
                 }
@@ -112,6 +118,16 @@ namespace Manhasset.Generator.src.common
                 default:
                     return "EqualTo";
             }
+        }
+
+        public static string GetListOptionsName(string entityName, string returns)
+        {
+            if (entityName.ToUpper() == returns.ToUpper())
+            {
+                return entityName;
+            }
+
+            return $"{entityName}{returns}";
         }
     }
 }

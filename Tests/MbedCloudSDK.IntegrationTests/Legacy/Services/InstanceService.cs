@@ -122,7 +122,7 @@ namespace MbedCloudSDK.IntegrationTests.Services
 
         private List<SdkApi> GetMethods(Type type)
         {
-            return type.GetMethods().Select(m => new SdkApi{ Name = Utils.CamelToSnake(m.Name)}).ToList();
+            return type.GetMethods().Select(m => new SdkApi { Name = Utils.CamelToSnake(m.Name) }).ToList();
         }
 
         public List<Instance> ListModuleInstances(ModuleEnum module)

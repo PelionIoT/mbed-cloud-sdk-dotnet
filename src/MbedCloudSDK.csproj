@@ -4,16 +4,16 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <IsPackable>true</IsPackable>
     <PackageId>Mbed.Cloud.SDK</PackageId>
-    <Title>Mbed Cloud SDK for .NET</Title>
+    <Title>Pelion Device Management SDK for .NET</Title>
     <AssemblyTitle>MbedCloudSDK</AssemblyTitle>
     <AssemblyName>MbedCloudSDK</AssemblyName>
-    <Version>2.0.2</Version>
+    <Version>2.1.0</Version>
     <Authors>Alex Logan</Authors>
-    <Description>The Mbed Cloud SDK provides a simplified interface to the Mbed Cloud APIs by exposing functionality using conventions and paradigms familiar to .NET developers.</Description>
+    <Description>The Pelion Device Management SDK provides a simplified interface to the Pelion Device Management APIs by exposing functionality using conventions and paradigms familiar to .NET developers.</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageReleaseNotes>See changelog at https://github.com/ARMmbed/mbed-cloud-sdk-dotnet/blob/master/CHANGELOG.md</PackageReleaseNotes>
-    <Copyright>Copyright (c) 2017 Arm</Copyright>
-    <PackageTags>Mbed SDK IoT Arm</PackageTags>
+    <Copyright>Copyright (c) 2019 Arm</Copyright>
+    <PackageTags>Pelion Device Management SDK IoT Arm</PackageTags>
     <PackageLicenseUrl>https://github.com/ARMmbed/mbed-cloud-sdk-dotnet/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/ARMmbed/mbed-cloud-sdk-dotnet</PackageProjectUrl>
     <PackageIconUrl>https://avatars2.githubusercontent.com/u/8916057</PackageIconUrl>
@@ -60,13 +60,13 @@
     <PackageReference Include="AutoMapper" Version="7.0.1" />
     <PackageReference Include="codecracker.CSharp" Version="1.1.0" PrivateAssets="All" />
     <PackageReference Include="DotNetEnv" Version="1.2.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
-    <PackageReference Include="Nito.AsyncEx" Version="5.0.0-pre-05" />
-    <PackageReference Include="RestSharp" Version="106.6.7" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="Nito.AsyncEx" Version="5.0.0" />
+    <PackageReference Include="RestSharp" Version="106.6.9" />
     <PackageReference Include="log4net" Version="2.0.8" />
-    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" PrivateAssets="All" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="All" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
-    <PackageReference Include="Polly" Version="7.0.2" />
+    <PackageReference Include="Polly" Version="7.1.0" />
   </ItemGroup>
 
 </Project>

@@ -27,10 +27,12 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public interface IDeviceRepository
     {
+        Task AddToGroup(string deviceGroupId, Device request);
         Task<Device> Create(Device request);
         Task Delete(string id);
         PaginatedResponse<IDeviceListOptions, Device> List(IDeviceListOptions options = null);
         Task<Device> Read(string id);
+        Task RemoveFromGroup(string deviceGroupId, Device request);
         Task<CertificateEnrollment> RenewCertificate(string certificateName, string id);
         Task<Device> Update(string id, Device request);
     }

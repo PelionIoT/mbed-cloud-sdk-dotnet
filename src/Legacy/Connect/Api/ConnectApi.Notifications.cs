@@ -35,7 +35,7 @@ namespace MbedCloudSDK.Connect.Api
         private Task notificationTask;
         private ArraySegment<byte> receivedBuffer;
         private byte[] receivedBytes;
-        private Policy retryPolicy;
+        private AsyncPolicy retryPolicy;
         private ClientWebSocket webSocketClient;
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace MbedCloudSDK.Connect.Api
                             ForceClear();
                         }
 
-                        Log.Info("starting notifications...");
+                        Log.Info($"starting notifications... in {this.GetHashCode()}");
 
                         // dispose of old cancellation token if instance hasn't been torn down
                         cancellationToken?.Dispose();
@@ -172,7 +172,7 @@ namespace MbedCloudSDK.Connect.Api
 
                         // start a new task
                         notificationTask = Task.Factory.StartNew(
-                            _ =>
+                            async _ =>
                         {
                             var dynamicBuffer = new List<byte>();
                             while (!cancellationToken.IsCancellationRequested)
@@ -269,9 +269,10 @@ namespace MbedCloudSDK.Connect.Api
             }
             else
             {
-                Log.Info("stopping notificztions...");
+                Log.Info($"stopping notificztions... in {this.GetHashCode()}");
 
-                if (notificationTask?.Status != TaskStatus.Running)
+                Log.Info($"Task status - {notificationTask?.Status}");
+                if (notificationTask?.Status != TaskStatus.Running && notificationTask?.Status != TaskStatus.RanToCompletion)
                 {
                     Log.Debug("nothing to stop...");
                 }
@@ -282,15 +283,17 @@ namespace MbedCloudSDK.Connect.Api
                         // cancel and dispose the cancellation token
                         try
                         {
+                            Log.Debug("try to cancel token");
                             cancellationToken.Cancel();
                         }
                         catch (InvalidOperationException e)
                         {
                             // token might already be cancelled, so just log this exception
-                            Log.Error(e.Message, e);
+                            Log.Error(e.Message);
                         }
                         finally
                         {
+                            Log.Debug("dispose token");
                             cancellationToken.Dispose();
                         }
                     }
@@ -299,17 +302,21 @@ namespace MbedCloudSDK.Connect.Api
 
                     if (notificationTask != null)
                     {
+                        Log.Debug($"Notification task status: cancelled - {notificationTask.IsCanceled}, faulted - {notificationTask.IsFaulted}");
                         if (notificationTask.IsCanceled || notificationTask.IsFaulted)
                         {
+                            Log.Debug("dispose notification task");
                             notificationTask.Dispose();
                         }
                     }
 
                     if (!skipCleanup)
                     {
+                        Log.Debug("Cleaning up");
                         CleanUp();
                     }
 
+                    Log.Debug("NotificationsStarted = false");
                     NotificationsStarted = false;
                 }
             }
@@ -517,16 +524,38 @@ namespace MbedCloudSDK.Connect.Api
             await StartWebsocketAsync();
         }
 
-        private void Notifications()
+        private async Task Notifications()
         {
             while (!cancellationToken.IsCancellationRequested)
             {
-                retryPolicy.Execute(() =>
+                await retryPolicy.ExecuteAsync(async () =>
                 {
-                    var resp = NotificationsApi.LongPollNotifications();
-                    if (resp != null)
+                    if (!cancellationToken.IsCancellationRequested)
                     {
-                        Notify(NotificationMessage.Map(resp));
+                        try
+                        {
+                            Log.Debug($"Do a longpoll from {this.GetHashCode()}, calcellation requested - {cancellationToken.IsCancellationRequested}");
+                            var resp = await NotificationsApi.LongPollNotificationsAsync(cancellationToken.Token);
+                            if (resp != null)
+                            {
+                                Notify(NotificationMessage.Map(resp));
+                            }
+                        }
+                        catch (mds.Client.ApiException e)
+                        {
+                            Log.Error($"in notifictions - {e.Message} from {this.GetHashCode()}");
+                            throw;
+                        }
+                        catch (TaskCanceledException)
+                        {
+                            Log.Error($"task cancelled from {this.GetHashCode()}");
+                            throw;
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(e.Message);
+                            throw;
+                        }
                     }
                 });
             }

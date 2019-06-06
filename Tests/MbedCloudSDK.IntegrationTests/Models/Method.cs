@@ -18,6 +18,9 @@ using MbedCloudSDK.Common.Extensions;
 using Mbed.Cloud.Common;
 using Mbed.Cloud.Common.CustomSerializers;
 using Mbed.Cloud.Common.Filters;
+using System.IO;
+using Newtonsoft.Json.Converters;
+using MbedCloudSDK.IntegrationTests.CustomSerialisers;
 
 namespace MbedCloudSDK.IntegrationTests.Models
 {
@@ -34,7 +37,8 @@ namespace MbedCloudSDK.IntegrationTests.Models
             MethodInfo = methodInfo;
         }
 
-        public object Call(object myInstance, Dictionary<string, object> parameters = null) {
+        public object Call(object myInstance, Dictionary<string, object> parameters = null)
+        {
             return CallMethod(myInstance, MethodInfo, parameters);
         }
 
@@ -51,14 +55,30 @@ namespace MbedCloudSDK.IntegrationTests.Models
                     args.Add("id", args[idKey]);
                     args.Remove(idKey);
                 }
+
+                // stats events doesn't follow standard pattern for parameters. Hard code the param map
+                if (y == "campaign_statistics" && args.ContainsKey("summary_status_id"))
+                {
+                    args.Add("id", args["summary_status_id"]);
+                    args.Remove("summary_status_id");
+                }
+
                 var camelDict = TestServer.Utils.SnakeToCamelDict(args);
                 var argsJson = JsonConvert.SerializeObject(camelDict, GetDateSettings());
                 argsJsonObj = JObject.Parse(argsJson);
             }
 
+            Console.WriteLine("---------------calling-method---------------");
+            Console.WriteLine($"Calling method {Name}");
+            Console.WriteLine("Parameters from testrunner: ");
+            Console.WriteLine(argsJsonObj.ToString());
+
+
             try
             {
                 var @params = GetMethodParams(methodInfo, argsJsonObj);
+                Console.WriteLine("With parameters: ");
+                Console.WriteLine(@params.DebugDump());
                 object invokedMethod = null;
                 if (IsAsyncMethod(methodInfo))
                 {
@@ -93,37 +113,49 @@ namespace MbedCloudSDK.IntegrationTests.Models
                         var asyncConsumer = invokedMethod as AsyncConsumer<string>;
                         return asyncConsumer.ToString();
                     }
-                    if (invokedMethod.GetType().GetProperties().Select(p => p.Name).Contains("DeviceFilter"))
-                    {
-                        var returnedJson = JObject.FromObject(invokedMethod);
-                        var tempJson = new JObject();
+                    // if (invokedMethod.GetType().GetProperties().Select(p => p.Name).Contains("DeviceFilter"))
+                    // {
+                    //     var returnedJson = JObject.FromObject(invokedMethod);
+                    //     var tempJson = new JObject();
 
-                        var deviceFilter = returnedJson["DeviceFilter"];
-                        returnedJson.Remove("DeviceFilter");
-                        returnedJson.Add("DeviceFilter", JObject.FromObject(deviceFilter["FilterJson"]));
+                    //     var deviceFilter = returnedJson["DeviceFilter"];
+                    //     returnedJson.Remove("DeviceFilter");
+                    //     returnedJson.Add("DeviceFilter", JObject.FromObject(deviceFilter["FilterJson"]));
 
-                        foreach (var row in returnedJson)
-                        {
-                            tempJson.Add(TestServer.Utils.CamelToSnake(row.Key), row.Value);
-                        }
+                    //     foreach (var row in returnedJson)
+                    //     {
+                    //         tempJson.Add(TestServer.Utils.CamelToSnake(row.Key), row.Value);
+                    //     }
 
-                        return tempJson;
-                    }
+                    //     return tempJson;
+                    // }
                     if (methodInfo.ReturnType.Name.StartsWith("PaginatedResponse"))
                     {
                         // if return type is a paginator, return the data property which ca
                         var listResponse = methodInfo.ReturnType.GetMethod("All").Invoke(invokedMethod, null);
                         var serializedResult = JsonConvert.SerializeObject(listResponse, Formatting.Indented, GetSerializerSettings());
-                        return JsonConvert.DeserializeObject(serializedResult);
+                        return JsonConvert.DeserializeObject(serializedResult, GetDeserializerSettings());
+                    }
+                    if (invokedMethod.GetType() == typeof(FileStream))
+                    {
+                        var file = invokedMethod as FileStream;
+                        file.Close();
+                        file.Dispose();
+                        Console.WriteLine("--------------------------------------------");
+                        return "got a file";
                     }
                 }
                 var result = JsonConvert.SerializeObject(invokedMethod, Formatting.Indented, GetSerializerSettings());
                 if (result == null || result == "null")
                 {
+                    Console.WriteLine("--------------------------------------------");
                     return null;
                 }
 
-                return JsonConvert.DeserializeObject(result);
+                Console.WriteLine("Response: ");
+                Console.WriteLine(result);
+                Console.WriteLine("--------------------------------------------");
+                return JsonConvert.DeserializeObject(result, GetDeserializerSettings());
             }
             catch (TargetInvocationException e)
             {
@@ -134,8 +166,9 @@ namespace MbedCloudSDK.IntegrationTests.Models
 
                 throw;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e);
                 throw;
             }
         }
@@ -145,7 +178,7 @@ namespace MbedCloudSDK.IntegrationTests.Models
             var settings = new JsonSerializerSettings()
             {
                 DateFormatString = "yyyy-MM-ddTHH:mm:ss.ffffffZ",
-                DateTimeZoneHandling = DateTimeZoneHandling.Utc
+                DateTimeZoneHandling = DateTimeZoneHandling.Utc,
             };
             return settings;
         }
@@ -154,7 +187,21 @@ namespace MbedCloudSDK.IntegrationTests.Models
         {
             var settings = new JsonSerializerSettings()
             {
-                DateFormatString = "yyyy-MM-ddTHH:mm:ss.ffffffZ",
+                DateTimeZoneHandling = DateTimeZoneHandling.Utc
+            };
+            var contractResolver = new DefaultContractResolver
+            {
+                NamingStrategy = new SnakeCaseNamingStrategy(),
+            };
+            settings.ContractResolver = contractResolver;
+            settings.Converters.Add(new StringEnumConverter());
+            return settings;
+        }
+
+        private JsonSerializerSettings GetDeserializerSettings()
+        {
+            var settings = new JsonSerializerSettings()
+            {
                 DateTimeZoneHandling = DateTimeZoneHandling.Utc
             };
             var contractResolver = new DefaultContractResolver
@@ -186,7 +233,10 @@ namespace MbedCloudSDK.IntegrationTests.Models
                 if (paramType.IsPrimitive || paramType == typeof(String))
                 {
                     var paramValue = GetParamValuePrimitive(p, paramType, argsJsonObj);
-                    serialisedParams.Add(paramValue);
+                    if (paramValue != null)
+                    {
+                        serialisedParams.Add(paramValue);
+                    }
                 }
                 else if (paramType == typeof(DateTime))
                 {
@@ -202,6 +252,17 @@ namespace MbedCloudSDK.IntegrationTests.Models
                         serialisedParams.Add(null);
                     }
                 }
+                else if (paramType == typeof(Stream))
+                {
+                    var filePath = argsJsonObj[p.Name.ToUpper()].Value<string>();
+                    var fs = File.OpenRead(filePath);
+                    serialisedParams.Add(fs);
+                }
+                else if (paramType == typeof(Dictionary<string, string>))
+                {
+                    var dict = argsJsonObj[p.Name.ToUpper()].ToObject<Dictionary<string, string>>();
+                    serialisedParams.Add(dict);
+                }
                 else
                 {
                     var properties = paramType.GetProperties();
@@ -213,10 +274,17 @@ namespace MbedCloudSDK.IntegrationTests.Models
                         {
                             if (propertyInst.PropertyType.Name == "Filter")
                             {
-                                var filterJson = GetParamValue(propertyInst, argsJsonObj);
-                                var filterJsonString = filterJson != null ? filterJson.ToString() : "";
-                                var filterJToken = JToken.FromObject(new Filter(filterJsonString));
-                                vals[propertyInst.Name] = filterJToken;
+                                if (propertyInst.Name == "DeviceFilterHelper")
+                                {
+                                    vals[propertyInst.Name] = null;
+                                }
+                                else
+                                {
+                                    var filterJson = GetParamValue(propertyInst, argsJsonObj);
+                                    var filterJsonString = filterJson != null ? filterJson.ToString() : "";
+                                    var filterJToken = JToken.FromObject(new Filter(filterJsonString, p));
+                                    vals[propertyInst.Name] = filterJToken;
+                                }
                             }
                             else if (propertyInst.PropertyType == typeof(List<string>))
                             {
@@ -231,16 +299,40 @@ namespace MbedCloudSDK.IntegrationTests.Models
                                     vals[propertyInst.Name] = paramValue;
                                 }
                             }
+                            else if (propertyInst.PropertyType.BaseType == typeof(Entity))
+                            {
+                                var paramValue = GetParamValue(propertyInst, argsJsonObj);
+                                var nestedObject = new JObject();
+                                if (paramValue != null)
+                                {
+                                    foreach (var item in paramValue)
+                                    {
+                                        if (item is JProperty itemProperty)
+                                        {
+                                            var jProperty = new JProperty(itemProperty.Name.SnakeToCamel(), itemProperty.Value);
+                                            nestedObject.Add(jProperty);
+                                        }
+                                    }
+
+                                    vals[propertyInst.Name] = nestedObject;
+                                }
+                            }
                             else
                             {
                                 var paramValue = GetParamValue(propertyInst, argsJsonObj);
-                                vals[propertyInst.Name] = paramValue;
+                                if (paramValue != null)
+                                {
+                                    vals[propertyInst.Name] = paramValue;
+                                }
                             }
                         }
                     }
                     try
                     {
-                        var obj = JsonConvert.DeserializeObject(vals.ToString(), paramType);
+                        var obj = JsonConvert.DeserializeObject(vals.ToString(), paramType, new JsonSerializerSettings
+                        {
+                            ContractResolver = new InternalSetterContractResolver()
+                        });
                         serialisedParams.Add(obj);
                     }
                     catch (JsonReaderException)
@@ -254,7 +346,7 @@ namespace MbedCloudSDK.IntegrationTests.Models
             {
                 while (serialisedParams.Count < @params.Length)
                 {
-                    serialisedParams.Add(null);
+                    serialisedParams.Add(Type.Missing);
                 }
             }
             return serialisedParams;

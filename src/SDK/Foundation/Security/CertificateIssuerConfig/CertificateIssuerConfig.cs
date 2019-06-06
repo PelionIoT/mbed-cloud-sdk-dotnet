@@ -15,7 +15,7 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
-    using System.Collections.Generic;
+    using Newtonsoft.Json;
     using System;
 
     /// <summary>
@@ -23,8 +23,6 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public class CertificateIssuerConfig : Entity, ICertificateIssuerConfig
     {
-        internal static Dictionary<string, string> Renames = new Dictionary<string, string>() { { "CertificateReference", "reference" }, };
-
         /// <summary>
         /// certificate_issuer_id
         /// </summary>
@@ -33,16 +31,7 @@ namespace Mbed.Cloud.Foundation
             get;
             set;
         }
-
-        /// <summary>
-        /// certificate_reference
-        /// </summary>
-        public string CertificateReference
-        {
-            get;
-            set;
-        }
-
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// created_at
         /// </summary>
@@ -52,6 +41,15 @@ namespace Mbed.Cloud.Foundation
             internal set;
         }
 
+        /// <summary>
+        /// reference
+        /// </summary>
+        public string Reference
+        {
+            get;
+            set;
+        }
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
         /// updated_at
         /// </summary>

@@ -30,8 +30,8 @@ namespace MbedCloudSDK.UnitTests.Foundation
             var sdk = new SDK(new Config("ak_1"));
             Assert.AreEqual("ak_1", sdk.Config.ApiKey);
 
-            // var user = sdk.User();
-            // Assert.AreEqual("ak_1", user.Config.ApiKey);
+            var user = sdk.Foundation().UserRepository();
+            Assert.AreEqual("ak_1", user.Config.ApiKey);
         }
 
         [Test]
@@ -40,7 +40,7 @@ namespace MbedCloudSDK.UnitTests.Foundation
             var sdk1 = new SDK(new Config("ak_1"));
             Assert.AreEqual("ak_1", sdk1.Config.ApiKey);
 
-            var sdk2 = new SDK(new Config("ak_2"));
+            var sdk2 = new SDK("ak_2");
             Assert.AreEqual("ak_2", sdk2.Config.ApiKey);
         }
 

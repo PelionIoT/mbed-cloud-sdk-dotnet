@@ -53,9 +53,22 @@ namespace Mbed.Cloud.RestClient
 
         private readonly ApiClient apiClient;
         private readonly string dateTimeFormat = "yyyy-MM-dd'T'HH:mm:ss.fffZ";
-        private readonly JsonSerializerSettings deserializationSettings;
 
-        private readonly JsonSerializerSettings serializationSettings;
+        public JsonSerializerSettings SerializationSettings
+        {
+            get
+            {
+                return Mbed.Cloud.RestClient.SerializationSettings.GetSerializationSettings();
+            }
+        }
+
+        public JsonSerializerSettings DeserializationSettings
+        {
+            get
+            {
+                return Mbed.Cloud.RestClient.SerializationSettings.GetDeserializationSettings(Config);
+            }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Client"/> class.
@@ -64,8 +77,6 @@ namespace Mbed.Cloud.RestClient
         public Client(Config config)
         {
             Config = config;
-            serializationSettings = SerializationSettings.GetSerializationSettings();
-            deserializationSettings = SerializationSettings.GetDeserializationSettings(config);
             apiClient = new ApiClient(Config.Host);
         }
 
@@ -91,7 +102,6 @@ namespace Mbed.Cloud.RestClient
         /// <param name="accepts">The accepts.</param>
         /// <param name="bodyParams">The body parameters.</param>
         /// <param name="method">The method.</param>
-        /// <param name="objectToUnpack">The object to unpack.</param>
         /// <param name="failOnNotFound">If true, will throw exception if 404</param>
         /// <returns>Task of T</returns>
         public async Task<T> CallApi<T>(
@@ -104,146 +114,178 @@ namespace Mbed.Cloud.RestClient
                             string[] contentTypes = null,
                             string[] accepts = null,
                             object bodyParams = null,
+                            object externalBodyParams = null,
+                            T objectToUnpack = null,
                             HttpMethods method = default,
-                            T objectToUnpack = default,
                             bool failOnNotFound = false)
                     where T : class, new()
         {
-            var localVarPath = path;
-            var localVarHeaderParams = new Dictionary<string, string>();
-            var localVarPathParams = new Dictionary<string, string>();
-            var localVarQueryParams = new List<KeyValuePair<string, string>>();
-            var localVarFormParams = new Dictionary<string, string>();
-            var localVarFileParams = new Dictionary<string, FileParameter>();
-            object localVarPostBody = null;
-
-            if (contentTypes == null)
+            try
             {
-                contentTypes = new string[] { "application/json" };
-            }
+                var localVarPath = path;
+                var localVarHeaderParams = new Dictionary<string, string>();
+                var localVarPathParams = new Dictionary<string, string>();
+                var localVarQueryParams = new List<KeyValuePair<string, string>>();
+                var localVarFormParams = new Dictionary<string, string>();
+                var localVarFileParams = new Dictionary<string, FileParameter>();
+                object localVarPostBody = null;
 
-            if (accepts == null)
-            {
-                accepts = new string[] { "application/json" };
-            }
-
-            var localVarHttpContentType = ApiClient.SelectHeaderContentType(contentTypes ?? new string[] { });
-
-            var localVarHttpHeaderAccept = ApiClient.SelectHeaderAccept(accepts ?? new string[] { });
-
-            localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            // add path params
-            if (pathParams != null)
-            {
-                foreach (var item in pathParams)
+                if (contentTypes == null)
                 {
-                    if (item.Value != null)
+                    contentTypes = new string[] { "application/json" };
+                }
+
+                if (accepts == null)
+                {
+                    accepts = new string[] { "application/json" };
+                }
+
+                var localVarHttpContentType = ApiClient.SelectHeaderContentType(contentTypes ?? new string[] { });
+
+                var localVarHttpHeaderAccept = ApiClient.SelectHeaderAccept(accepts ?? new string[] { });
+
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+                // add path params
+                if (pathParams != null)
+                {
+                    foreach (var item in pathParams)
                     {
-                        localVarPathParams.Add(item.Key, ParameterToString(item.Value));
+                        if (item.Value != null)
+                        {
+                            localVarPathParams.Add(item.Key, ParameterToString(item.Value));
+                        }
                     }
                 }
-            }
 
-            // add query params
-            if (queryParams != null)
-            {
-                foreach (var item in queryParams)
+                // add query params
+                if (queryParams != null)
                 {
-                    if (item.Value != null)
+                    foreach (var item in queryParams)
                     {
-                        localVarQueryParams.AddRange(ParameterToKeyValuePairs(null, item.Key, item.Value));
+                        if (item.Value != null)
+                        {
+                            localVarQueryParams.AddRange(ParameterToKeyValuePairs(null, item.Key, item.Value));
+                        }
                     }
                 }
-            }
 
-            // add header params
-            if (headerParams != null)
-            {
-                foreach (var item in headerParams)
+                // add header params
+                if (headerParams != null)
                 {
-                    if (item.Value != null)
+                    foreach (var item in headerParams)
                     {
-                        localVarHeaderParams.Add(item.Key, ParameterToString(item.Value));
+                        if (item.Value != null)
+                        {
+                            localVarHeaderParams.Add(item.Key, ParameterToString(item.Value));
+                        }
                     }
                 }
-            }
 
-            // add form params
-            if (formParams != null)
-            {
-                foreach (var item in formParams)
+                // add form params
+                if (formParams != null)
                 {
-                    if (item.Value != null)
+                    foreach (var item in formParams)
                     {
-                        localVarFormParams.Add(item.Key, ParameterToString(item.Value));
+                        if (item.Value != null)
+                        {
+                            localVarFormParams.Add(item.Key, ParameterToString(item.Value));
+                        }
                     }
                 }
-            }
 
-            // add file params
-            if (fileParams != null)
-            {
-                foreach (var item in fileParams)
+                // add file params
+                if (fileParams != null)
                 {
-                    if (item.Value != null)
+                    foreach (var item in fileParams)
                     {
-                        localVarFileParams.Add(item.Key, ApiClient.ParameterToFile(item.Key, item.Value));
+                        if (item.Value != null)
+                        {
+                            localVarFileParams.Add(item.Key, ApiClient.ParameterToFile(item.Key, item.Value));
+                        }
                     }
                 }
-            }
 
-            if (bodyParams != null)
-            {
-                localVarPostBody = Serialize(bodyParams, serializationSettings); // http body (model) parameter
-            }
+                // if we have a normal body, and no external body params
+                if (bodyParams != null && externalBodyParams == null)
+                {
+                    localVarPostBody = Serialize(bodyParams, SerializationSettings);
+                }
+                // edge case where we only have external body params
+                else if (bodyParams == null && externalBodyParams != null)
+                {
+                    localVarPostBody = Serialize(externalBodyParams, SerializationSettings);
+                }
+                // we have a combination of internal and external body params
+                else if (bodyParams != null && externalBodyParams != null)
+                {
+                    var allBodyDict = new Dictionary<string, object>();
 
-            localVarHeaderParams["Authorization"] = $"{Config.AuthorizationPrefix} {Config.ApiKey}";
+                    var requestString = Serialize(bodyParams, SerializationSettings);
+                    var requestDict = JsonConvert.DeserializeObject<Dictionary<string, object>>(requestString);
+                    requestDict.ToList().ForEach(x => allBodyDict[x.Key] = x.Value);
 
-            // make the HTTP request
-            var localVarResponse = (IRestResponse)await apiClient.CallApiAsync(
-                localVarPath,
-                (Method)((int)method),
-                localVarQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarFormParams,
-                localVarFileParams,
-                localVarPathParams,
-                localVarHttpContentType).ConfigureAwait(false);
+                    var bodyString = Serialize(externalBodyParams, SerializationSettings);
+                    var bodyDict = JsonConvert.DeserializeObject<Dictionary<string, object>>(bodyString);
+                    bodyDict.ToList().ForEach(x => allBodyDict[x.Key] = x.Value);
 
-            var localVarStatusCode = (int)localVarResponse.StatusCode;
+                    if (allBodyDict.Any())
+                    {
+                        localVarPostBody = Serialize(allBodyDict, SerializationSettings); // http body (model) parameter
+                    }
+                }
 
-            var exception = ExceptionFactory("AddApiKeyToGroups", localVarResponse, failOnNotFound);
-            if (exception != null)
-            {
-                throw exception;
-            }
+                localVarHeaderParams["Authorization"] = $"{Config.AuthorizationPrefix} {Config.ApiKey}";
 
-            if (string.IsNullOrEmpty(localVarResponse.Content))
-            {
-                // we have an instance, if no content, then just return it.
+                // make the HTTP request
+                var localVarResponse = (IRestResponse)await apiClient.CallApiAsync(
+                    localVarPath,
+                    (Method)((int)method),
+                    localVarQueryParams,
+                    localVarPostBody,
+                    localVarHeaderParams,
+                    localVarFormParams,
+                    localVarFileParams,
+                    localVarPathParams,
+                    localVarHttpContentType).ConfigureAwait(false);
+
+                var localVarStatusCode = (int)localVarResponse.StatusCode;
+
+                var exception = ExceptionFactory("AddApiKeyToGroups", localVarResponse, failOnNotFound);
+                if (exception != null)
+                {
+                    throw exception;
+                }
+
+                if (string.IsNullOrEmpty(localVarResponse.Content))
+                {
+                    // we have an instance, if no content, then just return it.
+                    if (objectToUnpack != null)
+                    {
+                        return objectToUnpack;
+                    }
+
+                    return null;
+                }
+
                 if (objectToUnpack != null)
                 {
+                    JsonConvert.PopulateObject(localVarResponse.Content, objectToUnpack, DeserializationSettings);
                     return objectToUnpack;
                 }
 
-                return null;
-            }
+                if (!failOnNotFound && (int)localVarResponse.StatusCode == 404)
+                {
+                    // don't return anything for 404
+                    return null;
+                }
 
-            if (objectToUnpack != null)
+                return JsonConvert.DeserializeObject<T>(localVarResponse.Content, DeserializationSettings);
+            }
+            catch (Exception e)
             {
-                JsonConvert.PopulateObject(localVarResponse.Content, objectToUnpack, deserializationSettings);
-                return objectToUnpack;
+                throw;
             }
-
-            if (!failOnNotFound && (int)localVarResponse.StatusCode == 404)
-            {
-                // don't return anything for 404
-                return null;
-            }
-
-            return JsonConvert.DeserializeObject<T>(localVarResponse.Content, deserializationSettings);
         }
 
         /// <summary>

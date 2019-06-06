@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using Mbed.Cloud.Foundation;
 using Mbed.Cloud.Foundation.Enums;
 using MbedCloudSDK.Exceptions;
@@ -8,10 +9,10 @@ using NUnit.Framework;
 namespace Snippets.src.Foundation
 {
     [TestFixture]
-    public class DeviceEnrollmentSnippets
+    public class DeviceEnrollmentExamples
     {
         [Test]
-        public async System.Threading.Tasks.Task EnrollOneDeviceAsync()
+        public async Task DeviceEnrollmentSingle()
         {
             try
             {
@@ -40,11 +41,11 @@ namespace Snippets.src.Foundation
         }
 
         [Test]
-        public async System.Threading.Tasks.Task BulkEnrollDevicesAsync()
+        public async Task DeviceEnrollmentBulk()
         {
             try
             {
-                var pathToCsv = "/Users/alelog01/git/mbed-cloud-sdk-dotnet/Examples/Snippets/src/Foundation/test.csv";
+                var pathToCsv = "../../../src/Foundation/test.csv";
                 // an example: device enrollment bulk
                 var bulkRepo = new DeviceEnrollmentBulkCreateRepository();
 
@@ -63,40 +64,6 @@ namespace Snippets.src.Foundation
                 // end of example
 
                 Assert.IsTrue(bulk.Status == DeviceEnrollmentBulkCreateStatus.COMPLETED || bulk.Status == DeviceEnrollmentBulkCreateStatus.PROCESSING);
-
-                var reportFile = await bulkRepo.DownloadFullReportFile(bulk);
-                Assert.IsTrue(reportFile.CanRead);
-                reportFile.Close();
-
-                var errors = await bulkRepo.DownloadErrorsReportFile(bulk);
-                Assert.IsTrue(errors.CanRead);
-                errors.Close();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        [Test]
-        public async System.Threading.Tasks.Task BulkEnrollDeleteDevicesAsync()
-        {
-            try
-            {
-                var pathToCsv = "/Users/alelog01/git/mbed-cloud-sdk-dotnet/Examples/Snippets/src/Foundation/test.csv";
-                var bulkRepo = new DeviceEnrollmentBulkDeleteRepository();
-                // use System.IO file open
-                var bulk = default(DeviceEnrollmentBulkDelete);
-                using (var file = File.Open(pathToCsv, FileMode.Open))
-                {
-                    bulk = await bulkRepo.Delete(file);
-                }
-
-                Assert.AreEqual(bulk.Status, DeviceEnrollmentBulkDeleteStatus.NEW);
-
-                bulk = await bulkRepo.Read(bulk.Id);
-
-                Assert.IsTrue(bulk.Status == DeviceEnrollmentBulkDeleteStatus.COMPLETED || bulk.Status == DeviceEnrollmentBulkDeleteStatus.PROCESSING);
 
                 var reportFile = await bulkRepo.DownloadFullReportFile(bulk);
                 Assert.IsTrue(reportFile.CanRead);

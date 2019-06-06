@@ -27,13 +27,18 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public interface IAccountRepository
     {
+        PaginatedResponse<IAccountSubtenantApiKeyListOptions, SubtenantApiKey> ApiKeys(string id, IAccountSubtenantApiKeyListOptions options = null);
         Task<Account> Create(Account request, string action = null);
+        PaginatedResponse<IAccountSubtenantDarkThemeColorListOptions, SubtenantDarkThemeColor> DarkThemeBrandingColors(string id, IAccountSubtenantDarkThemeColorListOptions options = null);
+        PaginatedResponse<IAccountSubtenantDarkThemeImageListOptions, SubtenantDarkThemeImage> DarkThemeBrandingImages(string id, IAccountSubtenantDarkThemeImageListOptions options = null);
+        PaginatedResponse<IAccountSubtenantLightThemeColorListOptions, SubtenantLightThemeColor> LightThemeBrandingColors(string id, IAccountSubtenantLightThemeColorListOptions options = null);
+        PaginatedResponse<IAccountSubtenantLightThemeImageListOptions, SubtenantLightThemeImage> LightThemeBrandingImages(string id, IAccountSubtenantLightThemeImageListOptions options = null);
         PaginatedResponse<IAccountListOptions, Account> List(IAccountListOptions options = null);
         Task<Account> Me(string include = null, string properties = null);
         Task<Account> Read(string id, string include = null, string properties = null);
-        PaginatedResponse<ISubtenantTrustedCertificateListOptions, SubtenantTrustedCertificate> TrustedCertificates(string id, ISubtenantTrustedCertificateListOptions options = null);
+        PaginatedResponse<IAccountSubtenantTrustedCertificateListOptions, SubtenantTrustedCertificate> TrustedCertificates(string id, IAccountSubtenantTrustedCertificateListOptions options = null);
         Task<Account> Update(string id, Account request);
-        PaginatedResponse<ISubtenantUserInvitationListOptions, SubtenantUserInvitation> UserInvitations(string id, ISubtenantUserInvitationListOptions options = null);
-        PaginatedResponse<ISubtenantUserListOptions, SubtenantUser> Users(string id, ISubtenantUserListOptions options = null);
+        PaginatedResponse<IAccountSubtenantUserInvitationListOptions, SubtenantUserInvitation> UserInvitations(string id, IAccountSubtenantUserInvitationListOptions options = null);
+        PaginatedResponse<IAccountSubtenantUserListOptions, SubtenantUser> Users(string id, IAccountSubtenantUserListOptions options = null);
     }
 }

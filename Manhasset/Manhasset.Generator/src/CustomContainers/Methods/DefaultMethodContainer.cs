@@ -19,11 +19,13 @@ namespace Manhasset.Generator.src.CustomContainers
 
             var methodBody = base.GetMethodBodyParams();
 
-            var returnStatement = new ApiCallReturnStatementContainer{
+            var returnStatement = new ApiCallReturnStatementContainer
+            {
                 Path = Path,
                 PathParams = PathParams,
                 QueryParams = QueryParams,
                 FileParams = FileParams,
+                FormParams = FormParams,
                 BodyParams = BodyParams,
                 HttpMethod = HttpMethod,
                 Returns = Returns,

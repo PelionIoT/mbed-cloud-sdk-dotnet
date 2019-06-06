@@ -18,7 +18,7 @@ namespace MbedCloudSDK.Test.Common
         public void ShouldBeLowerCamel()
         {
             var strng = "im_a_camel_with_humps";
-            var res =strng.SnakeToLowerCamel();
+            var res = strng.SnakeToLowerCamel();
             Assert.AreEqual("imACamelWithHumps", res);
         }
 

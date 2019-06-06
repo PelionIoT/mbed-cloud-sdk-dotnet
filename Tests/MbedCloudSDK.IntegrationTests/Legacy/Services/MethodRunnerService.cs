@@ -188,6 +188,11 @@ namespace MbedCloudSDK.IntegrationTests.Services
                         serialisedParams.Add(null);
                     }
                 }
+                else if (p.Name == "timeout")
+                {
+                    var val = argsJsonObj[p.Name.ToUpper()].Value<int>();
+                    serialisedParams.Add(val * 1000);
+                }
                 else
                 {
                     var properties = paramType.GetProperties();

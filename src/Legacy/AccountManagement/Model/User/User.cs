@@ -15,7 +15,7 @@ namespace MbedCloudSDK.AccountManagement.Model.User
     using Newtonsoft.Json.Converters;
 
     /// <summary>
-    /// This object represents a user in Mbed Cloud.
+    /// This object represents a user in Pelion Device Management.
     /// </summary>
     public class User : Entity
     {

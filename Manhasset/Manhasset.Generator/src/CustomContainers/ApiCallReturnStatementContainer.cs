@@ -13,6 +13,7 @@ namespace Manhasset.Generator.src.CustomContainers
         public List<MyParameterContainer> PathParams { get; set; }
         public List<MyParameterContainer> QueryParams { get; set; }
         public List<MyParameterContainer> FileParams { get; set; }
+        public List<MyParameterContainer> FormParams { get; set; }
         public List<MyParameterContainer> BodyParams { get; set; }
         public string HttpMethod { get; set; }
         public string Returns { get; set; }
@@ -20,7 +21,7 @@ namespace Manhasset.Generator.src.CustomContainers
         public bool HasRequest { get; set; }
         public bool IsVoidTask { get; set; }
 
-    public override StatementSyntax GetSyntax()
+        public override StatementSyntax GetSyntax()
         {
             var paramArgList = new List<SyntaxNodeOrToken>();
 
@@ -45,20 +46,31 @@ namespace Manhasset.Generator.src.CustomContainers
                 paramArgList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
             }
 
-            if (BodyParams.Any())
+            if (FormParams.Any())
+            {
+                paramArgList.Add(GetVariableArg("formParams", "formParams"));
+                paramArgList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+            }
+
+            if (BodyParams.Any(b => b.External != true))
             {
                 paramArgList.Add(GetVariableArg("bodyParams", "bodyParams"));
                 paramArgList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
             }
 
-            paramArgList.Add(GetMemberAccessArg("method", "HttpMethods", HttpMethod));
+            if (BodyParams.Any(b => b.External == true && !b.Key.EndsWith("request")))
+            {
+                paramArgList.Add(GetVariableArg("externalBodyParams", "externalBodyParams"));
+                paramArgList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+            }
 
             if (HasRequest)
             {
-                paramArgList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
-
                 paramArgList.Add(GetVariableArg("request", "objectToUnpack"));
+                paramArgList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
             }
+
+            paramArgList.Add(GetMemberAccessArg("method", "HttpMethods", HttpMethod));
 
             var statementBody = SyntaxFactory.AwaitExpression(
                     SyntaxFactory.InvocationExpression(

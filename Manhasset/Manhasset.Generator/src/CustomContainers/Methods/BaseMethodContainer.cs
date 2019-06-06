@@ -18,11 +18,13 @@ namespace Manhasset.Generator.src.CustomContainers
         public List<MyParameterContainer> QueryParams { get; set; }
         public List<MyParameterContainer> BodyParams { get; set; }
         public List<MyParameterContainer> FileParams { get; set; }
+        public List<MyParameterContainer> FormParams { get; set; }
         public bool DeferToForeignKey { get; set; }
         public DeferedMethodCallContainer DeferedMethodCall { get; set; }
         public bool CustomMethodCall { get; set; }
         public string CustomMethodName { get; set; }
         public bool privateMethod { get; set; }
+        public bool UseAnnonBody { get; set; }
 
         protected List<StatementSyntax> GetMethodBodyParams(bool ignoreQuery = false)
         {
@@ -62,13 +64,37 @@ namespace Manhasset.Generator.src.CustomContainers
                 methodBody.Add(fileParamDeclaration);
             }
 
-            // only add internal body params
-            if (BodyParams.Where(b => b.External != true || b.ReplaceBody == true).Any())
+            if (FormParams.Any())
+            {
+                var formParamDeclaration = new DictionaryParamaterLocalDeclarationSyntax
+                {
+                    Name = "formParams",
+                    MyParams = FormParams,
+                }.GetSyntax();
+
+                methodBody.Add(formParamDeclaration);
+            }
+
+            if (BodyParams.Any(b => b.External != true))
             {
                 var bodyParamDeclaration = new BodyParameterContainer
                 {
-                    BodyType = Returns,
-                    BodyParams = BodyParams.Where(b => b.External != true || b.ReplaceBody == true).ToList(),
+                    Name = "bodyParams",
+                    BodyType = UseAnnonBody ? "Annonymous" : Returns,
+                    BodyParams = BodyParams.Where(b => b.External != true && !b.Key.EndsWith("request")).ToList(),
+                }.GetSyntax();
+
+                methodBody.Add(bodyParamDeclaration);
+            }
+
+            // add external body params
+            if (BodyParams.Any(b => b.External == true && !b.Key.EndsWith("request")))
+            {
+                var bodyParamDeclaration = new BodyParameterContainer
+                {
+                    Name = "externalBodyParams",
+                    BodyType = "Annonymous",
+                    BodyParams = BodyParams.Where(b => b.External == true && !b.Key.EndsWith("request")).ToList(),
                 }.GetSyntax();
 
                 methodBody.Add(bodyParamDeclaration);

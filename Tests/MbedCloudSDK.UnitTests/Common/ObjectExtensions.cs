@@ -102,22 +102,14 @@ namespace MbedCloudSDK.Test.Common
         public void DebugDumptReturnsAnEmptyStringForNull()
         {
             object obj = null;
-            Assert.AreEqual(string.Empty, obj.DebugDump(MbedCloudSDK.Common.Extensions.ObjectExtensions.DumpFormat.Text));
-            Assert.AreEqual(string.Empty, obj.DebugDump(MbedCloudSDK.Common.Extensions.ObjectExtensions.DumpFormat.Json));
-        }
-
-        [Test]
-        public void DebugDumpReturnsExpectedTextResult()
-        {
-            var obj = new ObjectWithKnownProperties();
-            Assert.AreEqual(obj.GetTestDebugDump(), obj.DebugDump(MbedCloudSDK.Common.Extensions.ObjectExtensions.DumpFormat.Text));
+            Assert.AreEqual(string.Empty, obj.DebugDump());
         }
 
         [Test]
         public void DebugDumpReturnsValidJsonResult()
         {
             var obj = new ObjectWithKnownProperties();
-            var json = obj.DebugDump(MbedCloudSDK.Common.Extensions.ObjectExtensions.DumpFormat.Json);
+            var json = obj.DebugDump();
 
             // We just need to check that DumpFormat.Json is used, no need to test if underlying JSON serializer
             // works as expected...

@@ -4,8 +4,10 @@
 
 namespace Mbed.Cloud.Common
 {
+    using System;
     using System.IO;
     using System.Threading.Tasks;
+    using Mbed.Cloud.Common.Filters;
     using Mbed.Cloud.Foundation;
     using RestSharp;
 
@@ -46,7 +48,7 @@ namespace Mbed.Cloud.Common
         public static void IsDeveloperCertificateSetter(TrustedCertificate self, bool? value)
         {
             self.DeviceExecutionMode = value.HasValue ? 1 : 0;
-            self.IsDeveloperCertificate = value;
+            self.isDeveloperCertificate = value.HasValue ? value.Value : false;
         }
 
         /// <summary>
@@ -57,7 +59,7 @@ namespace Mbed.Cloud.Common
         public static void IsDeveloperCertificateSetter(SubtenantTrustedCertificate self, bool? value)
         {
             self.DeviceExecutionMode = value.HasValue ? 1 : 0;
-            self.IsDeveloperCertificate = value;
+            self.isDeveloperCertificate = value.HasValue ? value.Value : false;
         }
 
         /// <summary>
@@ -102,6 +104,30 @@ namespace Mbed.Cloud.Common
         public static Task<Stream> DownloadErrorsReportFile(DeviceEnrollmentBulkDeleteRepository repo, DeviceEnrollmentBulkDelete model)
         {
             return StreamToFile(repo.Config, model.ErrorsReportFile, "error-report.csv");
+        }
+
+        public static void DeviceFilterHelperSetter(UpdateCampaign self, Filter filter)
+        {
+            if (filter != null)
+            {
+                self.DeviceFilter = filter.CampaignFilterString;
+            }
+        }
+
+        public static Filter DeviceFilterHelperGetter(UpdateCampaign self)
+        {
+            return new Filter(self.DeviceFilter);
+        }
+
+        public static string PreSharedKeyIdGetter(PreSharedKey self)
+        {
+            return self.endpointName ?? self.Id;
+        }
+
+        public static void PreSharedKeyIdSetter(PreSharedKey self, string value)
+        {
+            self.endpointName = value;
+            self.Id = value;
         }
 
         private static Task<Stream> StreamToFile(Config config, string url, string filePath = "report.csv")

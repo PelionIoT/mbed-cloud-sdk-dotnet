@@ -34,13 +34,17 @@ namespace Mbed.Cloud.Foundation
         {
         }
 
-        public async Task<SubtenantUserInvitation> Create(string accountId, SubtenantUserInvitation request, int validForDays = 25)
+        public async Task<SubtenantUserInvitation> Create(string accountId, SubtenantUserInvitation request, int validForDays = 1)
         {
             try
             {
                 var pathParams = new Dictionary<string, object> { { "account_id", accountId }, };
                 var bodyParams = new SubtenantUserInvitation { Email = request.Email, LoginProfiles = request.LoginProfiles, };
-                return await Client.CallApi<SubtenantUserInvitation>(path: "/v3/accounts/{account_id}/user-invitations", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: request);
+                var externalBodyParams = new
+                {
+                    validForDays = validForDays,
+                };
+                return await Client.CallApi<SubtenantUserInvitation>(path: "/v3/accounts/{account_id}/user-invitations", pathParams: pathParams, bodyParams: bodyParams, externalBodyParams: externalBodyParams, objectToUnpack: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
             {

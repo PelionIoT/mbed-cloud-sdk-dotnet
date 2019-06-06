@@ -39,8 +39,8 @@ namespace Mbed.Cloud.Foundation
             try
             {
                 var queryParams = new Dictionary<string, object> { { "action", action }, };
-                var bodyParams = new User { Address = request.Address, Email = request.Email, FullName = request.FullName, LoginProfiles = request.LoginProfiles, MarketingAccepted = request.MarketingAccepted, Password = request.Password, PhoneNumber = request.PhoneNumber, TermsAccepted = request.TermsAccepted, Username = request.Username, };
-                return await Client.CallApi<User>(path: "/v3/users", queryParams: queryParams, bodyParams: bodyParams, method: HttpMethods.POST, objectToUnpack: request);
+                var bodyParams = new User { Address = request.Address, Email = request.Email, FullName = request.FullName, IsGtcAccepted = request.IsGtcAccepted, IsMarketingAccepted = request.IsMarketingAccepted, LoginProfiles = request.LoginProfiles, Password = request.Password, PhoneNumber = request.PhoneNumber, Username = request.Username, };
+                return await Client.CallApi<User>(path: "/v3/users", queryParams: queryParams, bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
             {
@@ -70,7 +70,7 @@ namespace Mbed.Cloud.Foundation
                     options = new UserListOptions();
                 }
 
-                Func<IUserListOptions, Task<ResponsePage<User>>> paginatedFunc = async (IUserListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "email__eq", _options.Filter.GetEncodedValue("email", "$eq") }, { "status__eq", _options.Filter.GetEncodedValue("status", "$eq") }, { "status__in", _options.Filter.GetEncodedValue("status", "$in") }, { "status__nin", _options.Filter.GetEncodedValue("status", "$nin") }, { "login_profile__eq", _options.Filter.GetEncodedValue("login_profile", "$eq") }, }; return await Client.CallApi<ResponsePage<User>>(path: "/v3/users", queryParams: queryParams, method: HttpMethods.GET); };
+                Func<IUserListOptions, Task<ResponsePage<User>>> paginatedFunc = async (IUserListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "email__eq", _options.Filter.GetEncodedValue("email", "$eq") }, { "status__eq", _options.Filter.GetEncodedValue("status", "$eq") }, { "status__in", _options.Filter.GetEncodedValue("status", "$in") }, { "status__nin", _options.Filter.GetEncodedValue("status", "$nin") }, { "login_profiles__eq", _options.Filter.GetEncodedValue("login_profiles", "$eq") }, }; return await Client.CallApi<ResponsePage<User>>(path: "/v3/users", queryParams: queryParams, method: HttpMethods.GET); };
                 return new PaginatedResponse<IUserListOptions, User>(paginatedFunc, options);
             }
             catch (ApiException e)
@@ -97,8 +97,8 @@ namespace Mbed.Cloud.Foundation
             try
             {
                 var pathParams = new Dictionary<string, object> { { "user_id", id }, };
-                var bodyParams = new User { Address = request.Address, FullName = request.FullName, LoginProfiles = request.LoginProfiles, MarketingAccepted = request.MarketingAccepted, PhoneNumber = request.PhoneNumber, TermsAccepted = request.TermsAccepted, TwoFactorAuthentication = request.TwoFactorAuthentication, Username = request.Username, };
-                return await Client.CallApi<User>(path: "/v3/users/{user_id}", pathParams: pathParams, bodyParams: bodyParams, method: HttpMethods.PUT, objectToUnpack: request);
+                var bodyParams = new User { Address = request.Address, FullName = request.FullName, IsGtcAccepted = request.IsGtcAccepted, IsMarketingAccepted = request.IsMarketingAccepted, IsTotpEnabled = request.IsTotpEnabled, LoginProfiles = request.LoginProfiles, PhoneNumber = request.PhoneNumber, Username = request.Username, };
+                return await Client.CallApi<User>(path: "/v3/users/{user_id}", pathParams: pathParams, bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.PUT);
             }
             catch (ApiException e)
             {
