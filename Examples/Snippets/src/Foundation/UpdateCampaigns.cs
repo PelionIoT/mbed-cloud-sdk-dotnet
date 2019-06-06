@@ -14,19 +14,18 @@ namespace Snippets.src.Foundation
         public async Task FirmwareUpdateCampaignLaunch()
         {
             var sdk = new SDK();
-
-            // an example: firmware_update_campaign_launch
             var firmwareManifestRepo = sdk.Foundation().FirmwareManifestRepository();
             var firmwareManifest = firmwareManifestRepo.List(new FirmwareManifestListOptions
             {
                 MaxResults = 2,
             }).FirstOrDefault();
 
+            // an example: firmware_update_campaign_launch
             var updateCampaignRepo = sdk.Foundation().UpdateCampaignRepository();
             var campaign = await updateCampaignRepo.Create(new UpdateCampaign
             {
-                Name = "",
-                Description = "",
+                Name = $"campaign - {DateTime.Now}",
+                Description = "Update campaign for prior 2019 devices",
                 RootManifestId = firmwareManifest.Id,
                 DeviceFilterHelper = new DeviceListOptions().CreatedAtLessThan(new DateTime(2019, 1, 1)).Filter,
             });
