@@ -74,17 +74,17 @@ namespace Mbed.Cloud.Foundation
             }
         }
 
-        public PaginatedResponse<ITrustedCertificateTrustedCertificateListOptions, TrustedCertificate> List(ITrustedCertificateTrustedCertificateListOptions options = null)
+        public PaginatedResponse<ITrustedCertificateListOptions, TrustedCertificate> List(ITrustedCertificateListOptions options = null)
         {
             try
             {
                 if (options == null)
                 {
-                    options = new TrustedCertificateTrustedCertificateListOptions();
+                    options = new TrustedCertificateListOptions();
                 }
 
-                Func<ITrustedCertificateTrustedCertificateListOptions, Task<ResponsePage<TrustedCertificate>>> paginatedFunc = async (ITrustedCertificateTrustedCertificateListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "name__eq", _options.Filter.GetEncodedValue("name", "$eq") }, { "service__eq", _options.Filter.GetEncodedValue("service", "$eq") }, { "expire__eq", _options.Filter.GetEncodedValue("expire", "$eq") }, { "device_execution_mode__eq", _options.Filter.GetEncodedValue("device_execution_mode", "$eq") }, { "device_execution_mode__neq", _options.Filter.GetEncodedValue("device_execution_mode", "$neq") }, { "owner__eq", _options.Filter.GetEncodedValue("owner", "$eq") }, { "enrollment_mode__eq", _options.Filter.GetEncodedValue("enrollment_mode", "$eq") }, { "status__eq", _options.Filter.GetEncodedValue("status", "$eq") }, { "issuer__like", _options.Filter.GetEncodedValue("issuer", "$like") }, { "subject__like", _options.Filter.GetEncodedValue("subject", "$like") }, { "valid__eq", _options.Filter.GetEncodedValue("valid", "$eq") }, }; return await Client.CallApi<ResponsePage<TrustedCertificate>>(path: "/v3/trusted-certificates", queryParams: queryParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<ITrustedCertificateTrustedCertificateListOptions, TrustedCertificate>(paginatedFunc, options);
+                Func<ITrustedCertificateListOptions, Task<ResponsePage<TrustedCertificate>>> paginatedFunc = async (ITrustedCertificateListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "name__eq", _options.Filter.GetEncodedValue("name", "$eq") }, { "service__eq", _options.Filter.GetEncodedValue("service", "$eq") }, { "expire__eq", _options.Filter.GetEncodedValue("expire", "$eq") }, { "device_execution_mode__eq", _options.Filter.GetEncodedValue("device_execution_mode", "$eq") }, { "device_execution_mode__neq", _options.Filter.GetEncodedValue("device_execution_mode", "$neq") }, { "owner__eq", _options.Filter.GetEncodedValue("owner", "$eq") }, { "enrollment_mode__eq", _options.Filter.GetEncodedValue("enrollment_mode", "$eq") }, { "status__eq", _options.Filter.GetEncodedValue("status", "$eq") }, { "issuer__like", _options.Filter.GetEncodedValue("issuer", "$like") }, { "subject__like", _options.Filter.GetEncodedValue("subject", "$like") }, { "valid__eq", _options.Filter.GetEncodedValue("valid", "$eq") }, }; return await Client.CallApi<ResponsePage<TrustedCertificate>>(path: "/v3/trusted-certificates", queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<ITrustedCertificateListOptions, TrustedCertificate>(paginatedFunc, options);
             }
             catch (ApiException e)
             {

@@ -64,17 +64,17 @@ namespace Mbed.Cloud.Foundation
             }
         }
 
-        public PaginatedResponse<IPreSharedKeyPreSharedKeyListOptions, PreSharedKey> List(IPreSharedKeyPreSharedKeyListOptions options = null)
+        public PaginatedResponse<IPreSharedKeyListOptions, PreSharedKey> List(IPreSharedKeyListOptions options = null)
         {
             try
             {
                 if (options == null)
                 {
-                    options = new PreSharedKeyPreSharedKeyListOptions();
+                    options = new PreSharedKeyListOptions();
                 }
 
-                Func<IPreSharedKeyPreSharedKeyListOptions, Task<ResponsePage<PreSharedKey>>> paginatedFunc = async (IPreSharedKeyPreSharedKeyListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "limit", _options.Limit }, }; return await Client.CallApi<ResponsePage<PreSharedKey>>(path: "/v2/device-shared-keys", queryParams: queryParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<IPreSharedKeyPreSharedKeyListOptions, PreSharedKey>(paginatedFunc, options);
+                Func<IPreSharedKeyListOptions, Task<ResponsePage<PreSharedKey>>> paginatedFunc = async (IPreSharedKeyListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "limit", _options.Limit }, }; return await Client.CallApi<ResponsePage<PreSharedKey>>(path: "/v2/device-shared-keys", queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<IPreSharedKeyListOptions, PreSharedKey>(paginatedFunc, options);
             }
             catch (ApiException e)
             {

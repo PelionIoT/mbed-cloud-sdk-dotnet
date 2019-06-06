@@ -28,7 +28,7 @@ namespace Mbed.Cloud.Foundation
     {
         Task<User> Create(User request, string action = null);
         Task Delete(string id);
-        PaginatedResponse<IUserUserListOptions, User> List(IUserUserListOptions options = null);
+        PaginatedResponse<IUserListOptions, User> List(IUserListOptions options = null);
         Task<User> Read(string id);
         Task<User> Update(string id, User request);
     }

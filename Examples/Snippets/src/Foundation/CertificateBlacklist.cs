@@ -34,7 +34,7 @@ public class CertificateBlacklistExamples
                                 .Foundation()
                                 .DeviceEnrollmentDenialRepository()
                                 .List(
-                                    new DeviceEnrollmentDenialDeviceEnrollmentDenialListOptions()
+                                    new DeviceEnrollmentDenialListOptions()
                                         .TrustedCertificateIdEqualTo(trustedCert.Id));
 
             foreach (var device in deviceList)

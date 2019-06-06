@@ -27,7 +27,7 @@ public class HelloWorldExamples
     // uncloak
     public void Main()
     {
-        var options = new DeviceDeviceListOptions
+        var options = new DeviceListOptions
         {
             MaxResults = 10     // Limit to ten devices
         };

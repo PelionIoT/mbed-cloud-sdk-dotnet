@@ -28,7 +28,7 @@ namespace Mbed.Cloud.Foundation
     public interface ILightThemeColorRepository
     {
         Task Delete(string reference);
-        PaginatedResponse<ILightThemeColorLightThemeColorListOptions, LightThemeColor> List(ILightThemeColorLightThemeColorListOptions options = null);
+        PaginatedResponse<ILightThemeColorListOptions, LightThemeColor> List(ILightThemeColorListOptions options = null);
         Task<LightThemeColor> Read(string reference);
         Task<LightThemeColor> Update(string reference, LightThemeColor request);
     }

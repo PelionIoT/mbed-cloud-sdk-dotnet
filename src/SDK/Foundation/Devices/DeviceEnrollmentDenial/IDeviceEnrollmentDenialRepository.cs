@@ -26,7 +26,7 @@ namespace Mbed.Cloud.Foundation
     /// </summary>
     public interface IDeviceEnrollmentDenialRepository
     {
-        PaginatedResponse<IDeviceEnrollmentDenialDeviceEnrollmentDenialListOptions, DeviceEnrollmentDenial> List(IDeviceEnrollmentDenialDeviceEnrollmentDenialListOptions options = null);
+        PaginatedResponse<IDeviceEnrollmentDenialListOptions, DeviceEnrollmentDenial> List(IDeviceEnrollmentDenialListOptions options = null);
         Task<DeviceEnrollmentDenial> Read(string deviceEnrollmentDenialId);
     }
 }
