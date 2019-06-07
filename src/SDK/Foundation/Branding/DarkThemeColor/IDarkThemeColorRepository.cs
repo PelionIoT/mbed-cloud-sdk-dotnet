@@ -28,7 +28,7 @@ namespace Mbed.Cloud.Foundation
     public interface IDarkThemeColorRepository
     {
         Task Delete(string reference);
-        PaginatedResponse<IDarkThemeColorDarkThemeColorListOptions, DarkThemeColor> List(IDarkThemeColorDarkThemeColorListOptions options = null);
+        PaginatedResponse<IDarkThemeColorListOptions, DarkThemeColor> List(IDarkThemeColorListOptions options = null);
         Task<DarkThemeColor> Read(string reference);
         Task<DarkThemeColor> Update(string reference, DarkThemeColor request);
     }

@@ -119,5 +119,15 @@ namespace Manhasset.Generator.src.common
                     return "EqualTo";
             }
         }
+
+        public static string GetListOptionsName(string entityName, string returns)
+        {
+            if (entityName.ToUpper() == returns.ToUpper())
+            {
+                return entityName;
+            }
+
+            return $"{entityName}{returns}";
+        }
     }
 }

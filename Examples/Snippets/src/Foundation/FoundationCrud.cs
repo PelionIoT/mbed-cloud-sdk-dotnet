@@ -71,7 +71,7 @@ public class FoundationInterfaceExamples
         // end of example
 
         // an example: list entities
-        var options = new UserUserListOptions
+        var options = new UserListOptions
         {
             Order = "ASC",
             PageSize = 5,
@@ -91,7 +91,7 @@ public class FoundationInterfaceExamples
         // end of example
 
         // an example: list entities with filters
-        var userOptions = new UserUserListOptions()
+        var userOptions = new UserListOptions()
             .EmailEqualTo("mr.test@mydomain.com")
             .StatusIn(UserStatus.ACTIVE, UserStatus.ENROLLING);
 

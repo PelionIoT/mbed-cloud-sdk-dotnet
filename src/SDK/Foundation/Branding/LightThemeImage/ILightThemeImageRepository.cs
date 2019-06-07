@@ -28,7 +28,7 @@ namespace Mbed.Cloud.Foundation
     public interface ILightThemeImageRepository
     {
         Task<LightThemeImage> Delete(string reference);
-        PaginatedResponse<ILightThemeImageLightThemeImageListOptions, LightThemeImage> List(ILightThemeImageLightThemeImageListOptions options = null);
+        PaginatedResponse<ILightThemeImageListOptions, LightThemeImage> List(ILightThemeImageListOptions options = null);
         Task<LightThemeImage> Read(string reference);
         Task<LightThemeImage> Update(string reference, Stream image);
     }

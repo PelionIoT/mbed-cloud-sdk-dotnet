@@ -72,17 +72,17 @@ namespace Mbed.Cloud.Foundation
             }
         }
 
-        public PaginatedResponse<ICertificateIssuerConfigCertificateIssuerConfigListOptions, CertificateIssuerConfig> List(ICertificateIssuerConfigCertificateIssuerConfigListOptions options = null)
+        public PaginatedResponse<ICertificateIssuerConfigListOptions, CertificateIssuerConfig> List(ICertificateIssuerConfigListOptions options = null)
         {
             try
             {
                 if (options == null)
                 {
-                    options = new CertificateIssuerConfigCertificateIssuerConfigListOptions();
+                    options = new CertificateIssuerConfigListOptions();
                 }
 
-                Func<ICertificateIssuerConfigCertificateIssuerConfigListOptions, Task<ResponsePage<CertificateIssuerConfig>>> paginatedFunc = async (ICertificateIssuerConfigCertificateIssuerConfigListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "reference__eq", _options.Filter.GetEncodedValue("reference", "$eq") }, }; return await Client.CallApi<ResponsePage<CertificateIssuerConfig>>(path: "/v3/certificate-issuer-configurations", queryParams: queryParams, method: HttpMethods.GET); };
-                return new PaginatedResponse<ICertificateIssuerConfigCertificateIssuerConfigListOptions, CertificateIssuerConfig>(paginatedFunc, options);
+                Func<ICertificateIssuerConfigListOptions, Task<ResponsePage<CertificateIssuerConfig>>> paginatedFunc = async (ICertificateIssuerConfigListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, { "reference__eq", _options.Filter.GetEncodedValue("reference", "$eq") }, }; return await Client.CallApi<ResponsePage<CertificateIssuerConfig>>(path: "/v3/certificate-issuer-configurations", queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<ICertificateIssuerConfigListOptions, CertificateIssuerConfig>(paginatedFunc, options);
             }
             catch (ApiException e)
             {
