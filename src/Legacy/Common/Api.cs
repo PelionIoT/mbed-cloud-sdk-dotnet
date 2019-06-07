@@ -32,7 +32,6 @@ namespace MbedCloudSDK.Common
         {
             Config = config;
             Logger.Setup(config.LogLevel);
-            Logger.Setup(config.LogLevel);
         }
 
         /// <summary>
