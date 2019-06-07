@@ -181,8 +181,7 @@ namespace MbedCloudSDK.Connect.Api
                                 {
                                     if (webSocketClient.State == WebSocketState.Open || webSocketClient.State == WebSocketState.CloseSent)
                                     {
-                                        // can't have an async method in a task action because it will return immediatley
-                                        var message = AsyncHelper.RunSync(() => webSocketClient.ReceiveAsync(receivedBuffer, CancellationToken.None));
+                                        var message = await webSocketClient.ReceiveAsync(receivedBuffer, CancellationToken.None);
                                         if (message.EndOfMessage)
                                         {
                                             if (dynamicBuffer.Any())
@@ -190,13 +189,13 @@ namespace MbedCloudSDK.Connect.Api
                                                 // add end of message first
                                                 dynamicBuffer.AddRange(receivedBuffer.Skip(receivedBuffer.Offset).Take(message.Count));
                                                 // we got a big message
-                                                AsyncHelper.RunSync(() => handleMessageAsync(message, dynamicBuffer));
+                                                await handleMessageAsync(message, dynamicBuffer);
                                                 dynamicBuffer.Clear();
                                             }
                                             else
                                             {
                                                 // can decode straight
-                                                AsyncHelper.RunSync(() => handleMessageAsync(message));
+                                                await handleMessageAsync(message);
                                             }
                                         }
                                         else
@@ -316,7 +315,6 @@ namespace MbedCloudSDK.Connect.Api
                         CleanUp();
                     }
 
-                    Log.Debug("NotificationsStarted = false");
                     NotificationsStarted = false;
                 }
             }
