@@ -48,6 +48,9 @@ namespace MbedCloudSDK.Connect.Api
         /// </value>
         public bool SkipCleanup { get; set; }
 
+        /// <summary>
+        /// Gets or sets the DeliveryMethod of this connectApi instance
+        /// </summary>
         public DeliveryMethod DeliveryMethod { get; set; }
     }
 }
