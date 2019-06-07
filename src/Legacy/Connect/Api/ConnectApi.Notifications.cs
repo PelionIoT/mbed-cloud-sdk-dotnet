@@ -152,24 +152,6 @@ namespace MbedCloudSDK.Connect.Api
                     throw new CloudApiException(400, "cannot start notifications as a webhook is already in use");
                 }
 
-                // policy handler for retries. Uses Polly (https://github.com/App-vNext/Polly#wait-and-retry)
-                // it will increase the time between retries progressively until it will stop ~2 minutes
-                if (retryPolicy == null)
-                {
-                    retryPolicy = Policy.Handle<Exception>().WaitAndRetryAsync(
-                        8,
-                        retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
-                        (exception, timeSpan, retryCount, context) =>
-                            {
-                                // check that is really an ApiException before doing the retry logic
-                                if (!(exception is ApiException apiException) || apiException.ErrorCode != 500)
-                                {
-                                    Log.Error($"Error long polling in {this.GetHashCode()} - {exception.Message}");
-                                    StopNotifications();
-                                }
-                            });
-                }
-
                 try
                 {
                     NotificationsStarted = true;
@@ -186,16 +168,58 @@ namespace MbedCloudSDK.Connect.Api
                         cancellationToken?.Dispose();
                         cancellationToken = new CancellationTokenSource();
 
+                        await InitiateWebsocketAsync();
+
                         // start a new task
                         notificationTask = Task.Factory.StartNew(
                             async _ =>
                         {
-                            await Notifications();
-                        },
-                        null,
-                        cancellationToken.Token,
-                        TaskCreationOptions.LongRunning,
-                        TaskScheduler.Default);
+                            var dynamicBuffer = new List<byte>();
+                            while (!cancellationToken.IsCancellationRequested)
+                            {
+                                try
+                                {
+                                    if (webSocketClient.State == WebSocketState.Open || webSocketClient.State == WebSocketState.CloseSent)
+                                    {
+                                        var message = await webSocketClient.ReceiveAsync(receivedBuffer, CancellationToken.None);
+                                        if (message.EndOfMessage)
+                                        {
+                                            if (dynamicBuffer.Any())
+                                            {
+                                                // add end of message first
+                                                dynamicBuffer.AddRange(receivedBuffer.Skip(receivedBuffer.Offset).Take(message.Count));
+                                                // we got a big message
+                                                await handleMessageAsync(message, dynamicBuffer);
+                                                dynamicBuffer.Clear();
+                                            }
+                                            else
+                                            {
+                                                // can decode straight
+                                                await handleMessageAsync(message);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            dynamicBuffer.AddRange(receivedBuffer.Skip(receivedBuffer.Offset).Take(message.Count));
+                                        }
+
+                                    }
+                                    else if (webSocketClient.State == WebSocketState.Connecting)
+                                    {
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        Log.Warn($"websocket is in an invalid state to receive - {webSocketClient.State}");
+                                    }
+                                }
+                                catch (WebSocketException e)
+                                {
+                                    Log.Error(e.Message, e);
+                                    throw;
+                                }
+                            }
+                        }, null, cancellationToken.Token, TaskCreationOptions.LongRunning, TaskScheduler.Default);
                     }
                     else
                     {
@@ -273,7 +297,8 @@ namespace MbedCloudSDK.Connect.Api
                         }
                     }
 
-                    // await StopWebsocketAsync();
+                    await StopWebsocketAsync();
+
                     if (notificationTask != null)
                     {
                         Log.Debug($"Notification task status: cancelled - {notificationTask.IsCanceled}, faulted - {notificationTask.IsFaulted}");
@@ -290,7 +315,6 @@ namespace MbedCloudSDK.Connect.Api
                         CleanUp();
                     }
 
-                    Log.Debug("NotificationsStarted = false");
                     NotificationsStarted = false;
                 }
             }
@@ -399,6 +423,26 @@ namespace MbedCloudSDK.Connect.Api
         }
 
         private async Task HandleMessageAsync(WebSocketReceiveResult message, List<byte> dynamicBuffer = null)
+        {
+            // create a new websocket client
+            webSocketClient = new ClientWebSocket();
+            // set subprotocals e.g. pelion_ak_123, wss
+            webSocketClient.Options.AddSubProtocol($"pelion_{Config.ApiKey}");
+            webSocketClient.Options.AddSubProtocol("wss");
+            webSocketClient.Options.KeepAliveInterval = new TimeSpan(24, 0, 0);
+
+            // create clean buffers
+            receivedBytes = new byte[bufferLength];
+            receivedBuffer = new ArraySegment<byte>(receivedBytes);
+
+            // connect to url
+            if (webSocketClient.State != WebSocketState.Open && webSocketClient.State != WebSocketState.CloseReceived)
+            {
+                await webSocketClient.ConnectAsync(new Uri(websocketUrl), CancellationToken.None);
+            }
+        }
+
+        private async Task handleMessageAsync(WebSocketReceiveResult message, List<byte> dynamicBuffer = null)
         {
             if (message.MessageType == WebSocketMessageType.Close)
             {

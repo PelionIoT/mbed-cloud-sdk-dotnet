@@ -9,6 +9,7 @@ namespace MbedCloudSDK.Connect.Api
     using System.Linq;
     using device_directory.Api;
     using device_directory.Client;
+    using log4net;
     using Mbed.Cloud.Common;
     using MbedCloudSDK.Common;
     using MbedCloudSDK.Connect.Model.Resource;
@@ -38,6 +39,7 @@ namespace MbedCloudSDK.Connect.Api
     /// </summary>
     public partial class ConnectApi : Api, IDisposable
     {
+        protected new static readonly ILog Log = LogManager.GetLogger(typeof(ConnectApi));
         private static string websocketUrl;
         private readonly bool autostartNotifications;
         private readonly bool forceClear;
