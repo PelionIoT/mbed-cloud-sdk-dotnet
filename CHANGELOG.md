@@ -1,3 +1,17 @@
+2.2.0 (2019-06-07)
+==================
+
+### Features
+
+- Add support for branding in foundation (#2031)
+
+- add timeout to connect functions (#2363)
+
+### Improved Documentation
+
+- Add legacy examples to common documentation (#1931)
+
+
 # Changelog
 
 The application is hosted on Nuget at https://www.nuget.org/packages/Mbed.Cloud.SDK and can be installed using the dotnet cli:
