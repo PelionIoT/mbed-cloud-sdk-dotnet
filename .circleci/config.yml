@@ -530,6 +530,7 @@ jobs:
                  . venv/bin/activate
                  aws s3 sync --delete --cache-control max-age=3600 docs s3://mbed-cloud-sdk-dotnet-dist/beta-release/docs
          name: upload docs to s3
+version: 2
 #############################################################################################
 #                                Workflows                                                  #
 #############################################################################################
@@ -607,7 +608,7 @@ workflows:
           <<: *filter_beta_only_build
   csharp_sdk_workflow_release:
     jobs:
-      - version_bump_release:
+      - version_bump_release
           # <<: *tag_release_only
       - docs_release:
           # <<: *tag_release_only
@@ -628,7 +629,7 @@ workflows:
           <<: *tag_release_only
   csharp_sdk_workflow_beta:
     jobs:
-      - version_bump_beta:
+      - version_bump_beta
           # <<: *tag_beta_only
       - docs_release:
           # <<: *tag_release_only
