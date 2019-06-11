@@ -627,7 +627,7 @@ workflows:
       - version_bump_beta
       - docs_release:
           requires:
-          - version_bump_release
+          - version_bump_beta
       - upload_docs_beta_release:
           requires:
           - docs_release
