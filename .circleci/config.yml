@@ -410,6 +410,24 @@ jobs:
       - run:
          command: ./build.sh --target "Build-Pack-Publish"
          name: build, pack and publish nuget package
+  docs_release:
+    docker:
+      - image: hrektts/doxygen
+    environment:
+      - OUTPUT_DIR: "./docs"
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - run:
+          command: doxygen ar.doxygen
+          name: run Doxygen to build the docs
+      - store_artifacts:
+          path: docs
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - docs
   #############################################################################################
   #                                Production Release Jobs                                    #
   #############################################################################################
@@ -456,12 +474,12 @@ jobs:
     <<: *circle_python
     steps:
       - attach_workspace:
-          at: ~/docs
+          at: ./
       - <<: *install_aws_tools
       - run:
          command: |
                  . venv/bin/activate
-                 aws s3 sync --delete --cache-control max-age=3600 ~/docs s3://mbed-cloud-sdk-dotnet-dist/master-release/docs
+                 aws s3 sync --delete --cache-control max-age=3600 docs s3://mbed-cloud-sdk-dotnet-dist/master-release/docs
          name: upload docs to s3
   #############################################################################################
   #                                Beta Release Jobs                                          #
@@ -505,12 +523,12 @@ jobs:
     <<: *circle_python
     steps:
       - attach_workspace:
-          at: ~/docs
+          at: ./
       - <<: *install_aws_tools
       - run:
          command: |
                  . venv/bin/activate
-                 aws s3 sync --delete --cache-control max-age=3600 ~/docs s3://mbed-cloud-sdk-dotnet-dist/beta-release/docs
+                 aws s3 sync --delete --cache-control max-age=3600 docs s3://mbed-cloud-sdk-dotnet-dist/beta-release/docs
          name: upload docs to s3
 version: 2
 #############################################################################################
@@ -566,7 +584,6 @@ workflows:
       - artifactory_deploy:
           requires:
           - unit_test
-          - integration_test_os2
           - integration_test_production
           <<: *filter_master_or_beta_only_build
       - release_to_nuget:
@@ -592,7 +609,16 @@ workflows:
   csharp_sdk_workflow_release:
     jobs:
       - version_bump_release:
-          <<: *tag_release_only
+          # <<: *tag_release_only
+      - docs_release:
+          # <<: *tag_release_only
+          requires:
+          - version_bump_release
+      - upload_docs_production_release:
+          # <<: *tag_release_only
+          requires:
+          - docs_release
+      # build and push test server docker image
       - build_pack_deploy:
           requires:
           - version_bump_release
@@ -604,7 +630,16 @@ workflows:
   csharp_sdk_workflow_beta:
     jobs:
       - version_bump_beta:
-          <<: *tag_beta_only
+          # <<: *tag_beta_only
+      - docs_release:
+          # <<: *tag_release_only
+          requires:
+          - version_bump_release
+      - upload_docs_beta_release:
+          # <<: *tag_release_only
+          requires:
+          - docs_release
+      # build and push test server docker image
       - build_pack_deploy:
           requires:
           - version_bump_beta
