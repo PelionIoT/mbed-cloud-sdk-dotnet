@@ -14,9 +14,6 @@ references:
     docker:
       - image: circleci/python:3.6-jessie-browsers
 
-  sdk_environment: &sdk_environment
-    ARTIFACTORY_URL: http://localhost:80/artifactory/
-
   install_aws_tools: &install_aws_tools
     run:
         name: Installing aws cli
@@ -220,8 +217,6 @@ jobs:
   #############################################################################################
   version_bump:
     <<: *circle_python
-    environment:
-      <<: *sdk_environment
     steps:
       - checkout
       - run:
@@ -331,7 +326,7 @@ jobs:
   artifactory_deploy:
     <<: *circle_python
     environment:
-      <<: *sdk_environment
+      ARTIFACTORY_URL: http://localhost:80/artifactory/
     steps:
       - setup_remote_docker
       - <<: *install_aws_tools
@@ -340,7 +335,7 @@ jobs:
       - run: |
             . venv/bin/activate
             aws s3 sync s3://artifactory-store .
-      - run: docker build -t artifactory ~/project/proxy/
+      - run: docker build -t artifactory proxy/
       - run: docker run -d --name artifactory artifactory && sleep 10
       - run:
           name: Deploying the SDK to Artifactory and beyond
@@ -439,8 +434,6 @@ jobs:
             - build.sh
   commit_news_and_version:
     <<: *circle_python
-    environment:
-      <<: *sdk_environment
     steps:
       - checkout
       - run:
@@ -459,13 +452,22 @@ jobs:
       - run:
           name: tag and release
           command: python ./scripts/tag_and_release.py news $(pipenv run autoversion --config=scripts/version.toml --release)
+  upload_docs_production_release:
+    <<: *circle_python
+    steps:
+      - attach_workspace:
+          at: ~/docs
+      - <<: *install_aws_tools
+      - run:
+         command: |
+                 . venv/bin/activate
+                 aws s3 sync --delete --cache-control max-age=3600 ~/docs s3://mbed-cloud-sdk-dotnet-dist/master-release/docs
+         name: upload docs to s3
   #############################################################################################
   #                                Beta Release Jobs                                          #
   #############################################################################################
   commit_news_and_version_beta:
     <<: *circle_python
-    environment:
-      <<: *sdk_environment
     steps:
       - checkout
       - run:
@@ -499,6 +501,17 @@ jobs:
             - src
             - build.cake
             - build.sh
+  upload_docs_beta_release:
+    <<: *circle_python
+    steps:
+      - attach_workspace:
+          at: ~/docs
+      - <<: *install_aws_tools
+      - run:
+         command: |
+                 . venv/bin/activate
+                 aws s3 sync --delete --cache-control max-age=3600 ~/docs s3://mbed-cloud-sdk-dotnet-dist/beta-release/docs
+         name: upload docs to s3
 version: 2
 #############################################################################################
 #                                Workflows                                                  #
@@ -521,7 +534,7 @@ workflows:
       - upload_docs:
           requires:
           - docs
-          <<: *filter_master_or_beta_only_build
+          # <<: *filter_master_or_beta_only_build
       - tpip:
           <<: *filter_master_only_build
       - version_bump:
@@ -550,10 +563,6 @@ workflows:
           requires:
           - build
           <<: *filter_ignore_release
-      # coverage is now handled by appveyor
-      # - unit_test_coverage:
-      #     requires:
-      #     - unit_test
       - artifactory_deploy:
           requires:
           - unit_test
