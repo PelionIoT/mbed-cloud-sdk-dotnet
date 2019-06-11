@@ -4,7 +4,7 @@ references:
 
   attach_workspace: &attach_workspace
     attach_workspace:
-      at: ~/project
+      at: ./
 
   dotnet_mono_docker: &dotnet_mono_docker
     docker:
@@ -126,7 +126,7 @@ jobs:
           command: docker save -o ~/test_server_image/testserver.tar testserver
           name: save the test_server image so it doesn't need building later
       - persist_to_workspace:
-          root: ~/.
+          root: ./
           paths:
            - test_server_image
   cache_test_runner_image:
@@ -162,7 +162,7 @@ jobs:
           command: docker save -o ~/test_runner_image/testrunner.tar ${TESTRUNNER_DOCKER_IMAGE}
           name: save the test_runner image so it doesn't need building later
       - persist_to_workspace:
-          root: ~/.
+          root: ./
           paths:
            - test_runner_image
   #############################################################################################
@@ -233,24 +233,18 @@ jobs:
       - run:
           name: bump the version for a dev release
           command: pipenv run auto_version --config=scripts/version.toml --bump=patch --news
-      - run:
-         command: mkdir -p ~/repo/project
-         name: make a directory for the project
-      - run:
-         command: cp -R ~/project ~/repo/
-         name: copy the checked out project into the repo folder.
       - persist_to_workspace:
-         root: ~/repo
+         root: ./
          paths:
-           - project/Deploy.Dockerfile
-           - project/docs
-           - project/src
-           - project/scripts
-           - project/Tests/MbedCloudSDK.UnitTests
-           - project/build.cake
-           - project/build.sh
-           - project/CHANGELOG.md
-           - project/tools/packages.config
+           - Deploy.Dockerfile
+           - docs
+           - src
+           - scripts
+           - Tests/MbedCloudSDK.UnitTests
+           - build.cake
+           - build.sh
+           - CHANGELOG.md
+           - tools/packages.config
   #############################################################################################
   #                                Build                                                      #
   #############################################################################################
@@ -259,17 +253,17 @@ jobs:
     steps:
       - <<: *attach_workspace
       - run:
-         command: cd project && ./build.sh --target "CI"
+         command: ./build.sh --target "CI"
          name: build the project
       - persist_to_workspace:
-         root: ~/project
+         root: ./
          paths:
-           - project/tools
-           - project/packages
-           - project/src/obj
-           - project/src/bin/Release
-           - project/Tests/MbedCloudSDK.UnitTests/obj
-           - project/Tests/MbedCloudSDK.UnitTests/bin
+           - tools
+           - packages
+           - src/obj
+           - src/bin/Release
+           - Tests/MbedCloudSDK.UnitTests/obj
+           - Tests/MbedCloudSDK.UnitTests/bin
   build_documentation:
     docker:
       - image: circleci/node:jessie-browsers
@@ -288,21 +282,8 @@ jobs:
     steps:
       - <<: *attach_workspace
       - run:
-         command: cd project && ./build.sh --target "_run_unit_tests"
+         command: ./build.sh --target "_run_unit_tests"
          name: run the unit tests
-  # coverage is now handled by appveyor
-  # unit_test_coverage:
-  #   docker:
-  #     - image: circleci/node:10-browsers
-  #   steps:
-  #     - <<: *attach_workspace
-  #     - run:
-  #        command: npm install codecov
-  #        name: install codecov
-  #     # can't install locally so have to go into node_modules
-  #     - run:
-  #        command: node ~/project/node_modules/codecov/bin/codecov ~/project/project/Tests/MbedCloudSDK.UnitTests/lcov.info
-  #        name: upload coverage report to codecov
   #############################################################################################
   #                                Integration Tests                                          #
   #############################################################################################
@@ -354,7 +335,7 @@ jobs:
       - setup_remote_docker
       - <<: *install_aws_tools
       - <<: *attach_workspace
-      - run: cd ./project && docker build -t sdk_deploy -f Deploy.Dockerfile .
+      - run: docker build -t sdk_deploy -f Deploy.Dockerfile .
       - run: |
             . venv/bin/activate
             aws s3 sync s3://artifactory-store .
@@ -431,7 +412,7 @@ jobs:
     steps:
       - <<: *attach_workspace
       - run:
-         command: cd project && ./build.sh --target "Build-Pack-Publish"
+         command: ./build.sh --target "Build-Pack-Publish"
          name: build, pack and publish nuget package
   #############################################################################################
   #                                Production Release Jobs                                    #
@@ -449,18 +430,12 @@ jobs:
       - run:
           name: bump the version for a production release
           command: pipenv run auto_version --config=scripts/version.toml --bump=patch --news --release
-      - run:
-          command: mkdir -p ~/repo/project
-          name: make a directory for the project
-      - run:
-          command: cp -R ~/project ~/repo/
-          name: copy the checked out project into the repo folder.
       - persist_to_workspace:
-          root: ~/repo
+          root: ./
           paths:
-            - project/src
-            - project/build.cake
-            - project/build.sh
+            - src
+            - build.cake
+            - build.sh
   commit_news_and_version:
     <<: *circle_python
     environment:
@@ -517,18 +492,12 @@ jobs:
       - run:
           name: bump the version for a beta release
           command: pipenv run auto_version --config=scripts/version_beta.toml --bump=patch --news
-      - run:
-          command: mkdir -p ~/repo/project
-          name: make a directory for the project
-      - run:
-          command: cp -R ~/project ~/repo/
-          name: copy the checked out project into the repo folder.
       - persist_to_workspace:
-          root: ~/repo
+          root: ./
           paths:
-            - project/src
-            - project/build.cake
-            - project/build.sh
+            - src
+            - build.cake
+            - build.sh
 version: 2
 #############################################################################################
 #                                Workflows                                                  #
