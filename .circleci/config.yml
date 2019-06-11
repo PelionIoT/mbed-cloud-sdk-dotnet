@@ -292,6 +292,7 @@ jobs:
       image: circleci/classic:latest
       enabled: true
     steps:
+      - checkout
       - run:
           name: Setting up the environment for os2
           command: >
