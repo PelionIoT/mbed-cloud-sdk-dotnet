@@ -341,6 +341,36 @@ jobs:
           name: Deploying the SDK to Artifactory and beyond
           command: docker run --rm --network container:artifactory sdk_deploy ./build.sh --target "_publish" -nuget_api_key=${ARTIFACTORY_API_KEY} -nuget_source=${ARTIFACTORY_URL}/api/nuget/mbed-cloud-sdk-dotnet-snapshots
   #############################################################################################
+  #                                Post build jobs                                            #
+  #############################################################################################
+  upload_test_server_container:
+    <<: *circle_python
+    steps:
+      - setup_remote_docker
+      - attach_workspace:
+          at: ./
+      - run:
+          name: Update Python Installers
+          command: sudo pip install -U setuptools pip pipenv
+      - run:
+          name: Install awscli
+          command: pipenv install awscli
+      - run:
+          name: Configure Docker to use AWS
+          command: |
+            source $(pipenv --venv)/bin/activate
+            login="$(aws ecr get-login --no-include-email)"
+            ${login}
+      - run:
+          name: Load test server image
+          command: docker load -i ./test_server_image/testserver.tar
+      - run:
+          name: Tag the image
+          command: docker tag testserver 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testserver-dotnet:$(echo ${CIRCLE_BRANCH} | tr / -)
+      - run:
+          name: Push the image
+          command: docker push 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testserver-dotnet
+  #############################################################################################
   #                                Tag for release                                            #
   #############################################################################################
   git_tag_release:
@@ -585,6 +615,11 @@ workflows:
           - unit_test
           - integration_test_production
           <<: *filter_master_or_beta_only_build
+      - upload_test_server_container:
+          requires:
+          - unit_test
+          - integration_test_production
+          # <<: *filter_master_or_beta_only_build
       - release_to_nuget:
           requires:
           - unit_test
