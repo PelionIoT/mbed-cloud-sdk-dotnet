@@ -126,7 +126,7 @@ jobs:
           command: docker save -o ~/test_server_image/testserver.tar testserver
           name: save the test_server image so it doesn't need building later
       - persist_to_workspace:
-          root: ./
+          root: ~/.
           paths:
            - test_server_image
   cache_test_runner_image:
@@ -162,7 +162,7 @@ jobs:
           command: docker save -o ~/test_runner_image/testrunner.tar ${TESTRUNNER_DOCKER_IMAGE}
           name: save the test_runner image so it doesn't need building later
       - persist_to_workspace:
-          root: ./
+          root: ~/.
           paths:
            - test_runner_image
   #############################################################################################
