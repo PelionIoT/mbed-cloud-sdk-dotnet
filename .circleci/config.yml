@@ -307,11 +307,10 @@ jobs:
   #                                Integration Tests                                          #
   #############################################################################################
   integration_test_os2:
-    <<: *circle_python
-    environment:
-      <<: *sdk_environment
+    machine:
+      image: circleci/classic:latest
+      enabled: true
     steps:
-      - checkout
       - run:
           name: Setting up the environment for os2
           command: >
@@ -324,10 +323,12 @@ jobs:
       - run: docker load -i ./test_runner_image/testrunner.tar
       - run: docker load -i ./test_server_image/testserver.tar
       - run: docker-compose up --exit-code-from testrunner
+      - store_artifacts:
+          path: integration-results
   integration_test_production:
-    <<: *circle_python
-    environment:
-      <<: *sdk_environment
+    machine:
+      image: circleci/classic:latest
+      enabled: true
     steps:
       - checkout
       - run:
@@ -338,10 +339,11 @@ jobs:
             && export MBED_CLOUD_SDK_HOST=${MBED_CLOUD_SDK_HOST_PROD}
             && echo "export MBED_CLOUD_SDK_HOST=${MBED_CLOUD_SDK_HOST}" >> ${BASH_ENV}
       - <<: *attach_workspace
-      - setup_remote_docker
       - run: docker load -i ./test_runner_image/testrunner.tar
       - run: docker load -i ./test_server_image/testserver.tar
       - run: docker-compose up --exit-code-from testrunner
+      - store_artifacts:
+          path: integration-results
   #############################################################################################
   #                                Artifactory Deploy                                         #
   #############################################################################################
