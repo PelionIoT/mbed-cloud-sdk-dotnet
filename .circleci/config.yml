@@ -552,7 +552,6 @@ workflows:
       - upload_docs:
           requires:
           - docs
-          # <<: *filter_master_or_beta_only_build
       - tpip:
           <<: *filter_master_only_build
       - version_bump:
@@ -609,16 +608,12 @@ workflows:
   csharp_sdk_workflow_release:
     jobs:
       - version_bump_release
-          # <<: *tag_release_only
       - docs_release:
-          # <<: *tag_release_only
           requires:
           - version_bump_release
       - upload_docs_production_release:
-          # <<: *tag_release_only
           requires:
           - docs_release
-      # build and push test server docker image
       - build_pack_deploy:
           requires:
           - version_bump_release
@@ -630,16 +625,12 @@ workflows:
   csharp_sdk_workflow_beta:
     jobs:
       - version_bump_beta
-          # <<: *tag_beta_only
       - docs_release:
-          # <<: *tag_release_only
           requires:
           - version_bump_release
       - upload_docs_beta_release:
-          # <<: *tag_release_only
           requires:
           - docs_release
-      # build and push test server docker image
       - build_pack_deploy:
           requires:
           - version_bump_beta
