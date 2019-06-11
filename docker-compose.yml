@@ -1,5 +1,5 @@
 sdk_test_server:
-    image: test_server_dotnet
+    image: testserver
     environment:
       - MBED_CLOUD_SDK_HOST
       - MBED_CLOUD_SDK_API_KEY
