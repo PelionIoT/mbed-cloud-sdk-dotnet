@@ -117,10 +117,10 @@ jobs:
           command: mkdir -p ~/test_server_image
           name: create directory for the test_server docker image
       - run:
-          command: docker build -t testserver -f TestServer.Dockerfile .
+          command: docker build -t sdk_test_server -f TestServer.Dockerfile .
           name: build the test_server docker image from TestServer.Dockerfile
       - run:
-          command: docker save -o ~/test_server_image/testserver.tar testserver
+          command: docker save -o ~/test_server_image/testserver.tar sdk_test_server
           name: save the test_server image so it doesn't need building later
       - persist_to_workspace:
           root: ~/.
@@ -366,7 +366,7 @@ jobs:
           command: docker load -i ./test_server_image/testserver.tar
       - run:
           name: Tag the image
-          command: docker tag testserver 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testserver-dotnet:$(echo ${CIRCLE_BRANCH} | tr / -)
+          command: docker tag sdk_test_server 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testserver-dotnet:$(echo ${CIRCLE_BRANCH} | tr / -)
       - run:
           name: Push the image
           command: docker push 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testserver-dotnet
@@ -529,14 +529,14 @@ jobs:
             login="$(aws ecr get-login --no-include-email)"
             ${login}
       - run:
-          command: docker build -t testserver -f TestServer.Dockerfile .
+          command: docker build -t sdk_test_server -f TestServer.Dockerfile .
           name: build the test_server docker image from TestServer.Dockerfile
       - run:
           name: Tag the image with version
-          command: docker tag testserver 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testserver-dotnet:$(pipenv run auto_version --config=scripts/version.toml --release)
+          command: docker tag sdk_test_server 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testserver-dotnet:$(pipenv run auto_version --config=scripts/version.toml --release)
       - run:
           name: Tag the image with latest
-          command: docker tag testserver 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testserver-dotnet:latest
+          command: docker tag sdk_test_server 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testserver-dotnet:latest
       - run:
           name: Push the image at latest tag
           command: docker push 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testserver-dotnet
