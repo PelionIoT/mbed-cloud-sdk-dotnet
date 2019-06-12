@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Mbed.Cloud.Common;
@@ -9,10 +10,10 @@ namespace Snippets.src
 {
     public class Connect
     {
-        public async System.Threading.Tasks.Task SubscribeToDeviceStateChangesAsync()
+        public async Task SubscribeToDeviceStateChanges()
         {
             // an example: subscribing to device state changes
-            var config = new Config("An MbedCloud Api  Key", "custom host url");
+            var config = new Config();
 
             using (var connect = new ConnectApi(config))
             {
@@ -20,15 +21,18 @@ namespace Snippets.src
 
                 observer.OnNotify += (res) => Console.WriteLine(res);
 
-                Thread.Sleep(120000);
+                for (int i = 0; i < 10; i++)
+                {
+                    Console.WriteLine(await observer.NextAsync());
+                }
             }
             // end of example
         }
 
-        public async Task SubscribeToResourceVslueChangesAsync()
+        public async Task SubscribeToResourceVslueChanges()
         {
             // an example: subscribing to resource value changes
-            var config = new Config("An MbedCloud Api  Key", "custom host url");
+            var config = new Config();
 
             using (var connect = new ConnectApi(config))
             {
@@ -36,7 +40,32 @@ namespace Snippets.src
 
                 observer.OnNotify += (res) => Console.WriteLine(res);
 
-                Thread.Sleep(120000);
+                for (int i = 0; i < 10; i++)
+                {
+                    Console.WriteLine(await observer.NextAsync());
+                }
+            }
+            // end of example
+        }
+
+        public void GetAndSetResourceValues()
+        {
+            // an example: resource values
+            var config = new Config
+            {
+                AutostartNotifications = true,
+            };
+
+            using (var connect = new ConnectApi(config))
+            {
+                var resource = connect.ListConnectedDevices()
+                                    .FirstOrDefault()
+                                    .ListResources()
+                                    .FirstOrDefault(r => r.Observable == true);
+
+                connect.SetResourceValue(resource.DeviceId, resource.Path, DateTime.Now.ToString());
+
+                connect.GetResourceValue(resource.DeviceId, resource.Path);
             }
             // end of example
         }
