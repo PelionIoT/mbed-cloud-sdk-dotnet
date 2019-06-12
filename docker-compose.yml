@@ -3,9 +3,8 @@ sdk_test_server:
     environment:
       - MBED_CLOUD_SDK_HOST
       - MBED_CLOUD_SDK_API_KEY
+      - TEST_RUNNER_SHUTDOWN_SERVER=yes
     volumes:
-      - ./results:/testserver/build_logs/
-      - ./build/coverage-results:/testserver/build/coverage-results
       - ./test_fixtures:/testserver/test_fixtures
 testrunner:
     image: 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner
@@ -16,5 +15,5 @@ testrunner:
     links:
       - sdk_test_server
     volumes:
-      - ./results:/runner/results
+      - ./integration-results/results:/runner/results
       - ./test_fixtures:/runner/test_fixtures

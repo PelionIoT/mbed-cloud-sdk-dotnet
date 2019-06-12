@@ -4,7 +4,7 @@ references:
 
   attach_workspace: &attach_workspace
     attach_workspace:
-      at: ~/project
+      at: ./
 
   dotnet_mono_docker: &dotnet_mono_docker
     docker:
@@ -13,9 +13,6 @@ references:
   circle_python: &circle_python
     docker:
       - image: circleci/python:3.6-jessie-browsers
-
-  sdk_environment: &sdk_environment
-    ARTIFACTORY_URL: http://localhost:80/artifactory/
 
   install_aws_tools: &install_aws_tools
     run:
@@ -188,12 +185,12 @@ jobs:
     <<: *circle_python
     steps:
       - attach_workspace:
-          at: ~/docs
+          at: ./
       - <<: *install_aws_tools
       - run:
          command: |
                  . venv/bin/activate
-                 aws s3 sync --delete --cache-control max-age=3600 ~/docs s3://mbed-cloud-sdk-dotnet-dist/${CIRCLE_BRANCH}/docs
+                 aws s3 sync --delete --cache-control max-age=3600 docs s3://mbed-cloud-sdk-dotnet-dist/${CIRCLE_BRANCH}/docs
          name: upload docs to s3
   #############################################################################################
   #                                Misc pre jobs                                              #
@@ -220,8 +217,6 @@ jobs:
   #############################################################################################
   version_bump:
     <<: *circle_python
-    environment:
-      <<: *sdk_environment
     steps:
       - checkout
       - run:
@@ -233,24 +228,18 @@ jobs:
       - run:
           name: bump the version for a dev release
           command: pipenv run auto_version --config=scripts/version.toml --bump=patch --news
-      - run:
-         command: mkdir -p ~/repo/project
-         name: make a directory for the project
-      - run:
-         command: cp -R ~/project ~/repo/
-         name: copy the checked out project into the repo folder.
       - persist_to_workspace:
-         root: ~/repo
+         root: ./
          paths:
-           - project/Deploy.Dockerfile
-           - project/docs
-           - project/src
-           - project/scripts
-           - project/Tests/MbedCloudSDK.UnitTests
-           - project/build.cake
-           - project/build.sh
-           - project/CHANGELOG.md
-           - project/tools/packages.config
+           - Deploy.Dockerfile
+           - docs
+           - src
+           - scripts
+           - Tests/MbedCloudSDK.UnitTests
+           - build.cake
+           - build.sh
+           - CHANGELOG.md
+           - tools/packages.config
   #############################################################################################
   #                                Build                                                      #
   #############################################################################################
@@ -259,17 +248,17 @@ jobs:
     steps:
       - <<: *attach_workspace
       - run:
-         command: cd project && ./build.sh --target "CI"
+         command: ./build.sh --target "CI"
          name: build the project
       - persist_to_workspace:
-         root: ~/project
+         root: ./
          paths:
-           - project/tools
-           - project/packages
-           - project/src/obj
-           - project/src/bin/Release
-           - project/Tests/MbedCloudSDK.UnitTests/obj
-           - project/Tests/MbedCloudSDK.UnitTests/bin
+           - tools
+           - packages
+           - src/obj
+           - src/bin/Release
+           - Tests/MbedCloudSDK.UnitTests/obj
+           - Tests/MbedCloudSDK.UnitTests/bin
   build_documentation:
     docker:
       - image: circleci/node:jessie-browsers
@@ -288,28 +277,15 @@ jobs:
     steps:
       - <<: *attach_workspace
       - run:
-         command: cd project && ./build.sh --target "_run_unit_tests"
+         command: ./build.sh --target "_run_unit_tests"
          name: run the unit tests
-  # coverage is now handled by appveyor
-  # unit_test_coverage:
-  #   docker:
-  #     - image: circleci/node:10-browsers
-  #   steps:
-  #     - <<: *attach_workspace
-  #     - run:
-  #        command: npm install codecov
-  #        name: install codecov
-  #     # can't install locally so have to go into node_modules
-  #     - run:
-  #        command: node ~/project/node_modules/codecov/bin/codecov ~/project/project/Tests/MbedCloudSDK.UnitTests/lcov.info
-  #        name: upload coverage report to codecov
   #############################################################################################
   #                                Integration Tests                                          #
   #############################################################################################
   integration_test_os2:
-    <<: *circle_python
-    environment:
-      <<: *sdk_environment
+    machine:
+      image: circleci/classic:latest
+      enabled: true
     steps:
       - checkout
       - run:
@@ -320,14 +296,15 @@ jobs:
             && export MBED_CLOUD_SDK_HOST=${MBED_CLOUD_SDK_HOST_OS2}
             && echo "export MBED_CLOUD_SDK_HOST=${MBED_CLOUD_SDK_HOST}" >> ${BASH_ENV}
       - <<: *attach_workspace
-      - setup_remote_docker
       - run: docker load -i ./test_runner_image/testrunner.tar
       - run: docker load -i ./test_server_image/testserver.tar
       - run: docker-compose up --exit-code-from testrunner
+      - store_artifacts:
+          path: integration-results
   integration_test_production:
-    <<: *circle_python
-    environment:
-      <<: *sdk_environment
+    machine:
+      image: circleci/classic:latest
+      enabled: true
     steps:
       - checkout
       - run:
@@ -338,30 +315,61 @@ jobs:
             && export MBED_CLOUD_SDK_HOST=${MBED_CLOUD_SDK_HOST_PROD}
             && echo "export MBED_CLOUD_SDK_HOST=${MBED_CLOUD_SDK_HOST}" >> ${BASH_ENV}
       - <<: *attach_workspace
-      - setup_remote_docker
       - run: docker load -i ./test_runner_image/testrunner.tar
       - run: docker load -i ./test_server_image/testserver.tar
       - run: docker-compose up --exit-code-from testrunner
+      - store_artifacts:
+          path: integration-results
   #############################################################################################
   #                                Artifactory Deploy                                         #
   #############################################################################################
   artifactory_deploy:
     <<: *circle_python
     environment:
-      <<: *sdk_environment
+      ARTIFACTORY_URL: http://localhost:80/artifactory/
     steps:
       - setup_remote_docker
       - <<: *install_aws_tools
       - <<: *attach_workspace
-      - run: cd ./project && docker build -t sdk_deploy -f Deploy.Dockerfile .
+      - run: docker build -t sdk_deploy -f Deploy.Dockerfile .
       - run: |
             . venv/bin/activate
             aws s3 sync s3://artifactory-store .
-      - run: docker build -t artifactory ~/project/proxy/
+      - run: docker build -t artifactory proxy/
       - run: docker run -d --name artifactory artifactory && sleep 10
       - run:
           name: Deploying the SDK to Artifactory and beyond
           command: docker run --rm --network container:artifactory sdk_deploy ./build.sh --target "_publish" -nuget_api_key=${ARTIFACTORY_API_KEY} -nuget_source=${ARTIFACTORY_URL}/api/nuget/mbed-cloud-sdk-dotnet-snapshots
+  #############################################################################################
+  #                                Post build jobs                                            #
+  #############################################################################################
+  upload_test_server_container:
+    <<: *circle_python
+    steps:
+      - setup_remote_docker
+      - attach_workspace:
+          at: ./
+      - run:
+          name: Update Python Installers
+          command: sudo pip install -U setuptools pip pipenv
+      - run:
+          name: Install awscli
+          command: pipenv install awscli
+      - run:
+          name: Configure Docker to use AWS
+          command: |
+            source $(pipenv --venv)/bin/activate
+            login="$(aws ecr get-login --no-include-email)"
+            ${login}
+      - run:
+          name: Load test server image
+          command: docker load -i ./test_server_image/testserver.tar
+      - run:
+          name: Tag the image
+          command: docker tag testserver 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testserver-dotnet:$(echo ${CIRCLE_BRANCH} | tr / -)
+      - run:
+          name: Push the image
+          command: docker push 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testserver-dotnet
   #############################################################################################
   #                                Tag for release                                            #
   #############################################################################################
@@ -430,8 +438,26 @@ jobs:
     steps:
       - <<: *attach_workspace
       - run:
-         command: cd project && ./build.sh --target "Build-Pack-Publish"
+         command: ./build.sh --target "Build-Pack-Publish"
          name: build, pack and publish nuget package
+  docs_release:
+    docker:
+      - image: hrektts/doxygen
+    environment:
+      - OUTPUT_DIR: "./docs"
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./
+      - run:
+          command: doxygen ar.doxygen
+          name: run Doxygen to build the docs
+      - store_artifacts:
+          path: docs
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - docs
   #############################################################################################
   #                                Production Release Jobs                                    #
   #############################################################################################
@@ -448,22 +474,14 @@ jobs:
       - run:
           name: bump the version for a production release
           command: pipenv run auto_version --config=scripts/version.toml --bump=patch --news --release
-      - run:
-          command: mkdir -p ~/repo/project
-          name: make a directory for the project
-      - run:
-          command: cp -R ~/project ~/repo/
-          name: copy the checked out project into the repo folder.
       - persist_to_workspace:
-          root: ~/repo
+          root: ./
           paths:
-            - project/src
-            - project/build.cake
-            - project/build.sh
+            - src
+            - build.cake
+            - build.sh
   commit_news_and_version:
     <<: *circle_python
-    environment:
-      <<: *sdk_environment
     steps:
       - checkout
       - run:
@@ -482,13 +500,51 @@ jobs:
       - run:
           name: tag and release
           command: python ./scripts/tag_and_release.py news $(pipenv run autoversion --config=scripts/version.toml --release)
+  upload_docs_production_release:
+    <<: *circle_python
+    steps:
+      - attach_workspace:
+          at: ./
+      - <<: *install_aws_tools
+      - run:
+         command: |
+                 . venv/bin/activate
+                 aws s3 sync --delete --cache-control max-age=3600 docs s3://mbed-cloud-sdk-dotnet-dist/master-release/docs
+         name: upload docs to s3
+  upload_test_server_production_release:
+    <<: *circle_python
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Update Python Installers
+          command: sudo pip install -U setuptools pip pipenv
+      - run:
+          name: Install awscli and autoversion
+          command: pipenv install awscli pyautoversion
+      - run:
+          name: Configure Docker to use AWS
+          command: |
+            source $(pipenv --venv)/bin/activate
+            login="$(aws ecr get-login --no-include-email)"
+            ${login}
+      - run:
+          command: docker build -t testserver -f TestServer.Dockerfile .
+          name: build the test_server docker image from TestServer.Dockerfile
+      - run:
+          name: Tag the image with version
+          command: docker tag testserver 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testserver-dotnet:$(pipenv run auto_version --config=scripts/version.toml --release)
+      - run:
+          name: Tag the image with latest
+          command: docker tag testserver 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testserver-dotnet:latest
+      - run:
+          name: Push the image at latest tag
+          command: docker push 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testserver-dotnet
   #############################################################################################
   #                                Beta Release Jobs                                          #
   #############################################################################################
   commit_news_and_version_beta:
     <<: *circle_python
-    environment:
-      <<: *sdk_environment
     steps:
       - checkout
       - run:
@@ -516,23 +572,28 @@ jobs:
       - run:
           name: bump the version for a beta release
           command: pipenv run auto_version --config=scripts/version_beta.toml --bump=patch --news
-      - run:
-          command: mkdir -p ~/repo/project
-          name: make a directory for the project
-      - run:
-          command: cp -R ~/project ~/repo/
-          name: copy the checked out project into the repo folder.
       - persist_to_workspace:
-          root: ~/repo
+          root: ./
           paths:
-            - project/src
-            - project/build.cake
-            - project/build.sh
-version: 2
+            - src
+            - build.cake
+            - build.sh
+  upload_docs_beta_release:
+    <<: *circle_python
+    steps:
+      - attach_workspace:
+          at: ./
+      - <<: *install_aws_tools
+      - run:
+         command: |
+                 . venv/bin/activate
+                 aws s3 sync --delete --cache-control max-age=3600 docs s3://mbed-cloud-sdk-dotnet-dist/beta-release/docs
+         name: upload docs to s3
 #############################################################################################
 #                                Workflows                                                  #
 #############################################################################################
 workflows:
+  version: 2
   generation_workflow:
     jobs:
       - commit_back_generation:
@@ -579,14 +640,14 @@ workflows:
           requires:
           - build
           <<: *filter_ignore_release
-      # coverage is now handled by appveyor
-      # - unit_test_coverage:
-      #     requires:
-      #     - unit_test
       - artifactory_deploy:
           requires:
           - unit_test
-          - integration_test_os2
+          - integration_test_production
+          <<: *filter_master_or_beta_only_build
+      - upload_test_server_container:
+          requires:
+          - unit_test
           - integration_test_production
           <<: *filter_master_or_beta_only_build
       - release_to_nuget:
@@ -613,6 +674,18 @@ workflows:
     jobs:
       - version_bump_release:
           <<: *tag_release_only
+      - docs_release:
+          <<: *tag_release_only
+          requires:
+          - version_bump_release
+      - upload_docs_production_release:
+          <<: *tag_release_only
+          requires:
+          - docs_release
+      - upload_test_server_production_release:
+          <<: *tag_release_only
+          requires:
+          - version_bump_release
       - build_pack_deploy:
           requires:
           - version_bump_release
@@ -625,6 +698,14 @@ workflows:
     jobs:
       - version_bump_beta:
           <<: *tag_beta_only
+      - docs_release:
+          <<: *tag_beta_only
+          requires:
+          - version_bump_beta
+      - upload_docs_beta_release:
+          <<: *tag_beta_only
+          requires:
+          - docs_release
       - build_pack_deploy:
           requires:
           - version_bump_beta
@@ -633,4 +714,3 @@ workflows:
           requires:
           - version_bump_beta
           <<: *tag_beta_only
-  version: 2
