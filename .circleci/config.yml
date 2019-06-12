@@ -511,6 +511,35 @@ jobs:
                  . venv/bin/activate
                  aws s3 sync --delete --cache-control max-age=3600 docs s3://mbed-cloud-sdk-dotnet-dist/master-release/docs
          name: upload docs to s3
+  upload_test_server_production_release:
+    <<: *circle_python
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Update Python Installers
+          command: sudo pip install -U setuptools pip pipenv
+      - run:
+          name: Install awscli and autoversion
+          command: pipenv install awscli pyautoversion
+      - run:
+          name: Configure Docker to use AWS
+          command: |
+            source $(pipenv --venv)/bin/activate
+            login="$(aws ecr get-login --no-include-email)"
+            ${login}
+      - run:
+          command: docker build -t testserver -f TestServer.Dockerfile .
+          name: build the test_server docker image from TestServer.Dockerfile
+      - run:
+          name: Tag the image with version
+          command: docker tag testserver 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testserver-dotnet:$(pipenv run auto_version --config=scripts/version.toml --release)
+      - run:
+          name: Tag the image with latest
+          command: docker tag testserver 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testserver-dotnet:latest
+      - run:
+          name: Push the image at latest tag
+          command: docker push 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testserver-dotnet
   #############################################################################################
   #                                Beta Release Jobs                                          #
   #############################################################################################
@@ -649,6 +678,9 @@ workflows:
       - upload_docs_production_release:
           requires:
           - docs_release
+      - upload_test_server_production_release:
+          requires:
+          - version_bump_release
       - build_pack_deploy:
           requires:
           - version_bump_release
