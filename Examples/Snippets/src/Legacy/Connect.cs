@@ -65,7 +65,7 @@ namespace Snippets.src
 
                 connect.SetResourceValue(resource.DeviceId, resource.Path, DateTime.Now.ToString());
 
-                connect.GetResourceValue(resource.DeviceId, resource.Path);
+                var newValue = connect.GetResourceValue(resource.DeviceId, resource.Path);
             }
             // end of example
         }
