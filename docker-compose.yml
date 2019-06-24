@@ -3,7 +3,6 @@ sdk_test_server:
     environment:
       - MBED_CLOUD_SDK_HOST
       - MBED_CLOUD_SDK_API_KEY
-      - TEST_RUNNER_SHUTDOWN_SERVER=yes
     volumes:
       - ./test_fixtures:/testserver/test_fixtures
 testrunner:
@@ -12,6 +11,9 @@ testrunner:
       - TEST_SERVER_URL=http://sdk_test_server:80
       #folder on test server to get test files from
       - TEST_FIXTURES_DIR=/testserver/test_fixtures
+      - MBED_CLOUD_SDK_HOST
+      - MBED_CLOUD_SDK_API_KEY
+      - TEST_RUNNER_SHUTDOWN_SERVER=yes
     links:
       - sdk_test_server
     volumes:
