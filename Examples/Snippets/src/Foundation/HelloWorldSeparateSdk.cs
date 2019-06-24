@@ -26,7 +26,7 @@ public class HelloWorldSeparateSdkExamples
     }
 
     // uncloak
-    public void Main()
+    public static void Main()
     {
         // Create an instance of the Pelion Device Management SDK
         var sdk = new SDK();

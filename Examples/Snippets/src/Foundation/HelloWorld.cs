@@ -25,7 +25,7 @@ public class HelloWorldExamples
     }
 
     // uncloak
-    public void Main()
+    public static void Main()
     {
         var options = new DeviceListOptions
         {

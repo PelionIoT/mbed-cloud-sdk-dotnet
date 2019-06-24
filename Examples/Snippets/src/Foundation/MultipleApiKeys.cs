@@ -34,7 +34,7 @@ public class MultipleApiKeys
     }
 
     // uncloak
-    public void Main()
+    public static void Main()
     {
         // Create instances of the Pelion Device Management SDK for two accounts
         var account_one = new SDK(API_KEY_ONE);
