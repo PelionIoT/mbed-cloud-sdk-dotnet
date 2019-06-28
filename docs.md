@@ -36,7 +36,7 @@ using Mbed.Cloud.Foundation;
 
 public class HelloWorldSeparateSdk
 {
-    public void Main()
+    public static void Main()
     {
         // Create an instance of the Pelion Device Management SDK
         var sdk = new SDK();

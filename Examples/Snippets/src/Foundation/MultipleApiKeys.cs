@@ -1,5 +1,6 @@
 // an example: hello world with multiple api keys
 using System;
+using System.Threading.Tasks;
 using Mbed.Cloud;
 using Mbed.Cloud.Common;
 using Mbed.Cloud.Foundation;
@@ -16,7 +17,7 @@ public class MultipleApiKeys
     private string API_KEY_TWO;
 
     [Test]
-    public async System.Threading.Tasks.Task MultipleApiKeysTask()
+    public async Task MultipleApiKeysTask()
     {
         try
         {
@@ -34,7 +35,14 @@ public class MultipleApiKeys
     }
 
     // uncloak
+    // cloak
+    /*
+    // uncloak
+    public static void Main()
+    // cloak
+    */
     public void Main()
+    // uncloak
     {
         // Create instances of the Pelion Device Management SDK for two accounts
         var account_one = new SDK(API_KEY_ONE);
