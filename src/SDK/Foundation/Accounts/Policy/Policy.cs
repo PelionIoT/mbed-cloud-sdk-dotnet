@@ -15,6 +15,7 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
     /// Policy
@@ -52,6 +53,24 @@ namespace Mbed.Cloud.Foundation
         /// inherited
         /// </summary>
         public bool? Inherited
+        {
+            get;
+            internal set;
+        }
+
+        /// <summary>
+        /// inherited_from
+        /// </summary>
+        public string InheritedFrom
+        {
+            get;
+            internal set;
+        }
+
+        /// <summary>
+        /// inherited_type
+        /// </summary>
+        public PolicyInheritedType? InheritedType
         {
             get;
             internal set;
