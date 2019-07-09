@@ -17,6 +17,7 @@
         "account"
       ],
       "enums": [
+        "policy_inherited_type_enum",
         "user_status_enum",
         "user_order_enum",
         "subtenant_user_status_enum",
@@ -518,6 +519,18 @@
       ],
       "group_id": "Branding",
       "_key": "light_theme_image_reference_enum"
+    },
+    {
+      "entity_name": "policy",
+      "field_name": "inherited_type",
+      "enum_name": "policy_inherited_type_enum",
+      "values": [
+        "account",
+        "template",
+        "tier_template"
+      ],
+      "group_id": "Accounts",
+      "_key": "policy_inherited_type_enum"
     },
     {
       "entity_name": "subtenant_api_key",
@@ -2062,9 +2075,34 @@
                           "type": "boolean",
                           "example": false,
                           "description": "Flag indicating whether this feature is inherited or overwritten specifically.",
+                          "readOnly": true,
                           "api_fieldname": "inherited",
                           "entity_fieldname": "inherited",
                           "_key": "inherited"
+                        },
+                        {
+                          "type": "string",
+                          "example": "016ada3ec2d46665bf66e32e00000000",
+                          "description": "An ID indicating where this policy is inherited from.",
+                          "pattern": "[a-f0-9]{32}",
+                          "readOnly": true,
+                          "api_fieldname": "inherited_from",
+                          "entity_fieldname": "inherited_from",
+                          "_key": "inherited_from"
+                        },
+                        {
+                          "type": "string",
+                          "example": "account",
+                          "description": "Indicates the type of entity this policy is inherited from.",
+                          "readOnly": true,
+                          "enum": [
+                            "account",
+                            "template",
+                            "tier_template"
+                          ],
+                          "api_fieldname": "inherited_type",
+                          "entity_fieldname": "inherited_type",
+                          "_key": "inherited_type"
                         },
                         {
                           "type": "string",
@@ -2517,9 +2555,34 @@
                                 "type": "boolean",
                                 "example": false,
                                 "description": "Flag indicating whether this feature is inherited or overwritten specifically.",
+                                "readOnly": true,
                                 "api_fieldname": "inherited",
                                 "entity_fieldname": "inherited",
                                 "_key": "inherited"
+                              },
+                              {
+                                "type": "string",
+                                "example": "016ada3ec2d46665bf66e32e00000000",
+                                "description": "An ID indicating where this policy is inherited from.",
+                                "pattern": "[a-f0-9]{32}",
+                                "readOnly": true,
+                                "api_fieldname": "inherited_from",
+                                "entity_fieldname": "inherited_from",
+                                "_key": "inherited_from"
+                              },
+                              {
+                                "type": "string",
+                                "example": "account",
+                                "description": "Indicates the type of entity this policy is inherited from.",
+                                "readOnly": true,
+                                "enum": [
+                                  "account",
+                                  "template",
+                                  "tier_template"
+                                ],
+                                "api_fieldname": "inherited_type",
+                                "entity_fieldname": "inherited_type",
+                                "_key": "inherited_type"
                               },
                               {
                                 "type": "string",
@@ -5148,9 +5211,34 @@
                                 "type": "boolean",
                                 "example": false,
                                 "description": "Flag indicating whether this feature is inherited or overwritten specifically.",
+                                "readOnly": true,
                                 "api_fieldname": "inherited",
                                 "entity_fieldname": "inherited",
                                 "_key": "inherited"
+                              },
+                              {
+                                "type": "string",
+                                "example": "016ada3ec2d46665bf66e32e00000000",
+                                "description": "An ID indicating where this policy is inherited from.",
+                                "pattern": "[a-f0-9]{32}",
+                                "readOnly": true,
+                                "api_fieldname": "inherited_from",
+                                "entity_fieldname": "inherited_from",
+                                "_key": "inherited_from"
+                              },
+                              {
+                                "type": "string",
+                                "example": "account",
+                                "description": "Indicates the type of entity this policy is inherited from.",
+                                "readOnly": true,
+                                "enum": [
+                                  "account",
+                                  "template",
+                                  "tier_template"
+                                ],
+                                "api_fieldname": "inherited_type",
+                                "entity_fieldname": "inherited_type",
+                                "_key": "inherited_type"
                               },
                               {
                                 "type": "string",
@@ -5589,9 +5677,34 @@
                                       "type": "boolean",
                                       "example": false,
                                       "description": "Flag indicating whether this feature is inherited or overwritten specifically.",
+                                      "readOnly": true,
                                       "api_fieldname": "inherited",
                                       "entity_fieldname": "inherited",
                                       "_key": "inherited"
+                                    },
+                                    {
+                                      "type": "string",
+                                      "example": "016ada3ec2d46665bf66e32e00000000",
+                                      "description": "An ID indicating where this policy is inherited from.",
+                                      "pattern": "[a-f0-9]{32}",
+                                      "readOnly": true,
+                                      "api_fieldname": "inherited_from",
+                                      "entity_fieldname": "inherited_from",
+                                      "_key": "inherited_from"
+                                    },
+                                    {
+                                      "type": "string",
+                                      "example": "account",
+                                      "description": "Indicates the type of entity this policy is inherited from.",
+                                      "readOnly": true,
+                                      "enum": [
+                                        "account",
+                                        "template",
+                                        "tier_template"
+                                      ],
+                                      "api_fieldname": "inherited_type",
+                                      "entity_fieldname": "inherited_type",
+                                      "_key": "inherited_type"
                                     },
                                     {
                                       "type": "string",
@@ -6467,9 +6580,34 @@
                           "type": "boolean",
                           "example": false,
                           "description": "Flag indicating whether this feature is inherited or overwritten specifically.",
+                          "readOnly": true,
                           "api_fieldname": "inherited",
                           "entity_fieldname": "inherited",
                           "_key": "inherited"
+                        },
+                        {
+                          "type": "string",
+                          "example": "016ada3ec2d46665bf66e32e00000000",
+                          "description": "An ID indicating where this policy is inherited from.",
+                          "pattern": "[a-f0-9]{32}",
+                          "readOnly": true,
+                          "api_fieldname": "inherited_from",
+                          "entity_fieldname": "inherited_from",
+                          "_key": "inherited_from"
+                        },
+                        {
+                          "type": "string",
+                          "example": "account",
+                          "description": "Indicates the type of entity this policy is inherited from.",
+                          "readOnly": true,
+                          "enum": [
+                            "account",
+                            "template",
+                            "tier_template"
+                          ],
+                          "api_fieldname": "inherited_type",
+                          "entity_fieldname": "inherited_type",
+                          "_key": "inherited_type"
                         },
                         {
                           "type": "string",
@@ -6922,9 +7060,34 @@
                                 "type": "boolean",
                                 "example": false,
                                 "description": "Flag indicating whether this feature is inherited or overwritten specifically.",
+                                "readOnly": true,
                                 "api_fieldname": "inherited",
                                 "entity_fieldname": "inherited",
                                 "_key": "inherited"
+                              },
+                              {
+                                "type": "string",
+                                "example": "016ada3ec2d46665bf66e32e00000000",
+                                "description": "An ID indicating where this policy is inherited from.",
+                                "pattern": "[a-f0-9]{32}",
+                                "readOnly": true,
+                                "api_fieldname": "inherited_from",
+                                "entity_fieldname": "inherited_from",
+                                "_key": "inherited_from"
+                              },
+                              {
+                                "type": "string",
+                                "example": "account",
+                                "description": "Indicates the type of entity this policy is inherited from.",
+                                "readOnly": true,
+                                "enum": [
+                                  "account",
+                                  "template",
+                                  "tier_template"
+                                ],
+                                "api_fieldname": "inherited_type",
+                                "entity_fieldname": "inherited_type",
+                                "_key": "inherited_type"
                               },
                               {
                                 "type": "string",
@@ -7775,9 +7938,34 @@
                           "type": "boolean",
                           "example": false,
                           "description": "Flag indicating whether this feature is inherited or overwritten specifically.",
+                          "readOnly": true,
                           "api_fieldname": "inherited",
                           "entity_fieldname": "inherited",
                           "_key": "inherited"
+                        },
+                        {
+                          "type": "string",
+                          "example": "016ada3ec2d46665bf66e32e00000000",
+                          "description": "An ID indicating where this policy is inherited from.",
+                          "pattern": "[a-f0-9]{32}",
+                          "readOnly": true,
+                          "api_fieldname": "inherited_from",
+                          "entity_fieldname": "inherited_from",
+                          "_key": "inherited_from"
+                        },
+                        {
+                          "type": "string",
+                          "example": "account",
+                          "description": "Indicates the type of entity this policy is inherited from.",
+                          "readOnly": true,
+                          "enum": [
+                            "account",
+                            "template",
+                            "tier_template"
+                          ],
+                          "api_fieldname": "inherited_type",
+                          "entity_fieldname": "inherited_type",
+                          "_key": "inherited_type"
                         },
                         {
                           "type": "string",
@@ -8230,9 +8418,34 @@
                                 "type": "boolean",
                                 "example": false,
                                 "description": "Flag indicating whether this feature is inherited or overwritten specifically.",
+                                "readOnly": true,
                                 "api_fieldname": "inherited",
                                 "entity_fieldname": "inherited",
                                 "_key": "inherited"
+                              },
+                              {
+                                "type": "string",
+                                "example": "016ada3ec2d46665bf66e32e00000000",
+                                "description": "An ID indicating where this policy is inherited from.",
+                                "pattern": "[a-f0-9]{32}",
+                                "readOnly": true,
+                                "api_fieldname": "inherited_from",
+                                "entity_fieldname": "inherited_from",
+                                "_key": "inherited_from"
+                              },
+                              {
+                                "type": "string",
+                                "example": "account",
+                                "description": "Indicates the type of entity this policy is inherited from.",
+                                "readOnly": true,
+                                "enum": [
+                                  "account",
+                                  "template",
+                                  "tier_template"
+                                ],
+                                "api_fieldname": "inherited_type",
+                                "entity_fieldname": "inherited_type",
+                                "_key": "inherited_type"
                               },
                               {
                                 "type": "string",
@@ -10086,9 +10299,34 @@
                           "type": "boolean",
                           "example": false,
                           "description": "Flag indicating whether this feature is inherited or overwritten specifically.",
+                          "readOnly": true,
                           "api_fieldname": "inherited",
                           "entity_fieldname": "inherited",
                           "_key": "inherited"
+                        },
+                        {
+                          "type": "string",
+                          "example": "016ada3ec2d46665bf66e32e00000000",
+                          "description": "An ID indicating where this policy is inherited from.",
+                          "pattern": "[a-f0-9]{32}",
+                          "readOnly": true,
+                          "api_fieldname": "inherited_from",
+                          "entity_fieldname": "inherited_from",
+                          "_key": "inherited_from"
+                        },
+                        {
+                          "type": "string",
+                          "example": "account",
+                          "description": "Indicates the type of entity this policy is inherited from.",
+                          "readOnly": true,
+                          "enum": [
+                            "account",
+                            "template",
+                            "tier_template"
+                          ],
+                          "api_fieldname": "inherited_type",
+                          "entity_fieldname": "inherited_type",
+                          "_key": "inherited_type"
                         },
                         {
                           "type": "string",
@@ -10541,9 +10779,34 @@
                                 "type": "boolean",
                                 "example": false,
                                 "description": "Flag indicating whether this feature is inherited or overwritten specifically.",
+                                "readOnly": true,
                                 "api_fieldname": "inherited",
                                 "entity_fieldname": "inherited",
                                 "_key": "inherited"
+                              },
+                              {
+                                "type": "string",
+                                "example": "016ada3ec2d46665bf66e32e00000000",
+                                "description": "An ID indicating where this policy is inherited from.",
+                                "pattern": "[a-f0-9]{32}",
+                                "readOnly": true,
+                                "api_fieldname": "inherited_from",
+                                "entity_fieldname": "inherited_from",
+                                "_key": "inherited_from"
+                              },
+                              {
+                                "type": "string",
+                                "example": "account",
+                                "description": "Indicates the type of entity this policy is inherited from.",
+                                "readOnly": true,
+                                "enum": [
+                                  "account",
+                                  "template",
+                                  "tier_template"
+                                ],
+                                "api_fieldname": "inherited_type",
+                                "entity_fieldname": "inherited_type",
+                                "_key": "inherited_type"
                               },
                               {
                                 "type": "string",
@@ -12869,9 +13132,34 @@
                 "type": "boolean",
                 "example": false,
                 "description": "Flag indicating whether this feature is inherited or overwritten specifically.",
+                "readOnly": true,
                 "api_fieldname": "inherited",
                 "entity_fieldname": "inherited",
                 "_key": "inherited"
+              },
+              {
+                "type": "string",
+                "example": "016ada3ec2d46665bf66e32e00000000",
+                "description": "An ID indicating where this policy is inherited from.",
+                "pattern": "[a-f0-9]{32}",
+                "readOnly": true,
+                "api_fieldname": "inherited_from",
+                "entity_fieldname": "inherited_from",
+                "_key": "inherited_from"
+              },
+              {
+                "type": "string",
+                "example": "account",
+                "description": "Indicates the type of entity this policy is inherited from.",
+                "readOnly": true,
+                "enum": [
+                  "account",
+                  "template",
+                  "tier_template"
+                ],
+                "api_fieldname": "inherited_type",
+                "entity_fieldname": "inherited_type",
+                "_key": "inherited_type"
               },
               {
                 "type": "string",
@@ -23384,6 +23672,11 @@
           "field_renames": [],
           "fields": [
             {
+              "is_primary_key": true,
+              "_override": true,
+              "type": "string",
+              "api_fieldname": "reference",
+              "entity_fieldname": "reference",
               "enum": [
                 "error_color",
                 "primary",
@@ -23402,14 +23695,9 @@
                 "success_font_color",
                 "warning_font_color"
               ],
-              "type": "string",
-              "description": "Color name.",
-              "is_primary_key": true,
-              "_override": true,
-              "api_fieldname": "reference",
-              "entity_fieldname": "reference",
               "name": "reference",
               "in": "path",
+              "description": "The name of the branding color.",
               "required": true,
               "enum_reference": "dark_theme_color_reference_enum",
               "_key": "reference"
@@ -23419,74 +23707,8 @@
           "mode": "delete",
           "responses": [
             {
-              "description": "Successful operation.",
-              "schema": {
-                "type": "object",
-                "properties": [
-                  {
-                    "type": "string",
-                    "example": "#f3f93e",
-                    "description": "The color given as name (purple) or as a hex code.",
-                    "x-nullable": true,
-                    "api_fieldname": "color",
-                    "entity_fieldname": "color",
-                    "_key": "color"
-                  },
-                  {
-                    "type": "string",
-                    "description": "Entity name: always 'branding_color'",
-                    "readOnly": true,
-                    "enum": [
-                      "branding_color"
-                    ],
-                    "api_fieldname": "object",
-                    "entity_fieldname": "object",
-                    "_key": "object"
-                  },
-                  {
-                    "enum": [
-                      "error_color",
-                      "primary",
-                      "secondary",
-                      "success_color",
-                      "warning_color",
-                      "canvas_background",
-                      "canvas_background_font_color",
-                      "workspace_background",
-                      "workspace_background_font_color",
-                      "info_color",
-                      "info_font_color",
-                      "primary_font_color",
-                      "secondary_font_color",
-                      "error_font_color",
-                      "success_font_color",
-                      "warning_font_color"
-                    ],
-                    "type": "string",
-                    "description": "Color name.",
-                    "is_primary_key": true,
-                    "_override": true,
-                    "api_fieldname": "reference",
-                    "entity_fieldname": "reference",
-                    "_key": "reference"
-                  },
-                  {
-                    "type": "string",
-                    "format": "date-time",
-                    "example": "2018-02-14T15:24:14Z",
-                    "description": "Last update time in UTC.",
-                    "readOnly": true,
-                    "api_fieldname": "updated_at",
-                    "entity_fieldname": "updated_at",
-                    "_key": "updated_at"
-                  }
-                ],
-                "foreign_key": {
-                  "group": "Branding",
-                  "entity": "subtenant_light_theme_color"
-                }
-              },
-              "_key": "200"
+              "description": "Deleted successfully.",
+              "_key": "204"
             },
             {
               "description": "Authentication failure.",
@@ -23723,9 +23945,7 @@
             "etag",
             "type",
             "groups",
-            "filter",
-            "color",
-            "updated_at"
+            "filter"
           ],
           "group_id": "Branding",
           "operation_id": "resetDarkColor",
@@ -41943,6 +42163,11 @@
           "field_renames": [],
           "fields": [
             {
+              "is_primary_key": true,
+              "_override": true,
+              "type": "string",
+              "api_fieldname": "reference",
+              "entity_fieldname": "reference",
               "enum": [
                 "error_color",
                 "primary",
@@ -41961,14 +42186,9 @@
                 "success_font_color",
                 "warning_font_color"
               ],
-              "type": "string",
-              "description": "Color name.",
-              "is_primary_key": true,
-              "_override": true,
-              "api_fieldname": "reference",
-              "entity_fieldname": "reference",
               "name": "reference",
               "in": "path",
+              "description": "The name of the branding color.",
               "required": true,
               "enum_reference": "light_theme_color_reference_enum",
               "_key": "reference"
@@ -41978,90 +42198,8 @@
           "mode": "delete",
           "responses": [
             {
-              "description": "Successful operation.",
-              "schema": {
-                "type": "object",
-                "properties": [
-                  {
-                    "type": "string",
-                    "example": "#f3f93e",
-                    "description": "The color given as name (purple) or as a hex code.",
-                    "x-nullable": true,
-                    "api_fieldname": "color",
-                    "entity_fieldname": "color",
-                    "parameter_fieldname": "color",
-                    "in": "body",
-                    "required": false,
-                    "_key": "color"
-                  },
-                  {
-                    "type": "string",
-                    "description": "Entity name: always 'branding_color'",
-                    "readOnly": true,
-                    "enum": [
-                      "branding_color"
-                    ],
-                    "api_fieldname": "object",
-                    "entity_fieldname": "object",
-                    "name": "object",
-                    "in": "body",
-                    "schema_param": true,
-                    "external_param": true,
-                    "parameter_fieldname": "object",
-                    "required": false,
-                    "_key": "object"
-                  },
-                  {
-                    "enum": [
-                      "error_color",
-                      "primary",
-                      "secondary",
-                      "success_color",
-                      "warning_color",
-                      "canvas_background",
-                      "canvas_background_font_color",
-                      "workspace_background",
-                      "workspace_background_font_color",
-                      "info_color",
-                      "info_font_color",
-                      "primary_font_color",
-                      "secondary_font_color",
-                      "error_font_color",
-                      "success_font_color",
-                      "warning_font_color"
-                    ],
-                    "type": "string",
-                    "description": "Color name.",
-                    "is_primary_key": true,
-                    "_override": true,
-                    "api_fieldname": "reference",
-                    "entity_fieldname": "reference",
-                    "name": "reference",
-                    "in": "path",
-                    "required": true,
-                    "enum_reference": "dark_theme_color_reference_enum",
-                    "_key": "reference"
-                  },
-                  {
-                    "type": "string",
-                    "format": "date-time",
-                    "example": "2018-02-14T15:24:14Z",
-                    "description": "Last update time in UTC.",
-                    "readOnly": true,
-                    "api_fieldname": "updated_at",
-                    "entity_fieldname": "updated_at",
-                    "parameter_fieldname": "updated_at",
-                    "in": "body",
-                    "required": false,
-                    "_key": "updated_at"
-                  }
-                ],
-                "foreign_key": {
-                  "group": "Branding",
-                  "entity": "subtenant_light_theme_color"
-                }
-              },
-              "_key": "200"
+              "description": "Deleted successfully.",
+              "_key": "204"
             },
             {
               "description": "Authentication failure.",
@@ -42298,9 +42436,7 @@
             "etag",
             "type",
             "groups",
-            "filter",
-            "color",
-            "updated_at"
+            "filter"
           ],
           "group_id": "Branding",
           "operation_id": "resetLightColor",
@@ -45413,10 +45549,35 @@
           "type": "boolean",
           "example": false,
           "description": "Flag indicating whether this feature is inherited or overwritten specifically.",
-          "api_fieldname": "inherited",
           "readOnly": true,
+          "api_fieldname": "inherited",
           "required": false,
           "_key": "inherited"
+        },
+        {
+          "type": "string",
+          "example": "016ada3ec2d46665bf66e32e00000000",
+          "description": "An ID indicating where this policy is inherited from.",
+          "pattern": "[a-f0-9]{32}",
+          "readOnly": true,
+          "api_fieldname": "inherited_from",
+          "required": false,
+          "_key": "inherited_from"
+        },
+        {
+          "type": "string",
+          "example": "account",
+          "description": "Indicates the type of entity this policy is inherited from.",
+          "readOnly": true,
+          "enum": [
+            "account",
+            "template",
+            "tier_template"
+          ],
+          "api_fieldname": "inherited_type",
+          "required": false,
+          "enum_reference": "policy_inherited_type_enum",
+          "_key": "inherited_type"
         },
         {
           "type": "string",
@@ -48543,6 +48704,11 @@
               "_key": "account_id"
             },
             {
+              "is_primary_key": true,
+              "_override": true,
+              "type": "string",
+              "api_fieldname": "reference",
+              "entity_fieldname": "reference",
               "enum": [
                 "error_color",
                 "primary",
@@ -48561,14 +48727,9 @@
                 "success_font_color",
                 "warning_font_color"
               ],
-              "type": "string",
-              "description": "Color name.",
-              "is_primary_key": true,
-              "_override": true,
-              "api_fieldname": "reference",
-              "entity_fieldname": "reference",
               "name": "reference",
               "in": "path",
+              "description": "The name of the branding color.",
               "required": true,
               "enum_reference": "subtenant_dark_theme_color_reference_enum",
               "_key": "reference"
@@ -48578,90 +48739,8 @@
           "mode": "delete",
           "responses": [
             {
-              "description": "Successful operation.",
-              "schema": {
-                "type": "object",
-                "properties": [
-                  {
-                    "type": "string",
-                    "example": "#f3f93e",
-                    "description": "The color given as name (purple) or as a hex code.",
-                    "x-nullable": true,
-                    "api_fieldname": "color",
-                    "entity_fieldname": "color",
-                    "parameter_fieldname": "color",
-                    "in": "body",
-                    "required": false,
-                    "_key": "color"
-                  },
-                  {
-                    "type": "string",
-                    "description": "Entity name: always 'branding_color'",
-                    "readOnly": true,
-                    "enum": [
-                      "branding_color"
-                    ],
-                    "api_fieldname": "object",
-                    "entity_fieldname": "object",
-                    "name": "object",
-                    "in": "body",
-                    "schema_param": true,
-                    "external_param": true,
-                    "parameter_fieldname": "object",
-                    "required": false,
-                    "_key": "object"
-                  },
-                  {
-                    "enum": [
-                      "error_color",
-                      "primary",
-                      "secondary",
-                      "success_color",
-                      "warning_color",
-                      "canvas_background",
-                      "canvas_background_font_color",
-                      "workspace_background",
-                      "workspace_background_font_color",
-                      "info_color",
-                      "info_font_color",
-                      "primary_font_color",
-                      "secondary_font_color",
-                      "error_font_color",
-                      "success_font_color",
-                      "warning_font_color"
-                    ],
-                    "type": "string",
-                    "description": "Color name.",
-                    "is_primary_key": true,
-                    "_override": true,
-                    "api_fieldname": "reference",
-                    "entity_fieldname": "reference",
-                    "name": "reference",
-                    "in": "path",
-                    "required": true,
-                    "enum_reference": "light_theme_color_reference_enum",
-                    "_key": "reference"
-                  },
-                  {
-                    "type": "string",
-                    "format": "date-time",
-                    "example": "2018-02-14T15:24:14Z",
-                    "description": "Last update time in UTC.",
-                    "readOnly": true,
-                    "api_fieldname": "updated_at",
-                    "entity_fieldname": "updated_at",
-                    "parameter_fieldname": "updated_at",
-                    "in": "body",
-                    "required": false,
-                    "_key": "updated_at"
-                  }
-                ],
-                "foreign_key": {
-                  "group": "Branding",
-                  "entity": "subtenant_light_theme_color"
-                }
-              },
-              "_key": "200"
+              "description": "Deleted successfully.",
+              "_key": "204"
             },
             {
               "description": "Authentication failure.",
@@ -48898,9 +48977,7 @@
             "etag",
             "type",
             "groups",
-            "filter",
-            "color",
-            "updated_at"
+            "filter"
           ],
           "group_id": "Branding",
           "operation_id": "resetAccountDarkColor",
@@ -48913,7 +48990,7 @@
           "_key": "delete"
         },
         {
-          "description": "Retrieve the requested dark theme branding color. \n\n**Example:**\n```\ncurl -X GET https://api.us-east-1.mbedcloud.com/v3/accounts/{account_id}/branding-colors/dark/{reference} \\\n-H 'Authorization: Bearer <api_key>'\n```",
+          "description": "Retrieve the requested dark theme branding color.\n\n**Example:**\n```\ncurl -X GET https://api.us-east-1.mbedcloud.com/v3/accounts/{account_id}/branding-colors/dark/{reference} \\\n-H 'Authorization: Bearer <api_key>'\n```",
           "field_renames": [],
           "fields": [
             {
@@ -51207,6 +51284,11 @@
               "_key": "account_id"
             },
             {
+              "is_primary_key": true,
+              "_override": true,
+              "type": "string",
+              "api_fieldname": "reference",
+              "entity_fieldname": "reference",
               "enum": [
                 "error_color",
                 "primary",
@@ -51225,14 +51307,9 @@
                 "success_font_color",
                 "warning_font_color"
               ],
-              "type": "string",
-              "description": "Color name.",
-              "is_primary_key": true,
-              "_override": true,
-              "api_fieldname": "reference",
-              "entity_fieldname": "reference",
               "name": "reference",
               "in": "path",
+              "description": "The name of the branding color.",
               "required": true,
               "enum_reference": "subtenant_light_theme_color_reference_enum",
               "_key": "reference"
@@ -51242,90 +51319,8 @@
           "mode": "delete",
           "responses": [
             {
-              "description": "Successful operation.",
-              "schema": {
-                "type": "object",
-                "properties": [
-                  {
-                    "type": "string",
-                    "example": "#f3f93e",
-                    "description": "The color given as name (purple) or as a hex code.",
-                    "x-nullable": true,
-                    "api_fieldname": "color",
-                    "entity_fieldname": "color",
-                    "parameter_fieldname": "color",
-                    "in": "body",
-                    "required": false,
-                    "_key": "color"
-                  },
-                  {
-                    "type": "string",
-                    "description": "Entity name: always 'branding_color'",
-                    "readOnly": true,
-                    "enum": [
-                      "branding_color"
-                    ],
-                    "api_fieldname": "object",
-                    "entity_fieldname": "object",
-                    "name": "object",
-                    "in": "body",
-                    "schema_param": true,
-                    "external_param": true,
-                    "parameter_fieldname": "object",
-                    "required": false,
-                    "_key": "object"
-                  },
-                  {
-                    "enum": [
-                      "error_color",
-                      "primary",
-                      "secondary",
-                      "success_color",
-                      "warning_color",
-                      "canvas_background",
-                      "canvas_background_font_color",
-                      "workspace_background",
-                      "workspace_background_font_color",
-                      "info_color",
-                      "info_font_color",
-                      "primary_font_color",
-                      "secondary_font_color",
-                      "error_font_color",
-                      "success_font_color",
-                      "warning_font_color"
-                    ],
-                    "type": "string",
-                    "description": "Color name.",
-                    "is_primary_key": true,
-                    "_override": true,
-                    "api_fieldname": "reference",
-                    "entity_fieldname": "reference",
-                    "name": "reference",
-                    "in": "path",
-                    "required": true,
-                    "enum_reference": "subtenant_dark_theme_color_reference_enum",
-                    "_key": "reference"
-                  },
-                  {
-                    "type": "string",
-                    "format": "date-time",
-                    "example": "2018-02-14T15:24:14Z",
-                    "description": "Last update time in UTC.",
-                    "readOnly": true,
-                    "api_fieldname": "updated_at",
-                    "entity_fieldname": "updated_at",
-                    "parameter_fieldname": "updated_at",
-                    "in": "body",
-                    "required": false,
-                    "_key": "updated_at"
-                  }
-                ],
-                "foreign_key": {
-                  "group": "Branding",
-                  "entity": "subtenant_dark_theme_color"
-                }
-              },
-              "_key": "200"
+              "description": "Deleted successfully.",
+              "_key": "204"
             },
             {
               "description": "Authentication failure.",
@@ -51562,9 +51557,7 @@
             "etag",
             "type",
             "groups",
-            "filter",
-            "color",
-            "updated_at"
+            "filter"
           ],
           "group_id": "Branding",
           "operation_id": "resetAccountLightColor",

@@ -1045,7 +1045,10 @@ definitions:
         example: text/plain
         type: string
       error:
-        description: An optional error message describing the error.
+        description: 'An optional error message describing the error. Please refer
+          to status listing above.
+
+          '
         example: TIMEOUT
         type: string
       id:
@@ -1062,8 +1065,44 @@ definitions:
         example: My4zMQ==
         type: string
       status:
-        description: The asynchronous response status code for a device operation
-          related to a proxy request or manual subscription.
+        description: '
+
+          States whether sending a command to the device succeeded or failed.<br/>
+
+          |Code|Description|
+
+          |-|-|
+
+          |**200**| Operation succeeded. The playload contains result of the operation
+          from the device. |
+
+          |**404**| Endpoint does not have requested resource. |
+
+          |**412**| Precondition failed and operation was not executed. Device responded
+          with 4.12 CoAP response code.|
+
+          |**413**| Request entity is too large and could not be delivered to the
+          device. |
+
+          |**415**| Endpoint does not support media type. |
+
+          |**429**| Expired request was removed from queue (REQUEST_EXPIRED), device
+          requested deregistration (DEVICE_REMOVED_REGISTRATION), or device was suspended
+          (DEVICE_BLOCKED). |
+
+          |**502**| Request to the device failed and retry count exceeded. Last retry
+          failed to establish TCP or TLS connection to endpoint. |
+
+          |**503**| Request to the device failed and retry count exceeded. Last retry
+          failed because endpoint is currently unavailable (NOT_CONNECTED). |
+
+          |**504**| Request to the device failed and retry count exceeded. Last retry
+          failed, as device did not respond in the time of protocol-specific retransmission
+          logic (TIMEOUT). |
+
+          <br/>
+
+          '
         example: 200
         type: integer
     type: object
@@ -3543,7 +3582,23 @@ definitions:
         description: Flag indicating whether this feature is inherited or overwritten
           specifically.
         example: false
+        readOnly: true
         type: boolean
+      inherited_from:
+        description: An ID indicating where this policy is inherited from.
+        example: 016ada3ec2d46665bf66e32e00000000
+        pattern: '[a-f0-9]{32}'
+        readOnly: true
+        type: string
+      inherited_type:
+        description: Indicates the type of entity this policy is inherited from.
+        enum:
+        - account
+        - template
+        - tier_template
+        example: account
+        readOnly: true
+        type: string
       resource:
         description: Resource that is protected by this policy.
         example: /v3/update-campaign
@@ -4132,6 +4187,9 @@ definitions:
         description: Name of the identity provider.
         maxLength: 100
         type: string
+      oidc_attributes:
+        $ref: '#/definitions/OIDCInfo'
+        description: OIDC specific attributes.
       saml2_attributes:
         $ref: '#/definitions/SAML2Req'
         description: SAML2 specific attributes.
@@ -4269,6 +4327,9 @@ definitions:
         description: Name of the identity provider.
         maxLength: 100
         type: string
+      oidc_attributes:
+        $ref: '#/definitions/OIDCInfo'
+        description: OIDC specific attributes.
       saml2_attributes:
         $ref: '#/definitions/SAML2Req'
         description: SAML2 specific attributes.
@@ -4286,6 +4347,17 @@ definitions:
     required:
     - name
     - type
+    type: object
+  IdpPublicKey:
+    description: Represents provider's public key and key ID used to sign ID tokens.
+      PEM-encoded.
+    properties:
+      key:
+        description: The public key.
+        type: string
+      kid:
+        description: The public key ID.
+        type: string
     type: object
   Image:
     format: binary
@@ -4571,6 +4643,51 @@ definitions:
           example: 015f3850a657000000000001001002ab
           type: string
         type: array
+    type: object
+  OIDCInfo:
+    description: Represents OIDC specific attributes.
+    properties:
+      authorization_endpoint:
+        description: URL of the OAuth 2.0 authorization endpoint.
+        type: string
+      auto_enrollment:
+        description: For future use.
+        type: boolean
+      client_id:
+        description: Client ID needed to authenticate and gain access to identity
+          provider's API.
+        type: string
+      client_secret:
+        description: Client secret needed to authenticate and gain access to identity
+          provider's API.
+        type: string
+      end_session_endpoint:
+        description: URL of the provider's end session endpoint.
+        type: string
+      issuer:
+        description: Issuer of the identity provider.
+        type: string
+      jwks_uri:
+        description: URL of the provider's JSON web key set document.
+        type: string
+      keys:
+        description: Provider's public keys and key IDs used to sign ID tokens. PEM-encoded.
+        items:
+          $ref: '#/definitions/IdpPublicKey'
+        type: array
+      redirect_uri:
+        description: The URI needed to authenticate and gain access to identity provider's
+          API.
+        type: string
+      revocation_endpoint:
+        description: URL of the provider's token revocation endpoint.
+        type: string
+      token_endpoint:
+        description: URL of the OAuth 2.0 authorization endpoint.
+        type: string
+      userinfo_endpoint:
+        description: URL of the OAuth 2.0 UserInfo endpoint.
+        type: string
     type: object
   ParentAccountInfo:
     description: Represents parent account contact details in responses.
@@ -6981,7 +7098,11 @@ paths:
         401:
           description: Authentication failure.
         404:
-          description: Device not found. Contains error DEVICE_NOT_FOUND.
+          description: "Contains one of the following errors \n|Error message|Description|\n\
+            |-|-|\n|**DEVICE_NOT_FOUND**| Device is not in Device reqistry. Either\
+            \ device has requestd register delete or device has not connected in time\
+            \ and expired.|\n|**URI_PATH_DOES_NOT_EXISTS**| The device does not have\
+            \ requested resource. Check the resource path is correct |"
           schema:
             type: string
       summary: Send an async request to device
@@ -7260,25 +7381,10 @@ paths:
             not supported by the used protocol.
         410:
           description: Gone. Endpoint not found.
-        412:
-          description: Precondition failed. Device responds with 4.12 CoAP response
-            code (through AsyncIDResponse).
-        413:
-          description: Request entity too large (through AsyncIDResponse).
-        415:
-          description: Media type is not supported by the endpoint (through AsyncIDResponse).
         429:
-          description: Cannot make a request at the moment; the queue is full or it
-            was cleared because the device deregistered, the registration expired
-            or the device was suspended.
+          description: 'Cannot accept the request at the moment: the queue is full.'
         502:
           description: TCP or TLS connection to endpoint cannot be established.
-        503:
-          description: Operation cannot be executed because endpoint is currently
-            unavailable (through AsyncIDResponse).
-        504:
-          description: Operation cannot be executed due to a time-out from the endpoint
-            (through AsyncIDResponse).
       summary: Delete a resource path.
       tags:
       - Resources
@@ -7374,25 +7480,10 @@ paths:
             not supported by the used protocol.
         410:
           description: Gone. Endpoint not found.
-        412:
-          description: Precondition failed. Device responded with 4.12 CoAP code (through
-            AsyncIDResponse).
-        413:
-          description: Request entity too large (through AsyncIDResponse).
-        415:
-          description: Media type is not supported by the endpoint (through AsyncIDResponse).
         429:
-          description: Cannot make a request at the moment; the queue is full or it
-            was cleared because the device deregistered, the registration expired
-            or the device was suspended.
+          description: 'Cannot accept the request at the moment: the queue is full.'
         502:
           description: TCP or TLS connection to endpoint cannot be established.
-        503:
-          description: Operation cannot be executed because endpoint is currently
-            unavailable (through AsyncIDResponse).
-        504:
-          description: Operation cannot be executed due to a timeout from the endpoint
-            (through AsyncIDResponse).
       summary: Read from a resource.
       tags:
       - Resources
@@ -7490,25 +7581,10 @@ paths:
             not supported by the used protocol.
         410:
           description: Gone. Endpoint not found.
-        412:
-          description: Precondition failed. Device responds with 4.12 CoAP response
-            code (through AsyncIDResponse).
-        413:
-          description: Request entity too large (through AsyncIDResponse).
-        415:
-          description: Media type is not supported by the endpoint (through AsyncIDResponse).
         429:
-          description: Cannot make a request at the moment; the queue is full or it
-            was cleared because the device deregistered, the registration expired
-            or the device was suspended.
+          description: 'Cannot accept the request at the moment: the queue is full.'
         502:
           description: TCP or TLS connection to endpoint cannot be established.
-        503:
-          description: Operation cannot be executed because endpoint is currently
-            unavailable (through AsyncIDResponse).
-        504:
-          description: Operation cannot be executed due to a time-out from the endpoint
-            (through AsyncIDResponse).
       summary: Execute a function on a Resource or create new Object instance.
       tags:
       - Resources
@@ -7617,25 +7693,10 @@ paths:
             is not supported by the used protocol.'''
         410:
           description: Gone. Endpoint not found.
-        412:
-          description: Precondition failed. Device responds with 4.12 CoAP response
-            code (through AsyncIDResponse).
-        413:
-          description: Request entity too large (through AsyncIDResponse).
-        415:
-          description: Media type is not supported by the endpoint (through AsyncIDResponse).
         429:
-          description: Cannot make a request at the moment; the queue is full or it
-            was cleared because the device deregistered, the registration expired
-            or the device was suspended.
+          description: 'Cannot accept the request at the moment: the queue is full.'
         502:
           description: TCP or TLS connection to endpoint cannot be established.
-        503:
-          description: Operation cannot be executed because endpoint is currently
-            unavailable (through AsyncIDResponse).
-        504:
-          description: Operation cannot be executed due to a time-out from the endpoint
-            (through AsyncIDResponse).
       summary: Write to a Resource or use write-attributes (notification rules) for
         a Resource.
       tags:
@@ -8397,21 +8458,10 @@ paths:
           description: Bad request, malformed content.
         404:
           description: Endpoint or its resource not found.
-        412:
-          description: Precondition failed. Cannot make a subscription for a non-observable
-            resource (through AsyncIDResponse).
         429:
-          description: Cannot make a request at the moment; the queue is full or it
-            was cleared because the device deregistered, the registration expired
-            or the device was suspended.
+          description: 'Cannot accept the request at the moment: the queue is full.'
         502:
           description: 'Subscription failed: endpoint not connected.'
-        503:
-          description: Subscription could not be established because the endpoint
-            is currently unavailable (through AsyncIDResponse).
-        504:
-          description: Subscription could not be established due to a time-out from
-            the endpoint (through AsyncIDResponse).
       summary: Subscribe to a resource path.
       tags:
       - Subscriptions
@@ -8753,6 +8803,43 @@ paths:
       summary: Get notification events for an account.
       tags:
       - Account - email notification logs
+      x-origin: /home/circleci/project/auth/public/iam-identity-swagger.yaml
+  /v3/accounts/me/notifications/{notification_id}:
+    get:
+      description: An endpoint for retrieving notification event details.
+      operationId: getNofificationEntry
+      parameters:
+      - description: The ID of the notification entry to be retrieved.
+        in: path
+        name: notification_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/NotificationEntry'
+        '400':
+          description: Error in input data, missing or invalid parameters.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Authentication failure.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: No entry found for the given ID.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Get notification event details.
+      tags:
+      - Account Admin
       x-origin: /home/circleci/project/auth/public/iam-identity-swagger.yaml
   /v3/accounts/{account_id}:
     get:
@@ -9406,6 +9493,12 @@ paths:
         name: apikey_id
         required: true
         type: string
+      - description: New API key attributes to be stored.
+        in: body
+        name: body
+        required: false
+        schema:
+          $ref: '#/definitions/ApiKeyUpdateReq'
       produces:
       - application/json
       responses:
@@ -9413,6 +9506,10 @@ paths:
           description: Successful operation.
           schema:
             $ref: '#/definitions/ApiKeyInfoResp'
+        '400':
+          description: Error in input data format.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
         '401':
           description: Authentication failure.
           schema:
@@ -9553,10 +9650,8 @@ paths:
       produces:
       - application/json
       responses:
-        '200':
-          description: Successful operation.
-          schema:
-            $ref: '#/definitions/BrandingColor'
+        '204':
+          description: Deleted successfully.
         '401':
           description: Authentication failure.
           schema:
@@ -9574,9 +9669,19 @@ paths:
       - Tenant user interface configuration - colors
       x-origin: /home/circleci/project/auth/public/iam-identity-swagger.yaml
     get:
-      description: "Retrieve the requested dark theme branding color. \n\n**Example:**\n\
-        ```\ncurl -X GET https://api.us-east-1.mbedcloud.com/v3/accounts/{account_id}/branding-colors/dark/{reference}\
-        \ \\\n-H 'Authorization: Bearer <api_key>'\n```"
+      description: 'Retrieve the requested dark theme branding color.
+
+
+        **Example:**
+
+        ```
+
+        curl -X GET https://api.us-east-1.mbedcloud.com/v3/accounts/{account_id}/branding-colors/dark/{reference}
+        \
+
+        -H ''Authorization: Bearer <api_key>''
+
+        ```'
       operationId: getAccountDarkColor
       parameters:
       - description: Account ID.
@@ -9803,10 +9908,8 @@ paths:
       produces:
       - application/json
       responses:
-        '200':
-          description: Successful operation.
-          schema:
-            $ref: '#/definitions/BrandingColor'
+        '204':
+          description: Deleted successfully.
         '401':
           description: Authentication failure.
           schema:
@@ -10561,6 +10664,14 @@ paths:
         name: account_id
         required: true
         type: string
+      - allowEmptyValue: true
+        description: 'Indicates that the OpenID Connect endpoints and keys should
+          be set using the OpenID Connect Discovery mechanism. The following parameters
+          are set automatically: * authorization_endpoint * token_endpoint * userinfo_endpoint
+          * revocation_endpoint * jwks_uri * keys'
+        in: query
+        name: discovery
+        type: boolean
       - description: Details of the identity provider to create.
         in: body
         name: body
@@ -10690,6 +10801,14 @@ paths:
         name: identity_provider_id
         required: true
         type: string
+      - allowEmptyValue: true
+        description: 'Indicates that the OpenID Connect endpoints and keys should
+          be set using the OpenID Connect Discovery mechanism. The following parameters
+          are set automatically: * authorization_endpoint * token_endpoint * userinfo_endpoint
+          * revocation_endpoint * jwks_uri * keys'
+        in: query
+        name: discovery
+        type: boolean
       - description: Details of the identity provider to update.
         in: body
         name: body
@@ -10877,6 +10996,48 @@ paths:
       summary: Get the notification events of an account.
       tags:
       - Tenant accounts - email notification logs
+      x-origin: /home/circleci/project/auth/public/iam-identity-swagger.yaml
+  /v3/accounts/{account_id}/notifications/{notification_id}:
+    get:
+      description: An endpoint for retrieving notification event details of an account.
+      operationId: getAccountNofificationEntry
+      parameters:
+      - description: The ID of the account for which this notification should be retrieved.
+        in: path
+        name: account_id
+        required: true
+        type: string
+      - description: The ID of the notification entry to be retrieved.
+        in: path
+        name: notification_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/NotificationEntry'
+        '400':
+          description: Error in input data, missing or invalid parameters.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Authentication failure.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: No entry found for the given ID.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Get a notification event of an account.
+      tags:
+      - Aggregator Account Admin
       x-origin: /home/circleci/project/auth/public/iam-identity-swagger.yaml
   /v3/accounts/{account_id}/policy-groups:
     get:
@@ -13459,6 +13620,61 @@ paths:
       tags:
       - Account - API keys
       x-origin: /home/circleci/project/auth/public/iam-identity-swagger.yaml
+  /v3/api-keys/{apikey_id}/reset-secret:
+    post:
+      description: 'Reset the secret key of the API key.
+
+
+        **Example:**
+
+        ```
+
+        curl -X POST https://api.us-east-1.mbedcloud.com/v3/api-keys/{apikey_id}/reset-secret
+        \
+
+        -H ''Authorization: Bearer <api_key>''
+
+        ```'
+      operationId: resetSecret
+      parameters:
+      - description: The ID of the API key to reset.
+        in: path
+        name: apikey_id
+        required: true
+        type: string
+      - description: New API key attributes to be stored.
+        in: body
+        name: body
+        required: false
+        schema:
+          $ref: '#/definitions/ApiKeyUpdateReq'
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: Successful operation.
+          schema:
+            $ref: '#/definitions/ApiKeyInfoResp'
+        '400':
+          description: Error in input data format.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Authentication failure.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: An API key with the specified ID does not exist.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      summary: Reset the secret key.
+      tags:
+      - Account - API keys
+      x-origin: /home/circleci/project/auth/public/iam-identity-swagger.yaml
   /v3/billing-report:
     get:
       description: 'Fetch the billing report generated for the currently authenticated
@@ -13982,10 +14198,8 @@ paths:
       produces:
       - application/json
       responses:
-        '200':
-          description: Successful operation.
-          schema:
-            $ref: '#/definitions/BrandingColor'
+        '204':
+          description: Deleted successfully.
         '401':
           description: Authentication failure.
           schema:
@@ -14207,10 +14421,8 @@ paths:
       produces:
       - application/json
       responses:
-        '200':
-          description: Successful operation.
-          schema:
-            $ref: '#/definitions/BrandingColor'
+        '204':
+          description: Deleted successfully.
         '401':
           description: Authentication failure.
           schema:
@@ -20925,6 +21137,14 @@ paths:
       description: Create a new identity provider.
       operationId: createIdentityProvider
       parameters:
+      - allowEmptyValue: true
+        description: 'Indicates that the OpenID Connect endpoints and keys should
+          be set using the OpenID Connect Discovery mechanism. The following parameters
+          are set automatically: * authorization_endpoint * token_endpoint * userinfo_endpoint
+          * revocation_endpoint * jwks_uri * keys'
+        in: query
+        name: discovery
+        type: boolean
       - description: Details of the identity provider to create.
         in: body
         name: body
@@ -21035,6 +21255,14 @@ paths:
         name: identity_provider_id
         required: true
         type: string
+      - allowEmptyValue: true
+        description: 'Indicates that the OpenID Connect endpoints and keys should
+          be set using the OpenID Connect Discovery mechanism. The following parameters
+          are set automatically: * authorization_endpoint * token_endpoint * userinfo_endpoint
+          * revocation_endpoint * jwks_uri * keys'
+        in: query
+        name: discovery
+        type: boolean
       - description: Details of the identity provider to update.
         in: body
         name: body
