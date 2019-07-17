@@ -25,7 +25,14 @@ public class HelloWorldExamples
     }
 
     // uncloak
+    // cloak
+    /*
+    // uncloak
+    public static void Main()
+    // cloak
+    */
     public void Main()
+    // uncloak
     {
         var options = new DeviceListOptions
         {
