@@ -5,6 +5,7 @@
 namespace MbedCloudSDK.Connect.Api
 {
     using Mbed.Cloud.Common;
+    using MbedCloudSDK.Connect.Model.Enums;
 
     /// <summary>
     /// ConnectApiConfig
@@ -45,6 +46,8 @@ namespace MbedCloudSDK.Connect.Api
         /// <value>
         ///   <c>true</c> if [skip cleanup]; otherwise, <c>false</c>.
         /// </value>
-        public bool SkipCleanup { get; }
+        public bool SkipCleanup { get; private set; }
+
+        public DeliveryMethod DeliveryMethod { get; private set; }
     }
 }

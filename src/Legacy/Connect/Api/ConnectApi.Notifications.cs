@@ -144,12 +144,14 @@ namespace MbedCloudSDK.Connect.Api
 
                 if (DeliveryMethod == NotificationDeliveryMethod.DeliveryMethod.SERVER_INITIATED)
                 {
-                    throw new CloudApiException(400, "cannot call StartNotificationsAsync when delivery method is Server Initiated");
+                    Log.Info("cannot call StartNotificationsAsync when delivery method is Server Initiated");
+                    return;
                 }
 
                 if (GetWebhook() != null && !forceClear)
                 {
-                    throw new CloudApiException(400, "cannot start notifications as a webhook is already in use");
+                    Log.Info("cannot start notifications as a webhook is already in use");
+                    return;
                 }
 
                 // policy handler for retries. Uses Polly (https://github.com/App-vNext/Polly#wait-and-retry)

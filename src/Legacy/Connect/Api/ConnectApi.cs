@@ -52,6 +52,7 @@ namespace MbedCloudSDK.Connect.Api
             : this(config as Config)
         {
             skipCleanup = config.SkipCleanup;
+            DeliveryMethod = config.DeliveryMethod;
         }
 
         /// <summary>
