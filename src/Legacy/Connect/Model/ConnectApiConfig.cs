@@ -46,8 +46,8 @@ namespace MbedCloudSDK.Connect.Api
         /// <value>
         ///   <c>true</c> if [skip cleanup]; otherwise, <c>false</c>.
         /// </value>
-        public bool SkipCleanup { get; private set; }
+        public bool SkipCleanup { get; set; }
 
-        public DeliveryMethod DeliveryMethod { get; private set; }
+        public DeliveryMethod DeliveryMethod { get; set; }
     }
 }
