@@ -23,12 +23,15 @@ namespace Mbed.Cloud.Common
         {
             var loggerRepo = LogManager.GetRepository(Assembly.GetCallingAssembly());
 
-            BasicConfigurator.Configure(loggerRepo);
+            if (loggerRepo.Configured == false)
+            {
+                BasicConfigurator.Configure(loggerRepo);
 
-            var hierarchy = (Hierarchy)loggerRepo;
+                var hierarchy = (Hierarchy)loggerRepo;
 
-            hierarchy.Root.Level = GetLogLevel(level);
-            hierarchy.Configured = true;
+                hierarchy.Root.Level = GetLogLevel(level);
+                hierarchy.Configured = true;
+            }
         }
 
         private static Level GetLogLevel(LogLevel level)

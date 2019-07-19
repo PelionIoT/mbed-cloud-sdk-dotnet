@@ -10,12 +10,12 @@ namespace MbedCloudSDK.Connect.Model.Enums
     public enum DeliveryMethod
     {
         /// <summary>
-        /// The client initiated
+        /// Notifications are fetched via long polling
         /// </summary>
         CLIENT_INITIATED,
 
         /// <summary>
-        /// The server initiated
+        /// Notifications arrive via a webhook
         /// </summary>
         SERVER_INITIATED,
     }
