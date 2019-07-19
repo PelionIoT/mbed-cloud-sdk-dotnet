@@ -1,3 +1,21 @@
+2.2.1 (2019-07-19)
+==================
+
+### Bugfixes
+
+- Change exceptions in startNotifications to logs. (#1807191541)
+
+- Add DeliveryMethod option to ConnectConfig (#1807191542)
+
+### Improved Documentation
+
+- Update examples of the subscribe interface (#1707191610)
+
+### Misc
+
+- #1106191635
+
+
 2.2.0 (2019-06-07)
 ==================
 

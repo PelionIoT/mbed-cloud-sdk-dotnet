@@ -7,7 +7,7 @@
     <Title>Pelion Device Management SDK for .NET</Title>
     <AssemblyTitle>MbedCloudSDK</AssemblyTitle>
     <AssemblyName>MbedCloudSDK</AssemblyName>
-    <Version>2.2.0</Version>
+    <Version>2.2.1</Version>
     <Authors>Alex Logan</Authors>
     <Description>The Pelion Device Management SDK provides a simplified interface to the Pelion Device Management APIs by exposing functionality using conventions and paradigms familiar to .NET developers.</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
