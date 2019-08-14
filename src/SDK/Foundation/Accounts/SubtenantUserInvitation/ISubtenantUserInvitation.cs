@@ -17,8 +17,8 @@ namespace Mbed.Cloud.Foundation
     using Mbed.Cloud.Common;
     using Newtonsoft.Json;
     using System;
-    using Mbed.Cloud.Foundation;
     using System.Collections.Generic;
+    using Mbed.Cloud.Foundation;
 
     /// <summary>
     /// SubtenantUserInvitation
@@ -57,6 +57,15 @@ namespace Mbed.Cloud.Foundation
         DateTime? Expiration
         {
             get;
+        }
+
+        /// <summary>
+        /// groups
+        /// </summary>
+        List<string> Groups
+        {
+            get;
+            set;
         }
 
         /// <summary>

@@ -17,6 +17,7 @@ namespace Mbed.Cloud.Foundation
     using Mbed.Cloud.Common;
     using Newtonsoft.Json;
     using System;
+    using System.Collections.Generic;
     using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
@@ -47,6 +48,15 @@ namespace Mbed.Cloud.Foundation
         long? CreationTime
         {
             get;
+        }
+
+        /// <summary>
+        /// groups
+        /// </summary>
+        List<string> Groups
+        {
+            get;
+            set;
         }
 
         /// <summary>

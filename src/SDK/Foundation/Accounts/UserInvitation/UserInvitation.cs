@@ -17,8 +17,8 @@ namespace Mbed.Cloud.Foundation
     using Mbed.Cloud.Common;
     using Newtonsoft.Json;
     using System;
-    using Mbed.Cloud.Foundation;
     using System.Collections.Generic;
+    using Mbed.Cloud.Foundation;
 
     /// <summary>
     /// UserInvitation
@@ -59,6 +59,15 @@ namespace Mbed.Cloud.Foundation
         {
             get;
             internal set;
+        }
+
+        /// <summary>
+        /// groups
+        /// </summary>
+        public List<string> Groups
+        {
+            get;
+            set;
         }
 
         /// <summary>

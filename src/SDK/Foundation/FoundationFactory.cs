@@ -132,6 +132,11 @@ namespace Mbed.Cloud.Foundation.Factories
             return new LightThemeImageRepository(config, client);
         }
 
+        public PolicyGroupRepository PolicyGroupRepository()
+        {
+            return new PolicyGroupRepository(config, client);
+        }
+
         public PreSharedKeyRepository PreSharedKeyRepository()
         {
             return new PreSharedKeyRepository(config, client);
@@ -165,6 +170,11 @@ namespace Mbed.Cloud.Foundation.Factories
         public SubtenantLightThemeImageRepository SubtenantLightThemeImageRepository()
         {
             return new SubtenantLightThemeImageRepository(config, client);
+        }
+
+        public SubtenantPolicyGroupRepository SubtenantPolicyGroupRepository()
+        {
+            return new SubtenantPolicyGroupRepository(config, client);
         }
 
         public SubtenantTrustedCertificateRepository SubtenantTrustedCertificateRepository()

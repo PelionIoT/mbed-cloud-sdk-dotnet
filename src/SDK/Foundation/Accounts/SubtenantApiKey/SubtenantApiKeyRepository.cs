@@ -15,6 +15,7 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Mbed.Cloud.Foundation;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
@@ -39,7 +40,7 @@ namespace Mbed.Cloud.Foundation
             try
             {
                 var pathParams = new Dictionary<string, object> { { "account_id", accountId }, };
-                var bodyParams = new SubtenantApiKey { Name = request.Name, Owner = request.Owner, Status = request.Status, };
+                var bodyParams = new SubtenantApiKey { Groups = request.Groups, Name = request.Name, Owner = request.Owner, Status = request.Status, };
                 return await Client.CallApi<SubtenantApiKey>(path: "/v3/accounts/{account_id}/api-keys", pathParams: pathParams, bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
@@ -54,6 +55,25 @@ namespace Mbed.Cloud.Foundation
             {
                 var pathParams = new Dictionary<string, object> { { "account_id", accountId }, { "apikey_id", id }, };
                 await Client.CallApi<SubtenantApiKey>(path: "/v3/accounts/{account_id}/api-keys/{apikey_id}", pathParams: pathParams, method: HttpMethods.DELETE);
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public PaginatedResponse<ISubtenantApiKeySubtenantPolicyGroupListOptions, SubtenantPolicyGroup> PolicyGroups(string accountId, string id, ISubtenantApiKeySubtenantPolicyGroupListOptions options = null)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "account_id", accountId }, { "apikey_id", id }, };
+                if (options == null)
+                {
+                    options = new SubtenantApiKeySubtenantPolicyGroupListOptions();
+                }
+
+                Func<ISubtenantApiKeySubtenantPolicyGroupListOptions, Task<ResponsePage<SubtenantPolicyGroup>>> paginatedFunc = async (ISubtenantApiKeySubtenantPolicyGroupListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<SubtenantPolicyGroup>>(path: "/v3/accounts/{account_id}/api-keys/{apikey_id}/groups", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<ISubtenantApiKeySubtenantPolicyGroupListOptions, SubtenantPolicyGroup>(paginatedFunc, options);
             }
             catch (ApiException e)
             {
@@ -79,7 +99,7 @@ namespace Mbed.Cloud.Foundation
             try
             {
                 var pathParams = new Dictionary<string, object> { { "account_id", accountId }, { "apikey_id", id }, };
-                var bodyParams = new SubtenantApiKey { Name = request.Name, Owner = request.Owner, Status = request.Status, };
+                var bodyParams = new SubtenantApiKey { Groups = request.Groups, Name = request.Name, Owner = request.Owner, Status = request.Status, };
                 return await Client.CallApi<SubtenantApiKey>(path: "/v3/accounts/{account_id}/api-keys/{apikey_id}", pathParams: pathParams, bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.PUT);
             }
             catch (ApiException e)

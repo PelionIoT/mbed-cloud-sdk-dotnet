@@ -15,6 +15,7 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Mbed.Cloud.Foundation;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
@@ -28,6 +29,7 @@ namespace Mbed.Cloud.Foundation
     {
         Task<SubtenantUser> Create(string accountId, SubtenantUser request, string action = null);
         Task Delete(string accountId, string id);
+        PaginatedResponse<ISubtenantUserSubtenantPolicyGroupListOptions, SubtenantPolicyGroup> PolicyGroups(string accountId, string id, ISubtenantUserSubtenantPolicyGroupListOptions options = null);
         Task<SubtenantUser> Read(string accountId, string id);
         Task<SubtenantUser> Update(string accountId, string id, SubtenantUser request);
         Task<SubtenantUser> ValidateEmail(string accountId, string id);
