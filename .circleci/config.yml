@@ -146,8 +146,8 @@ jobs:
             ${login}
       - run:
           name: Fetch the test runner
-          command: (docker pull 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:${CIRCLE_BRANCH}
-              && docker tag 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:${CIRCLE_BRANCH}
+          command: (docker pull 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:$(echo ${CIRCLE_BRANCH} | tr / -)
+              && docker tag 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:$(echo ${CIRCLE_BRANCH} | tr / -)
               104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:latest)
               || (docker pull 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
               && docker tag 104059736540.dkr.ecr.us-west-2.amazonaws.com/mbed/sdk-testrunner:master
@@ -190,7 +190,7 @@ jobs:
       - run:
          command: |
                  . venv/bin/activate
-                 aws s3 sync --delete --cache-control max-age=3600 docs s3://mbed-cloud-sdk-dotnet-dist/${CIRCLE_BRANCH}/docs
+                 aws s3 sync --delete --cache-control max-age=3600 docs s3://mbed-cloud-sdk-dotnet-dist/$(echo ${CIRCLE_BRANCH} | tr / -)/docs
          name: upload docs to s3
   #############################################################################################
   #                                Misc pre jobs                                              #
