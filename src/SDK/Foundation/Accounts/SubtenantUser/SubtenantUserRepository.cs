@@ -15,6 +15,7 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Mbed.Cloud.Foundation;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
@@ -40,7 +41,7 @@ namespace Mbed.Cloud.Foundation
             {
                 var pathParams = new Dictionary<string, object> { { "account_id", accountId }, };
                 var queryParams = new Dictionary<string, object> { { "action", action }, };
-                var bodyParams = new SubtenantUser { Address = request.Address, Email = request.Email, FullName = request.FullName, IsGtcAccepted = request.IsGtcAccepted, IsMarketingAccepted = request.IsMarketingAccepted, LoginProfiles = request.LoginProfiles, Password = request.Password, PhoneNumber = request.PhoneNumber, Username = request.Username, };
+                var bodyParams = new SubtenantUser { Address = request.Address, Email = request.Email, FullName = request.FullName, Groups = request.Groups, IsGtcAccepted = request.IsGtcAccepted, IsMarketingAccepted = request.IsMarketingAccepted, LoginProfiles = request.LoginProfiles, Password = request.Password, PhoneNumber = request.PhoneNumber, Username = request.Username, };
                 return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{account_id}/users", pathParams: pathParams, queryParams: queryParams, bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
@@ -55,6 +56,25 @@ namespace Mbed.Cloud.Foundation
             {
                 var pathParams = new Dictionary<string, object> { { "account_id", accountId }, { "user_id", id }, };
                 await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{account_id}/users/{user_id}", pathParams: pathParams, method: HttpMethods.DELETE);
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
+        public PaginatedResponse<ISubtenantUserSubtenantPolicyGroupListOptions, SubtenantPolicyGroup> PolicyGroups(string accountId, string id, ISubtenantUserSubtenantPolicyGroupListOptions options = null)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "account_id", accountId }, { "user_id", id }, };
+                if (options == null)
+                {
+                    options = new SubtenantUserSubtenantPolicyGroupListOptions();
+                }
+
+                Func<ISubtenantUserSubtenantPolicyGroupListOptions, Task<ResponsePage<SubtenantPolicyGroup>>> paginatedFunc = async (ISubtenantUserSubtenantPolicyGroupListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<SubtenantPolicyGroup>>(path: "/v3/accounts/{account_id}/users/{user_id}/groups", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<ISubtenantUserSubtenantPolicyGroupListOptions, SubtenantPolicyGroup>(paginatedFunc, options);
             }
             catch (ApiException e)
             {
@@ -80,7 +100,7 @@ namespace Mbed.Cloud.Foundation
             try
             {
                 var pathParams = new Dictionary<string, object> { { "account_id", accountId }, { "user_id", id }, };
-                var bodyParams = new SubtenantUser { Address = request.Address, FullName = request.FullName, IsGtcAccepted = request.IsGtcAccepted, IsMarketingAccepted = request.IsMarketingAccepted, IsTotpEnabled = request.IsTotpEnabled, LoginProfiles = request.LoginProfiles, PhoneNumber = request.PhoneNumber, Username = request.Username, };
+                var bodyParams = new SubtenantUser { Address = request.Address, FullName = request.FullName, Groups = request.Groups, IsGtcAccepted = request.IsGtcAccepted, IsMarketingAccepted = request.IsMarketingAccepted, IsTotpEnabled = request.IsTotpEnabled, LoginProfiles = request.LoginProfiles, PhoneNumber = request.PhoneNumber, Username = request.Username, };
                 return await Client.CallApi<SubtenantUser>(path: "/v3/accounts/{account_id}/users/{user_id}", pathParams: pathParams, bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.PUT);
             }
             catch (ApiException e)

@@ -39,7 +39,7 @@ namespace Mbed.Cloud.Foundation
             try
             {
                 var pathParams = new Dictionary<string, object> { { "account_id", accountId }, };
-                var bodyParams = new SubtenantUserInvitation { Email = request.Email, LoginProfiles = request.LoginProfiles, };
+                var bodyParams = new SubtenantUserInvitation { Email = request.Email, Groups = request.Groups, LoginProfiles = request.LoginProfiles, };
                 var externalBodyParams = new
                 {
                     validForDays = validForDays,

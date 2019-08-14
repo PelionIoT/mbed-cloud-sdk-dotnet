@@ -108,6 +108,15 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
+        /// groups
+        /// </summary>
+        public List<string> Groups
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// is_gtc_accepted
         /// </summary>
         public bool? IsGtcAccepted

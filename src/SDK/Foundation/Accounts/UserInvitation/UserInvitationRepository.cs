@@ -38,7 +38,7 @@ namespace Mbed.Cloud.Foundation
         {
             try
             {
-                var bodyParams = new UserInvitation { Email = request.Email, LoginProfiles = request.LoginProfiles, };
+                var bodyParams = new UserInvitation { Email = request.Email, Groups = request.Groups, LoginProfiles = request.LoginProfiles, };
                 var externalBodyParams = new
                 {
                     validForDays = validForDays,

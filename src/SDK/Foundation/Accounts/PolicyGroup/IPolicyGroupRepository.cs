@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="ISubtenantApiKeyRepository.cs" company="Arm">
+// <copyright file="IPolicyGroupRepository.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -23,14 +23,13 @@ namespace Mbed.Cloud.Foundation
     using Mbed.Cloud.RestClient;
 
     /// <summary>
-    /// SubtenantApiKeyRepository
+    /// PolicyGroupRepository
     /// </summary>
-    public interface ISubtenantApiKeyRepository
+    public interface IPolicyGroupRepository
     {
-        Task<SubtenantApiKey> Create(string accountId, SubtenantApiKey request);
-        Task Delete(string accountId, string id);
-        PaginatedResponse<ISubtenantApiKeySubtenantPolicyGroupListOptions, SubtenantPolicyGroup> PolicyGroups(string accountId, string id, ISubtenantApiKeySubtenantPolicyGroupListOptions options = null);
-        Task<SubtenantApiKey> Read(string accountId, string id);
-        Task<SubtenantApiKey> Update(string accountId, string id, SubtenantApiKey request);
+        PaginatedResponse<IPolicyGroupApiKeyListOptions, ApiKey> ApiKeys(string id, IPolicyGroupApiKeyListOptions options = null);
+        PaginatedResponse<IPolicyGroupListOptions, PolicyGroup> List(IPolicyGroupListOptions options = null);
+        Task<PolicyGroup> Read(string id);
+        PaginatedResponse<IPolicyGroupUserListOptions, User> Users(string id, IPolicyGroupUserListOptions options = null);
     }
 }

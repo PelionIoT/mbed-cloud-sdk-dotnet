@@ -15,6 +15,7 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Mbed.Cloud.Foundation;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
@@ -39,7 +40,7 @@ namespace Mbed.Cloud.Foundation
             try
             {
                 var queryParams = new Dictionary<string, object> { { "action", action }, };
-                var bodyParams = new User { Address = request.Address, Email = request.Email, FullName = request.FullName, IsGtcAccepted = request.IsGtcAccepted, IsMarketingAccepted = request.IsMarketingAccepted, LoginProfiles = request.LoginProfiles, Password = request.Password, PhoneNumber = request.PhoneNumber, Username = request.Username, };
+                var bodyParams = new User { Address = request.Address, Email = request.Email, FullName = request.FullName, Groups = request.Groups, IsGtcAccepted = request.IsGtcAccepted, IsMarketingAccepted = request.IsMarketingAccepted, LoginProfiles = request.LoginProfiles, Password = request.Password, PhoneNumber = request.PhoneNumber, Username = request.Username, };
                 return await Client.CallApi<User>(path: "/v3/users", queryParams: queryParams, bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
@@ -79,6 +80,25 @@ namespace Mbed.Cloud.Foundation
             }
         }
 
+        public PaginatedResponse<IUserPolicyGroupListOptions, PolicyGroup> PolicyGroups(string id, IUserPolicyGroupListOptions options = null)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "user_id", id }, };
+                if (options == null)
+                {
+                    options = new UserPolicyGroupListOptions();
+                }
+
+                Func<IUserPolicyGroupListOptions, Task<ResponsePage<PolicyGroup>>> paginatedFunc = async (IUserPolicyGroupListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<PolicyGroup>>(path: "/v3/users/{user_id}/groups", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<IUserPolicyGroupListOptions, PolicyGroup>(paginatedFunc, options);
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
         public async Task<User> Read(string id)
         {
             try
@@ -97,7 +117,7 @@ namespace Mbed.Cloud.Foundation
             try
             {
                 var pathParams = new Dictionary<string, object> { { "user_id", id }, };
-                var bodyParams = new User { Address = request.Address, FullName = request.FullName, IsGtcAccepted = request.IsGtcAccepted, IsMarketingAccepted = request.IsMarketingAccepted, IsTotpEnabled = request.IsTotpEnabled, LoginProfiles = request.LoginProfiles, PhoneNumber = request.PhoneNumber, Username = request.Username, };
+                var bodyParams = new User { Address = request.Address, FullName = request.FullName, Groups = request.Groups, IsGtcAccepted = request.IsGtcAccepted, IsMarketingAccepted = request.IsMarketingAccepted, IsTotpEnabled = request.IsTotpEnabled, LoginProfiles = request.LoginProfiles, PhoneNumber = request.PhoneNumber, Username = request.Username, };
                 return await Client.CallApi<User>(path: "/v3/users/{user_id}", pathParams: pathParams, bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.PUT);
             }
             catch (ApiException e)

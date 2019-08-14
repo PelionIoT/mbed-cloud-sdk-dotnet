@@ -7,7 +7,7 @@
 // / /\/\ \ (_| | | | | | | | (_| \__ \__ \  __/ |_
 // \/    \/\__,_|_| |_|_| |_|\__,_|___/___/\___|\__| v 2.0.0
 //
-// <copyright file="IUserInvitation.cs" company="Arm">
+// <copyright file="ISubtenantPolicyGroup.cs" company="Arm">
 // Copyright (c) Arm. All rights reserved.
 // </copyright>
 // </auto-generated>
@@ -17,18 +17,25 @@ namespace Mbed.Cloud.Foundation
     using Mbed.Cloud.Common;
     using Newtonsoft.Json;
     using System;
-    using System.Collections.Generic;
-    using Mbed.Cloud.Foundation;
 
     /// <summary>
-    /// UserInvitation
+    /// SubtenantPolicyGroup
     /// </summary>
-    public interface IUserInvitation
+    public interface ISubtenantPolicyGroup
     {
         /// <summary>
         /// account_id
         /// </summary>
         string AccountId
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// apikey_count
+        /// </summary>
+        int? ApikeyCount
         {
             get;
         }
@@ -42,38 +49,11 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
-        /// email
+        /// name
         /// </summary>
-        string Email
+        string Name
         {
             get;
-            set;
-        }
-        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
-        /// <summary>
-        /// expiration
-        /// </summary>
-        DateTime? Expiration
-        {
-            get;
-        }
-
-        /// <summary>
-        /// groups
-        /// </summary>
-        List<string> Groups
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// login_profiles
-        /// </summary>
-        List<LoginProfile> LoginProfiles
-        {
-            get;
-            set;
         }
         [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>
@@ -85,9 +65,9 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
-        /// user_id
+        /// user_count
         /// </summary>
-        string UserId
+        int? UserCount
         {
             get;
         }

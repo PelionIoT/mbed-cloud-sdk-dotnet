@@ -15,6 +15,7 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Mbed.Cloud.Foundation;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
@@ -29,6 +30,7 @@ namespace Mbed.Cloud.Foundation
         Task<User> Create(User request, string action = null);
         Task Delete(string id);
         PaginatedResponse<IUserListOptions, User> List(IUserListOptions options = null);
+        PaginatedResponse<IUserPolicyGroupListOptions, PolicyGroup> PolicyGroups(string id, IUserPolicyGroupListOptions options = null);
         Task<User> Read(string id);
         Task<User> Update(string id, User request);
     }

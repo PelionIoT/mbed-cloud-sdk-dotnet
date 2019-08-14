@@ -15,6 +15,7 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Mbed.Cloud.Foundation;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
@@ -30,6 +31,7 @@ namespace Mbed.Cloud.Foundation
         Task Delete(string id);
         PaginatedResponse<IApiKeyListOptions, ApiKey> List(IApiKeyListOptions options = null);
         Task<ApiKey> Me();
+        PaginatedResponse<IApiKeyPolicyGroupListOptions, PolicyGroup> PolicyGroups(string id, IApiKeyPolicyGroupListOptions options = null);
         Task<ApiKey> Read(string id);
         Task<ApiKey> Update(string id, ApiKey request);
     }

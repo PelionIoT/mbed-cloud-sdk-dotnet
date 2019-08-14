@@ -15,6 +15,7 @@
 namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
+    using Mbed.Cloud.Foundation;
     using System.Threading.Tasks;
     using MbedCloudSDK.Exceptions;
     using System.Collections.Generic;
@@ -38,7 +39,7 @@ namespace Mbed.Cloud.Foundation
         {
             try
             {
-                var bodyParams = new ApiKey { Name = request.Name, Owner = request.Owner, Status = request.Status, };
+                var bodyParams = new ApiKey { Groups = request.Groups, Name = request.Name, Owner = request.Owner, Status = request.Status, };
                 return await Client.CallApi<ApiKey>(path: "/v3/api-keys", bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.POST);
             }
             catch (ApiException e)
@@ -90,6 +91,25 @@ namespace Mbed.Cloud.Foundation
             }
         }
 
+        public PaginatedResponse<IApiKeyPolicyGroupListOptions, PolicyGroup> PolicyGroups(string id, IApiKeyPolicyGroupListOptions options = null)
+        {
+            try
+            {
+                var pathParams = new Dictionary<string, object> { { "apikey_id", id }, };
+                if (options == null)
+                {
+                    options = new ApiKeyPolicyGroupListOptions();
+                }
+
+                Func<IApiKeyPolicyGroupListOptions, Task<ResponsePage<PolicyGroup>>> paginatedFunc = async (IApiKeyPolicyGroupListOptions _options) => { var queryParams = new Dictionary<string, object> { { "after", _options.After }, { "include", _options.Include }, { "limit", _options.Limit }, { "order", _options.Order }, }; return await Client.CallApi<ResponsePage<PolicyGroup>>(path: "/v3/api-keys/{apikey_id}/groups", pathParams: pathParams, queryParams: queryParams, method: HttpMethods.GET); };
+                return new PaginatedResponse<IApiKeyPolicyGroupListOptions, PolicyGroup>(paginatedFunc, options);
+            }
+            catch (ApiException e)
+            {
+                throw new CloudApiException(e.ErrorCode, e.Message, e.ErrorContent);
+            }
+        }
+
         public async Task<ApiKey> Read(string id)
         {
             try
@@ -108,7 +128,7 @@ namespace Mbed.Cloud.Foundation
             try
             {
                 var pathParams = new Dictionary<string, object> { { "apikey_id", id }, };
-                var bodyParams = new ApiKey { Name = request.Name, Owner = request.Owner, Status = request.Status, };
+                var bodyParams = new ApiKey { Groups = request.Groups, Name = request.Name, Owner = request.Owner, Status = request.Status, };
                 return await Client.CallApi<ApiKey>(path: "/v3/api-keys/{apikey_id}", pathParams: pathParams, bodyParams: bodyParams, objectToUnpack: request, method: HttpMethods.PUT);
             }
             catch (ApiException e)

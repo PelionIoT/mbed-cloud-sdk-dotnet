@@ -181,6 +181,14 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
+        /// groups
+        /// </summary>
+        List<string> Groups
+        {
+            get;
+        }
+
+        /// <summary>
         /// host_gateway
         /// </summary>
         string HostGateway
