@@ -215,6 +215,69 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
+        /// last_operator_suspended_category
+        /// </summary>
+        public string LastOperatorSuspendedCategory
+        {
+            get;
+            internal set;
+        }
+
+        /// <summary>
+        /// last_operator_suspended_description
+        /// </summary>
+        public string LastOperatorSuspendedDescription
+        {
+            get;
+            internal set;
+        }
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
+        /// <summary>
+        /// last_operator_suspended_updated_at
+        /// </summary>
+        public DateTime? LastOperatorSuspendedUpdatedAt
+        {
+            get;
+            internal set;
+        }
+
+        /// <summary>
+        /// last_system_suspended_category
+        /// </summary>
+        public string LastSystemSuspendedCategory
+        {
+            get;
+            internal set;
+        }
+
+        /// <summary>
+        /// last_system_suspended_description
+        /// </summary>
+        public string LastSystemSuspendedDescription
+        {
+            get;
+            internal set;
+        }
+        [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
+        /// <summary>
+        /// last_system_suspended_updated_at
+        /// </summary>
+        public DateTime? LastSystemSuspendedUpdatedAt
+        {
+            get;
+            internal set;
+        }
+
+        /// <summary>
+        /// lifecycle_status
+        /// </summary>
+        public DeviceLifecycleStatus? LifecycleStatus
+        {
+            get;
+            internal set;
+        }
+
+        /// <summary>
         /// manifest
         /// </summary>
         public string Manifest
@@ -260,6 +323,15 @@ namespace Mbed.Cloud.Foundation
         }
 
         /// <summary>
+        /// operator_suspended
+        /// </summary>
+        public bool? OperatorSuspended
+        {
+            get;
+            internal set;
+        }
+
+        /// <summary>
         /// serial_number
         /// </summary>
         public string SerialNumber
@@ -275,6 +347,15 @@ namespace Mbed.Cloud.Foundation
         {
             get;
             set;
+        }
+
+        /// <summary>
+        /// system_suspended
+        /// </summary>
+        public bool? SystemSuspended
+        {
+            get;
+            internal set;
         }
         [JsonConverter(typeof(CustomDateConverter), "yyyy-MM-dd'T'HH:mm:ss.fffZ")]
         /// <summary>

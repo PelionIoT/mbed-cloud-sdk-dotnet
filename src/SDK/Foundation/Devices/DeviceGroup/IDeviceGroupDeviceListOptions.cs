@@ -33,6 +33,30 @@ namespace Mbed.Cloud.Foundation
             set;
         }
 
+        DeviceGroupDeviceListOptions LifecycleStatusEqualTo(string value);
+        DeviceGroupDeviceListOptions LifecycleStatusNotEqualTo(string value);
+        DeviceGroupDeviceListOptions LifecycleStatusIn(params string[] value);
+        DeviceGroupDeviceListOptions LifecycleStatusNotIn(params string[] value);
+        DeviceGroupDeviceListOptions OperatorSuspendedEqualTo(string value);
+        DeviceGroupDeviceListOptions OperatorSuspendedNotEqualTo(string value);
+        DeviceGroupDeviceListOptions LastOperatorSuspendedCategoryEqualTo(string value);
+        DeviceGroupDeviceListOptions LastOperatorSuspendedCategoryNotEqualTo(string value);
+        DeviceGroupDeviceListOptions LastOperatorSuspendedCategoryIn(params string[] value);
+        DeviceGroupDeviceListOptions LastOperatorSuspendedCategoryNotIn(params string[] value);
+        DeviceGroupDeviceListOptions LastOperatorSuspendedUpdatedAtIn(params string[] value);
+        DeviceGroupDeviceListOptions LastOperatorSuspendedUpdatedAtNotIn(params string[] value);
+        DeviceGroupDeviceListOptions LastOperatorSuspendedUpdatedAtLessThan(string value);
+        DeviceGroupDeviceListOptions LastOperatorSuspendedUpdatedAtGreaterThan(string value);
+        DeviceGroupDeviceListOptions SystemSuspendedEqualTo(string value);
+        DeviceGroupDeviceListOptions SystemSuspendedNotEqualTo(string value);
+        DeviceGroupDeviceListOptions LastSystemSuspendedCategoryEqualTo(string value);
+        DeviceGroupDeviceListOptions LastSystemSuspendedCategoryNotEqualTo(string value);
+        DeviceGroupDeviceListOptions LastSystemSuspendedCategoryIn(params string[] value);
+        DeviceGroupDeviceListOptions LastSystemSuspendedCategoryNotIn(params string[] value);
+        DeviceGroupDeviceListOptions LastSystemSuspendedUpdatedAtIn(params string[] value);
+        DeviceGroupDeviceListOptions LastSystemSuspendedUpdatedAtNotIn(params string[] value);
+        DeviceGroupDeviceListOptions LastSystemSuspendedUpdatedAtLessThan(string value);
+        DeviceGroupDeviceListOptions LastSystemSuspendedUpdatedAtGreaterThan(string value);
         DeviceGroupDeviceListOptions AccountIdEqualTo(string value);
         DeviceGroupDeviceListOptions AccountIdNotEqualTo(string value);
         DeviceGroupDeviceListOptions AccountIdIn(params string[] value);
