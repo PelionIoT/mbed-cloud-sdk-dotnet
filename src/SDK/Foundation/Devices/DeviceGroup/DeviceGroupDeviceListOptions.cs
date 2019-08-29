@@ -38,6 +38,150 @@ namespace Mbed.Cloud.Foundation
             set;
         }
 
+        public DeviceGroupDeviceListOptions LifecycleStatusEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("lifecycle_status", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceGroupDeviceListOptions LifecycleStatusNotEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("lifecycle_status", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceGroupDeviceListOptions LifecycleStatusIn(params string[] value)
+        {
+            this.Filter.AddFilterItem("lifecycle_status", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceGroupDeviceListOptions LifecycleStatusNotIn(params string[] value)
+        {
+            this.Filter.AddFilterItem("lifecycle_status", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceGroupDeviceListOptions OperatorSuspendedEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("operator_suspended", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceGroupDeviceListOptions OperatorSuspendedNotEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("operator_suspended", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceGroupDeviceListOptions LastOperatorSuspendedCategoryEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("last_operator_suspended_category", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceGroupDeviceListOptions LastOperatorSuspendedCategoryNotEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("last_operator_suspended_category", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceGroupDeviceListOptions LastOperatorSuspendedCategoryIn(params string[] value)
+        {
+            this.Filter.AddFilterItem("last_operator_suspended_category", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceGroupDeviceListOptions LastOperatorSuspendedCategoryNotIn(params string[] value)
+        {
+            this.Filter.AddFilterItem("last_operator_suspended_category", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceGroupDeviceListOptions LastOperatorSuspendedUpdatedAtIn(params string[] value)
+        {
+            this.Filter.AddFilterItem("last_operator_suspended_updated_at", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceGroupDeviceListOptions LastOperatorSuspendedUpdatedAtNotIn(params string[] value)
+        {
+            this.Filter.AddFilterItem("last_operator_suspended_updated_at", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceGroupDeviceListOptions LastOperatorSuspendedUpdatedAtLessThan(string value)
+        {
+            this.Filter.AddFilterItem("last_operator_suspended_updated_at", new FilterItem(value, FilterOperator.LessThan));
+            return this;
+        }
+
+        public DeviceGroupDeviceListOptions LastOperatorSuspendedUpdatedAtGreaterThan(string value)
+        {
+            this.Filter.AddFilterItem("last_operator_suspended_updated_at", new FilterItem(value, FilterOperator.GreaterThan));
+            return this;
+        }
+
+        public DeviceGroupDeviceListOptions SystemSuspendedEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("system_suspended", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceGroupDeviceListOptions SystemSuspendedNotEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("system_suspended", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceGroupDeviceListOptions LastSystemSuspendedCategoryEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("last_system_suspended_category", new FilterItem(value, FilterOperator.Equals));
+            return this;
+        }
+
+        public DeviceGroupDeviceListOptions LastSystemSuspendedCategoryNotEqualTo(string value)
+        {
+            this.Filter.AddFilterItem("last_system_suspended_category", new FilterItem(value, FilterOperator.NotEqual));
+            return this;
+        }
+
+        public DeviceGroupDeviceListOptions LastSystemSuspendedCategoryIn(params string[] value)
+        {
+            this.Filter.AddFilterItem("last_system_suspended_category", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceGroupDeviceListOptions LastSystemSuspendedCategoryNotIn(params string[] value)
+        {
+            this.Filter.AddFilterItem("last_system_suspended_category", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceGroupDeviceListOptions LastSystemSuspendedUpdatedAtIn(params string[] value)
+        {
+            this.Filter.AddFilterItem("last_system_suspended_updated_at", new FilterItem(value, FilterOperator.In));
+            return this;
+        }
+
+        public DeviceGroupDeviceListOptions LastSystemSuspendedUpdatedAtNotIn(params string[] value)
+        {
+            this.Filter.AddFilterItem("last_system_suspended_updated_at", new FilterItem(value, FilterOperator.NotIn));
+            return this;
+        }
+
+        public DeviceGroupDeviceListOptions LastSystemSuspendedUpdatedAtLessThan(string value)
+        {
+            this.Filter.AddFilterItem("last_system_suspended_updated_at", new FilterItem(value, FilterOperator.LessThan));
+            return this;
+        }
+
+        public DeviceGroupDeviceListOptions LastSystemSuspendedUpdatedAtGreaterThan(string value)
+        {
+            this.Filter.AddFilterItem("last_system_suspended_updated_at", new FilterItem(value, FilterOperator.GreaterThan));
+            return this;
+        }
+
         public DeviceGroupDeviceListOptions AccountIdEqualTo(string value)
         {
             this.Filter.AddFilterItem("account_id", new FilterItem(value, FilterOperator.Equals));

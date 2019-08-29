@@ -16,9 +16,9 @@ namespace Mbed.Cloud.Foundation
 {
     using Mbed.Cloud.Common;
     using Mbed.Cloud.Common.Filters;
+    using Mbed.Cloud.Foundation.Enums;
     using System.Collections.Generic;
     using System;
-    using Mbed.Cloud.Foundation.Enums;
 
     /// <summary>
     /// DeviceListOptions
@@ -34,6 +34,30 @@ namespace Mbed.Cloud.Foundation
             set;
         }
 
+        DeviceListOptions LifecycleStatusEqualTo(DeviceLifecycleStatus value);
+        DeviceListOptions LifecycleStatusNotEqualTo(DeviceLifecycleStatus value);
+        DeviceListOptions LifecycleStatusIn(params DeviceLifecycleStatus[] value);
+        DeviceListOptions LifecycleStatusNotIn(params DeviceLifecycleStatus[] value);
+        DeviceListOptions OperatorSuspendedEqualTo(bool value);
+        DeviceListOptions OperatorSuspendedNotEqualTo(bool value);
+        DeviceListOptions LastOperatorSuspendedCategoryEqualTo(string value);
+        DeviceListOptions LastOperatorSuspendedCategoryNotEqualTo(string value);
+        DeviceListOptions LastOperatorSuspendedCategoryIn(params string[] value);
+        DeviceListOptions LastOperatorSuspendedCategoryNotIn(params string[] value);
+        DeviceListOptions LastOperatorSuspendedUpdatedAtIn(params DateTime[] value);
+        DeviceListOptions LastOperatorSuspendedUpdatedAtNotIn(params DateTime[] value);
+        DeviceListOptions LastOperatorSuspendedUpdatedAtLessThan(DateTime value);
+        DeviceListOptions LastOperatorSuspendedUpdatedAtGreaterThan(DateTime value);
+        DeviceListOptions SystemSuspendedEqualTo(bool value);
+        DeviceListOptions SystemSuspendedNotEqualTo(bool value);
+        DeviceListOptions LastSystemSuspendedCategoryEqualTo(string value);
+        DeviceListOptions LastSystemSuspendedCategoryNotEqualTo(string value);
+        DeviceListOptions LastSystemSuspendedCategoryIn(params string[] value);
+        DeviceListOptions LastSystemSuspendedCategoryNotIn(params string[] value);
+        DeviceListOptions LastSystemSuspendedUpdatedAtIn(params DateTime[] value);
+        DeviceListOptions LastSystemSuspendedUpdatedAtNotIn(params DateTime[] value);
+        DeviceListOptions LastSystemSuspendedUpdatedAtLessThan(DateTime value);
+        DeviceListOptions LastSystemSuspendedUpdatedAtGreaterThan(DateTime value);
         DeviceListOptions AccountIdEqualTo(string value);
         DeviceListOptions AccountIdNotEqualTo(string value);
         DeviceListOptions AccountIdIn(params string[] value);
