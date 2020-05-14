@@ -31,7 +31,7 @@
             },
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development",
-                "MBED_CLOUD_SDK_API_KEY": "ak_1MDE1YTllM2FjODM1MDI0MjBhMDE0MDBhMDAwMDAwMDA016105b133f70a580a01071900000000qBXb6uq2nqMzBs74bLSmkMgveLfYe5Mz"
+                "MBED_CLOUD_SDK_API_KEY": "<your api key>"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
@@ -64,7 +64,7 @@
             },
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development",
-                "MBED_CLOUD_SDK_API_KEY": "ak_1MDE2MTQxMzRjNjJmMGE1ODBhMDExMmQwMDAwMDAwMDA01616ac6d5620a580a012405000000008vC8UU1ulzDIIrggqsaT0WIlWqP2pEA4",
+                "MBED_CLOUD_SDK_API_KEY": "<your api key>",
                 "MBED_CLOUD_SDK_HOST": "https://api-os2.mbedcloudstaging.net"
             },
             "sourceFileMap": {
